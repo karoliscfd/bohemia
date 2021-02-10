@@ -92,3 +92,34 @@ setwd('..')
 # 
 # system('pdfjam 001.pdf 002.pdf 003.pdf 004.pdf 005.pdf 006.pdf 007.pdf 008.pdf 009.pdf 010.pdf 011.pdf 012.pdf --nup 3x4 --landscape --outfile 001-004.pdf')
 # setwd('..')
+
+# Generate pdf
+dir.create('pdfs_sponsor')
+for(i in 601:620){
+  message(i, ' of ', length(numbers))
+  # for(i in 1:2){
+  this_number <- numbers[i]
+  marg <- ggplot() + databrew::theme_simple()
+  a <- ggplot() +
+    databrew::theme_simple() +
+    labs(title = this_number,
+         # y = 'www.databrew.cc/qr',
+         subtitle = 'Bohemia ID card',
+         caption = 'www.bohemia.team/qr')+
+    theme(plot.title = element_text(hjust = 0.5, size = 36),
+          plot.subtitle = element_text(hjust = 0.5, size = 12),
+          plot.caption = element_text(size = 7, hjust = 0.5))
+  gl <- ggqrcode(this_number)
+  
+  x <- ggarrange(marg, 
+                 ggarrange(a, gl, marg, nrow = 1,
+                           widths = c(4,4,0.2)),
+                 marg,
+                 ncol = 1,
+                 heights = c(1,10,1))
+  
+  
+  ggexport(x,
+           filename = paste0('pdfs_sponsor/', this_number, '.pdf'),
+           width = dims[1], height = dims[2])
+}
