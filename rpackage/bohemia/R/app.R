@@ -5878,7 +5878,6 @@ app_server <- function(input, output, session) {
               } else {
                 anx <- an
               }
-              
               by_fw_type <-anx %>%
                 mutate(date = as.Date(date)) %>%
                 filter(date >=date_range[1], 
@@ -5985,11 +5984,12 @@ app_server <- function(input, output, session) {
                 group_by(country = the_country,
                          date = todays_date) %>%
                 summarise(`Va forms` = n())
+              out_va$country <- the_country
               out_refusals <- pd$refusals %>%
                 mutate(reason_no_participate = ifelse(reason_no_participate %in% 
                                                         c('SEM COMENTARIO',
                                                           'He didnt want to do it',
-                                                          'Dont know'),
+                                                          'Dont know', 'refused'),
                                                       'refused',
                                                       'not_present')) %>%
                 group_by(country,
@@ -6637,7 +6637,7 @@ app_server <- function(input, output, session) {
                                     'Needs response'))) %>%
       mutate(week = lubridate::week(date)) %>%
       group_by(week) %>%
-      mutate(week_label = paste0('Week of ', min(date))) %>%
+      mutate(week_label = paste0(min(date))) %>%
       group_by(category = status, date = week_label) %>%
       tally %>%
       ungroup 
@@ -6646,6 +6646,7 @@ app_server <- function(input, output, session) {
                           levels = c('Needs response',
                                      'Response submitted',
                                      'Done'))
+    # save(pd, file = 'temp_pd.rda')
     ggplot(data = pd,
            aes(x = date,
                y = n,
@@ -6659,7 +6660,7 @@ app_server <- function(input, output, session) {
            y = 'Number of anomalies',
            title = 'Anomalies/errors and status over time') +
       theme_bohemia() +
-      theme(axis.text.x = element_text(angle=45, hjust=1, size = sizex))
+      theme(axis.text.x = element_text(angle=45, hjust=1, size = 14))
   })
   
   # Alert ui
