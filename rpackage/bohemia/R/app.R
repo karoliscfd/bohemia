@@ -244,6 +244,7 @@ app_ui <- function(request) {
                         ),
                         tabPanel('Refusals and Absences',
                                  uiOutput('ui_geo_r_and_a'),
+                                 uiOutput('ui_date_r_and_a'),
                                  uiOutput('ui_refusals_and_absences')))),
           tabItem(
             tabName="enrollment",
@@ -4883,6 +4884,30 @@ app_server <- function(input, output, session) {
             })
   })
   
+  # date range for refusals and absences
+  output$ui_date_r_and_a <- renderUI({
+    # See if the user is logged in and has access
+    si <- session_info
+    li <- si$logged_in
+    ac <- TRUE
+    # Generate the ui
+    make_ui(li = li,
+            ac = ac,
+            ok = {
+              # pd <- odk_data$data
+              # pd <- pd$minicensus_main
+              fluidPage(
+                column(6,
+                       sliderInput(inputId = 'date_r_and_a', 
+                                   label = 'Select dates', 
+                                   min= as.Date('2020-09-01'), #  min(pd$todays_date), 
+                                   max= Sys.Date(), #max(pd$todays_date), 
+                                   value = c(as.Date('2020-09-01'), Sys.Date())))
+              )
+              
+            })
+  })
+  
   # Refusals and absences UI
   output$ui_refusals_and_absences <- renderUI({
     # See if the user is logged in and has access
@@ -4895,6 +4920,13 @@ app_server <- function(input, output, session) {
             ok = {
               # Get the country
               co <- country()
+              
+              #get date range 
+              date_range <- input$date_r_and_a
+              if(is.null(date_range)){
+                date_range <- c(as.Date('2020-09-01'), Sys.Date())
+              }
+              
               geo_r_and_a <- input$geo_r_and_a
               if(is.null(geo_r_and_a)){
                 NULL
@@ -4928,6 +4960,7 @@ app_server <- function(input, output, session) {
                 
                 out_rf <- rf_agg %>%
                   filter(reason_no_participate == 'refused') %>%
+                  filter(date >= date_range[1], date<=date_range[2]) %>%
                   dplyr::select(district, ward, village, hamlet, hh_id,
                                 `Refusal date` = date,
                                 `Description` = free_text)
@@ -4935,13 +4968,40 @@ app_server <- function(input, output, session) {
                 out_ab <- rf_agg %>%
                   filter(reason_no_participate == 'not_present',
                          reason_no_participate != 'refused')  %>%
+                  filter(date >= date_range[1], date<=date_range[2]) %>%
                   dplyr::select(district, ward, village, hamlet, hh_id,
                                 `Visits` = n,
                                 `Last visit` = date)
                 
                 if(grouper!='household'){
+                  
+                  # get the time series version
+                  out_rf_time <- out_rf  %>% group_by_(grouper) %>% mutate(`Number of refusals` = n())
+                  out_rf_time <- out_rf_time %>% group_by(`Refusal date`) %>% summarise(`Number of refusals`= sum(`Number of refusals`, na.rm=TRUE))
+                  
+                  out_ab_time <- out_ab  %>% group_by_(grouper) %>% mutate(`Number of absences` = n())
+                  out_ab_time <- out_ab_time %>% group_by(`Last visit`) %>% summarise(`Number of absences`= sum(`Number of absences`, na.rm=TRUE))
+                  
                   out_rf <- out_rf %>% group_by_(grouper) %>% summarise(`Number of refusals` = n())
                   out_ab <- out_ab %>% group_by_(grouper) %>% summarise(`Number of absences` = n())
+                  
+                  # create time plots
+                  # finished ref, now do ab below this and then make plots when condition is households (belwo)
+                  output$ref_plot_time <- renderPlot({
+                    ggplot(out_rf_time, aes(`Refusal date`, `Number of refusals`)) + geom_bar(stat = 'identity') +
+                      labs(x='') + theme_bohemia() +
+                      theme(axis.text = element_text(angle=90, vjust=0.5, size = sizex),
+                            axis.title = element_text(size = 14),
+                            plot.title = element_text(size = 20))
+                  })
+                  
+                  output$ab_plot_time <- renderPlot({
+                    ggplot(out_ab_time, aes(`Last visit`, `Number of absences`)) + geom_bar(stat = 'identity') +
+                      labs(x='') + theme_bohemia() +
+                      theme(axis.text = element_text(angle=90, vjust=0.5, size = sizex),
+                            axis.title = element_text(size = 14),
+                            plot.title = element_text(size = 20))
+                  })
                   
                   # only create plots if household level not selected
                   # create plot for refusals
@@ -4996,7 +5056,12 @@ app_server <- function(input, output, session) {
                                                  download_options = TRUE)
                              ),
                              fluidRow(
-                               plotOutput('ref_plot', height = '700px')
+                               column(6, 
+                                      plotOutput('ref_plot', height = '700px')),
+                               column(6, 
+                                      plotOutput('ref_plot_time', height = '700px')),
+                               
+                               
                              )
                            )),
                   tabPanel(title = 'Absences',
@@ -5007,7 +5072,12 @@ app_server <- function(input, output, session) {
                                                  download_options = TRUE)
                              ),
                              fluidRow(
-                               plotOutput('ab_plot', height = '700px')
+                               column(6, 
+                                      plotOutput('ab_plot', height = '700px')),
+                               column(6, 
+                                      plotOutput('ab_plot_time', height = '700px')),
+                               
+                               
                              )
                            ))
                 )
