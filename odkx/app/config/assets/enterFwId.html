@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="css/bootstrap-4.6.0/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/bohemia.css" type="text/css" rel="stylesheet">
+
+    <script defer src="commonDefinitions.js"></script>
+    <script defer src="../../system/js/odkCommon.js"></script>
+    <script defer src="../../system/tables/js/odkTables.js"></script>
+
+    <script defer src="js/localize.js"></script>
+    <script defer src="js/enterFwId.js"></script>
+</head>
+
+<body>
+<div class="d-none" id="wrapper">
+    <h1 class="text-uppercase text-center my-5" data-localize="fw_id_title"></h1>
+
+    <main class="container-fluid mt-3">
+        <form id="enterFwIdForm">
+            <div class="form-group">
+                <label for="fwIdInput" data-localize="fw_id_title"></label>
+                <button type="button" class="btn btn-dark d-block mb-2" id="enterFwIdScan" data-localize="scan_button"></button>
+                <input type="tel" class="form-control" id="fwIdInput">
+                <small class="form-text text-muted" data-localize="qr_hint"></small>
+            </div>
+            <button type="submit" class="btn btn-primary" data-localize="submit_button"></button>
+        </form>
+    </main>
+</div>
+</body>
+</html>

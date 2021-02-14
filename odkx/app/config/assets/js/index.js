@@ -1,14 +1,24 @@
 'use strict';
 
 // Button to add a new household
-document.addEventListener('DOMContentLoaded', function (evt) {
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('enterFwId').addEventListener('click', function () {
+    odkTables.launchHTML(
+      null,
+      'config/assets/enterFwId.html'
+    );
+  });
+
   document.getElementById('newHhButton').addEventListener('click', function () {
     odkTables.addRowWithSurvey(
       null,
       'census',
       'census',
       null,
-      null
+      {
+        fw_id: window.localStorage.getItem('FW_ID') || null,
+        hh_minicenced: 'no'
+      }
     );
   });
 
@@ -30,6 +40,16 @@ document.addEventListener('DOMContentLoaded', function (evt) {
   });
 
   window.localStorage.removeItem('bohemiaHhSearch');
+  window.localStorage.removeItem('bohemiaMemberSearch');
 
-  document.getElementById('wrapper').style.display = 'inherit';
+  document.getElementById('fwIdSpan').textContent = window.localStorage.getItem('FW_ID') || '';
+
+  if (!window.localStorage.getItem('FW_ID')) {
+    document.getElementById('newHhButton').disabled = true;
+    document.getElementById('editHhButton').disabled = true;
+  }
+
+  localizeUtil.localizePage();
+
+  document.getElementById('wrapper').classList.remove('d-none');
 });
