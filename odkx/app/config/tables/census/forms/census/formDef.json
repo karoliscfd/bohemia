@@ -2395,7 +2395,7 @@
           "constraint_message": "cannot_enter_0"
         },
         "required": "selected(data('any_snake_bite'), 'yes')",
-        "constraint": "data('any_snake_bite_num') > 0",
+        "constraint": "not(selected(data('any_snake_bite'), 'yes')) || data('any_snake_bite_num') > 0",
         "validation_tags": "finalize",
         "_row_num": 360
       },
@@ -16405,7 +16405,7 @@
               "constraint_message": "cannot_enter_0"
             },
             "required": "selected(data('any_snake_bite'), 'yes')",
-            "constraint": "data('any_snake_bite_num') > 0",
+            "constraint": "not(selected(data('any_snake_bite'), 'yes')) || data('any_snake_bite_num') > 0",
             "validation_tags": "finalize",
             "_row_num": 360,
             "__rowNum__": 359,
