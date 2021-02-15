@@ -290,7 +290,9 @@ window.odkFrameworkDefinitions = {
     "select_with_other_other_label": {
       "string_token": "select_with_other_other_label",
       "text": {
-        "default": "Other:"
+        "default": "Other",
+        "pt": "Outro",
+        "sw": "Nyingine"
       },
       "_row_num": 44
     },

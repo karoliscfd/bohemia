@@ -2735,9 +2735,9 @@ window.odkTableSpecificDefinitions = {
     "ind_q17a": {
       "string_token": "ind_q17a",
       "text": {
-        "default": "17a. What form of care did this participant seek?",
-        "pt": "17a. Que tipo de cuidados é que o participante procurou?",
-        "sw": "17a. Ni huduma ya aina gani aliyoitafuta mshiriki huyu?"
+        "default": "17a. What form of care did this participant seek? (check all that apply)",
+        "pt": "17a. Que tipo de cuidados é que o participante procurou? (Assinalar todas as opções que se apliquem)",
+        "sw": "17a. Ni huduma ya aina gani aliyoitafuta mshiriki huyu? (chagua yote yatakayo husika)"
       },
       "_row_num": 314
     },
@@ -2759,6 +2759,11 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 316
     },
+    "ind_q17bi.hint": {
+      "string_token": "ind_q17bi.hint",
+      "text": "indicate result",
+      "_row_num": 317
+    },
     "ind_q17c": {
       "string_token": "ind_q17c",
       "text": {
@@ -2766,7 +2771,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c. O participante recebeu tratamento contra a malária?",
         "sw": "17c. Mshiriki huyu alipata matibabu ya malaria?"
       },
-      "_row_num": 317
+      "_row_num": 318
     },
     "ind_q17ci": {
       "string_token": "ind_q17ci",
@@ -2775,7 +2780,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c(i). [Se não] Porque não?",
         "sw": "17c (i). [Ikiwa hapana] kwa nini hakupata?"
       },
-      "_row_num": 318
+      "_row_num": 319
     },
     "ind_q18": {
       "string_token": "ind_q18",
@@ -2784,7 +2789,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "18. O participante tem alguma deficiência, lesão ou invalidez?",
         "sw": "18. Mshiriki huyu ana upungufu wowote, jeraha au ugonjwa?"
       },
-      "_row_num": 319
+      "_row_num": 320
     },
     "ind_q19": {
       "string_token": "ind_q19",
@@ -2793,7 +2798,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19. O participante tem comichão? (Assinalar todas as opções que se apliquem)",
         "sw": "19. Mshiriki huyu anawashwa? (chagua yote yatakayo husika)"
       },
-      "_row_num": 320
+      "_row_num": 321
     },
     "ind_q20": {
       "string_token": "ind_q20",
@@ -2802,7 +2807,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "20. O participante tem tunga?",
         "sw": "20. Je, mshiriki huyu ana tunga?"
       },
-      "_row_num": 321
+      "_row_num": 322
     },
     "ind_q21": {
       "string_token": "ind_q21",
@@ -2811,7 +2816,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "21. O participante tem percevejos em casa?",
         "sw": "21. Je, mshiriki huyu ana kunguni katika nyumba yake?"
       },
-      "_row_num": 322
+      "_row_num": 323
     },
     "ind_q22": {
       "string_token": "ind_q22",
@@ -2820,7 +2825,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "22. O participante teve parasitas nas fezes nos últimos 15 dias?",
         "sw": "22. Je, mshiriki huyu alitoa kinyesi chenye minyoo hivi karibuni katika siku 15 zilizopita?"
       },
-      "_row_num": 323
+      "_row_num": 324
     },
     "ind_q23": {
       "string_token": "ind_q23",
@@ -2829,7 +2834,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23. Quando é que a participante teve o último período menstrual?",
         "sw": "23. mshiriki huyu alipata lini hedhi yake ya mwisho?"
       },
-      "_row_num": 324
+      "_row_num": 325
     },
     "ind_q24": {
       "string_token": "ind_q24",
@@ -2838,7 +2843,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "24. A participante está atualmente a amamentar?",
         "sw": "24. Mshiriki huyu kwa sasa ananyonyesha?"
       },
-      "_row_num": 325
+      "_row_num": 326
     },
     "ind_q25": {
       "string_token": "ind_q25",
@@ -2847,7 +2852,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "25. A participante está grávida?",
         "sw": "25. Mshiriki huyu kwa sasa ni mjamzito?"
       },
-      "_row_num": 326
+      "_row_num": 327
     },
     "ind_q25a": {
       "string_token": "ind_q25a",
@@ -2856,7 +2861,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "[Se sim] 25a. A participante está a fazer Tratamento Intermitente Preventivo na Gravidez (TIP) para a malária?",
         "sw": "[Ikiwa ndio] 25a. Mshiriki huyu anatumia dozi ya kuzuia malaria wakati wa ujauzito (IPTp)?"
       },
-      "_row_num": 327
+      "_row_num": 328
     },
     "ind_q26": {
       "string_token": "ind_q26",
@@ -2865,7 +2870,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26. O participante dormiu debaixo de uma rede mosquiteira na noite passada?",
         "sw": "26. Mshiriki huyu alilala ndani ya chandarua cha mbu usiku uliopita?"
       },
-      "_row_num": 328
+      "_row_num": 329
     },
     "ind_q26a": {
       "string_token": "ind_q26a",
@@ -2874,7 +2879,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26a. [Se sim] Quantas pessoas partilhavam a rede?",
         "sw": "26a. [Ikiwa ndiyo] Ni watu wangapi walio lala kwenye chandarua hicho?"
       },
-      "_row_num": 329
+      "_row_num": 330
     },
     "ind_q27": {
       "string_token": "ind_q27",
@@ -2883,7 +2888,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "27. A que horas é que este participante costuma ir para dentro da casa?",
         "sw": "27. Mshiriki huyu kwa kawaida huingia ndani ya nyumba saa ngapi?"
       },
-      "_row_num": 330
+      "_row_num": 331
     },
     "ind_q28": {
       "string_token": "ind_q28",
@@ -2892,7 +2897,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "28. A que horas é que este participante costuma ir para a cama?",
         "sw": "28. Mshiriki huyu kwa kawaida hulala saa ngapi?"
       },
-      "_row_num": 331
+      "_row_num": 332
     },
     "ind_q29": {
       "string_token": "ind_q29",
@@ -2901,7 +2906,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "29. O que é que o participante faz antes de ir para a cama?",
         "sw": "29. Mshiriki hufanya nini kabla ya kwenda kulala?"
       },
-      "_row_num": 332
+      "_row_num": 333
     },
     "ind_q30": {
       "string_token": "ind_q30",
@@ -2910,7 +2915,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "30. A que horas é que este participante costuma acordar?",
         "sw": "30. Mshiriki huyu kwa kawaida huamka saa ngapi?"
       },
-      "_row_num": 333
+      "_row_num": 334
     },
     "ind_q31": {
       "string_token": "ind_q31",
@@ -2919,7 +2924,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31. A que horas é que este participante costuma sair de casa?",
         "sw": "31. Mshiriki huyu kwa kawaida huenda nje saa ngapi?"
       },
-      "_row_num": 334
+      "_row_num": 335
     },
     "ind_q31a": {
       "string_token": "ind_q31a",
@@ -2928,7 +2933,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31a. [Se antes do nascer do sol] O que é que o participante faz?",
         "sw": "31a. [Ikiwa ni kabla ya jua kuchomoza] Mshiriki huyu anafanya nini?"
       },
-      "_row_num": 335
+      "_row_num": 336
     },
     "ind_q32": {
       "string_token": "ind_q32",
@@ -2937,7 +2942,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32. Este participante já viajou para fora do país?",
         "sw": "32. Mshiriki huyu amewahi kusafiri nje ya nchi hii?"
       },
-      "_row_num": 336
+      "_row_num": 337
     },
     "ind_q32a": {
       "string_token": "ind_q32a",
@@ -2946,7 +2951,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32a. [Se sim] O participante já viajou para algum dos seguintes países?",
         "sw": "32a. [Ikiwa ndiyo] Mshiriki huyu amewahi kusafiri kwa yoyote kati ya nchi hizi?"
       },
-      "_row_num": 337
+      "_row_num": 338
     },
     "ind_q33": {
       "string_token": "ind_q33",
@@ -2955,7 +2960,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33. O participante viaja regularmente ou dorme fora de casa durante a primeira parte do ano? (Janeiro-Junho)",
         "sw": "33. Mshiriki huyu husafiri mara kwa mara au kulala nje ya nyumbani wakati wa sehemu ya kwanza ya mwaka? (Januari-Juni)"
       },
-      "_row_num": 338
+      "_row_num": 339
     },
     "ind_q33a": {
       "string_token": "ind_q33a",
@@ -2964,7 +2969,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33a. Se sim, quantas viagens diferentes é que o participante faz durante a primeira parte do ano?",
         "sw": "33a. Ikiwa ndiyo, ni safari ngapi tofauti ambazo mshiriki huyu anazo wakati wa sehemu ya kwanza ya mwaka?"
       },
-      "_row_num": 339
+      "_row_num": 340
     },
     "w_none": {
       "string_token": "w_none",
@@ -2973,7 +2978,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" pamoja na majibu mengine"
       },
-      "_row_num": 341
+      "_row_num": 342
     },
     "w_all_dk": {
       "string_token": "w_all_dk",
@@ -2982,7 +2987,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Todos' ou \"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Yote\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 342
+      "_row_num": 343
     },
     "w_no_dk": {
       "string_token": "w_no_dk",
@@ -2991,7 +2996,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou\"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 343
+      "_row_num": 344
     },
     "w_dk_pna": {
       "string_token": "w_dk_pna",
@@ -3000,7 +3005,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 344
+      "_row_num": 345
     },
     "w_dk_pna_no": {
       "string_token": "w_dk_pna_no",
@@ -3009,7 +3014,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\", \"Não” ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\", “Hapana” au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 345
+      "_row_num": 346
     },
     "w_no_pna": {
       "string_token": "w_no_pna",
@@ -3018,7 +3023,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 346
+      "_row_num": 347
     },
     "w_pna": {
       "string_token": "w_pna",
@@ -3027,7 +3032,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 347
+      "_row_num": 348
     },
     "w_no_symptoms": {
       "string_token": "w_no_symptoms",
@@ -3036,7 +3041,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Sem sintomas\"junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna dalili\" pamoja na majibu mengine"
       },
-      "_row_num": 348
+      "_row_num": 349
     },
     "w_none_pna": {
       "string_token": "w_none_pna",
@@ -3045,7 +3050,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 349
+      "_row_num": 350
     },
     "w_fever_di": {
       "string_token": "w_fever_di",
@@ -3054,7 +3059,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você selecionou \"febres\" e/ou \"diarreia\" na pergunta anterior mas não marcou \"febres\" e/ou \"diarreia\" como o sintoma principal. Por favor verifque.",
         "sw": "Ulichagua \"homa\" na / au \"kuhara\" katika swali lililopita lakini haujachagua \"homa\" na / au \"kuhara\" kama dalili kuu. Tafadhali thibitisha."
       },
-      "_row_num": 350
+      "_row_num": 351
     },
     "n_nets": {
       "string_token": "n_nets",
@@ -3063,7 +3068,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "0= 1 pessoa debaixo do mosquiteiro, 2= duas pessoas debaixo do mosquiteiro, 3= três pessoas debaixo do mosquiteiro, etc.",
         "sw": "0= Pekeyako, 2= wawili kwenye chandarua, 3=  3 kwenye chandarua nk."
       },
-      "_row_num": 351
+      "_row_num": 352
     },
     "not_one": {
       "string_token": "not_one",
@@ -3072,7 +3077,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1 não é uma resposta permitida",
         "sw": "1 hakuruhusiwi"
       },
-      "_row_num": 352
+      "_row_num": 353
     },
     "invalid_date": {
       "string_token": "invalid_date",
@@ -3081,7 +3086,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data introduzida deve ser um numero entre 1 a 31.",
         "sw": "Tarehe(siku) iliyoingizwa inatakiwa kuwa namba kati ya 1 na 31"
       },
-      "_row_num": 353
+      "_row_num": 354
     },
     "invalid_month": {
       "string_token": "invalid_month",
@@ -3090,7 +3095,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O mes introduzido deve ser um numero entre 1 e 12.",
         "sw": "Mwezi uliyoingizwa unatakiwa kuwa namba kati ya 1 na12"
       },
-      "_row_num": 354
+      "_row_num": 355
     },
     "invalid_year": {
       "string_token": "invalid_year",
@@ -3099,7 +3104,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O ano introduido deve ser um numero entre 1920 e 2021",
         "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
       },
-      "_row_num": 355
+      "_row_num": 356
     }
   }
 }

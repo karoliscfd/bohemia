@@ -727,7 +727,8 @@
         "values_list": "malaria_test_result",
         "name": "ind_malaria_test_result",
         "display": {
-          "prompt": "ind_q17bi"
+          "prompt": "ind_q17bi",
+          "hint": "ind_q17bi.hint"
         },
         "_row_num": 116
       },
@@ -960,7 +961,7 @@
           "prompt": "n_nets",
           "constraint_message": "not_one"
         },
-        "constraint": "data('sleep_net_last_night_num') !== 1",
+        "constraint": "data('sleep_net_last_night_num') !== 1 && data('sleep_net_last_night_num') < 10",
         "_row_num": 151
       },
       {
@@ -8647,7 +8648,8 @@
             "values_list": "malaria_test_result",
             "name": "ind_malaria_test_result",
             "display": {
-              "prompt": "ind_q17bi"
+              "prompt": "ind_q17bi",
+              "hint": "ind_q17bi.hint"
             },
             "_row_num": 116,
             "__rowNum__": 115,
@@ -8896,7 +8898,7 @@
               "prompt": "n_nets",
               "constraint_message": "not_one"
             },
-            "constraint": "data('sleep_net_last_night_num') !== 1",
+            "constraint": "data('sleep_net_last_night_num') !== 1 && data('sleep_net_last_night_num') < 10",
             "_row_num": 151,
             "__rowNum__": 150,
             "_token_type": "prompt",
