@@ -1198,7 +1198,7 @@
         "linked_table_id": "hh_travel",
         "selection": "member_id = ?",
         "selectionArgs": "[ opendatakit.getCurrentInstanceId() ]",
-        "newRowInitialElementKeyToValueMap": "{ member_id: opendatakit.getCurrentInstanceId() }",
+        "newRowInitialElementKeyToValueMap": "{ member_id: opendatakit.getCurrentInstanceId(), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
       },
@@ -3862,7 +3862,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210207001,
+        "value": 20210215001,
         "_row_num": 3
       },
       {
@@ -4017,7 +4017,8 @@
       "uri": "formula",
       "callback": "formula(context)",
       "choice_filter": "formula(choice_item)",
-      "templatePath": "requirejs_path"
+      "templatePath": "requirejs_path",
+      "hideInContents": "formula"
     },
     "settings": {
       "form_id": {
@@ -4027,7 +4028,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210207001,
+        "value": 20210215001,
         "_row_num": 3
       },
       "table_id": {
@@ -6315,7 +6316,7 @@
         "linked_table_id": "hh_travel",
         "selection": "member_id = ?",
         "selectionArgs": "[ opendatakit.getCurrentInstanceId() ]",
-        "newRowInitialElementKeyToValueMap": "{ member_id: opendatakit.getCurrentInstanceId() }",
+        "newRowInitialElementKeyToValueMap": "{ member_id: opendatakit.getCurrentInstanceId(), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
       },
