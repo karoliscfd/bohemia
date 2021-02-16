@@ -1232,6 +1232,21 @@ app_server <- function(input, output, session) {
       
       title_errors <- paste0('Errors resolved: ', error_corrected, ' out of ',total_errors)
       sub_title_errors <- paste0(last_monday, ' - ', last_sunday, ': ', num_forms_since_monday)
+      # get corrections in last week
+      corrections$date <- as.Date(corrections$submitted_at)
+      corrections <- left_join(all_days,corrections, by=c('todays_date'= 'date')) 
+      
+      # get max date equal to monday
+      last_sunday = max(corrections$todays_date[corrections$day=='Sunday'])
+      corrections_sub <- corrections %>% filter(todays_date <= last_sunday)
+      last_monday <- max(corrections_sub$todays_date[corrections_sub$day=='Monday'])
+      corrections_week <- corrections %>% filter(todays_date>= last_monday, todays_date<=last_sunday)
+      
+      corrections_week <- corrections_week[!is.na(corrections_week$resolution_date),]
+      num_correct_since_monday <-nrow(corrections_week)
+      
+      title_errors <- paste0('Errors resolved: ', error_corrected, ' out of ',total_errors)
+      sub_title_errors <- paste0('Errors resolved week of ', last_monday, ' - ', last_sunday, ': ', num_correct_since_monday, ' out of ', num_forms_since_monday)
       
       # get anomaly info
       total_anom <- length(which(an$type=='anomaly'))
