@@ -2,12 +2,18 @@ window.odkCommonDefinitions = {
   "_tokens": {
     "op_title": {
       "string_token": "op_title",
-      "text": "BOHEMIA CENSUS",
+      "text": {
+        "default": "BOHEMIA CENSUS",
+        "pt": "Censo do BOHEMIA"
+      },
       "_row_num": 2
     },
     "fw_id_title": {
       "string_token": "fw_id_title",
-      "text": "Fieldworker ID",
+      "text": {
+        "default": "Fieldworker ID",
+        "pt": "ID do Inquiridor"
+      },
       "_row_num": 3
     },
     "hh_id_placeholder": {
@@ -21,91 +27,139 @@ window.odkCommonDefinitions = {
     },
     "member_placeholder": {
       "string_token": "member_placeholder",
-      "text": "Enter Name",
+      "text": {
+        "default": "Enter Name",
+        "pt": "Insira o Nome"
+      },
       "_row_num": 5
     },
     "fw_id_label": {
       "string_token": "fw_id_label",
-      "text": "Fieldworker ID:",
+      "text": {
+        "default": "Fieldworker ID:",
+        "pt": "ID do Inquiridor"
+      },
       "_row_num": 6
     },
     "fw_id_button": {
       "string_token": "fw_id_button",
-      "text": "Enter Fieldworker ID",
+      "text": {
+        "default": "Enter Fieldworker ID",
+        "pt": "Insira o ID do Inquiridor"
+      },
       "_row_num": 7
     },
     "new_hh_button": {
       "string_token": "new_hh_button",
-      "text": "Add New Household",
+      "text": {
+        "default": "Add New Household",
+        "pt": "Adicionar novo Agregado"
+      },
       "_row_num": 8
     },
     "existing_hh_button": {
       "string_token": "existing_hh_button",
-      "text": "Edit Existing Household",
+      "text": {
+        "default": "Edit Existing Household",
+        "pt": "Editar um Agregado existente"
+      },
       "_row_num": 9
     },
     "send_button": {
       "string_token": "send_button",
-      "text": "Send Data",
+      "text": {
+        "default": "Send Data",
+        "pt": "Enviar Dados"
+      },
       "_row_num": 10
     },
     "scan_button": {
       "string_token": "scan_button",
-      "text": "Scan QR Code",
+      "text": {
+        "default": "Scan QR Code",
+        "pt": "Scanear Codigo QR"
+      },
       "_row_num": 11
     },
     "qr_hint": {
       "string_token": "qr_hint",
       "text": {
         "default": "If QR code is unavailable, manually enter 3 digit Fieldworker ID",
-        "pt": "Se o código QR não estiver disponível, insira manualmente a ID do trabalhador de 3 dígitos",
+        "pt": "Se o código QR não estiver disponível, insira manualmente a ID do inquiridor de 3 dígitos",
         "sw": "Kama alama zako za QR hazipatikani, andika namba yako ya utambulisho yenye herufi tatu hapa"
       },
       "_row_num": 12
     },
     "submit_button": {
       "string_token": "submit_button",
-      "text": "Submit",
+      "text": {
+        "default": "Submit",
+        "pt": "Submeter"
+      },
       "_row_num": 13
     },
     "no_result": {
       "string_token": "no_result",
-      "text": "No Result",
+      "text": {
+        "default": "No Result",
+        "pt": "Sem resultado"
+      },
       "_row_num": 14
     },
     "hh_tab": {
       "string_token": "hh_tab",
-      "text": "Search by Household ID",
+      "text": {
+        "default": "Search by Household ID",
+        "pt": "Procurar por ID do Agregado"
+      },
       "_row_num": 15
     },
     "member_tab": {
       "string_token": "member_tab",
-      "text": "Search by Member",
+      "text": {
+        "default": "Search by Member",
+        "pt": "Procurar por Membro"
+      },
       "_row_num": 16
     },
     "map_button": {
       "string_token": "map_button",
-      "text": "Map",
+      "text": {
+        "default": "Map",
+        "pt": "Mapa"
+      },
       "_row_num": 17
     },
     "search_button": {
       "string_token": "search_button",
-      "text": "Search",
+      "text": {
+        "default": "Search",
+        "pt": "Procurar"
+      },
       "_row_num": 18
     },
     "cancel_button": {
       "string_token": "cancel_button",
-      "text": "Cancel",
+      "text": {
+        "default": "Cancel",
+        "pt": "Cancelar"
+      },
       "_row_num": 19
     },
     "proceed_button": {
       "string_token": "proceed_button",
-      "text": "Proceed",
+      "text": {
+        "default": "Proceed",
+        "pt": "Avançar"
+      },
       "_row_num": 20
     },
     "fw_id_updated": {
       "string_token": "fw_id_updated",
-      "text": "Fieldworker ID updated",
+      "text": {
+        "default": "Fieldworker ID updated",
+        "pt": "ID do Inquiridor actualizado"
+      },
       "_row_num": 21
     }
   },
