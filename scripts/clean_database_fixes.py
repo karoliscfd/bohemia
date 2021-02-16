@@ -3664,7 +3664,15 @@ implement(id = None, query = "UPDATE clean_va SET death_id='ULU-016-701', hh_id=
 implement(id = None, query = "UPDATE clean_va SET death_id='ENE-026-701', hh_id='ENE-026', id_manual='ENE-026', id_10018_id='ENE-026-701' WHERE instance_id ='9f8e5ef5-c178-406d-be2a-85632923f5db'", who = 'Joe Brew')
 implement(id = None, query = "UPDATE clean_va SET death_id='ULU-046-701', hh_id='ULU-046', id_manual='ULU-046', id_10018_id='ULU-046-701' WHERE instance_id ='5a16c629-5aab-4629-841b-db15cf0fbf29'", who = 'Joe Brew')
 
-
+# Manual corrections from Imani, sent mid Feb 2021, incorrect household IDs
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MAT-004' WHERE instance_id = '6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MAT-004_2020-11-03' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_people SET permid='MAT-004-001' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b';")
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MGN-012' WHERE instance_id = '609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MGN-012_2020-11-04' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_people SET permid='MGN-012-001' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5';")
+implement(id = None, query = "DELETE FROM clean_minicensus_main WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "DELETE FROM clean_minicensus_people WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "DELETE FROM clean_minicensus_repeat_water WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 
 dbconn.commit()
 cur.close()
