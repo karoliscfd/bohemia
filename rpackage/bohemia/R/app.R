@@ -1469,6 +1469,8 @@ app_server <- function(input, output, session) {
     
     enum <- pd$enumerations
     va <- pd$va
+    ehd <- estimated_households$data
+    
     # ref <- pd$refusals
     pd <- pd$minicensus_main
     co <- country()
@@ -1505,9 +1507,14 @@ app_server <- function(input, output, session) {
       out <- NULL
     } else {
       # Create a progress table
-      target <- ifelse(co == 'Tanzania', 
-                       estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-                       30803)
+      # target <- ifelse(co == 'Tanzania', 
+      #                  estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
+      #                  30803)
+      
+      target <- #ifelse(co == 'Tanzania', 
+        ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
+      #                30803)
+      
       progress_table <- tibble(`Forms finished` = nrow(pd),
                                `Estimated total forms` = target,
                                `Estimated forms remaining` = target - nrow(pd),
@@ -1978,6 +1985,7 @@ app_server <- function(input, output, session) {
     co <- country()
     # save(pd, file = '/tmp/pd.RData')
     pd <- pd %>% filter(hh_country == co)
+    ehd <- estimated_households$data
     
     pd_ok <- FALSE
     if(!is.null(pd)){
@@ -1999,9 +2007,12 @@ app_server <- function(input, output, session) {
       n_days = as.numeric(1 + (max(dr)-min(dr)))
       the_iso <- iso <- ifelse(co == 'Tanzania', 'TZA', 'MOZ')
       # target <- sum(gps$n_households[gps$iso == iso], na.rm = TRUE)
-      target <- ifelse(iso == 'TZA', 
-                       estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-                       30803)
+      # target <- ifelse(iso == 'TZA', 
+      #                  estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
+      #                  30803)
+      target <- #ifelse(co == 'Tanzania', 
+        ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
+      #                30803)
       
       # save(pd, file = 'temp_pd.rda')
       # create a placeholder for number of fieldworkers. 
@@ -2047,7 +2058,9 @@ app_server <- function(input, output, session) {
         total_forms_fw <- 500
         total_daily_country <- 1000
         total_weekly_country <- total_daily_country*5
-        total_forms <- 30803
+        # total_forms <- 30803
+        total_forms <- estimated_households$data %>% filter(iso == 'MOZ', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x
+        
         total_weeks <- round(total_forms/total_weekly_country,2)
         total_days <- total_weeks*7
       }
@@ -2107,8 +2120,10 @@ app_server <- function(input, output, session) {
     pd <- pd$minicensus_main
     
     if(co == 'Mozambique'){
+      the_iso <- 'MOZ'
       the_server <- 'https://sap.manhica.net:4442/ODKAggregate'
     } else {
+      the_iso <- 'TZA'
       the_server <- 'https://bohemia.ihi.or.tz'
     }
     
@@ -2122,9 +2137,9 @@ app_server <- function(input, output, session) {
       }
     }
     if(pd_ok){
-      target <- ifelse(co == 'Tanzania', 
-                       ehd %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-                       30803)
+      target <- #ifelse(co == 'Tanzania', 
+                       ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
+       #                30803)
       x <- pd %>%
         group_by(date = as.Date(todays_date)) %>%
         tally %>%
@@ -2177,6 +2192,13 @@ app_server <- function(input, output, session) {
     pd <- odk_data$data
     pd <- pd$minicensus_main
     co <- country()
+    ehd <- estimated_households$data
+    
+    if(co == 'Mozambique'){
+      the_iso <- 'MOZ'
+    } else {
+      the_iso <- 'TZA'
+    }
     # save(pd, file = '/tmp/pd.RData')
     pd <- pd %>% filter(hh_country == co)
     
@@ -2187,9 +2209,12 @@ app_server <- function(input, output, session) {
       }
     }
     if(pd_ok){
-      target <- ifelse(co == 'Tanzania', 
-                       estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-                       30803)
+      # target <- ifelse(co == 'Tanzania', 
+      #                  estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
+      #                  30803)
+      target <- #ifelse(co == 'Tanzania', 
+        ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
+      #                30803)
       x <- pd %>%
         group_by(date = as.Date(todays_date)) %>%
         tally %>%
@@ -2218,8 +2243,15 @@ app_server <- function(input, output, session) {
     pd <- odk_data$data
     pd <- pd$minicensus_main
     co <- country()
+    ehd <- estimated_households$data
+    
     # save(pd, file = '/tmp/pd.RData')
     pd <- pd %>% filter(hh_country == co)
+    if(co == 'Mozambique'){
+      the_iso <- 'MOZ'
+    } else {
+      the_iso <- 'TZA'
+    }
     
     pd_ok <- FALSE
     if(!is.null(pd)){
@@ -2228,9 +2260,14 @@ app_server <- function(input, output, session) {
       }
     }
     if(pd_ok){
-      target <- ifelse(co == 'Tanzania', 
-                       estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-                       30803)
+      # target <- ifelse(co == 'Tanzania', 
+      #                  estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
+      #                  30803)
+      
+      target <- #ifelse(co == 'Tanzania', 
+        ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
+      #                30803)
+      
       progress_table <- tibble(`Forms finished` = nrow(pd),
                                `Estimated total forms` = target,
                                `Estimated forms remaining` = target - nrow(pd),
