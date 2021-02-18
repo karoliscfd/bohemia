@@ -546,6 +546,7 @@
         "name": "ind_chronic_disease",
         "display": {
           "prompt": "ind_q13",
+          "hint": "check_all_that_apply_hint",
           "constraint_message": "w_pna"
         },
         "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) && not(selected(data('ind_chronic_disease'), 'no'))) || ((selected(data('ind_chronic_disease'), 'pna') || selected(data('ind_chronic_disease'), 'no')) && countSelected(data('ind_chronic_disease')) === 1)",
@@ -785,6 +786,7 @@
         "name": "ind_deficiency",
         "display": {
           "prompt": "ind_q18",
+          "hint": "check_all_that_apply_hint",
           "constraint_message": "w_none_pna"
         },
         "constraint": "(not(selected(data('ind_deficiency'), 'pna')) || (selected(data('ind_deficiency'), 'pna') && countSelected(data('ind_deficiency')) === 1)) && (not(selected(data('ind_deficiency'), 'none')) || (selected(data('ind_deficiency'), 'none') && countSelected(data('ind_deficiency')) === 1))",
@@ -1109,6 +1111,7 @@
         "name": "travel_countries",
         "display": {
           "prompt": "ind_q32a",
+          "hint": "check_all_that_apply_hint",
           "constraint_message": "w_none"
         },
         "constraint": "not(selected(data('travel_countries'), 'none')) || (selected(data('travel_countries'), 'none') && countSelected(data('travel_countries')) === 1)",
@@ -4018,8 +4021,7 @@
       "uri": "formula",
       "callback": "formula(context)",
       "choice_filter": "formula(choice_item)",
-      "templatePath": "requirejs_path",
-      "hideInContents": "formula"
+      "templatePath": "requirejs_path"
     },
     "settings": {
       "form_id": {
@@ -8470,6 +8472,7 @@
             "name": "ind_chronic_disease",
             "display": {
               "prompt": "ind_q13",
+              "hint": "check_all_that_apply_hint",
               "constraint_message": "w_pna"
             },
             "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) && not(selected(data('ind_chronic_disease'), 'no'))) || ((selected(data('ind_chronic_disease'), 'pna') || selected(data('ind_chronic_disease'), 'no')) && countSelected(data('ind_chronic_disease')) === 1)",
@@ -8692,6 +8695,7 @@
             "name": "ind_deficiency",
             "display": {
               "prompt": "ind_q18",
+              "hint": "check_all_that_apply_hint",
               "constraint_message": "w_none_pna"
             },
             "constraint": "(not(selected(data('ind_deficiency'), 'pna')) || (selected(data('ind_deficiency'), 'pna') && countSelected(data('ind_deficiency')) === 1)) && (not(selected(data('ind_deficiency'), 'none')) || (selected(data('ind_deficiency'), 'none') && countSelected(data('ind_deficiency')) === 1))",
@@ -9059,6 +9063,7 @@
             "name": "travel_countries",
             "display": {
               "prompt": "ind_q32a",
+              "hint": "check_all_that_apply_hint",
               "constraint_message": "w_none"
             },
             "constraint": "not(selected(data('travel_countries'), 'none')) || (selected(data('travel_countries'), 'none') && countSelected(data('travel_countries')) === 1)",
