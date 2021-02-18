@@ -17,13 +17,15 @@
       var elemToLocalize = document.querySelectorAll('[data-localize]');
       for (var i = 0; i < elemToLocalize.length; i++) {
         var elem = elemToLocalize[i];
-        elem.innerText = odkCommon.localizeText(locale, elem.dataset['localize']) || elem.dataset['localize'];
+        var token = elem.dataset['localize'];
+        elem.innerText = odkCommon.localizeText(locale, token) || token;
       }
 
       var placeholderToLocalize = document.querySelectorAll('[data-localize-placeholder]');
       for (var i = 0; i < placeholderToLocalize.length; i++) {
         var elem = placeholderToLocalize[i];
-        elem.placeholder = odkCommon.localizeText(locale, elem.dataset['localizePlaceholder']) || elem.dataset['localizePlaceholder'];
+        var token = elem.dataset['localizePlaceholder'];
+        elem.placeholder = odkCommon.localizeText(locale, token) || token;
       }
     }
   };

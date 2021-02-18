@@ -2,6 +2,10 @@
     font-size: 40%;
 }
 
+#hhIdAsUnpainted {
+    display: block;
+}
+
 .tab-content-flex>.active {
     display: flex;
 }

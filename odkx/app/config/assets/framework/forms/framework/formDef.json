@@ -552,11 +552,8 @@
         "_row_num": 8
       },
       {
-        "string_token": "existing_hh_button",
-        "text": {
-          "default": "Edit Existing Household",
-          "pt": "Editar um Agregado existente"
-        },
+        "string_token": "select_hh_button",
+        "text": "Select Household",
         "_row_num": 9
       },
       {
@@ -609,12 +606,17 @@
         "_row_num": 15
       },
       {
+        "string_token": "hh_not_painted_tab",
+        "text": "Search on Map",
+        "_row_num": 16
+      },
+      {
         "string_token": "member_tab",
         "text": {
           "default": "Search by Member",
           "pt": "Procurar por Membro"
         },
-        "_row_num": 16
+        "_row_num": 17
       },
       {
         "string_token": "map_button",
@@ -622,7 +624,7 @@
           "default": "Map",
           "pt": "Mapa"
         },
-        "_row_num": 17
+        "_row_num": 18
       },
       {
         "string_token": "search_button",
@@ -630,7 +632,7 @@
           "default": "Search",
           "pt": "Procurar"
         },
-        "_row_num": 18
+        "_row_num": 19
       },
       {
         "string_token": "cancel_button",
@@ -638,7 +640,7 @@
           "default": "Cancel",
           "pt": "Cancelar"
         },
-        "_row_num": 19
+        "_row_num": 20
       },
       {
         "string_token": "proceed_button",
@@ -646,7 +648,7 @@
           "default": "Proceed",
           "pt": "Avançar"
         },
-        "_row_num": 20
+        "_row_num": 21
       },
       {
         "string_token": "fw_id_updated",
@@ -654,7 +656,62 @@
           "default": "Fieldworker ID updated",
           "pt": "ID do Inquiridor actualizado"
         },
-        "_row_num": 21
+        "_row_num": 22
+      },
+      {
+        "string_token": "yes_button",
+        "text": "Yes",
+        "_row_num": 23
+      },
+      {
+        "string_token": "no_button",
+        "text": "No",
+        "_row_num": 24
+      },
+      {
+        "string_token": "check_painted_id",
+        "text": "Does this house have a painted Bohemia ID?",
+        "_row_num": 25
+      },
+      {
+        "string_token": "roster_confirm",
+        "text": "Confirm with the person in the house that this list of hh members corresponds to the hh you are in.",
+        "_row_num": 26
+      },
+      {
+        "string_token": "roster_confirm_hint",
+        "text": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+        "_row_num": 27
+      },
+      {
+        "string_token": "hh_not_found",
+        "text": "Cannot find what you're looking for?",
+        "_row_num": 28
+      },
+      {
+        "string_token": "search_hint",
+        "text": "Try different search terms. If you still cannot find the household try to search on map or by member.",
+        "_row_num": 29
+      },
+      {
+        "string_token": "search_map_member",
+        "text": "Search on map or by member",
+        "_row_num": 30
+      },
+      {
+        "string_token": "member_search_hint",
+        "text": "Type the name of any hh member",
+        "_row_num": 31
+      },
+      {
+        "string_token": "hh_id_search_hint",
+        "text": "Type the hamlet code or the household ID",
+        "_row_num": 32
+      },
+      {
+        "string_token": "hh_id_painted_hint",
+        "text": "Type the household ID",
+        "_row_num": 33
       }
     ],
     "choices": [
@@ -1364,12 +1421,9 @@
           },
           "_row_num": 8
         },
-        "existing_hh_button": {
-          "string_token": "existing_hh_button",
-          "text": {
-            "default": "Edit Existing Household",
-            "pt": "Editar um Agregado existente"
-          },
+        "select_hh_button": {
+          "string_token": "select_hh_button",
+          "text": "Select Household",
           "_row_num": 9
         },
         "send_button": {
@@ -1421,13 +1475,18 @@
           },
           "_row_num": 15
         },
+        "hh_not_painted_tab": {
+          "string_token": "hh_not_painted_tab",
+          "text": "Search on Map",
+          "_row_num": 16
+        },
         "member_tab": {
           "string_token": "member_tab",
           "text": {
             "default": "Search by Member",
             "pt": "Procurar por Membro"
           },
-          "_row_num": 16
+          "_row_num": 17
         },
         "map_button": {
           "string_token": "map_button",
@@ -1435,7 +1494,7 @@
             "default": "Map",
             "pt": "Mapa"
           },
-          "_row_num": 17
+          "_row_num": 18
         },
         "search_button": {
           "string_token": "search_button",
@@ -1443,7 +1502,7 @@
             "default": "Search",
             "pt": "Procurar"
           },
-          "_row_num": 18
+          "_row_num": 19
         },
         "cancel_button": {
           "string_token": "cancel_button",
@@ -1451,7 +1510,7 @@
             "default": "Cancel",
             "pt": "Cancelar"
           },
-          "_row_num": 19
+          "_row_num": 20
         },
         "proceed_button": {
           "string_token": "proceed_button",
@@ -1459,7 +1518,7 @@
             "default": "Proceed",
             "pt": "Avançar"
           },
-          "_row_num": 20
+          "_row_num": 21
         },
         "fw_id_updated": {
           "string_token": "fw_id_updated",
@@ -1467,7 +1526,62 @@
             "default": "Fieldworker ID updated",
             "pt": "ID do Inquiridor actualizado"
           },
-          "_row_num": 21
+          "_row_num": 22
+        },
+        "yes_button": {
+          "string_token": "yes_button",
+          "text": "Yes",
+          "_row_num": 23
+        },
+        "no_button": {
+          "string_token": "no_button",
+          "text": "No",
+          "_row_num": 24
+        },
+        "check_painted_id": {
+          "string_token": "check_painted_id",
+          "text": "Does this house have a painted Bohemia ID?",
+          "_row_num": 25
+        },
+        "roster_confirm": {
+          "string_token": "roster_confirm",
+          "text": "Confirm with the person in the house that this list of hh members corresponds to the hh you are in.",
+          "_row_num": 26
+        },
+        "roster_confirm_hint": {
+          "string_token": "roster_confirm_hint",
+          "text": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+          "_row_num": 27
+        },
+        "hh_not_found": {
+          "string_token": "hh_not_found",
+          "text": "Cannot find what you're looking for?",
+          "_row_num": 28
+        },
+        "search_hint": {
+          "string_token": "search_hint",
+          "text": "Try different search terms. If you still cannot find the household try to search on map or by member.",
+          "_row_num": 29
+        },
+        "search_map_member": {
+          "string_token": "search_map_member",
+          "text": "Search on map or by member",
+          "_row_num": 30
+        },
+        "member_search_hint": {
+          "string_token": "member_search_hint",
+          "text": "Type the name of any hh member",
+          "_row_num": 31
+        },
+        "hh_id_search_hint": {
+          "string_token": "hh_id_search_hint",
+          "text": "Type the hamlet code or the household ID",
+          "_row_num": 32
+        },
+        "hh_id_painted_hint": {
+          "string_token": "hh_id_painted_hint",
+          "text": "Type the household ID",
+          "_row_num": 33
         }
       },
       "_locales": {

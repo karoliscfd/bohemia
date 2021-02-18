@@ -1,55 +1,56 @@
 'use strict';
 
-// Button to add a new household
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('enterFwId').addEventListener('click', function () {
-    odkTables.launchHTML(
-      null,
-      'config/assets/enterFwId.html'
-    );
-  });
-
-  document.getElementById('newHhButton').addEventListener('click', function () {
-    odkTables.addRowWithSurvey(
-      null,
-      'census',
-      'census',
-      null,
-      {
-        fw_id: window.localStorage.getItem('FW_ID') || null,
-        hh_minicenced: 'no'
-      }
-    );
-  });
-
-  // Button to modify an existing household
-  document.getElementById('editHhButton').addEventListener('click', function () {
+(function () {
+  var launchHhSearch = function (hasPaintedId) {
+    if (hasPaintedId) {
+      localStorage.setItem('hasPaintedId', 'true');
+    }
     odkTables.openTableToListView(null, 'census');
-  });
-
-  // Button to sync
-  document.getElementById('syncHhButton').addEventListener('click', function () {
-    odkCommon.doAction(
-      null,
-      'org.opendatakit.services.sync.actions.activities.SyncActivity',
-      {
-        componentPackage: 'org.opendatakit.services',
-        componentActivity: 'org.opendatakit.services.sync.actions.activities.SyncActivity'
-      }
-    );
-  });
-
-  window.localStorage.removeItem('bohemiaHhSearch');
-  window.localStorage.removeItem('bohemiaMemberSearch');
-
-  document.getElementById('fwIdSpan').textContent = window.localStorage.getItem('FW_ID') || '';
-
-  if (!window.localStorage.getItem('FW_ID')) {
-    document.getElementById('newHhButton').disabled = true;
-    document.getElementById('editHhButton').disabled = true;
   }
 
-  localizeUtil.localizePage();
+  document.addEventListener('DOMContentLoaded', function () {
+    // Button set the fw id
+    document.getElementById('enterFwId').addEventListener('click', function () {
+      odkTables.launchHTML(
+        null,
+        'config/assets/enterFwId.html'
+      );
+    });
 
-  document.getElementById('wrapper').classList.remove('d-none');
-});
+    // Button to sync
+    document.getElementById('syncHhButton').addEventListener('click', function () {
+      odkCommon.doAction(
+        null,
+        'org.opendatakit.services.sync.actions.activities.SyncActivity',
+        {
+          componentPackage: 'org.opendatakit.services',
+          componentActivity: 'org.opendatakit.services.sync.actions.activities.SyncActivity'
+        }
+      );
+    });
+
+    localStorage.removeItem('bohemiaHhSearch');
+    localStorage.removeItem('bohemiaMemberSearch');
+    localStorage.removeItem('hasPaintedId');
+
+    if (!!localStorage.getItem('FW_ID')) {
+      document.getElementById('fwIdSpan').textContent = localStorage.getItem('FW_ID');
+      var requiresFwIdElem = document.querySelectorAll('.requires-fw-id');
+      for (var i = 0; i < requiresFwIdElem.length; i++) {
+        requiresFwIdElem[i].classList.remove('d-none', 'invisible');
+      }
+    }
+
+    document.getElementById('paintedIdModalYes').addEventListener('click', function () {
+      launchHhSearch(true);
+    });
+
+    document.getElementById('paintedIdModalNo').addEventListener('click', function () {
+      launchHhSearch(false);
+    });
+
+    localizeUtil.localizePage();
+
+    document.getElementById('wrapper').classList.remove('d-none');
+  });
+})();

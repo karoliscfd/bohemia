@@ -548,7 +548,7 @@
           "prompt": "ind_q13",
           "constraint_message": "w_pna"
         },
-        "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) || (selected(data('ind_chronic_disease'), 'pna') && countSelected(data('ind_chronic_disease')) === 1))",
+        "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) && not(selected(data('ind_chronic_disease'), 'no'))) || ((selected(data('ind_chronic_disease'), 'pna') || selected(data('ind_chronic_disease'), 'no')) && countSelected(data('ind_chronic_disease')) === 1)",
         "_row_num": 88
       },
       {
@@ -8472,7 +8472,7 @@
               "prompt": "ind_q13",
               "constraint_message": "w_pna"
             },
-            "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) || (selected(data('ind_chronic_disease'), 'pna') && countSelected(data('ind_chronic_disease')) === 1))",
+            "constraint": "(not(selected(data('ind_chronic_disease'), 'pna')) && not(selected(data('ind_chronic_disease'), 'no'))) || ((selected(data('ind_chronic_disease'), 'pna') || selected(data('ind_chronic_disease'), 'no')) && countSelected(data('ind_chronic_disease')) === 1)",
             "_row_num": 88,
             "__rowNum__": 87,
             "_token_type": "prompt",
