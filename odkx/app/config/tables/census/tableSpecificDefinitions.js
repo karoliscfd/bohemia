@@ -1478,7 +1478,7 @@ window.odkTableSpecificDefinitions = {
     },
     "hh_roster_mismatch": {
       "string_token": "hh_roster_mismatch",
-      "text": "Since the list of members is not correct, this will be considered as a new hh.",
+      "text": "Since the list of members is not correct, this will be considered as a new household.",
       "_row_num": 167
     },
     "hh_identification": {

@@ -70,6 +70,8 @@
   document.addEventListener('DOMContentLoaded', function () {
     odkData.getViewData(callbackSuccess, callbackFailure);
 
+    localizeUtil.localizePage();
+
     document
       .getElementById('wrapper')
       .classList

@@ -105,7 +105,7 @@
 
   var hhRosterConfirm = function (evt) {
     // modified from odkTables.editRowWithSurvey
-    // to pass fw_id
+    // to pass fw_id and hh_fw_geolocation
 
     var uri = odkCommon.constructSurveyUri(
       'census',
@@ -113,7 +113,8 @@
       evt.currentTarget.dataset['rowId'],
       null,
       {
-        fw_id: localStorage.getItem('FW_ID') || null
+        fw_id: localStorage.getItem('FW_ID') || null,
+        hh_fw_geolocation: true
       }
     );
 
@@ -217,7 +218,8 @@
       {
         fw_id: localStorage.getItem('FW_ID') || null,
         hh_minicenced: 'no',
-        hh_roster_mismatch: rosterMismatch
+        hh_roster_mismatch: rosterMismatch,
+        hh_fw_geolocation: false
       }
     );
   }

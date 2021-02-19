@@ -12,11 +12,13 @@
     <script defer src="../../../../system/js/odkData.js"></script>
     <script defer src="../../../../system/tables/js/odkTables.js"></script>
 
+    <script defer src="../../../assets/js/localize.js"></script>
     <script defer src="../js/geo_locations_map_list.js"></script>
 </head>
 <body>
-<div class="container-fluid mt-3 d-none" id="wrapper">
-    <div class="list-group" id="hhMapList"></div>
+<div class="container-fluid d-none" id="wrapper">
+    <small class="d-block pb-2 pt-2 sticky-top bg-white" data-localize="map_hint"></small>
+    <div class="list-group mb-1" id="hhMapList"></div>
 </div>
 
 <template id="hhMapListTemplate">
