@@ -19,42 +19,78 @@
 <body>
 <div class="d-flex d-none flex-column vh-100" id="wrapper">
     <nav class="nav nav-pills nav-justified pt-1 mx-1 bg-white">
-        <a class="nav-link active" href="#byHhId" data-toggle="pill" id="hhIdTab" data-localize="hh_tab"></a>
-        <a class="nav-link" href="#byMember" data-toggle="pill" id="memberTab" data-localize="member_tab"></a>
+        <a class="nav-link active" href="#byHhId" data-toggle="pill" id="hhIdTab">
+            <span class="d-none hh-painted" data-localize="hh_tab"></span>
+            <span class="hh-not-painted" data-localize="hh_not_painted_tab"></span>
+        </a>
+        <a class="nav-link hh-not-painted" href="#byMember" data-toggle="pill" id="memberTab">
+            <span data-localize="member_tab"></span>
+        </a>
     </nav>
 
     <main class="container-fluid mt-3 d-flex h-100">
         <div class="tab-content tab-content-flex">
             <div class="tab-pane active flex-column h-100" id="byHhId">
-                <div class="input-group input-group-lg mb-3">
-                    <input type="text" class="form-control" id="hhIdSearchInput" data-localize-placeholder="hh_id_placeholder">
-                    <span class="input-group-append h-100">
-                        <button id="hhIdMapButton" class="btn btn-outline-secondary d-none" type="button" data-localize="map_button"></button>
-                        <button id="hhIdSearchButton" class="btn btn-outline-secondary" type="button" data-localize="search_button"></button>
-                    </span>
+                <div class="mb-3">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" id="hhIdSearchInput"
+                               data-localize-placeholder="hh_id_placeholder">
+                        <span class="input-group-append h-100">
+                        <button id="hhIdMapButton" class="btn btn-outline-secondary d-none" type="button"
+                                data-localize="map_button"></button>
+                        <button id="hhIdSearchButton" class="btn btn-outline-secondary" type="button"
+                                data-localize="search_button"></button>
+                        </span>
+                    </div>
+                    <small class="hh-not-painted" data-localize="hh_id_search_hint"></small>
+                    <small class="d-none hh-painted" data-localize="hh_id_painted_hint"></small>
                 </div>
 
-                <p class="h3 text-center mt-4 d-none" id="hhIdNoResult" data-localize="no_result"></p>
-                <ul class="list-group overflow-auto h-100" id="hhIdSearchList"></ul>
+                <div class="overflow-auto h-100">
+                    <ul class="list-group" id="hhIdSearchList"></ul>
+                    <div class="mt-4 mb-2 text-center d-none" id="hhIdFooter">
+                        <h3 class="d-none" data-localize="no_result" id="hhIdNoResult"></h3>
+                        <h3 class="d-none" data-localize="hh_not_found" id="hhIdNotFound"></h3>
+                        <small class="d-block mb-2" data-localize="search_hint"></small>
+                        <button type="button" class="btn btn-dark d-none hh-painted mx-auto mb-2" id="hhIdAsUnpainted"
+                                data-localize="search_map_member"></button>
+                        <button type="button" class="btn btn-dark" id="hhIdNewHhButton"
+                                data-localize="new_hh_button"></button>
+                    </div>
+                </div>
             </div>
 
             <div class="tab-pane flex-column h-100" id="byMember">
-                <div class="input-group input-group-lg mb-3">
-                    <input type="text" class="form-control" id="memberSearchInput" data-localize-placeholder="member_placeholder">
-                    <span class="input-group-append h-100">
-                        <button id="memberMapButton" class="btn btn-outline-secondary d-none" type="button" data-localize="map_button"></button>
-                        <button id="memberSearchButton" class="btn btn-outline-secondary" type="button" data-localize="search_button"></button>
-                    </span>
+                <div class="mb-3">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" id="memberSearchInput"
+                               data-localize-placeholder="member_placeholder">
+                        <span class="input-group-append h-100">
+                        <button id="memberMapButton" class="btn btn-outline-secondary d-none" type="button"
+                                data-localize="map_button"></button>
+                        <button id="memberSearchButton" class="btn btn-outline-secondary" type="button"
+                                data-localize="search_button"></button>
+                        </span>
+                    </div>
+                    <small data-localize="member_search_hint"></small>
                 </div>
 
-                <p class="h3 text-center mt-4 d-none" id="memberNoResult" data-localize="no_result"></p>
-                <ul class="list-group overflow-auto h-100" id="memberSearchList"></ul>
+                <div class="overflow-auto h-100">
+                    <ul class="list-group" id="memberSearchList"></ul>
+                    <div class="mt-4 mb-2 text-center d-none" id="memberFooter">
+                        <h3 class="d-none" data-localize="no_result" id="memberNoResult"></h3>
+                        <h3 class="d-none" data-localize="hh_not_found" id="memberNotFound"></h3>
+                        <small class="d-block mb-2" data-localize="search_hint"></small>
+                        <button type="button" class="btn btn-dark" id="memberNewHhButton"
+                                data-localize="new_hh_button"></button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 </div>
 
-<div class="modal" data-backdrop="static" data-keyboard="false" id="hhRosterModal">
+<div class="modal" data-backdrop="static" data-keyboard="false" id="hhRosterModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content vh-100">
             <div class="modal-header">
@@ -64,8 +100,18 @@
             <div class="modal-body" id="hhRosterModalBody"></div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-localize="cancel_button"></button>
-                <button type="button" class="btn btn-primary" id="hhRosterModalProceed" data-localize="proceed_button"></button>
+                <div class="mr-auto" data-localize="roster_confirm"></div>
+                <ol class="mr-auto">
+                    <li data-localize="roster_confirm_1"></li>
+                    <li data-localize="roster_confirm_2"></li>
+                </ol>
+                <small class="mr-auto" data-localize="roster_confirm_hint"></small>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        data-localize="cancel_button"></button>
+                <button type="button" class="btn btn-danger" id="hhRosterModalNo" data-localize="no_button"></button>
+                <button type="button" class="btn btn-success" id="hhRosterModalProceed"
+                        data-localize="yes_button"></button>
             </div>
         </div>
     </div>
@@ -91,14 +137,17 @@
             <div>
                 <button type="button" class="btn btn-success mr-1">
                     <!-- https://icons.getbootstrap.com/icons/pencil-square/ -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        <path fill-rule="evenodd"
+                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
                 </button>
                 <button type="button" class="btn btn-info">
                     <!-- https://icons.getbootstrap.com/icons/compass/ -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-compass" viewBox="0 0 16 16">
                         <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                         <path d="M6.94 7.44l4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
                     </svg>

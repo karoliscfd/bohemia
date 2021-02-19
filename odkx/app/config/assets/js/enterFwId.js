@@ -25,8 +25,8 @@
     document.getElementById('enterFwIdForm').addEventListener('submit', function (evt) {
       evt.preventDefault();
 
-      window.localStorage.setItem('FW_ID', document.getElementById('fwIdInput').value.trim());
-      alert(odkCommon.localizeText(localizeUtil.getLocale(), 'fw_id_updated'));
+      localStorage.setItem('FW_ID', document.getElementById('fwIdInput').value.trim());
+      odkCommon.closeWindow(-1);
     });
 
     document.getElementById('enterFwIdScan').addEventListener('click', function () {

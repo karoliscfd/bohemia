@@ -8,8 +8,10 @@
   var platInfo = JSON.parse(odkCommon.getPlatformInfo());
 
   var callbackFailure = function (error) {
-    window.localStorage.removeItem(searchParam.hhId.storageKey);
-    window.localStorage.removeItem(searchParam.member.storageKey);
+    localStorage.removeItem(searchParam.hhId.storageKey);
+    localStorage.removeItem(searchParam.member.storageKey);
+    searchParam.hhId.footer.classList.add('d-none');
+    searchParam.member.footer.classList.add('d-none');
 
     $('#hhRosterModal').modal('hide');
 
@@ -22,12 +24,17 @@
       // clear prev search result
       searchParam[type].listContainer.innerText = '';
 
+      // this should always show
+      searchParam[type].footer.classList.remove('d-none');
+
       var resultCount = result.getCount();
       if (resultCount === 0) {
         searchParam[type].noResult.classList.remove('d-none');
+        searchParam[type].notFound.classList.add('d-none');
         return;
       } else {
         searchParam[type].noResult.classList.add('d-none');
+        searchParam[type].notFound.classList.remove('d-none');
       }
 
       // re-enable map after a successful search
@@ -98,7 +105,7 @@
 
   var hhRosterConfirm = function (evt) {
     // modified from odkTables.editRowWithSurvey
-    // to pass fw_id
+    // to pass fw_id and hh_fw_geolocation
 
     var uri = odkCommon.constructSurveyUri(
       'census',
@@ -106,7 +113,8 @@
       evt.currentTarget.dataset['rowId'],
       null,
       {
-        fw_id: window.localStorage.getItem('FW_ID') || null
+        fw_id: localStorage.getItem('FW_ID') || null,
+        hh_fw_geolocation: true
       }
     );
 
@@ -145,7 +153,7 @@
         },
         'hh_geo_location',
         searchParam[type].sqlWhereClause('hh_id'),
-        ['%' + window.localStorage.getItem(searchParam[type].storageKey) + '%'],
+        ['%' + localStorage.getItem(searchParam[type].storageKey) + '%'],
         evt.currentTarget.dataset['geoRowId']
       );
     };
@@ -158,7 +166,7 @@
       var searchTerm = searchParam[type].processSearchTerm();
 
       if (searchTerm !== '') {
-        window.localStorage.setItem(searchParam[type].storageKey, searchTerm);
+        localStorage.setItem(searchParam[type].storageKey, searchTerm);
 
         odkData.arbitraryQuery(
           'census',
@@ -180,7 +188,7 @@
 
   var mapOnClick = function (type) {
     return function () {
-      var searchTerm = window.localStorage.getItem(searchParam[type].storageKey)
+      var searchTerm = localStorage.getItem(searchParam[type].storageKey)
       if (!!searchTerm) {
         odkTables.openTableToMapView(
           {[ACTION_KEY]: MAP_ACTION},
@@ -192,6 +200,35 @@
       }
     };
   };
+
+  var createNewHhOnClick = function () {
+    openSurveyNewHh(false);
+  };
+
+  var createNewHhRosterMismatchOnClick = function () {
+    openSurveyNewHh(true);
+  }
+
+  var openSurveyNewHh = function (rosterMismatch) {
+    odkTables.addRowWithSurvey(
+      null,
+      'census',
+      'census',
+      null,
+      {
+        fw_id: localStorage.getItem('FW_ID') || null,
+        hh_minicenced: 'no',
+        hh_roster_mismatch: rosterMismatch,
+        hh_fw_geolocation: false
+      }
+    );
+  }
+
+  var asUnpaintedOnClick = function () {
+    localStorage.removeItem('hasPaintedId');
+    localStorage.removeItem(searchParam.hhId.storageKey);
+    location.reload();
+  }
 
   var actionCallback = function () {
     if (document.visibilityState !== 'visible') {
@@ -218,7 +255,7 @@
       hhMetadata = action.jsonValue.result;
     }
 
-    if (!!hhMetadata.hhRowId && !! hhMetadata.hhId) {
+    if (!!hhMetadata.hhRowId && !!hhMetadata.hhId) {
       openHh(hhMetadata.hhRowId, hhMetadata.hhId);
     }
   };
@@ -229,6 +266,8 @@
     searchParam[type].mapBtn = document.getElementById(type + 'MapButton');
     searchParam[type].listContainer = document.getElementById(type + 'SearchList');
     searchParam[type].noResult = document.getElementById(type + 'NoResult');
+    searchParam[type].notFound = document.getElementById(type + 'NotFound');
+    searchParam[type].footer = document.getElementById(type + 'Footer');
 
     var searchBtn = searchParam[type].searchBtn;
     var searchInput = searchParam[type].searchInput;
@@ -251,7 +290,7 @@
 
     mapBtn.addEventListener('click', mapOnClick(type));
 
-    var searchTerm = window.localStorage.getItem(searchParam[type].storageKey);
+    var searchTerm = localStorage.getItem(searchParam[type].storageKey);
     if (!!searchTerm) {
       searchInput.value = searchTerm;
       searchBtn.click();
@@ -299,6 +338,23 @@
         actionCallback();
       }
     });
+
+    document.getElementById('hhIdNewHhButton').addEventListener('click', createNewHhOnClick);
+    document.getElementById('memberNewHhButton').addEventListener('click', createNewHhOnClick);
+    document.getElementById('hhRosterModalNo').addEventListener('click', createNewHhRosterMismatchOnClick);
+
+    document.getElementById('hhIdAsUnpainted').addEventListener('click', asUnpaintedOnClick);
+
+    var paintedElem = document.querySelectorAll('.hh-painted');
+    var notPaintedElem = document.querySelectorAll('.hh-not-painted');
+    var hhPainted = !!localStorage.getItem('hasPaintedId');
+
+    for (var i = 0; i < paintedElem.length; i++) {
+      paintedElem[i].classList.toggle('d-none', !hhPainted);
+    }
+    for (var i = 0; i < notPaintedElem.length; i++) {
+      notPaintedElem[i].classList.toggle('d-none', hhPainted);
+    }
 
     localizeUtil.localizePage();
 

@@ -6075,6 +6075,24 @@
           "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
         },
         "_row_num": 357
+      },
+      {
+        "string_token": "hh_head_first_hint",
+        "text": {
+          "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
+          "pt": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
+          "sw": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus."
+        },
+        "_row_num": 358
+      },
+      {
+        "string_token": "check_all_that_apply_hint",
+        "text": {
+          "default": "(Check all that apply)",
+          "pt": "(Assinalar todas as opções que se apliquem)",
+          "sw": "(Chagua yote inayohusika)"
+        },
+        "_row_num": 359
       }
     ]
   },
@@ -11464,6 +11482,24 @@
             "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
           },
           "_row_num": 357
+        },
+        "hh_head_first_hint": {
+          "string_token": "hh_head_first_hint",
+          "text": {
+            "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
+            "pt": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
+            "sw": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus."
+          },
+          "_row_num": 358
+        },
+        "check_all_that_apply_hint": {
+          "string_token": "check_all_that_apply_hint",
+          "text": {
+            "default": "(Check all that apply)",
+            "pt": "(Assinalar todas as opções que se apliquem)",
+            "sw": "(Chagua yote inayohusika)"
+          },
+          "_row_num": 359
         }
       }
     },

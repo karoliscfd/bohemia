@@ -26,7 +26,8 @@
       {
         "type": "note",
         "display": {
-          "prompt": "new_hh_only"
+          "prompt": "new_hh_only",
+          "hint": "hh_head_first_hint"
         },
         "_row_num": 4
       },
@@ -6683,7 +6684,8 @@
           {
             "type": "note",
             "display": {
-              "prompt": "new_hh_only"
+              "prompt": "new_hh_only",
+              "hint": "hh_head_first_hint"
             },
             "_row_num": 4,
             "__rowNum__": 3,

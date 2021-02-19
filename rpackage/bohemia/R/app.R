@@ -1189,7 +1189,7 @@ app_server <- function(input, output, session) {
       last_monday <- max(pd_sub$todays_date[pd_sub$day=='Monday'])
       pd_week <- pd %>% filter(todays_date>= last_monday, todays_date<=last_sunday)
       num_forms_since_monday <-sum(pd_week$counts, na.rm = TRUE)
-      forms_complete <- nrow(pd)
+      forms_complete <- sum(pd$counts)
       date_today <- Sys.Date()
       seconds_in_day <- 86400
       title_mini <- paste0('Minicensus forms finished: ', forms_complete)

@@ -19,23 +19,20 @@
 <div class="d-none" id="wrapper">
     <h1 class="text-uppercase text-center my-5">
         <span data-localize="op_title"></span>
-        <span id="homeScreenFwId" class="mb-1 d-block">
+        <span id="homeScreenFwId" class="mb-1 d-block invisible requires-fw-id">
             <span class="pr-1" data-localize="fw_id_label"></span>
             <span id="fwIdSpan"></span>
         </span>
     </h1>
 
     <main class="container-fluid mt-3">
+        <button type="button" class="btn btn-lg btn-dark btn-block py-4 requires-fw-id d-none" id="selectHhButton"
+                data-toggle="modal" data-target="#paintedIdModal">
+            <span class="h2" data-localize="select_hh_button"></span>
+        </button>
+
         <button type="button" class="btn btn-lg btn-dark btn-block py-4" id="enterFwId">
             <span class="h2" data-localize="fw_id_button"></span>
-        </button>
-
-        <button type="button" class="btn btn-lg btn-dark btn-block py-4" id="newHhButton">
-            <span class="h2" data-localize="new_hh_button"></span>
-        </button>
-
-        <button type="button" class="btn btn-lg btn-dark btn-block py-4" id="editHhButton">
-            <span class="h2" data-localize="existing_hh_button"></span>
         </button>
 
         <button type="button" class="btn btn-lg btn-primary btn-block py-4" id="syncHhButton">
@@ -43,5 +40,26 @@
         </button>
     </main>
 </div>
+
+<div class="modal" data-backdrop="static" data-keyboard="false" id="paintedIdModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-body" id="paintedIdModalBody">
+                <span data-localize="check_painted_id"></span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        data-localize="cancel_button"></button>
+                <button type="button" class="btn btn-primary" id="paintedIdModalNo" data-localize="no_button"></button>
+                <button type="button" class="btn btn-primary" id="paintedIdModalYes"
+                        data-localize="yes_button"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../system/libs/jquery-3.4.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
