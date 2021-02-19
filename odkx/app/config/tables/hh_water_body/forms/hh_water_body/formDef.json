@@ -47,8 +47,17 @@
         "_row_num": 6
       },
       {
-        "clause": "end screen",
+        "type": "select_one",
+        "values_list": "stand_flow",
+        "name": "water_stand_flow",
+        "display": {
+          "prompt": "53aiii"
+        },
         "_row_num": 7
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 8
       }
     ],
     "choices": [
@@ -75,6 +84,22 @@
           "title": "transient"
         },
         "_row_num": 4
+      },
+      {
+        "choice_list_name": "stand_flow",
+        "data_value": "standing",
+        "display": {
+          "title": "standing"
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "stand_flow",
+        "data_value": "flowing",
+        "display": {
+          "title": "flowing"
+        },
+        "_row_num": 6
       }
     ],
     "settings": [
@@ -188,13 +213,22 @@
         "_row_num": 3
       },
       {
+        "string_token": "53aiii",
+        "text": {
+          "default": "53a(iii). Is this water body standing or flowing?",
+          "pt": "53a(iii). É água estagnada ou corrente?",
+          "sw": "53a(iii). Je, maji haya yametuama au yanatiririka?"
+        },
+        "_row_num": 4
+      },
+      {
         "string_token": "hh_id_note",
         "text": {
           "default": "Household Identification {{data.hh_id}}",
           "pt": "Identificação do agregado: {{data.hh_id}}",
           "sw": "Utambulisho wa Kaya: {{data.hh_id}}"
         },
-        "_row_num": 4
+        "_row_num": 5
       },
       {
         "string_token": "water_detail",
@@ -203,7 +237,7 @@
           "pt": "Detalhes do corpo de agua",
           "sw": "Maelezo kuhusu maeneo ya maji"
         },
-        "_row_num": 5
+        "_row_num": 6
       },
       {
         "string_token": "permanent",
@@ -212,7 +246,7 @@
           "pt": "Água permanente (todo o ano)",
           "sw": "Maji ya kudumu (mwaka mzima)"
         },
-        "_row_num": 6
+        "_row_num": 7
       },
       {
         "string_token": "semi_permanent",
@@ -221,7 +255,7 @@
           "pt": "Água semipermanente (a maior parte do ano)",
           "sw": "Maji ya kudumu kwa muda (wakati mwingi wa mwaka)"
         },
-        "_row_num": 7
+        "_row_num": 8
       },
       {
         "string_token": "transient",
@@ -230,7 +264,25 @@
           "pt": "Água transitória (presente apenas quando chove)",
           "sw": "Maji ya muda mfupi (huwepo kunaponyesha tu)"
         },
-        "_row_num": 8
+        "_row_num": 9
+      },
+      {
+        "string_token": "standing",
+        "text": {
+          "default": "Standing",
+          "pt": "Estagnada",
+          "sw": "Yametuama"
+        },
+        "_row_num": 10
+      },
+      {
+        "string_token": "flowing",
+        "text": {
+          "default": "Flowing",
+          "pt": "Corrente",
+          "sw": "Yanatiririka"
+        },
+        "_row_num": 11
       }
     ]
   },
@@ -413,6 +465,24 @@
           },
           "_row_num": 4
         }
+      ],
+      "stand_flow": [
+        {
+          "choice_list_name": "stand_flow",
+          "data_value": "standing",
+          "display": {
+            "title": "standing"
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "stand_flow",
+          "data_value": "flowing",
+          "display": {
+            "title": "flowing"
+          },
+          "_row_num": 6
+        }
       ]
     },
     "table_specific_definitions": {
@@ -435,6 +505,15 @@
           },
           "_row_num": 3
         },
+        "53aiii": {
+          "string_token": "53aiii",
+          "text": {
+            "default": "53a(iii). Is this water body standing or flowing?",
+            "pt": "53a(iii). É água estagnada ou corrente?",
+            "sw": "53a(iii). Je, maji haya yametuama au yanatiririka?"
+          },
+          "_row_num": 4
+        },
         "hh_id_note": {
           "string_token": "hh_id_note",
           "text": {
@@ -442,7 +521,7 @@
             "pt": "Identificação do agregado: {{data.hh_id}}",
             "sw": "Utambulisho wa Kaya: {{data.hh_id}}"
           },
-          "_row_num": 4
+          "_row_num": 5
         },
         "water_detail": {
           "string_token": "water_detail",
@@ -451,7 +530,7 @@
             "pt": "Detalhes do corpo de agua",
             "sw": "Maelezo kuhusu maeneo ya maji"
           },
-          "_row_num": 5
+          "_row_num": 6
         },
         "permanent": {
           "string_token": "permanent",
@@ -460,7 +539,7 @@
             "pt": "Água permanente (todo o ano)",
             "sw": "Maji ya kudumu (mwaka mzima)"
           },
-          "_row_num": 6
+          "_row_num": 7
         },
         "semi_permanent": {
           "string_token": "semi_permanent",
@@ -469,7 +548,7 @@
             "pt": "Água semipermanente (a maior parte do ano)",
             "sw": "Maji ya kudumu kwa muda (wakati mwingi wa mwaka)"
           },
-          "_row_num": 7
+          "_row_num": 8
         },
         "transient": {
           "string_token": "transient",
@@ -478,7 +557,25 @@
             "pt": "Água transitória (presente apenas quando chove)",
             "sw": "Maji ya muda mfupi (huwepo kunaponyesha tu)"
           },
-          "_row_num": 8
+          "_row_num": 9
+        },
+        "standing": {
+          "string_token": "standing",
+          "text": {
+            "default": "Standing",
+            "pt": "Estagnada",
+            "sw": "Yametuama"
+          },
+          "_row_num": 10
+        },
+        "flowing": {
+          "string_token": "flowing",
+          "text": {
+            "default": "Flowing",
+            "pt": "Corrente",
+            "sw": "Yanatiririka"
+          },
+          "_row_num": 11
         }
       }
     },
@@ -542,6 +639,17 @@
           }
         ],
         "elementKey": "water_bodies_type"
+      },
+      "water_stand_flow": {
+        "_defn": [
+          {
+            "_row_num": 7,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "stand_flow",
+        "elementKey": "water_stand_flow"
       }
     },
     "section_names": [
@@ -717,12 +825,26 @@
             "promptIdx": 3
           },
           {
+            "type": "select_one",
+            "values_list": "stand_flow",
+            "name": "water_stand_flow",
+            "display": {
+              "prompt": "53aiii"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 4
+          },
+          {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 8,
-            "_branch_label_enclosing_screen": "survey/_screen8",
-            "promptIdx": 4
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 5
           }
         ],
         "validation_tag_map": {
@@ -736,23 +858,23 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 7,
-              "__rowNum__": 6,
+              "_row_num": 8,
+              "__rowNum__": 7,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 0
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 8,
+            "_row_num": 9,
             "operationIdx": 1
           },
           {
-            "_row_num": 8,
+            "_row_num": 9,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
@@ -761,14 +883,14 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 8,
+            "_row_num": 9,
             "operationIdx": 3
           }
         ],
         "branch_label_map": {
           "_screen2": 0,
           "_contents": 2,
-          "_screen8": 2
+          "_screen9": 2
         }
       }
     },
@@ -858,6 +980,20 @@
         "elementName": "water_bodies_type",
         "elementSet": "data",
         "elementPath": "water_bodies_type"
+      },
+      "water_stand_flow": {
+        "_defn": [
+          {
+            "_row_num": 7,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "stand_flow",
+        "elementKey": "water_stand_flow",
+        "elementName": "water_stand_flow",
+        "elementSet": "data",
+        "elementPath": "water_stand_flow"
       },
       "water_bodies_geo_latitude": {
         "type": "number",
@@ -1007,6 +1143,13 @@
         "_key": "displayChoicesList",
         "_type": "object",
         "_value": "[{\"choice_list_name\":\"water_body_type\",\"data_value\":\"permanent\",\"display\":{\"title\":\"permanent\"},\"_row_num\":2},{\"choice_list_name\":\"water_body_type\",\"data_value\":\"semi_permanent\",\"display\":{\"title\":\"semi_permanent\"},\"_row_num\":3},{\"choice_list_name\":\"water_body_type\",\"data_value\":\"transient\",\"display\":{\"title\":\"transient\"},\"_row_num\":4}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "water_stand_flow",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"stand_flow\",\"data_value\":\"standing\",\"display\":{\"title\":\"standing\"},\"_row_num\":5},{\"choice_list_name\":\"stand_flow\",\"data_value\":\"flowing\",\"display\":{\"title\":\"flowing\"},\"_row_num\":6}]"
       },
       {
         "_partition": "FormType",

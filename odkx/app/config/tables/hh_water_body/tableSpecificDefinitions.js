@@ -18,6 +18,15 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 3
     },
+    "53aiii": {
+      "string_token": "53aiii",
+      "text": {
+        "default": "53a(iii). Is this water body standing or flowing?",
+        "pt": "53a(iii). É água estagnada ou corrente?",
+        "sw": "53a(iii). Je, maji haya yametuama au yanatiririka?"
+      },
+      "_row_num": 4
+    },
     "hh_id_note": {
       "string_token": "hh_id_note",
       "text": {
@@ -25,7 +34,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Identificação do agregado: {{data.hh_id}}",
         "sw": "Utambulisho wa Kaya: {{data.hh_id}}"
       },
-      "_row_num": 4
+      "_row_num": 5
     },
     "water_detail": {
       "string_token": "water_detail",
@@ -34,7 +43,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes do corpo de agua",
         "sw": "Maelezo kuhusu maeneo ya maji"
       },
-      "_row_num": 5
+      "_row_num": 6
     },
     "permanent": {
       "string_token": "permanent",
@@ -43,7 +52,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Água permanente (todo o ano)",
         "sw": "Maji ya kudumu (mwaka mzima)"
       },
-      "_row_num": 6
+      "_row_num": 7
     },
     "semi_permanent": {
       "string_token": "semi_permanent",
@@ -52,7 +61,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Água semipermanente (a maior parte do ano)",
         "sw": "Maji ya kudumu kwa muda (wakati mwingi wa mwaka)"
       },
-      "_row_num": 7
+      "_row_num": 8
     },
     "transient": {
       "string_token": "transient",
@@ -61,7 +70,25 @@ window.odkTableSpecificDefinitions = {
         "pt": "Água transitória (presente apenas quando chove)",
         "sw": "Maji ya muda mfupi (huwepo kunaponyesha tu)"
       },
-      "_row_num": 8
+      "_row_num": 9
+    },
+    "standing": {
+      "string_token": "standing",
+      "text": {
+        "default": "Standing",
+        "pt": "Estagnada",
+        "sw": "Yametuama"
+      },
+      "_row_num": 10
+    },
+    "flowing": {
+      "string_token": "flowing",
+      "text": {
+        "default": "Flowing",
+        "pt": "Corrente",
+        "sw": "Yanatiririka"
+      },
+      "_row_num": 11
     }
   }
 }

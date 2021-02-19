@@ -2253,8 +2253,8 @@ window.odkTableSpecificDefinitions = {
     "q37": {
       "string_token": "q37",
       "text": {
-        "default": "37. House screens",
-        "pt": "37. Redes mosquiteiras de casa",
+        "default": "37. House screens in the main house",
+        "pt": "37. Redes mosquiteiras de casa da edificação principal",
         "sw": "37. Nyavu za nyumba"
       },
       "_row_num": 256
@@ -2825,6 +2825,15 @@ window.odkTableSpecificDefinitions = {
         "sw": "64a. [Ikiwa ndiyo] Vingapi?"
       },
       "_row_num": 319
+    },
+    "contact_number_digits": {
+      "string_token": "contact_number_digits",
+      "text": {
+        "default": "Contact numbers must be 9 digits.",
+        "pt": "Contact numbers must be 9 digits.",
+        "sw": "Contact numbers must be 9 digits."
+      },
+      "_row_num": 320
     }
   }
 }

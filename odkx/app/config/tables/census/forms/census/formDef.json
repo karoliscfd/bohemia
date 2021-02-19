@@ -2583,6 +2583,9 @@
       {
         "type": "text",
         "name": "hh_contact",
+        "display": {
+          "constraint_message": "contact_number_digits"
+        },
         "inputAttributes": {
           "type": "tel"
         },
@@ -2628,6 +2631,9 @@
       {
         "type": "text",
         "name": "hh_contact_alt",
+        "display": {
+          "constraint_message": "contact_number_digits"
+        },
         "inputAttributes": {
           "type": "tel"
         },
@@ -2677,6 +2683,9 @@
       {
         "type": "text",
         "name": "hh_contact_alt_2_num",
+        "display": {
+          "constraint_message": "contact_number_digits"
+        },
         "inputAttributes": {
           "type": "tel"
         },
@@ -7207,8 +7216,8 @@
       {
         "string_token": "q37",
         "text": {
-          "default": "37. House screens",
-          "pt": "37. Redes mosquiteiras de casa",
+          "default": "37. House screens in the main house",
+          "pt": "37. Redes mosquiteiras de casa da edificação principal",
           "sw": "37. Nyavu za nyumba"
         },
         "_row_num": 256
@@ -7779,6 +7788,15 @@
           "sw": "64a. [Ikiwa ndiyo] Vingapi?"
         },
         "_row_num": 319
+      },
+      {
+        "string_token": "contact_number_digits",
+        "text": {
+          "default": "Contact numbers must be 9 digits.",
+          "pt": "Contact numbers must be 9 digits.",
+          "sw": "Contact numbers must be 9 digits."
+        },
+        "_row_num": 320
       }
     ],
     "model": [
@@ -7824,8 +7842,7 @@
       "uri": "formula",
       "callback": "formula(context)",
       "choice_filter": "formula(choice_item)",
-      "templatePath": "requirejs_path",
-      "hideInContents": "formula"
+      "templatePath": "requirejs_path"
     },
     "settings": {
       "form_id": {
@@ -12090,8 +12107,8 @@
         "q37": {
           "string_token": "q37",
           "text": {
-            "default": "37. House screens",
-            "pt": "37. Redes mosquiteiras de casa",
+            "default": "37. House screens in the main house",
+            "pt": "37. Redes mosquiteiras de casa da edificação principal",
             "sw": "37. Nyavu za nyumba"
           },
           "_row_num": 256
@@ -12662,6 +12679,15 @@
             "sw": "64a. [Ikiwa ndiyo] Vingapi?"
           },
           "_row_num": 319
+        },
+        "contact_number_digits": {
+          "string_token": "contact_number_digits",
+          "text": {
+            "default": "Contact numbers must be 9 digits.",
+            "pt": "Contact numbers must be 9 digits.",
+            "sw": "Contact numbers must be 9 digits."
+          },
+          "_row_num": 320
         }
       }
     },
@@ -16895,6 +16921,9 @@
           {
             "type": "text",
             "name": "hh_contact",
+            "display": {
+              "constraint_message": "contact_number_digits"
+            },
             "inputAttributes": {
               "type": "tel"
             },
@@ -16936,6 +16965,9 @@
           {
             "type": "text",
             "name": "hh_contact_alt",
+            "display": {
+              "constraint_message": "contact_number_digits"
+            },
             "inputAttributes": {
               "type": "tel"
             },
@@ -16991,6 +17023,9 @@
           {
             "type": "text",
             "name": "hh_contact_alt_2_num",
+            "display": {
+              "constraint_message": "contact_number_digits"
+            },
             "inputAttributes": {
               "type": "tel"
             },
