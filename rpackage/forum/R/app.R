@@ -17,7 +17,7 @@ app_ui <- function(request) {
     mobile_golem_add_external_resources(),
     
     dashboardPage(
-      dashboardHeader (title = "Databrew Dashboard"),
+      dashboardHeader (title = "Bohemia forum directory"),
       dashboardSidebar(
         sidebarMenu(
           menuItem(
@@ -36,6 +36,7 @@ app_ui <- function(request) {
             tabName="main",
             fluidPage(
               fluidRow(
+                uiOutput('top_button'),
                 DT::dataTableOutput('contact_table')
               )
             )
@@ -44,7 +45,7 @@ app_ui <- function(request) {
             tabName = 'about',
             fluidPage(
               fluidRow(
-                div(img(src='logo_clear.png', align = "center"), style="text-align: center;"),
+                div(img(src='https://www.databrew.cc/images/logosmall.png', align = "center"), style="text-align: center;"),
                 h4('Built in partnership with ',
                    a(href = 'https://databrew.cc',
                      target='_blank', 'Databrew'),
@@ -73,21 +74,61 @@ app_ui <- function(request) {
 #' @import leaflet
 app_server <- function(input, output, session) {
   
+  logged_in <- reactiveVal(value = FALSE)
+  observeEvent(input$log_in,{
+    logged_in(TRUE)
+    removeModal()
+  })
+  
+  output$top_button <- renderUI({
+    li <- logged_in()
+    if(li){
+      actionButton("log_out", "Log out")
+    } else {
+      actionButton("show", "Log in")
+    }
+    
+  })
+  
+  observeEvent(input$show, {
+    showModal(modalDialog(
+      title = "Log in",
+      fluidPage(
+        fluidRow(
+          column(6,
+                 textInput('email', 'Email')),
+          column(6,
+                 passwordInput('password', 'Password'))
+        ),
+        fluidRow(
+          actionButton('log_in', 'Log in')
+        )
+      )
+    ))
+  })
+  observeEvent(input$log_out, {
+    logged_in(FALSE)
+  })
+  
   # create a reactive dataframe to store data
   x = reactiveValues(df=NULL)
-  observe({
+  # observe({
     df <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
     # removing details for now
     df$details <- NULL
     df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
     x$df <- df
-  })
+  # })
   
   # put data in table with options for saving a csv 
   output$contact_table <- DT::renderDataTable({
-    # message(table_data)
-    DT::datatable(x$df, editable = 'cell',extensions = 'Buttons', filter = 'top', 
-                  options = list(pageLength = nrow(x$df), info = FALSE, dom='Bfrtip', buttons = list('csv')))
+    li <- logged_in()
+    if(li){
+      DT::datatable(x$df, editable = 'row',
+                    extensions = 'Buttons', 
+                    filter = 'top', 
+                    options = list(pageLength = nrow(x$df), info = FALSE, dom='Bfrtip', buttons = list('csv')))
+    }
   })
   
   # edit table
