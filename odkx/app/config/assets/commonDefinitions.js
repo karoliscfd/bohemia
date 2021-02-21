@@ -231,7 +231,7 @@ window.odkCommonDefinitions = {
     },
     "map_hint": {
       "string_token": "map_hint",
-      "text": "You are at the blue circle. Pins (or pin icon) are households that were part of minicensus.",
+      "text": "You are at the blue circle. Pins are households that were part of minicensus.",
       "_row_num": 36
     }
   },

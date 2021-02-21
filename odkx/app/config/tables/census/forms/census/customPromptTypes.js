@@ -1,6 +1,24 @@
+'use strict';
+
 define([
   '../../../../assets/customPromptTypes/linked_table_counting',
-  '../../../../assets/customPromptTypes/next_extid'
-], function(linked_table_counting, next_extid) {
-  return Object.assign({}, linked_table_counting, next_extid);
+  '../../../../assets/customPromptTypes/next_extid',
+  'promptTypes',
+  'controller',
+  'jquery'
+], function(linked_table_counting, next_extid, promptTypes, controller, $) {
+  return Object.assign({}, linked_table_counting, next_extid, {
+    exit_survey: promptTypes.base.extend({
+      type: 'exit_survey',
+      template: function () { return ''; },
+      valid: true,
+      afterRender: function () {
+        $(document)
+          .on('bohemiaExitSurvey', function (evt) {
+            controller.screenManager.ignoreChanges(evt);
+          })
+          .trigger('bohemiaExitSurvey');
+      }
+    })
+  });
 });

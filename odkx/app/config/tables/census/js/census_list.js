@@ -219,7 +219,8 @@
         fw_id: localStorage.getItem('FW_ID') || null,
         hh_minicenced: 'no',
         hh_roster_mismatch: rosterMismatch,
-        hh_fw_geolocation: false
+        hh_fw_geolocation: false,
+        hh_new: true
       }
     );
   }
