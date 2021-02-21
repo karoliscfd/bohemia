@@ -3675,6 +3675,7 @@ implement(id = None, query = "DELETE FROM clean_minicensus_repeat_mosquito_net W
 implement(id = None, query = "DELETE FROM clean_minicensus_repeat_water WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Kiwili', hh_hamlet_code='KLK' WHERE instance_id = 'a378c7c5-032b-4f15-84c2-53c939c8fddd';")
 implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Mselema', hh_hamlet_code='MSL' WHERE instance_id = 'd2b6b5ee-b7d2-4b9a-b545-959c0bf06dc1';")
+implement(id = None, query = "UPDATE clean_minicensus_main SET wid='70' WHERE instance_id = '34a54a68-4958-45ae-a61f-96f307a97cf6';")
 
 
 dbconn.commit()
