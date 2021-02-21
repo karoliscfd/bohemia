@@ -113,7 +113,7 @@ app_server <- function(input, output, session) {
   # create a reactive dataframe to store data
   x = reactiveValues(df=NULL)
   # observe({
-    df <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
+    df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
     # removing details for now
     df$details <- NULL
     df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
