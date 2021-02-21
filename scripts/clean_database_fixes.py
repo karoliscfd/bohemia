@@ -3673,6 +3673,9 @@ implement(id = None, query = "DELETE FROM clean_minicensus_repeat_death_info WHE
 implement(id = None, query = "DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 implement(id = None, query = "DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 implement(id = None, query = "DELETE FROM clean_minicensus_repeat_water WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Kiwili', hh_hamlet_code='KLK' WHERE instance_id = 'a378c7c5-032b-4f15-84c2-53c939c8fddd';")
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Mselema', hh_hamlet_code='MSL' WHERE instance_id = 'd2b6b5ee-b7d2-4b9a-b545-959c0bf06dc1';")
+
 
 dbconn.commit()
 cur.close()
