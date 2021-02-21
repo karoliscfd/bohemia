@@ -1701,6 +1701,1311 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 191
     },
+    "day_1": {
+      "string_token": "day_1",
+      "text": {
+        "default": "1",
+        "pt": "1",
+        "sw": "1"
+      },
+      "_row_num": 192
+    },
+    "day_2": {
+      "string_token": "day_2",
+      "text": {
+        "default": "2",
+        "pt": "2",
+        "sw": "2"
+      },
+      "_row_num": 193
+    },
+    "day_3": {
+      "string_token": "day_3",
+      "text": {
+        "default": "3",
+        "pt": "3",
+        "sw": "3"
+      },
+      "_row_num": 194
+    },
+    "day_4": {
+      "string_token": "day_4",
+      "text": {
+        "default": "4",
+        "pt": "4",
+        "sw": "4"
+      },
+      "_row_num": 195
+    },
+    "day_5": {
+      "string_token": "day_5",
+      "text": {
+        "default": "5",
+        "pt": "5",
+        "sw": "5"
+      },
+      "_row_num": 196
+    },
+    "day_6": {
+      "string_token": "day_6",
+      "text": {
+        "default": "6",
+        "pt": "6",
+        "sw": "6"
+      },
+      "_row_num": 197
+    },
+    "day_7": {
+      "string_token": "day_7",
+      "text": {
+        "default": "7",
+        "pt": "7",
+        "sw": "7"
+      },
+      "_row_num": 198
+    },
+    "day_8": {
+      "string_token": "day_8",
+      "text": {
+        "default": "8",
+        "pt": "8",
+        "sw": "8"
+      },
+      "_row_num": 199
+    },
+    "day_9": {
+      "string_token": "day_9",
+      "text": {
+        "default": "9",
+        "pt": "9",
+        "sw": "9"
+      },
+      "_row_num": 200
+    },
+    "day_10": {
+      "string_token": "day_10",
+      "text": {
+        "default": "10",
+        "pt": "10",
+        "sw": "10"
+      },
+      "_row_num": 201
+    },
+    "day_11": {
+      "string_token": "day_11",
+      "text": {
+        "default": "11",
+        "pt": "11",
+        "sw": "11"
+      },
+      "_row_num": 202
+    },
+    "day_12": {
+      "string_token": "day_12",
+      "text": {
+        "default": "12",
+        "pt": "12",
+        "sw": "12"
+      },
+      "_row_num": 203
+    },
+    "day_13": {
+      "string_token": "day_13",
+      "text": {
+        "default": "13",
+        "pt": "13",
+        "sw": "13"
+      },
+      "_row_num": 204
+    },
+    "day_14": {
+      "string_token": "day_14",
+      "text": {
+        "default": "14",
+        "pt": "14",
+        "sw": "14"
+      },
+      "_row_num": 205
+    },
+    "day_15": {
+      "string_token": "day_15",
+      "text": {
+        "default": "15",
+        "pt": "15",
+        "sw": "15"
+      },
+      "_row_num": 206
+    },
+    "day_16": {
+      "string_token": "day_16",
+      "text": {
+        "default": "16",
+        "pt": "16",
+        "sw": "16"
+      },
+      "_row_num": 207
+    },
+    "day_17": {
+      "string_token": "day_17",
+      "text": {
+        "default": "17",
+        "pt": "17",
+        "sw": "17"
+      },
+      "_row_num": 208
+    },
+    "day_18": {
+      "string_token": "day_18",
+      "text": {
+        "default": "18",
+        "pt": "18",
+        "sw": "18"
+      },
+      "_row_num": 209
+    },
+    "day_19": {
+      "string_token": "day_19",
+      "text": {
+        "default": "19",
+        "pt": "19",
+        "sw": "19"
+      },
+      "_row_num": 210
+    },
+    "day_20": {
+      "string_token": "day_20",
+      "text": {
+        "default": "20",
+        "pt": "20",
+        "sw": "20"
+      },
+      "_row_num": 211
+    },
+    "day_21": {
+      "string_token": "day_21",
+      "text": {
+        "default": "21",
+        "pt": "21",
+        "sw": "21"
+      },
+      "_row_num": 212
+    },
+    "day_22": {
+      "string_token": "day_22",
+      "text": {
+        "default": "22",
+        "pt": "22",
+        "sw": "22"
+      },
+      "_row_num": 213
+    },
+    "day_23": {
+      "string_token": "day_23",
+      "text": {
+        "default": "23",
+        "pt": "23",
+        "sw": "23"
+      },
+      "_row_num": 214
+    },
+    "day_24": {
+      "string_token": "day_24",
+      "text": {
+        "default": "24",
+        "pt": "24",
+        "sw": "24"
+      },
+      "_row_num": 215
+    },
+    "day_25": {
+      "string_token": "day_25",
+      "text": {
+        "default": "25",
+        "pt": "25",
+        "sw": "25"
+      },
+      "_row_num": 216
+    },
+    "day_26": {
+      "string_token": "day_26",
+      "text": {
+        "default": "26",
+        "pt": "26",
+        "sw": "26"
+      },
+      "_row_num": 217
+    },
+    "day_27": {
+      "string_token": "day_27",
+      "text": {
+        "default": "27",
+        "pt": "27",
+        "sw": "27"
+      },
+      "_row_num": 218
+    },
+    "day_28": {
+      "string_token": "day_28",
+      "text": {
+        "default": "28",
+        "pt": "28",
+        "sw": "28"
+      },
+      "_row_num": 219
+    },
+    "day_29": {
+      "string_token": "day_29",
+      "text": {
+        "default": "29",
+        "pt": "29",
+        "sw": "29"
+      },
+      "_row_num": 220
+    },
+    "day_30": {
+      "string_token": "day_30",
+      "text": {
+        "default": "30",
+        "pt": "30",
+        "sw": "30"
+      },
+      "_row_num": 221
+    },
+    "day_31": {
+      "string_token": "day_31",
+      "text": {
+        "default": "31",
+        "pt": "31",
+        "sw": "31"
+      },
+      "_row_num": 222
+    },
+    "month_1": {
+      "string_token": "month_1",
+      "text": {
+        "default": "1",
+        "pt": "1",
+        "sw": "1"
+      },
+      "_row_num": 223
+    },
+    "month_2": {
+      "string_token": "month_2",
+      "text": {
+        "default": "2",
+        "pt": "2",
+        "sw": "2"
+      },
+      "_row_num": 224
+    },
+    "month_3": {
+      "string_token": "month_3",
+      "text": {
+        "default": "3",
+        "pt": "3",
+        "sw": "3"
+      },
+      "_row_num": 225
+    },
+    "month_4": {
+      "string_token": "month_4",
+      "text": {
+        "default": "4",
+        "pt": "4",
+        "sw": "4"
+      },
+      "_row_num": 226
+    },
+    "month_5": {
+      "string_token": "month_5",
+      "text": {
+        "default": "5",
+        "pt": "5",
+        "sw": "5"
+      },
+      "_row_num": 227
+    },
+    "month_6": {
+      "string_token": "month_6",
+      "text": {
+        "default": "6",
+        "pt": "6",
+        "sw": "6"
+      },
+      "_row_num": 228
+    },
+    "month_7": {
+      "string_token": "month_7",
+      "text": {
+        "default": "7",
+        "pt": "7",
+        "sw": "7"
+      },
+      "_row_num": 229
+    },
+    "month_8": {
+      "string_token": "month_8",
+      "text": {
+        "default": "8",
+        "pt": "8",
+        "sw": "8"
+      },
+      "_row_num": 230
+    },
+    "month_9": {
+      "string_token": "month_9",
+      "text": {
+        "default": "9",
+        "pt": "9",
+        "sw": "9"
+      },
+      "_row_num": 231
+    },
+    "month_10": {
+      "string_token": "month_10",
+      "text": {
+        "default": "10",
+        "pt": "10",
+        "sw": "10"
+      },
+      "_row_num": 232
+    },
+    "month_11": {
+      "string_token": "month_11",
+      "text": {
+        "default": "11",
+        "pt": "11",
+        "sw": "11"
+      },
+      "_row_num": 233
+    },
+    "month_12": {
+      "string_token": "month_12",
+      "text": {
+        "default": "12",
+        "pt": "12",
+        "sw": "12"
+      },
+      "_row_num": 234
+    },
+    "year_2021": {
+      "string_token": "year_2021",
+      "text": {
+        "default": "2021",
+        "pt": "2021",
+        "sw": "2021"
+      },
+      "_row_num": 235
+    },
+    "year_2020": {
+      "string_token": "year_2020",
+      "text": {
+        "default": "2020",
+        "pt": "2020",
+        "sw": "2020"
+      },
+      "_row_num": 236
+    },
+    "year_2019": {
+      "string_token": "year_2019",
+      "text": {
+        "default": "2019",
+        "pt": "2019",
+        "sw": "2019"
+      },
+      "_row_num": 237
+    },
+    "year_2018": {
+      "string_token": "year_2018",
+      "text": {
+        "default": "2018",
+        "pt": "2018",
+        "sw": "2018"
+      },
+      "_row_num": 238
+    },
+    "year_2017": {
+      "string_token": "year_2017",
+      "text": {
+        "default": "2017",
+        "pt": "2017",
+        "sw": "2017"
+      },
+      "_row_num": 239
+    },
+    "year_2016": {
+      "string_token": "year_2016",
+      "text": {
+        "default": "2016",
+        "pt": "2016",
+        "sw": "2016"
+      },
+      "_row_num": 240
+    },
+    "year_2015": {
+      "string_token": "year_2015",
+      "text": {
+        "default": "2015",
+        "pt": "2015",
+        "sw": "2015"
+      },
+      "_row_num": 241
+    },
+    "year_2014": {
+      "string_token": "year_2014",
+      "text": {
+        "default": "2014",
+        "pt": "2014",
+        "sw": "2014"
+      },
+      "_row_num": 242
+    },
+    "year_2013": {
+      "string_token": "year_2013",
+      "text": {
+        "default": "2013",
+        "pt": "2013",
+        "sw": "2013"
+      },
+      "_row_num": 243
+    },
+    "year_2012": {
+      "string_token": "year_2012",
+      "text": {
+        "default": "2012",
+        "pt": "2012",
+        "sw": "2012"
+      },
+      "_row_num": 244
+    },
+    "year_2011": {
+      "string_token": "year_2011",
+      "text": {
+        "default": "2011",
+        "pt": "2011",
+        "sw": "2011"
+      },
+      "_row_num": 245
+    },
+    "year_2010": {
+      "string_token": "year_2010",
+      "text": {
+        "default": "2010",
+        "pt": "2010",
+        "sw": "2010"
+      },
+      "_row_num": 246
+    },
+    "year_2009": {
+      "string_token": "year_2009",
+      "text": {
+        "default": "2009",
+        "pt": "2009",
+        "sw": "2009"
+      },
+      "_row_num": 247
+    },
+    "year_2008": {
+      "string_token": "year_2008",
+      "text": {
+        "default": "2008",
+        "pt": "2008",
+        "sw": "2008"
+      },
+      "_row_num": 248
+    },
+    "year_2007": {
+      "string_token": "year_2007",
+      "text": {
+        "default": "2007",
+        "pt": "2007",
+        "sw": "2007"
+      },
+      "_row_num": 249
+    },
+    "year_2006": {
+      "string_token": "year_2006",
+      "text": {
+        "default": "2006",
+        "pt": "2006",
+        "sw": "2006"
+      },
+      "_row_num": 250
+    },
+    "year_2005": {
+      "string_token": "year_2005",
+      "text": {
+        "default": "2005",
+        "pt": "2005",
+        "sw": "2005"
+      },
+      "_row_num": 251
+    },
+    "year_2004": {
+      "string_token": "year_2004",
+      "text": {
+        "default": "2004",
+        "pt": "2004",
+        "sw": "2004"
+      },
+      "_row_num": 252
+    },
+    "year_2003": {
+      "string_token": "year_2003",
+      "text": {
+        "default": "2003",
+        "pt": "2003",
+        "sw": "2003"
+      },
+      "_row_num": 253
+    },
+    "year_2002": {
+      "string_token": "year_2002",
+      "text": {
+        "default": "2002",
+        "pt": "2002",
+        "sw": "2002"
+      },
+      "_row_num": 254
+    },
+    "year_2001": {
+      "string_token": "year_2001",
+      "text": {
+        "default": "2001",
+        "pt": "2001",
+        "sw": "2001"
+      },
+      "_row_num": 255
+    },
+    "year_2000": {
+      "string_token": "year_2000",
+      "text": {
+        "default": "2000",
+        "pt": "2000",
+        "sw": "2000"
+      },
+      "_row_num": 256
+    },
+    "year_1999": {
+      "string_token": "year_1999",
+      "text": {
+        "default": "1999",
+        "pt": "1999",
+        "sw": "1999"
+      },
+      "_row_num": 257
+    },
+    "year_1998": {
+      "string_token": "year_1998",
+      "text": {
+        "default": "1998",
+        "pt": "1998",
+        "sw": "1998"
+      },
+      "_row_num": 258
+    },
+    "year_1997": {
+      "string_token": "year_1997",
+      "text": {
+        "default": "1997",
+        "pt": "1997",
+        "sw": "1997"
+      },
+      "_row_num": 259
+    },
+    "year_1996": {
+      "string_token": "year_1996",
+      "text": {
+        "default": "1996",
+        "pt": "1996",
+        "sw": "1996"
+      },
+      "_row_num": 260
+    },
+    "year_1995": {
+      "string_token": "year_1995",
+      "text": {
+        "default": "1995",
+        "pt": "1995",
+        "sw": "1995"
+      },
+      "_row_num": 261
+    },
+    "year_1994": {
+      "string_token": "year_1994",
+      "text": {
+        "default": "1994",
+        "pt": "1994",
+        "sw": "1994"
+      },
+      "_row_num": 262
+    },
+    "year_1993": {
+      "string_token": "year_1993",
+      "text": {
+        "default": "1993",
+        "pt": "1993",
+        "sw": "1993"
+      },
+      "_row_num": 263
+    },
+    "year_1992": {
+      "string_token": "year_1992",
+      "text": {
+        "default": "1992",
+        "pt": "1992",
+        "sw": "1992"
+      },
+      "_row_num": 264
+    },
+    "year_1991": {
+      "string_token": "year_1991",
+      "text": {
+        "default": "1991",
+        "pt": "1991",
+        "sw": "1991"
+      },
+      "_row_num": 265
+    },
+    "year_1990": {
+      "string_token": "year_1990",
+      "text": {
+        "default": "1990",
+        "pt": "1990",
+        "sw": "1990"
+      },
+      "_row_num": 266
+    },
+    "year_1989": {
+      "string_token": "year_1989",
+      "text": {
+        "default": "1989",
+        "pt": "1989",
+        "sw": "1989"
+      },
+      "_row_num": 267
+    },
+    "year_1988": {
+      "string_token": "year_1988",
+      "text": {
+        "default": "1988",
+        "pt": "1988",
+        "sw": "1988"
+      },
+      "_row_num": 268
+    },
+    "year_1987": {
+      "string_token": "year_1987",
+      "text": {
+        "default": "1987",
+        "pt": "1987",
+        "sw": "1987"
+      },
+      "_row_num": 269
+    },
+    "year_1986": {
+      "string_token": "year_1986",
+      "text": {
+        "default": "1986",
+        "pt": "1986",
+        "sw": "1986"
+      },
+      "_row_num": 270
+    },
+    "year_1985": {
+      "string_token": "year_1985",
+      "text": {
+        "default": "1985",
+        "pt": "1985",
+        "sw": "1985"
+      },
+      "_row_num": 271
+    },
+    "year_1984": {
+      "string_token": "year_1984",
+      "text": {
+        "default": "1984",
+        "pt": "1984",
+        "sw": "1984"
+      },
+      "_row_num": 272
+    },
+    "year_1983": {
+      "string_token": "year_1983",
+      "text": {
+        "default": "1983",
+        "pt": "1983",
+        "sw": "1983"
+      },
+      "_row_num": 273
+    },
+    "year_1982": {
+      "string_token": "year_1982",
+      "text": {
+        "default": "1982",
+        "pt": "1982",
+        "sw": "1982"
+      },
+      "_row_num": 274
+    },
+    "year_1981": {
+      "string_token": "year_1981",
+      "text": {
+        "default": "1981",
+        "pt": "1981",
+        "sw": "1981"
+      },
+      "_row_num": 275
+    },
+    "year_1980": {
+      "string_token": "year_1980",
+      "text": {
+        "default": "1980",
+        "pt": "1980",
+        "sw": "1980"
+      },
+      "_row_num": 276
+    },
+    "year_1979": {
+      "string_token": "year_1979",
+      "text": {
+        "default": "1979",
+        "pt": "1979",
+        "sw": "1979"
+      },
+      "_row_num": 277
+    },
+    "year_1978": {
+      "string_token": "year_1978",
+      "text": {
+        "default": "1978",
+        "pt": "1978",
+        "sw": "1978"
+      },
+      "_row_num": 278
+    },
+    "year_1977": {
+      "string_token": "year_1977",
+      "text": {
+        "default": "1977",
+        "pt": "1977",
+        "sw": "1977"
+      },
+      "_row_num": 279
+    },
+    "year_1976": {
+      "string_token": "year_1976",
+      "text": {
+        "default": "1976",
+        "pt": "1976",
+        "sw": "1976"
+      },
+      "_row_num": 280
+    },
+    "year_1975": {
+      "string_token": "year_1975",
+      "text": {
+        "default": "1975",
+        "pt": "1975",
+        "sw": "1975"
+      },
+      "_row_num": 281
+    },
+    "year_1974": {
+      "string_token": "year_1974",
+      "text": {
+        "default": "1974",
+        "pt": "1974",
+        "sw": "1974"
+      },
+      "_row_num": 282
+    },
+    "year_1973": {
+      "string_token": "year_1973",
+      "text": {
+        "default": "1973",
+        "pt": "1973",
+        "sw": "1973"
+      },
+      "_row_num": 283
+    },
+    "year_1972": {
+      "string_token": "year_1972",
+      "text": {
+        "default": "1972",
+        "pt": "1972",
+        "sw": "1972"
+      },
+      "_row_num": 284
+    },
+    "year_1971": {
+      "string_token": "year_1971",
+      "text": {
+        "default": "1971",
+        "pt": "1971",
+        "sw": "1971"
+      },
+      "_row_num": 285
+    },
+    "year_1970": {
+      "string_token": "year_1970",
+      "text": {
+        "default": "1970",
+        "pt": "1970",
+        "sw": "1970"
+      },
+      "_row_num": 286
+    },
+    "year_1969": {
+      "string_token": "year_1969",
+      "text": {
+        "default": "1969",
+        "pt": "1969",
+        "sw": "1969"
+      },
+      "_row_num": 287
+    },
+    "year_1968": {
+      "string_token": "year_1968",
+      "text": {
+        "default": "1968",
+        "pt": "1968",
+        "sw": "1968"
+      },
+      "_row_num": 288
+    },
+    "year_1967": {
+      "string_token": "year_1967",
+      "text": {
+        "default": "1967",
+        "pt": "1967",
+        "sw": "1967"
+      },
+      "_row_num": 289
+    },
+    "year_1966": {
+      "string_token": "year_1966",
+      "text": {
+        "default": "1966",
+        "pt": "1966",
+        "sw": "1966"
+      },
+      "_row_num": 290
+    },
+    "year_1965": {
+      "string_token": "year_1965",
+      "text": {
+        "default": "1965",
+        "pt": "1965",
+        "sw": "1965"
+      },
+      "_row_num": 291
+    },
+    "year_1964": {
+      "string_token": "year_1964",
+      "text": {
+        "default": "1964",
+        "pt": "1964",
+        "sw": "1964"
+      },
+      "_row_num": 292
+    },
+    "year_1963": {
+      "string_token": "year_1963",
+      "text": {
+        "default": "1963",
+        "pt": "1963",
+        "sw": "1963"
+      },
+      "_row_num": 293
+    },
+    "year_1962": {
+      "string_token": "year_1962",
+      "text": {
+        "default": "1962",
+        "pt": "1962",
+        "sw": "1962"
+      },
+      "_row_num": 294
+    },
+    "year_1961": {
+      "string_token": "year_1961",
+      "text": {
+        "default": "1961",
+        "pt": "1961",
+        "sw": "1961"
+      },
+      "_row_num": 295
+    },
+    "year_1960": {
+      "string_token": "year_1960",
+      "text": {
+        "default": "1960",
+        "pt": "1960",
+        "sw": "1960"
+      },
+      "_row_num": 296
+    },
+    "year_1959": {
+      "string_token": "year_1959",
+      "text": {
+        "default": "1959",
+        "pt": "1959",
+        "sw": "1959"
+      },
+      "_row_num": 297
+    },
+    "year_1958": {
+      "string_token": "year_1958",
+      "text": {
+        "default": "1958",
+        "pt": "1958",
+        "sw": "1958"
+      },
+      "_row_num": 298
+    },
+    "year_1957": {
+      "string_token": "year_1957",
+      "text": {
+        "default": "1957",
+        "pt": "1957",
+        "sw": "1957"
+      },
+      "_row_num": 299
+    },
+    "year_1956": {
+      "string_token": "year_1956",
+      "text": {
+        "default": "1956",
+        "pt": "1956",
+        "sw": "1956"
+      },
+      "_row_num": 300
+    },
+    "year_1955": {
+      "string_token": "year_1955",
+      "text": {
+        "default": "1955",
+        "pt": "1955",
+        "sw": "1955"
+      },
+      "_row_num": 301
+    },
+    "year_1954": {
+      "string_token": "year_1954",
+      "text": {
+        "default": "1954",
+        "pt": "1954",
+        "sw": "1954"
+      },
+      "_row_num": 302
+    },
+    "year_1953": {
+      "string_token": "year_1953",
+      "text": {
+        "default": "1953",
+        "pt": "1953",
+        "sw": "1953"
+      },
+      "_row_num": 303
+    },
+    "year_1952": {
+      "string_token": "year_1952",
+      "text": {
+        "default": "1952",
+        "pt": "1952",
+        "sw": "1952"
+      },
+      "_row_num": 304
+    },
+    "year_1951": {
+      "string_token": "year_1951",
+      "text": {
+        "default": "1951",
+        "pt": "1951",
+        "sw": "1951"
+      },
+      "_row_num": 305
+    },
+    "year_1950": {
+      "string_token": "year_1950",
+      "text": {
+        "default": "1950",
+        "pt": "1950",
+        "sw": "1950"
+      },
+      "_row_num": 306
+    },
+    "year_1949": {
+      "string_token": "year_1949",
+      "text": {
+        "default": "1949",
+        "pt": "1949",
+        "sw": "1949"
+      },
+      "_row_num": 307
+    },
+    "year_1948": {
+      "string_token": "year_1948",
+      "text": {
+        "default": "1948",
+        "pt": "1948",
+        "sw": "1948"
+      },
+      "_row_num": 308
+    },
+    "year_1947": {
+      "string_token": "year_1947",
+      "text": {
+        "default": "1947",
+        "pt": "1947",
+        "sw": "1947"
+      },
+      "_row_num": 309
+    },
+    "year_1946": {
+      "string_token": "year_1946",
+      "text": {
+        "default": "1946",
+        "pt": "1946",
+        "sw": "1946"
+      },
+      "_row_num": 310
+    },
+    "year_1945": {
+      "string_token": "year_1945",
+      "text": {
+        "default": "1945",
+        "pt": "1945",
+        "sw": "1945"
+      },
+      "_row_num": 311
+    },
+    "year_1944": {
+      "string_token": "year_1944",
+      "text": {
+        "default": "1944",
+        "pt": "1944",
+        "sw": "1944"
+      },
+      "_row_num": 312
+    },
+    "year_1943": {
+      "string_token": "year_1943",
+      "text": {
+        "default": "1943",
+        "pt": "1943",
+        "sw": "1943"
+      },
+      "_row_num": 313
+    },
+    "year_1942": {
+      "string_token": "year_1942",
+      "text": {
+        "default": "1942",
+        "pt": "1942",
+        "sw": "1942"
+      },
+      "_row_num": 314
+    },
+    "year_1941": {
+      "string_token": "year_1941",
+      "text": {
+        "default": "1941",
+        "pt": "1941",
+        "sw": "1941"
+      },
+      "_row_num": 315
+    },
+    "year_1940": {
+      "string_token": "year_1940",
+      "text": {
+        "default": "1940",
+        "pt": "1940",
+        "sw": "1940"
+      },
+      "_row_num": 316
+    },
+    "year_1939": {
+      "string_token": "year_1939",
+      "text": {
+        "default": "1939",
+        "pt": "1939",
+        "sw": "1939"
+      },
+      "_row_num": 317
+    },
+    "year_1938": {
+      "string_token": "year_1938",
+      "text": {
+        "default": "1938",
+        "pt": "1938",
+        "sw": "1938"
+      },
+      "_row_num": 318
+    },
+    "year_1937": {
+      "string_token": "year_1937",
+      "text": {
+        "default": "1937",
+        "pt": "1937",
+        "sw": "1937"
+      },
+      "_row_num": 319
+    },
+    "year_1936": {
+      "string_token": "year_1936",
+      "text": {
+        "default": "1936",
+        "pt": "1936",
+        "sw": "1936"
+      },
+      "_row_num": 320
+    },
+    "year_1935": {
+      "string_token": "year_1935",
+      "text": {
+        "default": "1935",
+        "pt": "1935",
+        "sw": "1935"
+      },
+      "_row_num": 321
+    },
+    "year_1934": {
+      "string_token": "year_1934",
+      "text": {
+        "default": "1934",
+        "pt": "1934",
+        "sw": "1934"
+      },
+      "_row_num": 322
+    },
+    "year_1933": {
+      "string_token": "year_1933",
+      "text": {
+        "default": "1933",
+        "pt": "1933",
+        "sw": "1933"
+      },
+      "_row_num": 323
+    },
+    "year_1932": {
+      "string_token": "year_1932",
+      "text": {
+        "default": "1932",
+        "pt": "1932",
+        "sw": "1932"
+      },
+      "_row_num": 324
+    },
+    "year_1931": {
+      "string_token": "year_1931",
+      "text": {
+        "default": "1931",
+        "pt": "1931",
+        "sw": "1931"
+      },
+      "_row_num": 325
+    },
+    "year_1930": {
+      "string_token": "year_1930",
+      "text": {
+        "default": "1930",
+        "pt": "1930",
+        "sw": "1930"
+      },
+      "_row_num": 326
+    },
+    "year_1929": {
+      "string_token": "year_1929",
+      "text": {
+        "default": "1929",
+        "pt": "1929",
+        "sw": "1929"
+      },
+      "_row_num": 327
+    },
+    "year_1928": {
+      "string_token": "year_1928",
+      "text": {
+        "default": "1928",
+        "pt": "1928",
+        "sw": "1928"
+      },
+      "_row_num": 328
+    },
+    "year_1927": {
+      "string_token": "year_1927",
+      "text": {
+        "default": "1927",
+        "pt": "1927",
+        "sw": "1927"
+      },
+      "_row_num": 329
+    },
+    "year_1926": {
+      "string_token": "year_1926",
+      "text": {
+        "default": "1926",
+        "pt": "1926",
+        "sw": "1926"
+      },
+      "_row_num": 330
+    },
+    "year_1925": {
+      "string_token": "year_1925",
+      "text": {
+        "default": "1925",
+        "pt": "1925",
+        "sw": "1925"
+      },
+      "_row_num": 331
+    },
+    "year_1924": {
+      "string_token": "year_1924",
+      "text": {
+        "default": "1924",
+        "pt": "1924",
+        "sw": "1924"
+      },
+      "_row_num": 332
+    },
+    "year_1923": {
+      "string_token": "year_1923",
+      "text": {
+        "default": "1923",
+        "pt": "1923",
+        "sw": "1923"
+      },
+      "_row_num": 333
+    },
+    "year_1922": {
+      "string_token": "year_1922",
+      "text": {
+        "default": "1922",
+        "pt": "1922",
+        "sw": "1922"
+      },
+      "_row_num": 334
+    },
+    "year_1921": {
+      "string_token": "year_1921",
+      "text": {
+        "default": "1921",
+        "pt": "1921",
+        "sw": "1921"
+      },
+      "_row_num": 335
+    },
+    "year_1920": {
+      "string_token": "year_1920",
+      "text": {
+        "default": "1920",
+        "pt": "1920",
+        "sw": "1920"
+      },
+      "_row_num": 336
+    },
     "socio_id_h2": {
       "string_token": "socio_id_h2",
       "text": {
@@ -1708,7 +3013,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h2>Identificação e informação sociodemográfica</h2>",
         "sw": "<h2>Maelezo ya utambuzi na demografia ya jamii</h2>"
       },
-      "_row_num": 193
+      "_row_num": 338
     },
     "health_morbidity_h2": {
       "string_token": "health_morbidity_h2",
@@ -1717,7 +3022,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h2>Informações sobre saúde/morbilidade</h2>",
         "sw": "<h2>Taarifa za afya/magonjwa</h2>"
       },
-      "_row_num": 194
+      "_row_num": 339
     },
     "malaria_h2": {
       "string_token": "malaria_h2",
@@ -1726,7 +3031,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h2>Risco de malária e informação sobre prevenção</h2>",
         "sw": "<h2>Taarifa za vihatarishi vya kuenea kwa malaria na kinga zake</h2>"
       },
-      "_row_num": 195
+      "_row_num": 340
     },
     "residual_h2": {
       "string_token": "residual_h2",
@@ -1735,7 +3040,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h2>Informações sobre transmissão residual</h2>",
         "sw": "<h2>Taarifa za mabaki ya uenezi</h2>"
       },
-      "_row_num": 196
+      "_row_num": 341
     },
     "travel_h2": {
       "string_token": "travel_h2",
@@ -1744,7 +3049,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h2>Informações sobre viagens</h2>",
         "sw": "<h2>Taarifa za safari</h2>"
       },
-      "_row_num": 197
+      "_row_num": 342
     },
     "treatment_h3": {
       "string_token": "treatment_h3",
@@ -1753,7 +3058,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Tratamento</h3>",
         "sw": "<h3>Matibabu</h3>"
       },
-      "_row_num": 199
+      "_row_num": 344
     },
     "chronic_h3": {
       "string_token": "chronic_h3",
@@ -1762,7 +3067,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Doenças crónicas</h3>",
         "sw": "<h3>Magonjwa sugu</h3>"
       },
-      "_row_num": 200
+      "_row_num": 345
     },
     "curr_disease_h3": {
       "string_token": "curr_disease_h3",
@@ -1771,7 +3076,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Doenças recentes e atuais</h3>",
         "sw": "<h3>Magonjwa ya hivi karibuni na ya sasa</h3>"
       },
-      "_row_num": 201
+      "_row_num": 346
     },
     "ntd_h3": {
       "string_token": "ntd_h3",
@@ -1780,7 +3085,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Inquérito sindrómico de doenças tropicais negligenciadas</h3>",
         "sw": "<h3>Utafiti wa dalili za magonjwa ya NTD</h3>"
       },
-      "_row_num": 202
+      "_row_num": 347
     },
     "wra_h3": {
       "string_token": "wra_h3",
@@ -1789,7 +3094,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Mulher em idade reprodutiva</h3>",
         "sw": "<h3>Mwanamke wa Umri wa Kuzaa</h3>"
       },
-      "_row_num": 203
+      "_row_num": 348
     },
     "travel_loa_h3": {
       "string_token": "travel_loa_h3",
@@ -1798,7 +3103,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Viajar para países com Loa Loa</h3>",
         "sw": "<h3>Kusafiri kwenda nchi za Loa loa</h3>"
       },
-      "_row_num": 204
+      "_row_num": 349
     },
     "travel_regular_h3": {
       "string_token": "travel_regular_h3",
@@ -1807,7 +3112,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Viagens regulares durante a primeira parte do ano</h3>",
         "sw": "<h3>Usafiri wa mara kwa mara wakati wa sehemu ya kwanza ya mwaka</h3>"
       },
-      "_row_num": 205
+      "_row_num": 350
     },
     "day": {
       "string_token": "day",
@@ -1816,7 +3121,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Dia",
         "sw": "Siku"
       },
-      "_row_num": 207
+      "_row_num": 352
     },
     "month": {
       "string_token": "month",
@@ -1825,7 +3130,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Mês",
         "sw": "Mwezi"
       },
-      "_row_num": 208
+      "_row_num": 353
     },
     "year": {
       "string_token": "year",
@@ -1834,7 +3139,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Ano",
         "sw": "Mwaka"
       },
-      "_row_num": 209
+      "_row_num": 354
     },
     "member_extid": {
       "string_token": "member_extid",
@@ -1843,7 +3148,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "ExtID do membro",
         "sw": "ExtID ya Mshiriki"
       },
-      "_row_num": 210
+      "_row_num": 355
     },
     "hh_id_note": {
       "string_token": "hh_id_note",
@@ -1852,7 +3157,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Identificação do agregado: {{data.hh_id}}",
         "sw": "Utambulisho wa Kaya: {{data.hh_id}}"
       },
-      "_row_num": 211
+      "_row_num": 356
     },
     "date": {
       "string_token": "date",
@@ -1861,7 +3166,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Data",
         "sw": "Tarehe"
       },
-      "_row_num": 212
+      "_row_num": 357
     },
     "or_enter_num": {
       "string_token": "or_enter_num",
@@ -1870,7 +3175,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "ou digite um número",
         "sw": "au ingiza namba"
       },
-      "_row_num": 213
+      "_row_num": 358
     },
     "days_weeks_months_years": {
       "string_token": "days_weeks_months_years",
@@ -1879,7 +3184,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Dias / semanas / meses / anos",
         "sw": "Siku/Wiki/Mwezi/Mwaka"
       },
-      "_row_num": 214
+      "_row_num": 359
     },
     "days_weeks_months_dk": {
       "string_token": "days_weeks_months_dk",
@@ -1888,7 +3193,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Dias / semanas / meses atrás ou não sei",
         "sw": "Siku/Wiki/Mwezi/Mwaka zilizopita au Sijui"
       },
-      "_row_num": 215
+      "_row_num": 360
     },
     "err_death_date": {
       "string_token": "err_death_date",
@@ -1897,7 +3202,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Tarehe ya kifo haiwezi kuwa ya mbeleni<br>Tarehe ya kifo haiwezi kuwa kabla ya Mwezi wa 10, Mwaka 2020",
         "sw": "Data da morte não pode ser no futuro. <br> Date da morte não pode ser antes de Outubro de 2020"
       },
-      "_row_num": 216
+      "_row_num": 361
     },
     "err_emigrate_date": {
       "string_token": "err_emigrate_date",
@@ -1906,12 +3211,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "Tarehe ya kuhama haiwezi kuwa ya mbeleni<br>Tarehe ya kuhama haiwezi kuwa kabla ya Mwezi wa 10, Mwaka 2020",
         "sw": "Data da emigracão não pode ser no futuro <br> Data da emigracao não pode ser antes de Outubro de 2020"
       },
-      "_row_num": 217
+      "_row_num": 362
     },
     "err_emigrate_date_multiple": {
       "string_token": "err_emigrate_date_multiple",
       "text": "You only need to identify one time (date OR enter an integer OR select 'Don't Know')",
-      "_row_num": 218
+      "_row_num": 363
     },
     "death_va_note": {
       "string_token": "death_va_note",
@@ -1920,7 +3225,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se a pessoa tiver falecido, Q8 (será feita uma AV numa visita posterior)",
         "sw": "Ikiwa mtu alifariki, Swali la Q8 (VA itafanywa katika tembeleo linalofuata)"
       },
-      "_row_num": 219
+      "_row_num": 364
     },
     "if_person_migrated": {
       "string_token": "if_person_migrated",
@@ -1929,7 +3234,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se a pessoa emigrou Q9-10",
         "sw": "Ikiwa mtu alihama Swali la Q9-10"
       },
-      "_row_num": 220
+      "_row_num": 365
     },
     "if_newborn": {
       "string_token": "if_newborn",
@@ -1938,7 +3243,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se recém-nascido",
         "sw": "Ikiwa ni mtoto mchanga"
       },
-      "_row_num": 221
+      "_row_num": 366
     },
     "if_moved_in": {
       "string_token": "if_moved_in",
@@ -1947,7 +3252,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se for alguém que se tenha mudado para a casa",
         "sw": "Ikiwa mtu aliyehamia katika nyumba"
       },
-      "_row_num": 222
+      "_row_num": 367
     },
     "assigned_extid": {
       "string_token": "assigned_extid",
@@ -1956,7 +3261,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "ExtID atribuido: {{data.id}}",
         "sw": "ExtID {{data.id}} aliyopewa"
       },
-      "_row_num": 223
+      "_row_num": 368
     },
     "snake_bite_detail": {
       "string_token": "snake_bite_detail",
@@ -1965,7 +3270,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes da mordida de cobra",
         "sw": "Maelezo kuhusu kuumwa na nyoka"
       },
-      "_row_num": 224
+      "_row_num": 369
     },
     "name_id": {
       "string_token": "name_id",
@@ -1974,7 +3279,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "{{ data.name }} {{data.surname }} [{{ data.id }}]",
         "sw": "{{ data.name }} {{data.surname }} [{{ data.id }}]"
       },
-      "_row_num": 225
+      "_row_num": 370
     },
     "bite_too_many_months": {
       "string_token": "bite_too_many_months",
@@ -1983,7 +3288,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar mais meses que o tempo selecionado na P.59b",
         "sw": "Hauwezi kuchagua miezi mingi zaidi kuliko mara za kuumwa katika Q59b."
       },
-      "_row_num": 226
+      "_row_num": 371
     },
     "bite_occur_conflict": {
       "string_token": "bite_occur_conflict",
@@ -1992,7 +3297,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\"junto com as outras respostas.",
         "sw": "Huwezi kuchagua 'Sijui' pamoja na majibu mengine."
       },
-      "_row_num": 227
+      "_row_num": 372
     },
     "given_name": {
       "string_token": "given_name",
@@ -2001,7 +3306,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Nome próprio",
         "sw": "Jina la kupewa"
       },
-      "_row_num": 228
+      "_row_num": 373
     },
     "surname": {
       "string_token": "surname",
@@ -2010,7 +3315,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Apelido",
         "sw": "Jina la ukoo"
       },
-      "_row_num": 229
+      "_row_num": 374
     },
     "new_hh_only": {
       "string_token": "new_hh_only",
@@ -2019,7 +3324,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Secção a ser preenchida para famílias que não faziam parte do minicenso.",
         "sw": "Sehemu inayojazwa kwa kaya ambazo hazikuwa sehemu ya Minicensus"
       },
-      "_row_num": 230
+      "_row_num": 375
     },
     "err_no_consent": {
       "string_token": "err_no_consent",
@@ -2028,7 +3333,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style = \"color: red\"> Você não pode continuar a pesquisa se o consentimento informado não foi assinado </span>",
         "sw": "<span style=\"color:red\">Huwezi kusonga mbele hadi fomu ya idhini iwe imesainiwa.</span>"
       },
-      "_row_num": 231
+      "_row_num": 376
     },
     "err_no_assent": {
       "string_token": "err_no_assent",
@@ -2037,7 +3342,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style = \"color: red\"> Você não pode continuar a pesquisa se o consentimento não foi assinado </span>",
         "sw": "<span style=\"color:red\">Huwezi kusonga mbele hadi fomu ya idhini (assent) iwe imesainiwa.</span>"
       },
-      "_row_num": 232
+      "_row_num": 377
     },
     "w_father_alive": {
       "string_token": "w_father_alive",
@@ -2046,7 +3351,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style = \"color: red\"> Você indicou que o participante é filho / filha do chefe da família, que é do sexo masculino, mas que o pai do participante não está mais vivo ou nenhum dos pais está vivo. Verifique. </span>",
         "sw": "<span style = \"color: red\"> Umeonyesha kwamba mshiriki ni mtoto wa kiume/binti wa mkuu wa kaya, ambaye ni wa kiume, lakini baba wa mshiriki hayupo hai tena au hakuna mzazi yoyote wa mshiriki yupo hai. Tafadhali thibitisha. </span>"
       },
-      "_row_num": 233
+      "_row_num": 378
     },
     "w_mother_alive": {
       "string_token": "w_mother_alive",
@@ -2055,7 +3360,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style = \"color: red\"> Você indicou que o participante é filho / filha do chefe da família, que é mulher, mas que a mãe do participante não está mais viva ou que nenhum dos pais está vivo. Verifique. </span>",
         "sw": "<span style = \"color: red\"> Umeonyesha kwamba mshiriki ni mtoto wa kiume/binti wa mkuu wa kaya, ambaye ni wa kike, lakini mama wa mshiriki hayupo hai tena au hakuna mzazi yoyote wa mshiriki yupo hai. Tafadhali thibitisha. </span>"
       },
-      "_row_num": 234
+      "_row_num": 379
     },
     "w_father_mother_alive": {
       "string_token": "w_father_mother_alive",
@@ -2064,7 +3369,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style = \"color: red\"> Você indicou que o participante é filho / filha do chefe da família, mas nenhum de seus pais está vivo. Verifique as respostas. </span>",
         "sw": "<span style = \"color: red\"> Umeonyesha kwamba mshiriki ni mtoto wa kiume/binti wa mkuu wa kaya lakini hakuna mzazi yoyote wa mshiriki yupo hai. Tafadhali thibitisha. </span>"
       },
-      "_row_num": 235
+      "_row_num": 380
     },
     "travel_prompt": {
       "string_token": "travel_prompt",
@@ -2073,7 +3378,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h4> Você deverá responder a perguntas sobre as {{data.travel_regularly_trips}} viagens regulares. </h4>",
         "sw": "<h4> Utaombwa kujibu maswali kuhusu safari za kawaida za {{data.travel_regularly_trips}}. </h4>"
       },
-      "_row_num": 236
+      "_row_num": 381
     },
     "err_future_date": {
       "string_token": "err_future_date",
@@ -2082,7 +3387,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data não pode ser no futuro",
         "sw": "Tarehe haiwezi kuwa ya mbeleni"
       },
-      "_row_num": 237
+      "_row_num": 382
     },
     "w_lmp": {
       "string_token": "w_lmp",
@@ -2091,7 +3396,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Esta eh uma discrepancia entre o ultimo periodo mesntrual da participante e o estado da gravidezz. Por favor verifique.",
         "sw": "Kuna utata kati ya hedhi ya mwisho ya mshiriki na hali ya ujauzito. Tafadhali thibitisha."
       },
-      "_row_num": 238
+      "_row_num": 383
     },
     "name_number": {
       "string_token": "name_number",
@@ -2100,7 +3405,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O nome do indivíduo não pode conter números",
         "sw": "Jina la mtu binasfi haliwezi kuwa na namba."
       },
-      "_row_num": 240
+      "_row_num": 385
     },
     "surname_number": {
       "string_token": "surname_number",
@@ -2109,7 +3414,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O apelido do indivíduo não pode conter números.",
         "sw": "Jina la ukoo la mtu binafsi haliwezi kuwa na namba."
       },
-      "_row_num": 241
+      "_row_num": 386
     },
     "dob_hint": {
       "string_token": "dob_hint",
@@ -2118,7 +3423,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Insira uma data entre 1 e 31.",
         "sw": "Ingiza tahere (siku) kati ya 1 na 31"
       },
-      "_row_num": 242
+      "_row_num": 387
     },
     "month_hint": {
       "string_token": "month_hint",
@@ -2127,7 +3432,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Insira um mes entre 1 e 12",
         "sw": "Ingiza mwezi kati ya 1 na 12"
       },
-      "_row_num": 243
+      "_row_num": 388
     },
     "year_hint": {
       "string_token": "year_hint",
@@ -2136,7 +3441,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Insira um ano entre 1920 e 2021.",
         "sw": "Ingiza mwaka kati ya 1920 na 2021"
       },
-      "_row_num": 244
+      "_row_num": 389
     },
     "date_cons": {
       "string_token": "date_cons",
@@ -2145,7 +3450,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data introduzida deve ser um numero entre 1 a 31.",
         "sw": "Tarehe(siku) iliyoingizwa inatakiwa kuwa namba kati ya 1 na 31"
       },
-      "_row_num": 245
+      "_row_num": 390
     },
     "month_cons": {
       "string_token": "month_cons",
@@ -2154,7 +3459,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O mes introduzido deve ser um numero entre 1 e 12.",
         "sw": "Mwezi uliyoingizwa unatakiwa kuwa namba kati ya 1 na12"
       },
-      "_row_num": 246
+      "_row_num": 391
     },
     "year_cons": {
       "string_token": "year_cons",
@@ -2163,7 +3468,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O ano introduido deve ser um numero entre 1920 e 2021",
         "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
       },
-      "_row_num": 247
+      "_row_num": 392
     },
     "select_date_dk": {
       "string_token": "select_date_dk",
@@ -2172,7 +3477,17 @@ window.odkTableSpecificDefinitions = {
         "pt": "Selecione hoje / amanhã, insira uma data ou ‘Não sei’",
         "sw": "Chagua kuanzia leo / kesho, ingiza tarehe, au 'Sijui'"
       },
-      "_row_num": 248
+      "_row_num": 393
+    },
+    "invalid_dm": {
+      "string_token": "invalid_dm",
+      "text": "Invalid date month combination",
+      "_row_num": 394
+    },
+    "invalid_dmy": {
+      "string_token": "invalid_dmy",
+      "text": "Invalid date month year combination",
+      "_row_num": 395
     },
     "q1": {
       "string_token": "q1",
@@ -2181,7 +3496,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1. Nome próprio:",
         "sw": "1. Jina la kupewa:"
       },
-      "_row_num": 251
+      "_row_num": 397
     },
     "q2": {
       "string_token": "q2",
@@ -2190,7 +3505,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2. Apelido:",
         "sw": "2. Jina la ukoo:"
       },
-      "_row_num": 252
+      "_row_num": 398
     },
     "q3": {
       "string_token": "q3",
@@ -2199,7 +3514,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3. Data de nascimento:",
         "sw": "3. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 253
+      "_row_num": 399
     },
     "q3a": {
       "string_token": "q3a",
@@ -2208,7 +3523,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "3a. Ikiwa mwaka haujulikani, tafadhali jaza umri"
       },
-      "_row_num": 254
+      "_row_num": 400
     },
     "q4": {
       "string_token": "q4",
@@ -2217,7 +3532,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "4. Género",
         "sw": "4. Jinsia"
       },
-      "_row_num": 255
+      "_row_num": 401
     },
     "q5": {
       "string_token": "q5",
@@ -2226,7 +3541,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5.  Este participante reside no agregado familiar?",
         "sw": "5. Je, mshiriki huyu ni mkazi wa kaya hii?"
       },
-      "_row_num": 256
+      "_row_num": 402
     },
     "q5.hint": {
       "string_token": "q5.hint",
@@ -2235,7 +3550,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro residente é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkazi ni mtu aliye na nia ya kuishi katika kaya wakati wa angalau miezi 3 inayofuata)"
       },
-      "_row_num": 257
+      "_row_num": 403
     },
     "q6": {
       "string_token": "q6",
@@ -2244,7 +3559,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6. Este participante foi registado no mini-censo há alguns meses?",
         "sw": "6. Je, mshiriki huyu alisajiliwa katika sensa ya wilaya miezi michache iliyopita?"
       },
-      "_row_num": 258
+      "_row_num": 404
     },
     "q6a": {
       "string_token": "q6a",
@@ -2253,7 +3568,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6a. [Se sim] Obter Ext_ID do participante",
         "sw": "6a. [Ikiwa ndiyo] Pata Kitambulisho cha Ext_ID cha mshiriki"
       },
-      "_row_num": 259
+      "_row_num": 405
     },
     "q7": {
       "string_token": "q7",
@@ -2262,7 +3577,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "7. [Por cada pessoa que já não faz parte do agregado familiar] O que aconteceu a essa pessoa ou para onde foi?",
         "sw": "7. [Kwa kila mtu asiye sehemu ya kaya] Ni nini kilitokea kwa mtu huyu au yuko wapi sasa?"
       },
-      "_row_num": 260
+      "_row_num": 406
     },
     "q8": {
       "string_token": "q8",
@@ -2271,7 +3586,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "8. Quando é que esta pessoa faleceu?",
         "sw": "8. Mtu huyu alifariki lini??"
       },
-      "_row_num": 261
+      "_row_num": 407
     },
     "q9": {
       "string_token": "q9",
@@ -2280,7 +3595,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "9. Quando é que esta pessoa foi saiu do agregado?",
         "sw": "9. Mtu huyu aliondoka lini?"
       },
-      "_row_num": 262
+      "_row_num": 408
     },
     "q10": {
       "string_token": "q10",
@@ -2289,7 +3604,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "10. Para onde foi essa pessoa?",
         "sw": "10. Mtu huyu alienda wapi?"
       },
-      "_row_num": 263
+      "_row_num": 409
     },
     "q12": {
       "string_token": "q12",
@@ -2298,7 +3613,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "12. [Por novo membro] Esta pessoa é um recém-nascido ou alguém que se tenha mudado para a casa?",
         "sw": "12. [Kwa kila mtu mpya] Je, mtu huyu ni mtoto mchanga au ni mtu aliyehamia katika nyumba hii?"
       },
-      "_row_num": 264
+      "_row_num": 410
     },
     "q13": {
       "string_token": "q13",
@@ -2307,7 +3622,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "13. Nome próprio",
         "sw": "13. Jina la kupewa"
       },
-      "_row_num": 265
+      "_row_num": 411
     },
     "q14": {
       "string_token": "q14",
@@ -2316,7 +3631,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "14. Apelido",
         "sw": "14. Jina la ukoo"
       },
-      "_row_num": 266
+      "_row_num": 412
     },
     "q15": {
       "string_token": "q15",
@@ -2325,7 +3640,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15. Data de nascimento:",
         "sw": "15. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 267
+      "_row_num": 413
     },
     "q15a": {
       "string_token": "q15a",
@@ -2334,7 +3649,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "15a. Ikiwa mwaka haujulikani tafadhali jaza umri"
       },
-      "_row_num": 268
+      "_row_num": 414
     },
     "q15b": {
       "string_token": "q15b",
@@ -2343,7 +3658,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16b. Género",
         "sw": "16b. Jinsia"
       },
-      "_row_num": 269
+      "_row_num": 415
     },
     "q16": {
       "string_token": "q16",
@@ -2352,7 +3667,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16. Este participante é um morador do agregado familiar?",
         "sw": "16. Je, mshiriki huyu ni mkaazi wa kaya hii??"
       },
-      "_row_num": 270
+      "_row_num": 416
     },
     "q16.hint": {
       "string_token": "q16.hint",
@@ -2361,7 +3676,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro morador é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkaazi ni mtu aliye na nia ya kuishi katika kaya hiyo kwa kipindi cha angalau miezi 3 inayofuata)"
       },
-      "_row_num": 271
+      "_row_num": 417
     },
     "q16a": {
       "string_token": "q16a",
@@ -2370,7 +3685,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16a.Ext_ID",
         "sw": "16a.Ext_ID"
       },
-      "_row_num": 272
+      "_row_num": 418
     },
     "q17": {
       "string_token": "q17",
@@ -2379,7 +3694,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17. Nome próprio",
         "sw": "17. Jina la kupewa"
       },
-      "_row_num": 273
+      "_row_num": 419
     },
     "q18": {
       "string_token": "q18",
@@ -2388,7 +3703,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "18. Apelido",
         "sw": "18. Jina la ukoo"
       },
-      "_row_num": 274
+      "_row_num": 420
     },
     "q19": {
       "string_token": "q19",
@@ -2397,7 +3712,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19. Data de nascimento:",
         "sw": "19. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 275
+      "_row_num": 421
     },
     "q19a": {
       "string_token": "q19a",
@@ -2406,7 +3721,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "19a. Ikiwa mwaka haujulikani tafadhali jaza umri"
       },
-      "_row_num": 276
+      "_row_num": 422
     },
     "q20": {
       "string_token": "q20",
@@ -2415,7 +3730,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "20. Género",
         "sw": "20. Jinsia"
       },
-      "_row_num": 277
+      "_row_num": 423
     },
     "q21": {
       "string_token": "q21",
@@ -2424,7 +3739,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "21. Este participante é um residente do agregado familiar?",
         "sw": "21. Je, mshiriki huyu ni mkazi wa kaya hii?"
       },
-      "_row_num": 278
+      "_row_num": 424
     },
     "q21.hint": {
       "string_token": "q21.hint",
@@ -2433,7 +3748,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro morador é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkaazi ni mtu aliye na nia ya kuishi katika kaya hiyo kwa kipindi cha angalau miezi 3 inayofuata)"
       },
-      "_row_num": 279
+      "_row_num": 425
     },
     "q22": {
       "string_token": "q22",
@@ -2442,7 +3757,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "22. Quando é que essa pessoa se mudou?",
         "sw": "22. Mtu huyu alihamia lini katika kaya hii?"
       },
-      "_row_num": 280
+      "_row_num": 426
     },
     "q23": {
       "string_token": "q23",
@@ -2451,7 +3766,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23. De onde veio esta pessoa? Selecionar:",
         "sw": "23. Mtu huyu anatoka wapi? Chagua:"
       },
-      "_row_num": 281
+      "_row_num": 427
     },
     "q23a": {
       "string_token": "q23a",
@@ -2460,7 +3775,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23a. [Se deste distrito] Este participante foi registado no censo distrital há alguns meses?",
         "sw": "23a. [Ikiwa ni ndani ya wilaya hii] mshiriki huyu alisajiliwa katika sensa ya wilaya miezi michache iliyopita?"
       },
-      "_row_num": 282
+      "_row_num": 428
     },
     "q23ai": {
       "string_token": "q23ai",
@@ -2469,7 +3784,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23a (i). [Se sim] Obter Ext_ID do participante",
         "sw": "23a (i). [Ikiwa ndiyo] Pata Ext_ID ya mshiriki"
       },
-      "_row_num": 283
+      "_row_num": 429
     },
     "q24": {
       "string_token": "q24",
@@ -2478,7 +3793,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "24. Quando é que a pessoa regressa?",
         "sw": "24. Mtu huyu atarudi lini?"
       },
-      "_row_num": 284
+      "_row_num": 430
     },
     "q25": {
       "string_token": "q25",
@@ -2487,7 +3802,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "25. Qual é o motivo da ausência?",
         "sw": "25. Ni ipi sababu ya kutokuwepo?"
       },
-      "_row_num": 285
+      "_row_num": 431
     },
     "q59a": {
       "string_token": "q59a",
@@ -2496,7 +3811,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59a. Quem foi mordido?",
         "sw": "59a. Ni nani aliyegongwa?"
       },
-      "_row_num": 286
+      "_row_num": 432
     },
     "q59b": {
       "string_token": "q59b",
@@ -2505,7 +3820,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59b. Quantas vezes (momentos separados) foi mordido?",
         "sw": "59b. Ni mara ngapi (matukio tofauti) aligongwa?"
       },
-      "_row_num": 287
+      "_row_num": 433
     },
     "q59c": {
       "string_token": "q59c",
@@ -2514,7 +3829,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59c. Em que mês/meses foi mordido? (Assinalar todas as opções que se apliquem)",
         "sw": "59c. Aligongwa katika mwezi (miezi) gani? (Chagua yote inayohusika)"
       },
-      "_row_num": 288
+      "_row_num": 434
     },
     "q59d": {
       "string_token": "q59d",
@@ -2523,7 +3838,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59d. Essa pessoa teve de faltar à escola/trabalho por ter sido mordida? (Se foi mordida mais de uma vez, responder sobre a mordida mais grave)",
         "sw": "59d. Mtu alikosa kuhudhuria shule/kazi kwa sababu ya kugongwa? (Ikiwa aligongwa zaidi ya mara moja, jibu kuhusu kugongwa kulikokuwa hatari zaidi)"
       },
-      "_row_num": 289
+      "_row_num": 435
     },
     "q59di": {
       "string_token": "q59di",
@@ -2532,7 +3847,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59d(i). [Se sim] Quantos dias?",
         "sw": "59d (i). [Ikiwa ndiyo] Siku ngapi?"
       },
-      "_row_num": 290
+      "_row_num": 436
     },
     "q59e": {
       "string_token": "q59e",
@@ -2541,7 +3856,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59e. Onde é que foi mordido(a)? (Assinalar todas as opções que se apliquem)",
         "sw": "59e. Kugongwa huku kulitokea wapi? (Chagua yote inayohusika)"
       },
-      "_row_num": 291
+      "_row_num": 437
     },
     "q59f": {
       "string_token": "q59f",
@@ -2550,7 +3865,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59f. Qual foi a consequência da mordida? (Se foi mordida mais de uma vez, responder sobre a mordida mais grave)",
         "sw": "59f. Matokeo ya kugongwa yalikuwa yapi? (Ikiwa aligongwa zaidi ya mara moja, jibu kuhusu kugongwa kulikokuwa kukali zaidi)"
       },
-      "_row_num": 292
+      "_row_num": 438
     },
     "ind_q1": {
       "string_token": "ind_q1",
@@ -2559,7 +3874,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1. Número do agregado familiar",
         "sw": "1. Mwanakaya"
       },
-      "_row_num": 294
+      "_row_num": 440
     },
     "ind_q2": {
       "string_token": "ind_q2",
@@ -2568,7 +3883,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2. Data de nascimento",
         "sw": "2. Tarehe ya kuzaliwa"
       },
-      "_row_num": 295
+      "_row_num": 441
     },
     "ind_q2a": {
       "string_token": "ind_q2a",
@@ -2577,7 +3892,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "2a. Ikiwa mwaka haujulikani, tafadhali jaza umri"
       },
-      "_row_num": 296
+      "_row_num": 442
     },
     "ind_q3": {
       "string_token": "ind_q3",
@@ -2586,7 +3901,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3. Género",
         "sw": "3. Jinsia"
       },
-      "_row_num": 297
+      "_row_num": 443
     },
     "ind_q4": {
       "string_token": "ind_q4",
@@ -2595,7 +3910,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "4. Este participante assinou o consentimento informado?",
         "sw": "4. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 298
+      "_row_num": 444
     },
     "ind_q5": {
       "string_token": "ind_q5",
@@ -2604,7 +3919,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5.  O participante assinou o assentimento informado?",
         "sw": "5. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 299
+      "_row_num": 445
     },
     "ind_q5a": {
       "string_token": "ind_q5a",
@@ -2613,7 +3928,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5a. O pai/mãe/tutor assinou o consentimento informado?",
         "sw": "5a. Mlezi wa kisheria/mzazi ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 300
+      "_row_num": 446
     },
     "ind_q5ai": {
       "string_token": "ind_q5ai",
@@ -2622,7 +3937,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5a(i). Quem assinou?",
         "sw": "5a (i). Ni nani aliyetia saini?"
       },
-      "_row_num": 301
+      "_row_num": 447
     },
     "ind_q6": {
       "string_token": "ind_q6",
@@ -2631,7 +3946,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6. O pai/mãe/tutor assinou o consentimento informado?",
         "sw": "6. Mlezi wa kisheria/mzazi ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 302
+      "_row_num": 448
     },
     "ind_q6a": {
       "string_token": "ind_q6a",
@@ -2640,7 +3955,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6a. Quem assinou?",
         "sw": "6a. Ni nani aliyetia saini?"
       },
-      "_row_num": 303
+      "_row_num": 449
     },
     "ind_q7": {
       "string_token": "ind_q7",
@@ -2649,7 +3964,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "7. Quem responde às perguntas?",
         "sw": "7. Ni nani anayejibu maswali?"
       },
-      "_row_num": 304
+      "_row_num": 450
     },
     "ind_q8": {
       "string_token": "ind_q8",
@@ -2658,7 +3973,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "8. Os seus pais biológicos estão vivos?",
         "sw": "8. Wazazi wake waliomzaa wako hai?"
       },
-      "_row_num": 305
+      "_row_num": 451
     },
     "ind_q9": {
       "string_token": "ind_q9",
@@ -2667,7 +3982,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "9. Parentesco do participante com o chefe do agregado familiar",
         "sw": "9. Uhusiano wa mshiriki na Mkuu wa kaya"
       },
-      "_row_num": 306
+      "_row_num": 452
     },
     "ind_q10": {
       "string_token": "ind_q10",
@@ -2676,7 +3991,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "10. Religião",
         "sw": "10. Dini"
       },
-      "_row_num": 307
+      "_row_num": 453
     },
     "ind_q11": {
       "string_token": "ind_q11",
@@ -2685,7 +4000,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "11. Língua materna",
         "sw": "11. Lugha ya mama"
       },
-      "_row_num": 308
+      "_row_num": 454
     },
     "ind_q12": {
       "string_token": "ind_q12",
@@ -2694,7 +4009,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "12. Este participante está atualmente a fazer algum tratamento? (Assinalar todas as opções que se apliquem):",
         "sw": "12. Mshiriki huyu kwa sasa anapata matibabu yoyote? (chagua yote yanayohusika):"
       },
-      "_row_num": 309
+      "_row_num": 455
     },
     "ind_q13": {
       "string_token": "ind_q13",
@@ -2703,7 +4018,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "13. Este participante sofre de alguma doença crónica? (Doença de longa duração)",
         "sw": "13. Mshiriki huyu kwa sasa unaugua kutokana na ugonjwa wowote sugu? (ugonjwa wa muda mrefu)"
       },
-      "_row_num": 310
+      "_row_num": 456
     },
     "ind_q14": {
       "string_token": "ind_q14",
@@ -2712,7 +4027,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "14. Este participante teve quaisquer outras doenças ou problemas médicos nos últimos 15 dias (incluindo agora)?",
         "sw": "14. Mshiriki huyu amekuwa na ugonjwa wowote mwingine au matatizo ya kimatibabu katika siku 15 zilizopita? (ikijumuisha sasa)?"
       },
-      "_row_num": 311
+      "_row_num": 457
     },
     "ind_q15": {
       "string_token": "ind_q15",
@@ -2721,7 +4036,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15. Quais das seguintes? (Assinalar todas as opções que se apliquem)",
         "sw": "15. Ni yapi kati ya yafuatayo? (Chagua yote yanayohusika)"
       },
-      "_row_num": 312
+      "_row_num": 458
     },
     "ind_q16": {
       "string_token": "ind_q16",
@@ -2730,7 +4045,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16. Principais sintomas que teve (assinalar todas as opções que se apliquem):",
         "sw": "16. Dalili kuu zilizoonekana (Chagua zote zinazohusika):"
       },
-      "_row_num": 313
+      "_row_num": 459
     },
     "ind_q17": {
       "string_token": "ind_q17",
@@ -2739,7 +4054,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17. O participante procurou cuidados?",
         "sw": "17. Mshiriki alitafuta tiba?"
       },
-      "_row_num": 314
+      "_row_num": 460
     },
     "ind_q17a": {
       "string_token": "ind_q17a",
@@ -2748,7 +4063,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17a. Que tipo de cuidados é que o participante procurou? (Assinalar todas as opções que se apliquem)",
         "sw": "17a. Ni huduma ya aina gani aliyoitafuta mshiriki huyu? (chagua yote yatakayo husika)"
       },
-      "_row_num": 315
+      "_row_num": 461
     },
     "ind_q17b": {
       "string_token": "ind_q17b",
@@ -2757,7 +4072,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17b. O participante fez o teste da malária?",
         "sw": "17b. Mshiriki huyu alifanyiwa kipimo cha malaria?"
       },
-      "_row_num": 316
+      "_row_num": 462
     },
     "ind_q17bi": {
       "string_token": "ind_q17bi",
@@ -2766,12 +4081,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "17b(i). [Se sim] Resultado do teste da malária",
         "sw": "17b (i). [Ikiwa ndiyo] Matokeo ya kipimo cha malaria"
       },
-      "_row_num": 317
+      "_row_num": 463
     },
     "ind_q17bi.hint": {
       "string_token": "ind_q17bi.hint",
       "text": "indicate result",
-      "_row_num": 318
+      "_row_num": 464
     },
     "ind_q17c": {
       "string_token": "ind_q17c",
@@ -2780,7 +4095,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c. O participante recebeu tratamento contra a malária?",
         "sw": "17c. Mshiriki huyu alipata matibabu ya malaria?"
       },
-      "_row_num": 319
+      "_row_num": 465
     },
     "ind_q17ci": {
       "string_token": "ind_q17ci",
@@ -2789,7 +4104,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c(i). [Se não] Porque não?",
         "sw": "17c (i). [Ikiwa hapana] kwa nini hakupata?"
       },
-      "_row_num": 320
+      "_row_num": 466
     },
     "ind_q18": {
       "string_token": "ind_q18",
@@ -2798,7 +4113,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "18. O participante tem alguma deficiência, lesão ou invalidez?",
         "sw": "18. Mshiriki huyu ana upungufu wowote, jeraha au ugonjwa?"
       },
-      "_row_num": 321
+      "_row_num": 467
     },
     "ind_q19": {
       "string_token": "ind_q19",
@@ -2807,7 +4122,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19. O participante tem comichão? (Assinalar todas as opções que se apliquem)",
         "sw": "19. Mshiriki huyu anawashwa? (chagua yote yatakayo husika)"
       },
-      "_row_num": 322
+      "_row_num": 468
     },
     "ind_q20": {
       "string_token": "ind_q20",
@@ -2816,7 +4131,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "20. O participante tem tunga?",
         "sw": "20. Je, mshiriki huyu ana tunga?"
       },
-      "_row_num": 323
+      "_row_num": 469
     },
     "ind_q21": {
       "string_token": "ind_q21",
@@ -2825,7 +4140,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "21. O participante tem percevejos em casa?",
         "sw": "21. Je, mshiriki huyu ana kunguni katika nyumba yake?"
       },
-      "_row_num": 324
+      "_row_num": 470
     },
     "ind_q22": {
       "string_token": "ind_q22",
@@ -2834,7 +4149,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "22. O participante teve parasitas nas fezes nos últimos 15 dias?",
         "sw": "22. Je, mshiriki huyu alitoa kinyesi chenye minyoo hivi karibuni katika siku 15 zilizopita?"
       },
-      "_row_num": 325
+      "_row_num": 471
     },
     "ind_q23": {
       "string_token": "ind_q23",
@@ -2843,7 +4158,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23. Quando é que a participante teve o último período menstrual?",
         "sw": "23. mshiriki huyu alipata lini hedhi yake ya mwisho?"
       },
-      "_row_num": 326
+      "_row_num": 472
     },
     "ind_q24": {
       "string_token": "ind_q24",
@@ -2852,7 +4167,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "24. A participante está atualmente a amamentar?",
         "sw": "24. Mshiriki huyu kwa sasa ananyonyesha?"
       },
-      "_row_num": 327
+      "_row_num": 473
     },
     "ind_q25": {
       "string_token": "ind_q25",
@@ -2861,7 +4176,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "25. A participante está grávida?",
         "sw": "25. Mshiriki huyu kwa sasa ni mjamzito?"
       },
-      "_row_num": 328
+      "_row_num": 474
     },
     "ind_q25a": {
       "string_token": "ind_q25a",
@@ -2870,7 +4185,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "[Se sim] 25a. A participante está a fazer Tratamento Intermitente Preventivo na Gravidez (TIP) para a malária?",
         "sw": "[Ikiwa ndio] 25a. Mshiriki huyu anatumia dozi ya kuzuia malaria wakati wa ujauzito (IPTp)?"
       },
-      "_row_num": 329
+      "_row_num": 475
     },
     "ind_q26": {
       "string_token": "ind_q26",
@@ -2879,7 +4194,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26. O participante dormiu debaixo de uma rede mosquiteira na noite passada?",
         "sw": "26. Mshiriki huyu alilala ndani ya chandarua cha mbu usiku uliopita?"
       },
-      "_row_num": 330
+      "_row_num": 476
     },
     "ind_q26a": {
       "string_token": "ind_q26a",
@@ -2888,7 +4203,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26a. [Se sim] Quantas pessoas partilhavam a rede?",
         "sw": "26a. [Ikiwa ndiyo] Ni watu wangapi walio lala kwenye chandarua hicho?"
       },
-      "_row_num": 331
+      "_row_num": 477
     },
     "ind_q27": {
       "string_token": "ind_q27",
@@ -2897,7 +4212,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "27. A que horas é que este participante costuma ir para dentro da casa?",
         "sw": "27. Mshiriki huyu kwa kawaida huingia ndani ya nyumba saa ngapi?"
       },
-      "_row_num": 332
+      "_row_num": 478
     },
     "ind_q28": {
       "string_token": "ind_q28",
@@ -2906,7 +4221,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "28. A que horas é que este participante costuma ir para a cama?",
         "sw": "28. Mshiriki huyu kwa kawaida hulala saa ngapi?"
       },
-      "_row_num": 333
+      "_row_num": 479
     },
     "ind_q29": {
       "string_token": "ind_q29",
@@ -2915,7 +4230,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "29. O que é que o participante faz antes de ir para a cama?",
         "sw": "29. Mshiriki hufanya nini kabla ya kwenda kulala?"
       },
-      "_row_num": 334
+      "_row_num": 480
     },
     "ind_q30": {
       "string_token": "ind_q30",
@@ -2924,7 +4239,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "30. A que horas é que este participante costuma acordar?",
         "sw": "30. Mshiriki huyu kwa kawaida huamka saa ngapi?"
       },
-      "_row_num": 335
+      "_row_num": 481
     },
     "ind_q31": {
       "string_token": "ind_q31",
@@ -2933,7 +4248,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31. A que horas é que este participante costuma sair de casa?",
         "sw": "31. Mshiriki huyu kwa kawaida huenda nje saa ngapi?"
       },
-      "_row_num": 336
+      "_row_num": 482
     },
     "ind_q31a": {
       "string_token": "ind_q31a",
@@ -2942,7 +4257,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31a. [Se antes do nascer do sol] O que é que o participante faz?",
         "sw": "31a. [Ikiwa ni kabla ya jua kuchomoza] Mshiriki huyu anafanya nini?"
       },
-      "_row_num": 337
+      "_row_num": 483
     },
     "ind_q32": {
       "string_token": "ind_q32",
@@ -2951,7 +4266,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32. Este participante já viajou para fora do país?",
         "sw": "32. Mshiriki huyu amewahi kusafiri nje ya nchi hii?"
       },
-      "_row_num": 338
+      "_row_num": 484
     },
     "ind_q32a": {
       "string_token": "ind_q32a",
@@ -2960,7 +4275,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32a. [Se sim] O participante já viajou para algum dos seguintes países?",
         "sw": "32a. [Ikiwa ndiyo] Mshiriki huyu amewahi kusafiri kwa yoyote kati ya nchi hizi?"
       },
-      "_row_num": 339
+      "_row_num": 485
     },
     "ind_q33": {
       "string_token": "ind_q33",
@@ -2969,7 +4284,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33. O participante viaja regularmente ou dorme fora de casa durante a primeira parte do ano? (Janeiro-Junho)",
         "sw": "33. Mshiriki huyu husafiri mara kwa mara au kulala nje ya nyumbani wakati wa sehemu ya kwanza ya mwaka? (Januari-Juni)"
       },
-      "_row_num": 340
+      "_row_num": 486
     },
     "ind_q33a": {
       "string_token": "ind_q33a",
@@ -2978,7 +4293,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33a. Se sim, quantas viagens diferentes é que o participante faz durante a primeira parte do ano?",
         "sw": "33a. Ikiwa ndiyo, ni safari ngapi tofauti ambazo mshiriki huyu anazo wakati wa sehemu ya kwanza ya mwaka?"
       },
-      "_row_num": 341
+      "_row_num": 487
     },
     "w_none": {
       "string_token": "w_none",
@@ -2987,7 +4302,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" pamoja na majibu mengine"
       },
-      "_row_num": 343
+      "_row_num": 489
     },
     "w_all_dk": {
       "string_token": "w_all_dk",
@@ -2996,7 +4311,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Todos' ou \"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Yote\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 344
+      "_row_num": 490
     },
     "w_no_dk": {
       "string_token": "w_no_dk",
@@ -3005,7 +4320,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou\"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 345
+      "_row_num": 491
     },
     "w_dk_pna": {
       "string_token": "w_dk_pna",
@@ -3014,7 +4329,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 346
+      "_row_num": 492
     },
     "w_dk_pna_no": {
       "string_token": "w_dk_pna_no",
@@ -3023,7 +4338,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\", \"Não” ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\", “Hapana” au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 347
+      "_row_num": 493
     },
     "w_no_pna": {
       "string_token": "w_no_pna",
@@ -3032,7 +4347,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 348
+      "_row_num": 494
     },
     "w_pna": {
       "string_token": "w_pna",
@@ -3041,7 +4356,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 349
+      "_row_num": 495
     },
     "w_no_symptoms": {
       "string_token": "w_no_symptoms",
@@ -3050,7 +4365,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Sem sintomas\"junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna dalili\" pamoja na majibu mengine"
       },
-      "_row_num": 350
+      "_row_num": 496
     },
     "w_none_pna": {
       "string_token": "w_none_pna",
@@ -3059,7 +4374,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 351
+      "_row_num": 497
     },
     "w_fever_di": {
       "string_token": "w_fever_di",
@@ -3068,7 +4383,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você selecionou \"febres\" e/ou \"diarreia\" na pergunta anterior mas não marcou \"febres\" e/ou \"diarreia\" como o sintoma principal. Por favor verifque.",
         "sw": "Ulichagua \"homa\" na / au \"kuhara\" katika swali lililopita lakini haujachagua \"homa\" na / au \"kuhara\" kama dalili kuu. Tafadhali thibitisha."
       },
-      "_row_num": 352
+      "_row_num": 498
     },
     "n_nets": {
       "string_token": "n_nets",
@@ -3077,7 +4392,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "0= 1 pessoa debaixo do mosquiteiro, 2= duas pessoas debaixo do mosquiteiro, 3= três pessoas debaixo do mosquiteiro, etc.",
         "sw": "0= Pekeyako, 2= wawili kwenye chandarua, 3=  3 kwenye chandarua nk."
       },
-      "_row_num": 353
+      "_row_num": 499
     },
     "not_one": {
       "string_token": "not_one",
@@ -3086,7 +4401,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1 não é uma resposta permitida",
         "sw": "1 hakuruhusiwi"
       },
-      "_row_num": 354
+      "_row_num": 500
     },
     "invalid_date": {
       "string_token": "invalid_date",
@@ -3095,7 +4410,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data introduzida deve ser um numero entre 1 a 31.",
         "sw": "Tarehe(siku) iliyoingizwa inatakiwa kuwa namba kati ya 1 na 31"
       },
-      "_row_num": 355
+      "_row_num": 501
     },
     "invalid_month": {
       "string_token": "invalid_month",
@@ -3104,7 +4419,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O mes introduzido deve ser um numero entre 1 e 12.",
         "sw": "Mwezi uliyoingizwa unatakiwa kuwa namba kati ya 1 na12"
       },
-      "_row_num": 356
+      "_row_num": 502
     },
     "invalid_year": {
       "string_token": "invalid_year",
@@ -3113,7 +4428,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O ano introduido deve ser um numero entre 1920 e 2021",
         "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
       },
-      "_row_num": 357
+      "_row_num": 503
     },
     "hh_head_first_hint": {
       "string_token": "hh_head_first_hint",
@@ -3122,7 +4437,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
         "sw": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus."
       },
-      "_row_num": 358
+      "_row_num": 504
     },
     "check_all_that_apply_hint": {
       "string_token": "check_all_that_apply_hint",
@@ -3131,7 +4446,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Assinalar todas as opções que se apliquem)",
         "sw": "(Chagua yote inayohusika)"
       },
-      "_row_num": 359
+      "_row_num": 505
     }
   }
 }
