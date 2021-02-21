@@ -4178,6 +4178,11 @@
           }
         },
         "_row_num": 9
+      },
+      {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
       }
     ]
   },
@@ -4270,6 +4275,11 @@
           }
         },
         "_row_num": 9
+      },
+      "showFooter": {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
       },
       "_locales": {
         "setting_name": "_locales",

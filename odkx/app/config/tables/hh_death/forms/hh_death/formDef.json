@@ -193,7 +193,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210203001,
+        "value": 20210221001,
         "_row_num": 3
       },
       {
@@ -257,6 +257,11 @@
           }
         },
         "_row_num": 9
+      },
+      {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
       }
     ],
     "table_specific_translations": [
@@ -393,7 +398,8 @@
       "uri": "formula",
       "callback": "formula(context)",
       "choice_filter": "formula(choice_item)",
-      "templatePath": "requirejs_path"
+      "templatePath": "requirejs_path",
+      "hideInContents": "formula"
     },
     "settings": {
       "form_id": {
@@ -403,7 +409,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210203001,
+        "value": 20210221001,
         "_row_num": 3
       },
       "table_id": {
@@ -467,6 +473,11 @@
           }
         },
         "_row_num": 9
+      },
+      "showFooter": {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
       },
       "_locales": {
         "setting_name": "_locales",
