@@ -621,7 +621,7 @@
       {
         "type": "note",
         "display": {
-          "prompt": "assign_extid"
+          "prompt": "assigned_extid"
         },
         "_row_num": 86
       },
@@ -635,13 +635,13 @@
       },
       {
         "clause": "if",
-        "condition": "(data('id') || '').trim() === '' && (selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk'))",
+        "condition": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')",
         "_row_num": 89
       },
       {
         "type": "assign",
         "name": "id",
-        "calculation": "data('id_candidate')",
+        "calculation": "data('id_candidate')[data('resident_status')]",
         "_row_num": 90
       },
       {
@@ -3866,8 +3866,17 @@
       },
       {
         "name": "id_candidate",
-        "type": "string",
+        "type": "object",
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string"
+          },
+          "non_resident": {
+            "type": "string"
+          }
+        },
         "_row_num": 5
       },
       {
@@ -7989,14 +7998,25 @@
         "elementKey": "hh_head"
       },
       "id_candidate": {
-        "type": "string",
+        "type": "object",
         "_defn": [
           {
             "_row_num": 5,
             "section_name": "model"
           }
         ],
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string",
+            "elementKey": "id_candidate_resident"
+          },
+          "non_resident": {
+            "type": "string",
+            "elementKey": "id_candidate_non_resident"
+          }
+        },
         "elementKey": "id_candidate"
       },
       "form_status_hh_member": {
@@ -10049,7 +10069,7 @@
           {
             "type": "note",
             "display": {
-              "prompt": "assign_extid"
+              "prompt": "assigned_extid"
             },
             "_row_num": 86,
             "__rowNum__": 85,
@@ -10106,7 +10126,7 @@
               "__rowNum__": 91,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('new_member_newborn_or_moved_in'), 'newborn')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(10);\n}\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(13);\n}\nactivePromptIndicies.push(14);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(15);\nactivePromptIndicies.push(16);\n}\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\nactivePromptIndicies.push(19);\n}\nif (selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')) {\nactivePromptIndicies.push(20);\nactivePromptIndicies.push(21);\nactivePromptIndicies.push(22);\nactivePromptIndicies.push(23);\nactivePromptIndicies.push(24);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(25);\n}\nactivePromptIndicies.push(26);\nactivePromptIndicies.push(27);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(28);\n}\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(31);\n}\nactivePromptIndicies.push(32);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(33);\nactivePromptIndicies.push(34);\n}\nactivePromptIndicies.push(35);\nactivePromptIndicies.push(36);\nactivePromptIndicies.push(37);\nactivePromptIndicies.push(38);\nactivePromptIndicies.push(39);\nactivePromptIndicies.push(40);\nif (selected(data('move_from'),  'in_district')) {\nactivePromptIndicies.push(41);\nif (selected(data('move_from_district_census'), 'yes')) {\nactivePromptIndicies.push(42);\nif (not(selected(data('move_from_census_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(43);\n}\nactivePromptIndicies.push(44);\n}\n}\nif (selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')) {\nactivePromptIndicies.push(45);\n}\n}\nif ((data('id') || '').trim() === '' && (selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk'))) {\nassign('id', data('id_candidate'));\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('new_member_newborn_or_moved_in'), 'newborn')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(10);\n}\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(13);\n}\nactivePromptIndicies.push(14);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(15);\nactivePromptIndicies.push(16);\n}\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\nactivePromptIndicies.push(19);\n}\nif (selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')) {\nactivePromptIndicies.push(20);\nactivePromptIndicies.push(21);\nactivePromptIndicies.push(22);\nactivePromptIndicies.push(23);\nactivePromptIndicies.push(24);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(25);\n}\nactivePromptIndicies.push(26);\nactivePromptIndicies.push(27);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(28);\n}\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(31);\n}\nactivePromptIndicies.push(32);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(33);\nactivePromptIndicies.push(34);\n}\nactivePromptIndicies.push(35);\nactivePromptIndicies.push(36);\nactivePromptIndicies.push(37);\nactivePromptIndicies.push(38);\nactivePromptIndicies.push(39);\nactivePromptIndicies.push(40);\nif (selected(data('move_from'),  'in_district')) {\nactivePromptIndicies.push(41);\nif (selected(data('move_from_district_census'), 'yes')) {\nactivePromptIndicies.push(42);\nif (not(selected(data('move_from_census_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(43);\n}\nactivePromptIndicies.push(44);\n}\n}\nif (selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')) {\nactivePromptIndicies.push(45);\n}\n}\nif (selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 1
           },
           {
@@ -10181,18 +10201,42 @@
         "elementPath": "hh_head"
       },
       "id_candidate": {
-        "type": "string",
+        "type": "object",
         "_defn": [
           {
             "_row_num": 5,
             "section_name": "model"
           }
         ],
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string",
+            "elementKey": "id_candidate_resident",
+            "elementName": "resident",
+            "elementSet": "data",
+            "elementPath": "id_candidate.resident",
+            "isSessionVariable": true
+          },
+          "non_resident": {
+            "type": "string",
+            "elementKey": "id_candidate_non_resident",
+            "elementName": "non_resident",
+            "elementSet": "data",
+            "elementPath": "id_candidate.non_resident",
+            "isSessionVariable": true
+          }
+        },
         "elementKey": "id_candidate",
         "elementName": "id_candidate",
         "elementSet": "data",
-        "elementPath": "id_candidate"
+        "elementPath": "id_candidate",
+        "listChildElementKeys": [
+          "id_candidate_non_resident",
+          "id_candidate_resident"
+        ],
+        "notUnitOfRetention": true
       },
       "form_status_hh_member": {
         "type": "integer",
@@ -11909,6 +11953,22 @@
         "elementName": "travel_regularly_trips",
         "elementSet": "data",
         "elementPath": "travel_regularly_trips"
+      },
+      "id_candidate_resident": {
+        "type": "string",
+        "elementKey": "id_candidate_resident",
+        "elementName": "resident",
+        "elementSet": "data",
+        "elementPath": "id_candidate.resident",
+        "isSessionVariable": true
+      },
+      "id_candidate_non_resident": {
+        "type": "string",
+        "elementKey": "id_candidate_non_resident",
+        "elementName": "non_resident",
+        "elementSet": "data",
+        "elementPath": "id_candidate.non_resident",
+        "isSessionVariable": true
       },
       "dob_day_dk_items": {
         "type": "string",

@@ -3479,8 +3479,17 @@
       },
       {
         "name": "id_candidate",
-        "type": "string",
+        "type": "object",
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string"
+          },
+          "non_resident": {
+            "type": "string"
+          }
+        },
         "_row_num": 5
       },
       {
@@ -16522,14 +16531,25 @@
         "elementKey": "hh_head"
       },
       "id_candidate": {
-        "type": "string",
+        "type": "object",
         "_defn": [
           {
             "_row_num": 5,
             "section_name": "model"
           }
         ],
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string",
+            "elementKey": "id_candidate_resident"
+          },
+          "non_resident": {
+            "type": "string",
+            "elementKey": "id_candidate_non_resident"
+          }
+        },
         "elementKey": "id_candidate"
       },
       "form_status_hh_member": {
@@ -18214,18 +18234,42 @@
         "elementPath": "hh_head"
       },
       "id_candidate": {
-        "type": "string",
+        "type": "object",
         "_defn": [
           {
             "_row_num": 5,
             "section_name": "model"
           }
         ],
+        "elementType": "extIdObj",
         "isSessionVariable": 1,
+        "properties": {
+          "resident": {
+            "type": "string",
+            "elementKey": "id_candidate_resident",
+            "elementName": "resident",
+            "elementSet": "data",
+            "elementPath": "id_candidate.resident",
+            "isSessionVariable": true
+          },
+          "non_resident": {
+            "type": "string",
+            "elementKey": "id_candidate_non_resident",
+            "elementName": "non_resident",
+            "elementSet": "data",
+            "elementPath": "id_candidate.non_resident",
+            "isSessionVariable": true
+          }
+        },
         "elementKey": "id_candidate",
         "elementName": "id_candidate",
         "elementSet": "data",
-        "elementPath": "id_candidate"
+        "elementPath": "id_candidate",
+        "listChildElementKeys": [
+          "id_candidate_non_resident",
+          "id_candidate_resident"
+        ],
+        "notUnitOfRetention": true
       },
       "form_status_hh_member": {
         "type": "integer",
@@ -19859,6 +19903,22 @@
         "elementName": "travel_regularly_trips",
         "elementSet": "data",
         "elementPath": "travel_regularly_trips"
+      },
+      "id_candidate_resident": {
+        "type": "string",
+        "elementKey": "id_candidate_resident",
+        "elementName": "resident",
+        "elementSet": "data",
+        "elementPath": "id_candidate.resident",
+        "isSessionVariable": true
+      },
+      "id_candidate_non_resident": {
+        "type": "string",
+        "elementKey": "id_candidate_non_resident",
+        "elementName": "non_resident",
+        "elementSet": "data",
+        "elementPath": "id_candidate.non_resident",
+        "isSessionVariable": true
       },
       "dob_day_dk_items": {
         "type": "string",
