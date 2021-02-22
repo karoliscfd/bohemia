@@ -199,6 +199,7 @@
           "required_message": "year_hint",
           "constraint_message": "invalid_dmy"
         },
+        "choice_filter": "choice_item.data_value >= 2020",
         "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -9586,6 +9587,7 @@
               "required_message": "year_hint",
               "constraint_message": "invalid_dmy"
             },
+            "choice_filter": "choice_item.data_value >= 2020",
             "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
