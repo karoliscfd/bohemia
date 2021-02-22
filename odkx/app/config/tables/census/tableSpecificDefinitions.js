@@ -1594,20 +1594,12 @@ window.odkTableSpecificDefinitions = {
     },
     "members_left": {
       "string_token": "members_left",
-      "text": {
-        "default": "Household members no longer part of the household",
-        "pt": "Membros que já não fazem parte do agregado familiar",
-        "sw": "Wanakaya wasio sehemu ya kaya tena"
-      },
+      "text": "Are all of these members still part of this household?",
       "_row_num": 184
     },
     "member_left_select": {
       "string_token": "member_left_select",
-      "text": {
-        "default": "Which member(s) is/are no longer present in the household?",
-        "pt": "Qual membro não esta presente no agregado?",
-        "sw": "Je, ni mwanakaya gani hayupo tena katika kaya?"
-      },
+      "text": "Which member(s) is/are no longer part in the household?",
       "_row_num": 185
     },
     "member_left_prompt": {

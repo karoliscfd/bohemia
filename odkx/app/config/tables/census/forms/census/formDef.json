@@ -427,7 +427,7 @@
       },
       {
         "clause": "if",
-        "condition": "selected(data('hh_minicenced_members_correct'), 'yes')",
+        "condition": "selected(data('hh_minicenced_members_correct'), 'no')",
         "_row_num": 41
       },
       {
@@ -6753,20 +6753,12 @@
       },
       {
         "string_token": "members_left",
-        "text": {
-          "default": "Household members no longer part of the household",
-          "pt": "Membros que já não fazem parte do agregado familiar",
-          "sw": "Wanakaya wasio sehemu ya kaya tena"
-        },
+        "text": "Are all of these members still part of this household?",
         "_row_num": 184
       },
       {
         "string_token": "member_left_select",
-        "text": {
-          "default": "Which member(s) is/are no longer present in the household?",
-          "pt": "Qual membro não esta presente no agregado?",
-          "sw": "Je, ni mwanakaya gani hayupo tena katika kaya?"
-        },
+        "text": "Which member(s) is/are no longer part in the household?",
         "_row_num": 185
       },
       {
@@ -11754,20 +11746,12 @@
         },
         "members_left": {
           "string_token": "members_left",
-          "text": {
-            "default": "Household members no longer part of the household",
-            "pt": "Membros que já não fazem parte do agregado familiar",
-            "sw": "Wanakaya wasio sehemu ya kaya tena"
-          },
+          "text": "Are all of these members still part of this household?",
           "_row_num": 184
         },
         "member_left_select": {
           "string_token": "member_left_select",
-          "text": {
-            "default": "Which member(s) is/are no longer present in the household?",
-            "pt": "Qual membro não esta presente no agregado?",
-            "sw": "Je, ni mwanakaya gani hayupo tena katika kaya?"
-          },
+          "text": "Which member(s) is/are no longer part in the household?",
           "_row_num": 185
         },
         "member_left_prompt": {
@@ -18020,7 +18004,7 @@
               "__rowNum__": 43,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nactivePromptIndicies.push(13);\nactivePromptIndicies.push(14);\nif (selected(data('hh_minicenced_members_correct'), 'yes')) {\nactivePromptIndicies.push(15);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nactivePromptIndicies.push(13);\nactivePromptIndicies.push(14);\nif (selected(data('hh_minicenced_members_correct'), 'no')) {\nactivePromptIndicies.push(15);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 4
           },
           {
