@@ -3443,6 +3443,15 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 389
     },
+    "year_hint_new_born": {
+      "string_token": "year_hint_new_born",
+      "text": {
+        "default": "Enter a year between 2020 and 2021.",
+        "pt": "Insira um ano entre 2020 e 2021.",
+        "sw": "Ingiza mwaka kati ya 2020 na 2021"
+      },
+      "_row_num": 390
+    },
     "date_cons": {
       "string_token": "date_cons",
       "text": {
@@ -3450,7 +3459,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data introduzida deve ser um numero entre 1 a 31.",
         "sw": "Tarehe(siku) iliyoingizwa inatakiwa kuwa namba kati ya 1 na 31"
       },
-      "_row_num": 390
+      "_row_num": 391
     },
     "month_cons": {
       "string_token": "month_cons",
@@ -3459,7 +3468,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O mes introduzido deve ser um numero entre 1 e 12.",
         "sw": "Mwezi uliyoingizwa unatakiwa kuwa namba kati ya 1 na12"
       },
-      "_row_num": 391
+      "_row_num": 392
     },
     "year_cons": {
       "string_token": "year_cons",
@@ -3468,7 +3477,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O ano introduido deve ser um numero entre 1920 e 2021",
         "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
       },
-      "_row_num": 392
+      "_row_num": 393
     },
     "select_date_dk": {
       "string_token": "select_date_dk",
@@ -3477,17 +3486,17 @@ window.odkTableSpecificDefinitions = {
         "pt": "Selecione hoje / amanhã, insira uma data ou ‘Não sei’",
         "sw": "Chagua kuanzia leo / kesho, ingiza tarehe, au 'Sijui'"
       },
-      "_row_num": 393
+      "_row_num": 394
     },
     "invalid_dm": {
       "string_token": "invalid_dm",
       "text": "Invalid date month combination",
-      "_row_num": 394
+      "_row_num": 395
     },
     "invalid_dmy": {
       "string_token": "invalid_dmy",
       "text": "Invalid date month year combination",
-      "_row_num": 395
+      "_row_num": 396
     },
     "q1": {
       "string_token": "q1",
@@ -3496,7 +3505,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1. Nome próprio:",
         "sw": "1. Jina la kupewa:"
       },
-      "_row_num": 397
+      "_row_num": 398
     },
     "q2": {
       "string_token": "q2",
@@ -3505,7 +3514,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2. Apelido:",
         "sw": "2. Jina la ukoo:"
       },
-      "_row_num": 398
+      "_row_num": 399
     },
     "q3": {
       "string_token": "q3",
@@ -3514,7 +3523,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3. Data de nascimento:",
         "sw": "3. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 399
+      "_row_num": 400
     },
     "q3a": {
       "string_token": "q3a",
@@ -3523,7 +3532,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "3a. Ikiwa mwaka haujulikani, tafadhali jaza umri"
       },
-      "_row_num": 400
+      "_row_num": 401
     },
     "q4": {
       "string_token": "q4",
@@ -3532,7 +3541,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "4. Género",
         "sw": "4. Jinsia"
       },
-      "_row_num": 401
+      "_row_num": 402
     },
     "q5": {
       "string_token": "q5",
@@ -3541,7 +3550,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5.  Este participante reside no agregado familiar?",
         "sw": "5. Je, mshiriki huyu ni mkazi wa kaya hii?"
       },
-      "_row_num": 402
+      "_row_num": 403
     },
     "q5.hint": {
       "string_token": "q5.hint",
@@ -3550,7 +3559,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro residente é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkazi ni mtu aliye na nia ya kuishi katika kaya wakati wa angalau miezi 3 inayofuata)"
       },
-      "_row_num": 403
+      "_row_num": 404
     },
     "q6": {
       "string_token": "q6",
@@ -3559,7 +3568,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6. Este participante foi registado no mini-censo há alguns meses?",
         "sw": "6. Je, mshiriki huyu alisajiliwa katika sensa ya wilaya miezi michache iliyopita?"
       },
-      "_row_num": 404
+      "_row_num": 405
     },
     "q6a": {
       "string_token": "q6a",
@@ -3568,7 +3577,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6a. [Se sim] Obter Ext_ID do participante",
         "sw": "6a. [Ikiwa ndiyo] Pata Kitambulisho cha Ext_ID cha mshiriki"
       },
-      "_row_num": 405
+      "_row_num": 406
     },
     "q7": {
       "string_token": "q7",
@@ -3577,7 +3586,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "7. [Por cada pessoa que já não faz parte do agregado familiar] O que aconteceu a essa pessoa ou para onde foi?",
         "sw": "7. [Kwa kila mtu asiye sehemu ya kaya] Ni nini kilitokea kwa mtu huyu au yuko wapi sasa?"
       },
-      "_row_num": 406
+      "_row_num": 407
     },
     "q8": {
       "string_token": "q8",
@@ -3586,7 +3595,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "8. Quando é que esta pessoa faleceu?",
         "sw": "8. Mtu huyu alifariki lini??"
       },
-      "_row_num": 407
+      "_row_num": 408
     },
     "q9": {
       "string_token": "q9",
@@ -3595,7 +3604,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "9. Quando é que esta pessoa foi saiu do agregado?",
         "sw": "9. Mtu huyu aliondoka lini?"
       },
-      "_row_num": 408
+      "_row_num": 409
     },
     "q10": {
       "string_token": "q10",
@@ -3604,7 +3613,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "10. Para onde foi essa pessoa?",
         "sw": "10. Mtu huyu alienda wapi?"
       },
-      "_row_num": 409
+      "_row_num": 410
     },
     "q12": {
       "string_token": "q12",
@@ -3613,7 +3622,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "12. [Por novo membro] Esta pessoa é um recém-nascido ou alguém que se tenha mudado para a casa?",
         "sw": "12. [Kwa kila mtu mpya] Je, mtu huyu ni mtoto mchanga au ni mtu aliyehamia katika nyumba hii?"
       },
-      "_row_num": 410
+      "_row_num": 411
     },
     "q13": {
       "string_token": "q13",
@@ -3622,7 +3631,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "13. Nome próprio",
         "sw": "13. Jina la kupewa"
       },
-      "_row_num": 411
+      "_row_num": 412
     },
     "q14": {
       "string_token": "q14",
@@ -3631,7 +3640,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "14. Apelido",
         "sw": "14. Jina la ukoo"
       },
-      "_row_num": 412
+      "_row_num": 413
     },
     "q15": {
       "string_token": "q15",
@@ -3640,7 +3649,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15. Data de nascimento:",
         "sw": "15. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 413
+      "_row_num": 414
     },
     "q15a": {
       "string_token": "q15a",
@@ -3649,7 +3658,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "15a. Ikiwa mwaka haujulikani tafadhali jaza umri"
       },
-      "_row_num": 414
+      "_row_num": 415
     },
     "q15b": {
       "string_token": "q15b",
@@ -3658,7 +3667,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16b. Género",
         "sw": "16b. Jinsia"
       },
-      "_row_num": 415
+      "_row_num": 416
     },
     "q16": {
       "string_token": "q16",
@@ -3667,7 +3676,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16. Este participante é um morador do agregado familiar?",
         "sw": "16. Je, mshiriki huyu ni mkaazi wa kaya hii??"
       },
-      "_row_num": 416
+      "_row_num": 417
     },
     "q16.hint": {
       "string_token": "q16.hint",
@@ -3676,7 +3685,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro morador é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkaazi ni mtu aliye na nia ya kuishi katika kaya hiyo kwa kipindi cha angalau miezi 3 inayofuata)"
       },
-      "_row_num": 417
+      "_row_num": 418
     },
     "q16a": {
       "string_token": "q16a",
@@ -3685,7 +3694,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16a.Ext_ID",
         "sw": "16a.Ext_ID"
       },
-      "_row_num": 418
+      "_row_num": 419
     },
     "q17": {
       "string_token": "q17",
@@ -3694,7 +3703,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17. Nome próprio",
         "sw": "17. Jina la kupewa"
       },
-      "_row_num": 419
+      "_row_num": 420
     },
     "q18": {
       "string_token": "q18",
@@ -3703,7 +3712,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "18. Apelido",
         "sw": "18. Jina la ukoo"
       },
-      "_row_num": 420
+      "_row_num": 421
     },
     "q19": {
       "string_token": "q19",
@@ -3712,7 +3721,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19. Data de nascimento:",
         "sw": "19. Tarehe ya kuzaliwa:"
       },
-      "_row_num": 421
+      "_row_num": 422
     },
     "q19a": {
       "string_token": "q19a",
@@ -3721,7 +3730,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "19a. Ikiwa mwaka haujulikani tafadhali jaza umri"
       },
-      "_row_num": 422
+      "_row_num": 423
     },
     "q20": {
       "string_token": "q20",
@@ -3730,7 +3739,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "20. Género",
         "sw": "20. Jinsia"
       },
-      "_row_num": 423
+      "_row_num": 424
     },
     "q21": {
       "string_token": "q21",
@@ -3739,7 +3748,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "21. Este participante é um residente do agregado familiar?",
         "sw": "21. Je, mshiriki huyu ni mkazi wa kaya hii?"
       },
-      "_row_num": 424
+      "_row_num": 425
     },
     "q21.hint": {
       "string_token": "q21.hint",
@@ -3748,7 +3757,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Um membro morador é uma pessoa que tem intenção de viver no agregado familiar durante os 3 meses seguintes, pelo menos)",
         "sw": "(Mtu ambaye ni mkaazi ni mtu aliye na nia ya kuishi katika kaya hiyo kwa kipindi cha angalau miezi 3 inayofuata)"
       },
-      "_row_num": 425
+      "_row_num": 426
     },
     "q22": {
       "string_token": "q22",
@@ -3757,7 +3766,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "22. Quando é que essa pessoa se mudou?",
         "sw": "22. Mtu huyu alihamia lini katika kaya hii?"
       },
-      "_row_num": 426
+      "_row_num": 427
     },
     "q23": {
       "string_token": "q23",
@@ -3766,7 +3775,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23. De onde veio esta pessoa? Selecionar:",
         "sw": "23. Mtu huyu anatoka wapi? Chagua:"
       },
-      "_row_num": 427
+      "_row_num": 428
     },
     "q23a": {
       "string_token": "q23a",
@@ -3775,7 +3784,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23a. [Se deste distrito] Este participante foi registado no censo distrital há alguns meses?",
         "sw": "23a. [Ikiwa ni ndani ya wilaya hii] mshiriki huyu alisajiliwa katika sensa ya wilaya miezi michache iliyopita?"
       },
-      "_row_num": 428
+      "_row_num": 429
     },
     "q23ai": {
       "string_token": "q23ai",
@@ -3784,7 +3793,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23a (i). [Se sim] Obter Ext_ID do participante",
         "sw": "23a (i). [Ikiwa ndiyo] Pata Ext_ID ya mshiriki"
       },
-      "_row_num": 429
+      "_row_num": 430
     },
     "q24": {
       "string_token": "q24",
@@ -3793,7 +3802,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "24. Quando é que a pessoa regressa?",
         "sw": "24. Mtu huyu atarudi lini?"
       },
-      "_row_num": 430
+      "_row_num": 431
     },
     "q25": {
       "string_token": "q25",
@@ -3802,7 +3811,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "25. Qual é o motivo da ausência?",
         "sw": "25. Ni ipi sababu ya kutokuwepo?"
       },
-      "_row_num": 431
+      "_row_num": 432
     },
     "q59a": {
       "string_token": "q59a",
@@ -3811,7 +3820,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59a. Quem foi mordido?",
         "sw": "59a. Ni nani aliyegongwa?"
       },
-      "_row_num": 432
+      "_row_num": 433
     },
     "q59b": {
       "string_token": "q59b",
@@ -3820,7 +3829,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59b. Quantas vezes (momentos separados) foi mordido?",
         "sw": "59b. Ni mara ngapi (matukio tofauti) aligongwa?"
       },
-      "_row_num": 433
+      "_row_num": 434
     },
     "q59c": {
       "string_token": "q59c",
@@ -3829,7 +3838,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59c. Em que mês/meses foi mordido? (Assinalar todas as opções que se apliquem)",
         "sw": "59c. Aligongwa katika mwezi (miezi) gani? (Chagua yote inayohusika)"
       },
-      "_row_num": 434
+      "_row_num": 435
     },
     "q59d": {
       "string_token": "q59d",
@@ -3838,7 +3847,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59d. Essa pessoa teve de faltar à escola/trabalho por ter sido mordida? (Se foi mordida mais de uma vez, responder sobre a mordida mais grave)",
         "sw": "59d. Mtu alikosa kuhudhuria shule/kazi kwa sababu ya kugongwa? (Ikiwa aligongwa zaidi ya mara moja, jibu kuhusu kugongwa kulikokuwa hatari zaidi)"
       },
-      "_row_num": 435
+      "_row_num": 436
     },
     "q59di": {
       "string_token": "q59di",
@@ -3847,7 +3856,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59d(i). [Se sim] Quantos dias?",
         "sw": "59d (i). [Ikiwa ndiyo] Siku ngapi?"
       },
-      "_row_num": 436
+      "_row_num": 437
     },
     "q59e": {
       "string_token": "q59e",
@@ -3856,7 +3865,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59e. Onde é que foi mordido(a)? (Assinalar todas as opções que se apliquem)",
         "sw": "59e. Kugongwa huku kulitokea wapi? (Chagua yote inayohusika)"
       },
-      "_row_num": 437
+      "_row_num": 438
     },
     "q59f": {
       "string_token": "q59f",
@@ -3865,7 +3874,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59f. Qual foi a consequência da mordida? (Se foi mordida mais de uma vez, responder sobre a mordida mais grave)",
         "sw": "59f. Matokeo ya kugongwa yalikuwa yapi? (Ikiwa aligongwa zaidi ya mara moja, jibu kuhusu kugongwa kulikokuwa kukali zaidi)"
       },
-      "_row_num": 438
+      "_row_num": 439
     },
     "ind_q1": {
       "string_token": "ind_q1",
@@ -3874,7 +3883,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1. Número do agregado familiar",
         "sw": "1. Mwanakaya"
       },
-      "_row_num": 440
+      "_row_num": 441
     },
     "ind_q2": {
       "string_token": "ind_q2",
@@ -3883,7 +3892,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2. Data de nascimento",
         "sw": "2. Tarehe ya kuzaliwa"
       },
-      "_row_num": 441
+      "_row_num": 442
     },
     "ind_q2a": {
       "string_token": "ind_q2a",
@@ -3892,7 +3901,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "2a. Se o ano for desconhecido, acrescentar a idade",
         "sw": "2a. Ikiwa mwaka haujulikani, tafadhali jaza umri"
       },
-      "_row_num": 442
+      "_row_num": 443
     },
     "ind_q3": {
       "string_token": "ind_q3",
@@ -3901,7 +3910,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "3. Género",
         "sw": "3. Jinsia"
       },
-      "_row_num": 443
+      "_row_num": 444
     },
     "ind_q4": {
       "string_token": "ind_q4",
@@ -3910,7 +3919,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "4. Este participante assinou o consentimento informado?",
         "sw": "4. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 444
+      "_row_num": 445
     },
     "ind_q5": {
       "string_token": "ind_q5",
@@ -3919,7 +3928,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5.  O participante assinou o assentimento informado?",
         "sw": "5. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 445
+      "_row_num": 446
     },
     "ind_q5a": {
       "string_token": "ind_q5a",
@@ -3928,7 +3937,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5a. O pai/mãe/tutor assinou o consentimento informado?",
         "sw": "5a. Mlezi wa kisheria/mzazi ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 446
+      "_row_num": 447
     },
     "ind_q5ai": {
       "string_token": "ind_q5ai",
@@ -3937,7 +3946,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "5a(i). Quem assinou?",
         "sw": "5a (i). Ni nani aliyetia saini?"
       },
-      "_row_num": 447
+      "_row_num": 448
     },
     "ind_q6": {
       "string_token": "ind_q6",
@@ -3946,7 +3955,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6. O pai/mãe/tutor assinou o consentimento informado?",
         "sw": "6. Mlezi wa kisheria/mzazi ametia saini fomu ya ridhaa?"
       },
-      "_row_num": 448
+      "_row_num": 449
     },
     "ind_q6a": {
       "string_token": "ind_q6a",
@@ -3955,7 +3964,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "6a. Quem assinou?",
         "sw": "6a. Ni nani aliyetia saini?"
       },
-      "_row_num": 449
+      "_row_num": 450
     },
     "ind_q7": {
       "string_token": "ind_q7",
@@ -3964,7 +3973,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "7. Quem responde às perguntas?",
         "sw": "7. Ni nani anayejibu maswali?"
       },
-      "_row_num": 450
+      "_row_num": 451
     },
     "ind_q8": {
       "string_token": "ind_q8",
@@ -3973,7 +3982,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "8. Os seus pais biológicos estão vivos?",
         "sw": "8. Wazazi wake waliomzaa wako hai?"
       },
-      "_row_num": 451
+      "_row_num": 452
     },
     "ind_q9": {
       "string_token": "ind_q9",
@@ -3982,7 +3991,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "9. Parentesco do participante com o chefe do agregado familiar",
         "sw": "9. Uhusiano wa mshiriki na Mkuu wa kaya"
       },
-      "_row_num": 452
+      "_row_num": 453
     },
     "ind_q10": {
       "string_token": "ind_q10",
@@ -3991,7 +4000,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "10. Religião",
         "sw": "10. Dini"
       },
-      "_row_num": 453
+      "_row_num": 454
     },
     "ind_q11": {
       "string_token": "ind_q11",
@@ -4000,7 +4009,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "11. Língua materna",
         "sw": "11. Lugha ya mama"
       },
-      "_row_num": 454
+      "_row_num": 455
     },
     "ind_q12": {
       "string_token": "ind_q12",
@@ -4009,7 +4018,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "12. Este participante está atualmente a fazer algum tratamento? (Assinalar todas as opções que se apliquem):",
         "sw": "12. Mshiriki huyu kwa sasa anapata matibabu yoyote? (chagua yote yanayohusika):"
       },
-      "_row_num": 455
+      "_row_num": 456
     },
     "ind_q13": {
       "string_token": "ind_q13",
@@ -4018,7 +4027,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "13. Este participante sofre de alguma doença crónica? (Doença de longa duração)",
         "sw": "13. Mshiriki huyu kwa sasa unaugua kutokana na ugonjwa wowote sugu? (ugonjwa wa muda mrefu)"
       },
-      "_row_num": 456
+      "_row_num": 457
     },
     "ind_q14": {
       "string_token": "ind_q14",
@@ -4027,7 +4036,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "14. Este participante teve quaisquer outras doenças ou problemas médicos nos últimos 15 dias (incluindo agora)?",
         "sw": "14. Mshiriki huyu amekuwa na ugonjwa wowote mwingine au matatizo ya kimatibabu katika siku 15 zilizopita? (ikijumuisha sasa)?"
       },
-      "_row_num": 457
+      "_row_num": 458
     },
     "ind_q15": {
       "string_token": "ind_q15",
@@ -4036,7 +4045,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "15. Quais das seguintes? (Assinalar todas as opções que se apliquem)",
         "sw": "15. Ni yapi kati ya yafuatayo? (Chagua yote yanayohusika)"
       },
-      "_row_num": 458
+      "_row_num": 459
     },
     "ind_q16": {
       "string_token": "ind_q16",
@@ -4045,7 +4054,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "16. Principais sintomas que teve (assinalar todas as opções que se apliquem):",
         "sw": "16. Dalili kuu zilizoonekana (Chagua zote zinazohusika):"
       },
-      "_row_num": 459
+      "_row_num": 460
     },
     "ind_q17": {
       "string_token": "ind_q17",
@@ -4054,7 +4063,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17. O participante procurou cuidados?",
         "sw": "17. Mshiriki alitafuta tiba?"
       },
-      "_row_num": 460
+      "_row_num": 461
     },
     "ind_q17a": {
       "string_token": "ind_q17a",
@@ -4063,7 +4072,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17a. Que tipo de cuidados é que o participante procurou? (Assinalar todas as opções que se apliquem)",
         "sw": "17a. Ni huduma ya aina gani aliyoitafuta mshiriki huyu? (chagua yote yatakayo husika)"
       },
-      "_row_num": 461
+      "_row_num": 462
     },
     "ind_q17b": {
       "string_token": "ind_q17b",
@@ -4072,7 +4081,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17b. O participante fez o teste da malária?",
         "sw": "17b. Mshiriki huyu alifanyiwa kipimo cha malaria?"
       },
-      "_row_num": 462
+      "_row_num": 463
     },
     "ind_q17bi": {
       "string_token": "ind_q17bi",
@@ -4081,12 +4090,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "17b(i). [Se sim] Resultado do teste da malária",
         "sw": "17b (i). [Ikiwa ndiyo] Matokeo ya kipimo cha malaria"
       },
-      "_row_num": 463
+      "_row_num": 464
     },
     "ind_q17bi.hint": {
       "string_token": "ind_q17bi.hint",
       "text": "indicate result",
-      "_row_num": 464
+      "_row_num": 465
     },
     "ind_q17c": {
       "string_token": "ind_q17c",
@@ -4095,7 +4104,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c. O participante recebeu tratamento contra a malária?",
         "sw": "17c. Mshiriki huyu alipata matibabu ya malaria?"
       },
-      "_row_num": 465
+      "_row_num": 466
     },
     "ind_q17ci": {
       "string_token": "ind_q17ci",
@@ -4104,7 +4113,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "17c(i). [Se não] Porque não?",
         "sw": "17c (i). [Ikiwa hapana] kwa nini hakupata?"
       },
-      "_row_num": 466
+      "_row_num": 467
     },
     "ind_q18": {
       "string_token": "ind_q18",
@@ -4113,7 +4122,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "18. O participante tem alguma deficiência, lesão ou invalidez?",
         "sw": "18. Mshiriki huyu ana upungufu wowote, jeraha au ugonjwa?"
       },
-      "_row_num": 467
+      "_row_num": 468
     },
     "ind_q19": {
       "string_token": "ind_q19",
@@ -4122,7 +4131,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "19. O participante tem comichão? (Assinalar todas as opções que se apliquem)",
         "sw": "19. Mshiriki huyu anawashwa? (chagua yote yatakayo husika)"
       },
-      "_row_num": 468
+      "_row_num": 469
     },
     "ind_q20": {
       "string_token": "ind_q20",
@@ -4131,7 +4140,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "20. O participante tem tunga?",
         "sw": "20. Je, mshiriki huyu ana tunga?"
       },
-      "_row_num": 469
+      "_row_num": 470
     },
     "ind_q21": {
       "string_token": "ind_q21",
@@ -4140,7 +4149,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "21. O participante tem percevejos em casa?",
         "sw": "21. Je, mshiriki huyu ana kunguni katika nyumba yake?"
       },
-      "_row_num": 470
+      "_row_num": 471
     },
     "ind_q22": {
       "string_token": "ind_q22",
@@ -4149,7 +4158,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "22. O participante teve parasitas nas fezes nos últimos 15 dias?",
         "sw": "22. Je, mshiriki huyu alitoa kinyesi chenye minyoo hivi karibuni katika siku 15 zilizopita?"
       },
-      "_row_num": 471
+      "_row_num": 472
     },
     "ind_q23": {
       "string_token": "ind_q23",
@@ -4158,7 +4167,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "23. Quando é que a participante teve o último período menstrual?",
         "sw": "23. mshiriki huyu alipata lini hedhi yake ya mwisho?"
       },
-      "_row_num": 472
+      "_row_num": 473
     },
     "ind_q24": {
       "string_token": "ind_q24",
@@ -4167,7 +4176,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "24. A participante está atualmente a amamentar?",
         "sw": "24. Mshiriki huyu kwa sasa ananyonyesha?"
       },
-      "_row_num": 473
+      "_row_num": 474
     },
     "ind_q25": {
       "string_token": "ind_q25",
@@ -4176,7 +4185,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "25. A participante está grávida?",
         "sw": "25. Mshiriki huyu kwa sasa ni mjamzito?"
       },
-      "_row_num": 474
+      "_row_num": 475
     },
     "ind_q25a": {
       "string_token": "ind_q25a",
@@ -4185,7 +4194,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "[Se sim] 25a. A participante está a fazer Tratamento Intermitente Preventivo na Gravidez (TIP) para a malária?",
         "sw": "[Ikiwa ndio] 25a. Mshiriki huyu anatumia dozi ya kuzuia malaria wakati wa ujauzito (IPTp)?"
       },
-      "_row_num": 475
+      "_row_num": 476
     },
     "ind_q26": {
       "string_token": "ind_q26",
@@ -4194,7 +4203,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26. O participante dormiu debaixo de uma rede mosquiteira na noite passada?",
         "sw": "26. Mshiriki huyu alilala ndani ya chandarua cha mbu usiku uliopita?"
       },
-      "_row_num": 476
+      "_row_num": 477
     },
     "ind_q26a": {
       "string_token": "ind_q26a",
@@ -4203,7 +4212,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26a. [Se sim] Quantas pessoas partilhavam a rede?",
         "sw": "26a. [Ikiwa ndiyo] Ni watu wangapi walio lala kwenye chandarua hicho?"
       },
-      "_row_num": 477
+      "_row_num": 478
     },
     "ind_q27": {
       "string_token": "ind_q27",
@@ -4212,7 +4221,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "27. A que horas é que este participante costuma ir para dentro da casa?",
         "sw": "27. Mshiriki huyu kwa kawaida huingia ndani ya nyumba saa ngapi?"
       },
-      "_row_num": 478
+      "_row_num": 479
     },
     "ind_q28": {
       "string_token": "ind_q28",
@@ -4221,7 +4230,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "28. A que horas é que este participante costuma ir para a cama?",
         "sw": "28. Mshiriki huyu kwa kawaida hulala saa ngapi?"
       },
-      "_row_num": 479
+      "_row_num": 480
     },
     "ind_q29": {
       "string_token": "ind_q29",
@@ -4230,7 +4239,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "29. O que é que o participante faz antes de ir para a cama?",
         "sw": "29. Mshiriki hufanya nini kabla ya kwenda kulala?"
       },
-      "_row_num": 480
+      "_row_num": 481
     },
     "ind_q30": {
       "string_token": "ind_q30",
@@ -4239,7 +4248,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "30. A que horas é que este participante costuma acordar?",
         "sw": "30. Mshiriki huyu kwa kawaida huamka saa ngapi?"
       },
-      "_row_num": 481
+      "_row_num": 482
     },
     "ind_q31": {
       "string_token": "ind_q31",
@@ -4248,7 +4257,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31. A que horas é que este participante costuma sair de casa?",
         "sw": "31. Mshiriki huyu kwa kawaida huenda nje saa ngapi?"
       },
-      "_row_num": 482
+      "_row_num": 483
     },
     "ind_q31a": {
       "string_token": "ind_q31a",
@@ -4257,7 +4266,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31a. [Se antes do nascer do sol] O que é que o participante faz?",
         "sw": "31a. [Ikiwa ni kabla ya jua kuchomoza] Mshiriki huyu anafanya nini?"
       },
-      "_row_num": 483
+      "_row_num": 484
     },
     "ind_q32": {
       "string_token": "ind_q32",
@@ -4266,7 +4275,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32. Este participante já viajou para fora do país?",
         "sw": "32. Mshiriki huyu amewahi kusafiri nje ya nchi hii?"
       },
-      "_row_num": 484
+      "_row_num": 485
     },
     "ind_q32a": {
       "string_token": "ind_q32a",
@@ -4275,7 +4284,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32a. [Se sim] O participante já viajou para algum dos seguintes países?",
         "sw": "32a. [Ikiwa ndiyo] Mshiriki huyu amewahi kusafiri kwa yoyote kati ya nchi hizi?"
       },
-      "_row_num": 485
+      "_row_num": 486
     },
     "ind_q33": {
       "string_token": "ind_q33",
@@ -4284,7 +4293,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33. O participante viaja regularmente ou dorme fora de casa durante a primeira parte do ano? (Janeiro-Junho)",
         "sw": "33. Mshiriki huyu husafiri mara kwa mara au kulala nje ya nyumbani wakati wa sehemu ya kwanza ya mwaka? (Januari-Juni)"
       },
-      "_row_num": 486
+      "_row_num": 487
     },
     "ind_q33a": {
       "string_token": "ind_q33a",
@@ -4293,7 +4302,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33a. Se sim, quantas viagens diferentes é que o participante faz durante a primeira parte do ano?",
         "sw": "33a. Ikiwa ndiyo, ni safari ngapi tofauti ambazo mshiriki huyu anazo wakati wa sehemu ya kwanza ya mwaka?"
       },
-      "_row_num": 487
+      "_row_num": 488
     },
     "w_none": {
       "string_token": "w_none",
@@ -4302,7 +4311,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" pamoja na majibu mengine"
       },
-      "_row_num": 489
+      "_row_num": 490
     },
     "w_all_dk": {
       "string_token": "w_all_dk",
@@ -4311,7 +4320,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Todos' ou \"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Yote\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 490
+      "_row_num": 491
     },
     "w_no_dk": {
       "string_token": "w_no_dk",
@@ -4320,7 +4329,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou\"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 491
+      "_row_num": 492
     },
     "w_dk_pna": {
       "string_token": "w_dk_pna",
@@ -4329,7 +4338,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 492
+      "_row_num": 493
     },
     "w_dk_pna_no": {
       "string_token": "w_dk_pna_no",
@@ -4338,7 +4347,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não sabe\", \"Não” ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Sijui\", “Hapana” au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 493
+      "_row_num": 494
     },
     "w_no_pna": {
       "string_token": "w_no_pna",
@@ -4347,7 +4356,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 494
+      "_row_num": 495
     },
     "w_pna": {
       "string_token": "w_pna",
@@ -4356,7 +4365,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 495
+      "_row_num": 496
     },
     "w_no_symptoms": {
       "string_token": "w_no_symptoms",
@@ -4365,7 +4374,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Sem sintomas\"junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna dalili\" pamoja na majibu mengine"
       },
-      "_row_num": 496
+      "_row_num": 497
     },
     "w_none_pna": {
       "string_token": "w_none_pna",
@@ -4374,7 +4383,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Nenhum\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 497
+      "_row_num": 498
     },
     "w_fever_di": {
       "string_token": "w_fever_di",
@@ -4383,7 +4392,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você selecionou \"febres\" e/ou \"diarreia\" na pergunta anterior mas não marcou \"febres\" e/ou \"diarreia\" como o sintoma principal. Por favor verifque.",
         "sw": "Ulichagua \"homa\" na / au \"kuhara\" katika swali lililopita lakini haujachagua \"homa\" na / au \"kuhara\" kama dalili kuu. Tafadhali thibitisha."
       },
-      "_row_num": 498
+      "_row_num": 499
     },
     "n_nets": {
       "string_token": "n_nets",
@@ -4392,7 +4401,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "0= 1 pessoa debaixo do mosquiteiro, 2= duas pessoas debaixo do mosquiteiro, 3= três pessoas debaixo do mosquiteiro, etc.",
         "sw": "0= Pekeyako, 2= wawili kwenye chandarua, 3=  3 kwenye chandarua nk."
       },
-      "_row_num": 499
+      "_row_num": 500
     },
     "not_one": {
       "string_token": "not_one",
@@ -4401,7 +4410,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "1 não é uma resposta permitida",
         "sw": "1 hakuruhusiwi"
       },
-      "_row_num": 500
+      "_row_num": 501
     },
     "invalid_date": {
       "string_token": "invalid_date",
@@ -4410,7 +4419,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "A data introduzida deve ser um numero entre 1 a 31.",
         "sw": "Tarehe(siku) iliyoingizwa inatakiwa kuwa namba kati ya 1 na 31"
       },
-      "_row_num": 501
+      "_row_num": 502
     },
     "invalid_month": {
       "string_token": "invalid_month",
@@ -4419,7 +4428,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O mes introduzido deve ser um numero entre 1 e 12.",
         "sw": "Mwezi uliyoingizwa unatakiwa kuwa namba kati ya 1 na12"
       },
-      "_row_num": 502
+      "_row_num": 503
     },
     "invalid_year": {
       "string_token": "invalid_year",
@@ -4428,7 +4437,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O ano introduido deve ser um numero entre 1920 e 2021",
         "sw": "Mwaka uliyoingizwa unatakiwa kuwa namba kati ya 1920 na 2021"
       },
-      "_row_num": 503
+      "_row_num": 504
     },
     "hh_head_first_hint": {
       "string_token": "hh_head_first_hint",
@@ -4437,7 +4446,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
         "sw": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus."
       },
-      "_row_num": 504
+      "_row_num": 505
     },
     "check_all_that_apply_hint": {
       "string_token": "check_all_that_apply_hint",
@@ -4446,7 +4455,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Assinalar todas as opções que se apliquem)",
         "sw": "(Chagua yote inayohusika)"
       },
-      "_row_num": 505
+      "_row_num": 506
     }
   }
 }

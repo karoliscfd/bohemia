@@ -171,7 +171,7 @@
         "type": "note",
         "display": {
           "prompt": "year",
-          "hint": "year_hint"
+          "hint": "year_hint_new_born"
         },
         "_row_num": 24
       },
@@ -9569,7 +9569,7 @@
             "type": "note",
             "display": {
               "prompt": "year",
-              "hint": "year_hint"
+              "hint": "year_hint_new_born"
             },
             "_row_num": 24,
             "__rowNum__": 23,

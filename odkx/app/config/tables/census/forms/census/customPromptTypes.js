@@ -5,7 +5,8 @@ define([
   '../../../../assets/customPromptTypes/next_extid',
   'promptTypes',
   'controller',
-  'jquery'
+  'jquery',
+  '../../../../assets/customPromptTypes/hamlet_info'
 ], function(linked_table_counting, next_extid, promptTypes, controller, $) {
   return Object.assign({}, linked_table_counting, next_extid, {
     exit_survey: promptTypes.base.extend({
