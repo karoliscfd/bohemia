@@ -29,6 +29,22 @@
       );
     });
 
+    document.getElementById('selectMiniHhBtn').addEventListener('click', function () {
+      odkTables.addRowWithSurvey(
+        null,
+        'census',
+        'census',
+        null,
+        {
+          fw_id: localStorage.getItem('FW_ID') || null,
+          hh_minicenced: 'yes',
+          hh_roster_mismatch: false,
+          hh_fw_geolocation: true,
+          hh_new: false
+        }
+      );
+    });
+
     localStorage.removeItem('bohemiaHhSearch');
     localStorage.removeItem('bohemiaMemberSearch');
     localStorage.removeItem('hasPaintedId');
