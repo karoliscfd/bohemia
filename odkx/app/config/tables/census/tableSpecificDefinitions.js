@@ -2204,8 +2204,8 @@ window.odkTableSpecificDefinitions = {
       "string_token": "q29.hint",
       "text": {
         "default": "(the boxes for both Household participation and Household head/Household head substitute participation must be signed)",
-        "pt": "(As caixas de Participação do agregado familiar e Chefe/chefe substituto do agregado familiar têm de ser assinadas)",
-        "sw": "(Lazima visanduku vya Ushiriki wa kaya na Mkuu wa kaya/Mbadala wa Mkuu wa kaya viwekwe saini)"
+        "pt": "(As caixas de Participação do agregado familiar e Chefe/chefe substituto do agregado familiar têm de ser marcadas)",
+        "sw": "(Lazima visanduku vya Ushiriki wa kaya na Mkuu wa kaya/Mbadala wa Mkuu wa kaya viwekwe tiki)"
       },
       "_row_num": 254
     },
@@ -2286,7 +2286,7 @@ window.odkTableSpecificDefinitions = {
       "text": {
         "default": "37. House screens in the main house",
         "pt": "37. Redes mosquiteiras de casa da edificação principal",
-        "sw": "37. Nyavu za nyumba"
+        "sw": "37. Nyavu za nyumba katika nyumba kuu"
       },
       "_row_num": 263
     },
