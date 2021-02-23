@@ -4442,7 +4442,7 @@ window.odkTableSpecificDefinitions = {
     "hh_head_first_hint": {
       "string_token": "hh_head_first_hint",
       "text": {
-        "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
+        "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus. The substitue household head, if there is one, must also be a resident member.",
         "pt": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus.",
         "sw": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus."
       },

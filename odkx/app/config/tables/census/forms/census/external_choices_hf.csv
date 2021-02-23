@@ -1,106 +1,108 @@
-name,label,country
-Ndingo,Ndingo HF,Mozambique
-Nzanza,Nzanza HF,Mozambique
-Noere,Noere HF,Mozambique
-Nhacatundo,Nhacatundo HF,Mozambique
-Chimuara,Chimuara HF,Mozambique
-Gulamo,Gulamo HF,Mozambique
-Mopeia Sede,Mopeia Sede HF,Mozambique
-Sangalaza,Sangalaza HF,Mozambique
-Catale,Catale HF,Mozambique
-Luala,Luala HF,Mozambique
-Mungane,Mungane HF,Mozambique
-Posto Campo,Posto Campo HF,Mozambique
-8 de Marco,8 de Marco HF,Mozambique
-Vinte,Vinte HF,Mozambique
-Arafa Ikwiriri,Arafa Ikwiriri,Tanzania
-Arafa Jaribu,Arafa Jaribu,Tanzania
-Bamita,Bamita,Tanzania
-Bumba,Bumba,Tanzania
-Bungu,Bungu,Tanzania
-Chumbi,Chumbi,Tanzania
-Faraja,Faraja,Tanzania
-Hanga,Hanga,Tanzania
-Ikwiriri,Ikwiriri,Tanzania
-Ikwiriri Mission,Ikwiriri Mission,Tanzania
-Imam mahdi,Imam mahdi,Tanzania
-Jaja,Jaja,Tanzania
-Jaribu Mpakani,Jaribu Mpakani,Tanzania
-Kiasi,Kiasi,Tanzania
-Kibiti,Kibiti,Tanzania
-Kiechuru,Kiechuru,Tanzania
-Kigunguli,Kigunguli,Tanzania
-Kikale,Kikale,Tanzania
-Kilimani,Kilimani,Tanzania
-Kilulatambwe,Kilulatambwe,Tanzania
-Kimbuga,Kimbuga,Tanzania
-Kindwitwi,Kindwitwi,Tanzania
-Kingupira,Kingupira,Tanzania
-Kiomboni,Kiomboni,Tanzania
-Kiongoroni,Kiongoroni,Tanzania
-Kipo,Kipo,Tanzania
-Kipugira,Kipugira,Tanzania
-Kitapi,Kitapi,Tanzania
-Kivinja A,Kivinja A,Tanzania
-Kivinja B,Kivinja B,Tanzania
-Kiwanga,Kiwanga,Tanzania
-Machipi,Machipi,Tanzania
-Mahege,Mahege,Tanzania
-Mandu,Mandu,Tanzania
-Maparoni,Maparoni,Tanzania
-Mariam Consolatha,Mariam Consolatha,Tanzania
-Mbambe,Mbambe,Tanzania
-Mbuchi,Mbuchi,Tanzania
-Mbunjumvuleni,Mbunjumvuleni,Tanzania
-Mbwara,Mbwara,Tanzania
-Mbwera,Mbwera,Tanzania
-Mchinga,Mchinga,Tanzania
-Mchukwi,Mchukwi,Tanzania
-Mchukwi Mission,Mchukwi Mission,Tanzania
-Mchungu,Mchungu,Tanzania
-Mfisini,Mfisini,Tanzania
-MICO,MICO,Tanzania
-Miwaga,Miwaga,Tanzania
-Mkenda,Mkenda,Tanzania
-Mkongo,Mkongo,Tanzania
-Mkupuka,Mkupuka,Tanzania
-Mlanzi,Mlanzi,Tanzania
-Mng'aru,Mng'aru,Tanzania
-Mng'aru Prison,Mng'aru Prison,Tanzania
-Mohoro,Mohoro,Tanzania
-Msala,Msala,Tanzania
-Msindaji,Msindaji,Tanzania
-Mtanga Delta,Mtanga Delta,Tanzania
-Mtanza,Mtanza,Tanzania
-Mtawanya,Mtawanya,Tanzania
-Mtunda,Mtunda,Tanzania
-Muyuyu,Muyuyu,Tanzania
-Mwaseni,Mwaseni,Tanzania
-Nambunju,Nambunju,Tanzania
-Ndundunyikanza,Ndundunyikanza,Tanzania
-Ndundutawa,Ndundutawa,Tanzania
-Ngarambe,Ngarambe,Tanzania
-Ngorongo,Ngorongo,Tanzania
-Ngulakula,Ngulakula,Tanzania
-Nyakinyo,Nyakinyo,Tanzania
-Nyamatanga,Nyamatanga,Tanzania
-Nyambili,Nyambili,Tanzania
-Nyambunda,Nyambunda,Tanzania
-Nyaminywili,Nyaminywili,Tanzania
-Nyamisati,Nyamisati,Tanzania
-Nyamwage,Nyamwage,Tanzania
-Nyamwimbe,Nyamwimbe,Tanzania
-Nyanjati,Nyanjati,Tanzania
-Pagae,Pagae,Tanzania
-Pombwe,Pombwe,Tanzania
-Ruaruke,Ruaruke,Tanzania
-Rungungu,Rungungu,Tanzania
-Ruwe,Ruwe,Tanzania
-Salale,Salale,Tanzania
-Tapika,Tapika,Tanzania
-Tawi,Tawi,Tanzania
-Tomoni,Tomoni,Tanzania
-Twasalie,Twasalie,Tanzania
-Uponda,Uponda,Tanzania
-Utete,Utete,Tanzania
-Utunge,Utunge,Tanzania
+name,label,pt,sw,country
+Unknown,Unknown health facility,Não sei o nome da unidade de saúde,sijui jina la kituo cha afya,Mozambique
+Unknown,Unknown health facility,Não sei o nome da unidade de saúde,sijui jina la kituo cha afya,Tanzania
+Ndingo,Ndingo HF,Ndingo HF,Ndingo HF,Mozambique
+Nzanza,Nzanza HF,Nzanza HF,Nzanza HF,Mozambique
+Noere,Noere HF,Noere HF,Noere HF,Mozambique
+Nhacatundo,Nhacatundo HF,Nhacatundo HF,Nhacatundo HF,Mozambique
+Chimuara,Chimuara HF,Chimuara HF,Chimuara HF,Mozambique
+Gulamo,Gulamo HF,Gulamo HF,Gulamo HF,Mozambique
+Mopeia Sede,Mopeia Sede HF,Mopeia Sede HF,Mopeia Sede HF,Mozambique
+Sangalaza,Sangalaza HF,Sangalaza HF,Sangalaza HF,Mozambique
+Catale,Catale HF,Catale HF,Catale HF,Mozambique
+Luala,Luala HF,Luala HF,Luala HF,Mozambique
+Mungane,Mungane HF,Mungane HF,Mungane HF,Mozambique
+Posto Campo,Posto Campo HF,Posto Campo HF,Posto Campo HF,Mozambique
+8 de Marco,8 de Marco HF,8 de Marco HF,8 de Marco HF,Mozambique
+Vinte,Vinte HF,Vinte HF,Vinte HF,Mozambique
+Arafa Ikwiriri,Arafa Ikwiriri,Arafa Ikwiriri,Arafa Ikwiriri,Tanzania
+Arafa Jaribu,Arafa Jaribu,Arafa Jaribu,Arafa Jaribu,Tanzania
+Bamita,Bamita,Bamita,Bamita,Tanzania
+Bumba,Bumba,Bumba,Bumba,Tanzania
+Bungu,Bungu,Bungu,Bungu,Tanzania
+Chumbi,Chumbi,Chumbi,Chumbi,Tanzania
+Faraja,Faraja,Faraja,Faraja,Tanzania
+Hanga,Hanga,Hanga,Hanga,Tanzania
+Ikwiriri,Ikwiriri,Ikwiriri,Ikwiriri,Tanzania
+Ikwiriri Mission,Ikwiriri Mission,Ikwiriri Mission,Ikwiriri Mission,Tanzania
+Imam mahdi,Imam mahdi,Imam mahdi,Imam mahdi,Tanzania
+Jaja,Jaja,Jaja,Jaja,Tanzania
+Jaribu Mpakani,Jaribu Mpakani,Jaribu Mpakani,Jaribu Mpakani,Tanzania
+Kiasi,Kiasi,Kiasi,Kiasi,Tanzania
+Kibiti,Kibiti,Kibiti,Kibiti,Tanzania
+Kiechuru,Kiechuru,Kiechuru,Kiechuru,Tanzania
+Kigunguli,Kigunguli,Kigunguli,Kigunguli,Tanzania
+Kikale,Kikale,Kikale,Kikale,Tanzania
+Kilimani,Kilimani,Kilimani,Kilimani,Tanzania
+Kilulatambwe,Kilulatambwe,Kilulatambwe,Kilulatambwe,Tanzania
+Kimbuga,Kimbuga,Kimbuga,Kimbuga,Tanzania
+Kindwitwi,Kindwitwi,Kindwitwi,Kindwitwi,Tanzania
+Kingupira,Kingupira,Kingupira,Kingupira,Tanzania
+Kiomboni,Kiomboni,Kiomboni,Kiomboni,Tanzania
+Kiongoroni,Kiongoroni,Kiongoroni,Kiongoroni,Tanzania
+Kipo,Kipo,Kipo,Kipo,Tanzania
+Kipugira,Kipugira,Kipugira,Kipugira,Tanzania
+Kitapi,Kitapi,Kitapi,Kitapi,Tanzania
+Kivinja A,Kivinja A,Kivinja A,Kivinja A,Tanzania
+Kivinja B,Kivinja B,Kivinja B,Kivinja B,Tanzania
+Kiwanga,Kiwanga,Kiwanga,Kiwanga,Tanzania
+Machipi,Machipi,Machipi,Machipi,Tanzania
+Mahege,Mahege,Mahege,Mahege,Tanzania
+Mandu,Mandu,Mandu,Mandu,Tanzania
+Maparoni,Maparoni,Maparoni,Maparoni,Tanzania
+Mariam Consolatha,Mariam Consolatha,Mariam Consolatha,Mariam Consolatha,Tanzania
+Mbambe,Mbambe,Mbambe,Mbambe,Tanzania
+Mbuchi,Mbuchi,Mbuchi,Mbuchi,Tanzania
+Mbunjumvuleni,Mbunjumvuleni,Mbunjumvuleni,Mbunjumvuleni,Tanzania
+Mbwara,Mbwara,Mbwara,Mbwara,Tanzania
+Mbwera,Mbwera,Mbwera,Mbwera,Tanzania
+Mchinga,Mchinga,Mchinga,Mchinga,Tanzania
+Mchukwi,Mchukwi,Mchukwi,Mchukwi,Tanzania
+Mchukwi Mission,Mchukwi Mission,Mchukwi Mission,Mchukwi Mission,Tanzania
+Mchungu,Mchungu,Mchungu,Mchungu,Tanzania
+Mfisini,Mfisini,Mfisini,Mfisini,Tanzania
+MICO,MICO,MICO,MICO,Tanzania
+Miwaga,Miwaga,Miwaga,Miwaga,Tanzania
+Mkenda,Mkenda,Mkenda,Mkenda,Tanzania
+Mkongo,Mkongo,Mkongo,Mkongo,Tanzania
+Mkupuka,Mkupuka,Mkupuka,Mkupuka,Tanzania
+Mlanzi,Mlanzi,Mlanzi,Mlanzi,Tanzania
+Mng'aru,Mng'aru,Mng'aru,Mng'aru,Tanzania
+Mng'aru Prison,Mng'aru Prison,Mng'aru Prison,Mng'aru Prison,Tanzania
+Mohoro,Mohoro,Mohoro,Mohoro,Tanzania
+Msala,Msala,Msala,Msala,Tanzania
+Msindaji,Msindaji,Msindaji,Msindaji,Tanzania
+Mtanga Delta,Mtanga Delta,Mtanga Delta,Mtanga Delta,Tanzania
+Mtanza,Mtanza,Mtanza,Mtanza,Tanzania
+Mtawanya,Mtawanya,Mtawanya,Mtawanya,Tanzania
+Mtunda,Mtunda,Mtunda,Mtunda,Tanzania
+Muyuyu,Muyuyu,Muyuyu,Muyuyu,Tanzania
+Mwaseni,Mwaseni,Mwaseni,Mwaseni,Tanzania
+Nambunju,Nambunju,Nambunju,Nambunju,Tanzania
+Ndundunyikanza,Ndundunyikanza,Ndundunyikanza,Ndundunyikanza,Tanzania
+Ndundutawa,Ndundutawa,Ndundutawa,Ndundutawa,Tanzania
+Ngarambe,Ngarambe,Ngarambe,Ngarambe,Tanzania
+Ngorongo,Ngorongo,Ngorongo,Ngorongo,Tanzania
+Ngulakula,Ngulakula,Ngulakula,Ngulakula,Tanzania
+Nyakinyo,Nyakinyo,Nyakinyo,Nyakinyo,Tanzania
+Nyamatanga,Nyamatanga,Nyamatanga,Nyamatanga,Tanzania
+Nyambili,Nyambili,Nyambili,Nyambili,Tanzania
+Nyambunda,Nyambunda,Nyambunda,Nyambunda,Tanzania
+Nyaminywili,Nyaminywili,Nyaminywili,Nyaminywili,Tanzania
+Nyamisati,Nyamisati,Nyamisati,Nyamisati,Tanzania
+Nyamwage,Nyamwage,Nyamwage,Nyamwage,Tanzania
+Nyamwimbe,Nyamwimbe,Nyamwimbe,Nyamwimbe,Tanzania
+Nyanjati,Nyanjati,Nyanjati,Nyanjati,Tanzania
+Pagae,Pagae,Pagae,Pagae,Tanzania
+Pombwe,Pombwe,Pombwe,Pombwe,Tanzania
+Ruaruke,Ruaruke,Ruaruke,Ruaruke,Tanzania
+Rungungu,Rungungu,Rungungu,Rungungu,Tanzania
+Ruwe,Ruwe,Ruwe,Ruwe,Tanzania
+Salale,Salale,Salale,Salale,Tanzania
+Tapika,Tapika,Tapika,Tapika,Tanzania
+Tawi,Tawi,Tawi,Tawi,Tanzania
+Tomoni,Tomoni,Tomoni,Tomoni,Tanzania
+Twasalie,Twasalie,Twasalie,Twasalie,Tanzania
+Uponda,Uponda,Uponda,Uponda,Tanzania
+Utete,Utete,Utete,Utete,Tanzania
+Utunge,Utunge,Utunge,Utunge,Tanzania
