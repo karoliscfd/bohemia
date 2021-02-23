@@ -3665,8 +3665,8 @@ implement(id = None, query = "UPDATE clean_va SET death_id='ENE-026-701', hh_id=
 implement(id = None, query = "UPDATE clean_va SET death_id='ULU-046-701', hh_id='ULU-046', id_manual='ULU-046', id10018_id='ULU-046-701' WHERE instance_id ='5a16c629-5aab-4629-841b-db15cf0fbf29'", who = 'Joe Brew')
 
 # Manual corrections from Imani, sent mid Feb 2021, incorrect household IDs
-implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MAT-004' WHERE instance_id = '6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MAT-004_2020-11-03' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_people SET permid='MAT-004-001' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b';")
-implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MGN-012' WHERE instance_id = '609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MGN-012_2020-11-04' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_people SET permid='MGN-012-001' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5';")
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MAT-004' WHERE instance_id = '6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MAT-004_2020-11-03' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b'; UPDATE clean_minicensus_people SET permid='MAT-004-001' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b' and num='1';")
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='MGN-012' WHERE instance_id = '609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_MGN-012_2020-11-04' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5'; UPDATE clean_minicensus_people SET permid='MGN-012-001' WHERE instance_id ='609d0a2c-3ae0-447f-9909-0443162121c5' and num='1';")
 implement(id = None, query = "DELETE FROM clean_minicensus_main WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 implement(id = None, query = "DELETE FROM clean_minicensus_people WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
 implement(id = None, query = "DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id='82ace7b5-a5a9-4241-a6ab-17cda58abdb5'")
@@ -3676,6 +3676,9 @@ implement(id = None, query = "DELETE FROM clean_minicensus_repeat_water WHERE in
 implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Kiwili', hh_hamlet_code='KLK' WHERE instance_id = 'a378c7c5-032b-4f15-84c2-53c939c8fddd';")
 implement(id = None, query = "UPDATE clean_minicensus_main SET hh_hamlet='Mselema', hh_hamlet_code='MSL' WHERE instance_id = 'd2b6b5ee-b7d2-4b9a-b545-959c0bf06dc1';")
 implement(id = None, query = "UPDATE clean_minicensus_main SET wid='70' WHERE instance_id = '34a54a68-4958-45ae-a61f-96f307a97cf6';")
+
+# Manual corrections from Imani, Feb 22 2021
+implement(id = None, query = "UPDATE clean_minicensus_main SET hh_id='BET-068' WHERE instance_id = '3c447c41-e1c6-4857-b95e-a58271d6eeba'; UPDATE clean_minicensus_main SET instancename = 'small_censusa_BET-068_2020-11-08' WHERE instance_id ='3c447c41-e1c6-4857-b95e-a58271d6eeba'; UPDATE clean_minicensus_people SET permid='BET-068-001' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b' and num='1'; UPDATE clean_minicensus_people SET permid='BET-068-002' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b' and num='2'; UPDATE clean_minicensus_people SET permid='BET-068-903' WHERE instance_id ='6c4b6123-3a34-4af2-bc49-cc9b0bde829b' and num='3';")
 
 
 dbconn.commit()
