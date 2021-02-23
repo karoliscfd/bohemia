@@ -7,7 +7,7 @@
 #' @import leaflet
 #' @import shiny
 #' @import ggplot2
-#' @import googlesheets4
+#' @import gsheet
 #' @import DT
 #' @import shinyMobile
 app_ui <- function(request) {
