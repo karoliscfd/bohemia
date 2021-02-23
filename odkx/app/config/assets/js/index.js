@@ -4,6 +4,7 @@
   var launchHhSearch = function (hasPaintedId) {
     if (hasPaintedId) {
       localStorage.setItem('hasPaintedId', 'true');
+      localStorage.setItem('modalSelectedPaintedId', 'true');
     }
     odkTables.openTableToListView(null, 'census');
   }
@@ -48,6 +49,7 @@
     localStorage.removeItem('bohemiaHhSearch');
     localStorage.removeItem('bohemiaMemberSearch');
     localStorage.removeItem('hasPaintedId');
+    localStorage.removeItem('modalSelectedPaintedId');
 
     if (!!localStorage.getItem('FW_ID')) {
       document.getElementById('fwIdSpan').textContent = localStorage.getItem('FW_ID');
