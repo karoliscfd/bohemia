@@ -4,6 +4,7 @@
   var launchHhSearch = function (hasPaintedId) {
     if (hasPaintedId) {
       localStorage.setItem('hasPaintedId', 'true');
+      localStorage.setItem('modalSelectedPaintedId', 'true');
     }
     odkTables.openTableToListView(null, 'census');
   }
@@ -29,9 +30,26 @@
       );
     });
 
+    document.getElementById('selectMiniHhBtn').addEventListener('click', function () {
+      odkTables.addRowWithSurvey(
+        null,
+        'census',
+        'census',
+        null,
+        {
+          fw_id: localStorage.getItem('FW_ID') || null,
+          hh_minicenced: 'yes',
+          hh_roster_mismatch: false,
+          hh_fw_geolocation: true,
+          hh_new: false
+        }
+      );
+    });
+
     localStorage.removeItem('bohemiaHhSearch');
     localStorage.removeItem('bohemiaMemberSearch');
     localStorage.removeItem('hasPaintedId');
+    localStorage.removeItem('modalSelectedPaintedId');
 
     if (!!localStorage.getItem('FW_ID')) {
       document.getElementById('fwIdSpan').textContent = localStorage.getItem('FW_ID');

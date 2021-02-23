@@ -219,7 +219,8 @@
         fw_id: localStorage.getItem('FW_ID') || null,
         hh_minicenced: 'no',
         hh_roster_mismatch: rosterMismatch,
-        hh_fw_geolocation: false
+        hh_fw_geolocation: false,
+        hh_new: true
       }
     );
   }
@@ -348,12 +349,21 @@
     var paintedElem = document.querySelectorAll('.hh-painted');
     var notPaintedElem = document.querySelectorAll('.hh-not-painted');
     var hhPainted = !!localStorage.getItem('hasPaintedId');
-
     for (var i = 0; i < paintedElem.length; i++) {
       paintedElem[i].classList.toggle('d-none', !hhPainted);
     }
     for (var i = 0; i < notPaintedElem.length; i++) {
       notPaintedElem[i].classList.toggle('d-none', hhPainted);
+    }
+
+    var modalPaintedElem = document.querySelectorAll('.modal-hh-painted');
+    var modalNotPaintedElem = document.querySelectorAll('.modal-hh-not-painted');
+    var modalHhPainted = !!localStorage.getItem('modalSelectedPaintedId');
+    for (var i = 0; i < modalPaintedElem.length; i++) {
+      modalPaintedElem[i].classList.toggle('d-none', !modalHhPainted);
+    }
+    for (var i = 0; i < modalNotPaintedElem.length; i++) {
+      modalNotPaintedElem[i].classList.toggle('d-none', modalHhPainted);
     }
 
     localizeUtil.localizePage();

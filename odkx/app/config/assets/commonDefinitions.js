@@ -179,60 +179,65 @@ window.odkCommonDefinitions = {
       "text": "Does this house have a painted Bohemia ID?",
       "_row_num": 25
     },
-    "roster_confirm": {
-      "string_token": "roster_confirm",
-      "text": "Confirm with the person in the household that",
+    "roster_confirm_not_painted": {
+      "string_token": "roster_confirm_not_painted",
+      "text": "Confirm with the person in the household that this list of members corresponds to the household you are in.",
       "_row_num": 26
+    },
+    "roster_confirm_painted": {
+      "string_token": "roster_confirm_painted",
+      "text": "Confirm with the person in the household that",
+      "_row_num": 27
     },
     "roster_confirm_1": {
       "string_token": "roster_confirm_1",
       "text": "This list of members corresponds to the household you are in, and",
-      "_row_num": 27
+      "_row_num": 28
     },
     "roster_confirm_2": {
       "string_token": "roster_confirm_2",
-      "text": "That the painted ID matches the household ID in the screen.",
-      "_row_num": 28
+      "text": "The painted ID matches the household ID in the screen.",
+      "_row_num": 29
     },
     "roster_confirm_hint": {
       "string_token": "roster_confirm_hint",
       "text": "There could have been some changes in the list of hh members, but at least one person should be correct.",
-      "_row_num": 29
+      "_row_num": 30
     },
     "hh_not_found": {
       "string_token": "hh_not_found",
       "text": "Cannot find what you're looking for?",
-      "_row_num": 30
+      "_row_num": 31
     },
     "search_hint": {
       "string_token": "search_hint",
       "text": "Try different search terms. If you still cannot find the household try to search on map or by member. If you cannot find the household searching in the map of by member, this is a new household.",
-      "_row_num": 31
+      "_row_num": 32
     },
     "search_map_member": {
       "string_token": "search_map_member",
       "text": "Search on map or by member",
-      "_row_num": 32
+      "_row_num": 33
     },
     "member_search_hint": {
       "string_token": "member_search_hint",
       "text": "Type the name of any hh member",
-      "_row_num": 33
+      "_row_num": 34
     },
     "hh_id_search_hint": {
       "string_token": "hh_id_search_hint",
       "text": "Type the hamlet code or the household ID",
-      "_row_num": 34
+      "_row_num": 35
     },
     "hh_id_painted_hint": {
       "string_token": "hh_id_painted_hint",
       "text": "Type the household ID",
-      "_row_num": 35
+      "_row_num": 36
     },
     "map_hint": {
       "string_token": "map_hint",
-      "text": "You are at the blue circle. Pins (or pin icon) are households that were part of minicensus.",
-      "_row_num": 36
+      "text": "You are at the blue circle. Pins are households that were part of minicensus.",
+      "_row_num": 37
     }
   },
   "_locales": {
