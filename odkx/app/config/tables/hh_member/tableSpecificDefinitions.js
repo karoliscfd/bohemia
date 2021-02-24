@@ -3915,7 +3915,7 @@ window.odkTableSpecificDefinitions = {
     "ind_q4": {
       "string_token": "ind_q4",
       "text": {
-        "default": "4. Has this participant sign the informed consent?",
+        "default": "4. Has this participant signed the informed consent?",
         "pt": "4. Este participante assinou o consentimento informado?",
         "sw": "4. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
@@ -3924,7 +3924,7 @@ window.odkTableSpecificDefinitions = {
     "ind_q5": {
       "string_token": "ind_q5",
       "text": {
-        "default": "5. Has this participant sign the assent form?",
+        "default": "5. Has this participant signed the assent form?",
         "pt": "5.  O participante assinou o assentimento informado?",
         "sw": "5. Je, mshiriki huyu ametia saini fomu ya ridhaa?"
       },
