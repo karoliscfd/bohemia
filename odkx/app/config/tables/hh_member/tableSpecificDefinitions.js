@@ -3171,9 +3171,9 @@ window.odkTableSpecificDefinitions = {
     "or_enter_num": {
       "string_token": "or_enter_num",
       "text": {
-        "default": "or enter number",
-        "pt": "ou digite um número",
-        "sw": "au ingiza namba"
+        "default": "enter number",
+        "pt": "digite um número",
+        "sw": "ingiza namba"
       },
       "_row_num": 358
     },
