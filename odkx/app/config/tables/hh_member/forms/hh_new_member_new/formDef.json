@@ -265,40 +265,33 @@
         "_row_num": 36
       },
       {
-        "type": "text",
-        "name": "id",
+        "type": "note",
         "display": {
-          "prompt": "q6a",
-          "hint": {
-            "text": "ABC-123-123"
-          }
+          "prompt": "q6a"
         },
+        "_row_num": 37
+      },
+      {
+        "clause": "if",
+        "condition": "not(selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))",
+        "_row_num": 38
+      },
+      {
+        "type": "retrieve_extid",
+        "values_list": "retrieve_extid",
+        "name": "id",
         "required": 1,
         "constraint": "/^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
-        "_row_num": 37
+        "_row_num": 39
+      },
+      {
+        "clause": "end if",
+        "_row_num": 40
       },
       {
         "type": "select_multiple",
         "values_list": "not_possible",
         "name": "new_hh_member_censed_extid_not_possible",
-        "display": {
-          "prompt": "not_possible"
-        },
-        "_row_num": 38
-      },
-      {
-        "clause": "end if",
-        "_row_num": 39
-      },
-      {
-        "clause": "if",
-        "condition": "selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')",
-        "_row_num": 40
-      },
-      {
-        "type": "assign",
-        "name": "id",
-        "calculation": "data('id_candidate')[data('resident_status')]",
         "_row_num": 41
       },
       {
@@ -311,10 +304,9 @@
         "_row_num": 43
       },
       {
-        "type": "note",
-        "display": {
-          "prompt": "assigned_extid"
-        },
+        "type": "assign",
+        "name": "id",
+        "calculation": "data('id_candidate')[data('resident_status')]",
         "_row_num": 44
       },
       {
@@ -322,8 +314,34 @@
         "_row_num": 45
       },
       {
-        "clause": "end screen",
+        "clause": "if",
+        "condition": "selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')",
         "_row_num": 46
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "assigned_extid"
+        },
+        "_row_num": 47
+      },
+      {
+        "clause": "end if",
+        "_row_num": 48
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 49
+      }
+    ],
+    "queries": [
+      {
+        "query_name": "retrieve_extid",
+        "query_type": "ajax",
+        "uri": "data('name') + data('surname')",
+        "callback": "''",
+        "comment": "This is handled by custom prompt type",
+        "_row_num": 2
       }
     ],
     "choices": [
@@ -4122,7 +4140,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210225001,
         "_row_num": 3
       },
       {
@@ -4192,6 +4210,13 @@
         "value": 1,
         "_row_num": 10
       }
+    ],
+    "prompt_types": [
+      {
+        "prompt_type_name": "retrieve_extid",
+        "type": "string",
+        "_row_num": 2
+      }
     ]
   },
   "specification": {
@@ -4219,7 +4244,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210225001,
         "_row_num": 3
       },
       "table_id": {
@@ -7651,7 +7676,16 @@
         }
       ]
     },
-    "queries": {},
+    "queries": {
+      "retrieve_extid": {
+        "query_name": "retrieve_extid",
+        "query_type": "ajax",
+        "uri": "data('name') + data('surname')",
+        "callback": "''",
+        "comment": "This is handled by custom prompt type",
+        "_row_num": 2
+      }
+    },
     "calculates": {},
     "model": {
       "hh_id": {
@@ -7972,10 +8006,12 @@
         "elementKey": "resident_status"
       },
       "id": {
+        "prompt_type_name": "retrieve_extid",
         "type": "string",
+        "valuesList": "retrieve_extid",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 39,
             "section_name": "survey"
           },
           {
@@ -8206,7 +8242,7 @@
         "valuesList": "not_possible",
         "_defn": [
           {
-            "_row_num": 38,
+            "_row_num": 41,
             "section_name": "survey"
           },
           {
@@ -9270,56 +9306,60 @@
             "promptIdx": 18
           },
           {
-            "type": "text",
-            "name": "id",
+            "type": "note",
             "display": {
-              "prompt": "q6a",
-              "hint": {
-                "text": "ABC-123-123"
-              }
+              "prompt": "q6a"
             },
-            "required": 1,
-            "constraint": "/^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
             "_row_num": 37,
             "__rowNum__": 36,
             "_token_type": "prompt",
-            "_type": "text",
+            "_type": "note",
             "_branch_label_enclosing_screen": "survey/_screen2",
             "promptIdx": 19
+          },
+          {
+            "type": "retrieve_extid",
+            "values_list": "retrieve_extid",
+            "name": "id",
+            "required": 1,
+            "constraint": "/^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
+            "_row_num": 39,
+            "__rowNum__": 38,
+            "_token_type": "prompt",
+            "_type": "retrieve_extid",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 20
           },
           {
             "type": "select_multiple",
             "values_list": "not_possible",
             "name": "new_hh_member_censed_extid_not_possible",
-            "display": {
-              "prompt": "not_possible"
-            },
-            "_row_num": 38,
-            "__rowNum__": 37,
+            "_row_num": 41,
+            "__rowNum__": 40,
             "_token_type": "prompt",
             "_type": "select_multiple",
             "_branch_label_enclosing_screen": "survey/_screen2",
-            "promptIdx": 20
+            "promptIdx": 21
           },
           {
             "type": "note",
             "display": {
               "prompt": "assigned_extid"
             },
-            "_row_num": 44,
-            "__rowNum__": 43,
+            "_row_num": 47,
+            "__rowNum__": 46,
             "_token_type": "prompt",
             "_type": "note",
             "_branch_label_enclosing_screen": "survey/_screen2",
-            "promptIdx": 21
+            "promptIdx": 22
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 47,
-            "_branch_label_enclosing_screen": "survey/_screen47",
-            "promptIdx": 22
+            "_row_num": 50,
+            "_branch_label_enclosing_screen": "survey/_screen50",
+            "promptIdx": 23
           }
         ],
         "validation_tag_map": {
@@ -9330,7 +9370,7 @@
             9,
             12,
             14,
-            19
+            20
           ]
         },
         "operations": [
@@ -9341,23 +9381,23 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 46,
-              "__rowNum__": 45,
+              "_row_num": 49,
+              "__rowNum__": 48,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(6);\n}\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(9);\n}\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(12);\n}\nactivePromptIndicies.push(13);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(14);\nactivePromptIndicies.push(15);\n}\nactivePromptIndicies.push(16);\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\nif (selected(data('new_hh_member_censed'), 'yes')) {\nactivePromptIndicies.push(19);\nactivePromptIndicies.push(20);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nactivePromptIndicies.push(21);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(6);\n}\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(9);\n}\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(12);\n}\nactivePromptIndicies.push(13);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(14);\nactivePromptIndicies.push(15);\n}\nactivePromptIndicies.push(16);\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\nif (selected(data('new_hh_member_censed'), 'yes')) {\nactivePromptIndicies.push(19);\nif (not(selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(20);\n}\nactivePromptIndicies.push(21);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nactivePromptIndicies.push(22);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 0
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 47,
+            "_row_num": 50,
             "operationIdx": 1
           },
           {
-            "_row_num": 47,
+            "_row_num": 50,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(22);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(23);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
@@ -9366,14 +9406,14 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 47,
+            "_row_num": 50,
             "operationIdx": 3
           }
         ],
         "branch_label_map": {
           "_screen2": 0,
           "_contents": 2,
-          "_screen47": 2
+          "_screen50": 2
         }
       }
     },
@@ -9806,10 +9846,12 @@
         "elementPath": "resident_status"
       },
       "id": {
+        "prompt_type_name": "retrieve_extid",
         "type": "string",
+        "valuesList": "retrieve_extid",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 39,
             "section_name": "survey"
           },
           {
@@ -10115,7 +10157,7 @@
         "valuesList": "not_possible",
         "_defn": [
           {
-            "_row_num": 38,
+            "_row_num": 41,
             "section_name": "survey"
           },
           {

@@ -269,10 +269,7 @@
         "type": "text",
         "name": "id",
         "display": {
-          "prompt": "q16a",
-          "hint": {
-            "text": "ABC-123-123"
-          }
+          "prompt": "q16a"
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
@@ -627,13 +624,9 @@
         "_row_num": 88
       },
       {
-        "type": "text",
+        "type": "retrieve_extid",
+        "values_list": "retrieve_extid",
         "name": "id",
-        "display": {
-          "hint": {
-            "text": "ABC-123-123"
-          }
-        },
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
         "hideInContents": 1,
@@ -696,6 +689,16 @@
       {
         "clause": "end screen",
         "_row_num": 101
+      }
+    ],
+    "queries": [
+      {
+        "query_name": "retrieve_extid",
+        "query_type": "ajax",
+        "uri": "data('name') + data('surname')",
+        "callback": "''",
+        "comment": "This is handled by custom prompt type",
+        "_row_num": 2
       }
     ],
     "choices": [
@@ -4502,7 +4505,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210225001,
         "_row_num": 3
       },
       {
@@ -4572,6 +4575,13 @@
         "value": 1,
         "_row_num": 10
       }
+    ],
+    "prompt_types": [
+      {
+        "prompt_type_name": "retrieve_extid",
+        "type": "string",
+        "_row_num": 2
+      }
     ]
   },
   "specification": {
@@ -4599,7 +4609,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210225001,
         "_row_num": 3
       },
       "table_id": {
@@ -8039,7 +8049,16 @@
         }
       ]
     },
-    "queries": {},
+    "queries": {
+      "retrieve_extid": {
+        "query_name": "retrieve_extid",
+        "query_type": "ajax",
+        "uri": "data('name') + data('surname')",
+        "callback": "''",
+        "comment": "This is handled by custom prompt type",
+        "_row_num": 2
+      }
+    },
     "calculates": {},
     "model": {
       "hh_id": {
@@ -8409,6 +8428,8 @@
       },
       "id": {
         "type": "string",
+        "prompt_type_name": "retrieve_extid",
+        "valuesList": "retrieve_extid",
         "_defn": [
           {
             "_row_num": 37,
@@ -9734,10 +9755,7 @@
             "type": "text",
             "name": "id",
             "display": {
-              "prompt": "q16a",
-              "hint": {
-                "text": "ABC-123-123"
-              }
+              "prompt": "q16a"
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
@@ -10089,20 +10107,16 @@
             "promptIdx": 43
           },
           {
-            "type": "text",
+            "type": "retrieve_extid",
+            "values_list": "retrieve_extid",
             "name": "id",
-            "display": {
-              "hint": {
-                "text": "ABC-123-123"
-              }
-            },
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
             "hideInContents": 1,
             "_row_num": 89,
             "__rowNum__": 88,
             "_token_type": "prompt",
-            "_type": "text",
+            "_type": "retrieve_extid",
             "_branch_label_enclosing_screen": "survey/_screen3",
             "promptIdx": 44
           },
@@ -10689,6 +10703,8 @@
       },
       "id": {
         "type": "string",
+        "prompt_type_name": "retrieve_extid",
+        "valuesList": "retrieve_extid",
         "_defn": [
           {
             "_row_num": 37,
