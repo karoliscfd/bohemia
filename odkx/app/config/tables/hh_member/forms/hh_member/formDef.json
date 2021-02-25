@@ -6114,110 +6114,62 @@
       },
       {
         "string_token": "month_1",
-        "text": {
-          "default": "1",
-          "pt": "1",
-          "sw": "1"
-        },
+        "text": "January",
         "_row_num": 223
       },
       {
         "string_token": "month_2",
-        "text": {
-          "default": "2",
-          "pt": "2",
-          "sw": "2"
-        },
+        "text": "February",
         "_row_num": 224
       },
       {
         "string_token": "month_3",
-        "text": {
-          "default": "3",
-          "pt": "3",
-          "sw": "3"
-        },
+        "text": "March",
         "_row_num": 225
       },
       {
         "string_token": "month_4",
-        "text": {
-          "default": "4",
-          "pt": "4",
-          "sw": "4"
-        },
+        "text": "April",
         "_row_num": 226
       },
       {
         "string_token": "month_5",
-        "text": {
-          "default": "5",
-          "pt": "5",
-          "sw": "5"
-        },
+        "text": "May",
         "_row_num": 227
       },
       {
         "string_token": "month_6",
-        "text": {
-          "default": "6",
-          "pt": "6",
-          "sw": "6"
-        },
+        "text": "June",
         "_row_num": 228
       },
       {
         "string_token": "month_7",
-        "text": {
-          "default": "7",
-          "pt": "7",
-          "sw": "7"
-        },
+        "text": "July",
         "_row_num": 229
       },
       {
         "string_token": "month_8",
-        "text": {
-          "default": "8",
-          "pt": "8",
-          "sw": "8"
-        },
+        "text": "August",
         "_row_num": 230
       },
       {
         "string_token": "month_9",
-        "text": {
-          "default": "9",
-          "pt": "9",
-          "sw": "9"
-        },
+        "text": "September",
         "_row_num": 231
       },
       {
         "string_token": "month_10",
-        "text": {
-          "default": "10",
-          "pt": "10",
-          "sw": "10"
-        },
+        "text": "October",
         "_row_num": 232
       },
       {
         "string_token": "month_11",
-        "text": {
-          "default": "11",
-          "pt": "11",
-          "sw": "11"
-        },
+        "text": "November",
         "_row_num": 233
       },
       {
         "string_token": "month_12",
-        "text": {
-          "default": "12",
-          "pt": "12",
-          "sw": "12"
-        },
+        "text": "December",
         "_row_num": 234
       },
       {
@@ -14040,110 +13992,62 @@
         },
         "month_1": {
           "string_token": "month_1",
-          "text": {
-            "default": "1",
-            "pt": "1",
-            "sw": "1"
-          },
+          "text": "January",
           "_row_num": 223
         },
         "month_2": {
           "string_token": "month_2",
-          "text": {
-            "default": "2",
-            "pt": "2",
-            "sw": "2"
-          },
+          "text": "February",
           "_row_num": 224
         },
         "month_3": {
           "string_token": "month_3",
-          "text": {
-            "default": "3",
-            "pt": "3",
-            "sw": "3"
-          },
+          "text": "March",
           "_row_num": 225
         },
         "month_4": {
           "string_token": "month_4",
-          "text": {
-            "default": "4",
-            "pt": "4",
-            "sw": "4"
-          },
+          "text": "April",
           "_row_num": 226
         },
         "month_5": {
           "string_token": "month_5",
-          "text": {
-            "default": "5",
-            "pt": "5",
-            "sw": "5"
-          },
+          "text": "May",
           "_row_num": 227
         },
         "month_6": {
           "string_token": "month_6",
-          "text": {
-            "default": "6",
-            "pt": "6",
-            "sw": "6"
-          },
+          "text": "June",
           "_row_num": 228
         },
         "month_7": {
           "string_token": "month_7",
-          "text": {
-            "default": "7",
-            "pt": "7",
-            "sw": "7"
-          },
+          "text": "July",
           "_row_num": 229
         },
         "month_8": {
           "string_token": "month_8",
-          "text": {
-            "default": "8",
-            "pt": "8",
-            "sw": "8"
-          },
+          "text": "August",
           "_row_num": 230
         },
         "month_9": {
           "string_token": "month_9",
-          "text": {
-            "default": "9",
-            "pt": "9",
-            "sw": "9"
-          },
+          "text": "September",
           "_row_num": 231
         },
         "month_10": {
           "string_token": "month_10",
-          "text": {
-            "default": "10",
-            "pt": "10",
-            "sw": "10"
-          },
+          "text": "October",
           "_row_num": 232
         },
         "month_11": {
           "string_token": "month_11",
-          "text": {
-            "default": "11",
-            "pt": "11",
-            "sw": "11"
-          },
+          "text": "November",
           "_row_num": 233
         },
         "month_12": {
           "string_token": "month_12",
-          "text": {
-            "default": "12",
-            "pt": "12",
-            "sw": "12"
-          },
+          "text": "December",
           "_row_num": 234
         },
         "year_2021": {
