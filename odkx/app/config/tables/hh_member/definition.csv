@@ -62,7 +62,6 @@ member_died_when_dk,member_died_when_dk,array,"[""member_died_when_dk_items""]"
 member_died_when_dk_items,items,string,[]
 member_emigrated_when_date,member_emigrated_when_date,date_no_time,[]
 member_emigrated_when_dmy_ago,member_emigrated_when_dmy_ago,string,[]
-member_emigrated_when_num,member_emigrated_when_num,integer,[]
 member_where_now,member_where_now,string,[]
 move_from,move_from,string,[]
 move_from_census_extid_not_possible,move_from_census_extid_not_possible,array,"[""move_from_census_extid_not_possible_items""]"
@@ -73,7 +72,6 @@ new_hh_member_censed,new_hh_member_censed,string,[]
 new_hh_member_censed_extid_not_possible,new_hh_member_censed_extid_not_possible,array,"[""new_hh_member_censed_extid_not_possible_items""]"
 new_hh_member_censed_extid_not_possible_items,items,string,[]
 new_member_move_in_date,new_member_move_in_date,date_no_time,[]
-new_member_move_in_enter,new_member_move_in_enter,integer,[]
 new_member_move_in_select,new_member_move_in_select,string,[]
 new_member_newborn_or_moved_in,new_member_newborn_or_moved_in,string,[]
 recent_disease_care_type,recent_disease_care_type,array,"[""recent_disease_care_type_items""]"

@@ -19,10 +19,6 @@
         "_row_num": 2
       },
       {
-        "clause": "begin screen",
-        "_row_num": 3
-      },
-      {
         "type": "select_one",
         "values_list": "new_member",
         "name": "new_member_newborn_or_moved_in",
@@ -30,19 +26,16 @@
           "prompt": "q12"
         },
         "required": 1,
+        "_row_num": 3
+      },
+      {
+        "clause": "if // new_born",
+        "condition": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 4
       },
       {
-        "clause": "if",
-        "condition": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
+        "clause": "begin screen",
         "_row_num": 5
-      },
-      {
-        "type": "note",
-        "display": {
-          "prompt": "if_newborn"
-        },
-        "_row_num": 6
       },
       {
         "type": "text",
@@ -53,7 +46,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('name'))",
-        "_row_num": 7
+        "_row_num": 6
       },
       {
         "type": "text",
@@ -64,14 +57,22 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('surname'))",
+        "_row_num": 7
+      },
+      {
+        "clause": "end screen",
         "_row_num": 8
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 9
       },
       {
         "type": "note",
         "display": {
           "prompt": "q15"
         },
-        "_row_num": 9
+        "_row_num": 10
       },
       {
         "type": "note",
@@ -79,22 +80,22 @@
           "prompt": "day",
           "hint": "dob_hint"
         },
-        "_row_num": 10
+        "_row_num": 11
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_day_dk'), 'dk')",
-        "_row_num": 11
+        "_row_num": 12
       },
       {
         "type": "assign",
         "name": "dob_day",
         "calculation": "null",
-        "_row_num": 12
+        "_row_num": 13
       },
       {
         "clause": "else",
-        "_row_num": 13
+        "_row_num": 14
       },
       {
         "type": "select_one_integer",
@@ -108,18 +109,18 @@
         "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 14
+        "_row_num": 15
       },
       {
         "clause": "end if",
-        "_row_num": 15
+        "_row_num": 16
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_day_dk",
         "hideInContents": 1,
-        "_row_num": 16
+        "_row_num": 17
       },
       {
         "type": "note",
@@ -127,22 +128,22 @@
           "prompt": "month",
           "hint": "month_hint"
         },
-        "_row_num": 17
+        "_row_num": 18
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_month_dk'), 'dk')",
-        "_row_num": 18
+        "_row_num": 19
       },
       {
         "type": "assign",
         "name": "dob_month",
         "calculation": "null",
-        "_row_num": 19
+        "_row_num": 20
       },
       {
         "clause": "else",
-        "_row_num": 20
+        "_row_num": 21
       },
       {
         "type": "select_one_integer",
@@ -154,18 +155,18 @@
         },
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 21
+        "_row_num": 22
       },
       {
         "clause": "end if",
-        "_row_num": 22
+        "_row_num": 23
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_month_dk",
         "hideInContents": 1,
-        "_row_num": 23
+        "_row_num": 24
       },
       {
         "type": "note",
@@ -173,22 +174,22 @@
           "prompt": "year",
           "hint": "year_hint_new_born"
         },
-        "_row_num": 24
+        "_row_num": 25
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_year_dk'), 'dk')",
-        "_row_num": 25
+        "_row_num": 26
       },
       {
         "type": "assign",
         "name": "dob_year",
         "calculation": "null",
-        "_row_num": 26
+        "_row_num": 27
       },
       {
         "clause": "else",
-        "_row_num": 27
+        "_row_num": 28
       },
       {
         "type": "select_one_integer",
@@ -203,23 +204,31 @@
         "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 28
+        "_row_num": 29
       },
       {
         "clause": "end if",
-        "_row_num": 29
+        "_row_num": 30
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_year_dk",
         "hideInContents": 1,
-        "_row_num": 30
+        "_row_num": 31
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 32
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_year_dk'), 'dk')",
-        "_row_num": 31
+        "_row_num": 33
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 34
       },
       {
         "type": "integer",
@@ -232,18 +241,22 @@
           "min": 0,
           "step": 1
         },
-        "_row_num": 32
+        "_row_num": 35
       },
       {
         "type": "select_multiple",
         "values_list": "approx",
         "name": "dob_enter_age_approx",
         "hideInContents": 1,
-        "_row_num": 33
+        "_row_num": 36
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 37
       },
       {
         "clause": "end if",
-        "_row_num": 34
+        "_row_num": 38
       },
       {
         "type": "select_one",
@@ -252,7 +265,17 @@
         "display": {
           "prompt": "q15b"
         },
-        "_row_num": 35
+        "_row_num": 39
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 40
+      },
+      {
+        "type": "assign",
+        "name": "id",
+        "calculation": "data('id_candidate')[data('resident_status')]",
+        "_row_num": 41
       },
       {
         "type": "select_one",
@@ -263,7 +286,7 @@
           "hint": "q16.hint"
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
-        "_row_num": 36
+        "_row_num": 42
       },
       {
         "type": "text",
@@ -273,23 +296,24 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
-        "_row_num": 37
+        "_row_num": 43
       },
       {
-        "clause": "end if",
-        "_row_num": 38
+        "clause": "end screen",
+        "_row_num": 44
       },
       {
-        "clause": "if",
+        "clause": "end if // new_born",
+        "_row_num": 45
+      },
+      {
+        "clause": "if // moved_in",
         "condition": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
-        "_row_num": 39
+        "_row_num": 48
       },
       {
-        "type": "note",
-        "display": {
-          "prompt": "if_moved_in"
-        },
-        "_row_num": 40
+        "clause": "begin screen",
+        "_row_num": 49
       },
       {
         "type": "text",
@@ -300,7 +324,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('name'))",
-        "_row_num": 41
+        "_row_num": 50
       },
       {
         "type": "text",
@@ -311,14 +335,22 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('surname'))",
-        "_row_num": 42
+        "_row_num": 51
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 52
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 53
       },
       {
         "type": "note",
         "display": {
           "prompt": "q19"
         },
-        "_row_num": 43
+        "_row_num": 54
       },
       {
         "type": "note",
@@ -326,22 +358,22 @@
           "prompt": "day",
           "hint": "dob_hint"
         },
-        "_row_num": 44
+        "_row_num": 55
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_day_dk'), 'dk')",
-        "_row_num": 45
+        "_row_num": 56
       },
       {
         "type": "assign",
         "name": "dob_day",
         "calculation": "null",
-        "_row_num": 46
+        "_row_num": 57
       },
       {
         "clause": "else",
-        "_row_num": 47
+        "_row_num": 58
       },
       {
         "type": "select_one_integer",
@@ -355,18 +387,18 @@
         "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 48
+        "_row_num": 59
       },
       {
         "clause": "end if",
-        "_row_num": 49
+        "_row_num": 60
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_day_dk",
         "hideInContents": 1,
-        "_row_num": 50
+        "_row_num": 61
       },
       {
         "type": "note",
@@ -374,22 +406,22 @@
           "prompt": "month",
           "hint": "month_hint"
         },
-        "_row_num": 51
+        "_row_num": 62
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_month_dk'), 'dk')",
-        "_row_num": 52
+        "_row_num": 63
       },
       {
         "type": "assign",
         "name": "dob_month",
         "calculation": "null",
-        "_row_num": 53
+        "_row_num": 64
       },
       {
         "clause": "else",
-        "_row_num": 54
+        "_row_num": 65
       },
       {
         "type": "select_one_integer",
@@ -401,18 +433,18 @@
         },
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 55
+        "_row_num": 66
       },
       {
         "clause": "end if",
-        "_row_num": 56
+        "_row_num": 67
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_month_dk",
         "hideInContents": 1,
-        "_row_num": 57
+        "_row_num": 68
       },
       {
         "type": "note",
@@ -420,22 +452,22 @@
           "prompt": "year",
           "hint": "year_hint"
         },
-        "_row_num": 58
+        "_row_num": 69
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_year_dk'), 'dk')",
-        "_row_num": 59
+        "_row_num": 70
       },
       {
         "type": "assign",
         "name": "dob_year",
         "calculation": "null",
-        "_row_num": 60
+        "_row_num": 71
       },
       {
         "clause": "else",
-        "_row_num": 61
+        "_row_num": 72
       },
       {
         "type": "select_one_integer",
@@ -449,23 +481,31 @@
         "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-        "_row_num": 62
+        "_row_num": 73
       },
       {
         "clause": "end if",
-        "_row_num": 63
+        "_row_num": 74
       },
       {
         "type": "select_multiple",
         "values_list": "dk",
         "name": "dob_year_dk",
         "hideInContents": 1,
-        "_row_num": 64
+        "_row_num": 75
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 76
       },
       {
         "clause": "if",
         "condition": "selected(data('dob_year_dk'), 'dk')",
-        "_row_num": 65
+        "_row_num": 77
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 78
       },
       {
         "type": "integer",
@@ -478,18 +518,22 @@
           "min": 0,
           "step": 1
         },
-        "_row_num": 66
+        "_row_num": 79
       },
       {
         "type": "select_multiple",
         "values_list": "approx",
         "name": "dob_enter_age_approx",
         "hideInContents": 1,
-        "_row_num": 67
+        "_row_num": 80
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 81
       },
       {
         "clause": "end if",
-        "_row_num": 68
+        "_row_num": 82
       },
       {
         "type": "select_one",
@@ -498,7 +542,7 @@
         "display": {
           "prompt": "q20"
         },
-        "_row_num": 69
+        "_row_num": 83
       },
       {
         "type": "select_one",
@@ -508,40 +552,33 @@
           "prompt": "q21",
           "hint": "q21.hint"
         },
-        "_row_num": 70
+        "_row_num": 84
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 85
       },
       {
         "type": "note",
         "display": {
           "prompt": "q22"
         },
-        "_row_num": 71
+        "_row_num": 86
       },
       {
         "clause": "if",
         "condition": "selected(data('new_member_move_in_select'), 'dk')",
-        "_row_num": 72
-      },
-      {
-        "type": "assign",
-        "name": "new_member_move_in_enter",
-        "calculation": "null",
-        "_row_num": 73
+        "_row_num": 87
       },
       {
         "type": "assign",
         "name": "new_member_move_in_date",
         "calculation": "null",
-        "_row_num": 74
+        "_row_num": 88
       },
       {
         "clause": "else",
-        "_row_num": 75
-      },
-      {
-        "clause": "if",
-        "condition": "selected(data('new_member_move_in_select'), 'date')",
-        "_row_num": 76
+        "_row_num": 89
       },
       {
         "type": "birth_date",
@@ -551,37 +588,25 @@
           "constraint_message": "err_future_date"
         },
         "constraint": "!data('new_member_move_in_date') || !data('new_member_move_in_date').isAfter()",
-        "_row_num": 77
-      },
-      {
-        "clause": "else",
-        "_row_num": 78
-      },
-      {
-        "type": "integer",
-        "name": "new_member_move_in_enter",
-        "display": {
-          "prompt": "days_weeks_months_dk"
-        },
-        "inputAttributes": {
-          "min": 0,
-          "step": 1
-        },
-        "_row_num": 79
+        "_row_num": 90
       },
       {
         "clause": "end if",
-        "_row_num": 80
+        "_row_num": 91
       },
       {
-        "clause": "end if",
-        "_row_num": 81
-      },
-      {
-        "type": "select_one_dropdown",
-        "values_list": "dmy_ago_dk",
+        "type": "select_one",
+        "values_list": "dk",
         "name": "new_member_move_in_select",
-        "_row_num": 82
+        "_row_num": 92
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 93
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 94
       },
       {
         "type": "select_one",
@@ -590,12 +615,12 @@
         "display": {
           "prompt": "q23"
         },
-        "_row_num": 83
+        "_row_num": 95
       },
       {
         "clause": "if",
         "condition": "selected(data('move_from'),  'in_district')",
-        "_row_num": 84
+        "_row_num": 96
       },
       {
         "type": "select_one",
@@ -604,24 +629,40 @@
         "display": {
           "prompt": "q23a"
         },
-        "_row_num": 85
+        "_row_num": 97
+      },
+      {
+        "clause": "end if",
+        "_row_num": 98
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 99
       },
       {
         "clause": "if",
         "condition": "selected(data('move_from_district_census'), 'yes')",
-        "_row_num": 86
+        "_row_num": 100
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 101
       },
       {
         "type": "note",
         "display": {
           "prompt": "q23ai"
         },
-        "_row_num": 87
+        "_row_num": 102
       },
       {
         "clause": "if",
-        "condition": "not(selected(data('move_from_census_extid_not_possible'), 'not_possible'))",
-        "_row_num": 88
+        "condition": "selected(data('move_from_census_extid_not_possible'), 'not_possible')",
+        "_row_num": 103
+      },
+      {
+        "clause": "else",
+        "_row_num": 104
       },
       {
         "type": "retrieve_extid",
@@ -630,65 +671,60 @@
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
         "hideInContents": 1,
-        "_row_num": 89
+        "_row_num": 105
       },
       {
         "clause": "end if",
-        "_row_num": 90
+        "_row_num": 106
       },
       {
         "type": "select_multiple",
         "values_list": "not_possible",
         "name": "move_from_census_extid_not_possible",
         "hideInContents": 1,
-        "_row_num": 91
+        "_row_num": 107
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 108
       },
       {
         "clause": "end if",
-        "_row_num": 92
-      },
-      {
-        "clause": "end if",
-        "_row_num": 93
+        "_row_num": 109
       },
       {
         "clause": "if",
         "condition": "selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')",
-        "_row_num": 94
+        "_row_num": 110
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 111
+      },
+      {
+        "type": "assign",
+        "name": "id",
+        "calculation": "data('id_candidate')[data('resident_status')]",
+        "_row_num": 112
       },
       {
         "type": "note",
         "display": {
           "prompt": "assigned_extid"
         },
-        "_row_num": 95
-      },
-      {
-        "clause": "end if",
-        "_row_num": 96
-      },
-      {
-        "clause": "end if",
-        "_row_num": 97
-      },
-      {
-        "clause": "if",
-        "condition": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')",
-        "_row_num": 98
-      },
-      {
-        "type": "assign",
-        "name": "id",
-        "calculation": "data('id_candidate')[data('resident_status')]",
-        "_row_num": 99
-      },
-      {
-        "clause": "end if",
-        "_row_num": 100
+        "_row_num": 113
       },
       {
         "clause": "end screen",
-        "_row_num": 101
+        "_row_num": 114
+      },
+      {
+        "clause": "end if",
+        "_row_num": 115
+      },
+      {
+        "clause": "end if // moved_in",
+        "_row_num": 116
       }
     ],
     "queries": [
@@ -4100,401 +4136,391 @@
         "_row_num": 32
       },
       {
-        "name": "member_emigrated_when_num",
-        "type": "integer",
-        "_row_num": 33
-      },
-      {
         "name": "member_emigrated_when_dmy_ago",
         "type": "select_one",
-        "valuesList": "dmy_ago_dk",
-        "_row_num": 34
+        "valuesList": "dk",
+        "_row_num": 33
       },
       {
         "name": "emigrated_where",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 35
+        "_row_num": 34
       },
       {
         "comment": "New Member",
         "name": "new_member_newborn_or_moved_in",
         "type": "select_one",
         "valuesList": "new_member",
-        "_row_num": 36
+        "_row_num": 35
       },
       {
         "name": "new_member_move_in_date",
         "type": "birth_date",
-        "_row_num": 37
-      },
-      {
-        "name": "new_member_move_in_enter",
-        "type": "integer",
-        "_row_num": 38
+        "_row_num": 36
       },
       {
         "name": "new_member_move_in_select",
         "type": "select_one",
-        "valuesList": "dmy_ago_dk",
-        "_row_num": 39
+        "valuesList": "dk",
+        "_row_num": 37
       },
       {
         "name": "move_from",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 40
+        "_row_num": 38
       },
       {
         "name": "move_from_district_census",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 41
+        "_row_num": 39
       },
       {
         "name": "move_from_census_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 42
+        "_row_num": 40
       },
       {
         "comment": "New Member (New Household)",
         "name": "new_hh_member_censed",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 43
+        "_row_num": 41
       },
       {
         "name": "new_hh_member_censed_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 44
+        "_row_num": 42
       },
       {
         "comment": "Snake Bites",
         "name": "snake_bite_num_times",
         "type": "integer",
-        "_row_num": 45
+        "_row_num": 43
       },
       {
         "name": "snake_bite_months",
         "type": "select_multiple",
         "valuesList": "month",
-        "_row_num": 46
+        "_row_num": 44
       },
       {
         "name": "snake_bite_miss_work_school",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 47
+        "_row_num": 45
       },
       {
         "name": "snake_bite_miss_work_school_days",
         "type": "integer",
-        "_row_num": 48
+        "_row_num": 46
       },
       {
         "name": "snake_bite_miss_work_school_days_unknown",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 49
+        "_row_num": 47
       },
       {
         "name": "snake_bite_occur",
         "type": "select_multiple",
         "valuesList": "bite_occur",
-        "_row_num": 50
+        "_row_num": 48
       },
       {
         "name": "snake_bite_occur_other",
         "type": "text",
-        "_row_num": 51
+        "_row_num": 49
       },
       {
         "name": "snake_bite_outcome",
         "type": "select_one",
         "valuesList": "bite_outcome",
-        "_row_num": 52
+        "_row_num": 50
       },
       {
         "comment": "Individual Questionnaire",
         "name": "ind_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 53
+        "_row_num": 51
       },
       {
         "name": "ind_sign_assent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 54
+        "_row_num": 52
       },
       {
         "name": "ind_parent_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 55
+        "_row_num": 53
       },
       {
         "name": "ind_parent_sign_who",
         "type": "select_one_dropdown",
-        "_row_num": 56
+        "_row_num": 54
       },
       {
         "name": "ind_under_12_parent_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 57
+        "_row_num": 55
       },
       {
         "name": "ind_under_12_parent_sign_consent_who",
         "type": "select_one_dropdown",
-        "_row_num": 58
+        "_row_num": 56
       },
       {
         "name": "ind_who_respondent",
         "type": "select_one_dropdown",
-        "_row_num": 59
+        "_row_num": 57
       },
       {
         "name": "ind_parents_alive",
         "type": "select_one",
         "valuesList": "parents_alive",
-        "_row_num": 60
+        "_row_num": 58
       },
       {
         "name": "ind_rel_hh_head",
         "type": "select_one",
         "valuesList": "relation_to_hh_head",
-        "_row_num": 61
+        "_row_num": 59
       },
       {
         "name": "ind_religion",
         "type": "select_one",
         "valuesList": "ind_religion",
-        "_row_num": 62
+        "_row_num": 60
       },
       {
         "name": "ind_language",
         "type": "select_one_with_other",
         "valuesList": "ind_main_language",
-        "_row_num": 63
+        "_row_num": 61
       },
       {
         "name": "ind_treatment",
         "type": "select_multiple",
         "valuesList": "treatment",
-        "_row_num": 64
+        "_row_num": 62
       },
       {
         "name": "ind_chronic_disease",
         "type": "select_multiple",
         "valuesList": "chronic_disease",
-        "_row_num": 65
+        "_row_num": 63
       },
       {
         "name": "ind_chronic_disease_other",
         "type": "text",
-        "_row_num": 66
+        "_row_num": 64
       },
       {
         "name": "ind_recent_disease",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 67
+        "_row_num": 65
       },
       {
         "name": "recent_disease_yes",
         "type": "select_multiple",
         "valuesList": "other_recent_disease",
-        "_row_num": 68
+        "_row_num": 66
       },
       {
         "name": "recent_disease_yes_other",
         "type": "text",
-        "_row_num": 69
+        "_row_num": 67
       },
       {
         "name": "recent_disease_symptoms",
         "type": "select_multiple",
         "valuesList": "other_symptoms",
-        "_row_num": 70
+        "_row_num": 68
       },
       {
         "name": "recent_disease_symptoms_other",
         "type": "text",
-        "_row_num": 71
+        "_row_num": 69
       },
       {
         "name": "recent_disease_seek_care",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 72
+        "_row_num": 70
       },
       {
         "name": "recent_disease_care_type",
         "type": "select_multiple",
         "valuesList": "form_of_care",
-        "_row_num": 73
+        "_row_num": 71
       },
       {
         "name": "recent_disease_care_type_other",
         "type": "text",
-        "_row_num": 74
+        "_row_num": 72
       },
       {
         "name": "ind_malaria_test",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 75
+        "_row_num": 73
       },
       {
         "name": "ind_malaria_test_result",
         "type": "select_one",
         "valuesList": "malaria_test_result",
-        "_row_num": 76
+        "_row_num": 74
       },
       {
         "name": "ind_malaria_treatment",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 77
+        "_row_num": 75
       },
       {
         "name": "ind_malaria_treatment_no",
         "type": "select_one",
         "valuesList": "malaria_no_treatment",
-        "_row_num": 78
+        "_row_num": 76
       },
       {
         "name": "ind_deficiency",
         "type": "select_multiple",
         "valuesList": "disability",
-        "_row_num": 79
+        "_row_num": 77
       },
       {
         "name": "ind_itchy",
         "type": "select_multiple",
         "valuesList": "itchy",
-        "_row_num": 80
+        "_row_num": 78
       },
       {
         "name": "ind_tunga",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 81
+        "_row_num": 79
       },
       {
         "name": "ind_bed_bugs",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 82
+        "_row_num": 80
       },
       {
         "name": "ind_worms",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 83
+        "_row_num": 81
       },
       {
         "name": "wra_period",
         "type": "select_one",
         "valuesList": "lmp",
-        "_row_num": 84
+        "_row_num": 82
       },
       {
         "name": "wra_breastfeed",
         "type": "select_one",
         "valuesList": "breastfeed",
-        "_row_num": 85
+        "_row_num": 83
       },
       {
         "name": "wra_pregnant",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 86
+        "_row_num": 84
       },
       {
         "name": "wra_iptp",
         "type": "select_one",
         "valuesList": "iptp_current",
-        "_row_num": 87
+        "_row_num": 85
       },
       {
         "name": "sleep_net_last_night",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 88
+        "_row_num": 86
       },
       {
         "name": "sleep_net_last_night_num",
         "type": "integer",
-        "_row_num": 89
+        "_row_num": 87
       },
       {
         "name": "sleep_net_last_night_num_dk",
         "type": "select_one",
         "valuesList": "dk",
-        "_row_num": 90
+        "_row_num": 88
       },
       {
         "name": "time_indoors",
         "type": "select_one",
         "valuesList": "time_indoors",
-        "_row_num": 91
+        "_row_num": 89
       },
       {
         "name": "time_go_bed",
         "type": "select_one",
         "valuesList": "time_bed",
-        "_row_num": 92
+        "_row_num": 90
       },
       {
         "name": "before_bed_activities",
         "type": "select_multiple",
         "valuesList": "before_bed_activity",
-        "_row_num": 93
+        "_row_num": 91
       },
       {
         "name": "time_get_out_bed",
         "type": "select_one",
         "valuesList": "time_awake",
-        "_row_num": 94
+        "_row_num": 92
       },
       {
         "name": "time_go_outside",
         "type": "select_one",
         "valuesList": "time_outdoors",
-        "_row_num": 95
+        "_row_num": 93
       },
       {
         "name": "what_do_before_sunrise",
         "type": "select_multiple",
         "valuesList": "before_sunrise_activity",
-        "_row_num": 96
+        "_row_num": 94
       },
       {
         "name": "travel_abroad",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 97
+        "_row_num": 95
       },
       {
         "name": "travel_countries",
         "type": "select_multiple",
         "valuesList": "travel_countries",
-        "_row_num": 98
+        "_row_num": 96
       },
       {
         "name": "travel_regularly",
         "type": "select_one",
         "valuesList": "ynpna",
-        "_row_num": 99
+        "_row_num": 97
       },
       {
         "name": "travel_regularly_trips",
         "type": "integer",
-        "_row_num": 100
+        "_row_num": 98
       }
     ],
     "settings": [
@@ -8188,11 +8214,11 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 7,
+            "_row_num": 6,
             "section_name": "survey"
           },
           {
-            "_row_num": 41,
+            "_row_num": 50,
             "section_name": "survey"
           },
           {
@@ -8207,11 +8233,11 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 8,
+            "_row_num": 7,
             "section_name": "survey"
           },
           {
-            "_row_num": 42,
+            "_row_num": 51,
             "section_name": "survey"
           },
           {
@@ -8226,11 +8252,11 @@
         "valuesList": "day_choice",
         "_defn": [
           {
-            "_row_num": 14,
+            "_row_num": 15,
             "section_name": "survey"
           },
           {
-            "_row_num": 48,
+            "_row_num": 59,
             "section_name": "survey"
           },
           {
@@ -8249,11 +8275,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 16,
+            "_row_num": 17,
             "section_name": "survey"
           },
           {
-            "_row_num": 50,
+            "_row_num": 61,
             "section_name": "survey"
           },
           {
@@ -8268,11 +8294,11 @@
         "valuesList": "month_choice",
         "_defn": [
           {
-            "_row_num": 21,
+            "_row_num": 22,
             "section_name": "survey"
           },
           {
-            "_row_num": 55,
+            "_row_num": 66,
             "section_name": "survey"
           },
           {
@@ -8291,11 +8317,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 23,
+            "_row_num": 24,
             "section_name": "survey"
           },
           {
-            "_row_num": 57,
+            "_row_num": 68,
             "section_name": "survey"
           },
           {
@@ -8310,11 +8336,11 @@
         "valuesList": "year_choice",
         "_defn": [
           {
-            "_row_num": 28,
+            "_row_num": 29,
             "section_name": "survey"
           },
           {
-            "_row_num": 62,
+            "_row_num": 73,
             "section_name": "survey"
           },
           {
@@ -8333,11 +8359,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 30,
+            "_row_num": 31,
             "section_name": "survey"
           },
           {
-            "_row_num": 64,
+            "_row_num": 75,
             "section_name": "survey"
           },
           {
@@ -8351,11 +8377,11 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 32,
+            "_row_num": 35,
             "section_name": "survey"
           },
           {
-            "_row_num": 66,
+            "_row_num": 79,
             "section_name": "survey"
           },
           {
@@ -8374,11 +8400,11 @@
         "valuesList": "approx",
         "_defn": [
           {
-            "_row_num": 33,
+            "_row_num": 36,
             "section_name": "survey"
           },
           {
-            "_row_num": 67,
+            "_row_num": 80,
             "section_name": "survey"
           },
           {
@@ -8393,11 +8419,11 @@
         "valuesList": "gender",
         "_defn": [
           {
-            "_row_num": 35,
+            "_row_num": 39,
             "section_name": "survey"
           },
           {
-            "_row_num": 69,
+            "_row_num": 83,
             "section_name": "survey"
           },
           {
@@ -8412,11 +8438,11 @@
         "valuesList": "resident_status",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 42,
             "section_name": "survey"
           },
           {
-            "_row_num": 70,
+            "_row_num": 84,
             "section_name": "survey"
           },
           {
@@ -8432,11 +8458,11 @@
         "valuesList": "retrieve_extid",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 43,
             "section_name": "survey"
           },
           {
-            "_row_num": 89,
+            "_row_num": 105,
             "section_name": "survey"
           },
           {
@@ -8529,32 +8555,22 @@
         ],
         "elementKey": "member_emigrated_when_date"
       },
-      "member_emigrated_when_num": {
-        "type": "integer",
+      "member_emigrated_when_dmy_ago": {
+        "type": "string",
         "_defn": [
           {
             "_row_num": 33,
             "section_name": "model"
           }
         ],
-        "elementKey": "member_emigrated_when_num"
-      },
-      "member_emigrated_when_dmy_ago": {
-        "type": "string",
-        "_defn": [
-          {
-            "_row_num": 34,
-            "section_name": "model"
-          }
-        ],
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "elementKey": "member_emigrated_when_dmy_ago"
       },
       "emigrated_where": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 35,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -8566,11 +8582,11 @@
         "valuesList": "new_member",
         "_defn": [
           {
-            "_row_num": 4,
+            "_row_num": 3,
             "section_name": "survey"
           },
           {
-            "_row_num": 36,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -8582,40 +8598,26 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 90,
             "section_name": "survey"
           },
           {
-            "_row_num": 37,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
         "elementKey": "new_member_move_in_date"
       },
-      "new_member_move_in_enter": {
-        "type": "integer",
-        "_defn": [
-          {
-            "_row_num": 79,
-            "section_name": "survey"
-          },
-          {
-            "_row_num": 38,
-            "section_name": "model"
-          }
-        ],
-        "elementKey": "new_member_move_in_enter"
-      },
       "new_member_move_in_select": {
         "type": "string",
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 92,
             "section_name": "survey"
           },
           {
-            "_row_num": 39,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
@@ -8626,11 +8628,11 @@
         "valuesList": "in_outside_district",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 95,
             "section_name": "survey"
           },
           {
-            "_row_num": 40,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -8641,11 +8643,11 @@
         "valuesList": "yndk",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 97,
             "section_name": "survey"
           },
           {
-            "_row_num": 41,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -8660,11 +8662,11 @@
         "valuesList": "not_possible",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 107,
             "section_name": "survey"
           },
           {
-            "_row_num": 42,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -8674,7 +8676,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -8690,7 +8692,7 @@
         },
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -8701,7 +8703,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -8716,7 +8718,7 @@
         },
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -8727,7 +8729,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -8738,7 +8740,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -8752,7 +8754,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -8767,7 +8769,7 @@
         },
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -8778,7 +8780,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -8788,7 +8790,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -8799,7 +8801,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -8811,7 +8813,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
@@ -8822,7 +8824,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
@@ -8833,7 +8835,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 54,
             "section_name": "model"
           }
         ],
@@ -8843,7 +8845,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -8854,7 +8856,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -8864,7 +8866,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -8874,7 +8876,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -8885,7 +8887,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -8896,7 +8898,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -8907,7 +8909,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -8922,7 +8924,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -8937,7 +8939,7 @@
         },
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -8948,7 +8950,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -8958,7 +8960,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
@@ -8973,7 +8975,7 @@
         },
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -8984,7 +8986,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -8998,7 +9000,7 @@
         },
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -9009,7 +9011,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -9019,7 +9021,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -9034,7 +9036,7 @@
         },
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -9045,7 +9047,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -9055,7 +9057,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -9066,7 +9068,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -9077,7 +9079,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -9088,7 +9090,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -9103,7 +9105,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -9118,7 +9120,7 @@
         },
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -9129,7 +9131,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -9140,7 +9142,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -9151,7 +9153,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -9162,7 +9164,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -9173,7 +9175,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -9184,7 +9186,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -9195,7 +9197,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -9206,7 +9208,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -9217,7 +9219,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -9227,7 +9229,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -9238,7 +9240,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -9249,7 +9251,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -9264,7 +9266,7 @@
         },
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -9275,7 +9277,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -9286,7 +9288,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -9301,7 +9303,7 @@
         },
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -9312,7 +9314,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -9327,7 +9329,7 @@
         },
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -9338,7 +9340,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -9349,7 +9351,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 100,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
@@ -9497,24 +9499,12 @@
               "prompt": "q12"
             },
             "required": 1,
-            "_row_num": 4,
-            "__rowNum__": 3,
+            "_row_num": 3,
+            "__rowNum__": 2,
             "_token_type": "prompt",
             "_type": "select_one",
             "_branch_label_enclosing_screen": "survey/_screen3",
             "promptIdx": 1
-          },
-          {
-            "type": "note",
-            "display": {
-              "prompt": "if_newborn"
-            },
-            "_row_num": 6,
-            "__rowNum__": 5,
-            "_token_type": "prompt",
-            "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 2
           },
           {
             "type": "text",
@@ -9525,12 +9515,12 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('name'))",
-            "_row_num": 7,
-            "__rowNum__": 6,
+            "_row_num": 6,
+            "__rowNum__": 5,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 3
+            "_branch_label_enclosing_screen": "survey/_screen5",
+            "promptIdx": 2
           },
           {
             "type": "text",
@@ -9541,24 +9531,24 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('surname'))",
-            "_row_num": 8,
-            "__rowNum__": 7,
+            "_row_num": 7,
+            "__rowNum__": 6,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 4
+            "_branch_label_enclosing_screen": "survey/_screen5",
+            "promptIdx": 3
           },
           {
             "type": "note",
             "display": {
               "prompt": "q15"
             },
-            "_row_num": 9,
-            "__rowNum__": 8,
+            "_row_num": 10,
+            "__rowNum__": 9,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 5
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 4
           },
           {
             "type": "note",
@@ -9566,12 +9556,12 @@
               "prompt": "day",
               "hint": "dob_hint"
             },
-            "_row_num": 10,
-            "__rowNum__": 9,
+            "_row_num": 11,
+            "__rowNum__": 10,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 6
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 5
           },
           {
             "type": "select_one_integer",
@@ -9585,24 +9575,24 @@
             "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 14,
-            "__rowNum__": 13,
+            "_row_num": 15,
+            "__rowNum__": 14,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 7
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 6
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_day_dk",
             "hideInContents": 1,
-            "_row_num": 16,
-            "__rowNum__": 15,
+            "_row_num": 17,
+            "__rowNum__": 16,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 8
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 7
           },
           {
             "type": "note",
@@ -9610,12 +9600,12 @@
               "prompt": "month",
               "hint": "month_hint"
             },
-            "_row_num": 17,
-            "__rowNum__": 16,
+            "_row_num": 18,
+            "__rowNum__": 17,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 9
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 8
           },
           {
             "type": "select_one_integer",
@@ -9627,24 +9617,24 @@
             },
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 21,
-            "__rowNum__": 20,
+            "_row_num": 22,
+            "__rowNum__": 21,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 10
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 9
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_month_dk",
             "hideInContents": 1,
-            "_row_num": 23,
-            "__rowNum__": 22,
+            "_row_num": 24,
+            "__rowNum__": 23,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 11
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 10
           },
           {
             "type": "note",
@@ -9652,12 +9642,12 @@
               "prompt": "year",
               "hint": "year_hint_new_born"
             },
-            "_row_num": 24,
-            "__rowNum__": 23,
+            "_row_num": 25,
+            "__rowNum__": 24,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 12
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 11
           },
           {
             "type": "select_one_integer",
@@ -9672,24 +9662,24 @@
             "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 28,
-            "__rowNum__": 27,
+            "_row_num": 29,
+            "__rowNum__": 28,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 13
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 12
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_year_dk",
             "hideInContents": 1,
-            "_row_num": 30,
-            "__rowNum__": 29,
+            "_row_num": 31,
+            "__rowNum__": 30,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 14
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 13
           },
           {
             "type": "integer",
@@ -9702,24 +9692,24 @@
               "min": 0,
               "step": 1
             },
-            "_row_num": 32,
-            "__rowNum__": 31,
+            "_row_num": 35,
+            "__rowNum__": 34,
             "_token_type": "prompt",
             "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 15
+            "_branch_label_enclosing_screen": "survey/_screen34",
+            "promptIdx": 14
           },
           {
             "type": "select_multiple",
             "values_list": "approx",
             "name": "dob_enter_age_approx",
             "hideInContents": 1,
-            "_row_num": 33,
-            "__rowNum__": 32,
+            "_row_num": 36,
+            "__rowNum__": 35,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 16
+            "_branch_label_enclosing_screen": "survey/_screen34",
+            "promptIdx": 15
           },
           {
             "type": "select_one",
@@ -9728,12 +9718,12 @@
             "display": {
               "prompt": "q15b"
             },
-            "_row_num": 35,
-            "__rowNum__": 34,
+            "_row_num": 39,
+            "__rowNum__": 38,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 17
+            "_branch_label_enclosing_screen": "survey/_screen39",
+            "promptIdx": 16
           },
           {
             "type": "select_one",
@@ -9744,12 +9734,12 @@
               "hint": "q16.hint"
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
-            "_row_num": 36,
-            "__rowNum__": 35,
+            "_row_num": 42,
+            "__rowNum__": 41,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 18
+            "_branch_label_enclosing_screen": "survey/_screen40",
+            "promptIdx": 17
           },
           {
             "type": "text",
@@ -9759,24 +9749,12 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
-            "_row_num": 37,
-            "__rowNum__": 36,
+            "_row_num": 43,
+            "__rowNum__": 42,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 19
-          },
-          {
-            "type": "note",
-            "display": {
-              "prompt": "if_moved_in"
-            },
-            "_row_num": 40,
-            "__rowNum__": 39,
-            "_token_type": "prompt",
-            "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 20
+            "_branch_label_enclosing_screen": "survey/_screen40",
+            "promptIdx": 18
           },
           {
             "type": "text",
@@ -9787,12 +9765,12 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('name'))",
-            "_row_num": 41,
-            "__rowNum__": 40,
+            "_row_num": 50,
+            "__rowNum__": 49,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 21
+            "_branch_label_enclosing_screen": "survey/_screen49",
+            "promptIdx": 19
           },
           {
             "type": "text",
@@ -9803,24 +9781,24 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('surname'))",
-            "_row_num": 42,
-            "__rowNum__": 41,
+            "_row_num": 51,
+            "__rowNum__": 50,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 22
+            "_branch_label_enclosing_screen": "survey/_screen49",
+            "promptIdx": 20
           },
           {
             "type": "note",
             "display": {
               "prompt": "q19"
             },
-            "_row_num": 43,
-            "__rowNum__": 42,
+            "_row_num": 54,
+            "__rowNum__": 53,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 23
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 21
           },
           {
             "type": "note",
@@ -9828,12 +9806,12 @@
               "prompt": "day",
               "hint": "dob_hint"
             },
-            "_row_num": 44,
-            "__rowNum__": 43,
+            "_row_num": 55,
+            "__rowNum__": 54,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 24
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 22
           },
           {
             "type": "select_one_integer",
@@ -9847,24 +9825,24 @@
             "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 48,
-            "__rowNum__": 47,
+            "_row_num": 59,
+            "__rowNum__": 58,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 25
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 23
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_day_dk",
             "hideInContents": 1,
-            "_row_num": 50,
-            "__rowNum__": 49,
+            "_row_num": 61,
+            "__rowNum__": 60,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 26
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 24
           },
           {
             "type": "note",
@@ -9872,12 +9850,12 @@
               "prompt": "month",
               "hint": "month_hint"
             },
-            "_row_num": 51,
-            "__rowNum__": 50,
+            "_row_num": 62,
+            "__rowNum__": 61,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 27
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 25
           },
           {
             "type": "select_one_integer",
@@ -9889,24 +9867,24 @@
             },
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 55,
-            "__rowNum__": 54,
+            "_row_num": 66,
+            "__rowNum__": 65,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 28
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 26
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_month_dk",
             "hideInContents": 1,
-            "_row_num": 57,
-            "__rowNum__": 56,
+            "_row_num": 68,
+            "__rowNum__": 67,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 29
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 27
           },
           {
             "type": "note",
@@ -9914,12 +9892,12 @@
               "prompt": "year",
               "hint": "year_hint"
             },
-            "_row_num": 58,
-            "__rowNum__": 57,
+            "_row_num": 69,
+            "__rowNum__": 68,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 30
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 28
           },
           {
             "type": "select_one_integer",
@@ -9933,24 +9911,24 @@
             "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
-            "_row_num": 62,
-            "__rowNum__": 61,
+            "_row_num": 73,
+            "__rowNum__": 72,
             "_token_type": "prompt",
             "_type": "select_one_integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 31
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 29
           },
           {
             "type": "select_multiple",
             "values_list": "dk",
             "name": "dob_year_dk",
             "hideInContents": 1,
-            "_row_num": 64,
-            "__rowNum__": 63,
+            "_row_num": 75,
+            "__rowNum__": 74,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 32
+            "_branch_label_enclosing_screen": "survey/_screen53",
+            "promptIdx": 30
           },
           {
             "type": "integer",
@@ -9963,24 +9941,24 @@
               "min": 0,
               "step": 1
             },
-            "_row_num": 66,
-            "__rowNum__": 65,
+            "_row_num": 79,
+            "__rowNum__": 78,
             "_token_type": "prompt",
             "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 33
+            "_branch_label_enclosing_screen": "survey/_screen78",
+            "promptIdx": 31
           },
           {
             "type": "select_multiple",
             "values_list": "approx",
             "name": "dob_enter_age_approx",
             "hideInContents": 1,
-            "_row_num": 67,
-            "__rowNum__": 66,
+            "_row_num": 80,
+            "__rowNum__": 79,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 34
+            "_branch_label_enclosing_screen": "survey/_screen78",
+            "promptIdx": 32
           },
           {
             "type": "select_one",
@@ -9989,12 +9967,12 @@
             "display": {
               "prompt": "q20"
             },
-            "_row_num": 69,
-            "__rowNum__": 68,
+            "_row_num": 83,
+            "__rowNum__": 82,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 35
+            "_branch_label_enclosing_screen": "survey/_screen83",
+            "promptIdx": 33
           },
           {
             "type": "select_one",
@@ -10004,24 +9982,24 @@
               "prompt": "q21",
               "hint": "q21.hint"
             },
-            "_row_num": 70,
-            "__rowNum__": 69,
+            "_row_num": 84,
+            "__rowNum__": 83,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 36
+            "_branch_label_enclosing_screen": "survey/_screen84",
+            "promptIdx": 34
           },
           {
             "type": "note",
             "display": {
               "prompt": "q22"
             },
-            "_row_num": 71,
-            "__rowNum__": 70,
+            "_row_num": 86,
+            "__rowNum__": 85,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 37
+            "_branch_label_enclosing_screen": "survey/_screen85",
+            "promptIdx": 35
           },
           {
             "type": "birth_date",
@@ -10031,40 +10009,23 @@
               "constraint_message": "err_future_date"
             },
             "constraint": "!data('new_member_move_in_date') || !data('new_member_move_in_date').isAfter()",
-            "_row_num": 77,
-            "__rowNum__": 76,
+            "_row_num": 90,
+            "__rowNum__": 89,
             "_token_type": "prompt",
             "_type": "birth_date",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 38
+            "_branch_label_enclosing_screen": "survey/_screen85",
+            "promptIdx": 36
           },
           {
-            "type": "integer",
-            "name": "new_member_move_in_enter",
-            "display": {
-              "prompt": "days_weeks_months_dk"
-            },
-            "inputAttributes": {
-              "min": 0,
-              "step": 1
-            },
-            "_row_num": 79,
-            "__rowNum__": 78,
-            "_token_type": "prompt",
-            "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 39
-          },
-          {
-            "type": "select_one_dropdown",
-            "values_list": "dmy_ago_dk",
+            "type": "select_one",
+            "values_list": "dk",
             "name": "new_member_move_in_select",
-            "_row_num": 82,
-            "__rowNum__": 81,
+            "_row_num": 92,
+            "__rowNum__": 91,
             "_token_type": "prompt",
-            "_type": "select_one_dropdown",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 40
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen85",
+            "promptIdx": 37
           },
           {
             "type": "select_one",
@@ -10073,12 +10034,12 @@
             "display": {
               "prompt": "q23"
             },
-            "_row_num": 83,
-            "__rowNum__": 82,
+            "_row_num": 95,
+            "__rowNum__": 94,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 41
+            "_branch_label_enclosing_screen": "survey/_screen94",
+            "promptIdx": 38
           },
           {
             "type": "select_one",
@@ -10087,24 +10048,24 @@
             "display": {
               "prompt": "q23a"
             },
-            "_row_num": 85,
-            "__rowNum__": 84,
+            "_row_num": 97,
+            "__rowNum__": 96,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 42
+            "_branch_label_enclosing_screen": "survey/_screen94",
+            "promptIdx": 39
           },
           {
             "type": "note",
             "display": {
               "prompt": "q23ai"
             },
-            "_row_num": 87,
-            "__rowNum__": 86,
+            "_row_num": 102,
+            "__rowNum__": 101,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 43
+            "_branch_label_enclosing_screen": "survey/_screen101",
+            "promptIdx": 40
           },
           {
             "type": "retrieve_extid",
@@ -10113,65 +10074,65 @@
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
             "hideInContents": 1,
-            "_row_num": 89,
-            "__rowNum__": 88,
+            "_row_num": 105,
+            "__rowNum__": 104,
             "_token_type": "prompt",
             "_type": "retrieve_extid",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 44
+            "_branch_label_enclosing_screen": "survey/_screen101",
+            "promptIdx": 41
           },
           {
             "type": "select_multiple",
             "values_list": "not_possible",
             "name": "move_from_census_extid_not_possible",
             "hideInContents": 1,
-            "_row_num": 91,
-            "__rowNum__": 90,
+            "_row_num": 107,
+            "__rowNum__": 106,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 45
+            "_branch_label_enclosing_screen": "survey/_screen101",
+            "promptIdx": 42
           },
           {
             "type": "note",
             "display": {
               "prompt": "assigned_extid"
             },
-            "_row_num": 95,
-            "__rowNum__": 94,
+            "_row_num": 113,
+            "__rowNum__": 112,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 46
+            "_branch_label_enclosing_screen": "survey/_screen111",
+            "promptIdx": 43
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 102,
-            "_branch_label_enclosing_screen": "survey/_screen102",
-            "promptIdx": 47
+            "_row_num": 117,
+            "_branch_label_enclosing_screen": "survey/_screen117",
+            "promptIdx": 44
           }
         ],
         "validation_tag_map": {
           "finalize": [
             1,
+            2,
             3,
-            4,
-            7,
-            10,
-            13,
-            15,
+            6,
+            9,
+            12,
+            14,
+            17,
             18,
             19,
-            21,
-            22,
-            25,
-            28,
+            20,
+            23,
+            26,
+            29,
             31,
-            33,
-            38,
-            44
+            36,
+            41
           ]
         },
         "operations": [
@@ -10182,46 +10143,382 @@
             "operationIdx": 0
           },
           {
-            "clause": "begin screen",
             "_row_num": 3,
-            "__rowNum__": 2,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "if // new_born",
+            "condition": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "goto_label",
+            "_tag_name": "new_born",
+            "_branch_label": "_then4",
+            "operationIdx": 2
+          },
+          {
+            "clause": "end if // new_born",
+            "_token_type": "goto_label",
+            "_branch_label": "_else45",
+            "_row_num": 45,
+            "operationIdx": 3
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 5,
+            "__rowNum__": 4,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 101,
-              "__rowNum__": 100,
+              "_row_num": 8,
+              "__rowNum__": 7,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('new_member_newborn_or_moved_in'), 'newborn')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(10);\n}\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(13);\n}\nactivePromptIndicies.push(14);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(15);\nactivePromptIndicies.push(16);\n}\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\nactivePromptIndicies.push(19);\n}\nif (selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')) {\nactivePromptIndicies.push(20);\nactivePromptIndicies.push(21);\nactivePromptIndicies.push(22);\nactivePromptIndicies.push(23);\nactivePromptIndicies.push(24);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(25);\n}\nactivePromptIndicies.push(26);\nactivePromptIndicies.push(27);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(28);\n}\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(31);\n}\nactivePromptIndicies.push(32);\nif (selected(data('dob_year_dk'), 'dk')) {\nactivePromptIndicies.push(33);\nactivePromptIndicies.push(34);\n}\nactivePromptIndicies.push(35);\nactivePromptIndicies.push(36);\nactivePromptIndicies.push(37);\nif (selected(data('new_member_move_in_select'), 'dk')) {\nassign('new_member_move_in_enter', null);\nassign('new_member_move_in_date', null);\n}\nelse {\nif (selected(data('new_member_move_in_select'), 'date')) {\nactivePromptIndicies.push(38);\n}\nelse {\nactivePromptIndicies.push(39);\n}\n}\nactivePromptIndicies.push(40);\nactivePromptIndicies.push(41);\nif (selected(data('move_from'),  'in_district')) {\nactivePromptIndicies.push(42);\nif (selected(data('move_from_district_census'), 'yes')) {\nactivePromptIndicies.push(43);\nif (not(selected(data('move_from_census_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(44);\n}\nactivePromptIndicies.push(45);\n}\n}\nif (selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')) {\nactivePromptIndicies.push(46);\n}\n}\nif (selected(data('new_member_newborn_or_moved_in'), 'newborn') || selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 1
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 32,
+              "__rowNum__": 31,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(6);\n}\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(9);\n}\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(12);\n}\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('dob_year_dk'), 'dk')",
+            "_row_num": 33,
+            "__rowNum__": 32,
+            "_token_type": "goto_label",
+            "_branch_label": "_then33",
+            "operationIdx": 6
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else38",
+            "_row_num": 38,
+            "operationIdx": 7
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 34,
+            "__rowNum__": 33,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 37,
+              "__rowNum__": 36,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 8
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif38",
+            "_row_num": 38,
+            "operationIdx": 9
+          },
+          {
+            "_row_num": 39,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 10
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 40,
+            "__rowNum__": 39,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 44,
+              "__rowNum__": 43,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('id', data('id_candidate')[data('resident_status')]);\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 11
+          },
+          {
+            "clause": "end if // new_born",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif45",
+            "_row_num": 45,
+            "operationIdx": 12
+          },
+          {
+            "clause": "if // moved_in",
+            "condition": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
+            "_row_num": 48,
+            "__rowNum__": 47,
+            "_token_type": "goto_label",
+            "_tag_name": "moved_in",
+            "_branch_label": "_then48",
+            "operationIdx": 13
+          },
+          {
+            "clause": "end if // moved_in",
+            "_token_type": "goto_label",
+            "_branch_label": "_else116",
+            "_row_num": 116,
+            "operationIdx": 14
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 49,
+            "__rowNum__": 48,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 52,
+              "__rowNum__": 51,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\nactivePromptIndicies.push(20);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 15
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 53,
+            "__rowNum__": 52,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 76,
+              "__rowNum__": 75,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(21);\nactivePromptIndicies.push(22);\nif (selected(data('dob_day_dk'), 'dk')) {\nassign('dob_day', null);\n}\nelse {\nactivePromptIndicies.push(23);\n}\nactivePromptIndicies.push(24);\nactivePromptIndicies.push(25);\nif (selected(data('dob_month_dk'), 'dk')) {\nassign('dob_month', null);\n}\nelse {\nactivePromptIndicies.push(26);\n}\nactivePromptIndicies.push(27);\nactivePromptIndicies.push(28);\nif (selected(data('dob_year_dk'), 'dk')) {\nassign('dob_year', null);\n}\nelse {\nactivePromptIndicies.push(29);\n}\nactivePromptIndicies.push(30);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 16
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('dob_year_dk'), 'dk')",
+            "_row_num": 77,
+            "__rowNum__": 76,
+            "_token_type": "goto_label",
+            "_branch_label": "_then77",
+            "operationIdx": 17
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else82",
+            "_row_num": 82,
+            "operationIdx": 18
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 78,
+            "__rowNum__": 77,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 81,
+              "__rowNum__": 80,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(31);\nactivePromptIndicies.push(32);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 19
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif82",
+            "_row_num": 82,
+            "operationIdx": 20
+          },
+          {
+            "_row_num": 83,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(33);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 21
+          },
+          {
+            "_row_num": 84,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(34);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 22
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 85,
+            "__rowNum__": 84,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 93,
+              "__rowNum__": 92,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(35);\nif (selected(data('new_member_move_in_select'), 'dk')) {\nassign('new_member_move_in_date', null);\n}\nelse {\nactivePromptIndicies.push(36);\n}\nactivePromptIndicies.push(37);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 23
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 94,
+            "__rowNum__": 93,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 99,
+              "__rowNum__": 98,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(38);\nif (selected(data('move_from'),  'in_district')) {\nactivePromptIndicies.push(39);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 24
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('move_from_district_census'), 'yes')",
+            "_row_num": 100,
+            "__rowNum__": 99,
+            "_token_type": "goto_label",
+            "_branch_label": "_then100",
+            "operationIdx": 25
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else109",
+            "_row_num": 109,
+            "operationIdx": 26
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 101,
+            "__rowNum__": 100,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 108,
+              "__rowNum__": 107,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(40);\nif (selected(data('move_from_census_extid_not_possible'), 'not_possible')) {\n}\nelse {\nactivePromptIndicies.push(41);\n}\nactivePromptIndicies.push(42);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 27
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif109",
+            "_row_num": 109,
+            "operationIdx": 28
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('move_from'),  'outside_district') || selected(data('move_from'),  'dk') || selected(data('move_from_census_extid_not_possible'), 'not_possible') || selected(data('move_from_district_census'), 'no') || selected(data('move_from_district_census'), 'dk')",
+            "_row_num": 110,
+            "__rowNum__": 109,
+            "_token_type": "goto_label",
+            "_branch_label": "_then110",
+            "operationIdx": 29
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else115",
+            "_row_num": 115,
+            "operationIdx": 30
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 111,
+            "__rowNum__": 110,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 114,
+              "__rowNum__": 113,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('id', data('id_candidate')[data('resident_status')]);\nactivePromptIndicies.push(43);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 31
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif115",
+            "_row_num": 115,
+            "operationIdx": 32
+          },
+          {
+            "clause": "end if // moved_in",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif116",
+            "_row_num": 116,
+            "operationIdx": 33
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 102,
-            "operationIdx": 2
+            "_row_num": 117,
+            "operationIdx": 34
           },
           {
-            "_row_num": 102,
+            "_row_num": 117,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(47);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(44);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 3
+            "operationIdx": 35
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 102,
-            "operationIdx": 4
+            "_row_num": 117,
+            "operationIdx": 36
           }
         ],
         "branch_label_map": {
           "_screen2": 0,
           "_screen3": 1,
-          "_contents": 3,
-          "_screen102": 3
+          "_then4": 4,
+          "_screen5": 4,
+          "_screen9": 5,
+          "_then33": 8,
+          "_screen34": 8,
+          "_else38": 10,
+          "_endif38": 10,
+          "_screen39": 10,
+          "_screen40": 11,
+          "_else45": 13,
+          "_endif45": 13,
+          "_then48": 15,
+          "_screen49": 15,
+          "_screen53": 16,
+          "_then77": 19,
+          "_screen78": 19,
+          "_else82": 21,
+          "_endif82": 21,
+          "_screen83": 21,
+          "_screen84": 22,
+          "_screen85": 23,
+          "_screen94": 24,
+          "_then100": 27,
+          "_screen101": 27,
+          "_else109": 29,
+          "_endif109": 29,
+          "_then110": 31,
+          "_screen111": 31,
+          "_else115": 33,
+          "_endif115": 33,
+          "_else116": 34,
+          "_endif116": 34,
+          "_contents": 35,
+          "_screen117": 35
         }
       }
     },
@@ -10399,11 +10696,11 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 7,
+            "_row_num": 6,
             "section_name": "survey"
           },
           {
-            "_row_num": 41,
+            "_row_num": 50,
             "section_name": "survey"
           },
           {
@@ -10421,11 +10718,11 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 8,
+            "_row_num": 7,
             "section_name": "survey"
           },
           {
-            "_row_num": 42,
+            "_row_num": 51,
             "section_name": "survey"
           },
           {
@@ -10443,11 +10740,11 @@
         "valuesList": "day_choice",
         "_defn": [
           {
-            "_row_num": 14,
+            "_row_num": 15,
             "section_name": "survey"
           },
           {
-            "_row_num": 48,
+            "_row_num": 59,
             "section_name": "survey"
           },
           {
@@ -10473,11 +10770,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 16,
+            "_row_num": 17,
             "section_name": "survey"
           },
           {
-            "_row_num": 50,
+            "_row_num": 61,
             "section_name": "survey"
           },
           {
@@ -10498,11 +10795,11 @@
         "valuesList": "month_choice",
         "_defn": [
           {
-            "_row_num": 21,
+            "_row_num": 22,
             "section_name": "survey"
           },
           {
-            "_row_num": 55,
+            "_row_num": 66,
             "section_name": "survey"
           },
           {
@@ -10528,11 +10825,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 23,
+            "_row_num": 24,
             "section_name": "survey"
           },
           {
-            "_row_num": 57,
+            "_row_num": 68,
             "section_name": "survey"
           },
           {
@@ -10553,11 +10850,11 @@
         "valuesList": "year_choice",
         "_defn": [
           {
-            "_row_num": 28,
+            "_row_num": 29,
             "section_name": "survey"
           },
           {
-            "_row_num": 62,
+            "_row_num": 73,
             "section_name": "survey"
           },
           {
@@ -10583,11 +10880,11 @@
         "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 30,
+            "_row_num": 31,
             "section_name": "survey"
           },
           {
-            "_row_num": 64,
+            "_row_num": 75,
             "section_name": "survey"
           },
           {
@@ -10607,11 +10904,11 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 32,
+            "_row_num": 35,
             "section_name": "survey"
           },
           {
-            "_row_num": 66,
+            "_row_num": 79,
             "section_name": "survey"
           },
           {
@@ -10637,11 +10934,11 @@
         "valuesList": "approx",
         "_defn": [
           {
-            "_row_num": 33,
+            "_row_num": 36,
             "section_name": "survey"
           },
           {
-            "_row_num": 67,
+            "_row_num": 80,
             "section_name": "survey"
           },
           {
@@ -10662,11 +10959,11 @@
         "valuesList": "gender",
         "_defn": [
           {
-            "_row_num": 35,
+            "_row_num": 39,
             "section_name": "survey"
           },
           {
-            "_row_num": 69,
+            "_row_num": 83,
             "section_name": "survey"
           },
           {
@@ -10684,11 +10981,11 @@
         "valuesList": "resident_status",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 42,
             "section_name": "survey"
           },
           {
-            "_row_num": 70,
+            "_row_num": 84,
             "section_name": "survey"
           },
           {
@@ -10707,11 +11004,11 @@
         "valuesList": "retrieve_extid",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 43,
             "section_name": "survey"
           },
           {
-            "_row_num": 89,
+            "_row_num": 105,
             "section_name": "survey"
           },
           {
@@ -10835,28 +11132,15 @@
         "elementSet": "data",
         "elementPath": "member_emigrated_when_date"
       },
-      "member_emigrated_when_num": {
-        "type": "integer",
+      "member_emigrated_when_dmy_ago": {
+        "type": "string",
         "_defn": [
           {
             "_row_num": 33,
             "section_name": "model"
           }
         ],
-        "elementKey": "member_emigrated_when_num",
-        "elementName": "member_emigrated_when_num",
-        "elementSet": "data",
-        "elementPath": "member_emigrated_when_num"
-      },
-      "member_emigrated_when_dmy_ago": {
-        "type": "string",
-        "_defn": [
-          {
-            "_row_num": 34,
-            "section_name": "model"
-          }
-        ],
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "elementKey": "member_emigrated_when_dmy_ago",
         "elementName": "member_emigrated_when_dmy_ago",
         "elementSet": "data",
@@ -10866,7 +11150,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 35,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -10881,11 +11165,11 @@
         "valuesList": "new_member",
         "_defn": [
           {
-            "_row_num": 4,
+            "_row_num": 3,
             "section_name": "survey"
           },
           {
-            "_row_num": 36,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -10900,11 +11184,11 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 90,
             "section_name": "survey"
           },
           {
-            "_row_num": 37,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
@@ -10913,33 +11197,16 @@
         "elementSet": "data",
         "elementPath": "new_member_move_in_date"
       },
-      "new_member_move_in_enter": {
-        "type": "integer",
-        "_defn": [
-          {
-            "_row_num": 79,
-            "section_name": "survey"
-          },
-          {
-            "_row_num": 38,
-            "section_name": "model"
-          }
-        ],
-        "elementKey": "new_member_move_in_enter",
-        "elementName": "new_member_move_in_enter",
-        "elementSet": "data",
-        "elementPath": "new_member_move_in_enter"
-      },
       "new_member_move_in_select": {
         "type": "string",
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 92,
             "section_name": "survey"
           },
           {
-            "_row_num": 39,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
@@ -10953,11 +11220,11 @@
         "valuesList": "in_outside_district",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 95,
             "section_name": "survey"
           },
           {
-            "_row_num": 40,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -10971,11 +11238,11 @@
         "valuesList": "yndk",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 97,
             "section_name": "survey"
           },
           {
-            "_row_num": 41,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -10997,11 +11264,11 @@
         "valuesList": "not_possible",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 107,
             "section_name": "survey"
           },
           {
-            "_row_num": 42,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -11017,7 +11284,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -11040,7 +11307,7 @@
         },
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -11057,7 +11324,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -11079,7 +11346,7 @@
         },
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -11096,7 +11363,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -11110,7 +11377,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -11131,7 +11398,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -11156,7 +11423,7 @@
         },
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -11173,7 +11440,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -11186,7 +11453,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -11200,7 +11467,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -11215,7 +11482,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
@@ -11229,7 +11496,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
@@ -11243,7 +11510,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 54,
             "section_name": "model"
           }
         ],
@@ -11256,7 +11523,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -11270,7 +11537,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -11283,7 +11550,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -11296,7 +11563,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -11310,7 +11577,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -11324,7 +11591,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -11338,7 +11605,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -11360,7 +11627,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -11385,7 +11652,7 @@
         },
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -11402,7 +11669,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -11415,7 +11682,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
@@ -11437,7 +11704,7 @@
         },
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -11454,7 +11721,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -11475,7 +11742,7 @@
         },
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -11492,7 +11759,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -11505,7 +11772,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -11527,7 +11794,7 @@
         },
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -11544,7 +11811,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -11557,7 +11824,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -11571,7 +11838,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -11585,7 +11852,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -11599,7 +11866,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -11621,7 +11888,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -11646,7 +11913,7 @@
         },
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -11663,7 +11930,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -11677,7 +11944,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -11691,7 +11958,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -11705,7 +11972,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -11719,7 +11986,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -11733,7 +12000,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -11747,7 +12014,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -11761,7 +12028,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -11775,7 +12042,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -11788,7 +12055,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -11802,7 +12069,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -11816,7 +12083,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -11838,7 +12105,7 @@
         },
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -11855,7 +12122,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -11869,7 +12136,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -11891,7 +12158,7 @@
         },
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -11908,7 +12175,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -11930,7 +12197,7 @@
         },
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -11947,7 +12214,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -11961,7 +12228,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 100,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
