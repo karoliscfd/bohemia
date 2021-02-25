@@ -373,11 +373,16 @@
       .classList
       .remove('d-none');
 
-    if (!!odkCommon.getSessionVariable('TAB')) {
-      $(odkCommon.getSessionVariable('TAB')).tab('show');
+    var selectedTab = odkCommon.getSessionVariable('TAB');
+    if (!!selectedTab && !document.querySelector(selectedTab + '.active')) {
+      $(selectedTab).tab('show');
     } else {
+      // only register a listener when the screen is on the desired tab already.
+      // when a tab transition is about to take place, register the listener after the transition
       odkCommon.registerListener(actionCallback);
       actionCallback();
     }
+
+    odkData.getOdkDataIf().getResponseJSON();
   });
 })();
