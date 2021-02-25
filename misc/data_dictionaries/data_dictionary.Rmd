@@ -3,13 +3,13 @@ title: "VA refusals form"
 params:
   choice_names_too: no
   include_variable_names: no
-  language: English
+  language: Swahili
   relevant: no
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     latex_engine: xelatex
+  html_document:
+    df_print: paged
 ---
 
 
@@ -32,7 +32,9 @@ library(bohemia)
 ```
 
 
-2020-02-07
+2021-02-24  
+
+V1.0
 
 (... = list of options continues)
 
