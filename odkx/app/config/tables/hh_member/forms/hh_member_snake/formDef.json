@@ -3595,7 +3595,7 @@
       },
       {
         "name": "member_emigrated_when_dmy_ago",
-        "type": "select_one",
+        "type": "select_multiple",
         "valuesList": "dk",
         "_row_num": 33
       },
@@ -3619,7 +3619,7 @@
       },
       {
         "name": "new_member_move_in_select",
-        "type": "select_one",
+        "type": "select_multiple",
         "valuesList": "dk",
         "_row_num": 37
       },
@@ -7881,7 +7881,11 @@
         "elementKey": "member_emigrated_when_date"
       },
       "member_emigrated_when_dmy_ago": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "member_emigrated_when_dmy_ago_items"
+        },
         "_defn": [
           {
             "_row_num": 33,
@@ -7926,7 +7930,11 @@
         "elementKey": "new_member_move_in_date"
       },
       "new_member_move_in_select": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "new_member_move_in_select_items"
+        },
         "_defn": [
           {
             "_row_num": 37,
@@ -9597,7 +9605,15 @@
         "elementPath": "member_emigrated_when_date"
       },
       "member_emigrated_when_dmy_ago": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "member_emigrated_when_dmy_ago_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "member_emigrated_when_dmy_ago.items",
+          "notUnitOfRetention": true
+        },
         "_defn": [
           {
             "_row_num": 33,
@@ -9608,7 +9624,10 @@
         "elementKey": "member_emigrated_when_dmy_ago",
         "elementName": "member_emigrated_when_dmy_ago",
         "elementSet": "data",
-        "elementPath": "member_emigrated_when_dmy_ago"
+        "elementPath": "member_emigrated_when_dmy_ago",
+        "listChildElementKeys": [
+          "member_emigrated_when_dmy_ago_items"
+        ]
       },
       "emigrated_where": {
         "type": "string",
@@ -9654,7 +9673,15 @@
         "elementPath": "new_member_move_in_date"
       },
       "new_member_move_in_select": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "new_member_move_in_select_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "new_member_move_in_select.items",
+          "notUnitOfRetention": true
+        },
         "_defn": [
           {
             "_row_num": 37,
@@ -9665,7 +9692,10 @@
         "elementKey": "new_member_move_in_select",
         "elementName": "new_member_move_in_select",
         "elementSet": "data",
-        "elementPath": "new_member_move_in_select"
+        "elementPath": "new_member_move_in_select",
+        "listChildElementKeys": [
+          "new_member_move_in_select_items"
+        ]
       },
       "move_from": {
         "type": "string",
@@ -10777,6 +10807,22 @@
         "elementName": "items",
         "elementSet": "data",
         "elementPath": "member_died_when_dk.items",
+        "notUnitOfRetention": true
+      },
+      "member_emigrated_when_dmy_ago_items": {
+        "type": "string",
+        "elementKey": "member_emigrated_when_dmy_ago_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "member_emigrated_when_dmy_ago.items",
+        "notUnitOfRetention": true
+      },
+      "new_member_move_in_select_items": {
+        "type": "string",
+        "elementKey": "new_member_move_in_select_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "new_member_move_in_select.items",
         "notUnitOfRetention": true
       },
       "move_from_census_extid_not_possible_items": {

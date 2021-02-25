@@ -20,9 +20,6 @@
         "name": "hh_death_id",
         "display": {
           "prompt": "q65a",
-          "hint": {
-            "text": "ABC-123-700"
-          },
           "constraint_message": "extid_format"
         },
         "constraint": "/^[A-Z]{3}-[0-9]{3}-7[0-9]{2}$/.test(data('hh_death_id'))",
@@ -935,9 +932,6 @@
             "name": "hh_death_id",
             "display": {
               "prompt": "q65a",
-              "hint": {
-                "text": "ABC-123-700"
-              },
               "constraint_message": "extid_format"
             },
             "constraint": "/^[A-Z]{3}-[0-9]{3}-7[0-9]{2}$/.test(data('hh_death_id'))",
