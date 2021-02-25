@@ -125,19 +125,13 @@
       },
       {
         "type": "assign",
-        "name": "member_emigrated_when_num",
+        "name": "member_emigrated_when_date",
         "calculation": "null",
         "_row_num": 22
       },
       {
-        "type": "assign",
-        "name": "member_emigrated_when_date",
-        "calculation": "null",
-        "_row_num": 23
-      },
-      {
         "clause": "else",
-        "_row_num": 24
+        "_row_num": 23
       },
       {
         "type": "birth_date",
@@ -145,40 +139,23 @@
         "inputAttributes": {
           "data-min-year": 2020
         },
-        "constraint": "selected(data('member_emigrated_when_dmy_ago'), 'dk') || !data('member_emigrated_when') || (!data('member_emigrated_when').isBefore('2020-10-01') && !data('member_emigrated_when').isAfter())",
+        "constraint": "!selected(data('member_emigrated_when_dmy_ago'), 'date') || (!data('member_emigrated_when').isBefore('2020-10-01') && !data('member_emigrated_when').isAfter())",
         "display": {
           "constraint_message": "err_emigrate_date"
         },
         "hideInContents": 1,
-        "_row_num": 25
-      },
-      {
-        "type": "integer",
-        "name": "member_emigrated_when_num",
-        "display": {
-          "prompt": "or_enter_num",
-          "constraint_message": "err_emigrate_date_multiple"
-        },
-        "inputAttributes": {
-          "min": 0,
-          "step": 1
-        },
-        "constraint": "selected(data('member_emigrated_when_dmy_ago'), 'dk') || (not(selected(data('member_emigrated_when_dmy_ago'), 'dk')) && (!!data('member_emigrated_when_date') ^ !!data('member_emigrated_when_num')))",
-        "_row_num": 26
+        "_row_num": 24
       },
       {
         "clause": "end if",
-        "_row_num": 27
+        "_row_num": 25
       },
       {
-        "type": "select_one",
-        "values_list": "dmy_ago_dk",
+        "type": "select_multiple",
+        "values_list": "dk",
         "name": "member_emigrated_when_dmy_ago",
-        "display": {
-          "prompt": "days_weeks_months_dk"
-        },
         "hideInContents": 1,
-        "_row_num": 28
+        "_row_num": 26
       },
       {
         "type": "select_one",
@@ -187,15 +164,15 @@
         "display": {
           "prompt": "q10"
         },
-        "_row_num": 29
+        "_row_num": 27
       },
       {
         "clause": "end if",
-        "_row_num": 30
+        "_row_num": 28
       },
       {
         "clause": "end screen",
-        "_row_num": 31
+        "_row_num": 29
       }
     ],
     "choices": [
@@ -913,11 +890,19 @@
       },
       {
         "choice_list_name": "dmy_ago_dk",
+        "data_value": "date",
+        "display": {
+          "title": "date"
+        },
+        "_row_num": 91
+      },
+      {
+        "choice_list_name": "dmy_ago_dk",
         "data_value": "days_ago",
         "display": {
           "title": "days_ago"
         },
-        "_row_num": 91
+        "_row_num": 92
       },
       {
         "choice_list_name": "dmy_ago_dk",
@@ -925,7 +910,7 @@
         "display": {
           "title": "weeks_ago"
         },
-        "_row_num": 92
+        "_row_num": 93
       },
       {
         "choice_list_name": "dmy_ago_dk",
@@ -933,7 +918,7 @@
         "display": {
           "title": "months_ago"
         },
-        "_row_num": 93
+        "_row_num": 94
       },
       {
         "choice_list_name": "dmy_ago_dk",
@@ -941,7 +926,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 94
+        "_row_num": 95
       },
       {
         "choice_list_name": "dwmy",
@@ -949,7 +934,7 @@
         "display": {
           "title": "days"
         },
-        "_row_num": 95
+        "_row_num": 96
       },
       {
         "choice_list_name": "dwmy",
@@ -957,7 +942,7 @@
         "display": {
           "title": "weeks"
         },
-        "_row_num": 96
+        "_row_num": 97
       },
       {
         "choice_list_name": "dwmy",
@@ -965,7 +950,7 @@
         "display": {
           "title": "months"
         },
-        "_row_num": 97
+        "_row_num": 98
       },
       {
         "choice_list_name": "dwmy",
@@ -973,7 +958,7 @@
         "display": {
           "title": "years"
         },
-        "_row_num": 98
+        "_row_num": 99
       },
       {
         "choice_list_name": "form_of_care",
@@ -981,7 +966,7 @@
         "display": {
           "title": "Health_facility"
         },
-        "_row_num": 99
+        "_row_num": 100
       },
       {
         "choice_list_name": "form_of_care",
@@ -989,7 +974,7 @@
         "display": {
           "title": "CHW"
         },
-        "_row_num": 100
+        "_row_num": 101
       },
       {
         "choice_list_name": "form_of_care",
@@ -997,7 +982,7 @@
         "display": {
           "title": "Family_or_friends"
         },
-        "_row_num": 101
+        "_row_num": 102
       },
       {
         "choice_list_name": "form_of_care",
@@ -1005,7 +990,7 @@
         "display": {
           "title": "Informal_drug_vendor"
         },
-        "_row_num": 102
+        "_row_num": 103
       },
       {
         "choice_list_name": "form_of_care",
@@ -1013,7 +998,7 @@
         "display": {
           "title": "Pharmacy"
         },
-        "_row_num": 103
+        "_row_num": 104
       },
       {
         "choice_list_name": "form_of_care",
@@ -1021,7 +1006,7 @@
         "display": {
           "title": "Traditional_healer"
         },
-        "_row_num": 104
+        "_row_num": 105
       },
       {
         "choice_list_name": "form_of_care",
@@ -1029,7 +1014,7 @@
         "display": {
           "title": "Community_leader"
         },
-        "_row_num": 105
+        "_row_num": 106
       },
       {
         "choice_list_name": "form_of_care",
@@ -1037,7 +1022,7 @@
         "display": {
           "title": "Trusted_elderly"
         },
-        "_row_num": 106
+        "_row_num": 107
       },
       {
         "choice_list_name": "form_of_care",
@@ -1045,7 +1030,7 @@
         "display": {
           "title": "Traditional_midwife"
         },
-        "_row_num": 107
+        "_row_num": 108
       },
       {
         "choice_list_name": "gender",
@@ -1053,7 +1038,7 @@
         "display": {
           "title": "male"
         },
-        "_row_num": 108
+        "_row_num": 109
       },
       {
         "choice_list_name": "gender",
@@ -1061,7 +1046,7 @@
         "display": {
           "title": "female"
         },
-        "_row_num": 109
+        "_row_num": 110
       },
       {
         "choice_list_name": "in_outside_district",
@@ -1069,7 +1054,7 @@
         "display": {
           "title": "in_district"
         },
-        "_row_num": 110
+        "_row_num": 111
       },
       {
         "choice_list_name": "in_outside_district",
@@ -1077,7 +1062,7 @@
         "display": {
           "title": "outside_district"
         },
-        "_row_num": 111
+        "_row_num": 112
       },
       {
         "choice_list_name": "in_outside_district",
@@ -1085,7 +1070,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 112
+        "_row_num": 113
       },
       {
         "choice_list_name": "ind_religion",
@@ -1093,7 +1078,7 @@
         "display": {
           "title": "Catholic"
         },
-        "_row_num": 113
+        "_row_num": 114
       },
       {
         "choice_list_name": "ind_religion",
@@ -1101,7 +1086,7 @@
         "display": {
           "title": "Protestant"
         },
-        "_row_num": 114
+        "_row_num": 115
       },
       {
         "choice_list_name": "ind_religion",
@@ -1109,7 +1094,7 @@
         "display": {
           "title": "Anglican"
         },
-        "_row_num": 115
+        "_row_num": 116
       },
       {
         "choice_list_name": "ind_religion",
@@ -1117,7 +1102,7 @@
         "display": {
           "title": "Christian undetermined"
         },
-        "_row_num": 116
+        "_row_num": 117
       },
       {
         "choice_list_name": "ind_religion",
@@ -1125,7 +1110,7 @@
         "display": {
           "title": "Islamic"
         },
-        "_row_num": 117
+        "_row_num": 118
       },
       {
         "choice_list_name": "ind_religion",
@@ -1133,7 +1118,7 @@
         "display": {
           "title": "Hindu"
         },
-        "_row_num": 118
+        "_row_num": 119
       },
       {
         "choice_list_name": "ind_religion",
@@ -1141,7 +1126,7 @@
         "display": {
           "title": "Zionist"
         },
-        "_row_num": 119
+        "_row_num": 120
       },
       {
         "choice_list_name": "ind_religion",
@@ -1149,7 +1134,7 @@
         "display": {
           "title": "Animist"
         },
-        "_row_num": 120
+        "_row_num": 121
       },
       {
         "choice_list_name": "ind_religion",
@@ -1157,7 +1142,7 @@
         "display": {
           "title": "Evangelical"
         },
-        "_row_num": 121
+        "_row_num": 122
       },
       {
         "choice_list_name": "ind_religion",
@@ -1165,7 +1150,7 @@
         "display": {
           "title": "Atheist"
         },
-        "_row_num": 122
+        "_row_num": 123
       },
       {
         "choice_list_name": "ind_religion",
@@ -1173,7 +1158,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 123
+        "_row_num": 124
       },
       {
         "choice_list_name": "ind_religion",
@@ -1181,7 +1166,7 @@
         "display": {
           "title": "pna"
         },
-        "_row_num": 124
+        "_row_num": 125
       },
       {
         "choice_list_name": "ind_religion",
@@ -1189,7 +1174,7 @@
         "display": {
           "title": "other"
         },
-        "_row_num": 125
+        "_row_num": 126
       },
       {
         "choice_list_name": "iptp_current",
@@ -1197,7 +1182,7 @@
         "display": {
           "title": "Yes, already took 1 dose"
         },
-        "_row_num": 126
+        "_row_num": 127
       },
       {
         "choice_list_name": "iptp_current",
@@ -1205,7 +1190,7 @@
         "display": {
           "title": "Yes, already took 2 doses"
         },
-        "_row_num": 127
+        "_row_num": 128
       },
       {
         "choice_list_name": "iptp_current",
@@ -1213,7 +1198,7 @@
         "display": {
           "title": "Yes, already took 3 doses"
         },
-        "_row_num": 128
+        "_row_num": 129
       },
       {
         "choice_list_name": "iptp_current",
@@ -1221,7 +1206,7 @@
         "display": {
           "title": "Yes, already took more than 3 doses"
         },
-        "_row_num": 129
+        "_row_num": 130
       },
       {
         "choice_list_name": "iptp_current",
@@ -1229,7 +1214,7 @@
         "display": {
           "title": "no"
         },
-        "_row_num": 130
+        "_row_num": 131
       },
       {
         "choice_list_name": "iptp_current",
@@ -1237,7 +1222,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 131
+        "_row_num": 132
       },
       {
         "choice_list_name": "itchy",
@@ -1245,7 +1230,7 @@
         "display": {
           "title": "body"
         },
-        "_row_num": 132
+        "_row_num": 133
       },
       {
         "choice_list_name": "itchy",
@@ -1253,7 +1238,7 @@
         "display": {
           "title": "head"
         },
-        "_row_num": 133
+        "_row_num": 134
       },
       {
         "choice_list_name": "itchy",
@@ -1261,7 +1246,7 @@
         "display": {
           "title": "no"
         },
-        "_row_num": 134
+        "_row_num": 135
       },
       {
         "choice_list_name": "itchy",
@@ -1269,7 +1254,7 @@
         "display": {
           "title": "pna"
         },
-        "_row_num": 135
+        "_row_num": 136
       },
       {
         "choice_list_name": "lmp",
@@ -1277,7 +1262,7 @@
         "display": {
           "title": "Less_than_two_weeks_ago"
         },
-        "_row_num": 136
+        "_row_num": 137
       },
       {
         "choice_list_name": "lmp",
@@ -1285,7 +1270,7 @@
         "display": {
           "title": "More_than_two_weeks_ago"
         },
-        "_row_num": 137
+        "_row_num": 138
       },
       {
         "choice_list_name": "lmp",
@@ -1293,7 +1278,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 138
+        "_row_num": 139
       },
       {
         "choice_list_name": "lmp",
@@ -1301,7 +1286,7 @@
         "display": {
           "title": "never"
         },
-        "_row_num": 139
+        "_row_num": 140
       },
       {
         "choice_list_name": "lmp",
@@ -1309,7 +1294,7 @@
         "display": {
           "title": "pna"
         },
-        "_row_num": 140
+        "_row_num": 141
       },
       {
         "choice_list_name": "malaria_no_treatment",
@@ -1317,7 +1302,7 @@
         "display": {
           "title": "Participant didn’t have malaria"
         },
-        "_row_num": 141
+        "_row_num": 142
       },
       {
         "choice_list_name": "malaria_no_treatment",
@@ -1325,7 +1310,7 @@
         "display": {
           "title": "Treatment was not available"
         },
-        "_row_num": 142
+        "_row_num": 143
       },
       {
         "choice_list_name": "malaria_no_treatment",
@@ -1333,7 +1318,7 @@
         "display": {
           "title": "Treatment was not affordable"
         },
-        "_row_num": 143
+        "_row_num": 144
       },
       {
         "choice_list_name": "malaria_no_treatment",
@@ -1341,7 +1326,7 @@
         "display": {
           "title": "Treatment was not deemed necessary"
         },
-        "_row_num": 144
+        "_row_num": 145
       },
       {
         "choice_list_name": "malaria_no_treatment",
@@ -1349,7 +1334,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 145
+        "_row_num": 146
       },
       {
         "choice_list_name": "malaria_test_result",
@@ -1357,7 +1342,7 @@
         "display": {
           "title": "Positive"
         },
-        "_row_num": 146
+        "_row_num": 147
       },
       {
         "choice_list_name": "malaria_test_result",
@@ -1365,7 +1350,7 @@
         "display": {
           "title": "Negative"
         },
-        "_row_num": 147
+        "_row_num": 148
       },
       {
         "choice_list_name": "malaria_test_result",
@@ -1373,7 +1358,7 @@
         "display": {
           "title": "Invalid"
         },
-        "_row_num": 148
+        "_row_num": 149
       },
       {
         "choice_list_name": "malaria_test_result",
@@ -1381,7 +1366,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 149
+        "_row_num": 150
       },
       {
         "choice_list_name": "member_where_now",
@@ -1389,7 +1374,7 @@
         "display": {
           "title": "died"
         },
-        "_row_num": 150
+        "_row_num": 151
       },
       {
         "choice_list_name": "member_where_now",
@@ -1397,7 +1382,7 @@
         "display": {
           "title": "emigrated"
         },
-        "_row_num": 151
+        "_row_num": 152
       },
       {
         "choice_list_name": "month",
@@ -1405,7 +1390,7 @@
         "display": {
           "title": "january"
         },
-        "_row_num": 152
+        "_row_num": 153
       },
       {
         "choice_list_name": "month",
@@ -1413,7 +1398,7 @@
         "display": {
           "title": "february"
         },
-        "_row_num": 153
+        "_row_num": 154
       },
       {
         "choice_list_name": "month",
@@ -1421,7 +1406,7 @@
         "display": {
           "title": "march"
         },
-        "_row_num": 154
+        "_row_num": 155
       },
       {
         "choice_list_name": "month",
@@ -1429,7 +1414,7 @@
         "display": {
           "title": "april"
         },
-        "_row_num": 155
+        "_row_num": 156
       },
       {
         "choice_list_name": "month",
@@ -1437,7 +1422,7 @@
         "display": {
           "title": "may"
         },
-        "_row_num": 156
+        "_row_num": 157
       },
       {
         "choice_list_name": "month",
@@ -1445,7 +1430,7 @@
         "display": {
           "title": "june"
         },
-        "_row_num": 157
+        "_row_num": 158
       },
       {
         "choice_list_name": "month",
@@ -1453,7 +1438,7 @@
         "display": {
           "title": "july"
         },
-        "_row_num": 158
+        "_row_num": 159
       },
       {
         "choice_list_name": "month",
@@ -1461,7 +1446,7 @@
         "display": {
           "title": "august"
         },
-        "_row_num": 159
+        "_row_num": 160
       },
       {
         "choice_list_name": "month",
@@ -1469,7 +1454,7 @@
         "display": {
           "title": "september"
         },
-        "_row_num": 160
+        "_row_num": 161
       },
       {
         "choice_list_name": "month",
@@ -1477,7 +1462,7 @@
         "display": {
           "title": "october"
         },
-        "_row_num": 161
+        "_row_num": 162
       },
       {
         "choice_list_name": "month",
@@ -1485,7 +1470,7 @@
         "display": {
           "title": "november"
         },
-        "_row_num": 162
+        "_row_num": 163
       },
       {
         "choice_list_name": "month",
@@ -1493,7 +1478,7 @@
         "display": {
           "title": "december"
         },
-        "_row_num": 163
+        "_row_num": 164
       },
       {
         "choice_list_name": "month",
@@ -1501,7 +1486,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 164
+        "_row_num": 165
       },
       {
         "choice_list_name": "new_member",
@@ -1509,7 +1494,7 @@
         "display": {
           "title": "newborn"
         },
-        "_row_num": 165
+        "_row_num": 166
       },
       {
         "choice_list_name": "new_member",
@@ -1517,7 +1502,7 @@
         "display": {
           "title": "someone_new_in_the_household"
         },
-        "_row_num": 166
+        "_row_num": 167
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1525,7 +1510,7 @@
         "display": {
           "title": "Malaria"
         },
-        "_row_num": 167
+        "_row_num": 168
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1533,7 +1518,7 @@
         "display": {
           "title": "Respiratory_disease"
         },
-        "_row_num": 168
+        "_row_num": 169
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1541,7 +1526,7 @@
         "display": {
           "title": "Constipation"
         },
-        "_row_num": 169
+        "_row_num": 170
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1549,7 +1534,7 @@
         "display": {
           "title": "Diarrhoea"
         },
-        "_row_num": 170
+        "_row_num": 171
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1557,7 +1542,7 @@
         "display": {
           "title": "Fever"
         },
-        "_row_num": 171
+        "_row_num": 172
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1565,7 +1550,7 @@
         "display": {
           "title": "Injuries_from_an_accident"
         },
-        "_row_num": 172
+        "_row_num": 173
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1573,7 +1558,7 @@
         "display": {
           "title": "Delivery_of_a_baby"
         },
-        "_row_num": 173
+        "_row_num": 174
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1581,7 +1566,7 @@
         "display": {
           "title": "Skin_disease"
         },
-        "_row_num": 174
+        "_row_num": 175
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1589,7 +1574,7 @@
         "display": {
           "title": "Worms"
         },
-        "_row_num": 175
+        "_row_num": 176
       },
       {
         "choice_list_name": "other_recent_disease",
@@ -1597,7 +1582,7 @@
         "display": {
           "title": "other"
         },
-        "_row_num": 176
+        "_row_num": 177
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1605,7 +1590,7 @@
         "display": {
           "title": "Fever"
         },
-        "_row_num": 177
+        "_row_num": 178
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1613,7 +1598,7 @@
         "display": {
           "title": "Vomiting"
         },
-        "_row_num": 178
+        "_row_num": 179
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1621,7 +1606,7 @@
         "display": {
           "title": "Nausea"
         },
-        "_row_num": 179
+        "_row_num": 180
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1629,7 +1614,7 @@
         "display": {
           "title": "Joints_pain"
         },
-        "_row_num": 180
+        "_row_num": 181
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1637,7 +1622,7 @@
         "display": {
           "title": "Dizziness"
         },
-        "_row_num": 181
+        "_row_num": 182
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1645,7 +1630,7 @@
         "display": {
           "title": "Chills-shivers"
         },
-        "_row_num": 182
+        "_row_num": 183
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1653,7 +1638,7 @@
         "display": {
           "title": "Diarrhoea"
         },
-        "_row_num": 183
+        "_row_num": 184
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1661,7 +1646,7 @@
         "display": {
           "title": "Loss_smell"
         },
-        "_row_num": 184
+        "_row_num": 185
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1669,7 +1654,7 @@
         "display": {
           "title": "No_symptoms"
         },
-        "_row_num": 185
+        "_row_num": 186
       },
       {
         "choice_list_name": "other_symptoms",
@@ -1677,7 +1662,7 @@
         "display": {
           "title": "other"
         },
-        "_row_num": 186
+        "_row_num": 187
       },
       {
         "choice_list_name": "parents_alive",
@@ -1685,7 +1670,7 @@
         "display": {
           "title": "both_alive"
         },
-        "_row_num": 187
+        "_row_num": 188
       },
       {
         "choice_list_name": "parents_alive",
@@ -1693,7 +1678,7 @@
         "display": {
           "title": "mother_alive"
         },
-        "_row_num": 188
+        "_row_num": 189
       },
       {
         "choice_list_name": "parents_alive",
@@ -1701,7 +1686,7 @@
         "display": {
           "title": "father_alive"
         },
-        "_row_num": 189
+        "_row_num": 190
       },
       {
         "choice_list_name": "parents_alive",
@@ -1709,7 +1694,7 @@
         "display": {
           "title": "neither_alive"
         },
-        "_row_num": 190
+        "_row_num": 191
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1717,7 +1702,7 @@
         "display": {
           "title": "husband_wife"
         },
-        "_row_num": 191
+        "_row_num": 192
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1725,7 +1710,7 @@
         "display": {
           "title": "son_daughter"
         },
-        "_row_num": 192
+        "_row_num": 193
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1733,7 +1718,7 @@
         "display": {
           "title": "brother_sister"
         },
-        "_row_num": 193
+        "_row_num": 194
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1741,7 +1726,7 @@
         "display": {
           "title": "father_mother"
         },
-        "_row_num": 194
+        "_row_num": 195
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1749,7 +1734,7 @@
         "display": {
           "title": "son_daughterinlaw"
         },
-        "_row_num": 195
+        "_row_num": 196
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1757,7 +1742,7 @@
         "display": {
           "title": "brother_sisterinlaw"
         },
-        "_row_num": 196
+        "_row_num": 197
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1765,7 +1750,7 @@
         "display": {
           "title": "uncle_aunt"
         },
-        "_row_num": 197
+        "_row_num": 198
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1773,7 +1758,7 @@
         "display": {
           "title": "grandson_granddaughter"
         },
-        "_row_num": 198
+        "_row_num": 199
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1781,7 +1766,7 @@
         "display": {
           "title": "stepchild"
         },
-        "_row_num": 199
+        "_row_num": 200
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1789,7 +1774,7 @@
         "display": {
           "title": "adopted_son_daughter"
         },
-        "_row_num": 200
+        "_row_num": 201
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1797,7 +1782,7 @@
         "display": {
           "title": "cousin"
         },
-        "_row_num": 201
+        "_row_num": 202
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1805,7 +1790,7 @@
         "display": {
           "title": "nephew_niece"
         },
-        "_row_num": 202
+        "_row_num": 203
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1813,7 +1798,7 @@
         "display": {
           "title": "unrelated"
         },
-        "_row_num": 203
+        "_row_num": 204
       },
       {
         "choice_list_name": "relation_to_hh_head",
@@ -1821,7 +1806,7 @@
         "display": {
           "title": "other"
         },
-        "_row_num": 204
+        "_row_num": 205
       },
       {
         "choice_list_name": "resident_status",
@@ -1829,7 +1814,7 @@
         "display": {
           "title": "resident"
         },
-        "_row_num": 205
+        "_row_num": 206
       },
       {
         "choice_list_name": "resident_status",
@@ -1837,7 +1822,7 @@
         "display": {
           "title": "non_resident"
         },
-        "_row_num": 206
+        "_row_num": 207
       },
       {
         "choice_list_name": "return_time",
@@ -1845,7 +1830,7 @@
         "display": {
           "title": "today"
         },
-        "_row_num": 207
+        "_row_num": 208
       },
       {
         "choice_list_name": "return_time",
@@ -1853,7 +1838,7 @@
         "display": {
           "title": "tomorrow"
         },
-        "_row_num": 208
+        "_row_num": 209
       },
       {
         "choice_list_name": "return_time",
@@ -1861,7 +1846,7 @@
         "display": {
           "title": "date"
         },
-        "_row_num": 209
+        "_row_num": 210
       },
       {
         "choice_list_name": "return_time",
@@ -1869,31 +1854,31 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 210
+        "_row_num": 211
       },
       {
         "choice_list_name": "time_awake",
         "data_value": ">4h before sunrise",
         "display": {
           "title": ">4h before sunrise"
-        },
-        "_row_num": 211
-      },
-      {
-        "choice_list_name": "time_awake",
-        "data_value": "2-4h before sunrise",
-        "display": {
-          "title": "2-4h before sunrise"
         },
         "_row_num": 212
       },
       {
         "choice_list_name": "time_awake",
+        "data_value": "2-4h before sunrise",
+        "display": {
+          "title": "2-4h before sunrise"
+        },
+        "_row_num": 213
+      },
+      {
+        "choice_list_name": "time_awake",
         "data_value": "1-2h before sunrise",
         "display": {
           "title": "1-2h before sunrise"
         },
-        "_row_num": 213
+        "_row_num": 214
       },
       {
         "choice_list_name": "time_awake",
@@ -1901,31 +1886,31 @@
         "display": {
           "title": "At sunrise"
         },
-        "_row_num": 214
+        "_row_num": 215
       },
       {
         "choice_list_name": "time_bed",
         "data_value": "Before sunset",
         "display": {
           "title": "Before sunset"
-        },
-        "_row_num": 215
-      },
-      {
-        "choice_list_name": "time_bed",
-        "data_value": "At sunset",
-        "display": {
-          "title": "At sunset"
         },
         "_row_num": 216
       },
       {
         "choice_list_name": "time_bed",
+        "data_value": "At sunset",
+        "display": {
+          "title": "At sunset"
+        },
+        "_row_num": 217
+      },
+      {
+        "choice_list_name": "time_bed",
         "data_value": "1-2h after sunset",
         "display": {
           "title": "1-2h after sunset"
         },
-        "_row_num": 217
+        "_row_num": 218
       },
       {
         "choice_list_name": "time_bed",
@@ -1933,7 +1918,7 @@
         "display": {
           "title": "2-4h after sunset"
         },
-        "_row_num": 218
+        "_row_num": 219
       },
       {
         "choice_list_name": "time_bed",
@@ -1941,7 +1926,7 @@
         "display": {
           "title": ">4h after sunset"
         },
-        "_row_num": 219
+        "_row_num": 220
       },
       {
         "choice_list_name": "time_indoors",
@@ -1949,7 +1934,7 @@
         "display": {
           "title": "Before sunset"
         },
-        "_row_num": 220
+        "_row_num": 221
       },
       {
         "choice_list_name": "time_indoors",
@@ -1957,7 +1942,7 @@
         "display": {
           "title": "At sunset"
         },
-        "_row_num": 221
+        "_row_num": 222
       },
       {
         "choice_list_name": "time_indoors",
@@ -1965,7 +1950,7 @@
         "display": {
           "title": "1-2h after sunset"
         },
-        "_row_num": 222
+        "_row_num": 223
       },
       {
         "choice_list_name": "time_indoors",
@@ -1973,7 +1958,7 @@
         "display": {
           "title": "2-4h after sunset"
         },
-        "_row_num": 223
+        "_row_num": 224
       },
       {
         "choice_list_name": "time_indoors",
@@ -1981,7 +1966,7 @@
         "display": {
           "title": ">4h after sunset"
         },
-        "_row_num": 224
+        "_row_num": 225
       },
       {
         "choice_list_name": "time_outdoors",
@@ -1989,7 +1974,7 @@
         "display": {
           "title": ">4h before sunrise"
         },
-        "_row_num": 225
+        "_row_num": 226
       },
       {
         "choice_list_name": "time_outdoors",
@@ -1997,7 +1982,7 @@
         "display": {
           "title": "2-4h before sunrise"
         },
-        "_row_num": 226
+        "_row_num": 227
       },
       {
         "choice_list_name": "time_outdoors",
@@ -2005,7 +1990,7 @@
         "display": {
           "title": "1-2h before sunrise"
         },
-        "_row_num": 227
+        "_row_num": 228
       },
       {
         "choice_list_name": "time_outdoors",
@@ -2013,7 +1998,7 @@
         "display": {
           "title": "At sunrise"
         },
-        "_row_num": 228
+        "_row_num": 229
       },
       {
         "choice_list_name": "travel_countries",
@@ -2021,7 +2006,7 @@
         "display": {
           "title": "Angola"
         },
-        "_row_num": 229
+        "_row_num": 230
       },
       {
         "choice_list_name": "travel_countries",
@@ -2029,7 +2014,7 @@
         "display": {
           "title": "Cameroon"
         },
-        "_row_num": 230
+        "_row_num": 231
       },
       {
         "choice_list_name": "travel_countries",
@@ -2037,7 +2022,7 @@
         "display": {
           "title": "Chad"
         },
-        "_row_num": 231
+        "_row_num": 232
       },
       {
         "choice_list_name": "travel_countries",
@@ -2045,7 +2030,7 @@
         "display": {
           "title": "CAR"
         },
-        "_row_num": 232
+        "_row_num": 233
       },
       {
         "choice_list_name": "travel_countries",
@@ -2053,7 +2038,7 @@
         "display": {
           "title": "Congo"
         },
-        "_row_num": 233
+        "_row_num": 234
       },
       {
         "choice_list_name": "travel_countries",
@@ -2061,7 +2046,7 @@
         "display": {
           "title": "EG"
         },
-        "_row_num": 234
+        "_row_num": 235
       },
       {
         "choice_list_name": "travel_countries",
@@ -2069,7 +2054,7 @@
         "display": {
           "title": "Ethiopia"
         },
-        "_row_num": 235
+        "_row_num": 236
       },
       {
         "choice_list_name": "travel_countries",
@@ -2077,7 +2062,7 @@
         "display": {
           "title": "Gabon"
         },
-        "_row_num": 236
+        "_row_num": 237
       },
       {
         "choice_list_name": "travel_countries",
@@ -2085,7 +2070,7 @@
         "display": {
           "title": "Nigeria"
         },
-        "_row_num": 237
+        "_row_num": 238
       },
       {
         "choice_list_name": "travel_countries",
@@ -2093,7 +2078,7 @@
         "display": {
           "title": "Sudan"
         },
-        "_row_num": 238
+        "_row_num": 239
       },
       {
         "choice_list_name": "travel_countries",
@@ -2101,7 +2086,7 @@
         "display": {
           "title": "none"
         },
-        "_row_num": 239
+        "_row_num": 240
       },
       {
         "choice_list_name": "treatment",
@@ -2109,7 +2094,7 @@
         "display": {
           "title": "Treatment_for_pain"
         },
-        "_row_num": 240
+        "_row_num": 241
       },
       {
         "choice_list_name": "treatment",
@@ -2117,7 +2102,7 @@
         "display": {
           "title": "Contraceptive"
         },
-        "_row_num": 241
+        "_row_num": 242
       },
       {
         "choice_list_name": "treatment",
@@ -2125,7 +2110,7 @@
         "display": {
           "title": "Treatment_for_malaria"
         },
-        "_row_num": 242
+        "_row_num": 243
       },
       {
         "choice_list_name": "treatment",
@@ -2133,7 +2118,7 @@
         "display": {
           "title": "Antihistamine"
         },
-        "_row_num": 243
+        "_row_num": 244
       },
       {
         "choice_list_name": "treatment",
@@ -2141,7 +2126,7 @@
         "display": {
           "title": "Antiretrovirals"
         },
-        "_row_num": 244
+        "_row_num": 245
       },
       {
         "choice_list_name": "treatment",
@@ -2149,7 +2134,7 @@
         "display": {
           "title": "Treatment_for_tuberculosis"
         },
-        "_row_num": 245
+        "_row_num": 246
       },
       {
         "choice_list_name": "treatment",
@@ -2157,7 +2142,7 @@
         "display": {
           "title": "Antibiotic"
         },
-        "_row_num": 246
+        "_row_num": 247
       },
       {
         "choice_list_name": "treatment",
@@ -2165,7 +2150,7 @@
         "display": {
           "title": "Treatment_for_stress"
         },
-        "_row_num": 247
+        "_row_num": 248
       },
       {
         "choice_list_name": "treatment",
@@ -2173,7 +2158,7 @@
         "display": {
           "title": "Treatment_for_mental_illness"
         },
-        "_row_num": 248
+        "_row_num": 249
       },
       {
         "choice_list_name": "treatment",
@@ -2181,7 +2166,7 @@
         "display": {
           "title": "Anti-fungal_treatment"
         },
-        "_row_num": 249
+        "_row_num": 250
       },
       {
         "choice_list_name": "treatment",
@@ -2189,7 +2174,7 @@
         "display": {
           "title": "Treatment_for_epilepsy"
         },
-        "_row_num": 250
+        "_row_num": 251
       },
       {
         "choice_list_name": "treatment",
@@ -2197,7 +2182,7 @@
         "display": {
           "title": "Treatment_for_diarrhoea"
         },
-        "_row_num": 251
+        "_row_num": 252
       },
       {
         "choice_list_name": "treatment",
@@ -2205,7 +2190,7 @@
         "display": {
           "title": "Treatment_for_blood_pressure"
         },
-        "_row_num": 252
+        "_row_num": 253
       },
       {
         "choice_list_name": "treatment",
@@ -2213,7 +2198,7 @@
         "display": {
           "title": "Traditional_medicine"
         },
-        "_row_num": 253
+        "_row_num": 254
       },
       {
         "choice_list_name": "treatment",
@@ -2221,7 +2206,7 @@
         "display": {
           "title": "dk"
         },
-        "_row_num": 254
+        "_row_num": 255
       },
       {
         "choice_list_name": "treatment",
@@ -2229,7 +2214,7 @@
         "display": {
           "title": "pna"
         },
-        "_row_num": 255
+        "_row_num": 256
       },
       {
         "choice_list_name": "treatment",
@@ -2237,7 +2222,7 @@
         "display": {
           "title": "other"
         },
-        "_row_num": 256
+        "_row_num": 257
       },
       {
         "choice_list_name": "treatment",
@@ -2245,7 +2230,7 @@
         "display": {
           "title": "no"
         },
-        "_row_num": 257
+        "_row_num": 258
       },
       {
         "choice_list_name": "day_choice",
@@ -2253,7 +2238,7 @@
         "display": {
           "title": "day_1"
         },
-        "_row_num": 258
+        "_row_num": 259
       },
       {
         "choice_list_name": "day_choice",
@@ -2261,7 +2246,7 @@
         "display": {
           "title": "day_2"
         },
-        "_row_num": 259
+        "_row_num": 260
       },
       {
         "choice_list_name": "day_choice",
@@ -2269,7 +2254,7 @@
         "display": {
           "title": "day_3"
         },
-        "_row_num": 260
+        "_row_num": 261
       },
       {
         "choice_list_name": "day_choice",
@@ -2277,7 +2262,7 @@
         "display": {
           "title": "day_4"
         },
-        "_row_num": 261
+        "_row_num": 262
       },
       {
         "choice_list_name": "day_choice",
@@ -2285,7 +2270,7 @@
         "display": {
           "title": "day_5"
         },
-        "_row_num": 262
+        "_row_num": 263
       },
       {
         "choice_list_name": "day_choice",
@@ -2293,7 +2278,7 @@
         "display": {
           "title": "day_6"
         },
-        "_row_num": 263
+        "_row_num": 264
       },
       {
         "choice_list_name": "day_choice",
@@ -2301,7 +2286,7 @@
         "display": {
           "title": "day_7"
         },
-        "_row_num": 264
+        "_row_num": 265
       },
       {
         "choice_list_name": "day_choice",
@@ -2309,7 +2294,7 @@
         "display": {
           "title": "day_8"
         },
-        "_row_num": 265
+        "_row_num": 266
       },
       {
         "choice_list_name": "day_choice",
@@ -2317,7 +2302,7 @@
         "display": {
           "title": "day_9"
         },
-        "_row_num": 266
+        "_row_num": 267
       },
       {
         "choice_list_name": "day_choice",
@@ -2325,7 +2310,7 @@
         "display": {
           "title": "day_10"
         },
-        "_row_num": 267
+        "_row_num": 268
       },
       {
         "choice_list_name": "day_choice",
@@ -2333,7 +2318,7 @@
         "display": {
           "title": "day_11"
         },
-        "_row_num": 268
+        "_row_num": 269
       },
       {
         "choice_list_name": "day_choice",
@@ -2341,7 +2326,7 @@
         "display": {
           "title": "day_12"
         },
-        "_row_num": 269
+        "_row_num": 270
       },
       {
         "choice_list_name": "day_choice",
@@ -2349,7 +2334,7 @@
         "display": {
           "title": "day_13"
         },
-        "_row_num": 270
+        "_row_num": 271
       },
       {
         "choice_list_name": "day_choice",
@@ -2357,7 +2342,7 @@
         "display": {
           "title": "day_14"
         },
-        "_row_num": 271
+        "_row_num": 272
       },
       {
         "choice_list_name": "day_choice",
@@ -2365,7 +2350,7 @@
         "display": {
           "title": "day_15"
         },
-        "_row_num": 272
+        "_row_num": 273
       },
       {
         "choice_list_name": "day_choice",
@@ -2373,7 +2358,7 @@
         "display": {
           "title": "day_16"
         },
-        "_row_num": 273
+        "_row_num": 274
       },
       {
         "choice_list_name": "day_choice",
@@ -2381,7 +2366,7 @@
         "display": {
           "title": "day_17"
         },
-        "_row_num": 274
+        "_row_num": 275
       },
       {
         "choice_list_name": "day_choice",
@@ -2389,7 +2374,7 @@
         "display": {
           "title": "day_18"
         },
-        "_row_num": 275
+        "_row_num": 276
       },
       {
         "choice_list_name": "day_choice",
@@ -2397,7 +2382,7 @@
         "display": {
           "title": "day_19"
         },
-        "_row_num": 276
+        "_row_num": 277
       },
       {
         "choice_list_name": "day_choice",
@@ -2405,7 +2390,7 @@
         "display": {
           "title": "day_20"
         },
-        "_row_num": 277
+        "_row_num": 278
       },
       {
         "choice_list_name": "day_choice",
@@ -2413,7 +2398,7 @@
         "display": {
           "title": "day_21"
         },
-        "_row_num": 278
+        "_row_num": 279
       },
       {
         "choice_list_name": "day_choice",
@@ -2421,7 +2406,7 @@
         "display": {
           "title": "day_22"
         },
-        "_row_num": 279
+        "_row_num": 280
       },
       {
         "choice_list_name": "day_choice",
@@ -2429,7 +2414,7 @@
         "display": {
           "title": "day_23"
         },
-        "_row_num": 280
+        "_row_num": 281
       },
       {
         "choice_list_name": "day_choice",
@@ -2437,7 +2422,7 @@
         "display": {
           "title": "day_24"
         },
-        "_row_num": 281
+        "_row_num": 282
       },
       {
         "choice_list_name": "day_choice",
@@ -2445,7 +2430,7 @@
         "display": {
           "title": "day_25"
         },
-        "_row_num": 282
+        "_row_num": 283
       },
       {
         "choice_list_name": "day_choice",
@@ -2453,7 +2438,7 @@
         "display": {
           "title": "day_26"
         },
-        "_row_num": 283
+        "_row_num": 284
       },
       {
         "choice_list_name": "day_choice",
@@ -2461,7 +2446,7 @@
         "display": {
           "title": "day_27"
         },
-        "_row_num": 284
+        "_row_num": 285
       },
       {
         "choice_list_name": "day_choice",
@@ -2469,7 +2454,7 @@
         "display": {
           "title": "day_28"
         },
-        "_row_num": 285
+        "_row_num": 286
       },
       {
         "choice_list_name": "day_choice",
@@ -2477,7 +2462,7 @@
         "display": {
           "title": "day_29"
         },
-        "_row_num": 286
+        "_row_num": 287
       },
       {
         "choice_list_name": "day_choice",
@@ -2485,7 +2470,7 @@
         "display": {
           "title": "day_30"
         },
-        "_row_num": 287
+        "_row_num": 288
       },
       {
         "choice_list_name": "day_choice",
@@ -2493,7 +2478,7 @@
         "display": {
           "title": "day_31"
         },
-        "_row_num": 288
+        "_row_num": 289
       },
       {
         "choice_list_name": "month_choice",
@@ -2501,7 +2486,7 @@
         "display": {
           "title": "month_1"
         },
-        "_row_num": 289
+        "_row_num": 290
       },
       {
         "choice_list_name": "month_choice",
@@ -2509,7 +2494,7 @@
         "display": {
           "title": "month_2"
         },
-        "_row_num": 290
+        "_row_num": 291
       },
       {
         "choice_list_name": "month_choice",
@@ -2517,7 +2502,7 @@
         "display": {
           "title": "month_3"
         },
-        "_row_num": 291
+        "_row_num": 292
       },
       {
         "choice_list_name": "month_choice",
@@ -2525,7 +2510,7 @@
         "display": {
           "title": "month_4"
         },
-        "_row_num": 292
+        "_row_num": 293
       },
       {
         "choice_list_name": "month_choice",
@@ -2533,7 +2518,7 @@
         "display": {
           "title": "month_5"
         },
-        "_row_num": 293
+        "_row_num": 294
       },
       {
         "choice_list_name": "month_choice",
@@ -2541,7 +2526,7 @@
         "display": {
           "title": "month_6"
         },
-        "_row_num": 294
+        "_row_num": 295
       },
       {
         "choice_list_name": "month_choice",
@@ -2549,7 +2534,7 @@
         "display": {
           "title": "month_7"
         },
-        "_row_num": 295
+        "_row_num": 296
       },
       {
         "choice_list_name": "month_choice",
@@ -2557,7 +2542,7 @@
         "display": {
           "title": "month_8"
         },
-        "_row_num": 296
+        "_row_num": 297
       },
       {
         "choice_list_name": "month_choice",
@@ -2565,7 +2550,7 @@
         "display": {
           "title": "month_9"
         },
-        "_row_num": 297
+        "_row_num": 298
       },
       {
         "choice_list_name": "month_choice",
@@ -2573,7 +2558,7 @@
         "display": {
           "title": "month_10"
         },
-        "_row_num": 298
+        "_row_num": 299
       },
       {
         "choice_list_name": "month_choice",
@@ -2581,7 +2566,7 @@
         "display": {
           "title": "month_11"
         },
-        "_row_num": 299
+        "_row_num": 300
       },
       {
         "choice_list_name": "month_choice",
@@ -2589,7 +2574,7 @@
         "display": {
           "title": "month_12"
         },
-        "_row_num": 300
+        "_row_num": 301
       },
       {
         "choice_list_name": "year_choice",
@@ -2597,7 +2582,7 @@
         "display": {
           "title": "year_2021"
         },
-        "_row_num": 301
+        "_row_num": 302
       },
       {
         "choice_list_name": "year_choice",
@@ -2605,7 +2590,7 @@
         "display": {
           "title": "year_2020"
         },
-        "_row_num": 302
+        "_row_num": 303
       },
       {
         "choice_list_name": "year_choice",
@@ -2613,7 +2598,7 @@
         "display": {
           "title": "year_2019"
         },
-        "_row_num": 303
+        "_row_num": 304
       },
       {
         "choice_list_name": "year_choice",
@@ -2621,7 +2606,7 @@
         "display": {
           "title": "year_2018"
         },
-        "_row_num": 304
+        "_row_num": 305
       },
       {
         "choice_list_name": "year_choice",
@@ -2629,7 +2614,7 @@
         "display": {
           "title": "year_2017"
         },
-        "_row_num": 305
+        "_row_num": 306
       },
       {
         "choice_list_name": "year_choice",
@@ -2637,7 +2622,7 @@
         "display": {
           "title": "year_2016"
         },
-        "_row_num": 306
+        "_row_num": 307
       },
       {
         "choice_list_name": "year_choice",
@@ -2645,7 +2630,7 @@
         "display": {
           "title": "year_2015"
         },
-        "_row_num": 307
+        "_row_num": 308
       },
       {
         "choice_list_name": "year_choice",
@@ -2653,7 +2638,7 @@
         "display": {
           "title": "year_2014"
         },
-        "_row_num": 308
+        "_row_num": 309
       },
       {
         "choice_list_name": "year_choice",
@@ -2661,7 +2646,7 @@
         "display": {
           "title": "year_2013"
         },
-        "_row_num": 309
+        "_row_num": 310
       },
       {
         "choice_list_name": "year_choice",
@@ -2669,7 +2654,7 @@
         "display": {
           "title": "year_2012"
         },
-        "_row_num": 310
+        "_row_num": 311
       },
       {
         "choice_list_name": "year_choice",
@@ -2677,7 +2662,7 @@
         "display": {
           "title": "year_2011"
         },
-        "_row_num": 311
+        "_row_num": 312
       },
       {
         "choice_list_name": "year_choice",
@@ -2685,7 +2670,7 @@
         "display": {
           "title": "year_2010"
         },
-        "_row_num": 312
+        "_row_num": 313
       },
       {
         "choice_list_name": "year_choice",
@@ -2693,7 +2678,7 @@
         "display": {
           "title": "year_2009"
         },
-        "_row_num": 313
+        "_row_num": 314
       },
       {
         "choice_list_name": "year_choice",
@@ -2701,7 +2686,7 @@
         "display": {
           "title": "year_2008"
         },
-        "_row_num": 314
+        "_row_num": 315
       },
       {
         "choice_list_name": "year_choice",
@@ -2709,7 +2694,7 @@
         "display": {
           "title": "year_2007"
         },
-        "_row_num": 315
+        "_row_num": 316
       },
       {
         "choice_list_name": "year_choice",
@@ -2717,7 +2702,7 @@
         "display": {
           "title": "year_2006"
         },
-        "_row_num": 316
+        "_row_num": 317
       },
       {
         "choice_list_name": "year_choice",
@@ -2725,7 +2710,7 @@
         "display": {
           "title": "year_2005"
         },
-        "_row_num": 317
+        "_row_num": 318
       },
       {
         "choice_list_name": "year_choice",
@@ -2733,7 +2718,7 @@
         "display": {
           "title": "year_2004"
         },
-        "_row_num": 318
+        "_row_num": 319
       },
       {
         "choice_list_name": "year_choice",
@@ -2741,7 +2726,7 @@
         "display": {
           "title": "year_2003"
         },
-        "_row_num": 319
+        "_row_num": 320
       },
       {
         "choice_list_name": "year_choice",
@@ -2749,7 +2734,7 @@
         "display": {
           "title": "year_2002"
         },
-        "_row_num": 320
+        "_row_num": 321
       },
       {
         "choice_list_name": "year_choice",
@@ -2757,7 +2742,7 @@
         "display": {
           "title": "year_2001"
         },
-        "_row_num": 321
+        "_row_num": 322
       },
       {
         "choice_list_name": "year_choice",
@@ -2765,7 +2750,7 @@
         "display": {
           "title": "year_2000"
         },
-        "_row_num": 322
+        "_row_num": 323
       },
       {
         "choice_list_name": "year_choice",
@@ -2773,7 +2758,7 @@
         "display": {
           "title": "year_1999"
         },
-        "_row_num": 323
+        "_row_num": 324
       },
       {
         "choice_list_name": "year_choice",
@@ -2781,7 +2766,7 @@
         "display": {
           "title": "year_1998"
         },
-        "_row_num": 324
+        "_row_num": 325
       },
       {
         "choice_list_name": "year_choice",
@@ -2789,7 +2774,7 @@
         "display": {
           "title": "year_1997"
         },
-        "_row_num": 325
+        "_row_num": 326
       },
       {
         "choice_list_name": "year_choice",
@@ -2797,7 +2782,7 @@
         "display": {
           "title": "year_1996"
         },
-        "_row_num": 326
+        "_row_num": 327
       },
       {
         "choice_list_name": "year_choice",
@@ -2805,7 +2790,7 @@
         "display": {
           "title": "year_1995"
         },
-        "_row_num": 327
+        "_row_num": 328
       },
       {
         "choice_list_name": "year_choice",
@@ -2813,7 +2798,7 @@
         "display": {
           "title": "year_1994"
         },
-        "_row_num": 328
+        "_row_num": 329
       },
       {
         "choice_list_name": "year_choice",
@@ -2821,7 +2806,7 @@
         "display": {
           "title": "year_1993"
         },
-        "_row_num": 329
+        "_row_num": 330
       },
       {
         "choice_list_name": "year_choice",
@@ -2829,7 +2814,7 @@
         "display": {
           "title": "year_1992"
         },
-        "_row_num": 330
+        "_row_num": 331
       },
       {
         "choice_list_name": "year_choice",
@@ -2837,7 +2822,7 @@
         "display": {
           "title": "year_1991"
         },
-        "_row_num": 331
+        "_row_num": 332
       },
       {
         "choice_list_name": "year_choice",
@@ -2845,7 +2830,7 @@
         "display": {
           "title": "year_1990"
         },
-        "_row_num": 332
+        "_row_num": 333
       },
       {
         "choice_list_name": "year_choice",
@@ -2853,7 +2838,7 @@
         "display": {
           "title": "year_1989"
         },
-        "_row_num": 333
+        "_row_num": 334
       },
       {
         "choice_list_name": "year_choice",
@@ -2861,7 +2846,7 @@
         "display": {
           "title": "year_1988"
         },
-        "_row_num": 334
+        "_row_num": 335
       },
       {
         "choice_list_name": "year_choice",
@@ -2869,7 +2854,7 @@
         "display": {
           "title": "year_1987"
         },
-        "_row_num": 335
+        "_row_num": 336
       },
       {
         "choice_list_name": "year_choice",
@@ -2877,7 +2862,7 @@
         "display": {
           "title": "year_1986"
         },
-        "_row_num": 336
+        "_row_num": 337
       },
       {
         "choice_list_name": "year_choice",
@@ -2885,7 +2870,7 @@
         "display": {
           "title": "year_1985"
         },
-        "_row_num": 337
+        "_row_num": 338
       },
       {
         "choice_list_name": "year_choice",
@@ -2893,7 +2878,7 @@
         "display": {
           "title": "year_1984"
         },
-        "_row_num": 338
+        "_row_num": 339
       },
       {
         "choice_list_name": "year_choice",
@@ -2901,7 +2886,7 @@
         "display": {
           "title": "year_1983"
         },
-        "_row_num": 339
+        "_row_num": 340
       },
       {
         "choice_list_name": "year_choice",
@@ -2909,7 +2894,7 @@
         "display": {
           "title": "year_1982"
         },
-        "_row_num": 340
+        "_row_num": 341
       },
       {
         "choice_list_name": "year_choice",
@@ -2917,7 +2902,7 @@
         "display": {
           "title": "year_1981"
         },
-        "_row_num": 341
+        "_row_num": 342
       },
       {
         "choice_list_name": "year_choice",
@@ -2925,7 +2910,7 @@
         "display": {
           "title": "year_1980"
         },
-        "_row_num": 342
+        "_row_num": 343
       },
       {
         "choice_list_name": "year_choice",
@@ -2933,7 +2918,7 @@
         "display": {
           "title": "year_1979"
         },
-        "_row_num": 343
+        "_row_num": 344
       },
       {
         "choice_list_name": "year_choice",
@@ -2941,7 +2926,7 @@
         "display": {
           "title": "year_1978"
         },
-        "_row_num": 344
+        "_row_num": 345
       },
       {
         "choice_list_name": "year_choice",
@@ -2949,7 +2934,7 @@
         "display": {
           "title": "year_1977"
         },
-        "_row_num": 345
+        "_row_num": 346
       },
       {
         "choice_list_name": "year_choice",
@@ -2957,7 +2942,7 @@
         "display": {
           "title": "year_1976"
         },
-        "_row_num": 346
+        "_row_num": 347
       },
       {
         "choice_list_name": "year_choice",
@@ -2965,7 +2950,7 @@
         "display": {
           "title": "year_1975"
         },
-        "_row_num": 347
+        "_row_num": 348
       },
       {
         "choice_list_name": "year_choice",
@@ -2973,7 +2958,7 @@
         "display": {
           "title": "year_1974"
         },
-        "_row_num": 348
+        "_row_num": 349
       },
       {
         "choice_list_name": "year_choice",
@@ -2981,7 +2966,7 @@
         "display": {
           "title": "year_1973"
         },
-        "_row_num": 349
+        "_row_num": 350
       },
       {
         "choice_list_name": "year_choice",
@@ -2989,7 +2974,7 @@
         "display": {
           "title": "year_1972"
         },
-        "_row_num": 350
+        "_row_num": 351
       },
       {
         "choice_list_name": "year_choice",
@@ -2997,7 +2982,7 @@
         "display": {
           "title": "year_1971"
         },
-        "_row_num": 351
+        "_row_num": 352
       },
       {
         "choice_list_name": "year_choice",
@@ -3005,7 +2990,7 @@
         "display": {
           "title": "year_1970"
         },
-        "_row_num": 352
+        "_row_num": 353
       },
       {
         "choice_list_name": "year_choice",
@@ -3013,7 +2998,7 @@
         "display": {
           "title": "year_1969"
         },
-        "_row_num": 353
+        "_row_num": 354
       },
       {
         "choice_list_name": "year_choice",
@@ -3021,7 +3006,7 @@
         "display": {
           "title": "year_1968"
         },
-        "_row_num": 354
+        "_row_num": 355
       },
       {
         "choice_list_name": "year_choice",
@@ -3029,7 +3014,7 @@
         "display": {
           "title": "year_1967"
         },
-        "_row_num": 355
+        "_row_num": 356
       },
       {
         "choice_list_name": "year_choice",
@@ -3037,7 +3022,7 @@
         "display": {
           "title": "year_1966"
         },
-        "_row_num": 356
+        "_row_num": 357
       },
       {
         "choice_list_name": "year_choice",
@@ -3045,7 +3030,7 @@
         "display": {
           "title": "year_1965"
         },
-        "_row_num": 357
+        "_row_num": 358
       },
       {
         "choice_list_name": "year_choice",
@@ -3053,7 +3038,7 @@
         "display": {
           "title": "year_1964"
         },
-        "_row_num": 358
+        "_row_num": 359
       },
       {
         "choice_list_name": "year_choice",
@@ -3061,7 +3046,7 @@
         "display": {
           "title": "year_1963"
         },
-        "_row_num": 359
+        "_row_num": 360
       },
       {
         "choice_list_name": "year_choice",
@@ -3069,7 +3054,7 @@
         "display": {
           "title": "year_1962"
         },
-        "_row_num": 360
+        "_row_num": 361
       },
       {
         "choice_list_name": "year_choice",
@@ -3077,7 +3062,7 @@
         "display": {
           "title": "year_1961"
         },
-        "_row_num": 361
+        "_row_num": 362
       },
       {
         "choice_list_name": "year_choice",
@@ -3085,7 +3070,7 @@
         "display": {
           "title": "year_1960"
         },
-        "_row_num": 362
+        "_row_num": 363
       },
       {
         "choice_list_name": "year_choice",
@@ -3093,7 +3078,7 @@
         "display": {
           "title": "year_1959"
         },
-        "_row_num": 363
+        "_row_num": 364
       },
       {
         "choice_list_name": "year_choice",
@@ -3101,7 +3086,7 @@
         "display": {
           "title": "year_1958"
         },
-        "_row_num": 364
+        "_row_num": 365
       },
       {
         "choice_list_name": "year_choice",
@@ -3109,7 +3094,7 @@
         "display": {
           "title": "year_1957"
         },
-        "_row_num": 365
+        "_row_num": 366
       },
       {
         "choice_list_name": "year_choice",
@@ -3117,7 +3102,7 @@
         "display": {
           "title": "year_1956"
         },
-        "_row_num": 366
+        "_row_num": 367
       },
       {
         "choice_list_name": "year_choice",
@@ -3125,7 +3110,7 @@
         "display": {
           "title": "year_1955"
         },
-        "_row_num": 367
+        "_row_num": 368
       },
       {
         "choice_list_name": "year_choice",
@@ -3133,7 +3118,7 @@
         "display": {
           "title": "year_1954"
         },
-        "_row_num": 368
+        "_row_num": 369
       },
       {
         "choice_list_name": "year_choice",
@@ -3141,7 +3126,7 @@
         "display": {
           "title": "year_1953"
         },
-        "_row_num": 369
+        "_row_num": 370
       },
       {
         "choice_list_name": "year_choice",
@@ -3149,7 +3134,7 @@
         "display": {
           "title": "year_1952"
         },
-        "_row_num": 370
+        "_row_num": 371
       },
       {
         "choice_list_name": "year_choice",
@@ -3157,7 +3142,7 @@
         "display": {
           "title": "year_1951"
         },
-        "_row_num": 371
+        "_row_num": 372
       },
       {
         "choice_list_name": "year_choice",
@@ -3165,7 +3150,7 @@
         "display": {
           "title": "year_1950"
         },
-        "_row_num": 372
+        "_row_num": 373
       },
       {
         "choice_list_name": "year_choice",
@@ -3173,7 +3158,7 @@
         "display": {
           "title": "year_1949"
         },
-        "_row_num": 373
+        "_row_num": 374
       },
       {
         "choice_list_name": "year_choice",
@@ -3181,7 +3166,7 @@
         "display": {
           "title": "year_1948"
         },
-        "_row_num": 374
+        "_row_num": 375
       },
       {
         "choice_list_name": "year_choice",
@@ -3189,7 +3174,7 @@
         "display": {
           "title": "year_1947"
         },
-        "_row_num": 375
+        "_row_num": 376
       },
       {
         "choice_list_name": "year_choice",
@@ -3197,7 +3182,7 @@
         "display": {
           "title": "year_1946"
         },
-        "_row_num": 376
+        "_row_num": 377
       },
       {
         "choice_list_name": "year_choice",
@@ -3205,7 +3190,7 @@
         "display": {
           "title": "year_1945"
         },
-        "_row_num": 377
+        "_row_num": 378
       },
       {
         "choice_list_name": "year_choice",
@@ -3213,7 +3198,7 @@
         "display": {
           "title": "year_1944"
         },
-        "_row_num": 378
+        "_row_num": 379
       },
       {
         "choice_list_name": "year_choice",
@@ -3221,7 +3206,7 @@
         "display": {
           "title": "year_1943"
         },
-        "_row_num": 379
+        "_row_num": 380
       },
       {
         "choice_list_name": "year_choice",
@@ -3229,7 +3214,7 @@
         "display": {
           "title": "year_1942"
         },
-        "_row_num": 380
+        "_row_num": 381
       },
       {
         "choice_list_name": "year_choice",
@@ -3237,7 +3222,7 @@
         "display": {
           "title": "year_1941"
         },
-        "_row_num": 381
+        "_row_num": 382
       },
       {
         "choice_list_name": "year_choice",
@@ -3245,7 +3230,7 @@
         "display": {
           "title": "year_1940"
         },
-        "_row_num": 382
+        "_row_num": 383
       },
       {
         "choice_list_name": "year_choice",
@@ -3253,7 +3238,7 @@
         "display": {
           "title": "year_1939"
         },
-        "_row_num": 383
+        "_row_num": 384
       },
       {
         "choice_list_name": "year_choice",
@@ -3261,7 +3246,7 @@
         "display": {
           "title": "year_1938"
         },
-        "_row_num": 384
+        "_row_num": 385
       },
       {
         "choice_list_name": "year_choice",
@@ -3269,7 +3254,7 @@
         "display": {
           "title": "year_1937"
         },
-        "_row_num": 385
+        "_row_num": 386
       },
       {
         "choice_list_name": "year_choice",
@@ -3277,7 +3262,7 @@
         "display": {
           "title": "year_1936"
         },
-        "_row_num": 386
+        "_row_num": 387
       },
       {
         "choice_list_name": "year_choice",
@@ -3285,7 +3270,7 @@
         "display": {
           "title": "year_1935"
         },
-        "_row_num": 387
+        "_row_num": 388
       },
       {
         "choice_list_name": "year_choice",
@@ -3293,7 +3278,7 @@
         "display": {
           "title": "year_1934"
         },
-        "_row_num": 388
+        "_row_num": 389
       },
       {
         "choice_list_name": "year_choice",
@@ -3301,7 +3286,7 @@
         "display": {
           "title": "year_1933"
         },
-        "_row_num": 389
+        "_row_num": 390
       },
       {
         "choice_list_name": "year_choice",
@@ -3309,7 +3294,7 @@
         "display": {
           "title": "year_1932"
         },
-        "_row_num": 390
+        "_row_num": 391
       },
       {
         "choice_list_name": "year_choice",
@@ -3317,7 +3302,7 @@
         "display": {
           "title": "year_1931"
         },
-        "_row_num": 391
+        "_row_num": 392
       },
       {
         "choice_list_name": "year_choice",
@@ -3325,7 +3310,7 @@
         "display": {
           "title": "year_1930"
         },
-        "_row_num": 392
+        "_row_num": 393
       },
       {
         "choice_list_name": "year_choice",
@@ -3333,7 +3318,7 @@
         "display": {
           "title": "year_1929"
         },
-        "_row_num": 393
+        "_row_num": 394
       },
       {
         "choice_list_name": "year_choice",
@@ -3341,7 +3326,7 @@
         "display": {
           "title": "year_1928"
         },
-        "_row_num": 394
+        "_row_num": 395
       },
       {
         "choice_list_name": "year_choice",
@@ -3349,7 +3334,7 @@
         "display": {
           "title": "year_1927"
         },
-        "_row_num": 395
+        "_row_num": 396
       },
       {
         "choice_list_name": "year_choice",
@@ -3357,7 +3342,7 @@
         "display": {
           "title": "year_1926"
         },
-        "_row_num": 396
+        "_row_num": 397
       },
       {
         "choice_list_name": "year_choice",
@@ -3365,7 +3350,7 @@
         "display": {
           "title": "year_1925"
         },
-        "_row_num": 397
+        "_row_num": 398
       },
       {
         "choice_list_name": "year_choice",
@@ -3373,7 +3358,7 @@
         "display": {
           "title": "year_1924"
         },
-        "_row_num": 398
+        "_row_num": 399
       },
       {
         "choice_list_name": "year_choice",
@@ -3381,7 +3366,7 @@
         "display": {
           "title": "year_1923"
         },
-        "_row_num": 399
+        "_row_num": 400
       },
       {
         "choice_list_name": "year_choice",
@@ -3389,7 +3374,7 @@
         "display": {
           "title": "year_1922"
         },
-        "_row_num": 400
+        "_row_num": 401
       },
       {
         "choice_list_name": "year_choice",
@@ -3397,7 +3382,7 @@
         "display": {
           "title": "year_1921"
         },
-        "_row_num": 401
+        "_row_num": 402
       },
       {
         "choice_list_name": "year_choice",
@@ -3405,7 +3390,7 @@
         "display": {
           "title": "year_1920"
         },
-        "_row_num": 402
+        "_row_num": 403
       }
     ],
     "model": [
@@ -3589,401 +3574,391 @@
         "_row_num": 32
       },
       {
-        "name": "member_emigrated_when_num",
-        "type": "integer",
-        "_row_num": 33
-      },
-      {
         "name": "member_emigrated_when_dmy_ago",
-        "type": "select_one",
-        "valuesList": "dmy_ago_dk",
-        "_row_num": 34
+        "type": "select_multiple",
+        "valuesList": "dk",
+        "_row_num": 33
       },
       {
         "name": "emigrated_where",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 35
+        "_row_num": 34
       },
       {
         "comment": "New Member",
         "name": "new_member_newborn_or_moved_in",
         "type": "select_one",
         "valuesList": "new_member",
-        "_row_num": 36
+        "_row_num": 35
       },
       {
         "name": "new_member_move_in_date",
         "type": "birth_date",
-        "_row_num": 37
-      },
-      {
-        "name": "new_member_move_in_enter",
-        "type": "integer",
-        "_row_num": 38
+        "_row_num": 36
       },
       {
         "name": "new_member_move_in_select",
-        "type": "select_one",
-        "valuesList": "dmy_ago_dk",
-        "_row_num": 39
+        "type": "select_multiple",
+        "valuesList": "dk",
+        "_row_num": 37
       },
       {
         "name": "move_from",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 40
+        "_row_num": 38
       },
       {
         "name": "move_from_district_census",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 41
+        "_row_num": 39
       },
       {
         "name": "move_from_census_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 42
+        "_row_num": 40
       },
       {
         "comment": "New Member (New Household)",
         "name": "new_hh_member_censed",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 43
+        "_row_num": 41
       },
       {
         "name": "new_hh_member_censed_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 44
+        "_row_num": 42
       },
       {
         "comment": "Snake Bites",
         "name": "snake_bite_num_times",
         "type": "integer",
-        "_row_num": 45
+        "_row_num": 43
       },
       {
         "name": "snake_bite_months",
         "type": "select_multiple",
         "valuesList": "month",
-        "_row_num": 46
+        "_row_num": 44
       },
       {
         "name": "snake_bite_miss_work_school",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 47
+        "_row_num": 45
       },
       {
         "name": "snake_bite_miss_work_school_days",
         "type": "integer",
-        "_row_num": 48
+        "_row_num": 46
       },
       {
         "name": "snake_bite_miss_work_school_days_unknown",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 49
+        "_row_num": 47
       },
       {
         "name": "snake_bite_occur",
         "type": "select_multiple",
         "valuesList": "bite_occur",
-        "_row_num": 50
+        "_row_num": 48
       },
       {
         "name": "snake_bite_occur_other",
         "type": "text",
-        "_row_num": 51
+        "_row_num": 49
       },
       {
         "name": "snake_bite_outcome",
         "type": "select_one",
         "valuesList": "bite_outcome",
-        "_row_num": 52
+        "_row_num": 50
       },
       {
         "comment": "Individual Questionnaire",
         "name": "ind_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 53
+        "_row_num": 51
       },
       {
         "name": "ind_sign_assent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 54
+        "_row_num": 52
       },
       {
         "name": "ind_parent_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 55
+        "_row_num": 53
       },
       {
         "name": "ind_parent_sign_who",
         "type": "select_one_dropdown",
-        "_row_num": 56
+        "_row_num": 54
       },
       {
         "name": "ind_under_12_parent_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 57
+        "_row_num": 55
       },
       {
         "name": "ind_under_12_parent_sign_consent_who",
         "type": "select_one_dropdown",
-        "_row_num": 58
+        "_row_num": 56
       },
       {
         "name": "ind_who_respondent",
         "type": "select_one_dropdown",
-        "_row_num": 59
+        "_row_num": 57
       },
       {
         "name": "ind_parents_alive",
         "type": "select_one",
         "valuesList": "parents_alive",
-        "_row_num": 60
+        "_row_num": 58
       },
       {
         "name": "ind_rel_hh_head",
         "type": "select_one",
         "valuesList": "relation_to_hh_head",
-        "_row_num": 61
+        "_row_num": 59
       },
       {
         "name": "ind_religion",
         "type": "select_one",
         "valuesList": "ind_religion",
-        "_row_num": 62
+        "_row_num": 60
       },
       {
         "name": "ind_language",
         "type": "select_one_with_other",
         "valuesList": "ind_main_language",
-        "_row_num": 63
+        "_row_num": 61
       },
       {
         "name": "ind_treatment",
         "type": "select_multiple",
         "valuesList": "treatment",
-        "_row_num": 64
+        "_row_num": 62
       },
       {
         "name": "ind_chronic_disease",
         "type": "select_multiple",
         "valuesList": "chronic_disease",
-        "_row_num": 65
+        "_row_num": 63
       },
       {
         "name": "ind_chronic_disease_other",
         "type": "text",
-        "_row_num": 66
+        "_row_num": 64
       },
       {
         "name": "ind_recent_disease",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 67
+        "_row_num": 65
       },
       {
         "name": "recent_disease_yes",
         "type": "select_multiple",
         "valuesList": "other_recent_disease",
-        "_row_num": 68
+        "_row_num": 66
       },
       {
         "name": "recent_disease_yes_other",
         "type": "text",
-        "_row_num": 69
+        "_row_num": 67
       },
       {
         "name": "recent_disease_symptoms",
         "type": "select_multiple",
         "valuesList": "other_symptoms",
-        "_row_num": 70
+        "_row_num": 68
       },
       {
         "name": "recent_disease_symptoms_other",
         "type": "text",
-        "_row_num": 71
+        "_row_num": 69
       },
       {
         "name": "recent_disease_seek_care",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 72
+        "_row_num": 70
       },
       {
         "name": "recent_disease_care_type",
         "type": "select_multiple",
         "valuesList": "form_of_care",
-        "_row_num": 73
+        "_row_num": 71
       },
       {
         "name": "recent_disease_care_type_other",
         "type": "text",
-        "_row_num": 74
+        "_row_num": 72
       },
       {
         "name": "ind_malaria_test",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 75
+        "_row_num": 73
       },
       {
         "name": "ind_malaria_test_result",
         "type": "select_one",
         "valuesList": "malaria_test_result",
-        "_row_num": 76
+        "_row_num": 74
       },
       {
         "name": "ind_malaria_treatment",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 77
+        "_row_num": 75
       },
       {
         "name": "ind_malaria_treatment_no",
         "type": "select_one",
         "valuesList": "malaria_no_treatment",
-        "_row_num": 78
+        "_row_num": 76
       },
       {
         "name": "ind_deficiency",
         "type": "select_multiple",
         "valuesList": "disability",
-        "_row_num": 79
+        "_row_num": 77
       },
       {
         "name": "ind_itchy",
         "type": "select_multiple",
         "valuesList": "itchy",
-        "_row_num": 80
+        "_row_num": 78
       },
       {
         "name": "ind_tunga",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 81
+        "_row_num": 79
       },
       {
         "name": "ind_bed_bugs",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 82
+        "_row_num": 80
       },
       {
         "name": "ind_worms",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 83
+        "_row_num": 81
       },
       {
         "name": "wra_period",
         "type": "select_one",
         "valuesList": "lmp",
-        "_row_num": 84
+        "_row_num": 82
       },
       {
         "name": "wra_breastfeed",
         "type": "select_one",
         "valuesList": "breastfeed",
-        "_row_num": 85
+        "_row_num": 83
       },
       {
         "name": "wra_pregnant",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 86
+        "_row_num": 84
       },
       {
         "name": "wra_iptp",
         "type": "select_one",
         "valuesList": "iptp_current",
-        "_row_num": 87
+        "_row_num": 85
       },
       {
         "name": "sleep_net_last_night",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 88
+        "_row_num": 86
       },
       {
         "name": "sleep_net_last_night_num",
         "type": "integer",
-        "_row_num": 89
+        "_row_num": 87
       },
       {
         "name": "sleep_net_last_night_num_dk",
         "type": "select_one",
         "valuesList": "dk",
-        "_row_num": 90
+        "_row_num": 88
       },
       {
         "name": "time_indoors",
         "type": "select_one",
         "valuesList": "time_indoors",
-        "_row_num": 91
+        "_row_num": 89
       },
       {
         "name": "time_go_bed",
         "type": "select_one",
         "valuesList": "time_bed",
-        "_row_num": 92
+        "_row_num": 90
       },
       {
         "name": "before_bed_activities",
         "type": "select_multiple",
         "valuesList": "before_bed_activity",
-        "_row_num": 93
+        "_row_num": 91
       },
       {
         "name": "time_get_out_bed",
         "type": "select_one",
         "valuesList": "time_awake",
-        "_row_num": 94
+        "_row_num": 92
       },
       {
         "name": "time_go_outside",
         "type": "select_one",
         "valuesList": "time_outdoors",
-        "_row_num": 95
+        "_row_num": 93
       },
       {
         "name": "what_do_before_sunrise",
         "type": "select_multiple",
         "valuesList": "before_sunrise_activity",
-        "_row_num": 96
+        "_row_num": 94
       },
       {
         "name": "travel_abroad",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 97
+        "_row_num": 95
       },
       {
         "name": "travel_countries",
         "type": "select_multiple",
         "valuesList": "travel_countries",
-        "_row_num": 98
+        "_row_num": 96
       },
       {
         "name": "travel_regularly",
         "type": "select_one",
         "valuesList": "ynpna",
-        "_row_num": 99
+        "_row_num": 97
       },
       {
         "name": "travel_regularly_trips",
         "type": "integer",
-        "_row_num": 100
+        "_row_num": 98
       }
     ],
     "settings": [
@@ -3994,7 +3969,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210223001,
+        "value": 20210224001,
         "_row_num": 3
       },
       {
@@ -4091,7 +4066,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210223001,
+        "value": 20210224001,
         "_row_num": 3
       },
       "table_id": {
@@ -4971,11 +4946,19 @@
       "dmy_ago_dk": [
         {
           "choice_list_name": "dmy_ago_dk",
+          "data_value": "date",
+          "display": {
+            "title": "date"
+          },
+          "_row_num": 91
+        },
+        {
+          "choice_list_name": "dmy_ago_dk",
           "data_value": "days_ago",
           "display": {
             "title": "days_ago"
           },
-          "_row_num": 91
+          "_row_num": 92
         },
         {
           "choice_list_name": "dmy_ago_dk",
@@ -4983,7 +4966,7 @@
           "display": {
             "title": "weeks_ago"
           },
-          "_row_num": 92
+          "_row_num": 93
         },
         {
           "choice_list_name": "dmy_ago_dk",
@@ -4991,7 +4974,7 @@
           "display": {
             "title": "months_ago"
           },
-          "_row_num": 93
+          "_row_num": 94
         },
         {
           "choice_list_name": "dmy_ago_dk",
@@ -4999,7 +4982,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 94
+          "_row_num": 95
         }
       ],
       "dwmy": [
@@ -5009,7 +4992,7 @@
           "display": {
             "title": "days"
           },
-          "_row_num": 95
+          "_row_num": 96
         },
         {
           "choice_list_name": "dwmy",
@@ -5017,7 +5000,7 @@
           "display": {
             "title": "weeks"
           },
-          "_row_num": 96
+          "_row_num": 97
         },
         {
           "choice_list_name": "dwmy",
@@ -5025,7 +5008,7 @@
           "display": {
             "title": "months"
           },
-          "_row_num": 97
+          "_row_num": 98
         },
         {
           "choice_list_name": "dwmy",
@@ -5033,7 +5016,7 @@
           "display": {
             "title": "years"
           },
-          "_row_num": 98
+          "_row_num": 99
         }
       ],
       "form_of_care": [
@@ -5043,7 +5026,7 @@
           "display": {
             "title": "Health_facility"
           },
-          "_row_num": 99
+          "_row_num": 100
         },
         {
           "choice_list_name": "form_of_care",
@@ -5051,7 +5034,7 @@
           "display": {
             "title": "CHW"
           },
-          "_row_num": 100
+          "_row_num": 101
         },
         {
           "choice_list_name": "form_of_care",
@@ -5059,7 +5042,7 @@
           "display": {
             "title": "Family_or_friends"
           },
-          "_row_num": 101
+          "_row_num": 102
         },
         {
           "choice_list_name": "form_of_care",
@@ -5067,7 +5050,7 @@
           "display": {
             "title": "Informal_drug_vendor"
           },
-          "_row_num": 102
+          "_row_num": 103
         },
         {
           "choice_list_name": "form_of_care",
@@ -5075,7 +5058,7 @@
           "display": {
             "title": "Pharmacy"
           },
-          "_row_num": 103
+          "_row_num": 104
         },
         {
           "choice_list_name": "form_of_care",
@@ -5083,7 +5066,7 @@
           "display": {
             "title": "Traditional_healer"
           },
-          "_row_num": 104
+          "_row_num": 105
         },
         {
           "choice_list_name": "form_of_care",
@@ -5091,7 +5074,7 @@
           "display": {
             "title": "Community_leader"
           },
-          "_row_num": 105
+          "_row_num": 106
         },
         {
           "choice_list_name": "form_of_care",
@@ -5099,7 +5082,7 @@
           "display": {
             "title": "Trusted_elderly"
           },
-          "_row_num": 106
+          "_row_num": 107
         },
         {
           "choice_list_name": "form_of_care",
@@ -5107,7 +5090,7 @@
           "display": {
             "title": "Traditional_midwife"
           },
-          "_row_num": 107
+          "_row_num": 108
         }
       ],
       "gender": [
@@ -5117,7 +5100,7 @@
           "display": {
             "title": "male"
           },
-          "_row_num": 108
+          "_row_num": 109
         },
         {
           "choice_list_name": "gender",
@@ -5125,7 +5108,7 @@
           "display": {
             "title": "female"
           },
-          "_row_num": 109
+          "_row_num": 110
         }
       ],
       "in_outside_district": [
@@ -5135,7 +5118,7 @@
           "display": {
             "title": "in_district"
           },
-          "_row_num": 110
+          "_row_num": 111
         },
         {
           "choice_list_name": "in_outside_district",
@@ -5143,7 +5126,7 @@
           "display": {
             "title": "outside_district"
           },
-          "_row_num": 111
+          "_row_num": 112
         },
         {
           "choice_list_name": "in_outside_district",
@@ -5151,7 +5134,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 112
+          "_row_num": 113
         }
       ],
       "ind_religion": [
@@ -5161,7 +5144,7 @@
           "display": {
             "title": "Catholic"
           },
-          "_row_num": 113
+          "_row_num": 114
         },
         {
           "choice_list_name": "ind_religion",
@@ -5169,7 +5152,7 @@
           "display": {
             "title": "Protestant"
           },
-          "_row_num": 114
+          "_row_num": 115
         },
         {
           "choice_list_name": "ind_religion",
@@ -5177,7 +5160,7 @@
           "display": {
             "title": "Anglican"
           },
-          "_row_num": 115
+          "_row_num": 116
         },
         {
           "choice_list_name": "ind_religion",
@@ -5185,7 +5168,7 @@
           "display": {
             "title": "Christian undetermined"
           },
-          "_row_num": 116
+          "_row_num": 117
         },
         {
           "choice_list_name": "ind_religion",
@@ -5193,7 +5176,7 @@
           "display": {
             "title": "Islamic"
           },
-          "_row_num": 117
+          "_row_num": 118
         },
         {
           "choice_list_name": "ind_religion",
@@ -5201,7 +5184,7 @@
           "display": {
             "title": "Hindu"
           },
-          "_row_num": 118
+          "_row_num": 119
         },
         {
           "choice_list_name": "ind_religion",
@@ -5209,7 +5192,7 @@
           "display": {
             "title": "Zionist"
           },
-          "_row_num": 119
+          "_row_num": 120
         },
         {
           "choice_list_name": "ind_religion",
@@ -5217,7 +5200,7 @@
           "display": {
             "title": "Animist"
           },
-          "_row_num": 120
+          "_row_num": 121
         },
         {
           "choice_list_name": "ind_religion",
@@ -5225,7 +5208,7 @@
           "display": {
             "title": "Evangelical"
           },
-          "_row_num": 121
+          "_row_num": 122
         },
         {
           "choice_list_name": "ind_religion",
@@ -5233,7 +5216,7 @@
           "display": {
             "title": "Atheist"
           },
-          "_row_num": 122
+          "_row_num": 123
         },
         {
           "choice_list_name": "ind_religion",
@@ -5241,7 +5224,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 123
+          "_row_num": 124
         },
         {
           "choice_list_name": "ind_religion",
@@ -5249,7 +5232,7 @@
           "display": {
             "title": "pna"
           },
-          "_row_num": 124
+          "_row_num": 125
         },
         {
           "choice_list_name": "ind_religion",
@@ -5257,7 +5240,7 @@
           "display": {
             "title": "other"
           },
-          "_row_num": 125
+          "_row_num": 126
         }
       ],
       "iptp_current": [
@@ -5267,7 +5250,7 @@
           "display": {
             "title": "Yes, already took 1 dose"
           },
-          "_row_num": 126
+          "_row_num": 127
         },
         {
           "choice_list_name": "iptp_current",
@@ -5275,7 +5258,7 @@
           "display": {
             "title": "Yes, already took 2 doses"
           },
-          "_row_num": 127
+          "_row_num": 128
         },
         {
           "choice_list_name": "iptp_current",
@@ -5283,7 +5266,7 @@
           "display": {
             "title": "Yes, already took 3 doses"
           },
-          "_row_num": 128
+          "_row_num": 129
         },
         {
           "choice_list_name": "iptp_current",
@@ -5291,7 +5274,7 @@
           "display": {
             "title": "Yes, already took more than 3 doses"
           },
-          "_row_num": 129
+          "_row_num": 130
         },
         {
           "choice_list_name": "iptp_current",
@@ -5299,7 +5282,7 @@
           "display": {
             "title": "no"
           },
-          "_row_num": 130
+          "_row_num": 131
         },
         {
           "choice_list_name": "iptp_current",
@@ -5307,7 +5290,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 131
+          "_row_num": 132
         }
       ],
       "itchy": [
@@ -5317,7 +5300,7 @@
           "display": {
             "title": "body"
           },
-          "_row_num": 132
+          "_row_num": 133
         },
         {
           "choice_list_name": "itchy",
@@ -5325,7 +5308,7 @@
           "display": {
             "title": "head"
           },
-          "_row_num": 133
+          "_row_num": 134
         },
         {
           "choice_list_name": "itchy",
@@ -5333,7 +5316,7 @@
           "display": {
             "title": "no"
           },
-          "_row_num": 134
+          "_row_num": 135
         },
         {
           "choice_list_name": "itchy",
@@ -5341,7 +5324,7 @@
           "display": {
             "title": "pna"
           },
-          "_row_num": 135
+          "_row_num": 136
         }
       ],
       "lmp": [
@@ -5351,7 +5334,7 @@
           "display": {
             "title": "Less_than_two_weeks_ago"
           },
-          "_row_num": 136
+          "_row_num": 137
         },
         {
           "choice_list_name": "lmp",
@@ -5359,7 +5342,7 @@
           "display": {
             "title": "More_than_two_weeks_ago"
           },
-          "_row_num": 137
+          "_row_num": 138
         },
         {
           "choice_list_name": "lmp",
@@ -5367,7 +5350,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 138
+          "_row_num": 139
         },
         {
           "choice_list_name": "lmp",
@@ -5375,7 +5358,7 @@
           "display": {
             "title": "never"
           },
-          "_row_num": 139
+          "_row_num": 140
         },
         {
           "choice_list_name": "lmp",
@@ -5383,7 +5366,7 @@
           "display": {
             "title": "pna"
           },
-          "_row_num": 140
+          "_row_num": 141
         }
       ],
       "malaria_no_treatment": [
@@ -5393,7 +5376,7 @@
           "display": {
             "title": "Participant didn’t have malaria"
           },
-          "_row_num": 141
+          "_row_num": 142
         },
         {
           "choice_list_name": "malaria_no_treatment",
@@ -5401,7 +5384,7 @@
           "display": {
             "title": "Treatment was not available"
           },
-          "_row_num": 142
+          "_row_num": 143
         },
         {
           "choice_list_name": "malaria_no_treatment",
@@ -5409,7 +5392,7 @@
           "display": {
             "title": "Treatment was not affordable"
           },
-          "_row_num": 143
+          "_row_num": 144
         },
         {
           "choice_list_name": "malaria_no_treatment",
@@ -5417,7 +5400,7 @@
           "display": {
             "title": "Treatment was not deemed necessary"
           },
-          "_row_num": 144
+          "_row_num": 145
         },
         {
           "choice_list_name": "malaria_no_treatment",
@@ -5425,7 +5408,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 145
+          "_row_num": 146
         }
       ],
       "malaria_test_result": [
@@ -5435,7 +5418,7 @@
           "display": {
             "title": "Positive"
           },
-          "_row_num": 146
+          "_row_num": 147
         },
         {
           "choice_list_name": "malaria_test_result",
@@ -5443,7 +5426,7 @@
           "display": {
             "title": "Negative"
           },
-          "_row_num": 147
+          "_row_num": 148
         },
         {
           "choice_list_name": "malaria_test_result",
@@ -5451,7 +5434,7 @@
           "display": {
             "title": "Invalid"
           },
-          "_row_num": 148
+          "_row_num": 149
         },
         {
           "choice_list_name": "malaria_test_result",
@@ -5459,7 +5442,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 149
+          "_row_num": 150
         }
       ],
       "member_where_now": [
@@ -5469,7 +5452,7 @@
           "display": {
             "title": "died"
           },
-          "_row_num": 150
+          "_row_num": 151
         },
         {
           "choice_list_name": "member_where_now",
@@ -5477,7 +5460,7 @@
           "display": {
             "title": "emigrated"
           },
-          "_row_num": 151
+          "_row_num": 152
         }
       ],
       "month": [
@@ -5487,7 +5470,7 @@
           "display": {
             "title": "january"
           },
-          "_row_num": 152
+          "_row_num": 153
         },
         {
           "choice_list_name": "month",
@@ -5495,7 +5478,7 @@
           "display": {
             "title": "february"
           },
-          "_row_num": 153
+          "_row_num": 154
         },
         {
           "choice_list_name": "month",
@@ -5503,7 +5486,7 @@
           "display": {
             "title": "march"
           },
-          "_row_num": 154
+          "_row_num": 155
         },
         {
           "choice_list_name": "month",
@@ -5511,7 +5494,7 @@
           "display": {
             "title": "april"
           },
-          "_row_num": 155
+          "_row_num": 156
         },
         {
           "choice_list_name": "month",
@@ -5519,7 +5502,7 @@
           "display": {
             "title": "may"
           },
-          "_row_num": 156
+          "_row_num": 157
         },
         {
           "choice_list_name": "month",
@@ -5527,7 +5510,7 @@
           "display": {
             "title": "june"
           },
-          "_row_num": 157
+          "_row_num": 158
         },
         {
           "choice_list_name": "month",
@@ -5535,7 +5518,7 @@
           "display": {
             "title": "july"
           },
-          "_row_num": 158
+          "_row_num": 159
         },
         {
           "choice_list_name": "month",
@@ -5543,7 +5526,7 @@
           "display": {
             "title": "august"
           },
-          "_row_num": 159
+          "_row_num": 160
         },
         {
           "choice_list_name": "month",
@@ -5551,7 +5534,7 @@
           "display": {
             "title": "september"
           },
-          "_row_num": 160
+          "_row_num": 161
         },
         {
           "choice_list_name": "month",
@@ -5559,7 +5542,7 @@
           "display": {
             "title": "october"
           },
-          "_row_num": 161
+          "_row_num": 162
         },
         {
           "choice_list_name": "month",
@@ -5567,7 +5550,7 @@
           "display": {
             "title": "november"
           },
-          "_row_num": 162
+          "_row_num": 163
         },
         {
           "choice_list_name": "month",
@@ -5575,7 +5558,7 @@
           "display": {
             "title": "december"
           },
-          "_row_num": 163
+          "_row_num": 164
         },
         {
           "choice_list_name": "month",
@@ -5583,7 +5566,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 164
+          "_row_num": 165
         }
       ],
       "new_member": [
@@ -5593,7 +5576,7 @@
           "display": {
             "title": "newborn"
           },
-          "_row_num": 165
+          "_row_num": 166
         },
         {
           "choice_list_name": "new_member",
@@ -5601,7 +5584,7 @@
           "display": {
             "title": "someone_new_in_the_household"
           },
-          "_row_num": 166
+          "_row_num": 167
         }
       ],
       "other_recent_disease": [
@@ -5611,7 +5594,7 @@
           "display": {
             "title": "Malaria"
           },
-          "_row_num": 167
+          "_row_num": 168
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5619,7 +5602,7 @@
           "display": {
             "title": "Respiratory_disease"
           },
-          "_row_num": 168
+          "_row_num": 169
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5627,7 +5610,7 @@
           "display": {
             "title": "Constipation"
           },
-          "_row_num": 169
+          "_row_num": 170
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5635,7 +5618,7 @@
           "display": {
             "title": "Diarrhoea"
           },
-          "_row_num": 170
+          "_row_num": 171
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5643,7 +5626,7 @@
           "display": {
             "title": "Fever"
           },
-          "_row_num": 171
+          "_row_num": 172
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5651,7 +5634,7 @@
           "display": {
             "title": "Injuries_from_an_accident"
           },
-          "_row_num": 172
+          "_row_num": 173
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5659,7 +5642,7 @@
           "display": {
             "title": "Delivery_of_a_baby"
           },
-          "_row_num": 173
+          "_row_num": 174
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5667,7 +5650,7 @@
           "display": {
             "title": "Skin_disease"
           },
-          "_row_num": 174
+          "_row_num": 175
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5675,7 +5658,7 @@
           "display": {
             "title": "Worms"
           },
-          "_row_num": 175
+          "_row_num": 176
         },
         {
           "choice_list_name": "other_recent_disease",
@@ -5683,7 +5666,7 @@
           "display": {
             "title": "other"
           },
-          "_row_num": 176
+          "_row_num": 177
         }
       ],
       "other_symptoms": [
@@ -5693,7 +5676,7 @@
           "display": {
             "title": "Fever"
           },
-          "_row_num": 177
+          "_row_num": 178
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5701,7 +5684,7 @@
           "display": {
             "title": "Vomiting"
           },
-          "_row_num": 178
+          "_row_num": 179
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5709,7 +5692,7 @@
           "display": {
             "title": "Nausea"
           },
-          "_row_num": 179
+          "_row_num": 180
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5717,7 +5700,7 @@
           "display": {
             "title": "Joints_pain"
           },
-          "_row_num": 180
+          "_row_num": 181
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5725,7 +5708,7 @@
           "display": {
             "title": "Dizziness"
           },
-          "_row_num": 181
+          "_row_num": 182
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5733,7 +5716,7 @@
           "display": {
             "title": "Chills-shivers"
           },
-          "_row_num": 182
+          "_row_num": 183
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5741,7 +5724,7 @@
           "display": {
             "title": "Diarrhoea"
           },
-          "_row_num": 183
+          "_row_num": 184
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5749,7 +5732,7 @@
           "display": {
             "title": "Loss_smell"
           },
-          "_row_num": 184
+          "_row_num": 185
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5757,7 +5740,7 @@
           "display": {
             "title": "No_symptoms"
           },
-          "_row_num": 185
+          "_row_num": 186
         },
         {
           "choice_list_name": "other_symptoms",
@@ -5765,7 +5748,7 @@
           "display": {
             "title": "other"
           },
-          "_row_num": 186
+          "_row_num": 187
         }
       ],
       "parents_alive": [
@@ -5775,7 +5758,7 @@
           "display": {
             "title": "both_alive"
           },
-          "_row_num": 187
+          "_row_num": 188
         },
         {
           "choice_list_name": "parents_alive",
@@ -5783,7 +5766,7 @@
           "display": {
             "title": "mother_alive"
           },
-          "_row_num": 188
+          "_row_num": 189
         },
         {
           "choice_list_name": "parents_alive",
@@ -5791,7 +5774,7 @@
           "display": {
             "title": "father_alive"
           },
-          "_row_num": 189
+          "_row_num": 190
         },
         {
           "choice_list_name": "parents_alive",
@@ -5799,7 +5782,7 @@
           "display": {
             "title": "neither_alive"
           },
-          "_row_num": 190
+          "_row_num": 191
         }
       ],
       "relation_to_hh_head": [
@@ -5809,7 +5792,7 @@
           "display": {
             "title": "husband_wife"
           },
-          "_row_num": 191
+          "_row_num": 192
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5817,7 +5800,7 @@
           "display": {
             "title": "son_daughter"
           },
-          "_row_num": 192
+          "_row_num": 193
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5825,7 +5808,7 @@
           "display": {
             "title": "brother_sister"
           },
-          "_row_num": 193
+          "_row_num": 194
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5833,7 +5816,7 @@
           "display": {
             "title": "father_mother"
           },
-          "_row_num": 194
+          "_row_num": 195
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5841,7 +5824,7 @@
           "display": {
             "title": "son_daughterinlaw"
           },
-          "_row_num": 195
+          "_row_num": 196
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5849,7 +5832,7 @@
           "display": {
             "title": "brother_sisterinlaw"
           },
-          "_row_num": 196
+          "_row_num": 197
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5857,7 +5840,7 @@
           "display": {
             "title": "uncle_aunt"
           },
-          "_row_num": 197
+          "_row_num": 198
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5865,7 +5848,7 @@
           "display": {
             "title": "grandson_granddaughter"
           },
-          "_row_num": 198
+          "_row_num": 199
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5873,7 +5856,7 @@
           "display": {
             "title": "stepchild"
           },
-          "_row_num": 199
+          "_row_num": 200
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5881,7 +5864,7 @@
           "display": {
             "title": "adopted_son_daughter"
           },
-          "_row_num": 200
+          "_row_num": 201
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5889,7 +5872,7 @@
           "display": {
             "title": "cousin"
           },
-          "_row_num": 201
+          "_row_num": 202
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5897,7 +5880,7 @@
           "display": {
             "title": "nephew_niece"
           },
-          "_row_num": 202
+          "_row_num": 203
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5905,7 +5888,7 @@
           "display": {
             "title": "unrelated"
           },
-          "_row_num": 203
+          "_row_num": 204
         },
         {
           "choice_list_name": "relation_to_hh_head",
@@ -5913,7 +5896,7 @@
           "display": {
             "title": "other"
           },
-          "_row_num": 204
+          "_row_num": 205
         }
       ],
       "resident_status": [
@@ -5923,7 +5906,7 @@
           "display": {
             "title": "resident"
           },
-          "_row_num": 205
+          "_row_num": 206
         },
         {
           "choice_list_name": "resident_status",
@@ -5931,7 +5914,7 @@
           "display": {
             "title": "non_resident"
           },
-          "_row_num": 206
+          "_row_num": 207
         }
       ],
       "return_time": [
@@ -5941,7 +5924,7 @@
           "display": {
             "title": "today"
           },
-          "_row_num": 207
+          "_row_num": 208
         },
         {
           "choice_list_name": "return_time",
@@ -5949,7 +5932,7 @@
           "display": {
             "title": "tomorrow"
           },
-          "_row_num": 208
+          "_row_num": 209
         },
         {
           "choice_list_name": "return_time",
@@ -5957,7 +5940,7 @@
           "display": {
             "title": "date"
           },
-          "_row_num": 209
+          "_row_num": 210
         },
         {
           "choice_list_name": "return_time",
@@ -5965,7 +5948,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 210
+          "_row_num": 211
         }
       ],
       "time_awake": [
@@ -5975,7 +5958,7 @@
           "display": {
             "title": ">4h before sunrise"
           },
-          "_row_num": 211
+          "_row_num": 212
         },
         {
           "choice_list_name": "time_awake",
@@ -5983,7 +5966,7 @@
           "display": {
             "title": "2-4h before sunrise"
           },
-          "_row_num": 212
+          "_row_num": 213
         },
         {
           "choice_list_name": "time_awake",
@@ -5991,7 +5974,7 @@
           "display": {
             "title": "1-2h before sunrise"
           },
-          "_row_num": 213
+          "_row_num": 214
         },
         {
           "choice_list_name": "time_awake",
@@ -5999,7 +5982,7 @@
           "display": {
             "title": "At sunrise"
           },
-          "_row_num": 214
+          "_row_num": 215
         }
       ],
       "time_bed": [
@@ -6009,7 +5992,7 @@
           "display": {
             "title": "Before sunset"
           },
-          "_row_num": 215
+          "_row_num": 216
         },
         {
           "choice_list_name": "time_bed",
@@ -6017,7 +6000,7 @@
           "display": {
             "title": "At sunset"
           },
-          "_row_num": 216
+          "_row_num": 217
         },
         {
           "choice_list_name": "time_bed",
@@ -6025,7 +6008,7 @@
           "display": {
             "title": "1-2h after sunset"
           },
-          "_row_num": 217
+          "_row_num": 218
         },
         {
           "choice_list_name": "time_bed",
@@ -6033,7 +6016,7 @@
           "display": {
             "title": "2-4h after sunset"
           },
-          "_row_num": 218
+          "_row_num": 219
         },
         {
           "choice_list_name": "time_bed",
@@ -6041,7 +6024,7 @@
           "display": {
             "title": ">4h after sunset"
           },
-          "_row_num": 219
+          "_row_num": 220
         }
       ],
       "time_indoors": [
@@ -6051,7 +6034,7 @@
           "display": {
             "title": "Before sunset"
           },
-          "_row_num": 220
+          "_row_num": 221
         },
         {
           "choice_list_name": "time_indoors",
@@ -6059,7 +6042,7 @@
           "display": {
             "title": "At sunset"
           },
-          "_row_num": 221
+          "_row_num": 222
         },
         {
           "choice_list_name": "time_indoors",
@@ -6067,7 +6050,7 @@
           "display": {
             "title": "1-2h after sunset"
           },
-          "_row_num": 222
+          "_row_num": 223
         },
         {
           "choice_list_name": "time_indoors",
@@ -6075,7 +6058,7 @@
           "display": {
             "title": "2-4h after sunset"
           },
-          "_row_num": 223
+          "_row_num": 224
         },
         {
           "choice_list_name": "time_indoors",
@@ -6083,7 +6066,7 @@
           "display": {
             "title": ">4h after sunset"
           },
-          "_row_num": 224
+          "_row_num": 225
         }
       ],
       "time_outdoors": [
@@ -6093,7 +6076,7 @@
           "display": {
             "title": ">4h before sunrise"
           },
-          "_row_num": 225
+          "_row_num": 226
         },
         {
           "choice_list_name": "time_outdoors",
@@ -6101,7 +6084,7 @@
           "display": {
             "title": "2-4h before sunrise"
           },
-          "_row_num": 226
+          "_row_num": 227
         },
         {
           "choice_list_name": "time_outdoors",
@@ -6109,7 +6092,7 @@
           "display": {
             "title": "1-2h before sunrise"
           },
-          "_row_num": 227
+          "_row_num": 228
         },
         {
           "choice_list_name": "time_outdoors",
@@ -6117,7 +6100,7 @@
           "display": {
             "title": "At sunrise"
           },
-          "_row_num": 228
+          "_row_num": 229
         }
       ],
       "travel_countries": [
@@ -6127,7 +6110,7 @@
           "display": {
             "title": "Angola"
           },
-          "_row_num": 229
+          "_row_num": 230
         },
         {
           "choice_list_name": "travel_countries",
@@ -6135,7 +6118,7 @@
           "display": {
             "title": "Cameroon"
           },
-          "_row_num": 230
+          "_row_num": 231
         },
         {
           "choice_list_name": "travel_countries",
@@ -6143,7 +6126,7 @@
           "display": {
             "title": "Chad"
           },
-          "_row_num": 231
+          "_row_num": 232
         },
         {
           "choice_list_name": "travel_countries",
@@ -6151,7 +6134,7 @@
           "display": {
             "title": "CAR"
           },
-          "_row_num": 232
+          "_row_num": 233
         },
         {
           "choice_list_name": "travel_countries",
@@ -6159,7 +6142,7 @@
           "display": {
             "title": "Congo"
           },
-          "_row_num": 233
+          "_row_num": 234
         },
         {
           "choice_list_name": "travel_countries",
@@ -6167,7 +6150,7 @@
           "display": {
             "title": "EG"
           },
-          "_row_num": 234
+          "_row_num": 235
         },
         {
           "choice_list_name": "travel_countries",
@@ -6175,7 +6158,7 @@
           "display": {
             "title": "Ethiopia"
           },
-          "_row_num": 235
+          "_row_num": 236
         },
         {
           "choice_list_name": "travel_countries",
@@ -6183,7 +6166,7 @@
           "display": {
             "title": "Gabon"
           },
-          "_row_num": 236
+          "_row_num": 237
         },
         {
           "choice_list_name": "travel_countries",
@@ -6191,7 +6174,7 @@
           "display": {
             "title": "Nigeria"
           },
-          "_row_num": 237
+          "_row_num": 238
         },
         {
           "choice_list_name": "travel_countries",
@@ -6199,7 +6182,7 @@
           "display": {
             "title": "Sudan"
           },
-          "_row_num": 238
+          "_row_num": 239
         },
         {
           "choice_list_name": "travel_countries",
@@ -6207,7 +6190,7 @@
           "display": {
             "title": "none"
           },
-          "_row_num": 239
+          "_row_num": 240
         }
       ],
       "treatment": [
@@ -6217,7 +6200,7 @@
           "display": {
             "title": "Treatment_for_pain"
           },
-          "_row_num": 240
+          "_row_num": 241
         },
         {
           "choice_list_name": "treatment",
@@ -6225,7 +6208,7 @@
           "display": {
             "title": "Contraceptive"
           },
-          "_row_num": 241
+          "_row_num": 242
         },
         {
           "choice_list_name": "treatment",
@@ -6233,7 +6216,7 @@
           "display": {
             "title": "Treatment_for_malaria"
           },
-          "_row_num": 242
+          "_row_num": 243
         },
         {
           "choice_list_name": "treatment",
@@ -6241,7 +6224,7 @@
           "display": {
             "title": "Antihistamine"
           },
-          "_row_num": 243
+          "_row_num": 244
         },
         {
           "choice_list_name": "treatment",
@@ -6249,7 +6232,7 @@
           "display": {
             "title": "Antiretrovirals"
           },
-          "_row_num": 244
+          "_row_num": 245
         },
         {
           "choice_list_name": "treatment",
@@ -6257,7 +6240,7 @@
           "display": {
             "title": "Treatment_for_tuberculosis"
           },
-          "_row_num": 245
+          "_row_num": 246
         },
         {
           "choice_list_name": "treatment",
@@ -6265,7 +6248,7 @@
           "display": {
             "title": "Antibiotic"
           },
-          "_row_num": 246
+          "_row_num": 247
         },
         {
           "choice_list_name": "treatment",
@@ -6273,7 +6256,7 @@
           "display": {
             "title": "Treatment_for_stress"
           },
-          "_row_num": 247
+          "_row_num": 248
         },
         {
           "choice_list_name": "treatment",
@@ -6281,7 +6264,7 @@
           "display": {
             "title": "Treatment_for_mental_illness"
           },
-          "_row_num": 248
+          "_row_num": 249
         },
         {
           "choice_list_name": "treatment",
@@ -6289,7 +6272,7 @@
           "display": {
             "title": "Anti-fungal_treatment"
           },
-          "_row_num": 249
+          "_row_num": 250
         },
         {
           "choice_list_name": "treatment",
@@ -6297,7 +6280,7 @@
           "display": {
             "title": "Treatment_for_epilepsy"
           },
-          "_row_num": 250
+          "_row_num": 251
         },
         {
           "choice_list_name": "treatment",
@@ -6305,7 +6288,7 @@
           "display": {
             "title": "Treatment_for_diarrhoea"
           },
-          "_row_num": 251
+          "_row_num": 252
         },
         {
           "choice_list_name": "treatment",
@@ -6313,7 +6296,7 @@
           "display": {
             "title": "Treatment_for_blood_pressure"
           },
-          "_row_num": 252
+          "_row_num": 253
         },
         {
           "choice_list_name": "treatment",
@@ -6321,7 +6304,7 @@
           "display": {
             "title": "Traditional_medicine"
           },
-          "_row_num": 253
+          "_row_num": 254
         },
         {
           "choice_list_name": "treatment",
@@ -6329,7 +6312,7 @@
           "display": {
             "title": "dk"
           },
-          "_row_num": 254
+          "_row_num": 255
         },
         {
           "choice_list_name": "treatment",
@@ -6337,7 +6320,7 @@
           "display": {
             "title": "pna"
           },
-          "_row_num": 255
+          "_row_num": 256
         },
         {
           "choice_list_name": "treatment",
@@ -6345,7 +6328,7 @@
           "display": {
             "title": "other"
           },
-          "_row_num": 256
+          "_row_num": 257
         },
         {
           "choice_list_name": "treatment",
@@ -6353,7 +6336,7 @@
           "display": {
             "title": "no"
           },
-          "_row_num": 257
+          "_row_num": 258
         }
       ],
       "day_choice": [
@@ -6363,7 +6346,7 @@
           "display": {
             "title": "day_1"
           },
-          "_row_num": 258
+          "_row_num": 259
         },
         {
           "choice_list_name": "day_choice",
@@ -6371,7 +6354,7 @@
           "display": {
             "title": "day_2"
           },
-          "_row_num": 259
+          "_row_num": 260
         },
         {
           "choice_list_name": "day_choice",
@@ -6379,7 +6362,7 @@
           "display": {
             "title": "day_3"
           },
-          "_row_num": 260
+          "_row_num": 261
         },
         {
           "choice_list_name": "day_choice",
@@ -6387,7 +6370,7 @@
           "display": {
             "title": "day_4"
           },
-          "_row_num": 261
+          "_row_num": 262
         },
         {
           "choice_list_name": "day_choice",
@@ -6395,7 +6378,7 @@
           "display": {
             "title": "day_5"
           },
-          "_row_num": 262
+          "_row_num": 263
         },
         {
           "choice_list_name": "day_choice",
@@ -6403,7 +6386,7 @@
           "display": {
             "title": "day_6"
           },
-          "_row_num": 263
+          "_row_num": 264
         },
         {
           "choice_list_name": "day_choice",
@@ -6411,7 +6394,7 @@
           "display": {
             "title": "day_7"
           },
-          "_row_num": 264
+          "_row_num": 265
         },
         {
           "choice_list_name": "day_choice",
@@ -6419,7 +6402,7 @@
           "display": {
             "title": "day_8"
           },
-          "_row_num": 265
+          "_row_num": 266
         },
         {
           "choice_list_name": "day_choice",
@@ -6427,7 +6410,7 @@
           "display": {
             "title": "day_9"
           },
-          "_row_num": 266
+          "_row_num": 267
         },
         {
           "choice_list_name": "day_choice",
@@ -6435,7 +6418,7 @@
           "display": {
             "title": "day_10"
           },
-          "_row_num": 267
+          "_row_num": 268
         },
         {
           "choice_list_name": "day_choice",
@@ -6443,7 +6426,7 @@
           "display": {
             "title": "day_11"
           },
-          "_row_num": 268
+          "_row_num": 269
         },
         {
           "choice_list_name": "day_choice",
@@ -6451,7 +6434,7 @@
           "display": {
             "title": "day_12"
           },
-          "_row_num": 269
+          "_row_num": 270
         },
         {
           "choice_list_name": "day_choice",
@@ -6459,7 +6442,7 @@
           "display": {
             "title": "day_13"
           },
-          "_row_num": 270
+          "_row_num": 271
         },
         {
           "choice_list_name": "day_choice",
@@ -6467,7 +6450,7 @@
           "display": {
             "title": "day_14"
           },
-          "_row_num": 271
+          "_row_num": 272
         },
         {
           "choice_list_name": "day_choice",
@@ -6475,7 +6458,7 @@
           "display": {
             "title": "day_15"
           },
-          "_row_num": 272
+          "_row_num": 273
         },
         {
           "choice_list_name": "day_choice",
@@ -6483,7 +6466,7 @@
           "display": {
             "title": "day_16"
           },
-          "_row_num": 273
+          "_row_num": 274
         },
         {
           "choice_list_name": "day_choice",
@@ -6491,7 +6474,7 @@
           "display": {
             "title": "day_17"
           },
-          "_row_num": 274
+          "_row_num": 275
         },
         {
           "choice_list_name": "day_choice",
@@ -6499,7 +6482,7 @@
           "display": {
             "title": "day_18"
           },
-          "_row_num": 275
+          "_row_num": 276
         },
         {
           "choice_list_name": "day_choice",
@@ -6507,7 +6490,7 @@
           "display": {
             "title": "day_19"
           },
-          "_row_num": 276
+          "_row_num": 277
         },
         {
           "choice_list_name": "day_choice",
@@ -6515,7 +6498,7 @@
           "display": {
             "title": "day_20"
           },
-          "_row_num": 277
+          "_row_num": 278
         },
         {
           "choice_list_name": "day_choice",
@@ -6523,7 +6506,7 @@
           "display": {
             "title": "day_21"
           },
-          "_row_num": 278
+          "_row_num": 279
         },
         {
           "choice_list_name": "day_choice",
@@ -6531,7 +6514,7 @@
           "display": {
             "title": "day_22"
           },
-          "_row_num": 279
+          "_row_num": 280
         },
         {
           "choice_list_name": "day_choice",
@@ -6539,7 +6522,7 @@
           "display": {
             "title": "day_23"
           },
-          "_row_num": 280
+          "_row_num": 281
         },
         {
           "choice_list_name": "day_choice",
@@ -6547,7 +6530,7 @@
           "display": {
             "title": "day_24"
           },
-          "_row_num": 281
+          "_row_num": 282
         },
         {
           "choice_list_name": "day_choice",
@@ -6555,7 +6538,7 @@
           "display": {
             "title": "day_25"
           },
-          "_row_num": 282
+          "_row_num": 283
         },
         {
           "choice_list_name": "day_choice",
@@ -6563,7 +6546,7 @@
           "display": {
             "title": "day_26"
           },
-          "_row_num": 283
+          "_row_num": 284
         },
         {
           "choice_list_name": "day_choice",
@@ -6571,7 +6554,7 @@
           "display": {
             "title": "day_27"
           },
-          "_row_num": 284
+          "_row_num": 285
         },
         {
           "choice_list_name": "day_choice",
@@ -6579,7 +6562,7 @@
           "display": {
             "title": "day_28"
           },
-          "_row_num": 285
+          "_row_num": 286
         },
         {
           "choice_list_name": "day_choice",
@@ -6587,7 +6570,7 @@
           "display": {
             "title": "day_29"
           },
-          "_row_num": 286
+          "_row_num": 287
         },
         {
           "choice_list_name": "day_choice",
@@ -6595,7 +6578,7 @@
           "display": {
             "title": "day_30"
           },
-          "_row_num": 287
+          "_row_num": 288
         },
         {
           "choice_list_name": "day_choice",
@@ -6603,7 +6586,7 @@
           "display": {
             "title": "day_31"
           },
-          "_row_num": 288
+          "_row_num": 289
         }
       ],
       "month_choice": [
@@ -6613,7 +6596,7 @@
           "display": {
             "title": "month_1"
           },
-          "_row_num": 289
+          "_row_num": 290
         },
         {
           "choice_list_name": "month_choice",
@@ -6621,7 +6604,7 @@
           "display": {
             "title": "month_2"
           },
-          "_row_num": 290
+          "_row_num": 291
         },
         {
           "choice_list_name": "month_choice",
@@ -6629,7 +6612,7 @@
           "display": {
             "title": "month_3"
           },
-          "_row_num": 291
+          "_row_num": 292
         },
         {
           "choice_list_name": "month_choice",
@@ -6637,7 +6620,7 @@
           "display": {
             "title": "month_4"
           },
-          "_row_num": 292
+          "_row_num": 293
         },
         {
           "choice_list_name": "month_choice",
@@ -6645,7 +6628,7 @@
           "display": {
             "title": "month_5"
           },
-          "_row_num": 293
+          "_row_num": 294
         },
         {
           "choice_list_name": "month_choice",
@@ -6653,7 +6636,7 @@
           "display": {
             "title": "month_6"
           },
-          "_row_num": 294
+          "_row_num": 295
         },
         {
           "choice_list_name": "month_choice",
@@ -6661,7 +6644,7 @@
           "display": {
             "title": "month_7"
           },
-          "_row_num": 295
+          "_row_num": 296
         },
         {
           "choice_list_name": "month_choice",
@@ -6669,7 +6652,7 @@
           "display": {
             "title": "month_8"
           },
-          "_row_num": 296
+          "_row_num": 297
         },
         {
           "choice_list_name": "month_choice",
@@ -6677,7 +6660,7 @@
           "display": {
             "title": "month_9"
           },
-          "_row_num": 297
+          "_row_num": 298
         },
         {
           "choice_list_name": "month_choice",
@@ -6685,7 +6668,7 @@
           "display": {
             "title": "month_10"
           },
-          "_row_num": 298
+          "_row_num": 299
         },
         {
           "choice_list_name": "month_choice",
@@ -6693,7 +6676,7 @@
           "display": {
             "title": "month_11"
           },
-          "_row_num": 299
+          "_row_num": 300
         },
         {
           "choice_list_name": "month_choice",
@@ -6701,7 +6684,7 @@
           "display": {
             "title": "month_12"
           },
-          "_row_num": 300
+          "_row_num": 301
         }
       ],
       "year_choice": [
@@ -6711,7 +6694,7 @@
           "display": {
             "title": "year_2021"
           },
-          "_row_num": 301
+          "_row_num": 302
         },
         {
           "choice_list_name": "year_choice",
@@ -6719,7 +6702,7 @@
           "display": {
             "title": "year_2020"
           },
-          "_row_num": 302
+          "_row_num": 303
         },
         {
           "choice_list_name": "year_choice",
@@ -6727,7 +6710,7 @@
           "display": {
             "title": "year_2019"
           },
-          "_row_num": 303
+          "_row_num": 304
         },
         {
           "choice_list_name": "year_choice",
@@ -6735,7 +6718,7 @@
           "display": {
             "title": "year_2018"
           },
-          "_row_num": 304
+          "_row_num": 305
         },
         {
           "choice_list_name": "year_choice",
@@ -6743,7 +6726,7 @@
           "display": {
             "title": "year_2017"
           },
-          "_row_num": 305
+          "_row_num": 306
         },
         {
           "choice_list_name": "year_choice",
@@ -6751,7 +6734,7 @@
           "display": {
             "title": "year_2016"
           },
-          "_row_num": 306
+          "_row_num": 307
         },
         {
           "choice_list_name": "year_choice",
@@ -6759,7 +6742,7 @@
           "display": {
             "title": "year_2015"
           },
-          "_row_num": 307
+          "_row_num": 308
         },
         {
           "choice_list_name": "year_choice",
@@ -6767,7 +6750,7 @@
           "display": {
             "title": "year_2014"
           },
-          "_row_num": 308
+          "_row_num": 309
         },
         {
           "choice_list_name": "year_choice",
@@ -6775,7 +6758,7 @@
           "display": {
             "title": "year_2013"
           },
-          "_row_num": 309
+          "_row_num": 310
         },
         {
           "choice_list_name": "year_choice",
@@ -6783,7 +6766,7 @@
           "display": {
             "title": "year_2012"
           },
-          "_row_num": 310
+          "_row_num": 311
         },
         {
           "choice_list_name": "year_choice",
@@ -6791,7 +6774,7 @@
           "display": {
             "title": "year_2011"
           },
-          "_row_num": 311
+          "_row_num": 312
         },
         {
           "choice_list_name": "year_choice",
@@ -6799,7 +6782,7 @@
           "display": {
             "title": "year_2010"
           },
-          "_row_num": 312
+          "_row_num": 313
         },
         {
           "choice_list_name": "year_choice",
@@ -6807,7 +6790,7 @@
           "display": {
             "title": "year_2009"
           },
-          "_row_num": 313
+          "_row_num": 314
         },
         {
           "choice_list_name": "year_choice",
@@ -6815,7 +6798,7 @@
           "display": {
             "title": "year_2008"
           },
-          "_row_num": 314
+          "_row_num": 315
         },
         {
           "choice_list_name": "year_choice",
@@ -6823,7 +6806,7 @@
           "display": {
             "title": "year_2007"
           },
-          "_row_num": 315
+          "_row_num": 316
         },
         {
           "choice_list_name": "year_choice",
@@ -6831,7 +6814,7 @@
           "display": {
             "title": "year_2006"
           },
-          "_row_num": 316
+          "_row_num": 317
         },
         {
           "choice_list_name": "year_choice",
@@ -6839,7 +6822,7 @@
           "display": {
             "title": "year_2005"
           },
-          "_row_num": 317
+          "_row_num": 318
         },
         {
           "choice_list_name": "year_choice",
@@ -6847,7 +6830,7 @@
           "display": {
             "title": "year_2004"
           },
-          "_row_num": 318
+          "_row_num": 319
         },
         {
           "choice_list_name": "year_choice",
@@ -6855,7 +6838,7 @@
           "display": {
             "title": "year_2003"
           },
-          "_row_num": 319
+          "_row_num": 320
         },
         {
           "choice_list_name": "year_choice",
@@ -6863,7 +6846,7 @@
           "display": {
             "title": "year_2002"
           },
-          "_row_num": 320
+          "_row_num": 321
         },
         {
           "choice_list_name": "year_choice",
@@ -6871,7 +6854,7 @@
           "display": {
             "title": "year_2001"
           },
-          "_row_num": 321
+          "_row_num": 322
         },
         {
           "choice_list_name": "year_choice",
@@ -6879,7 +6862,7 @@
           "display": {
             "title": "year_2000"
           },
-          "_row_num": 322
+          "_row_num": 323
         },
         {
           "choice_list_name": "year_choice",
@@ -6887,7 +6870,7 @@
           "display": {
             "title": "year_1999"
           },
-          "_row_num": 323
+          "_row_num": 324
         },
         {
           "choice_list_name": "year_choice",
@@ -6895,7 +6878,7 @@
           "display": {
             "title": "year_1998"
           },
-          "_row_num": 324
+          "_row_num": 325
         },
         {
           "choice_list_name": "year_choice",
@@ -6903,7 +6886,7 @@
           "display": {
             "title": "year_1997"
           },
-          "_row_num": 325
+          "_row_num": 326
         },
         {
           "choice_list_name": "year_choice",
@@ -6911,7 +6894,7 @@
           "display": {
             "title": "year_1996"
           },
-          "_row_num": 326
+          "_row_num": 327
         },
         {
           "choice_list_name": "year_choice",
@@ -6919,7 +6902,7 @@
           "display": {
             "title": "year_1995"
           },
-          "_row_num": 327
+          "_row_num": 328
         },
         {
           "choice_list_name": "year_choice",
@@ -6927,7 +6910,7 @@
           "display": {
             "title": "year_1994"
           },
-          "_row_num": 328
+          "_row_num": 329
         },
         {
           "choice_list_name": "year_choice",
@@ -6935,7 +6918,7 @@
           "display": {
             "title": "year_1993"
           },
-          "_row_num": 329
+          "_row_num": 330
         },
         {
           "choice_list_name": "year_choice",
@@ -6943,7 +6926,7 @@
           "display": {
             "title": "year_1992"
           },
-          "_row_num": 330
+          "_row_num": 331
         },
         {
           "choice_list_name": "year_choice",
@@ -6951,7 +6934,7 @@
           "display": {
             "title": "year_1991"
           },
-          "_row_num": 331
+          "_row_num": 332
         },
         {
           "choice_list_name": "year_choice",
@@ -6959,7 +6942,7 @@
           "display": {
             "title": "year_1990"
           },
-          "_row_num": 332
+          "_row_num": 333
         },
         {
           "choice_list_name": "year_choice",
@@ -6967,7 +6950,7 @@
           "display": {
             "title": "year_1989"
           },
-          "_row_num": 333
+          "_row_num": 334
         },
         {
           "choice_list_name": "year_choice",
@@ -6975,7 +6958,7 @@
           "display": {
             "title": "year_1988"
           },
-          "_row_num": 334
+          "_row_num": 335
         },
         {
           "choice_list_name": "year_choice",
@@ -6983,7 +6966,7 @@
           "display": {
             "title": "year_1987"
           },
-          "_row_num": 335
+          "_row_num": 336
         },
         {
           "choice_list_name": "year_choice",
@@ -6991,7 +6974,7 @@
           "display": {
             "title": "year_1986"
           },
-          "_row_num": 336
+          "_row_num": 337
         },
         {
           "choice_list_name": "year_choice",
@@ -6999,7 +6982,7 @@
           "display": {
             "title": "year_1985"
           },
-          "_row_num": 337
+          "_row_num": 338
         },
         {
           "choice_list_name": "year_choice",
@@ -7007,7 +6990,7 @@
           "display": {
             "title": "year_1984"
           },
-          "_row_num": 338
+          "_row_num": 339
         },
         {
           "choice_list_name": "year_choice",
@@ -7015,7 +6998,7 @@
           "display": {
             "title": "year_1983"
           },
-          "_row_num": 339
+          "_row_num": 340
         },
         {
           "choice_list_name": "year_choice",
@@ -7023,7 +7006,7 @@
           "display": {
             "title": "year_1982"
           },
-          "_row_num": 340
+          "_row_num": 341
         },
         {
           "choice_list_name": "year_choice",
@@ -7031,7 +7014,7 @@
           "display": {
             "title": "year_1981"
           },
-          "_row_num": 341
+          "_row_num": 342
         },
         {
           "choice_list_name": "year_choice",
@@ -7039,7 +7022,7 @@
           "display": {
             "title": "year_1980"
           },
-          "_row_num": 342
+          "_row_num": 343
         },
         {
           "choice_list_name": "year_choice",
@@ -7047,7 +7030,7 @@
           "display": {
             "title": "year_1979"
           },
-          "_row_num": 343
+          "_row_num": 344
         },
         {
           "choice_list_name": "year_choice",
@@ -7055,7 +7038,7 @@
           "display": {
             "title": "year_1978"
           },
-          "_row_num": 344
+          "_row_num": 345
         },
         {
           "choice_list_name": "year_choice",
@@ -7063,7 +7046,7 @@
           "display": {
             "title": "year_1977"
           },
-          "_row_num": 345
+          "_row_num": 346
         },
         {
           "choice_list_name": "year_choice",
@@ -7071,7 +7054,7 @@
           "display": {
             "title": "year_1976"
           },
-          "_row_num": 346
+          "_row_num": 347
         },
         {
           "choice_list_name": "year_choice",
@@ -7079,7 +7062,7 @@
           "display": {
             "title": "year_1975"
           },
-          "_row_num": 347
+          "_row_num": 348
         },
         {
           "choice_list_name": "year_choice",
@@ -7087,7 +7070,7 @@
           "display": {
             "title": "year_1974"
           },
-          "_row_num": 348
+          "_row_num": 349
         },
         {
           "choice_list_name": "year_choice",
@@ -7095,7 +7078,7 @@
           "display": {
             "title": "year_1973"
           },
-          "_row_num": 349
+          "_row_num": 350
         },
         {
           "choice_list_name": "year_choice",
@@ -7103,7 +7086,7 @@
           "display": {
             "title": "year_1972"
           },
-          "_row_num": 350
+          "_row_num": 351
         },
         {
           "choice_list_name": "year_choice",
@@ -7111,7 +7094,7 @@
           "display": {
             "title": "year_1971"
           },
-          "_row_num": 351
+          "_row_num": 352
         },
         {
           "choice_list_name": "year_choice",
@@ -7119,7 +7102,7 @@
           "display": {
             "title": "year_1970"
           },
-          "_row_num": 352
+          "_row_num": 353
         },
         {
           "choice_list_name": "year_choice",
@@ -7127,7 +7110,7 @@
           "display": {
             "title": "year_1969"
           },
-          "_row_num": 353
+          "_row_num": 354
         },
         {
           "choice_list_name": "year_choice",
@@ -7135,7 +7118,7 @@
           "display": {
             "title": "year_1968"
           },
-          "_row_num": 354
+          "_row_num": 355
         },
         {
           "choice_list_name": "year_choice",
@@ -7143,7 +7126,7 @@
           "display": {
             "title": "year_1967"
           },
-          "_row_num": 355
+          "_row_num": 356
         },
         {
           "choice_list_name": "year_choice",
@@ -7151,7 +7134,7 @@
           "display": {
             "title": "year_1966"
           },
-          "_row_num": 356
+          "_row_num": 357
         },
         {
           "choice_list_name": "year_choice",
@@ -7159,7 +7142,7 @@
           "display": {
             "title": "year_1965"
           },
-          "_row_num": 357
+          "_row_num": 358
         },
         {
           "choice_list_name": "year_choice",
@@ -7167,7 +7150,7 @@
           "display": {
             "title": "year_1964"
           },
-          "_row_num": 358
+          "_row_num": 359
         },
         {
           "choice_list_name": "year_choice",
@@ -7175,7 +7158,7 @@
           "display": {
             "title": "year_1963"
           },
-          "_row_num": 359
+          "_row_num": 360
         },
         {
           "choice_list_name": "year_choice",
@@ -7183,7 +7166,7 @@
           "display": {
             "title": "year_1962"
           },
-          "_row_num": 360
+          "_row_num": 361
         },
         {
           "choice_list_name": "year_choice",
@@ -7191,7 +7174,7 @@
           "display": {
             "title": "year_1961"
           },
-          "_row_num": 361
+          "_row_num": 362
         },
         {
           "choice_list_name": "year_choice",
@@ -7199,7 +7182,7 @@
           "display": {
             "title": "year_1960"
           },
-          "_row_num": 362
+          "_row_num": 363
         },
         {
           "choice_list_name": "year_choice",
@@ -7207,7 +7190,7 @@
           "display": {
             "title": "year_1959"
           },
-          "_row_num": 363
+          "_row_num": 364
         },
         {
           "choice_list_name": "year_choice",
@@ -7215,7 +7198,7 @@
           "display": {
             "title": "year_1958"
           },
-          "_row_num": 364
+          "_row_num": 365
         },
         {
           "choice_list_name": "year_choice",
@@ -7223,7 +7206,7 @@
           "display": {
             "title": "year_1957"
           },
-          "_row_num": 365
+          "_row_num": 366
         },
         {
           "choice_list_name": "year_choice",
@@ -7231,7 +7214,7 @@
           "display": {
             "title": "year_1956"
           },
-          "_row_num": 366
+          "_row_num": 367
         },
         {
           "choice_list_name": "year_choice",
@@ -7239,7 +7222,7 @@
           "display": {
             "title": "year_1955"
           },
-          "_row_num": 367
+          "_row_num": 368
         },
         {
           "choice_list_name": "year_choice",
@@ -7247,7 +7230,7 @@
           "display": {
             "title": "year_1954"
           },
-          "_row_num": 368
+          "_row_num": 369
         },
         {
           "choice_list_name": "year_choice",
@@ -7255,7 +7238,7 @@
           "display": {
             "title": "year_1953"
           },
-          "_row_num": 369
+          "_row_num": 370
         },
         {
           "choice_list_name": "year_choice",
@@ -7263,7 +7246,7 @@
           "display": {
             "title": "year_1952"
           },
-          "_row_num": 370
+          "_row_num": 371
         },
         {
           "choice_list_name": "year_choice",
@@ -7271,7 +7254,7 @@
           "display": {
             "title": "year_1951"
           },
-          "_row_num": 371
+          "_row_num": 372
         },
         {
           "choice_list_name": "year_choice",
@@ -7279,7 +7262,7 @@
           "display": {
             "title": "year_1950"
           },
-          "_row_num": 372
+          "_row_num": 373
         },
         {
           "choice_list_name": "year_choice",
@@ -7287,7 +7270,7 @@
           "display": {
             "title": "year_1949"
           },
-          "_row_num": 373
+          "_row_num": 374
         },
         {
           "choice_list_name": "year_choice",
@@ -7295,7 +7278,7 @@
           "display": {
             "title": "year_1948"
           },
-          "_row_num": 374
+          "_row_num": 375
         },
         {
           "choice_list_name": "year_choice",
@@ -7303,7 +7286,7 @@
           "display": {
             "title": "year_1947"
           },
-          "_row_num": 375
+          "_row_num": 376
         },
         {
           "choice_list_name": "year_choice",
@@ -7311,7 +7294,7 @@
           "display": {
             "title": "year_1946"
           },
-          "_row_num": 376
+          "_row_num": 377
         },
         {
           "choice_list_name": "year_choice",
@@ -7319,7 +7302,7 @@
           "display": {
             "title": "year_1945"
           },
-          "_row_num": 377
+          "_row_num": 378
         },
         {
           "choice_list_name": "year_choice",
@@ -7327,7 +7310,7 @@
           "display": {
             "title": "year_1944"
           },
-          "_row_num": 378
+          "_row_num": 379
         },
         {
           "choice_list_name": "year_choice",
@@ -7335,7 +7318,7 @@
           "display": {
             "title": "year_1943"
           },
-          "_row_num": 379
+          "_row_num": 380
         },
         {
           "choice_list_name": "year_choice",
@@ -7343,7 +7326,7 @@
           "display": {
             "title": "year_1942"
           },
-          "_row_num": 380
+          "_row_num": 381
         },
         {
           "choice_list_name": "year_choice",
@@ -7351,7 +7334,7 @@
           "display": {
             "title": "year_1941"
           },
-          "_row_num": 381
+          "_row_num": 382
         },
         {
           "choice_list_name": "year_choice",
@@ -7359,7 +7342,7 @@
           "display": {
             "title": "year_1940"
           },
-          "_row_num": 382
+          "_row_num": 383
         },
         {
           "choice_list_name": "year_choice",
@@ -7367,7 +7350,7 @@
           "display": {
             "title": "year_1939"
           },
-          "_row_num": 383
+          "_row_num": 384
         },
         {
           "choice_list_name": "year_choice",
@@ -7375,7 +7358,7 @@
           "display": {
             "title": "year_1938"
           },
-          "_row_num": 384
+          "_row_num": 385
         },
         {
           "choice_list_name": "year_choice",
@@ -7383,7 +7366,7 @@
           "display": {
             "title": "year_1937"
           },
-          "_row_num": 385
+          "_row_num": 386
         },
         {
           "choice_list_name": "year_choice",
@@ -7391,7 +7374,7 @@
           "display": {
             "title": "year_1936"
           },
-          "_row_num": 386
+          "_row_num": 387
         },
         {
           "choice_list_name": "year_choice",
@@ -7399,7 +7382,7 @@
           "display": {
             "title": "year_1935"
           },
-          "_row_num": 387
+          "_row_num": 388
         },
         {
           "choice_list_name": "year_choice",
@@ -7407,7 +7390,7 @@
           "display": {
             "title": "year_1934"
           },
-          "_row_num": 388
+          "_row_num": 389
         },
         {
           "choice_list_name": "year_choice",
@@ -7415,7 +7398,7 @@
           "display": {
             "title": "year_1933"
           },
-          "_row_num": 389
+          "_row_num": 390
         },
         {
           "choice_list_name": "year_choice",
@@ -7423,7 +7406,7 @@
           "display": {
             "title": "year_1932"
           },
-          "_row_num": 390
+          "_row_num": 391
         },
         {
           "choice_list_name": "year_choice",
@@ -7431,7 +7414,7 @@
           "display": {
             "title": "year_1931"
           },
-          "_row_num": 391
+          "_row_num": 392
         },
         {
           "choice_list_name": "year_choice",
@@ -7439,7 +7422,7 @@
           "display": {
             "title": "year_1930"
           },
-          "_row_num": 392
+          "_row_num": 393
         },
         {
           "choice_list_name": "year_choice",
@@ -7447,7 +7430,7 @@
           "display": {
             "title": "year_1929"
           },
-          "_row_num": 393
+          "_row_num": 394
         },
         {
           "choice_list_name": "year_choice",
@@ -7455,7 +7438,7 @@
           "display": {
             "title": "year_1928"
           },
-          "_row_num": 394
+          "_row_num": 395
         },
         {
           "choice_list_name": "year_choice",
@@ -7463,7 +7446,7 @@
           "display": {
             "title": "year_1927"
           },
-          "_row_num": 395
+          "_row_num": 396
         },
         {
           "choice_list_name": "year_choice",
@@ -7471,7 +7454,7 @@
           "display": {
             "title": "year_1926"
           },
-          "_row_num": 396
+          "_row_num": 397
         },
         {
           "choice_list_name": "year_choice",
@@ -7479,7 +7462,7 @@
           "display": {
             "title": "year_1925"
           },
-          "_row_num": 397
+          "_row_num": 398
         },
         {
           "choice_list_name": "year_choice",
@@ -7487,7 +7470,7 @@
           "display": {
             "title": "year_1924"
           },
-          "_row_num": 398
+          "_row_num": 399
         },
         {
           "choice_list_name": "year_choice",
@@ -7495,7 +7478,7 @@
           "display": {
             "title": "year_1923"
           },
-          "_row_num": 399
+          "_row_num": 400
         },
         {
           "choice_list_name": "year_choice",
@@ -7503,7 +7486,7 @@
           "display": {
             "title": "year_1922"
           },
-          "_row_num": 400
+          "_row_num": 401
         },
         {
           "choice_list_name": "year_choice",
@@ -7511,7 +7494,7 @@
           "display": {
             "title": "year_1921"
           },
-          "_row_num": 401
+          "_row_num": 402
         },
         {
           "choice_list_name": "year_choice",
@@ -7519,7 +7502,7 @@
           "display": {
             "title": "year_1920"
           },
-          "_row_num": 402
+          "_row_num": 403
         }
       ]
     },
@@ -7891,7 +7874,7 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 25,
+            "_row_num": 24,
             "section_name": "survey"
           },
           {
@@ -7901,8 +7884,13 @@
         ],
         "elementKey": "member_emigrated_when_date"
       },
-      "member_emigrated_when_num": {
-        "type": "integer",
+      "member_emigrated_when_dmy_ago": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "member_emigrated_when_dmy_ago_items"
+        },
+        "valuesList": "dk",
         "_defn": [
           {
             "_row_num": 26,
@@ -7913,21 +7901,6 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "member_emigrated_when_num"
-      },
-      "member_emigrated_when_dmy_ago": {
-        "type": "string",
-        "valuesList": "dmy_ago_dk",
-        "_defn": [
-          {
-            "_row_num": 28,
-            "section_name": "survey"
-          },
-          {
-            "_row_num": 34,
-            "section_name": "model"
-          }
-        ],
         "elementKey": "member_emigrated_when_dmy_ago"
       },
       "emigrated_where": {
@@ -7935,11 +7908,11 @@
         "valuesList": "in_outside_district",
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 27,
             "section_name": "survey"
           },
           {
-            "_row_num": 35,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -7949,7 +7922,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -7962,38 +7935,32 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
         "elementKey": "new_member_move_in_date"
       },
-      "new_member_move_in_enter": {
-        "type": "integer",
-        "_defn": [
-          {
-            "_row_num": 38,
-            "section_name": "model"
-          }
-        ],
-        "elementKey": "new_member_move_in_enter"
-      },
       "new_member_move_in_select": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "new_member_move_in_select_items"
+        },
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "elementKey": "new_member_move_in_select"
       },
       "move_from": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -8004,7 +7971,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 41,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -8019,7 +7986,7 @@
         },
         "_defn": [
           {
-            "_row_num": 42,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -8030,7 +7997,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -8046,7 +8013,7 @@
         },
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -8057,7 +8024,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -8072,7 +8039,7 @@
         },
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -8083,7 +8050,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -8094,7 +8061,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -8108,7 +8075,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -8123,7 +8090,7 @@
         },
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -8134,7 +8101,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -8144,7 +8111,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -8155,7 +8122,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -8167,7 +8134,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
@@ -8178,7 +8145,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
@@ -8189,7 +8156,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 54,
             "section_name": "model"
           }
         ],
@@ -8199,7 +8166,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -8210,7 +8177,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -8220,7 +8187,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -8230,7 +8197,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -8241,7 +8208,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -8252,7 +8219,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -8263,7 +8230,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -8278,7 +8245,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -8293,7 +8260,7 @@
         },
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -8304,7 +8271,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -8314,7 +8281,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
@@ -8329,7 +8296,7 @@
         },
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -8340,7 +8307,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -8354,7 +8321,7 @@
         },
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -8365,7 +8332,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -8375,7 +8342,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -8390,7 +8357,7 @@
         },
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -8401,7 +8368,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -8411,7 +8378,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -8422,7 +8389,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -8433,7 +8400,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -8444,7 +8411,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -8459,7 +8426,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -8474,7 +8441,7 @@
         },
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -8485,7 +8452,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -8496,7 +8463,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -8507,7 +8474,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -8518,7 +8485,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -8529,7 +8496,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -8540,7 +8507,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -8551,7 +8518,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -8562,7 +8529,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -8573,7 +8540,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -8583,7 +8550,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -8594,7 +8561,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -8605,7 +8572,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -8620,7 +8587,7 @@
         },
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -8631,7 +8598,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -8642,7 +8609,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -8657,7 +8624,7 @@
         },
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -8668,7 +8635,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -8683,7 +8650,7 @@
         },
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -8694,7 +8661,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -8705,7 +8672,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 100,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
@@ -8944,51 +8911,29 @@
             "inputAttributes": {
               "data-min-year": 2020
             },
-            "constraint": "selected(data('member_emigrated_when_dmy_ago'), 'dk') || !data('member_emigrated_when') || (!data('member_emigrated_when').isBefore('2020-10-01') && !data('member_emigrated_when').isAfter())",
+            "constraint": "!selected(data('member_emigrated_when_dmy_ago'), 'date') || (!data('member_emigrated_when').isBefore('2020-10-01') && !data('member_emigrated_when').isAfter())",
             "display": {
               "constraint_message": "err_emigrate_date"
             },
             "hideInContents": 1,
-            "_row_num": 25,
-            "__rowNum__": 24,
+            "_row_num": 24,
+            "__rowNum__": 23,
             "_token_type": "prompt",
             "_type": "birth_date",
             "_branch_label_enclosing_screen": "survey/_screen3",
             "promptIdx": 8
           },
           {
-            "type": "integer",
-            "name": "member_emigrated_when_num",
-            "display": {
-              "prompt": "or_enter_num",
-              "constraint_message": "err_emigrate_date_multiple"
-            },
-            "inputAttributes": {
-              "min": 0,
-              "step": 1
-            },
-            "constraint": "selected(data('member_emigrated_when_dmy_ago'), 'dk') || (not(selected(data('member_emigrated_when_dmy_ago'), 'dk')) && (!!data('member_emigrated_when_date') ^ !!data('member_emigrated_when_num')))",
+            "type": "select_multiple",
+            "values_list": "dk",
+            "name": "member_emigrated_when_dmy_ago",
+            "hideInContents": 1,
             "_row_num": 26,
             "__rowNum__": 25,
             "_token_type": "prompt",
-            "_type": "integer",
+            "_type": "select_multiple",
             "_branch_label_enclosing_screen": "survey/_screen3",
             "promptIdx": 9
-          },
-          {
-            "type": "select_one",
-            "values_list": "dmy_ago_dk",
-            "name": "member_emigrated_when_dmy_ago",
-            "display": {
-              "prompt": "days_weeks_months_dk"
-            },
-            "hideInContents": 1,
-            "_row_num": 28,
-            "__rowNum__": 27,
-            "_token_type": "prompt",
-            "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 10
           },
           {
             "type": "select_one",
@@ -8997,27 +8942,26 @@
             "display": {
               "prompt": "q10"
             },
-            "_row_num": 29,
-            "__rowNum__": 28,
+            "_row_num": 27,
+            "__rowNum__": 26,
             "_token_type": "prompt",
             "_type": "select_one",
             "_branch_label_enclosing_screen": "survey/_screen3",
-            "promptIdx": 11
+            "promptIdx": 10
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 32,
-            "_branch_label_enclosing_screen": "survey/_screen32",
-            "promptIdx": 12
+            "_row_num": 30,
+            "_branch_label_enclosing_screen": "survey/_screen30",
+            "promptIdx": 11
           }
         ],
         "validation_tag_map": {
           "finalize": [
             4,
-            8,
-            9
+            8
           ]
         },
         "operations": [
@@ -9034,23 +8978,23 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 31,
-              "__rowNum__": 30,
+              "_row_num": 29,
+              "__rowNum__": 28,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('member_where_now'), 'died')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nif (not(selected(data('member_died_when_dk'), 'dk'))) {\nactivePromptIndicies.push(4);\n}\nactivePromptIndicies.push(5);\nif (selected(data('member_died_when_dk'), 'dk')) {\nassign('member_died_when', null);\n}\n}\nif (selected(data('member_where_now'), 'emigrated')) {\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\nif (selected(data('member_emigrated_when_dmy_ago'), 'dk')) {\nassign('member_emigrated_when_num', null);\nassign('member_emigrated_when_date', null);\n}\nelse {\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\n}\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('member_where_now'), 'died')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nif (not(selected(data('member_died_when_dk'), 'dk'))) {\nactivePromptIndicies.push(4);\n}\nactivePromptIndicies.push(5);\nif (selected(data('member_died_when_dk'), 'dk')) {\nassign('member_died_when', null);\n}\n}\nif (selected(data('member_where_now'), 'emigrated')) {\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\nif (selected(data('member_emigrated_when_dmy_ago'), 'dk')) {\nassign('member_emigrated_when_date', null);\n}\nelse {\nactivePromptIndicies.push(8);\n}\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 1
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 32,
+            "_row_num": 30,
             "operationIdx": 2
           },
           {
-            "_row_num": 32,
+            "_row_num": 30,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
@@ -9059,7 +9003,7 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 32,
+            "_row_num": 30,
             "operationIdx": 4
           }
         ],
@@ -9067,7 +9011,7 @@
           "_screen2": 0,
           "_screen3": 1,
           "_contents": 3,
-          "_screen32": 3
+          "_screen30": 3
         }
       }
     },
@@ -9575,7 +9519,7 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 25,
+            "_row_num": 24,
             "section_name": "survey"
           },
           {
@@ -9588,8 +9532,17 @@
         "elementSet": "data",
         "elementPath": "member_emigrated_when_date"
       },
-      "member_emigrated_when_num": {
-        "type": "integer",
+      "member_emigrated_when_dmy_ago": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "member_emigrated_when_dmy_ago_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "member_emigrated_when_dmy_ago.items",
+          "notUnitOfRetention": true
+        },
+        "valuesList": "dk",
         "_defn": [
           {
             "_row_num": 26,
@@ -9600,39 +9553,24 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "member_emigrated_when_num",
-        "elementName": "member_emigrated_when_num",
-        "elementSet": "data",
-        "elementPath": "member_emigrated_when_num"
-      },
-      "member_emigrated_when_dmy_ago": {
-        "type": "string",
-        "valuesList": "dmy_ago_dk",
-        "_defn": [
-          {
-            "_row_num": 28,
-            "section_name": "survey"
-          },
-          {
-            "_row_num": 34,
-            "section_name": "model"
-          }
-        ],
         "elementKey": "member_emigrated_when_dmy_ago",
         "elementName": "member_emigrated_when_dmy_ago",
         "elementSet": "data",
-        "elementPath": "member_emigrated_when_dmy_ago"
+        "elementPath": "member_emigrated_when_dmy_ago",
+        "listChildElementKeys": [
+          "member_emigrated_when_dmy_ago_items"
+        ]
       },
       "emigrated_where": {
         "type": "string",
         "valuesList": "in_outside_district",
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 27,
             "section_name": "survey"
           },
           {
-            "_row_num": 35,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -9645,7 +9583,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -9661,7 +9599,7 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
@@ -9670,38 +9608,36 @@
         "elementSet": "data",
         "elementPath": "new_member_move_in_date"
       },
-      "new_member_move_in_enter": {
-        "type": "integer",
-        "_defn": [
-          {
-            "_row_num": 38,
-            "section_name": "model"
-          }
-        ],
-        "elementKey": "new_member_move_in_enter",
-        "elementName": "new_member_move_in_enter",
-        "elementSet": "data",
-        "elementPath": "new_member_move_in_enter"
-      },
       "new_member_move_in_select": {
-        "type": "string",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "new_member_move_in_select_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "new_member_move_in_select.items",
+          "notUnitOfRetention": true
+        },
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
-        "valuesList": "dmy_ago_dk",
+        "valuesList": "dk",
         "elementKey": "new_member_move_in_select",
         "elementName": "new_member_move_in_select",
         "elementSet": "data",
-        "elementPath": "new_member_move_in_select"
+        "elementPath": "new_member_move_in_select",
+        "listChildElementKeys": [
+          "new_member_move_in_select_items"
+        ]
       },
       "move_from": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -9715,7 +9651,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 41,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -9737,7 +9673,7 @@
         },
         "_defn": [
           {
-            "_row_num": 42,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -9754,7 +9690,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -9777,7 +9713,7 @@
         },
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -9794,7 +9730,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -9816,7 +9752,7 @@
         },
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -9833,7 +9769,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -9847,7 +9783,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -9868,7 +9804,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -9893,7 +9829,7 @@
         },
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -9910,7 +9846,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -9923,7 +9859,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -9937,7 +9873,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -9952,7 +9888,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
@@ -9966,7 +9902,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
@@ -9980,7 +9916,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 54,
             "section_name": "model"
           }
         ],
@@ -9993,7 +9929,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -10007,7 +9943,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -10020,7 +9956,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -10033,7 +9969,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -10047,7 +9983,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -10061,7 +9997,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -10075,7 +10011,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -10097,7 +10033,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -10122,7 +10058,7 @@
         },
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -10139,7 +10075,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -10152,7 +10088,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
@@ -10174,7 +10110,7 @@
         },
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -10191,7 +10127,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -10212,7 +10148,7 @@
         },
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -10229,7 +10165,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -10242,7 +10178,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -10264,7 +10200,7 @@
         },
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -10281,7 +10217,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -10294,7 +10230,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -10308,7 +10244,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -10322,7 +10258,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -10336,7 +10272,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -10358,7 +10294,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -10383,7 +10319,7 @@
         },
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -10400,7 +10336,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -10414,7 +10350,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -10428,7 +10364,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -10442,7 +10378,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -10456,7 +10392,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -10470,7 +10406,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -10484,7 +10420,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -10498,7 +10434,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -10512,7 +10448,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -10525,7 +10461,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -10539,7 +10475,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -10553,7 +10489,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -10575,7 +10511,7 @@
         },
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -10592,7 +10528,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -10606,7 +10542,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -10628,7 +10564,7 @@
         },
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -10645,7 +10581,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -10667,7 +10603,7 @@
         },
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -10684,7 +10620,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -10698,7 +10634,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 100,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
@@ -10761,6 +10697,22 @@
         "elementName": "items",
         "elementSet": "data",
         "elementPath": "member_died_when_dk.items",
+        "notUnitOfRetention": true
+      },
+      "member_emigrated_when_dmy_ago_items": {
+        "type": "string",
+        "elementKey": "member_emigrated_when_dmy_ago_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "member_emigrated_when_dmy_ago.items",
+        "notUnitOfRetention": true
+      },
+      "new_member_move_in_select_items": {
+        "type": "string",
+        "elementKey": "new_member_move_in_select_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "new_member_move_in_select.items",
         "notUnitOfRetention": true
       },
       "move_from_census_extid_not_possible_items": {

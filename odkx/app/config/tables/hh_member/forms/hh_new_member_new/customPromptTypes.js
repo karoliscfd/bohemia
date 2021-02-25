@@ -1,3 +1,5 @@
-define(['../../../../assets/customPromptTypes/next_extid'], function(next_extid) {
-  return next_extid;
+define([
+  '../../../../assets/customPromptTypes/retrieve_extid'
+], function(retrieve_extid) {
+  return retrieve_extid;
 });
