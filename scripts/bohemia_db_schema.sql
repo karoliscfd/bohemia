@@ -882,6 +882,23 @@ CREATE TABLE done_hamlets (
 );
 
 
+CREATE TABLE va_refusals (
+  instance_id    uuid,
+  start_time   TIMESTAMP,
+  end_time   TIMESTAMP,
+  have_wid   VARCHAR(64),
+  wid   INT,
+  wid_manual   VARCHAR(32),
+  wid_qr   VARCHAR(32),
+  death_id  VARCHAR(32),
+  reason_no_participate TEXT
+);
+
+
+
+
+
+
 -- Enable UUID extension
 
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
