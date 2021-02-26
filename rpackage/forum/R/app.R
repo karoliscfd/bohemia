@@ -74,7 +74,7 @@ app_ui <- function(request) {
 #' @import leaflet
 app_server <- function(input, output, session) {
   
-  logged_in <- reactiveVal(value = FALSE)
+  logged_in <- reactiveVal(value = TRUE)
   observeEvent(input$log_in,{
     logged_in(TRUE)
     removeModal()
@@ -91,20 +91,21 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$show, {
-    showModal(modalDialog(
-      title = "Log in",
-      fluidPage(
-        fluidRow(
-          column(6,
-                 textInput('email', 'Email')),
-          column(6,
-                 passwordInput('password', 'Password'))
-        ),
-        fluidRow(
-          actionButton('log_in', 'Log in')
-        )
-      )
-    ))
+    logged_in(TRUE)
+    # showModal(modalDialog(
+    #   title = "Log in",
+    #   fluidPage(
+    #     fluidRow(
+    #       column(6,
+    #              textInput('email', 'Email')),
+    #       column(6,
+    #              passwordInput('password', 'Password'))
+    #     ),
+    #     fluidRow(
+    #       actionButton('log_in', 'Log in')
+    #     )
+    #   )
+    # ))
   })
   observeEvent(input$log_out, {
     logged_in(FALSE)
