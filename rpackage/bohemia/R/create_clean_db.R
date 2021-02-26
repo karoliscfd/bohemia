@@ -75,7 +75,7 @@ create_clean_db <- function(con = NULL,
         dbExecute(conn = con,
                   statement = paste0('create table clean_', this_table, ' as select * from ', this_table))
       }
-      
+        
     }
   }
   # Only close connection if not originally supplied

@@ -5498,7 +5498,7 @@ app_server <- function(input, output, session) {
               #   addLayersControl(overlayGroups = "pts3")
               output$dat_leaf_output <- renderLeafgl({
                 dat_leaf
-              }, height = 800)
+              })
               message('---Created Enrollment map')
               
               

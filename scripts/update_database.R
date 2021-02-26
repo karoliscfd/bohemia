@@ -229,31 +229,33 @@ if(moz){
       id2 = NULL
       use_data_id = FALSE
     }
-    # Get data
-    data <- odk_get_data(
-      url = url,
-      id = id,
-      id2 = id2,
-      unknown_id2 = FALSE,
-      uuids = NULL,
-      exclude_uuids = existing_uuids,
-      user = user,
-      password = password,
-      pre_auth = TRUE,
-      use_data_id = use_data_id,
-      chunk_size = 50000
-    )
-    new_data <- FALSE
-    if(!is.null(data)){
-      new_data <- TRUE
-    }
-    if(new_data){
-      # Format data
-      formatted_data <- format_minicensus(data = data, keyfile = keyfile_path)
-      # Update data
-      update_minicensus(formatted_data = formatted_data,
-                        con = con)
-    }
+    try({
+      # Get data
+      data <- odk_get_data(
+        url = url,
+        id = id,
+        id2 = id2,
+        unknown_id2 = FALSE,
+        uuids = NULL,
+        exclude_uuids = existing_uuids,
+        user = user,
+        password = password,
+        pre_auth = TRUE,
+        use_data_id = use_data_id,
+        chunk_size = 50000
+      )
+      new_data <- FALSE
+      if(!is.null(data)){
+        new_data <- TRUE
+      }
+      if(new_data){
+        # Format data
+        formatted_data <- format_minicensus(data = data, keyfile = keyfile_path)
+        # Update data
+        update_minicensus(formatted_data = formatted_data,
+                          con = con)
+      }
+    })
   }
   
   message('PULLING MOZAMBIQUE VA')
