@@ -38,7 +38,8 @@ create_clean_db <- function(con = NULL,
     'minicensus_repeat_mosquito_net',
     'minicensus_repeat_water',
     'refusals',
-    'va'
+    'va',
+    'va_refusals'
   )
   
   # Loop through each table and copy

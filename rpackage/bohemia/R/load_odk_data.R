@@ -143,12 +143,13 @@ load_odk_data <- function(the_country = 'Mozambique',
       if(!is.null(the_country)){
         enumerations <- dbGetQuery(con, paste0("SELECT instance_id, agregado, village, ward, hamlet, hamlet_code,country, todays_date, chefe_name,localizacao_agregado, wid, start_time, end_time, location_gps FROM clean_enumerations where server='", server_url, "'"))
         #HERE do the same for va and refusals, and then anaomalies in the app. no need for corrections and fixes.
-        
+        va_refusals <- dbGetQuery(con, paste0("SELECT * FROM clean_va_refusals where server='", server_url, "'"))
         va <- dbGetQuery(con, paste0("SELECT instance_id, start_time, end_time, the_country,wid, todays_date, death_id, hh_id, gps_location, server FROM clean_va where server='", server_url, "'"))
         
         refusals <- dbGetQuery(con, paste0("SELECT instance_id, hh_geo_location,country,reason_no_participate, hamlet,district,region, hamlet_code, hh_id, hh_region, village, ward, todays_date, wid FROM clean_refusals where server='", server_url, "'"))
       } else {
         enumerations <- dbGetQuery(con, "SELECT instance_id, agregado, village, ward, hamlet, hamlet_code,country, todays_date, chefe_name,localizacao_agregado, wid, start_time, end_time, location_gps FROM clean_enumerations")
+        va_refusals <- dbGetQuery(con, paste0("SELECT * FROM clean_va_refusals"))
         va <- dbGetQuery(con, "SELECT instance_id, start_time, end_time, the_country,wid, todays_date, death_id, hh_id,gps_location FROM clean_va")
         refusals <- dbGetQuery(con, "SELECT instance_id, hh_geo_location,country, reason_no_participate,hamlet,district,region, hamlet_code, hh_id, hh_region, village, ward, todays_date, wid FROM clean_refusals")
       }
@@ -156,10 +157,12 @@ load_odk_data <- function(the_country = 'Mozambique',
       if(!is.null(the_country)){
         enumerations <- dbGetQuery(con, paste0("SELECT * FROM clean_enumerations where server='", server_url, "'"))
         va <- dbGetQuery(con, paste0("SELECT * FROM clean_va where server='", server_url, "'"))
+        va_refusals <- dbGetQuery(con, paste0("SELECT * FROM clean_va_refusals where server='", server_url, "'"))
         refusals <- dbGetQuery(con, paste0("SELECT * FROM clean_refusals where server='", server_url, "'"))
       } else {
         enumerations <- dbGetQuery(con, "SELECT * FROM clean_enumerations")
         va <- dbGetQuery(con, "SELECT * FROM clean_va")
+        va_refusals <- dbGetQuery(con, "SELECT * FROM clean_va_refusals")
         refusals <- dbGetQuery(con, "SELECT * FROM clean_refusals")
       }
     }
