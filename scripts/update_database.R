@@ -38,6 +38,47 @@ if(sys_hour %in% 7:10){
 } 
 
 if(tza){
+  
+  message('PULLING VA REFUSALS TANZANIA')
+  for(id in c('varefusals')){
+    message('Working on ', id)
+    url <- creds$tza_odk_server
+    user = creds$tza_odk_user
+    password = creds$tza_odk_pass
+    suppressWarnings({
+      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va_refusals')
+    })
+    if (nrow(existing_uuids)< 0){
+      existing_uuids <- c()
+    } else {
+      existing_uuids <- existing_uuids$instance_id
+    }
+    # Get data
+    data <- odk_get_data(
+      url = url,
+      id = id,
+      id2 = id2,
+      unknown_id2 = FALSE,
+      uuids = NULL,
+      exclude_uuids = existing_uuids,
+      user = user,
+      password = password,
+      pre_auth = TRUE,
+      use_data_id = FALSE
+    )
+    new_data <- FALSE
+    if(!is.null(data)){
+      new_data <- TRUE
+    }
+    if(new_data){
+      # Format data
+      formatted_data <- format_va_refusals(data = data, keyfile = keyfile_path)
+      # Update data
+      update_va_refusals(formatted_data = formatted_data,
+                        con = con)
+    }
+  }
+  
   message('PULLING MINICENSUS TANZANIA')
   ############# SMALLCENSUSA TANZANIA
   for(id in c('smallcensusa', 'smallcensusb')){
@@ -253,6 +294,48 @@ if(moz){
       formatted_data <- format_va(data = data, keyfile = keyfile_path)
       # Update data
       update_va(formatted_data = formatted_data,
+                con = con)
+    }
+  }
+  
+  message('PULLING MOZAMBIQUE VA REFUSALS')
+  ############### MOZAMBIQUE VA
+  for(id in c('va_refusals')){
+    message('Working on ', id)
+    url <- creds$moz_odk_server
+    user = creds$moz_odk_user
+    password = creds$moz_odk_pass
+    suppressWarnings({
+      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va')
+    })
+    if (nrow(existing_uuids)< 0){
+      existing_uuids <- c()
+    } else {
+      existing_uuids <- existing_uuids$instance_id
+    }
+    # Get data
+    data <- odk_get_data(
+      url = url,
+      id = id,
+      id2 = id2,
+      unknown_id2 = FALSE,
+      uuids = NULL,
+      exclude_uuids = existing_uuids,
+      user = user,
+      password = password,
+      pre_auth = TRUE,
+      use_data_id = FALSE,
+      chunk_size = 50000
+    )
+    new_data <- FALSE
+    if(!is.null(data)){
+      new_data <- TRUE
+    }
+    if(new_data){
+      # Format data
+      formatted_data <- format_va_refusals(data = data, keyfile = keyfile_path)
+      # Update data
+      update_va_refusals(formatted_data = formatted_data,
                 con = con)
     }
   }

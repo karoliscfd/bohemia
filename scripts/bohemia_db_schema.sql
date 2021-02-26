@@ -884,6 +884,7 @@ CREATE TABLE done_hamlets (
 
 CREATE TABLE va_refusals (
   instance_id    uuid,
+  todays_date DATE,
   start_time   TIMESTAMP,
   end_time   TIMESTAMP,
   have_wid   VARCHAR(64),
@@ -891,7 +892,8 @@ CREATE TABLE va_refusals (
   wid_manual   VARCHAR(32),
   wid_qr   VARCHAR(32),
   death_id  VARCHAR(32),
-  reason_no_participate TEXT
+  reason_no_participate TEXT,
+  server VARCHAR(64)
 );
 
 
