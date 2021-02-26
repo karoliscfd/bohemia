@@ -1,0 +1,31 @@
+---
+title: "hh_qr_code"
+author: "Ben Brew"
+date: "26/02/2021"
+output: pdf_document
+---
+
+```{r}
+library(magick)
+library(bohemia)
+
+# get bohemia qr function
+bohemia::create_qr(id='ABC001')
+
+# read in images
+img_tz <- image_read("1.png")
+img_mz <- image_read("2.png")
+
+
+img_inset <- image_scale(img_tz, "30%x") %>% 
+  image_border("white", "5x5")
+
+img_with_inset <- img_tz %>% image_composite(
+  img_inset,
+  operator = "Atop",
+  gravity = "SouthWest",
+  offset = "-10-10"
+)
+
+image_write(img_with_inset, "img_with_inset.png")
+```
