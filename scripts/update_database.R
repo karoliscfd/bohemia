@@ -300,7 +300,7 @@ if(moz){
   
   message('PULLING MOZAMBIQUE VA REFUSALS')
   ############### MOZAMBIQUE VA
-  for(id in c('va_refusals')){
+  for(id in c('varefusals')){
     message('Working on ', id)
     url <- creds$moz_odk_server
     user = creds$moz_odk_user

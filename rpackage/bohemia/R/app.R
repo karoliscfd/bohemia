@@ -146,7 +146,7 @@ app_ui <- function(request) {
             tabName="main",
             fluidPage(
               fluidRow(column(12, align = 'center',
-                              h3('The Bohemia Data Portal'))),
+                              h3('Bohemia Minicensus Dashboard'))),
               fluidRow(column(9,
                               plotOutput('landing_plot_1'),
                               plotOutput('landing_plot_2')),
@@ -2933,7 +2933,8 @@ app_server <- function(input, output, session) {
         people <- odk_data$data$minicensus_people
         deaths <- odk_data$data$minicensus_repeat_death_info
         deaths <- deaths %>% filter(instance_id %in% pd$instance_id)
-        # save(people, deaths, pd, cn, file = '/tmp/va.RData')
+        # va_refusals <- odk_data$data$va_refusals
+        # save(people, va_refusals, deaths, pd, cn, file = '/tmp/va.RData')
         # Conditional mourning period
         mourning_period <- ifelse(cn == 'Mozambique', 30, 40)
         va <- left_join(deaths %>%
