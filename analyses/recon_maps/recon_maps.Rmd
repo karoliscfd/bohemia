@@ -1,0 +1,63 @@
+---
+title: "Recon report"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: "hide"
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+```
+
+```{r}
+## Load libraries
+library(bohemia)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(sp)
+library(raster)
+library(ggthemes)
+library(sf)
+library(RColorBrewer)
+library(readr)
+library(tidyr)
+# options(scipen = '999')
+theme_set(databrew::theme_simple())
+```
+
+```{r}
+load('recon.RData') # download from https://trello.com/c/mPDK9j47/2313-bohemia-network-coverage-maps-using-recon-data-internet-plus-each-provider
+
+```
+
+# Reconnaissance report {.tabset}
+
+
+## Summary
+
+This report contains maps and tables showing internet and phone coverage, overall and by provider types, for each hamlet of the Bohemia research area.
+
+## MOZ
+
+```{r}
+2+2
+```
+
+## TZA
+```{r}
+2+2
+```
