@@ -274,30 +274,34 @@ if(moz){
       existing_uuids <- existing_uuids$instance_id
     }
     # Get data
-    data <- odk_get_data(
-      url = url,
-      id = id,
-      id2 = id2,
-      unknown_id2 = FALSE,
-      uuids = NULL,
-      exclude_uuids = existing_uuids,
-      user = user,
-      password = password,
-      pre_auth = TRUE,
-      use_data_id = FALSE,
-      chunk_size = 50000
-    )
     new_data <- FALSE
-    if(!is.null(data)){
-      new_data <- TRUE
-    }
-    if(new_data){
-      # Format data
-      formatted_data <- format_va(data = data, keyfile = keyfile_path)
-      # Update data
-      update_va(formatted_data = formatted_data,
-                con = con)
-    }
+    
+    try({
+      data <- odk_get_data(
+        url = url,
+        id = id,
+        id2 = id2,
+        unknown_id2 = FALSE,
+        uuids = NULL,
+        exclude_uuids = existing_uuids,
+        user = user,
+        password = password,
+        pre_auth = TRUE,
+        use_data_id = FALSE,
+        chunk_size = 50000
+      )
+      if(!is.null(data)){
+        new_data <- TRUE
+      }
+      if(new_data){
+        # Format data
+        formatted_data <- format_va(data = data, keyfile = keyfile_path)
+        # Update data
+        update_va(formatted_data = formatted_data,
+                  con = con)
+      }
+    })
+    
   }
   
   message('PULLING MOZAMBIQUE VA REFUSALS')
@@ -316,30 +320,33 @@ if(moz){
       existing_uuids <- existing_uuids$instance_id
     }
     # Get data
-    data <- odk_get_data(
-      url = url,
-      id = id,
-      id2 = id2,
-      unknown_id2 = FALSE,
-      uuids = NULL,
-      exclude_uuids = existing_uuids,
-      user = user,
-      password = password,
-      pre_auth = TRUE,
-      use_data_id = FALSE,
-      chunk_size = 50000
-    )
     new_data <- FALSE
-    if(!is.null(data)){
-      new_data <- TRUE
-    }
-    if(new_data){
-      # Format data
-      formatted_data <- format_va_refusals(data = data, keyfile = keyfile_path)
-      # Update data
-      update_va_refusals(formatted_data = formatted_data,
-                con = con)
-    }
+    try({
+      data <- odk_get_data(
+        url = url,
+        id = id,
+        id2 = id2,
+        unknown_id2 = FALSE,
+        uuids = NULL,
+        exclude_uuids = existing_uuids,
+        user = user,
+        password = password,
+        pre_auth = TRUE,
+        use_data_id = FALSE,
+        chunk_size = 50000
+      )
+      if(!is.null(data)){
+        new_data <- TRUE
+      }
+      if(new_data){
+        # Format data
+        formatted_data <- format_va_refusals(data = data, keyfile = keyfile_path)
+        # Update data
+        update_va_refusals(formatted_data = formatted_data,
+                           con = con)
+      }
+    })
+    
   }
   
   message('PULLING ENUMERATIONS (MOZAMBIQUE')
@@ -358,29 +365,32 @@ if(moz){
       existing_uuids <- existing_uuids$instance_id
     } 
     # Get data
-    data <- odk_get_data(
-      url = url,
-      id = id,
-      id2 = id2,
-      unknown_id2 = FALSE,
-      uuids = NULL,
-      exclude_uuids = existing_uuids,
-      user = user,
-      password = password,
-      chunk_size = 50000
-    )
     new_data <- FALSE
-    if(!is.null(data)){
-      new_data <- TRUE
-      # message('---', nrow(data$non_repeats), ' new data points.')
-    }
-    if(new_data){
-      # Format data
-      formatted_data <- format_enumerations(data = data, keyfile = keyfile_path)
-      # Update data
-      update_enumerations(formatted_data = formatted_data,
-                          con = con)
-    }
+    try({
+      data <- odk_get_data(
+        url = url,
+        id = id,
+        id2 = id2,
+        unknown_id2 = FALSE,
+        uuids = NULL,
+        exclude_uuids = existing_uuids,
+        user = user,
+        password = password,
+        chunk_size = 50000
+      )
+      if(!is.null(data)){
+        new_data <- TRUE
+        # message('---', nrow(data$non_repeats), ' new data points.')
+      }
+      if(new_data){
+        # Format data
+        formatted_data <- format_enumerations(data = data, keyfile = keyfile_path)
+        # Update data
+        update_enumerations(formatted_data = formatted_data,
+                            con = con)
+      }
+    })
+    
   }
   
   message('PULLING REFUSALS (MOZAMBIQUE)')
@@ -399,30 +409,33 @@ if(moz){
       existing_uuids <- existing_uuids$instance_id
     } 
     # Get data
-    data <- odk_get_data(
-      url = url,
-      id = id,
-      id2 = id2,
-      unknown_id2 = FALSE,
-      uuids = NULL,
-      exclude_uuids = existing_uuids,
-      user = user,
-      password = password, 
-      pre_auth = TRUE,
-      chunk_size = 50000
-    )
     new_data <- FALSE
-    if(!is.null(data)){
-      new_data <- TRUE
-      message('---', nrow(data$non_repeats), ' new data points.')
-    }
-    if(new_data){
-      # Format data
-      formatted_data <- format_refusals(data = data)
-      # Update data
-      update_refusals(formatted_data = formatted_data,
-                      con = con)
-    }
+    try({
+      data <- odk_get_data(
+        url = url,
+        id = id,
+        id2 = id2,
+        unknown_id2 = FALSE,
+        uuids = NULL,
+        exclude_uuids = existing_uuids,
+        user = user,
+        password = password, 
+        pre_auth = TRUE,
+        chunk_size = 50000
+      )
+      if(!is.null(data)){
+        new_data <- TRUE
+        message('---', nrow(data$non_repeats), ' new data points.')
+      }
+      if(new_data){
+        # Format data
+        formatted_data <- format_refusals(data = data)
+        # Update data
+        update_refusals(formatted_data = formatted_data,
+                        con = con)
+      }
+    })
+    
   }
 }
 
