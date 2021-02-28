@@ -9,6 +9,7 @@
 #' @return overlayed image
 #' @export
 
+
 hh_qr_code_print <- function(base_img_path, hh_id) {
   # create qr code matrix
   x <- qrcode_gen(hh_id, plotQRcode=F, dataOutput=T, ErrorCorrectionLevel = 'H')
@@ -30,6 +31,7 @@ hh_qr_code_print <- function(base_img_path, hh_id) {
   # get base image
   base_img <- image_read(base_img_path)
   base_img <- image_scale(base_img, geometry = "50%x")
+  base_img <- image_annotate(base_img, hh_id, size = 30, gravity = "center", color = "black", location='+10-50')
   
   # layer images
   img_with_inset <- base_img %>% image_composite(
