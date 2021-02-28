@@ -13,39 +13,41 @@ library(bohemia)
 library(qrcode)
 library(tidyverse)
 
-ggqrcode <- function(text, color="black", alpha=1) {
-    pkg <- "qrcode"
-    require(pkg, character.only = TRUE)
-    x <- qrcode_gen(text, plotQRcode=F, dataOutput=T, ErrorCorrectionLevel = 'H')
-    x <- as.data.frame(x)
-
-    y <- x
-    y$id <- rownames(y)
-    y <- gather(y, "key", "value", colnames(y)[-ncol(y)])
-    y$key = factor(y$key, levels=rev(colnames(x)))
-    y$id = factor(y$id, levels=rev(rownames(x)))
-
-    ggplot(y, aes_(x=~id, y=~key)) + geom_tile(aes_(fill=~value), alpha=alpha) +
-        scale_fill_gradient(low="white", high=color) +
-        theme_void() + theme(legend.position='none')
-} 
-
-# get qr code
-fig <- image_graph()
-ggqrcode(text = 'ABC-123' )
-dev.off()
-img_inset <- image_scale(fig, "165x") 
-# img_inset <- image_scale(img_inset, "25%") 
-
-# get base image
-img_tz <- image_read("1.png")
-img_tz <- image_scale(img_tz, geometry = "50%x")
-
-# layer images
-img_with_inset <- img_tz %>% image_composite(
-  img_inset,
-  offset = "+420+40"
-)
-
-img_with_inset
+bohemia::hh_qr_code_print(base_img_path = '1.png', hh_id = 'ABC-123')
+# 
+# ggqrcode <- function(text, color="black", alpha=1) {
+#     pkg <- "qrcode"
+#     require(pkg, character.only = TRUE)
+#     x <- qrcode_gen(text, plotQRcode=F, dataOutput=T, ErrorCorrectionLevel = 'H')
+#     x <- as.data.frame(x)
+# 
+#     y <- x
+#     y$id <- rownames(y)
+#     y <- gather(y, "key", "value", colnames(y)[-ncol(y)])
+#     y$key = factor(y$key, levels=rev(colnames(x)))
+#     y$id = factor(y$id, levels=rev(rownames(x)))
+# 
+#     ggplot(y, aes_(x=~id, y=~key)) + geom_tile(aes_(fill=~value), alpha=alpha) +
+#         scale_fill_gradient(low="white", high=color) +
+#         theme_void() + theme(legend.position='none')
+# } 
+# 
+# # get qr code
+# fig <- image_graph()
+# ggqrcode(text = 'ABC-123' )
+# dev.off()
+# img_inset <- image_scale(fig, "165x") 
+# # img_inset <- image_scale(img_inset, "25%") 
+# 
+# # get base image
+# img_tz <- image_read("1.png")
+# img_tz <- image_scale(img_tz, geometry = "50%x")
+# 
+# # layer images
+# img_with_inset <- img_tz %>% image_composite(
+#   img_inset,
+#   offset = "+420+40"
+# )
+# 
+# img_with_inset
 ```
