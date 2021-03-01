@@ -1,0 +1,79 @@
+---
+title: "hh_qr_code"
+author: "Ben Brew"
+date: "26/02/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(magick)
+library(bohemia)
+library(qrcode)
+library(tidyverse)
+
+codes <- paste0('ABC-', 111:123)
+image_files <- c('1.png', '2.png')
+
+if(!dir.exists('certificates')){
+  dir.create('certificates/')
+}
+
+for(i in 1:length(codes)){
+  this_code <- codes[i]
+  for(j in 1:length(image_files)){
+    this_image_file <- image_files[j]
+    out_name <- paste0(
+      'certificates/',
+      this_code,
+      ifelse(this_image_file == '1.png', '_sw', '_pt'),
+      '.png'
+    )
+    hh_qr_code_print(base_img_path = this_image_file, hh_id = this_code,
+                     save_file = out_name,
+                     height=8,
+                     width=11)
+  }
+  
+
+}
+
+hh_qr_code_print(base_img_path = '2.png', hh_id = 'ABC-123')
+# 
+# ggqrcode <- function(text, color="black", alpha=1) {
+#     pkg <- "qrcode"
+#     require(pkg, character.only = TRUE)
+#     x <- qrcode_gen(text, plotQRcode=F, dataOutput=T, ErrorCorrectionLevel = 'H')
+#     x <- as.data.frame(x)
+# 
+#     y <- x
+#     y$id <- rownames(y)
+#     y <- gather(y, "key", "value", colnames(y)[-ncol(y)])
+#     y$key = factor(y$key, levels=rev(colnames(x)))
+#     y$id = factor(y$id, levels=rev(rownames(x)))
+# 
+#     ggplot(y, aes_(x=~id, y=~key)) + geom_tile(aes_(fill=~value), alpha=alpha) +
+#         scale_fill_gradient(low="white", high=color) +
+#         theme_void() + theme(legend.position='none')
+# } 
+# 
+# # get qr code
+# fig <- image_graph()
+# ggqrcode(text = 'ABC-123' )
+# dev.off()
+# img_inset <- image_scale(fig, "165x") 
+# # img_inset <- image_scale(img_inset, "25%") 
+# 
+# # get base image
+# img_tz <- image_read("1.png")
+# img_tz <- image_scale(img_tz, geometry = "50%x")
+# 
+# # layer images
+# img_with_inset <- img_tz %>% image_composite(
+#   img_inset,
+#   offset = "+420+40"
+# )
+# 
+# img_with_inset
+```
