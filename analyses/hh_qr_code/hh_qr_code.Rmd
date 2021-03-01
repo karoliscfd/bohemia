@@ -30,7 +30,10 @@ for(i in 1:length(codes)){
       ifelse(this_image_file == '1.png', '_sw', '_pt'),
       '.png'
     )
-    hh_qr_code_print(base_img_path = this_image_file, hh_id = this_code,
+    hh_qr_code_print(base_img_path = this_image_file, 
+                     demo_sig = 'signatures/tza_demog.png',
+                     pi_sig = 'signatures/tza_pi.png',
+                     hh_id = this_code,
                      save_file = out_name,
                      height=8,
                      width=11)
@@ -39,7 +42,7 @@ for(i in 1:length(codes)){
 
 }
 
-hh_qr_code_print(base_img_path = '2.png', hh_id = 'ABC-123')
+# hh_qr_code_print(base_img_path = '2.png', hh_id = 'ABC-123')
 # 
 # ggqrcode <- function(text, color="black", alpha=1) {
 #     pkg <- "qrcode"
