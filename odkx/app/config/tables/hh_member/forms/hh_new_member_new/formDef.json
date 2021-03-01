@@ -103,11 +103,14 @@
         "type": "select_one_integer",
         "values_list": "day_choice",
         "name": "dob_day",
-        "required": "not(selected(data('dob_day_dk'), 'dk'))",
         "display": {
-          "required_message": "day_hint",
+          "title": {
+            "text": "​"
+          },
+          "required_message": "dob_hint",
           "constraint_message": "invalid_dm"
         },
+        "required": "not(selected(data('dob_day_dk'), 'dk'))",
         "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -151,10 +154,13 @@
         "type": "select_one_integer",
         "values_list": "month_choice",
         "name": "dob_month",
-        "required": "not(selected(data('dob_month_dk'), 'dk'))",
         "display": {
+          "title": {
+            "text": "​"
+          },
           "required_message": "month_hint"
         },
+        "required": "not(selected(data('dob_month_dk'), 'dk'))",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
         "_row_num": 23
@@ -197,11 +203,14 @@
         "type": "select_one_integer",
         "values_list": "year_choice",
         "name": "dob_year",
-        "required": "not(selected(data('dob_year_dk'), 'dk'))",
         "display": {
+          "title": {
+            "text": "​"
+          },
           "required_message": "year_hint",
           "constraint_message": "invalid_dmy"
         },
+        "required": "not(selected(data('dob_year_dk'), 'dk'))",
         "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -313,7 +322,6 @@
         "values_list": "retrieve_extid",
         "name": "id",
         "required": 1,
-        "constraint": "/^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
         "_row_num": 47
       },
       {
@@ -7864,6 +7872,9 @@
       },
       "dob_day": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "day_choice",
         "_defn": [
           {
@@ -7898,6 +7909,9 @@
       },
       "dob_month": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "month_choice",
         "_defn": [
           {
@@ -7932,6 +7946,9 @@
       },
       "dob_year": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "year_choice",
         "_defn": [
           {
@@ -9129,11 +9146,14 @@
             "type": "select_one_integer",
             "values_list": "day_choice",
             "name": "dob_day",
-            "required": "not(selected(data('dob_day_dk'), 'dk'))",
             "display": {
-              "required_message": "day_hint",
+              "title": {
+                "text": "​"
+              },
+              "required_message": "dob_hint",
               "constraint_message": "invalid_dm"
             },
+            "required": "not(selected(data('dob_day_dk'), 'dk'))",
             "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -9173,10 +9193,13 @@
             "type": "select_one_integer",
             "values_list": "month_choice",
             "name": "dob_month",
-            "required": "not(selected(data('dob_month_dk'), 'dk'))",
             "display": {
+              "title": {
+                "text": "​"
+              },
               "required_message": "month_hint"
             },
+            "required": "not(selected(data('dob_month_dk'), 'dk'))",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
             "_row_num": 23,
@@ -9215,11 +9238,14 @@
             "type": "select_one_integer",
             "values_list": "year_choice",
             "name": "dob_year",
-            "required": "not(selected(data('dob_year_dk'), 'dk'))",
             "display": {
+              "title": {
+                "text": "​"
+              },
               "required_message": "year_hint",
               "constraint_message": "invalid_dmy"
             },
+            "required": "not(selected(data('dob_year_dk'), 'dk'))",
             "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -9332,7 +9358,6 @@
             "values_list": "retrieve_extid",
             "name": "id",
             "required": 1,
-            "constraint": "/^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
             "_row_num": 47,
             "__rowNum__": 46,
             "_token_type": "prompt",
@@ -9734,6 +9759,9 @@
       },
       "dob_day": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "day_choice",
         "_defn": [
           {
@@ -9781,6 +9809,9 @@
       },
       "dob_month": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "month_choice",
         "_defn": [
           {
@@ -9828,6 +9859,9 @@
       },
       "dob_year": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "year_choice",
         "_defn": [
           {

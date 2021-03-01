@@ -238,6 +238,11 @@ window.odkCommonDefinitions = {
       "string_token": "map_hint",
       "text": "You are at the blue circle. Pins are households that were part of minicensus.",
       "_row_num": 37
+    },
+    "toc": {
+      "string_token": "toc",
+      "text": "Table of Contents",
+      "_row_num": 38
     }
   },
   "_locales": {

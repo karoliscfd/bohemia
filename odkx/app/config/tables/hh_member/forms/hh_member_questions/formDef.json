@@ -90,11 +90,14 @@
         "type": "select_one_integer",
         "values_list": "day_choice",
         "name": "dob_day",
-        "required": "not(selected(data('dob_day_dk'), 'dk'))",
         "display": {
-          "required_message": "day_hint",
+          "title": {
+            "text": "​"
+          },
+          "required_message": "dob_hint",
           "constraint_message": "invalid_dm"
         },
+        "required": "not(selected(data('dob_day_dk'), 'dk'))",
         "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -138,10 +141,13 @@
         "type": "select_one_integer",
         "values_list": "month_choice",
         "name": "dob_month",
-        "required": "not(selected(data('dob_month_dk'), 'dk'))",
         "display": {
+          "title": {
+            "text": "​"
+          },
           "required_message": "month_hint"
         },
+        "required": "not(selected(data('dob_month_dk'), 'dk'))",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
         "_row_num": 20
@@ -184,11 +190,14 @@
         "type": "select_one_integer",
         "values_list": "year_choice",
         "name": "dob_year",
-        "required": "not(selected(data('dob_year_dk'), 'dk'))",
         "display": {
+          "title": {
+            "text": "​"
+          },
           "required_message": "year_hint",
           "constraint_message": "invalid_dmy"
         },
+        "required": "not(selected(data('dob_year_dk'), 'dk'))",
         "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
         "hideInContents": 1,
         "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -1052,9 +1061,10 @@
         "values_list": "time_bed",
         "name": "time_go_bed",
         "display": {
-          "prompt": "ind_q28"
+          "prompt": "ind_q28",
+          "constraint_message": "invalid_time_q28"
         },
-        "choice_filter": "calculates.compare_time_order()(data('time_indoors'), choice_item.data_value, calculates.sunset_time_order()) <= 0",
+        "constraint": "!data('time_indoors') || !data('time_go_bed') || calculates.compare_time_order()(data('time_indoors'), data('time_go_bed'), calculates.sunset_time_order()) <= 0",
         "_row_num": 167
       },
       {
@@ -1080,9 +1090,10 @@
         "values_list": "time_outdoors",
         "name": "time_go_outside",
         "display": {
-          "prompt": "ind_q31"
+          "prompt": "ind_q31",
+          "constraint_message": "invalid_time_q31"
         },
-        "choice_filter": "calculates.compare_time_order()(data('time_get_out_bed'), choice_item.data_value, calculates.sunrise_time_order()) <= 0",
+        "constraint": "!data('time_get_out_bed') || !data('time_go_outside') || calculates.compare_time_order()(data('time_get_out_bed'), data('time_go_outside'), calculates.sunrise_time_order()) <= 0",
         "_row_num": 170
       },
       {
@@ -5067,7 +5078,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210301001,
         "_row_num": 3
       },
       {
@@ -5238,7 +5249,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210301001,
         "_row_num": 3
       },
       "table_id": {
@@ -8947,6 +8958,9 @@
       },
       "dob_day": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "day_choice",
         "_defn": [
           {
@@ -8981,6 +8995,9 @@
       },
       "dob_month": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "month_choice",
         "_defn": [
           {
@@ -9015,6 +9032,9 @@
       },
       "dob_year": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "year_choice",
         "_defn": [
           {
@@ -10413,11 +10433,14 @@
             "type": "select_one_integer",
             "values_list": "day_choice",
             "name": "dob_day",
-            "required": "not(selected(data('dob_day_dk'), 'dk'))",
             "display": {
-              "required_message": "day_hint",
+              "title": {
+                "text": "​"
+              },
+              "required_message": "dob_hint",
               "constraint_message": "invalid_dm"
             },
+            "required": "not(selected(data('dob_day_dk'), 'dk'))",
             "constraint": "selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || not(selected(data('dob_year_dk'), 'dk')) || moment(data('dob_month') + '-' + data('dob_day'), 'M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -10457,10 +10480,13 @@
             "type": "select_one_integer",
             "values_list": "month_choice",
             "name": "dob_month",
-            "required": "not(selected(data('dob_month_dk'), 'dk'))",
             "display": {
+              "title": {
+                "text": "​"
+              },
               "required_message": "month_hint"
             },
+            "required": "not(selected(data('dob_month_dk'), 'dk'))",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
             "_row_num": 20,
@@ -10499,11 +10525,14 @@
             "type": "select_one_integer",
             "values_list": "year_choice",
             "name": "dob_year",
-            "required": "not(selected(data('dob_year_dk'), 'dk'))",
             "display": {
+              "title": {
+                "text": "​"
+              },
               "required_message": "year_hint",
               "constraint_message": "invalid_dmy"
             },
+            "required": "not(selected(data('dob_year_dk'), 'dk'))",
             "constraint": "selected(data('dob_year_dk'), 'dk') || selected(data('dob_day_dk'), 'dk') || selected(data('dob_month_dk'), 'dk') || moment(data('dob_year') + '-' + data('dob_month') + '-' + data('dob_day'), 'YYYY-M-D').isValid()",
             "hideInContents": 1,
             "templatePath": "../../../../../system/survey/templates/select_dropdown.handlebars",
@@ -11349,9 +11378,10 @@
             "values_list": "time_bed",
             "name": "time_go_bed",
             "display": {
-              "prompt": "ind_q28"
+              "prompt": "ind_q28",
+              "constraint_message": "invalid_time_q28"
             },
-            "choice_filter": "calculates.compare_time_order()(data('time_indoors'), choice_item.data_value, calculates.sunset_time_order()) <= 0",
+            "constraint": "!data('time_indoors') || !data('time_go_bed') || calculates.compare_time_order()(data('time_indoors'), data('time_go_bed'), calculates.sunset_time_order()) <= 0",
             "_row_num": 167,
             "__rowNum__": 166,
             "_token_type": "prompt",
@@ -11392,9 +11422,10 @@
             "values_list": "time_outdoors",
             "name": "time_go_outside",
             "display": {
-              "prompt": "ind_q31"
+              "prompt": "ind_q31",
+              "constraint_message": "invalid_time_q31"
             },
-            "choice_filter": "calculates.compare_time_order()(data('time_get_out_bed'), choice_item.data_value, calculates.sunrise_time_order()) <= 0",
+            "constraint": "!data('time_get_out_bed') || !data('time_go_outside') || calculates.compare_time_order()(data('time_get_out_bed'), data('time_go_outside'), calculates.sunrise_time_order()) <= 0",
             "_row_num": 170,
             "__rowNum__": 169,
             "_token_type": "prompt",
@@ -11567,6 +11598,8 @@
             56,
             58,
             71,
+            75,
+            78,
             83,
             86,
             88
@@ -11958,6 +11991,9 @@
       },
       "dob_day": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "day_choice",
         "_defn": [
           {
@@ -12005,6 +12041,9 @@
       },
       "dob_month": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "month_choice",
         "_defn": [
           {
@@ -12052,6 +12091,9 @@
       },
       "dob_year": {
         "type": "integer",
+        "displayName": {
+          "text": "​"
+        },
         "valuesList": "year_choice",
         "_defn": [
           {

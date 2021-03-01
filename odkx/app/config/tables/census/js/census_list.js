@@ -256,7 +256,7 @@
       hhMetadata = action.jsonValue.result;
     }
 
-    if (!!hhMetadata.hhRowId && !!hhMetadata.hhId) {
+    if (!!hhMetadata && !!hhMetadata.hhRowId && !!hhMetadata.hhId) {
       openHh(hhMetadata.hhRowId, hhMetadata.hhId);
     }
   };
@@ -328,6 +328,8 @@
   };
 
   document.addEventListener('DOMContentLoaded', function () {
+    odkData.getOdkDataIf().getResponseJSON();
+
     configSearch('hhId');
     configSearch('member');
 
@@ -382,7 +384,5 @@
       odkCommon.registerListener(actionCallback);
       actionCallback();
     }
-
-    odkData.getOdkDataIf().getResponseJSON();
   });
 })();
