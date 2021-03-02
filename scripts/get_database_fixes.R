@@ -8,10 +8,10 @@ creds <- yaml::yaml.load_file(creds_fpath)
 is_local <- FALSE
 
 # # load data from odk for both countries
-# odk_data <- odk_data_moz <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
-#                               the_country = 'Mozambique',
-#                           users_path = '../credentials/users.yaml',
-#                           local = is_local, efficient = FALSE)
+  # odk_data <- odk_data_moz <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
+  #                               the_country = 'Mozambique',
+  #                           users_path = '../credentials/users.yaml',
+  #                           local = is_local, efficient = FALSE)
 # odk_data_tza <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
 #                               the_country = 'Tanzania',
 #                               users_path = '../credentials/users.yaml',

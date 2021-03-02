@@ -4993,8 +4993,14 @@ app_server <- function(input, output, session) {
                 # # get refusals data
                 rf = odk_data$data$refusals
                 # save(rf, file = '/tmp/rf.RData')
+                odk <- odk_data$data
+                # save(odk, file = '/tmp/odk.RData')
                 # Keep only the country in question
                 rf <- rf %>% dplyr::filter(country == co)
+                
+                # Remove those refusals for which a minicensus form ended up being collected
+                rf <- rf %>%
+                  filter(!hh_id %in% odk$minicensus_main$hh_id)
                 
                 # HERE make it work with week
                 # Get agg
