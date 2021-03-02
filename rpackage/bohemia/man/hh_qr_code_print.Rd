@@ -4,14 +4,18 @@
 \alias{hh_qr_code_print}
 \title{Household id to qr code print}
 \usage{
-hh_qr_code_print(base_img_path, hh_id, save_file = NULL, ...)
+hh_qr_code_print(base_img_path, hh_id, demo_sig, pi_sig, save_file = NULL, ...)
 }
 \arguments{
 \item{base_img_path}{The path to the image that will be overlayed with a qr code}
 
 \item{hh_id}{The household ID}
 
+\item{pi_sig}{The path to the PI signature file}
+
 \item{save_file}{Where to save the file}
+
+\item{demog_sig}{The path to the demography signature file}
 }
 \value{
 overlayed image
