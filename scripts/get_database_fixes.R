@@ -36,6 +36,7 @@ fixes <- dbGetQuery(conn = con, 'SELECT * FROM fixes;')
 # Keep only those corrections which have not yet been fixed
 keep <- corrections %>%
   filter(!id %in% fixes$id)
+
 write_csv(keep, '~/Desktop/keep.csv')
 dbDisconnect(con)
 
