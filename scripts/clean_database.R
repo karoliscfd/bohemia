@@ -57,6 +57,8 @@ library(reticulate)
 # Drop the old fixes before creating the new ones
 dbExecute(conn = con,
           'DELETE FROM fixes')
+dbExecute(conn = con,
+          'DELETE FROM fixes_ad_hoc')
 use_virtualenv('bohemia', required = T)
 py_run_file('clean_database_fixes.py', local = FALSE, convert = FALSE)
 

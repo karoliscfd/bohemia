@@ -71,6 +71,13 @@ def implement(id = None, query = '', who = 'Joe Brew', is_ok = False, cur = cur,
                 """,
         (id, who, done_at, query)
         )
+    else:
+        cur.execute(
+        """
+                INSERT INTO fixes_ad_hoc (id, done_by, done_at, resolution_code) VALUES(%s, %s, %s, %s)
+                """,
+        (id, who, done_at, query)
+        )
 dbconn.commit()
 
 # Go one-by-one through "show_these" and implement changes
