@@ -37,7 +37,7 @@ fixes <- dbGetQuery(conn = con, 'SELECT * FROM fixes;')
 keep <- corrections %>%
   filter(!id %in% fixes$id)
 write_csv(keep, '~/Desktop/keep.csv')
-
+dbDisconnect(con)
 
 # # get corrections and fixes.
 # corrections <- odk_data_moz$corrections %>% bind_rows(odk_data_tza$corrections)
