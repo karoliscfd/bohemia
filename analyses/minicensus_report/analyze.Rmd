@@ -1,0 +1,207 @@
+---
+title: "Minicensus report"
+author: "www.databrew.cc"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: "hide"
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+```
+
+```{r}
+#!/usr/bin/Rscript
+start_time <- Sys.time()
+message('System time is: ', as.character(start_time))
+message('---Timezone: ', as.character(Sys.timezone()))
+keyfile_path <- '../../credentials/bohemia_pub.pem'
+creds_fpath <- '../../credentials/credentials.yaml'
+creds <- yaml::yaml.load_file(creds_fpath)
+suppressMessages({
+  library(RPostgres)
+  library(bohemia)
+  library(yaml)
+  library(dplyr)
+  library(ggplot2)
+  library(leaflet)
+  library(leaflet.extras)
+  library(leafgl)
+  library(DT)
+  library(sf)
+  theme_bohemia <- ggplot2::theme_bw
+}
+)
+
+is_local <- FALSE
+drv <- RPostgres::Postgres()
+
+if(is_local){
+  con <- dbConnect(drv, dbname='bohemia')
+} else {
+  psql_end_point = creds$endpoint
+  psql_user = creds$psql_master_username
+  psql_pass = creds$psql_master_password
+  con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
+                   port=5432,
+                   user=psql_user, password=psql_pass)
+}
+
+replace_local_files <- TRUE
+if(replace_local_files){
+  remove_file <- '/tmp/Mozambique_efficient_local.RData'
+  if(file.exists(remove_file)){
+    file.remove(remove_file)
+  }
+  remove_file <- '/tmp/Tanzania_efficient_local.RData'
+  if(file.exists(remove_file)){
+    file.remove(remove_file)
+  }
+  
+  use_cached <- TRUE
+  for(the_country in c('Mozambique', 'Tanzania')){
+    the_iso <- ifelse(the_country == 'Mozambique', 'moz', 'tza')
+    out <- load_odk_data(local = is_local, the_country = the_country, efficient = TRUE, use_cached = use_cached, con = con)
+    assign(the_iso, out, envir = .GlobalEnv)
+  }
+}
+x = dbDisconnect(con)
+
+# Function for extracting lng and lat from a odk geocode object
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
+```
+
+```{r}
+# Combine data
+odk_data <- list()
+odk_data$data <- list()
+for(i in 1:length(moz)){
+  odk_data$data[[i]] <- 
+    bind_rows(moz[[i]] %>% mutate(iso = 'MOZ'),
+              tza[[i]] %>% mutate(iso = 'TZA'))
+}
+names(odk_data$data) <- names(moz)
+```
+
+
+
+# Data collection progress {.tabset}
+
+## Overall
+
+### Chart: Household minicensus forms collected
+
+Line: Cumulative; Bars; Daily
+
+```{r}
+pd <- odk_data$data$minicensus_main %>%
+  group_by(date = todays_date,
+           country = hh_country) %>%
+  tally %>%
+  ungroup %>%
+  group_by(country) %>%
+  mutate(cs = cumsum(n))
+
+ggplot(data = pd,
+       aes(x = date)) +
+  geom_line(aes(y = cs)) +
+  geom_bar(aes(y = n),
+               fill = 'grey',
+           stat = 'identity') +
+  theme_bohemia() +
+  facet_wrap(~country) +
+  theme(legend.position = 'none') +
+  labs(x = 'Date',
+       y = 'Minicensus forms')
+```
+
+
+### Map: Household minicensus forms collected
+
+```{r}
+geo_dat <-
+  odk_data$data$enumerations %>%
+              mutate(hh_id = agregado,
+                     hh_geo_location = location_gps,
+                     status = 'Enumerated') %>%
+  bind_rows(
+    odk_data$data$refusals %>%
+      # filter(iso == 'MOZ') %>% 
+      mutate(status = 'Refused')
+  )  %>%
+  bind_rows(
+      odk_data$data$minicensus_main %>%
+  # filter(iso == 'MOZ') %>% 
+  mutate(status = 'Minicensed')
+  ) %>%
+  dplyr::select(hh_geo_location,
+                status,
+                hh_id) 
+
+
+
+ll <- extract_ll(geo_dat$hh_geo_location)
+geo_dat$lng <- ll$lng; geo_dat$lat <- ll$lat
+geo_dat <- geo_dat %>%
+  mutate(x = lng,
+         y = lat) %>%
+  filter(!is.na(lng), !is.na(lat)) %>%
+  filter(lng > 5,
+         lat < 0)
+pts <- st_as_sf(data.frame(geo_dat), coords = c("lng", "lat"), crs = 4326)
+leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+                  addGlPoints(data = pts,
+                            # fillColor = 'red',
+                            fillColor = pts$status,
+                            popup = pts,
+                            group = "pts") %>%
+                addLegend("bottomright", 
+                          colors =c("#FFFF00",  "#871F78", "#00FFFF"),
+                          labels= c("Refused", "Enumerated","Minicensed"),
+                          title= "Status",
+                          opacity = 1)
+```
+
+
+
+### Table: Household minicensus forms collected
+
+```{r}
+x <- pd %>% 
+  dplyr::select(-cs) %>%
+  tidyr::spread(key = country, value = n)
+bohemia::prettify(x, nrows = nrow(x), download_options = TRUE)
+```
+
+## Mozambique
+
+
+
+## Tanzania
+
+
+Some text here
