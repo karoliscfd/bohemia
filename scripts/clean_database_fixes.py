@@ -3950,7 +3950,6 @@ implement(id='too_many_consult_ca276713-0620-4053-8d28-f64f379ecd0f', query = "U
 implement(id='too_many_consult_49c207c0-b0c2-4617-984a-0b56911717f6', query = "UPDATE clean_minicensus_main SET hh_health_permission = 'household_head' WHERE instance_id='49c207c0-b0c2-4617-984a-0b56911717f6'", who='Xing Brew')
 implement(id='too_many_consult_68858451-a685-4d81-a894-261f3523e504', query = "UPDATE clean_minicensus_main SET hh_health_permission = 'household_head' WHERE instance_id='68858451-a685-4d81-a894-261f3523e504'", who='Xing Brew')
 implement(id='too_many_consult_76caaaff-5962-4c9b-8aa0-8db7eed8c811', query = "UPDATE clean_minicensus_main SET hh_health_permission = 'household_head' WHERE instance_id='76caaaff-5962-4c9b-8aa0-8db7eed8c811'", who='Xing Brew')
-implement(id='too_many_consult_6d29b852-b19b-4477-98c1-8ae50ce9565a', query = "UPDATE clean_minicensus_main SET hh_health_permission = '' WHERE instance_id='6d29b852-b19b-4477-98c1-8ae50ce9565a'", who='Xing Brew')
 
 implement(id='note_material_warning_08158713-28c8-4b9a-8970-56b78509761a', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'brick_block' WHERE instance_id='08158713-28c8-4b9a-8970-56b78509761a'", who='Xing Brew')
 implement(id='note_material_warning_09378088-2fde-4185-b429-f3b77b40c324', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'brick_block' WHERE instance_id='09378088-2fde-4185-b429-f3b77b40c324'", who='Xing Brew')
