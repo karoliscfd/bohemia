@@ -1335,83 +1335,101 @@ window.odkTableSpecificDefinitions = {
     "technical_h2": {
       "string_token": "technical_h2",
       "text": {
-        "default": "<h2>Technical Details</h2>",
-        "pt": "<h2>Detalhes Técnicos</h2>",
-        "sw": "<h2>Taarifa za kiufundi</h2>"
+        "default": "Technical Details",
+        "pt": "Detalhes Técnicos",
+        "sw": "Taarifa za kiufundi"
       },
       "_row_num": 151
+    },
+    "members_h2": {
+      "string_token": "members_h2",
+      "text": {
+        "default": "Household Members",
+        "pt": "Membros do agregado familiar",
+        "sw": "Wanakaya"
+      },
+      "_row_num": 152
+    },
+    "head_h2": {
+      "string_token": "head_h2",
+      "text": {
+        "default": "Household head/household head substitute",
+        "pt": "Chefe do agregado familiar/Chefe de agregado substituto",
+        "sw": "Mkuu wa kaya/Mbadala wa Mkuu wa kaya"
+      },
+      "_row_num": 153
     },
     "hh_h2": {
       "string_token": "hh_h2",
       "text": {
-        "default": "<h2>HOUSEHOLD QUESTIONNAIRE</h2>",
-        "pt": "<h2>QUESTIONÁRIO PARA AGREGADO FAMILIAR</h2>",
-        "sw": "<h2>DODOSO LA KAYA</h2>"
+        "default": "HOUSEHOLD QUESTIONNAIRE",
+        "pt": "QUESTIONÁRIO PARA AGREGADO FAMILIAR",
+        "sw": "DODOSO LA KAYA"
       },
-      "_row_num": 152
+      "_row_num": 154
     },
     "socio_econ_h2": {
       "string_token": "socio_econ_h2",
       "text": {
-        "default": "<h2>Socio-Economic information</h2>",
-        "pt": "<h2>Informação socioeconómica</h2>",
-        "sw": "<h2>Maelezo ya Kiuchumi ya Jamii</h2>"
+        "default": "Socio-Economic information",
+        "pt": "Informação socioeconómica",
+        "sw": "Maelezo ya Kiuchumi ya Jamii"
       },
-      "_row_num": 153
+      "_row_num": 155
     },
     "vet_h2": {
       "string_token": "vet_h2",
       "text": {
-        "default": "<h2>Veterinary</h2>",
-        "pt": "<h2>Veterinária</h2>",
-        "sw": "<h2>Mifugo</h2>"
+        "default": "Veterinary",
+        "pt": "Veterinária",
+        "sw": "Mifugo"
       },
-      "_row_num": 154
+      "_row_num": 156
     },
     "env_h2": {
       "string_token": "env_h2",
       "text": {
-        "default": "<h2>Environmental information</h2>",
-        "pt": "<h2>Informações ambientais</h2>",
-        "sw": "<h2>Taarifa za mazingira</h2>"
+        "default": "Environmental information",
+        "pt": "Informações ambientais",
+        "sw": "Taarifa za mazingira"
       },
-      "_row_num": 155
+      "_row_num": 157
     },
     "health_h2": {
       "string_token": "health_h2",
       "text": {
-        "default": "<h2>Health / morbidity information</h2>",
-        "pt": "<h2>Informações sobre saúde/morbilidade</h2>",
-        "sw": "<h2>Taarifa za afya/magonjwa</h2>"
+        "default": "Health / morbidity information",
+        "pt": "Informações sobre saúde/morbilidade",
+        "sw": "Taarifa za afya/magonjwa"
       },
-      "_row_num": 156
+      "_row_num": 158
     },
     "contact_h2": {
       "string_token": "contact_h2",
       "text": {
-        "default": "<h2>Contact information</h2>",
-        "pt": "<h2>Informações de contacto</h2>",
-        "sw": "<h2>Maelezo ya mawasiliano</h2>"
+        "default": "Contact information",
+        "pt": "Informações de contacto",
+        "sw": "Maelezo ya mawasiliano"
       },
-      "_row_num": 157
+      "_row_num": 159
     },
     "death_h2": {
       "string_token": "death_h2",
       "text": {
-        "default": "<h2>Deaths in the past 12 months</h2>",
-        "pt": "<h2>Óbitos nos últimos 12 meses</h2>",
-        "sw": "<h2>Vifo katika miezi 12 iliyopita</h2>"
+        "default": "Deaths in the past 12 months",
+        "pt": "Óbitos nos últimos 12 meses",
+        "sw": "Vifo katika miezi 12 iliyopita"
       },
-      "_row_num": 158
+      "_row_num": 160
     },
     "ind_h2": {
       "string_token": "ind_h2",
       "text": {
-        "default": "<h2>INDIVIDUAL QUESTIONNAIRE</h2>",
-        "pt": "<h2>QUESTIONÁRIO INDIVIDUAL</h2>",
-        "sw": "<h2>DODOSO LA BINAFSI</h2>"
+        "default": "INDIVIDUAL QUESTIONNAIRE",
+        "pt": "QUESTIONÁRIO INDIVIDUAL",
+        "sw": "DODOSO LA BINAFSI"
       },
-      "_row_num": 159
+      "_row_num": 161
     },
     "qr_code": {
       "string_token": "qr_code",
@@ -1420,7 +1438,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Rastreie o seu código QR",
         "sw": "Scan QR code yako yenye namba ya utambulisho"
       },
-      "_row_num": 160
+      "_row_num": 162
     },
     "fw_id": {
       "string_token": "fw_id",
@@ -1429,7 +1447,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se o código QR não estiver disponível, insira manualmente a ID do trabalhador de 3 dígitos",
         "sw": "Kama alama zako za QR hazipatikani, andika namba yako ya utambulisho yenye herufi tatu hapa"
       },
-      "_row_num": 161
+      "_row_num": 163
     },
     "country": {
       "string_token": "country",
@@ -1438,7 +1456,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "País",
         "sw": "Nchi"
       },
-      "_row_num": 162
+      "_row_num": 164
     },
     "hh_id": {
       "string_token": "hh_id",
@@ -1447,7 +1465,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Escreva o código de agregado de 6 digitos aqui:",
         "sw": "Andika tarakimu 6 za nambari ya utambulisho wa kaya hapa."
       },
-      "_row_num": 163
+      "_row_num": 165
     },
     "geo_info": {
       "string_token": "geo_info",
@@ -1456,7 +1474,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Informação Geográfica",
         "sw": "Taarifa za Kijiografia"
       },
-      "_row_num": 164
+      "_row_num": 166
     },
     "rec_loc": {
       "string_token": "rec_loc",
@@ -1465,7 +1483,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Gravar localização",
         "sw": "Nakili alama (GPS)  za Eneo"
       },
-      "_row_num": 165
+      "_row_num": 167
     },
     "rec_survey_loc": {
       "string_token": "rec_survey_loc",
@@ -1474,37 +1492,37 @@ window.odkTableSpecificDefinitions = {
         "pt": "Gravar o local onde a recolha ocorre",
         "sw": "Nakili alama (GPS)  za eneo ulilofanyia mahojiano haya"
       },
-      "_row_num": 166
+      "_row_num": 168
     },
     "hh_roster_mismatch": {
       "string_token": "hh_roster_mismatch",
       "text": "Since the list of members is not correct, this will be considered as a new household.",
-      "_row_num": 167
+      "_row_num": 169
     },
     "hh_contact_sup": {
       "string_token": "hh_contact_sup",
       "text": "Have you contacted your supervisor to get a household ID?",
-      "_row_num": 168
+      "_row_num": 170
     },
     "fw_has_paint": {
       "string_token": "fw_has_paint",
       "text": "Do you have paint with you?",
-      "_row_num": 169
+      "_row_num": 171
     },
     "fw_paint_instr": {
       "string_token": "fw_paint_instr",
       "text": "Paint the household ID in a visible area.",
-      "_row_num": 170
+      "_row_num": 172
     },
     "fw_no_paint": {
       "string_token": "fw_no_paint",
       "text": "Do not go forward with data collection until the house has been assigned an ID and can be painted.",
-      "_row_num": 171
+      "_row_num": 173
     },
     "fw_no_contact": {
       "string_token": "fw_no_contact",
       "text": "Please contact your supervisor to get a household ID",
-      "_row_num": 172
+      "_row_num": 174
     },
     "hh_identification": {
       "string_token": "hh_identification",
@@ -1513,7 +1531,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Identificação do agregado{{data.hh_id}}",
         "sw": "Utambulisho wa Kaya {{data.hh_id}}"
       },
-      "_row_num": 174
+      "_row_num": 176
     },
     "geo_identification": {
       "string_token": "geo_identification",
@@ -1522,12 +1540,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "{{{{substitute}}}}\n{{hh_hamlet}} > {{hh_village}} > {{hh_ward}} > {{hh_district}} > {{hh_region}} > {{hh_country}}\n{{{{/substitute}}}}",
         "sw": "{{{{substitute}}}}\n{{hh_hamlet}} > {{hh_village}} > {{hh_ward}} > {{hh_district}} > {{hh_region}} > {{hh_country}}\n{{{{/substitute}}}}"
       },
-      "_row_num": 175
+      "_row_num": 177
     },
     "geo_identification_invalid": {
       "string_token": "geo_identification_invalid",
       "text": "Invalid hamlet code",
-      "_row_num": 176
+      "_row_num": 178
     },
     "hh_minicensed": {
       "string_token": "hh_minicensed",
@@ -1536,7 +1554,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Esta agregado fez parte do Minicenso?",
         "sw": "Je, kaya hii ilikuwa sehemu ya Minicensus?"
       },
-      "_row_num": 177
+      "_row_num": 179
     },
     "minicensed_h3": {
       "string_token": "minicensed_h3",
@@ -1545,7 +1563,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Agregado com Minicenso realizado</h3>",
         "sw": "<h3>Kaya zilizofanyiwa Minicensus</h3>"
       },
-      "_row_num": 178
+      "_row_num": 180
     },
     "meta_info": {
       "string_token": "meta_info",
@@ -1554,7 +1572,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Meta-informação:",
         "sw": "Taarifa za awali:"
       },
-      "_row_num": 179
+      "_row_num": 181
     },
     "how_many": {
       "string_token": "how_many",
@@ -1563,7 +1581,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Quantos membros compõem este agregado familiar (residentes e não residentes)?",
         "sw": "Je, kaya hii ina watu wangapi? (wakazi na wasio wakazi)?"
       },
-      "_row_num": 180
+      "_row_num": 182
     },
     "how_many.hint": {
       "string_token": "how_many.hint",
@@ -1572,7 +1590,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Os membros do agregado familiar designam o número total de pessoas que pertencem ao agregado familiar, incluindo os residentes (membros com intenção de dormir no agregado familiar nos 3 meses seguintes) e não residentes (membros com vinculo ao agregado que não pretendem dormir no agregado familiar nos 3 meses seguintes)",
         "sw": "Wanakaya hurejelea jumla ya idadi ya watu ambao ni wa kaya hiyo, ikijumuisha wakazi (watu walio na nia ya kulala katika kaya hiyo katika miezi 3 inayofuata) na wasio wakazi (watu wasio na nia ya kulala katika kaya hiyo katika miezi 3 inayofuata)"
       },
-      "_row_num": 181
+      "_row_num": 183
     },
     "hh_roster": {
       "string_token": "hh_roster",
@@ -1581,7 +1599,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Rosto dos membros actuais do agregado",
         "sw": "Orodha ya sasa ya wanakaya"
       },
-      "_row_num": 182
+      "_row_num": 184
     },
     "hh_roster.hint": {
       "string_token": "hh_roster.hint",
@@ -1590,17 +1608,17 @@ window.odkTableSpecificDefinitions = {
         "pt": "Para mudar o estado de residencia, clique no icone 'editar' a loado do nome do membro.",
         "sw": "Kubadilisha hali ya mkazi, bonyeza alama ya 'edit/hariri' kando ya jina la mwanakaya"
       },
-      "_row_num": 183
+      "_row_num": 185
     },
     "members_left": {
       "string_token": "members_left",
       "text": "Are all of these members still part of this household?",
-      "_row_num": 184
+      "_row_num": 186
     },
     "member_left_select": {
       "string_token": "member_left_select",
       "text": "Which member(s) is/are no longer part in the household?",
-      "_row_num": 185
+      "_row_num": 187
     },
     "member_left_prompt": {
       "string_token": "member_left_prompt",
@@ -1609,7 +1627,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h4>Você será solicitado a responder perguntas sobre o (s) membro (s) que não estão mais neste agregado.</h4>",
         "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </ h4>"
       },
-      "_row_num": 186
+      "_row_num": 188
     },
     "member_left_detail": {
       "string_token": "member_left_detail",
@@ -1618,7 +1636,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Detalhes sobre o (s) membro (s) que não estão mais neste agregado.</h3>",
         "sw": "<h3> Maelezo kuhusu washiriki ambao sio sehemu ya kaya </h3>"
       },
-      "_row_num": 187
+      "_row_num": 189
     },
     "member_detail": {
       "string_token": "member_detail",
@@ -1627,7 +1645,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes sobre o membro do agregado",
         "sw": "Taarifa kuhusu Wanakaya"
       },
-      "_row_num": 188
+      "_row_num": 190
     },
     "hh_present": {
       "string_token": "hh_present",
@@ -1636,7 +1654,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h4>Membros do agregado familiar presentes no momento da visita</h4>",
         "sw": "<h4>Wanakaya waliopo wakati wa ziara</h4>"
       },
-      "_row_num": 189
+      "_row_num": 191
     },
     "hh_absent": {
       "string_token": "hh_absent",
@@ -1645,7 +1663,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Se um membro estiver ausente no momento desta entrevista, clique no ícone \"editar\" para adicionar detalhes sobre sua ausência.",
         "sw": "Ikiwa mwanakaya hayupo wakati wa mahojiano haya, bonyeza alama ya \"Edit/hariri\" ili kuongeza maelezo juu ya kutokuwepo kwao."
       },
-      "_row_num": 190
+      "_row_num": 192
     },
     "hh_head": {
       "string_token": "hh_head",
@@ -1654,7 +1672,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Chefe do agregado familiar:",
         "sw": "Mkuu wa kaya:"
       },
-      "_row_num": 191
+      "_row_num": 193
     },
     "hh_head_modify": {
       "string_token": "hh_head_modify",
@@ -1663,7 +1681,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Selecione da lista abaixo:",
         "sw": "Chagua kutoka kwenye orodha hapa chini:"
       },
-      "_row_num": 192
+      "_row_num": 194
     },
     "hh_head_sub_modify": {
       "string_token": "hh_head_sub_modify",
@@ -1672,7 +1690,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Selecione da lista abaixo:",
         "sw": "Chagua kutoka kwenye orodha hapa chini:"
       },
-      "_row_num": 193
+      "_row_num": 195
     },
     "select_one": {
       "string_token": "select_one",
@@ -1681,61 +1699,61 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você pode escolher somente uma opcão",
         "sw": "Unaweza kuchagua jibu moja tu"
       },
-      "_row_num": 194
+      "_row_num": 196
     },
     "housing_h3": {
       "string_token": "housing_h3",
       "text": {
-        "default": "<h3>Housing</h3>",
-        "pt": "<h3>Habitação</h3>",
-        "sw": "<h3>Makazi</h3>"
-      },
-      "_row_num": 195
-    },
-    "kitchen_h4": {
-      "string_token": "kitchen_h4",
-      "text": {
-        "default": "<h4>Kitchen characteristics</h4>",
-        "pt": "<h4>Características da cozinha</h4>",
-        "sw": "<h4>Sifa za jikoni</h4>"
-      },
-      "_row_num": 196
-    },
-    "water_h4": {
-      "string_token": "water_h4",
-      "text": {
-        "default": "<h4>Water</h4>",
-        "pt": "<h4>Água</h4>",
-        "sw": "<h4>Maji</h4>"
+        "default": "Housing",
+        "pt": "Habitação",
+        "sw": "Makazi"
       },
       "_row_num": 197
+    },
+    "kitchen_h3": {
+      "string_token": "kitchen_h3",
+      "text": {
+        "default": "Kitchen characteristics",
+        "pt": "Características da cozinha",
+        "sw": "Sifa za jikoni"
+      },
+      "_row_num": 198
+    },
+    "water_h3": {
+      "string_token": "water_h3",
+      "text": {
+        "default": "Water",
+        "pt": "Água",
+        "sw": "Maji"
+      },
+      "_row_num": 199
     },
     "sanitation_h3": {
       "string_token": "sanitation_h3",
       "text": {
-        "default": "<h3>Sanitation</h3>",
-        "pt": "<h3>Saneamento</h3>",
-        "sw": "<h3>Usafi wa mazingira</h3>"
+        "default": "Sanitation",
+        "pt": "Saneamento",
+        "sw": "Usafi wa mazingira"
       },
-      "_row_num": 198
+      "_row_num": 200
     },
-    "latrine_h4": {
-      "string_token": "latrine_h4",
+    "latrine_detail": {
+      "string_token": "latrine_detail",
       "text": {
-        "default": "<h4>Latrine details</h4>",
-        "pt": "<h4>Detalhes da latrina</h4>",
-        "sw": "<h4>Taarifa za Choo</h4>"
+        "default": "Latrine details",
+        "pt": "Detalhes da latrina",
+        "sw": "Taarifa za Choo"
       },
-      "_row_num": 199
+      "_row_num": 201
     },
     "goods_h3": {
       "string_token": "goods_h3",
       "text": {
-        "default": "<h3>Ownership of goods</h3>",
-        "pt": "<h3>Propriedade de bens</h3>",
-        "sw": "<h3>Umiliki wa bidhaa</h3>"
+        "default": "Ownership of goods",
+        "pt": "Propriedade de bens",
+        "sw": "Umiliki wa bidhaa"
       },
-      "_row_num": 200
+      "_row_num": 202
     },
     "w_10houses": {
       "string_token": "w_10houses",
@@ -1744,7 +1762,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Você inseriu mais de 10 casas. Por favor verifique esta informacão.</span>",
         "sw": "<span style=\"color:red\">Umeingia zaidi ya nyumba 10. Tafadhali thibitisha taafira hii.</span>"
       },
-      "_row_num": 201
+      "_row_num": 203
     },
     "w_houses_toomany": {
       "string_token": "w_houses_toomany",
@@ -1753,7 +1771,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Isto deve ser menor ou igual que o numero total de casas (construcoes).</span>",
         "sw": "<span style=\"color:red\">Idadi hii lazima iwe pungufu au sawa na jumla ya idadi ya nyumba (majengo).</span>"
       },
-      "_row_num": 202
+      "_row_num": 204
     },
     "w_5wall": {
       "string_token": "w_5wall",
@@ -1762,7 +1780,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Você selecionou mais de 5 mateiriais de construcão da parede. Por favor verique que isto esta correcto.</span>",
         "sw": "<span style=\"color:red\">Umechagua zaidi ya malighafi 5 za kuta. Tafadhali thibitisha kuwa hii na sahihi.</span>"
       },
-      "_row_num": 203
+      "_row_num": 205
     },
     "w_bricks": {
       "string_token": "w_bricks",
@@ -1771,7 +1789,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">O material usado para construcao da casa principal indicado foi \"Casa convencional feita de tijolos e cimento\" mas nem \"blocos de cimento\" ou \"blocos de adobe\"  estao selecionados como material de parede. Por favor verifique.</span>",
         "sw": "<span style=\"color:red\">Aina kuu ya jengo la nyumba imeonyeshwa kuwa \"Nyumba ya kawaida iliyotengenezwa kwa matofali na saruji\" lakini \"Tofali za saruji\" wala \"Tofali\" hazijachaguliwa kama malighafi ya ukuta. Tafadhali thibitisha</span>"
       },
-      "_row_num": 204
+      "_row_num": 206
     },
     "w_water": {
       "string_token": "w_water",
@@ -1780,7 +1798,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Existe uma discrepancia entre o local de abastecimento de agua e o tempo levado para ir e voltar deste local. Por favor verifique selecoes.</span>",
         "sw": "<span style=\"color:red\">Kuna utata kati ya eneo la chanzo cha maji na muda unaotumika kufikia chanzo kikuu cha maji na kurudi. Tafadhali thibitisha chaguzi zako.</span>"
       },
-      "_row_num": 205
+      "_row_num": 207
     },
     "w_tv": {
       "string_token": "w_tv",
@@ -1789,7 +1807,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Na P.42 Nem \"Electricidade\",  \"Gerador\" ou \"Painel solar\" foi selecionado, mas na P.43 \"TV\" foi selecionado. Por favor verifique que isto esta correcto</span>",
         "sw": "<span style=\"color:red\">Katika swali la Q42 Umeme\", \"Jenereta\", wala \"Nguvu ya jua\" havikuchaguliwa, lakini katika swali la Q43 \"TV\" imechaguliwa. Tafadhali thibitisha hii ni sahihi..</span>"
       },
-      "_row_num": 206
+      "_row_num": 208
     },
     "w_4ceiling": {
       "string_token": "w_4ceiling",
@@ -1798,7 +1816,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Você selecionou mais de 4 materiais de cobertura. Por favor verique se isto esta correcto.</span>",
         "sw": "<span style=\"color:red\">Umechagua zaidi ya malighafi 4 za dari. Tafadhali thibitisha kuwa hii na sahihi</span>"
       },
-      "_row_num": 207
+      "_row_num": 209
     },
     "w_4floor": {
       "string_token": "w_4floor",
@@ -1807,7 +1825,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Você selecionou mais de 4 materiais de construcao do chao. Por favor verifique se isto esta correcto.</span>",
         "sw": "<span style=\"color:red\">Umechagua zaidi ya malighafi 4 za sakafu. Tafadhali thibitisha kuwa hii na sahihi</span>"
       },
-      "_row_num": 208
+      "_row_num": 210
     },
     "w_none": {
       "string_token": "w_none",
@@ -1816,7 +1834,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Nenhum' junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" pamoja na majibu mengine"
       },
-      "_row_num": 209
+      "_row_num": 211
     },
     "w_all_dk": {
       "string_token": "w_all_dk",
@@ -1825,7 +1843,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Todos' ou \"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Yote\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 210
+      "_row_num": 212
     },
     "w_no_dk": {
       "string_token": "w_no_dk",
@@ -1834,7 +1852,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou\"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 211
+      "_row_num": 213
     },
     "w_pna": {
       "string_token": "w_pna",
@@ -1843,7 +1861,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\" ou \"Prefere não responder\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\" au \"Amependa kutokujibu\" pamoja na majibu mengine"
       },
-      "_row_num": 212
+      "_row_num": 214
     },
     "w_no_dk_no_animals": {
       "string_token": "w_no_dk_no_animals",
@@ -1852,7 +1870,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar \"Não\", \"Não sabe\", ou \"Não teve [gado bovino/porcos] nos ultimos 30 dias\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hapana\", \"Sijui\", au \"Hakuwa na [ng'ombe / nguruwe] katika siku 30 zilizopita\" pamoja na majibu mengine"
       },
-      "_row_num": 213
+      "_row_num": 215
     },
     "w_none_dk": {
       "string_token": "w_none_dk",
@@ -1861,7 +1879,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar 'Nenhum' ou \"Não sabe\" junto com as outras respostas.",
         "sw": "Huwezi kuchagua \"Hakuna\" au \"Sijui\" pamoja na majibu mengine"
       },
-      "_row_num": 214
+      "_row_num": 216
     },
     "too_many_animals": {
       "string_token": "too_many_animals",
@@ -1870,16 +1888,16 @@ window.odkTableSpecificDefinitions = {
         "pt": "Haiwezi kuzidi 100.",
         "sw": "Nao pode exceder 100."
       },
-      "_row_num": 215
+      "_row_num": 217
     },
     "animals_h3": {
       "string_token": "animals_h3",
       "text": {
-        "default": "<h3>Animals</h3>",
-        "pt": "<h3>Animais</h3>",
-        "sw": "<h3>Wanyama</h3>"
+        "default": "Animals",
+        "pt": "Animais",
+        "sw": "Wanyama"
       },
-      "_row_num": 216
+      "_row_num": 218
     },
     "cattle_f": {
       "string_token": "cattle_f",
@@ -1888,7 +1906,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Bovino fêmea adulta > 1 ano de idade",
         "sw": "Jike mkubwa Umri zaidi ya mwaka 1"
       },
-      "_row_num": 217
+      "_row_num": 219
     },
     "cattle_m": {
       "string_token": "cattle_m",
@@ -1897,7 +1915,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Bovino macho adulto > 1 ano de idade",
         "sw": "Ndume mkubwa umri zaidi ya mwaka 1"
       },
-      "_row_num": 218
+      "_row_num": 220
     },
     "cattle_1": {
       "string_token": "cattle_1",
@@ -1906,7 +1924,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Gado Bovino fêmeas / machos 8 semanas - 1 ano de idade",
         "sw": "Ng'ombe jike/Dume umri wa wiki 8 - Mwaka 1"
       },
-      "_row_num": 219
+      "_row_num": 221
     },
     "cattle_8wks": {
       "string_token": "cattle_8wks",
@@ -1915,7 +1933,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Novilho <8 semanas",
         "sw": "Ndama < wiki 8"
       },
-      "_row_num": 220
+      "_row_num": 222
     },
     "cattle_not_found": {
       "string_token": "cattle_not_found",
@@ -1924,7 +1942,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você indicou que a o agregado actualmente possui gado bovino, mas nenhum deles foi inserido abaixo. Por favor verifique.",
         "sw": "Umeonyesha kuwa kaya inamiliki ng'ombe kwasasa lakini hakuna taarifa iliyojazwa hapo juu. Tafadhali thibitisha."
       },
-      "_row_num": 221
+      "_row_num": 223
     },
     "pig_>6": {
       "string_token": "pig_>6",
@@ -1933,7 +1951,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Porcos > 6 semanas",
         "sw": "Nguruwe zaid ya wiki 6"
       },
-      "_row_num": 222
+      "_row_num": 224
     },
     "pig_<6": {
       "string_token": "pig_<6",
@@ -1942,7 +1960,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Porcos < 6 semanas",
         "sw": "Nguruwe chini ya wiki 6"
       },
-      "_row_num": 223
+      "_row_num": 225
     },
     "pigs_not_found": {
       "string_token": "pigs_not_found",
@@ -1951,7 +1969,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você indicou que a o agregado actualmente possui porcos, mas nenhum deles foi inserido abaixo. Por favor verifique.",
         "sw": "Umeonyesha kuwa kaya inamiliki nguruwe kwasasa lakini hakuna taarifa iliyojazwa hapo juu. Tafadhali thibitisha."
       },
-      "_row_num": 224
+      "_row_num": 226
     },
     "cattle_h5": {
       "string_token": "cattle_h5",
@@ -1960,7 +1978,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5>Agora você será questionado sobre o seu gado.</h5>",
         "sw": "<h5>Sasa utaulizwa maswali kuhusu ng'ombe wako.</h5>"
       },
-      "_row_num": 225
+      "_row_num": 227
     },
     "pig_h5": {
       "string_token": "pig_h5",
@@ -1969,7 +1987,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5>Agora você será questionado sobre os seus porcos.</h5>",
         "sw": "<h5>Sasa utaulizwa maswali kuhusu nguruwe.</h5>"
       },
-      "_row_num": 226
+      "_row_num": 228
     },
     "intervention_implication": {
       "string_token": "intervention_implication",
@@ -1978,7 +1996,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Implicações para a implementação da intervenção:",
         "sw": "Mapendekezo kwa ajili ya kutumika kwa afua:"
       },
-      "_row_num": 227
+      "_row_num": 229
     },
     "distance_inconsistent": {
       "string_token": "distance_inconsistent",
@@ -1987,7 +2005,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<span style=\"color:red\">Você indicou uma distancia dentro de 15 metros da casa na mas selecionou a distancia  >50m. </span>",
         "sw": "<span style=\"color:red\">Umeonyesha umbali ni ndani ya mita 15 kutoka nyumba katika 45a/b lakini umechagua umbali > 50m katika 45c.</span>"
       },
-      "_row_num": 228
+      "_row_num": 230
     },
     "w_less_50": {
       "string_token": "w_less_50",
@@ -1996,7 +2014,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Nao pode exceder 50.",
         "sw": "Haiwezi kuzidi 50."
       },
-      "_row_num": 229
+      "_row_num": 231
     },
     "water_prompt": {
       "string_token": "water_prompt",
@@ -2005,7 +2023,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você será solicitado a fornecer detalhes sobre os corpos de água de {{data.water_bodies_num}}.",
         "sw": "Utaulizwa utoe maelezo juu ya maeneo {{data.water_bodies_num}} ya maji."
       },
-      "_row_num": 230
+      "_row_num": 232
     },
     "water_detail": {
       "string_token": "water_detail",
@@ -2014,7 +2032,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes do corpo de agua",
         "sw": "Maelezo kuhusu maeneo ya maji"
       },
-      "_row_num": 231
+      "_row_num": 233
     },
     "net_prompt": {
       "string_token": "net_prompt",
@@ -2023,7 +2041,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5> Você será solicitado a responder perguntas adicionais para cada uma das redes {{data.hh_num_nets}}. </h5>",
         "sw": "<h5> Utaombwa kujibu maswali ya nyongeza kwa kila moja ya nyavu {{data.hh_num_nets}}. </h5>"
       },
-      "_row_num": 232
+      "_row_num": 234
     },
     "net_detail": {
       "string_token": "net_detail",
@@ -2032,16 +2050,16 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes das redes mosquiteiras",
         "sw": "Maelezo kuhusu vyandarua vya mbu"
       },
-      "_row_num": 233
+      "_row_num": 235
     },
-    "malaria_h3": {
-      "string_token": "malaria_h3",
+    "malaria_h2": {
+      "string_token": "malaria_h2",
       "text": {
-        "default": "<h3>Malaria prevention tools information</h3>",
-        "pt": "<h3>Informações sobre ferramentas de prevenção da malária</h3>",
-        "sw": "<h3>Maelezo kuhusu vifaa vya kudhibiti malaria</h3>"
+        "default": "Malaria prevention tools information",
+        "pt": "Informações sobre ferramentas de prevenção da malária",
+        "sw": "Maelezo kuhusu vifaa vya kudhibiti malaria"
       },
-      "_row_num": 234
+      "_row_num": 236
     },
     "spray_date": {
       "string_token": "spray_date",
@@ -2050,7 +2068,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Data Não pode ser no futuro",
         "sw": "Tarehe haiwezi kuwa ya mbeleni"
       },
-      "_row_num": 235
+      "_row_num": 237
     },
     "health_facility_only_one": {
       "string_token": "health_facility_only_one",
@@ -2059,7 +2077,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você não pode selecionar na da lista das unidades de sanitarias junto com as outras opçoes",
         "sw": "Huwezi kuchagua kutoka orodha ya vituo vya afya vilivyochaguliwa pamoja na kuchagua nyingine"
       },
-      "_row_num": 236
+      "_row_num": 238
     },
     "snake_h3": {
       "string_token": "snake_h3",
@@ -2068,7 +2086,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h3>Mordida de cobra</h3>",
         "sw": "<h3>Kugongwa na Nyoka</h3>"
       },
-      "_row_num": 237
+      "_row_num": 239
     },
     "snake_prompt": {
       "string_token": "snake_prompt",
@@ -2077,7 +2095,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5> Será solicitado que você responda a perguntas adicionais para {{data.any_snake_bite_num}} indivíduo (s) que foi picado por uma cobra. </h5>",
         "sw": "<h5> Utaombwa kujibu maswali ya nyongeza kwa  mtu/watu {{data.any_snake_bite_num}}  ambao wamepata kuumwa na nyoka. </h5>"
       },
-      "_row_num": 238
+      "_row_num": 240
     },
     "snake_detail": {
       "string_token": "snake_detail",
@@ -2086,7 +2104,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Detalhes da mordida de cobra",
         "sw": "Maelezo kuhusu kuumwa na nyoka"
       },
-      "_row_num": 239
+      "_row_num": 241
     },
     "snake_linked_table": {
       "string_token": "snake_linked_table",
@@ -2095,7 +2113,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5>Responda perguntas adicionais para os indivíduos que foram picados por cobra.</h5>",
         "sw": "<h5> Jibu maswali ya ziada kwa mtu/watu ambao wamepata kuumwa na nyoka. </h5>"
       },
-      "_row_num": 240
+      "_row_num": 242
     },
     "death_new_only": {
       "string_token": "death_new_only",
@@ -2104,7 +2122,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "Apenas para os novos agregados familiares (agregados que não fizeram parte do minicenso)",
         "sw": "Kwa kaya mpya tu (kaya ambazo hazikuwa sehemu ya sensa ndogo)"
       },
-      "_row_num": 241
+      "_row_num": 243
     },
     "death_prompt": {
       "string_token": "death_prompt",
@@ -2113,7 +2131,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5> Será solicitado a responder perguntas adicionais para cada um dos {{data.hh_death_count}} morte (s). </h5>",
         "sw": "<h5> Utaombwa kujibu maswali ya ziada kwa kila kifo kati ya vifo {{data.hh_death_count}}. </h5>"
       },
-      "_row_num": 242
+      "_row_num": 244
     },
     "ind_prompt": {
       "string_token": "ind_prompt",
@@ -2122,12 +2140,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "Você está prestes a iniciar o questionário individual. Para cada membro RESIDENTE da família, um formulário separado será preenchido.",
         "sw": "Unatarajia kuanza dodoso la Mtu Binafsi. Kwa kila mwanakaya MKAZI katika kaya, dodoso tofauti litajazwa"
       },
-      "_row_num": 243
+      "_row_num": 245
     },
     "ind_prompt.hint": {
       "string_token": "ind_prompt.hint",
       "text": "Click on the name of each household member to fill the Individual questionnaire",
-      "_row_num": 244
+      "_row_num": 246
     },
     "cannot_enter_0": {
       "string_token": "cannot_enter_0",
@@ -2136,12 +2154,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "0 não é uma resposta permitida.",
         "sw": "0 hakuruhusiwi."
       },
-      "_row_num": 245
+      "_row_num": 247
     },
     "member_resident_required": {
       "string_token": "member_resident_required",
       "text": "This member must be a resident",
-      "_row_num": 246
+      "_row_num": 248
     },
     "q11": {
       "string_token": "q11",
@@ -2150,7 +2168,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "11. Há membros novos no agregado familiar? (Para além dos que já constam da lista)",
         "sw": "11. Kuna watu wapya katika kaya? (Tofauti na wale tayari walio katika orodha?)"
       },
-      "_row_num": 248
+      "_row_num": 250
     },
     "q11a": {
       "string_token": "q11a",
@@ -2159,7 +2177,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "11a. Quantos membros novos estão no agregado familiar?",
         "sw": "11a. Ni wanakaya wangapi wapya walio katika kaya?"
       },
-      "_row_num": 249
+      "_row_num": 251
     },
     "q12": {
       "string_token": "q12",
@@ -2168,7 +2186,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "12. Esta pessoa é um recém-nascido ou alguém que se tenha mudado para a casa?",
         "sw": "12. Je, mtu huyu ni mtoto mchanga au ni mtu aliyehamia katika nyumba hii?"
       },
-      "_row_num": 250
+      "_row_num": 252
     },
     "q26": {
       "string_token": "q26",
@@ -2177,7 +2195,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "26. Chefe do agregado familiar",
         "sw": "26. Mkuu wa kaya"
       },
-      "_row_num": 251
+      "_row_num": 253
     },
     "q27": {
       "string_token": "q27",
@@ -2186,7 +2204,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "27. Chefe de agregado substituto",
         "sw": "27. Mbadala wa Mkuu wa kaya:"
       },
-      "_row_num": 252
+      "_row_num": 254
     },
     "q28": {
       "string_token": "q28",
@@ -2195,7 +2213,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "28. Parentesco do chefe de agregado substituto com o chefe do agregado familiar",
         "sw": "28. Uhusiano wa Mbadala wa Mkuu wa Kaya na Mkuu wa Kaya"
       },
-      "_row_num": 253
+      "_row_num": 255
     },
     "q29": {
       "string_token": "q29",
@@ -2204,7 +2222,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "29. Quem assinou o consentimento informado?",
         "sw": "29. Ni nani aliyeweka saini fomu ya ridhaa?"
       },
-      "_row_num": 254
+      "_row_num": 256
     },
     "q29.hint": {
       "string_token": "q29.hint",
@@ -2213,7 +2231,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(As caixas de Participação do agregado familiar e Chefe/chefe substituto do agregado familiar têm de ser marcadas)",
         "sw": "(Lazima visanduku vya Ushiriki wa kaya na Mkuu wa kaya/Mbadala wa Mkuu wa kaya viwekwe tiki)"
       },
-      "_row_num": 255
+      "_row_num": 257
     },
     "q30": {
       "string_token": "q30",
@@ -2222,7 +2240,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "30. Quem responde às perguntas?",
         "sw": "30. Ni nani anayejibu maswali?"
       },
-      "_row_num": 256
+      "_row_num": 258
     },
     "q31": {
       "string_token": "q31",
@@ -2231,7 +2249,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31. Número total de edificações (construções)",
         "sw": "31. Jumla ya idadi ya nyumba (majengo)"
       },
-      "_row_num": 257
+      "_row_num": 259
     },
     "q31a": {
       "string_token": "q31a",
@@ -2240,7 +2258,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "31a. Número total de edificações (construções) usados para dormir",
         "sw": "31a. Jumla ya idadi ya nyumba (majengo) zinazotumika kulala"
       },
-      "_row_num": 258
+      "_row_num": 260
     },
     "q32": {
       "string_token": "q32",
@@ -2249,7 +2267,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "32. Número total de quartos (compartimentos) usados para dormir",
         "sw": "32. Jumla ya idadi ya vyumba (vyumba vidogo) vinavyotumika kulala"
       },
-      "_row_num": 259
+      "_row_num": 261
     },
     "q33": {
       "string_token": "q33",
@@ -2258,7 +2276,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "33. Tipologia da edificação principal (edifício)",
         "sw": "33. Aina ya makazi makuu (jengo)"
       },
-      "_row_num": 260
+      "_row_num": 262
     },
     "q34": {
       "string_token": "q34",
@@ -2267,7 +2285,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "34. Material da parede da edificação principal",
         "sw": "34. Malighafi iliyojengea kuta za nyumba kuu"
       },
-      "_row_num": 261
+      "_row_num": 263
     },
     "q35": {
       "string_token": "q35",
@@ -2276,7 +2294,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "35. Material do teto da edificação principal",
         "sw": "35. Malighafi iliyojengea paa la nyumba kuu"
       },
-      "_row_num": 262
+      "_row_num": 264
     },
     "q36": {
       "string_token": "q36",
@@ -2285,7 +2303,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "36. Material do chão da edificação principal",
         "sw": "36. Malighafi iliyojengea sakafu ya nyumba kuu"
       },
-      "_row_num": 263
+      "_row_num": 265
     },
     "q37": {
       "string_token": "q37",
@@ -2294,7 +2312,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "37. Redes mosquiteiras de casa da edificação principal",
         "sw": "37. Nyavu za nyumba katika nyumba kuu"
       },
-      "_row_num": 264
+      "_row_num": 266
     },
     "q38": {
       "string_token": "q38",
@@ -2303,7 +2321,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "38. Onde é que a família cozinha?",
         "sw": "38. Je, familia hupikia wapi?"
       },
-      "_row_num": 265
+      "_row_num": 267
     },
     "q38a": {
       "string_token": "q38a",
@@ -2312,7 +2330,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "38a. Energia principal utilizada para cozinhar:",
         "sw": "38a. Chanzo kikuu cha nishati kinachotumika kupika:"
       },
-      "_row_num": 266
+      "_row_num": 268
     },
     "q39": {
       "string_token": "q39",
@@ -2321,7 +2339,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "39. Qual é a principal fonte de água utilizada para consumo (cozinhar e higiene)?",
         "sw": "39. Ni kipi chanzo kikuu cha maji yanayotumika kwa matumizi (kupika na usafi)?"
       },
-      "_row_num": 267
+      "_row_num": 269
     },
     "q40": {
       "string_token": "q40",
@@ -2330,7 +2348,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "40.Quanto tempo demora, no total, a alcançar a principal fonte de água, para ir buscar água, e voltar?",
         "sw": "40. Je, huchukua muda gani, kwa jumla, kufikia chanzo kikuu cha maji, kuchota maji na kurudi?"
       },
-      "_row_num": 268
+      "_row_num": 270
     },
     "q41": {
       "string_token": "q41",
@@ -2339,7 +2357,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "41. Existe uma latrina no agregado familiar?",
         "sw": "41. Je, kaya ina choo?"
       },
-      "_row_num": 269
+      "_row_num": 271
     },
     "q41a": {
       "string_token": "q41a",
@@ -2348,7 +2366,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "41a. Se não existir uma latrina neste agregado familiar, onde é que os habitantes deste agregado familiar defecam?",
         "sw": "41a. Ikiwa hakuna choo katika kaya hii, wakazi wa kaya hii hujisaidia wapi?"
       },
-      "_row_num": 270
+      "_row_num": 272
     },
     "q41b": {
       "string_token": "q41b",
@@ -2357,7 +2375,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (<10 m) de uma massa de água?",
         "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (<mita10) na maji?"
       },
-      "_row_num": 271
+      "_row_num": 273
     },
     "q41c": {
       "string_token": "q41c",
@@ -2366,7 +2384,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "41c. Quantas latrinas?",
         "sw": "41c. Vyoo vingapi?"
       },
-      "_row_num": 272
+      "_row_num": 274
     },
     "q41c.hint": {
       "string_token": "q41c.hint",
@@ -2375,7 +2393,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "<h5> Voce sera questionado a responder as questoes para {{data.hh_how_many_latrines}} latrina(s)</h5>",
         "sw": "<h5>Utaombwa kujibu maswali kwa idadi ya vyoo {{data.hh_how_many_latrines}})</h5>"
       },
-      "_row_num": 273
+      "_row_num": 275
     },
     "q42": {
       "string_token": "q42",
@@ -2384,7 +2402,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "42. Principal fonte de energia utilizada na iluminação no agregado familiar",
         "sw": "42. Chanzo kikuu cha nishati cha mwangaza wa kaya"
       },
-      "_row_num": 274
+      "_row_num": 276
     },
     "q43": {
       "string_token": "q43",
@@ -2393,7 +2411,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "43. O agregado familiar possuir qualquer um dos seguintes (assinalar todos os que se aplicam):",
         "sw": "43. Je, kaya inamiliki chochote kati ya vitu vifuatavyo (weka alama kwa vyote vinavyo husika):"
       },
-      "_row_num": 275
+      "_row_num": 277
     },
     "q44": {
       "string_token": "q44",
@@ -2402,7 +2420,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "44. O agregado familiar possui atualmente? (Assinalar tudo o que se aplica):",
         "sw": "44. Je, kaya yako kwa sasa inamiliki? (weka alama kwa vyote vinavyohusika):"
       },
-      "_row_num": 276
+      "_row_num": 278
     },
     "q44a": {
       "string_token": "q44a",
@@ -2411,7 +2429,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "44a. Quantos dos seguintes animais possui o agregado familiar?",
         "sw": "44a. Je, kaya inamiliki wanyama wangapi kati ya wafuatao??"
       },
-      "_row_num": 277
+      "_row_num": 279
     },
     "q44b.cattle": {
       "string_token": "q44b.cattle",
@@ -2420,7 +2438,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "44b. O agregado familiar tenciona possuir bovino no próximo ano?",
         "sw": "44b. Je, kaya ina mpango wa kumiliki ng’ombe yoyote mwaka unaokuja?"
       },
-      "_row_num": 278
+      "_row_num": 280
     },
     "q44b.pig": {
       "string_token": "q44b.pig",
@@ -2429,7 +2447,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "44b. O agregado familiar tenciona possuir porcos no próximo ano?",
         "sw": "44b. Je, kaya ina mpango wa kumiliki nguruwe yoyote mwaka unaokuja?"
       },
-      "_row_num": 279
+      "_row_num": 281
     },
     "q45.cattle": {
       "string_token": "q45.cattle",
@@ -2438,7 +2456,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45. Onde fica guardado os bovino durante a noite?",
         "sw": "45. Je, ng’ombe hukaa wapi usiku?"
       },
-      "_row_num": 280
+      "_row_num": 282
     },
     "q45.pig": {
       "string_token": "q45.pig",
@@ -2447,7 +2465,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45. Onde fica guardado os porcos durante a noite?",
         "sw": "45. Je, nguruwe hukaa wapi usiku?"
       },
-      "_row_num": 281
+      "_row_num": 283
     },
     "q45a": {
       "string_token": "q45a",
@@ -2456,7 +2474,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45a. Durante a estação das chuvas",
         "sw": "45a. Wakati wa msimu wa mvua"
       },
-      "_row_num": 282
+      "_row_num": 284
     },
     "q45b": {
       "string_token": "q45b",
@@ -2465,7 +2483,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45b. Durante a estação seca",
         "sw": "45b. Wakati wa msimu wa kiangazi"
       },
-      "_row_num": 283
+      "_row_num": 285
     },
     "q45c.cattle": {
       "string_token": "q45c.cattle",
@@ -2474,7 +2492,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45c. Se os bovino forem guardados à noite num sítio diferente de «dentro da casa onde dormem os seres humanos», a que distância da estrutura mais próxima onde dormem as pessoas dormem esses animais?",
         "sw": "45c. Ikiwa ng’ombe huifadhiwa nyakati za usiku mahali fulani tofauti na \"ndani ambapo watu hulala\", wao hulala umbali gani kutoka kwenye nyumba ambapo watu hulala?"
       },
-      "_row_num": 284
+      "_row_num": 286
     },
     "q45c.pig": {
       "string_token": "q45c.pig",
@@ -2483,7 +2501,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45c. Se os porcos forem guardados à noite num sítio diferente de «dentro da casa onde dormem os seres humanos», a que distância da estrutura mais próxima onde dormem as pessoas dormem esses animais?",
         "sw": "45c. Ikiwa nguruwe huifadhiwa nyakati za usiku mahali fulani tofauti na \"ndani ambapo watu hulala\", wao hulala umbali gani kutoka kwenye nyumba ambapo watu hulala?"
       },
-      "_row_num": 285
+      "_row_num": 287
     },
     "q45ci": {
       "string_token": "q45ci",
@@ -2492,7 +2510,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45c(i). Durante a estação das chuvas",
         "sw": "45c (i). Wakati wa msimu wa mvua"
       },
-      "_row_num": 286
+      "_row_num": 288
     },
     "q45cii": {
       "string_token": "q45cii",
@@ -2501,7 +2519,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "45c (ii). Durante a estação seca",
         "sw": "45c (ii). Wakati wa msimu wa kiangazi"
       },
-      "_row_num": 287
+      "_row_num": 289
     },
     "q46.cattle": {
       "string_token": "q46.cattle",
@@ -2510,7 +2528,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "46. Onde é que a maioria dos animais desmamados (que já não bebem leite da progenitora) bovino passa o dia durante a estação das chuvas?",
         "sw": "46. Ni wapi mara nyingi ndama ng’ombe (ambao hawanyonyi kutoka kwa mama yao) hukaa wakati wa msimu wa mvua?"
       },
-      "_row_num": 288
+      "_row_num": 290
     },
     "q46.pig": {
       "string_token": "q46.pig",
@@ -2519,7 +2537,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "46. Onde é que a maioria dos animais desmamados (que já não bebem leite da progenitora) porcos passa o dia durante a estação das chuvas?",
         "sw": "46. Ni wapi mara nyingi ndama nguruwe (ambao hawanyonyi kutoka kwa mama yao) hukaa wakati wa msimu wa mvua?"
       },
-      "_row_num": 289
+      "_row_num": 291
     },
     "q46a": {
       "string_token": "q46a",
@@ -2528,7 +2546,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "46a. A que distância do agregado familiar se encontra a estrutura?",
         "sw": "46a. Zizi hilo la mifugo lipo umbali gani kutoka kwenye kaya?"
       },
-      "_row_num": 290
+      "_row_num": 292
     },
     "q46b": {
       "string_token": "q46b",
@@ -2537,7 +2555,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "46b. A que distância do agregado familiar pastam normalmente os animais?",
         "sw": "46b. Kwa kawaida mifugo huenda malishoni umbali gani kutoka kwenye kaya?"
       },
-      "_row_num": 291
+      "_row_num": 293
     },
     "q46c": {
       "string_token": "q46c",
@@ -2546,7 +2564,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "46c. Existe algum tipo de água estagnada ou água corrente na zona de pasto do animal durante a estação das chuvas?",
         "sw": "46c. Kuna aina yoyote ya maji yaliyotuama au yanayotiririka katika eneo wanapolishwa wanyama msimu wa mvua?"
       },
-      "_row_num": 292
+      "_row_num": 294
     },
     "q46ci": {
       "string_token": "q46ci",
@@ -2555,17 +2573,17 @@ window.odkTableSpecificDefinitions = {
         "pt": "46c(i). Qual é o tipo de água?",
         "sw": "46c (i). Maji haya ni ya aina gani?"
       },
-      "_row_num": 293
+      "_row_num": 295
     },
     "q46ci.standing": {
       "string_token": "q46ci.standing",
       "text": "46c(i). For standing water, what is the type of water?",
-      "_row_num": 294
+      "_row_num": 296
     },
     "q46ci.flowing": {
       "string_token": "q46ci.flowing",
       "text": "46c(i). For flowing water, what is the type of water?",
-      "_row_num": 295
+      "_row_num": 297
     },
     "q47.cattle": {
       "string_token": "q47.cattle",
@@ -2574,7 +2592,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "47. Os seus animais bovino tiveram alguma doença nos últimos 30 dias? (Assinalar todas as opções que se apliquem)",
         "sw": "47. Je, yeyote wa mifugo wako alikuwa na ugonjwa wowote katika siku 30 zilizopita? (weka alama kwa yote inayohusika)"
       },
-      "_row_num": 296
+      "_row_num": 298
     },
     "q47.pig": {
       "string_token": "q47.pig",
@@ -2583,7 +2601,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "47. Os seus animais porcos tiveram alguma doença nos últimos 30 dias? (Assinalar todas as opções que se apliquem)",
         "sw": "47. Je, yeyote wa nguruwe wako alikuwa na ugonjwa wowote katika siku 30 zilizopita? (weka alama kwa yote inayohusika)"
       },
-      "_row_num": 297
+      "_row_num": 299
     },
     "q48.cattle": {
       "string_token": "q48.cattle",
@@ -2592,7 +2610,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "48. Se de momento não possui bovino, teve bovino nos últimos 12 meses",
         "sw": "48. Ikiwa kwa sasa humiliki ng’ombe, je, ulikuwa unamiliki ng’ombe katika miezi 12 iliyopita"
       },
-      "_row_num": 298
+      "_row_num": 300
     },
     "q48.pig": {
       "string_token": "q48.pig",
@@ -2601,7 +2619,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "48. Se de momento não possui porcos, teve porcos nos últimos 12 meses",
         "sw": "48. Ikiwa kwa sasa humiliki nguruwe, je, ulikuwa unamiliki nguruwe katika miezi 12 iliyopita"
       },
-      "_row_num": 299
+      "_row_num": 301
     },
     "q49.cattle": {
       "string_token": "q49.cattle",
@@ -2610,7 +2628,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "49. Nos últimos 12 meses, foi administrada ivermectina a algum dos seus animais bovino?",
         "sw": "49. Katika miezi 12 iliyopita, yoyote kati ya, ng’ombe wako alipokea ivamektini?"
       },
-      "_row_num": 300
+      "_row_num": 302
     },
     "q49.pig": {
       "string_token": "q49.pig",
@@ -2619,7 +2637,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "49. Nos últimos 12 meses, foi administrada ivermectina a algum dos seus animais porcos?",
         "sw": "49. Katika miezi 12 iliyopita, yoyote kati ya, nguruwe wako alipokea ivamektini?"
       },
-      "_row_num": 301
+      "_row_num": 303
     },
     "q50.cattle": {
       "string_token": "q50.cattle",
@@ -2628,7 +2646,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "50. Quem é o responsável e toma as decisões sobre o tratamento do bovino com medicamentos?",
         "sw": "50. Ni nani anayewajibika na anayefanya uamuzi kuhusu matibabu ya dawa ya ng’ombe?"
       },
-      "_row_num": 302
+      "_row_num": 304
     },
     "q50.pig": {
       "string_token": "q50.pig",
@@ -2637,7 +2655,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "50. Quem é o responsável e toma as decisões sobre o tratamento do porcos com medicamentos?",
         "sw": "50. Ni nani anayewajibika na anayefanya uamuzi kuhusu matibabu ya dawa ya nguruwe?"
       },
-      "_row_num": 303
+      "_row_num": 305
     },
     "q51.cattle": {
       "string_token": "q51.cattle",
@@ -2646,7 +2664,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "51. Nos últimos 12 meses, mandou bovino para abate?",
         "sw": "51. Katika miezi 12 iliyopita, uliwapeleka ngombe kwenye machinjio?"
       },
-      "_row_num": 304
+      "_row_num": 306
     },
     "q51.pig": {
       "string_token": "q51.pig",
@@ -2655,7 +2673,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "51. Nos últimos 12 meses, mandou porcos para abate?",
         "sw": "51. Katika miezi 12 iliyopita, uliwapeleka nguruwe kwenye machinjio?"
       },
-      "_row_num": 305
+      "_row_num": 307
     },
     "q51a.cattle": {
       "string_token": "q51a.cattle",
@@ -2664,7 +2682,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "51a. Em que meses abateu o bovino nos últimos 12 meses? (assinalar todas as opções que se apliquem)",
         "sw": "51a. Ni katika mwezi upi ambapo uliwapeleka ng’ombe wako kwenye machinjio katika miezi 12 iliyopita? (weka alama kwa yote inayohusika)"
       },
-      "_row_num": 306
+      "_row_num": 308
     },
     "q51a.pig": {
       "string_token": "q51a.pig",
@@ -2673,7 +2691,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "51a. Em que meses abateu o porcos nos últimos 12 meses? (assinalar todas as opções que se apliquem)",
         "sw": "51a. Ni katika mwezi upi ambapo uliwapeleka nguruwe wako kwenye machinjio katika miezi 12 iliyopita? (weka alama kwa yote inayohusika)"
       },
-      "_row_num": 307
+      "_row_num": 309
     },
     "q52": {
       "string_token": "q52",
@@ -2682,7 +2700,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "52. Nos últimos 12 meses, ordenhou as suas vacas?",
         "sw": "52. Katika miezi 12 iliyopita, uliwakamua maziwa ng'ombe wako?"
       },
-      "_row_num": 308
+      "_row_num": 310
     },
     "q52a": {
       "string_token": "q52a",
@@ -2691,7 +2709,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "52a. Em que meses normalmente ordenha as suas vacas? (Assinalar todas as opções que se apliquem)",
         "sw": "52a. Ni katika miezi ipi ambapo kwa kawaida huwa unakamua maziwa ng'ombe wako? (Chagua yote inayohusika)"
       },
-      "_row_num": 309
+      "_row_num": 311
     },
     "q53": {
       "string_token": "q53",
@@ -2700,7 +2718,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "53. Há corpos de água num raio de 50 m à volta das edificações do agregado familiar?",
         "sw": "53. Je, kuna eneo la maji yoyote umbali ndani ya mita 50 yanayozunguka majengo ya kaya?"
       },
-      "_row_num": 310
+      "_row_num": 312
     },
     "q53a": {
       "string_token": "q53a",
@@ -2709,7 +2727,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "53a. Quantas?",
         "sw": "53a. Mangapi?"
       },
-      "_row_num": 311
+      "_row_num": 313
     },
     "q54": {
       "string_token": "q54",
@@ -2718,7 +2736,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "54. Foi feita pulverização residual no agregado familiar contra a malária nos últimos 12 meses?",
         "sw": "54. Je, kaya ilipata kunyunyuziwa ndani viuatilifu ukoko kuzuia malaria katika miezi 12 iliyopita?"
       },
-      "_row_num": 312
+      "_row_num": 314
     },
     "q54a": {
       "string_token": "q54a",
@@ -2727,7 +2745,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "54a. Porque não?",
         "sw": "54a. Kwa nini?"
       },
-      "_row_num": 313
+      "_row_num": 315
     },
     "q54b": {
       "string_token": "q54b",
@@ -2736,7 +2754,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "54b. Viu a etiqueta de registo da pulverização?",
         "sw": "54b. Je, kibandiko cha usajili wa kunyunyuzia dawa inaonekana?"
       },
-      "_row_num": 314
+      "_row_num": 316
     },
     "q54bi": {
       "string_token": "q54bi",
@@ -2745,7 +2763,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "54b (i). Data da pulverização (verificar data na etiqueta do registo de fumigação na porta)",
         "sw": "54b (i). Tarehe yakunyunyizia (Thibitisha tarehe kwenye kibandiko cha usajili wa unyunyiziaji kwenye mlango)"
       },
-      "_row_num": 315
+      "_row_num": 317
     },
     "q55": {
       "string_token": "q55",
@@ -2754,7 +2772,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "55. Quantas redes mosquiteiras existem no agregado familiar?",
         "sw": "55. Je, kuna vyandarua vingapi vya mbu katika kaya hii?"
       },
-      "_row_num": 316
+      "_row_num": 318
     },
     "q56": {
       "string_token": "q56",
@@ -2763,7 +2781,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "56. São usados outros métodos de prevenção da malária? (Assinalar todas as opções que se apliquem)",
         "sw": "56. Kuna njia nyingine za kuzuia malaria zinazotumika? (chagua zote zinazotumika)"
       },
-      "_row_num": 317
+      "_row_num": 319
     },
     "q57": {
       "string_token": "q57",
@@ -2772,7 +2790,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "57. Qual é o primeiro ponto de cuidados de saúde formais usado pela família quando alguém está doente?",
         "sw": "57. Ni kituo kipi cha kwanza rasmi cha tiba ya afya kinachotumiwa na familia hii mtu anapokuwa mgonjwa?"
       },
-      "_row_num": 318
+      "_row_num": 320
     },
     "q57.hint": {
       "string_token": "q57.hint",
@@ -2781,7 +2799,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "(Selecione uma unidade de saniotaria na lista apresentada OU uma (1) das opções abaixo. Para selecionar uma unidade de sanitaria, nenhuma das outras opções pode ser selecionada)",
         "sw": "(Chagua kutoka kwenye orodha ya vituo vya afya  AU moja (1) ya chaguzi hapa chini. Ili kuchagua kituo cha afya, hakuna chaguzi nyingine yoyote inayoweza kuchaguliwa)"
       },
-      "_row_num": 319
+      "_row_num": 321
     },
     "q58": {
       "string_token": "q58",
@@ -2790,7 +2808,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "58. Algum membro do agregado familiar foi mordido por uma cobra nos últimos 12 meses?",
         "sw": "58. Kuna mwanakaya yeyote aliyegongwa na nyoka katika miezi 12 iliyopita?"
       },
-      "_row_num": 320
+      "_row_num": 322
     },
     "q58a": {
       "string_token": "q58a",
@@ -2799,7 +2817,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "58a. Quantos membros do agregado familiar foram mordidos nos últimos 12 meses?",
         "sw": "58a. Ni wanakaya wangapi waliyogongwa na nyoka katika miezi 12 iliyopita?"
       },
-      "_row_num": 321
+      "_row_num": 323
     },
     "q59a": {
       "string_token": "q59a",
@@ -2808,7 +2826,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "59a. Quem foi mordido?",
         "sw": "59a. Ni nani aliyegongwa?"
       },
-      "_row_num": 322
+      "_row_num": 324
     },
     "q60": {
       "string_token": "q60",
@@ -2817,7 +2835,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "60. Número de contacto do agregado familiar",
         "sw": "60. Nambari ya mawasiliano ya kaya"
       },
-      "_row_num": 323
+      "_row_num": 325
     },
     "q61": {
       "string_token": "q61",
@@ -2826,7 +2844,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "61. Número de contacto alternativo 1",
         "sw": "61. Nambari mbadala ya mawasiliano 1"
       },
-      "_row_num": 324
+      "_row_num": 326
     },
     "q62": {
       "string_token": "q62",
@@ -2835,7 +2853,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "62. Existe um número de contacto alternativo 2",
         "sw": "62. Je, kuna nambari ya 2 mbadala ya mawasiliano"
       },
-      "_row_num": 325
+      "_row_num": 327
     },
     "q62a": {
       "string_token": "q62a",
@@ -2844,7 +2862,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "62a. Número de contacto alternativo 2",
         "sw": "62a. Nambari mbadala ya mawasiliano 2"
       },
-      "_row_num": 326
+      "_row_num": 328
     },
     "q63": {
       "string_token": "q63",
@@ -2853,7 +2871,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "63. Podemos ligar-lhe para qualquer um dos contactos indicados anteriormente para organizar visitas no contexto deste projeto?",
         "sw": "63. Tunaweza kukupigia kupitia nambari yoyote ya mawasiliano kati ya zilizoonyeshwa hapo juu ili kupanga na wewe katika muktadha wa mradi huu?"
       },
-      "_row_num": 327
+      "_row_num": 329
     },
     "q64": {
       "string_token": "q64",
@@ -2862,7 +2880,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "64. Houve algum óbito no agregado familiar nos últimos 12 meses?",
         "sw": "64. Je, kumekuwa na vifo vyovyote katika kaya katika miezi 12 iliopita?"
       },
-      "_row_num": 328
+      "_row_num": 330
     },
     "q64a": {
       "string_token": "q64a",
@@ -2871,12 +2889,12 @@ window.odkTableSpecificDefinitions = {
         "pt": "64a. Quantos?",
         "sw": "64a. Vingapi?"
       },
-      "_row_num": 329
+      "_row_num": 331
     },
     "contact_number_digits": {
       "string_token": "contact_number_digits",
       "text": "Contact numbers must be 9 digits.",
-      "_row_num": 330
+      "_row_num": 332
     }
   }
 }

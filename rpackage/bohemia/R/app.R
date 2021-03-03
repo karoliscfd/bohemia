@@ -4993,8 +4993,14 @@ app_server <- function(input, output, session) {
                 # # get refusals data
                 rf = odk_data$data$refusals
                 # save(rf, file = '/tmp/rf.RData')
+                odk <- odk_data$data
+                # save(odk, file = '/tmp/odk.RData')
                 # Keep only the country in question
                 rf <- rf %>% dplyr::filter(country == co)
+                
+                # Remove those refusals for which a minicensus form ended up being collected
+                rf <- rf %>%
+                  filter(!hh_id %in% odk$minicensus_main$hh_id)
                 
                 # HERE make it work with week
                 # Get agg
@@ -5772,9 +5778,25 @@ app_server <- function(input, output, session) {
                               statement = "SELECT * FROM corrections;")
     fixes <- dbGetQuery(conn = con,
                         statement = "SELECT * FROM fixes;")
+    fixes_ad_hoc <- dbGetQuery(conn = con,
+                        statement = "SELECT * FROM fixes_ad_hoc;")
+    # save(fixes, anomalies, corrections, fixes_ad_hoc, file = '/tmp/fixes.RData')
     
     # Meta stuff
     country_cols <- c('darkorange', 'lightblue')
+    
+    # get fixes which aren't related to corrections
+    fix_no_co <- fixes %>% filter(!id %in% corrections$id)
+    
+    output$fixes_table <-
+      DT::renderDataTable({
+        tibble(
+          `Anomalies detected` = nrow(anomalies),
+          `Corrections submitted` = nrow(corrections),
+          `Fixes implemented` = nrow(fixes),
+          `Additional ad-hoc fixes implemented` = nrow(fixes_ad_hoc)
+        )
+      })
     
     # Anomalies by country table
     anomalies_by_country <- anomalies %>%
@@ -5922,6 +5944,7 @@ app_server <- function(input, output, session) {
             ok = {
               
               fluidPage(
+                fluidRow(DT::dataTableOutput('fixes_table')),
                 fluidRow(
                   column(6,
                          h3('Anomalies by country'),

@@ -44,11 +44,11 @@ hh_qr_code_print <- function(base_img_path, hh_id, demo_sig, pi_sig ,country,sav
   
   # overlay signatures
   img_with_sig <- base_img %>% image_composite(gravity = 'southwest',
-    demo_img,
+                                               pi_img,
     offset = "+250+130"
   )
   img_with_sig <- img_with_sig %>% image_composite(gravity = 'southeast',
-                                               pi_img,
+                                               demo_img,
                                                offset = "+250+130"
   )
   

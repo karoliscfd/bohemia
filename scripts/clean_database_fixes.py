@@ -71,6 +71,13 @@ def implement(id = None, query = '', who = 'Joe Brew', is_ok = False, cur = cur,
                 """,
         (id, who, done_at, query)
         )
+    else:
+        cur.execute(
+        """
+                INSERT INTO fixes_ad_hoc (id, done_by, done_at, resolution_code) VALUES(%s, %s, %s, %s)
+                """,
+        (id, who, done_at, query)
+        )
 dbconn.commit()
 
 # Go one-by-one through "show_these" and implement changes
@@ -3774,6 +3781,10 @@ implement(id=None, query="DELETE FROM clean_enumerations WHERE instance_id='ef53
 implement(id=None, query="DELETE FROM clean_enumerations WHERE instance_id='0ef81833-27d5-494e-ae5a-13945712dfbc'", who='Joe Brew')
 implement(id=None, query="DELETE FROM clean_enumerations WHERE instance_id='c58f9fb1-3081-4bc4-b1f3-087cde5f2289'", who='Joe Brew')
 implement(id=None, query="DELETE FROM clean_enumerations WHERE instance_id='d69e080d-69a5-4edf-8a55-2a580b0f15ca'", who='Joe Brew')
+
+# Manual corrections requested by Imani on March 1 2021
+implement(id=None, query="DELETE FROM clean_minicensus_main WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac'; DELETE FROM clean_minicensus_people WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac'; DELETE FROM clean_minicensus_repeat_water WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac'; DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac';  DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac'; DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id='15d0e419-9ade-4fe1-9e97-182054cab2ac'; ", who='Joe Brew')
+implement(id=None, query="DELETE FROM clean_minicensus_main WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d'; DELETE FROM clean_minicensus_people WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d'; DELETE FROM clean_minicensus_repeat_water WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d'; DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d';  DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d'; DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id='311d3b71-0de5-4008-9075-4a109a5d7d7d'; ", who='Joe Brew')
 
 dbconn.commit()
 cur.close()
