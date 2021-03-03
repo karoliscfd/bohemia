@@ -653,7 +653,7 @@ x = dbDisconnect(con)
 
 
 
-end_time <- Sys.time()
+  end_time <- Sys.time()
 message('Done at : ', as.character(Sys.time()))
 time_diff <- end_time - start_time
 message('That took ', as.character(round(as.numeric(time_diff), 2)), ' ', attr(time_diff, 'units'))
