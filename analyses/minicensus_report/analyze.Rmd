@@ -41,9 +41,17 @@ suppressMessages({
   library(leafgl)
   library(DT)
   library(sf)
+  library(gsheet)
   theme_bohemia <- ggplot2::theme_bw
 }
 )
+
+if(!'gps.RData' %in% dir()){
+  gps <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1hQWeHHmDMfojs5gjnCnPqhBhiOeqKWG32xzLQgj5iBY/edit#gid=1016618615')
+  save(gps, file = 'gps.RData')
+} else {
+  load('gps.RData')
+}
 
 is_local <- FALSE
 drv <- RPostgres::Postgres()
@@ -92,6 +100,15 @@ extract_ll <- function(x){
   lng <- as.numeric(lngs); lat <- as.numeric(lats)
   return(tibble(lng = lng, lat = lat))
 }
+
+# Define "targets"
+targets <- gps %>%
+  filter(clinical_trial == 0) %>%
+  group_by(iso) %>%
+  summarise(n_households = sum(n_households)) %>%
+  ungroup %>%
+  mutate(country = ifelse(iso == 'MOZ', 'Mozambique', 'Tanzania')) %>%
+  mutate(n_households = ifelse(iso == 'MOZ', 30803, n_households)) # manual adjustment
 ```
 
 ```{r}
@@ -114,28 +131,56 @@ names(odk_data$data) <- names(moz)
 
 ### Chart: Household minicensus forms collected
 
-Line: Cumulative; Bars; Daily
+Red line: Cumulative; Bars: Weekly sum; Dotted line: Forward projection (linear regression); Orange line: recon-estimated total number of households
 
 ```{r}
 pd <- odk_data$data$minicensus_main %>%
-  group_by(date = todays_date,
+  group_by(date = lubridate::floor_date(todays_date, 'week'),
            country = hh_country) %>%
   tally %>%
   ungroup %>%
   group_by(country) %>%
   mutate(cs = cumsum(n))
 
+# Build a regression
+fit <- lm(cs ~ date + country, data = pd)
+# Build a prediction df
+pred_df <- 
+  expand.grid(date = seq(min(pd$date),
+                         as.Date('2021-12-05'),
+                         by = 'week'),
+              country = sort(unique(pd$country)))
+pred_df$y <- predict(fit, newdata = pred_df)
+pred_df$remove <- 
+  pred_df$country == 'Mozambique' &
+           pred_df$y > targets$n_households[targets$country == 'Mozambique'] |
+  pred_df$country == 'Tanzania' &
+           pred_df$y > targets$n_households[targets$country == 'Tanzania']
+pred_df <- pred_df %>% filter(!remove)
+
+
 ggplot(data = pd,
        aes(x = date)) +
-  geom_line(aes(y = cs)) +
+  geom_line(aes(y = cs),
+            color = 'red') +
+  # geom_point(aes(y = cs),
+  #           color = 'red') +
   geom_bar(aes(y = n),
-               fill = 'grey',
+               fill = 'black',
            stat = 'identity') +
   theme_bohemia() +
-  facet_wrap(~country) +
+  facet_wrap(~country, ncol = 1) +
   theme(legend.position = 'none') +
-  labs(x = 'Date',
-       y = 'Minicensus forms')
+  labs(x = 'Week',
+       y = 'Minicensus forms') +
+  geom_line(data = pred_df,
+            aes(x = date,
+                y = y),
+            lty = 2) +
+  geom_hline(data = targets,
+            aes(yintercept = n_households),
+            color = 'darkorange',
+            alpha = 0.5)
 ```
 
 
