@@ -133,7 +133,7 @@ names(odk_data$data) <- names(moz)
 
 Red line: Cumulative; Bars: Weekly sum; Dotted line: Forward projection (linear regression); Orange line: recon-estimated total number of households
 
-```{r}
+```{r, fig.height = 8}
 pd <- odk_data$data$minicensus_main %>%
   group_by(date = lubridate::floor_date(todays_date, 'week'),
            country = hh_country) %>%
@@ -236,7 +236,13 @@ leaflet() %>%
 ### Table: Household minicensus forms collected
 
 ```{r}
-x <- pd %>% 
+x <-odk_data$data$minicensus_main %>%
+  group_by(date = todays_date,
+           country = hh_country) %>%
+  tally %>%
+  ungroup %>%
+  group_by(country) %>%
+  mutate(cs = cumsum(n))
   dplyr::select(-cs) %>%
   tidyr::spread(key = country, value = n)
 bohemia::prettify(x, nrows = nrow(x), download_options = TRUE)
