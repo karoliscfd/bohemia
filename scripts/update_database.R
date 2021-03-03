@@ -544,7 +544,7 @@ message('--- NOW EXECUTING CLEANING CODE ---')
 source('clean_database.R')
 
 
-####### ANOMALIES CREATION ##################################################
+    ####### ANOMALIES CREATION ##################################################
 library(dplyr)
 data_moz <- load_odk_data(the_country = 'Mozambique', 
                           credentials_path = '../credentials/credentials.yaml',
@@ -569,6 +569,7 @@ anomalies <- bind_rows(
   anomalies_moz %>% mutate(country = 'Mozambique'),
   anomalies_tza %>% mutate(country = 'Tanzania')
 )
+anomalies$date[nchar(anomalies$date) != 10] <- NA
 anomalies$date <- as.Date(anomalies$date)
 # Drop old anomalies and add these ones to the database
 # however, we don't want to drop any old anomalies that have a correction already
@@ -598,6 +599,7 @@ dbWriteTable(conn = con,
 anomalies <- dbGetQuery(con, 'select * from anomalies')
 corrections <- dbGetQuery(con, 'select * from corrections')
 fixes <- dbGetQuery(con, 'select * from fixes')
+fixes_ad_hoc <- dbGetQuery(con, 'select * from fixes_ad_hoc')
 
 #get ids from fixes 
 fixes_ids <- fixes$id
@@ -623,12 +625,13 @@ message(paste0(nrow(anomalies), ' total anomalies'),
         
         paste0('\n', nrow(pending_correction), ' total corrections requiring site input'),
         paste0('\n---MOZ: ', nrow(pending_correction[pending_correction$country == 'Mozambique',])),
-        paste0('\n---TZA: ', nrow(pending_correction[pending_correction$country == 'Tanzania',]))
-        
+        paste0('\n---TZA: ', nrow(pending_correction[pending_correction$country == 'Tanzania',])),
+        paste0('\n------'),
+        paste0('\n', nrow(fixes_ad_hoc), ' ad-hoc changes implemented (non-anomalies).')
 )
 
 
-replace_local_files <- TRUE
+replace_local_files <- FALSE
 if(replace_local_files){
   remove_file <- '/tmp/Mozambique_efficient_local.RData'
   if(file.exists(remove_file)){
