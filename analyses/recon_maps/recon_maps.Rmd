@@ -40,24 +40,95 @@ theme_set(databrew::theme_simple())
 ```
 
 ```{r}
-load('recon.RData') # download from https://trello.com/c/mPDK9j47/2313-bohemia-network-coverage-maps-using-recon-data-internet-plus-each-provider
-
+# download from https://trello.com/c/mPDK9j47/2313-bohemia-network-coverage-maps-using-recon-data-internet-plus-each-provider
+load('recon.RData')
+# Ideas:
+# - Map of yes/no phone coverage
+# - Map of yes/no any internet coverage
+# - Vodafone internet map
+# - Vodafone phone map
+# - Mcell internet map
+# - etc.
+# - Best network by area
+# 
+# Advanced ideas:
+# - Smoothing and polygonation
+# 
+# Other things:
+# - Bar charts / aggregate stuff (number of hamlets with each type, etc.).
 ```
 
 # Reconnaissance report {.tabset}
-
 
 ## Summary
 
 This report contains maps and tables showing internet and phone coverage, overall and by provider types, for each hamlet of the Bohemia research area.
 
-## MOZ
 
-```{r}
-2+2
-```
+# Map of yes/no phone coverage
 
 ## TZA
 ```{r}
-2+2
+
 ```
+## MOZ
+```{r}
+
+```
+
+# Map of yes/no any internet coverage
+
+## TZA
+```{r}
+
+```
+## MOZ
+```{r}
+
+```
+
+# Vodafone internet map
+
+## TZA
+```{r}
+
+```
+## MOZ
+```{r}
+
+```
+
+# Vodafone phone map
+## TZA
+```{r}
+
+```
+## MOZ
+```{r}
+
+```
+
+
+# Mcell internet map (and more)
+## TZA
+```{r}
+
+```
+## MOZ
+```{r}
+
+```
+
+
+# Best network by area
+## TZA
+```{r}
+
+```
+## MOZ
+```{r}
+
+```
+
+
+
