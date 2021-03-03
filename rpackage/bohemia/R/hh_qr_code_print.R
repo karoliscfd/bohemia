@@ -12,7 +12,7 @@
 #' @return overlayed image
 #' @export
 
-hh_qr_code_print <- function(base_img_path, hh_id, demo_sig, pi_sig ,save_file = NULL, ...) {
+hh_qr_code_print <- function(base_img_path, hh_id, demo_sig, pi_sig ,country,save_file = NULL, ...) {
   # create qr code matrix
   x <- qrcode_gen(hh_id, plotQRcode=F, dataOutput=T, ErrorCorrectionLevel = 'H')
   x <- as.data.frame(x)
