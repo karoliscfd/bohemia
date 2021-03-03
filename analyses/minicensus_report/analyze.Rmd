@@ -242,7 +242,7 @@ x <-odk_data$data$minicensus_main %>%
   tally %>%
   ungroup %>%
   group_by(country) %>%
-  mutate(cs = cumsum(n))
+  mutate(cs = cumsum(n)) %>%
   dplyr::select(-cs) %>%
   tidyr::spread(key = country, value = n)
 bohemia::prettify(x, nrows = nrow(x), download_options = TRUE)
