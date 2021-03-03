@@ -4,7 +4,8 @@ author: "www.databrew.cc"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    code_folding: "hide"
+    code_folding: hide
+  pdf_document: default
 ---
 
 
