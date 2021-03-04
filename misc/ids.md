@@ -95,4 +95,6 @@ In order to eliminate the risk of duplicates, the "on the fly" method uses the s
 - In other words, the relationship between a household ID and a clinical trial ID is _forward-engineerable_ (using a household ID, anyone can create a clinical trial ID); however, this relationship is not _backward-engineerable_ (ie, one cannot figure out the household ID, given a clinical trial ID) unless she has a "key" which decodes a clinical trial ID into its census ID counterpart.
 
 Example:
-- A person with census ID ABC-123-001, for example, might have clinical trial ID ABC41GH0X. 
+- A person with census ID `ABC-123-001`, for example, might have clinical trial ID `ABC41GH0X`.
+- The ID-linking algorithm automatically creates only `ABC41GH0X` from `ABC-123-001`.
+- The ID-linking algorithm does not convert from `ABC41GH0X` to `ABC-123-001`, unless a private key is used.
