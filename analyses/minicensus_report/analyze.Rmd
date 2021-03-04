@@ -46,6 +46,7 @@ suppressMessages({
   library(sf)
   library(gsheet)
   theme_bohemia <- ggplot2::theme_bw
+  theme_set(theme_bohemia())
 }
 )
 
@@ -431,7 +432,7 @@ odk_data$data$enumerations %>%
     group_by(Fieldworker) %>%
     filter(date >= last_month) %>%
     summarise(Pings = n(),
-              `Total distance recorded` = paste0(round(sum(distance, na.rm = TRUE)), ' KM'),
+              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
               `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
   DT::datatable(out)
 
@@ -460,7 +461,7 @@ odk_data$data$enumerations %>%
     group_by(Fieldworker) %>%
     filter(date >= last_month) %>%
     summarise(Pings = n(),
-              `Total distance recorded` = paste0(round(sum(distance, na.rm = TRUE)), ' KM'),
+              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
               `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
   DT::datatable(out)
 
@@ -627,12 +628,12 @@ labs(x = 'FW',
      y = 'Forms per (working) day') +
 theme_bohemia() +
 geom_text(aes(label = forms, color='Number of forms'),
-          nudge_y = 0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = 0.5, size = 3, alpha = 0.8, angle = 90) +
 geom_text(aes(label = days, color='Working days'),
-          nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = -0.5, size = 3, alpha = 0.8, angle = 90) +
 scale_color_manual(name ='', 
                    values =colors) +
-theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12)) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 5)) +
 theme(axis.text = element_text(size = 12),
       axis.title = element_text(size = 14),
       plot.title = element_text(size = 20),
@@ -690,7 +691,7 @@ geom_text(aes(label = days, color='Working days'),
           nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
 scale_color_manual(name ='', 
                    values =colors) +
-theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12)) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 5)) +
 theme(axis.text = element_text(size = 12),
       axis.title = element_text(size = 14),
       plot.title = element_text(size = 20),
@@ -726,12 +727,12 @@ ggplot(data = pdx,
   geom_bar(stat = 'identity') +
   labs(x = 'FW',
        y = 'Forms per worker',
-       caption = 'Numbers show forms on top, workers that day on bottom. A "working day" is a day on which that worker submitted any form of that type.') +
+       caption = 'Numbers show forms on top, workers that day on bottom.\nA "working day" is a day on which that worker submitted any form of that type.') +
   theme_bohemia() +
   geom_text(aes(label = label),
-            nudge_y = 0, size = 5, alpha = 0.8,
+            nudge_y = 0, size = 3, alpha = 0.8,
             angle = 90) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 6)) +
   theme(axis.text = element_text(size = 12),
         axis.title = element_text(size = 14),
         plot.title = element_text(size = 20),
@@ -765,12 +766,12 @@ ggplot(data = pdx,
   geom_bar(stat = 'identity') +
   labs(x = 'FW',
        y = 'Forms per worker',
-       caption = 'Numbers show forms on top, workers that day on bottom. A "working day" is a day on which that worker submitted any form of that type.') +
+       caption = 'Numbers show forms on top, workers that day on bottom.\nA "working day" is a day on which that worker submitted any form of that type.') +
   theme_bohemia() +
   geom_text(aes(label = label),
-            nudge_y = 0, size = 5, alpha = 0.8,
+            nudge_y = 0, size = 3, alpha = 0.8,
             angle = 90) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 6)) +
   theme(axis.text = element_text(size = 12),
         axis.title = element_text(size = 14),
         plot.title = element_text(size = 20),
