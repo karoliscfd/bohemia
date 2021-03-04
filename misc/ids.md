@@ -86,3 +86,13 @@ In order to eliminate the risk of duplicates, the "on the fly" method uses the s
   - household numbers be unique
 - Because many areas do not have internet connectivity, and because census fieldworkers may be carrying out data offline data collections simultaneously, there is no reliable, automated way to verify data entries in real time.
 - However, on the server-side, an automated script is set up to detect ID abnormalities as soon as they are entered (ie, as soon as a fieldworker synchronizes). When an abnormality (duplicate, skipped ID, miscoded hamlet, etc.) occurs, the abnormality is logged and an "event" is triggered in the data manager web application requiring correction or confirmation.
+
+## Clinical Trial IDs
+
+- Census / demographic IDs are _not_ the same as clinical trial IDs. The former contain some person-level demographic information (for example, the suffix `-001` indicates head of household), whereas the latter must not.
+- Every person who has a clinical trial ID _must_ also have a census/demographic ID.
+- Clinical trial IDs are created _automatically_ from census IDs. The algorithm which creates these IDs is usable for operational purposes (ie, on-the-fly generation of a clinical trial ID for a recently censed individual). However, the algorithm is _not_ public or available for the project.
+- In other words, the relationship between a household ID and a clinical trial ID is _forward-engineerable_ (using a household ID, anyone can create a clinical trial ID); however, this relationship is not _backward-engineerable_ (ie, one cannot figure out the household ID, given a clinical trial ID) unless she has a "key" which decodes a clinical trial ID into its census ID counterpart.
+
+Example:
+- A person with census ID ABC-123-001, for example, might have clinical trial ID ABC41GH0X. 
