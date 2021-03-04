@@ -1218,9 +1218,7 @@
         "name": "trip_count",
         "constraint": "data('trip_count') === null || selected(data('travel_regularly'), 'no') || data('trip_count') == data('travel_regularly_trips')",
         "display": {
-          "constraint_message": {
-            "text": "Unexpected number of trips recorded"
-          }
+          "constraint_message": "unexpected_trips"
         },
         "model": {
           "isSessionVariable": 1,
@@ -11560,9 +11558,7 @@
             "name": "trip_count",
             "constraint": "data('trip_count') === null || selected(data('travel_regularly'), 'no') || data('trip_count') == data('travel_regularly_trips')",
             "display": {
-              "constraint_message": {
-                "text": "Unexpected number of trips recorded"
-              }
+              "constraint_message": "unexpected_trips"
             },
             "model": {
               "isSessionVariable": 1,

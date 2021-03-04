@@ -32,18 +32,22 @@
         "_row_num": 4
       },
       {
+        "clause": "end screen",
+        "_row_num": 5
+      },
+      {
         "type": "select_one",
         "values_list": "yndk",
         "name": "latrine_shared",
         "display": {
           "prompt": "41cii"
         },
-        "_row_num": 5
+        "_row_num": 6
       },
       {
         "clause": "if",
         "condition": "selected(data('latrine_shared'), 'yes')",
-        "_row_num": 6
+        "_row_num": 7
       },
       {
         "type": "integer",
@@ -56,14 +60,10 @@
           "min": 1,
           "step": 1
         },
-        "_row_num": 7
-      },
-      {
-        "clause": "end if",
         "_row_num": 8
       },
       {
-        "clause": "end screen",
+        "clause": "end if",
         "_row_num": 9
       }
     ],
@@ -149,7 +149,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210221001,
+        "value": 20210304001,
         "_row_num": 3
       },
       {
@@ -392,7 +392,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210221001,
+        "value": 20210304001,
         "_row_num": 3
       },
       "table_id": {
@@ -768,7 +768,7 @@
         "valuesList": "yndk",
         "_defn": [
           {
-            "_row_num": 5,
+            "_row_num": 6,
             "section_name": "survey"
           },
           {
@@ -782,7 +782,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 7,
+            "_row_num": 8,
             "section_name": "survey"
           },
           {
@@ -947,11 +947,11 @@
             "display": {
               "prompt": "41cii"
             },
-            "_row_num": 5,
-            "__rowNum__": 4,
+            "_row_num": 6,
+            "__rowNum__": 5,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen2",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 2
           },
           {
@@ -965,11 +965,11 @@
               "min": 1,
               "step": 1
             },
-            "_row_num": 7,
-            "__rowNum__": 6,
+            "_row_num": 8,
+            "__rowNum__": 7,
             "_token_type": "prompt",
             "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen2",
+            "_branch_label_enclosing_screen": "survey/_screen8",
             "promptIdx": 3
           },
           {
@@ -994,18 +994,53 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 9,
-              "__rowNum__": 8,
+              "_row_num": 5,
+              "__rowNum__": 4,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nif (selected(data('latrine_shared'), 'yes')) {\nactivePromptIndicies.push(3);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 0
+          },
+          {
+            "_row_num": 6,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('latrine_shared'), 'yes')",
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "goto_label",
+            "_branch_label": "_then7",
+            "operationIdx": 2
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else9",
+            "_row_num": 9,
+            "operationIdx": 3
+          },
+          {
+            "_row_num": 8,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif9",
+            "_row_num": 9,
+            "operationIdx": 5
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
             "_row_num": 10,
-            "operationIdx": 1
+            "operationIdx": 6
           },
           {
             "_row_num": 10,
@@ -1014,19 +1049,24 @@
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 2
+            "operationIdx": 7
           },
           {
             "_token_type": "resume",
             "clause": "resume",
             "_row_num": 10,
-            "operationIdx": 3
+            "operationIdx": 8
           }
         ],
         "branch_label_map": {
           "_screen2": 0,
-          "_contents": 2,
-          "_screen10": 2
+          "_screen6": 1,
+          "_then7": 4,
+          "_screen8": 4,
+          "_else9": 6,
+          "_endif9": 6,
+          "_contents": 7,
+          "_screen10": 7
         }
       }
     },
@@ -1080,7 +1120,7 @@
         "valuesList": "yndk",
         "_defn": [
           {
-            "_row_num": 5,
+            "_row_num": 6,
             "section_name": "survey"
           },
           {
@@ -1097,7 +1137,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 7,
+            "_row_num": 8,
             "section_name": "survey"
           },
           {
