@@ -8,14 +8,14 @@ creds <- yaml::yaml.load_file(creds_fpath)
 is_local <- FALSE
 
 # # load data from odk for both countries
-  odk_data <- odk_data_moz <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
-                                the_country = 'Mozambique',
-                            users_path = '../credentials/users.yaml',
-                            local = is_local, efficient = FALSE)
-# odk_data_tza <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
-#                               the_country = 'Tanzania',
-#                               users_path = '../credentials/users.yaml',
-#                               local = is_local, efficient = FALSE)
+#   odk_data <- odk_data_moz <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
+#                                 the_country = 'Mozambique',
+#                             users_path = '../credentials/users.yaml',
+#                             local = is_local, efficient = FALSE)
+# # odk_data_tza <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
+# #                               the_country = 'Tanzania',
+# #                               users_path = '../credentials/users.yaml',
+# #                               local = is_local, efficient = FALSE)
 
 is_local <- FALSE
 drv <- RPostgres::Postgres()
@@ -90,8 +90,8 @@ dbDisconnect(con)
 # enumerations <- odk_data$enumerations
 # 
 # # # check data associated with a certain instance_id
-# temp <- odk_data$minicensus_main[odk_data$minicensus_main$instance_id=='1cb51568-08f3-469a-944b-8eaff8324676',]
-# temp1 <- odk_data$minicensus_people[odk_data$minicensus_people$instance_id=='1cb51568-08f3-469a-944b-8eaff8324676',]
+# temp <- odk_data$minicensus_main[odk_data$minicensus_main$instance_id=='',]
+# temp1 <- odk_data$minicensus_people[odk_data$minicensus_people$instance_id=='',]
 # # 
 # minicensus_main <- odk_data$minicensus_main
 # people <- odk_data$minicensus_people
