@@ -99,126 +99,136 @@ map_coverage <- function(temp, column_name,legend_title){
 
 # Reconnaissance report {.tabset}
 
-## Summary
-
 This report contains maps and tables showing internet and phone coverage, overall and by provider types, for each hamlet of the Bohemia research area.
 
 
-# Phone coverage
+## Tanzania coverage maps
 
-## TZA
+### All internet coverage
+
+```{r}
+map_coverage(tz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
+```
+
+### All phone coverage
+
 ```{r}
 map_coverage(tz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
 ```
 
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
-```
+### Vodafone internet coverage
 
-# Internet coverage
-
-## TZA
-```{r}
-map_coverage(tz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
-```
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
-```
-
-# Vodafone internet coverage
-
-## TZA
 ```{r}
 map_coverage(tz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
 ```
 
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
-```
+### Vodafone phone coverage
 
-# Vodafone phone coverage
-## TZA
 ```{r}
 map_coverage(tz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
 ```
 
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
-```
 
+### Tigo internet coverage
 
-# Mcell internet coverage
-## TZ
-```{r}
-map_coverage(tz_recon, 'telecom_work_data_mcell', legend_title = 'Mcell internet coverage')
-```
-
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_work_data_mcell', legend_title = 'Mcell internet coverage')
-```
-
-# Mcell phone coverage 
-## TZ
-```{r}
-map_coverage(tz_recon, 'telecom_work_voice_mcell', legend_title = 'Mcell phone coverage')
-```
-
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_work_voice_mcell', legend_title = 'Mcell phone coverage')
-```
-
-# Tigo internet coverage
-## TZ
 ```{r}
 map_coverage(tz_recon, 'telecom_work_data_tigo', legend_title = 'Tigo internet coverage')
 ```
 
-## MOZ
-```{r}
-map_coverage(mz_recon, 'telecom_work_data_tigo', legend_title = 'Tigo internet coverage')
-```
 
-# Tigo phone coverage
-## TZ
+### Tigo phone coverage
+
 ```{r}
 map_coverage(tz_recon, 'telecom_work_voice_tigo', legend_title = 'Tigo phone coverage')
 ```
 
-## MOZ
+### TTCL internet coverage
+
 ```{r}
-map_coverage(mz_recon, 'telecom_work_voice_tigo', legend_title = 'Tigo phone coverage')
+map_coverage(tz_recon, 'telecom_work_data_ttcl', legend_title = 'TTCL internet coverage')
 ```
 
-# ttcl internet coverage
+### TTCL phone coverage 
+
+```{r}
+map_coverage(tz_recon, 'telecom_work_voice_ttcl', legend_title = 'TTCL phone coverage')
+```
+
+### Halotel internet coverage 
+
+```{r}
+map_coverage(tz_recon, 'telecom_work_data_halotel', legend_title = 'Halotel internet coverage')
+```
+
+### Halotel phone coverage 
+
+```{r}
+map_coverage(tz_recon, 'telecom_work_voice_halotel', legend_title = 'Halotel phone coverage')
+```
+
+### Airtel internet coverage
+
+```{r}
+map_coverage(tz_recon, 'telecom_work_data_airtel', legend_title = 'Airtel internet coverage')
+```
+
+### Airtel phone coverage
+
+```{r}
+map_coverage(tz_recon, 'telecom_work_voice_airtel', legend_title = 'Airtel phone coverage')
+```
+
+## MOZ coverage maps
+
+### All internet coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
+```
+
+### All phone coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
+```
+
+### Vodafone internet coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
+```
+
+### Vodafone phone coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
+```
+
+### Mcell internet coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_data_mcell', legend_title = 'Mcell internet coverage')
+```
+
+### Mcell phone coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel voice coverage')
+```
+
+### Movitel internet coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_data_movitel', legend_title = 'Movitel internet coverage')
+```
+
+### Movitel phone coverage
+
+```{r}
+map_coverage(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel phone coverage')
+```
 
 
-# ttcl phone coverage 
-
-
-# halotel internet coverage 
-
-
-# halotel phone coverage 
-
-
-# airtel internet coverage
-
-
-# airtel phone coverage
-
-# Movitel internet coverage
-
-
-# Movitel phone coverage
-
-
-# Best network by area
 
 
 
