@@ -2245,7 +2245,7 @@ app_server <- function(input, output, session) {
     co <- country()
     ehd <- estimated_households$data
     
-    # save(pd, file = '/tmp/pd.RData')
+    # save(pd, co, ehd, file = '/tmp/pd.RData')
     pd <- pd %>% filter(hh_country == co)
     if(co == 'Mozambique'){
       the_iso <- 'MOZ'
@@ -2260,13 +2260,11 @@ app_server <- function(input, output, session) {
       }
     }
     if(pd_ok){
-      # target <- ifelse(co == 'Tanzania', 
-      #                  estimated_households$data %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x,
-      #                  30803)
-      
-      target <- #ifelse(co == 'Tanzania', 
-        ehd %>% filter(iso == the_iso, clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x#,
-      #                30803)
+
+      target <- ehd %>% 
+        filter(iso == the_iso, clinical_trial == 0) %>% 
+        summarise(x = sum(n_households)) %>% 
+        .$x
       
       progress_table <- tibble(`Forms finished` = nrow(pd),
                                `Estimated total forms` = target,
