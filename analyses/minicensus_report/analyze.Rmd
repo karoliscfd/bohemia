@@ -583,6 +583,7 @@ ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
 
 ### Individual
 
+Tanzania
 ```{r}
 left <- tibble(wid = sort(unique(as.character(fids$bohemia_id))))
                 
@@ -590,7 +591,66 @@ left <- tibble(wid = sort(unique(as.character(fids$bohemia_id))))
 pd <- left %>%
     left_join(
       odk_data$data$minicensus_main %>%
-        group_by(wid = as.character(wid), country = hh_country) %>%
+        filter(hh_country == 'Tanzania') %>%
+        group_by(wid = as.character(wid)) %>%
+        summarise(minicensus = n(),
+                  minicensus_days = length(unique(todays_date)))
+    )
+pd <- pd %>%
+  mutate(forms = minicensus,
+         days = minicensus_days)
+pd <- pd %>%
+  mutate(per_day = forms / days) 
+pd <- pd %>% filter(!is.na(forms))
+pd <- pd %>% arrange(desc(per_day))
+pd$wid <- factor(pd$wid, levels = unique(pd$wid))
+# save(pd, fids, file = '/tmp/dec2.RData')
+right <- fids %>%
+  mutate(wid = bohemia_id) %>%
+  dplyr::select(wid,first_name, last_name) %>%
+  mutate(wid = as.numeric(as.character(wid)))
+pd <- left_join(
+  pd %>% mutate(wid = as.numeric(as.character(wid))),
+  right)%>%
+  mutate(wid = paste0(wid,' ', first_name, ' ', last_name))
+
+# remove NA in parantheses
+pd <- pd %>% filter(!grepl('NA', wid))
+colors <- c('Number of forms' ='blue','Working days'='red')
+
+ggplot(data = pd,
+     aes(x = reorder(wid, -per_day),
+         y = per_day)) +
+geom_bar(stat = 'identity',
+         alpha = 0.6) +
+labs(x = 'FW',
+     y = 'Forms per (working) day') +
+theme_bohemia() +
+geom_text(aes(label = forms, color='Number of forms'),
+          nudge_y = 0.5, size = 5, alpha = 0.8, angle = 90) +
+geom_text(aes(label = days, color='Working days'),
+          nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
+scale_color_manual(name ='', 
+                   values =colors) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12)) +
+theme(axis.text = element_text(size = 12),
+      axis.title = element_text(size = 14),
+      plot.title = element_text(size = 20),
+      legend.position = 'top',
+      legend.text = element_text(size = 16))
+
+```
+
+Mozambique
+```{r}
+left <- tibble(wid = sort(unique(as.character(fids$bohemia_id))))
+                
+# Join to minicensus
+pd <- left %>%
+    left_join(
+      odk_data$data$minicensus_main %>%
+        filter(hh_country == 'Mozambique') %>%
+        group_by(wid = as.character(wid)) %>%
         summarise(minicensus = n(),
                   minicensus_days = length(unique(todays_date)))
     )
@@ -641,10 +701,51 @@ theme(axis.text = element_text(size = 12),
 
 ### Aggregate
 
+Tanzania
 ```{r}
 # Join to minicensus
 pd <- odk_data$data$minicensus_main %>%
   group_by(todays_date) %>%
+  filter(hh_country == 'Tanzania') %>%
+  summarise(minicensus = n(),
+            minicensus_workers = length(unique(wid))
+)
+
+pdx <- pd %>% mutate(forms = minicensus,
+                      workers = minicensus_workers)
+
+pdx <- pdx %>%
+  mutate(per_worker = forms / workers) %>%
+  mutate(label = paste0(forms, '    ',
+                        workers, ''))
+pdx <- pdx %>% filter(!is.na(forms))
+pdx <- pdx %>% arrange(desc(per_worker))
+ggplot(data = pdx,
+       aes(x = reorder(todays_date, -per_worker),
+           y = per_worker)) +
+  geom_bar(stat = 'identity') +
+  labs(x = 'FW',
+       y = 'Forms per worker',
+       caption = 'Numbers show forms on top, workers that day on bottom. A "working day" is a day on which that worker submitted any form of that type.') +
+  theme_bohemia() +
+  geom_text(aes(label = label),
+            nudge_y = 0, size = 5, alpha = 0.8,
+            angle = 90) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 10)) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 20),
+        plot.caption = element_text(size = 14))
+
+      
+```
+
+Mozambique
+```{r}
+# Join to minicensus
+pd <- odk_data$data$minicensus_main %>%
+  group_by(todays_date) %>%
+  filter(hh_country == 'Mozambique') %>%
   summarise(minicensus = n(),
             minicensus_workers = length(unique(wid))
 )
