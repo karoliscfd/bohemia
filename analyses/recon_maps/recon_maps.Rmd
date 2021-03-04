@@ -1,5 +1,5 @@
 ---
-title: "Recon report"
+title: ""
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -28,6 +28,7 @@ library(ggplot2)
 library(lubridate)
 library(dplyr)
 library(ggplot2)
+library(leaflet)
 library(sp)
 library(raster)
 library(ggthemes)
@@ -40,24 +41,293 @@ theme_set(databrew::theme_simple())
 ```
 
 ```{r}
-load('recon.RData') # download from https://trello.com/c/mPDK9j47/2313-bohemia-network-coverage-maps-using-recon-data-internet-plus-each-provider
+# download from https://trello.com/c/mPDK9j47/2313-bohemia-network-coverage-maps-using-recon-data-internet-plus-each-provider
+load('recon.RData')
 
+# load location hierarchy 
+gps_locations <- read.csv('location_hierarchy.csv')
+
+# join with recond_data on hamlet code
+recon_data <- left_join(recon_data, gps_locations, by=c('hamlet_code'='code'))
+
+# remove .x and .y columns
+names(recon_data) <- gsub('.y', '', names(recon_data), fixed = TRUE)
+recon_data <- recon_data[, !grepl('.x', names(recon_data), fixed = TRUE),]
+
+# subset by country
+tz_recon <- recon_data %>% filter(Country =='Tanzania')
+mz_recon <- recon_data %>% filter(Country =='Mozambique')
+
+
+rm(animal, animal_xls, chiefs, fids, recon_xls, gps_locations, recon_data)
+
+# create function for mapping points for phone and internet variables
+map_coverage <- function(temp, column_name,legend_title){
+  temp <- temp %>% dplyr::select('lat','lng', 'Hamlet' ,column_name)
+  names(temp)[4] <- 'plot_var'
+  temp$plot_var <- gsub("^$|^ $", NA, temp$plot_var)
+  temp$plot_var <- factor(temp$plot_var,
+                          levels = c('No', 'DK', 'Yes'))
+  pal_map <- colorFactor(palette = brewer.pal(n= length(unique(temp$plot_var)), 
+                                                name = 'Spectral'), domain = temp$plot_var)
+  leaflet(temp) %>% 
+    addTiles()  %>% 
+    addCircleMarkers(lng =~lng, 
+                     lat =~lat,
+                     color = ~pal_map(plot_var),
+                     radius = 5,
+                     popup = ~unname(Hamlet),
+                     stroke = TRUE, 
+                     fillOpacity = 0.5) %>%
+    addLegend(pal = pal_map, values = ~plot_var,position = "bottomleft", title = legend_title) 
+  # 
+}
+
+
+# create function for mapping points for phone and internet variables
+map_summary <- function(temp, column_name,legend_title){
+  temp <- temp %>% dplyr::select('lat','lng', 'Hamlet' ,column_name)
+  names(temp)[4] <- 'plot_var'
+  temp$plot_var <- gsub("^$|^ $", NA, temp$plot_var)
+  levs <- c('No', 'DK', 'Yes')
+  levs <- levs[levs %in% unique(temp$plot_var)]
+  temp$plot_var <- factor(temp$plot_var,
+                          levels = levs)
+  pal_map <- brewer.pal(n= 3, name = 'Spectral')
+  if(!'DK' %in% levs){
+    pal_map <- pal_map[c(1, 3)]
+  }
+  pd <- temp %>%
+    group_by(plot_var) %>%
+    tally
+  
+  ggplot(data = pd,
+         aes(x = plot_var,
+             y = n,
+             group = plot_var)) +
+    geom_bar(stat = 'identity',
+             aes(fill = plot_var)) +
+    scale_fill_manual(name = '',
+                      values = pal_map) +
+    geom_text(aes(label = n,
+                  y = 0),
+              nudge_y = 10) +
+    labs(x = 'Status',
+         y = 'Hamlets',
+         subtitle = 'Summary') +
+    theme(legend.position = 'none')
+}
+
+
+
+# Ideas:
+# - Map of yes/no phone coverage
+# - Map of yes/no any internet coverage
+# - Vodafone internet map
+# - Vodafone phone map
+# - Mcell internet map
+# - etc.
+# - Best network by area
+# 
+# Advanced ideas:
+# - Smoothing and polygonation
+# 
+# Other things:
+# - Bar charts / aggregate stuff (number of hamlets with each type, etc.).
 ```
 
-# Reconnaissance report {.tabset}
+# Coverage report {.tabset}
+
+This report contains maps and tables showing internet and phone coverage, overall and by provider types, for each hamlet of the Bohemia research area. Barcharts show aggregate statistics (the unit of measurement is the hamlet); maps show values at each hamlet. Note that these are coverage values as reported via reconnaissance. Values may be incorrect, or may have changed.
+
+Note that maps are interactive (zoomable and clickable).
 
 
-## Summary
+## Tanzania coverage maps
 
-This report contains maps and tables showing internet and phone coverage, overall and by provider types, for each hamlet of the Bohemia research area.
-
-## MOZ
+### All internet coverage
 
 ```{r}
-2+2
+map_summary(tz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
+
+map_coverage(tz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
 ```
 
-## TZA
+### All phone coverage
+
 ```{r}
-2+2
+map_summary(tz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
+
+map_coverage(tz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
 ```
+
+### Vodafone internet coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
+
+map_coverage(tz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
+```
+
+### Vodafone phone coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
+```
+
+
+### Tigo internet coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_data_tigo', legend_title = 'Tigo internet coverage')
+
+map_coverage(tz_recon, 'telecom_work_data_tigo', legend_title = 'Tigo internet coverage')
+```
+
+
+### Tigo phone coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_voice_tigo', legend_title = 'Tigo phone coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_voice_tigo', legend_title = 'Tigo phone coverage')
+```
+
+### TTCL internet coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_data_ttcl', legend_title = 'TTCL internet coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_data_ttcl', legend_title = 'TTCL internet coverage')
+```
+
+### TTCL phone coverage 
+
+```{r}
+map_summary(tz_recon, 'telecom_work_voice_ttcl', legend_title = 'TTCL phone coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_voice_ttcl', legend_title = 'TTCL phone coverage')
+```
+
+### Halotel internet coverage 
+
+```{r}
+map_summary(tz_recon, 'telecom_work_data_halotel', legend_title = 'Halotel internet coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_data_halotel', legend_title = 'Halotel internet coverage')
+```
+
+### Halotel phone coverage 
+
+```{r}
+map_summary(tz_recon, 'telecom_work_voice_halotel', legend_title = 'Halotel phone coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_voice_halotel', legend_title = 'Halotel phone coverage')
+```
+
+### Airtel internet coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_data_airtel', legend_title = 'Airtel internet coverage')
+
+
+map_coverage(tz_recon, 'telecom_work_data_airtel', legend_title = 'Airtel internet coverage')
+```
+
+### Airtel phone coverage
+
+```{r}
+map_summary(tz_recon, 'telecom_work_voice_airtel', legend_title = 'Airtel phone coverage')
+
+
+
+map_coverage(tz_recon, 'telecom_work_voice_airtel', legend_title = 'Airtel phone coverage')
+```
+
+## MOZ coverage maps
+
+### All internet coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
+
+
+map_coverage(mz_recon, 'telecom_have_data', legend_title = 'Internet coverage')
+```
+
+### All phone coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
+
+
+map_coverage(mz_recon, 'telecom_have_voice', legend_title = 'Voice coverage')
+```
+
+### Vodafone internet coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_data_vodacom', legend_title = 'Vodaphone internet coverage')
+```
+
+### Vodafone phone coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_voice_vodacom', legend_title = 'Vodaphone phone coverage')
+```
+
+### Mcell internet coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_data_mcell', legend_title = 'Mcell internet coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_data_mcell', legend_title = 'Mcell internet coverage')
+```
+
+### Mcell phone coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel voice coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel voice coverage')
+```
+
+### Movitel internet coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_data_movitel', legend_title = 'Movitel internet coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_data_movitel', legend_title = 'Movitel internet coverage')
+```
+
+### Movitel phone coverage
+
+```{r}
+map_summary(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel phone coverage')
+
+
+map_coverage(mz_recon, 'telecom_work_voice_movitel', legend_title = 'Movitel phone coverage')
+```
+
+
+
+
+
+
