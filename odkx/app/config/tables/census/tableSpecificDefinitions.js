@@ -1625,7 +1625,7 @@ window.odkTableSpecificDefinitions = {
       "text": {
         "default": "<h4>You will be prompted to answer questions for the member(s) no longer in this household. </h4>",
         "pt": "<h4>Você será solicitado a responder perguntas sobre o (s) membro (s) que não estão mais neste agregado.</h4>",
-        "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </ h4>"
+        "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </h4>"
       },
       "_row_num": 188
     },
@@ -2376,9 +2376,9 @@ window.odkTableSpecificDefinitions = {
     "q41b": {
       "string_token": "q41b",
       "text": {
-        "default": "41b. Is the place where residents defecate close (<10m) to a water body?",
-        "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (<10 m) de uma massa de água?",
-        "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (<mita10) na maji?"
+        "default": "41b. Is the place where residents defecate close (&#60;10m) to a water body?",
+        "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (&#60;10 m) de uma massa de água?",
+        "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (&#60;mita10) na maji?"
       },
       "_row_num": 274
     },
@@ -2900,6 +2900,51 @@ window.odkTableSpecificDefinitions = {
       "string_token": "contact_number_digits",
       "text": "Contact numbers must be 9 digits.",
       "_row_num": 333
+    },
+    "invalid_hh_id": {
+      "string_token": "invalid_hh_id",
+      "text": "The Household ID must be in the format AAA-111.",
+      "_row_num": 334
+    },
+    "invalid_geolocation": {
+      "string_token": "invalid_geolocation",
+      "text": "One and only one location must be provided.",
+      "_row_num": 335
+    },
+    "member_mismatch": {
+      "string_token": "member_mismatch",
+      "text": "The number of members added does not match the number of members entered above. Please verify.",
+      "_row_num": 336
+    },
+    "head_sub_match": {
+      "string_token": "head_sub_match",
+      "text": "The household head must be different from household head substitute",
+      "_row_num": 337
+    },
+    "latrine_mismatch": {
+      "string_token": "latrine_mismatch",
+      "text": "The number of latrines added does not match the number above. Please verify.",
+      "_row_num": 338
+    },
+    "water_mismatch": {
+      "string_token": "water_mismatch",
+      "text": "The number of water bodies added does not match the number entered above. Please verify.",
+      "_row_num": 339
+    },
+    "nets_mismatch": {
+      "string_token": "nets_mismatch",
+      "text": "The number of nets added does not match the number entered above. Please verify.",
+      "_row_num": 340
+    },
+    "snakes_mismatch": {
+      "string_token": "snakes_mismatch",
+      "text": "The number of members with snake bites added does not match the number entered above. Please verify.",
+      "_row_num": 341
+    },
+    "deceased_mismatch": {
+      "string_token": "deceased_mismatch",
+      "text": "The number of deceased members added does not match the number entered above. Please verify.",
+      "_row_num": 342
     }
   }
 }

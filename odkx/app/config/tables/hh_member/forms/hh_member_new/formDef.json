@@ -46,6 +46,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('name'))",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "_row_num": 6
       },
       {
@@ -57,6 +58,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('surname'))",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "_row_num": 7
       },
       {
@@ -72,6 +74,7 @@
         "display": {
           "prompt": "q15"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "_row_num": 10
       },
       {
@@ -80,6 +83,7 @@
           "prompt": "day",
           "hint": "dob_hint"
         },
+        "hideInContents": 1,
         "_row_num": 11
       },
       {
@@ -131,6 +135,7 @@
           "prompt": "month",
           "hint": "month_hint"
         },
+        "hideInContents": 1,
         "_row_num": 18
       },
       {
@@ -180,6 +185,7 @@
           "prompt": "year",
           "hint": "year_hint_new_born"
         },
+        "hideInContents": 1,
         "_row_num": 25
       },
       {
@@ -250,6 +256,7 @@
           "min": 0,
           "step": 1
         },
+        "hideInContents": 1,
         "_row_num": 35
       },
       {
@@ -274,6 +281,7 @@
         "display": {
           "prompt": "q15b"
         },
+        "hideInContents": 1,
         "_row_num": 39
       },
       {
@@ -295,6 +303,7 @@
           "hint": "q16.hint"
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "_row_num": 42
       },
       {
@@ -305,6 +314,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "_row_num": 43
       },
       {
@@ -333,6 +343,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('name'))",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 50
       },
       {
@@ -344,6 +355,7 @@
         },
         "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('surname'))",
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 51
       },
       {
@@ -359,6 +371,7 @@
         "display": {
           "prompt": "q19"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 54
       },
       {
@@ -367,6 +380,7 @@
           "prompt": "day",
           "hint": "dob_hint"
         },
+        "hideInContents": 1,
         "_row_num": 55
       },
       {
@@ -418,6 +432,7 @@
           "prompt": "month",
           "hint": "month_hint"
         },
+        "hideInContents": 1,
         "_row_num": 62
       },
       {
@@ -467,6 +482,7 @@
           "prompt": "year",
           "hint": "year_hint"
         },
+        "hideInContents": 1,
         "_row_num": 69
       },
       {
@@ -536,6 +552,7 @@
           "min": 0,
           "step": 1
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 79
       },
       {
@@ -560,6 +577,7 @@
         "display": {
           "prompt": "q20"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 83
       },
       {
@@ -570,6 +588,7 @@
           "prompt": "q21",
           "hint": "q21.hint"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 84
       },
       {
@@ -581,6 +600,7 @@
         "display": {
           "prompt": "q22"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 86
       },
       {
@@ -606,6 +626,7 @@
           "constraint_message": "err_future_date"
         },
         "constraint": "!data('new_member_move_in_date') || !data('new_member_move_in_date').isAfter()",
+        "hideInContents": 1,
         "_row_num": 90
       },
       {
@@ -634,6 +655,7 @@
         "display": {
           "prompt": "q23"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 95
       },
       {
@@ -648,6 +670,7 @@
         "display": {
           "prompt": "q23a"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 97
       },
       {
@@ -672,6 +695,7 @@
         "display": {
           "prompt": "q23ai"
         },
+        "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "_row_num": 102
       },
       {
@@ -730,6 +754,7 @@
         "display": {
           "prompt": "assigned_extid"
         },
+        "hideInContents": 1,
         "_row_num": 113
       },
       {
@@ -9550,6 +9575,7 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('name'))",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "_row_num": 6,
             "__rowNum__": 5,
             "_token_type": "prompt",
@@ -9566,6 +9592,7 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || !/\\p{N}/u.test(data('surname'))",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "_row_num": 7,
             "__rowNum__": 6,
             "_token_type": "prompt",
@@ -9578,6 +9605,7 @@
             "display": {
               "prompt": "q15"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "_row_num": 10,
             "__rowNum__": 9,
             "_token_type": "prompt",
@@ -9591,6 +9619,7 @@
               "prompt": "day",
               "hint": "dob_hint"
             },
+            "hideInContents": 1,
             "_row_num": 11,
             "__rowNum__": 10,
             "_token_type": "prompt",
@@ -9638,6 +9667,7 @@
               "prompt": "month",
               "hint": "month_hint"
             },
+            "hideInContents": 1,
             "_row_num": 18,
             "__rowNum__": 17,
             "_token_type": "prompt",
@@ -9683,6 +9713,7 @@
               "prompt": "year",
               "hint": "year_hint_new_born"
             },
+            "hideInContents": 1,
             "_row_num": 25,
             "__rowNum__": 24,
             "_token_type": "prompt",
@@ -9736,6 +9767,7 @@
               "min": 0,
               "step": 1
             },
+            "hideInContents": 1,
             "_row_num": 35,
             "__rowNum__": 34,
             "_token_type": "prompt",
@@ -9762,6 +9794,7 @@
             "display": {
               "prompt": "q15b"
             },
+            "hideInContents": 1,
             "_row_num": 39,
             "__rowNum__": 38,
             "_token_type": "prompt",
@@ -9778,6 +9811,7 @@
               "hint": "q16.hint"
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "_row_num": 42,
             "__rowNum__": 41,
             "_token_type": "prompt",
@@ -9793,6 +9827,7 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "_row_num": 43,
             "__rowNum__": 42,
             "_token_type": "prompt",
@@ -9809,6 +9844,7 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('name'))",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 50,
             "__rowNum__": 49,
             "_token_type": "prompt",
@@ -9825,6 +9861,7 @@
             },
             "required": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'), 'newborn') || !/\\p{N}/u.test(data('surname'))",
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 51,
             "__rowNum__": 50,
             "_token_type": "prompt",
@@ -9837,6 +9874,7 @@
             "display": {
               "prompt": "q19"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 54,
             "__rowNum__": 53,
             "_token_type": "prompt",
@@ -9850,6 +9888,7 @@
               "prompt": "day",
               "hint": "dob_hint"
             },
+            "hideInContents": 1,
             "_row_num": 55,
             "__rowNum__": 54,
             "_token_type": "prompt",
@@ -9897,6 +9936,7 @@
               "prompt": "month",
               "hint": "month_hint"
             },
+            "hideInContents": 1,
             "_row_num": 62,
             "__rowNum__": 61,
             "_token_type": "prompt",
@@ -9942,6 +9982,7 @@
               "prompt": "year",
               "hint": "year_hint"
             },
+            "hideInContents": 1,
             "_row_num": 69,
             "__rowNum__": 68,
             "_token_type": "prompt",
@@ -9994,6 +10035,7 @@
               "min": 0,
               "step": 1
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 79,
             "__rowNum__": 78,
             "_token_type": "prompt",
@@ -10020,6 +10062,7 @@
             "display": {
               "prompt": "q20"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 83,
             "__rowNum__": 82,
             "_token_type": "prompt",
@@ -10035,6 +10078,7 @@
               "prompt": "q21",
               "hint": "q21.hint"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 84,
             "__rowNum__": 83,
             "_token_type": "prompt",
@@ -10047,6 +10091,7 @@
             "display": {
               "prompt": "q22"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 86,
             "__rowNum__": 85,
             "_token_type": "prompt",
@@ -10062,6 +10107,7 @@
               "constraint_message": "err_future_date"
             },
             "constraint": "!data('new_member_move_in_date') || !data('new_member_move_in_date').isAfter()",
+            "hideInContents": 1,
             "_row_num": 90,
             "__rowNum__": 89,
             "_token_type": "prompt",
@@ -10088,6 +10134,7 @@
             "display": {
               "prompt": "q23"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 95,
             "__rowNum__": 94,
             "_token_type": "prompt",
@@ -10102,6 +10149,7 @@
             "display": {
               "prompt": "q23a"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 97,
             "__rowNum__": 96,
             "_token_type": "prompt",
@@ -10114,6 +10162,7 @@
             "display": {
               "prompt": "q23ai"
             },
+            "hideInContents": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "_row_num": 102,
             "__rowNum__": 101,
             "_token_type": "prompt",
@@ -10151,6 +10200,7 @@
             "display": {
               "prompt": "assigned_extid"
             },
+            "hideInContents": 1,
             "_row_num": 113,
             "__rowNum__": 112,
             "_token_type": "prompt",

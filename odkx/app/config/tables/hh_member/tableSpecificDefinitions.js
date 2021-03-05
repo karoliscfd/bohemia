@@ -2961,108 +2961,108 @@ window.odkTableSpecificDefinitions = {
     "socio_id_h2": {
       "string_token": "socio_id_h2",
       "text": {
-        "default": "<h2>Identification and socio-demographic information</h2>",
-        "pt": "<h2>Identificação e informação sociodemográfica</h2>",
-        "sw": "<h2>Maelezo ya utambuzi na demografia ya jamii</h2>"
+        "default": "Identification and socio-demographic information",
+        "pt": "Identificação e informação sociodemográfica",
+        "sw": "Maelezo ya utambuzi na demografia ya jamii"
       },
       "_row_num": 338
     },
     "health_morbidity_h2": {
       "string_token": "health_morbidity_h2",
       "text": {
-        "default": "<h2>Health / Morbidity information</h2>",
-        "pt": "<h2>Informações sobre saúde/morbilidade</h2>",
-        "sw": "<h2>Taarifa za afya/magonjwa</h2>"
+        "default": "Health / Morbidity information",
+        "pt": "Informações sobre saúde/morbilidade",
+        "sw": "Taarifa za afya/magonjwa"
       },
       "_row_num": 339
     },
     "malaria_h2": {
       "string_token": "malaria_h2",
       "text": {
-        "default": "<h2>Malaria risk and prevention information</h2>",
-        "pt": "<h2>Risco de malária e informação sobre prevenção</h2>",
-        "sw": "<h2>Taarifa za vihatarishi vya kuenea kwa malaria na kinga zake</h2>"
+        "default": "Malaria risk and prevention information",
+        "pt": "Risco de malária e informação sobre prevenção",
+        "sw": "Taarifa za vihatarishi vya kuenea kwa malaria na kinga zake"
       },
       "_row_num": 340
     },
     "residual_h2": {
       "string_token": "residual_h2",
       "text": {
-        "default": "<h2>Residual transmission information</h2>",
-        "pt": "<h2>Informações sobre transmissão residual</h2>",
-        "sw": "<h2>Taarifa za mabaki ya uenezi</h2>"
+        "default": "Residual transmission information",
+        "pt": "Informações sobre transmissão residual",
+        "sw": "Taarifa za mabaki ya uenezi"
       },
       "_row_num": 341
     },
     "travel_h2": {
       "string_token": "travel_h2",
       "text": {
-        "default": "<h2>Travel information</h2>",
-        "pt": "<h2>Informações sobre viagens</h2>",
-        "sw": "<h2>Taarifa za safari</h2>"
+        "default": "Travel information",
+        "pt": "Informações sobre viagens",
+        "sw": "Taarifa za safari"
       },
       "_row_num": 342
     },
     "treatment_h3": {
       "string_token": "treatment_h3",
       "text": {
-        "default": "<h3>Treatment</h3>",
-        "pt": "<h3>Tratamento</h3>",
-        "sw": "<h3>Matibabu</h3>"
+        "default": "Treatment",
+        "pt": "Tratamento",
+        "sw": "Matibabu"
       },
       "_row_num": 344
     },
     "chronic_h3": {
       "string_token": "chronic_h3",
       "text": {
-        "default": "<h3>Chronic diseases</h3>",
-        "pt": "<h3>Doenças crónicas</h3>",
-        "sw": "<h3>Magonjwa sugu</h3>"
+        "default": "Chronic diseases",
+        "pt": "Doenças crónicas",
+        "sw": "Magonjwa sugu"
       },
       "_row_num": 345
     },
     "curr_disease_h3": {
       "string_token": "curr_disease_h3",
       "text": {
-        "default": "<h3>Recent & current diseases</h3>",
-        "pt": "<h3>Doenças recentes e atuais</h3>",
-        "sw": "<h3>Magonjwa ya hivi karibuni na ya sasa</h3>"
+        "default": "Recent & current diseases",
+        "pt": "Doenças recentes e atuais",
+        "sw": "Magonjwa ya hivi karibuni na ya sasa"
       },
       "_row_num": 346
     },
     "ntd_h3": {
       "string_token": "ntd_h3",
       "text": {
-        "default": "<h3>Syndromic survey of other diseases that may be targeted by ivermectin or albendazole</h3>",
-        "pt": "<h3>Inquérito sindrómico de doenças tropicais negligenciadas</h3>",
-        "sw": "<h3>Utafiti wa dalili za magonjwa ya NTD</h3>"
+        "default": "Syndromic survey of other diseases that may be targeted by ivermectin or albendazole",
+        "pt": "Inquérito sindrómico de doenças tropicais negligenciadas",
+        "sw": "Utafiti wa dalili za magonjwa ya NTD"
       },
       "_row_num": 347
     },
     "wra_h3": {
       "string_token": "wra_h3",
       "text": {
-        "default": "<h3>Woman of Reproductive Age</h3>",
-        "pt": "<h3>Mulher em idade reprodutiva</h3>",
-        "sw": "<h3>Mwanamke wa Umri wa Kuzaa</h3>"
+        "default": "Woman of Reproductive Age",
+        "pt": "Mulher em idade reprodutiva",
+        "sw": "Mwanamke wa Umri wa Kuzaa"
       },
       "_row_num": 348
     },
     "travel_loa_h3": {
       "string_token": "travel_loa_h3",
       "text": {
-        "default": "<h3>Travel to Loa loa countries</h3>",
-        "pt": "<h3>Viajar para países com Loa Loa</h3>",
-        "sw": "<h3>Kusafiri kwenda nchi za Loa loa</h3>"
+        "default": "Travel to Loa loa countries",
+        "pt": "Viajar para países com Loa Loa",
+        "sw": "Kusafiri kwenda nchi za Loa loa"
       },
       "_row_num": 349
     },
     "travel_regular_h3": {
       "string_token": "travel_regular_h3",
       "text": {
-        "default": "<h3>Regular travel</h3>",
-        "pt": "<h3>Viagens regulares durante a primeira parte do ano</h3>",
-        "sw": "<h3>Usafiri wa mara kwa mara wakati wa sehemu ya kwanza ya mwaka</h3>"
+        "default": "Regular travel",
+        "pt": "Viagens regulares durante a primeira parte do ano",
+        "sw": "Usafiri wa mara kwa mara wakati wa sehemu ya kwanza ya mwaka"
       },
       "_row_num": 350
     },

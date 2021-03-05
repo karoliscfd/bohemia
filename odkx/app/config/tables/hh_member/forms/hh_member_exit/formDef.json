@@ -13,14 +13,14 @@
     ],
     "survey": [
       {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
         "type": "note",
         "display": {
           "prompt": "hh_id_note"
         },
-        "_row_num": 2
-      },
-      {
-        "clause": "begin screen",
         "_row_num": 3
       },
       {
@@ -30,7 +30,15 @@
         "display": {
           "prompt": "q7"
         },
+        "_row_num": 4
+      },
+      {
+        "clause": "end screen",
         "_row_num": 5
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 6
       },
       {
         "clause": "if",
@@ -42,6 +50,7 @@
         "display": {
           "prompt": "death_va_note"
         },
+        "hideInContents": 1,
         "_row_num": 8
       },
       {
@@ -3968,7 +3977,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210304001,
         "_row_num": 3
       },
       {
@@ -4065,7 +4074,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210224001,
+        "value": 20210304001,
         "_row_num": 3
       },
       "table_id": {
@@ -7823,7 +7832,7 @@
         "valuesList": "member_where_now",
         "_defn": [
           {
-            "_row_num": 5,
+            "_row_num": 4,
             "section_name": "survey"
           },
           {
@@ -8811,8 +8820,8 @@
             "display": {
               "prompt": "hh_id_note"
             },
-            "_row_num": 2,
-            "__rowNum__": 1,
+            "_row_num": 3,
+            "__rowNum__": 2,
             "_token_type": "prompt",
             "_type": "note",
             "_branch_label_enclosing_screen": "survey/_screen2",
@@ -8825,11 +8834,11 @@
             "display": {
               "prompt": "q7"
             },
-            "_row_num": 5,
-            "__rowNum__": 4,
+            "_row_num": 4,
+            "__rowNum__": 3,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen2",
             "promptIdx": 1
           },
           {
@@ -8837,11 +8846,12 @@
             "display": {
               "prompt": "death_va_note"
             },
+            "hideInContents": 1,
             "_row_num": 8,
             "__rowNum__": 7,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 2
           },
           {
@@ -8853,7 +8863,7 @@
             "__rowNum__": 8,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 3
           },
           {
@@ -8874,7 +8884,7 @@
             "__rowNum__": 10,
             "_token_type": "prompt",
             "_type": "birth_date",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 4
           },
           {
@@ -8886,7 +8896,7 @@
             "__rowNum__": 12,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 5
           },
           {
@@ -8898,7 +8908,7 @@
             "__rowNum__": 18,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 6
           },
           {
@@ -8919,7 +8929,7 @@
             "__rowNum__": 22,
             "_token_type": "prompt",
             "_type": "birth_date",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 7
           },
           {
@@ -8931,7 +8941,7 @@
             "__rowNum__": 24,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 8
           },
           {
@@ -8945,7 +8955,7 @@
             "__rowNum__": 25,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen3",
+            "_branch_label_enclosing_screen": "survey/_screen6",
             "promptIdx": 9
           },
           {
@@ -8965,15 +8975,23 @@
         },
         "operations": [
           {
+            "clause": "begin screen",
             "_row_num": 2,
+            "__rowNum__": 1,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 5,
+              "__rowNum__": 4,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 0
           },
           {
             "clause": "begin screen",
-            "_row_num": 3,
-            "__rowNum__": 2,
+            "_row_num": 6,
+            "__rowNum__": 5,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
@@ -8981,7 +8999,7 @@
               "__rowNum__": 27,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nif (selected(data('member_where_now'), 'died')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nif (not(selected(data('member_died_when_dk'), 'dk'))) {\nactivePromptIndicies.push(4);\n}\nactivePromptIndicies.push(5);\nif (selected(data('member_died_when_dk'), 'dk')) {\nassign('member_died_when', null);\n}\n}\nif (selected(data('member_where_now'), 'emigrated')) {\nactivePromptIndicies.push(6);\nif (selected(data('member_emigrated_when_dmy_ago'), 'dk')) {\nassign('member_emigrated_when_date', null);\n}\nelse {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nif (selected(data('member_where_now'), 'died')) {\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nif (not(selected(data('member_died_when_dk'), 'dk'))) {\nactivePromptIndicies.push(4);\n}\nactivePromptIndicies.push(5);\nif (selected(data('member_died_when_dk'), 'dk')) {\nassign('member_died_when', null);\n}\n}\nif (selected(data('member_where_now'), 'emigrated')) {\nactivePromptIndicies.push(6);\nif (selected(data('member_emigrated_when_dmy_ago'), 'dk')) {\nassign('member_emigrated_when_date', null);\n}\nelse {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 1
           },
           {
@@ -9008,7 +9026,7 @@
         ],
         "branch_label_map": {
           "_screen2": 0,
-          "_screen3": 1,
+          "_screen6": 1,
           "_contents": 3,
           "_screen29": 3
         }
@@ -9452,7 +9470,7 @@
         "valuesList": "member_where_now",
         "_defn": [
           {
-            "_row_num": 5,
+            "_row_num": 4,
             "section_name": "survey"
           },
           {

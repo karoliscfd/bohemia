@@ -29,6 +29,7 @@
           "prompt": "new_hh_only",
           "hint": "hh_head_first_hint"
         },
+        "hideInContents": 1,
         "_row_num": 4
       },
       {
@@ -82,6 +83,7 @@
           "prompt": "day",
           "hint": "dob_hint"
         },
+        "hideInContents": 1,
         "_row_num": 12
       },
       {
@@ -133,6 +135,7 @@
           "prompt": "month",
           "hint": "month_hint"
         },
+        "hideInContents": 1,
         "_row_num": 19
       },
       {
@@ -182,6 +185,7 @@
           "prompt": "year",
           "hint": "year_hint"
         },
+        "hideInContents": 1,
         "_row_num": 26
       },
       {
@@ -332,6 +336,7 @@
         "type": "select_multiple",
         "values_list": "not_possible",
         "name": "new_hh_member_censed_extid_not_possible",
+        "hideInContents": 1,
         "_row_num": 49
       },
       {
@@ -363,6 +368,7 @@
         "display": {
           "prompt": "assigned_extid"
         },
+        "hideInContents": 1,
         "_row_num": 55
       },
       {
@@ -4170,7 +4176,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210305001,
         "_row_num": 3
       },
       {
@@ -4274,7 +4280,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210305001,
         "_row_num": 3
       },
       "table_id": {
@@ -9078,6 +9084,7 @@
               "prompt": "new_hh_only",
               "hint": "hh_head_first_hint"
             },
+            "hideInContents": 1,
             "_row_num": 4,
             "__rowNum__": 3,
             "_token_type": "prompt",
@@ -9135,6 +9142,7 @@
               "prompt": "day",
               "hint": "dob_hint"
             },
+            "hideInContents": 1,
             "_row_num": 12,
             "__rowNum__": 11,
             "_token_type": "prompt",
@@ -9182,6 +9190,7 @@
               "prompt": "month",
               "hint": "month_hint"
             },
+            "hideInContents": 1,
             "_row_num": 19,
             "__rowNum__": 18,
             "_token_type": "prompt",
@@ -9227,6 +9236,7 @@
               "prompt": "year",
               "hint": "year_hint"
             },
+            "hideInContents": 1,
             "_row_num": 26,
             "__rowNum__": 25,
             "_token_type": "prompt",
@@ -9369,6 +9379,7 @@
             "type": "select_multiple",
             "values_list": "not_possible",
             "name": "new_hh_member_censed_extid_not_possible",
+            "hideInContents": 1,
             "_row_num": 49,
             "__rowNum__": 48,
             "_token_type": "prompt",
@@ -9381,6 +9392,7 @@
             "display": {
               "prompt": "assigned_extid"
             },
+            "hideInContents": 1,
             "_row_num": 55,
             "__rowNum__": 54,
             "_token_type": "prompt",

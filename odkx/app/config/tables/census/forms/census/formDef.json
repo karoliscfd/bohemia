@@ -3,7 +3,7 @@
     "initial": [
       {
         "clause": "if // start",
-        "condition": "(opendatakit.getCurrentInstanceId() !== null)",
+        "condition": "!!opendatakit.getCurrentInstanceId()",
         "_row_num": 2
       },
       {
@@ -192,9 +192,7 @@
         "name": "hh_id",
         "display": {
           "prompt": "hh_id",
-          "constraint_message": {
-            "text": "The Household ID must be in the format AAA-111."
-          },
+          "constraint_message": "invalid_hh_id",
           "section": "technical_h2"
         },
         "required": 1,
@@ -306,9 +304,7 @@
         "name": "location_count",
         "display": {
           "prompt": "rec_loc",
-          "constraint_message": {
-            "text": "One and only one location must be provided."
-          },
+          "constraint_message": "invalid_geolocation",
           "section": "technical_h2"
         },
         "constraint": "data('location_count') === null || data('location_count') === 1",
@@ -568,9 +564,7 @@
           },
           "new_button_label": "add_new_member",
           "hide_delete_button": 1,
-          "constraint_message": {
-            "text": "The number of members added does not match the number of members entered above. Please verify."
-          }
+          "constraint_message": "member_mismatch"
         },
         "constraint": "selected(data('new_hh_members'), 'no')  || selected(data('hh_minicenced'), 'no') || data('new_count') === null || data('new_count') == data('new_hh_members_number')",
         "model": {
@@ -653,9 +647,7 @@
         "display": {
           "prompt": "member_detail",
           "new_button_label": "add_new_member",
-          "constraint_message": {
-            "text": "The number of members added does not match the number of members entered above. Please verify."
-          },
+          "constraint_message": "member_mismatch",
           "section": "members_h2"
         },
         "constraint": "selected(data('hh_minicenced'), 'yes') || data('new_hh_count') === null || data('new_hh_count') == data('new_hh_n_residents')",
@@ -730,9 +722,7 @@
         "display": {
           "prompt": "hh_head_modify",
           "hint": "member_resident_required",
-          "constraint_message": {
-            "text": "The household head must be different from household head substitute"
-          }
+          "constraint_message": "head_sub_match"
         },
         "constraint": "!data('hh_head_new_select') || data('hh_head_new_select') !== data('hh_head_sub_new_select')",
         "hideInContents": 1,
@@ -767,9 +757,7 @@
         "display": {
           "prompt": "hh_head_sub_modify",
           "hint": "member_resident_required",
-          "constraint_message": {
-            "text": "The household head must be different from household head substitute"
-          }
+          "constraint_message": "head_sub_match"
         },
         "constraint": "!data('hh_head_sub_new_select') || data('hh_head_new_select') !== data('hh_head_sub_new_select')",
         "hideInContents": 1,
@@ -1334,9 +1322,7 @@
         "name": "latrine_count",
         "display": {
           "prompt": "latrine_detail",
-          "constraint_message": {
-            "text": "The number of latrines added does not match the number above. Please verify."
-          },
+          "constraint_message": "latrine_mismatch",
           "section": "socio_econ_h2"
         },
         "constraint": "data('latrine_count') === null || selected(data('hh_have_latrine'),'no')  || data('latrine_count') == data('hh_how_many_latrines')",
@@ -2620,9 +2606,7 @@
         "name": "water_count",
         "display": {
           "prompt": "water_detail",
-          "constraint_message": {
-            "text": "The number of water bodies added does not match the number entered above. Please verify."
-          },
+          "constraint_message": "water_mismatch",
           "section": "env_h2"
         },
         "constraint": "data('water_count') === null || selected(data('water_bodies'), 'no')  || data('water_count') == data('water_bodies_num')",
@@ -2769,9 +2753,7 @@
         "name": "net_count",
         "display": {
           "prompt": "net_detail",
-          "constraint_message": {
-            "text": "The number of nets added does not match the number entered above. Please verify."
-          },
+          "constraint_message": "nets_mismatch",
           "section": "malaria_h2"
         },
         "constraint": "data('net_count') === null || data('net_count') == data('hh_num_nets')",
@@ -2976,9 +2958,7 @@
           "prompt": "snake_linked_table",
           "hide_delete_button": 1,
           "hide_add_instance": 1,
-          "constraint_message": {
-            "text": "The number of members with snake bites added does not match the number entered above. Please verify."
-          }
+          "constraint_message": "snakes_mismatch"
         },
         "choice_filter": "_.contains(data('snake_bite_who'), choice_item.instance_id)",
         "constraint": "data('snake_count') === null || selected(data('any_snake_bite'), 'no') || data('snake_count') == data('any_snake_bite_num')",
@@ -3280,9 +3260,7 @@
         "name": "death_count",
         "display": {
           "prompt": "death_prompt",
-          "constraint_message": {
-            "text": "The number of deceased members added does not match the number entered above. Please verify."
-          }
+          "constraint_message": "deceased_mismatch"
         },
         "required": "selected(data('hh_minicenced'), 'no') && selected(data('hh_death'), 'yes')",
         "constraint": "data('death_count') === null || selected(data('hh_death'), 'no') || selected(data('hh_minicenced'), 'yes') || data('death_count') == data('hh_death_count')",
@@ -7095,7 +7073,7 @@
         "text": {
           "default": "<h4>You will be prompted to answer questions for the member(s) no longer in this household. </h4>",
           "pt": "<h4>Você será solicitado a responder perguntas sobre o (s) membro (s) que não estão mais neste agregado.</h4>",
-          "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </ h4>"
+          "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </h4>"
         },
         "_row_num": 188
       },
@@ -7846,9 +7824,9 @@
       {
         "string_token": "q41b",
         "text": {
-          "default": "41b. Is the place where residents defecate close (<10m) to a water body?",
-          "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (<10 m) de uma massa de água?",
-          "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (<mita10) na maji?"
+          "default": "41b. Is the place where residents defecate close (&#60;10m) to a water body?",
+          "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (&#60;10 m) de uma massa de água?",
+          "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (&#60;mita10) na maji?"
         },
         "_row_num": 274
       },
@@ -8370,6 +8348,51 @@
         "string_token": "contact_number_digits",
         "text": "Contact numbers must be 9 digits.",
         "_row_num": 333
+      },
+      {
+        "string_token": "invalid_hh_id",
+        "text": "The Household ID must be in the format AAA-111.",
+        "_row_num": 334
+      },
+      {
+        "string_token": "invalid_geolocation",
+        "text": "One and only one location must be provided.",
+        "_row_num": 335
+      },
+      {
+        "string_token": "member_mismatch",
+        "text": "The number of members added does not match the number of members entered above. Please verify.",
+        "_row_num": 336
+      },
+      {
+        "string_token": "head_sub_match",
+        "text": "The household head must be different from household head substitute",
+        "_row_num": 337
+      },
+      {
+        "string_token": "latrine_mismatch",
+        "text": "The number of latrines added does not match the number above. Please verify.",
+        "_row_num": 338
+      },
+      {
+        "string_token": "water_mismatch",
+        "text": "The number of water bodies added does not match the number entered above. Please verify.",
+        "_row_num": 339
+      },
+      {
+        "string_token": "nets_mismatch",
+        "text": "The number of nets added does not match the number entered above. Please verify.",
+        "_row_num": 340
+      },
+      {
+        "string_token": "snakes_mismatch",
+        "text": "The number of members with snake bites added does not match the number entered above. Please verify.",
+        "_row_num": 341
+      },
+      {
+        "string_token": "deceased_mismatch",
+        "text": "The number of deceased members added does not match the number entered above. Please verify.",
+        "_row_num": 342
       }
     ],
     "model": [
@@ -12128,7 +12151,7 @@
           "text": {
             "default": "<h4>You will be prompted to answer questions for the member(s) no longer in this household. </h4>",
             "pt": "<h4>Você será solicitado a responder perguntas sobre o (s) membro (s) que não estão mais neste agregado.</h4>",
-            "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </ h4>"
+            "sw": "<h4> Utaombwa kujibu maswali ya washiriki ambao hawako tena katika kaya hii. </h4>"
           },
           "_row_num": 188
         },
@@ -12879,9 +12902,9 @@
         "q41b": {
           "string_token": "q41b",
           "text": {
-            "default": "41b. Is the place where residents defecate close (<10m) to a water body?",
-            "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (<10 m) de uma massa de água?",
-            "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (<mita10) na maji?"
+            "default": "41b. Is the place where residents defecate close (&#60;10m) to a water body?",
+            "pt": "41b. O lugar onde os habitantes deste agregado familiar defecam situa-se perto (&#60;10 m) de uma massa de água?",
+            "sw": "41b. Je, mahali ambapo wakazi huenda kujisaidi ni karibu (&#60;mita10) na maji?"
           },
           "_row_num": 274
         },
@@ -13403,6 +13426,51 @@
           "string_token": "contact_number_digits",
           "text": "Contact numbers must be 9 digits.",
           "_row_num": 333
+        },
+        "invalid_hh_id": {
+          "string_token": "invalid_hh_id",
+          "text": "The Household ID must be in the format AAA-111.",
+          "_row_num": 334
+        },
+        "invalid_geolocation": {
+          "string_token": "invalid_geolocation",
+          "text": "One and only one location must be provided.",
+          "_row_num": 335
+        },
+        "member_mismatch": {
+          "string_token": "member_mismatch",
+          "text": "The number of members added does not match the number of members entered above. Please verify.",
+          "_row_num": 336
+        },
+        "head_sub_match": {
+          "string_token": "head_sub_match",
+          "text": "The household head must be different from household head substitute",
+          "_row_num": 337
+        },
+        "latrine_mismatch": {
+          "string_token": "latrine_mismatch",
+          "text": "The number of latrines added does not match the number above. Please verify.",
+          "_row_num": 338
+        },
+        "water_mismatch": {
+          "string_token": "water_mismatch",
+          "text": "The number of water bodies added does not match the number entered above. Please verify.",
+          "_row_num": 339
+        },
+        "nets_mismatch": {
+          "string_token": "nets_mismatch",
+          "text": "The number of nets added does not match the number entered above. Please verify.",
+          "_row_num": 340
+        },
+        "snakes_mismatch": {
+          "string_token": "snakes_mismatch",
+          "text": "The number of members with snake bites added does not match the number entered above. Please verify.",
+          "_row_num": 341
+        },
+        "deceased_mismatch": {
+          "string_token": "deceased_mismatch",
+          "text": "The number of deceased members added does not match the number entered above. Please verify.",
+          "_row_num": 342
         }
       }
     },
@@ -15388,7 +15456,7 @@
         "operations": [
           {
             "clause": "if // start",
-            "condition": "(opendatakit.getCurrentInstanceId() !== null)",
+            "condition": "!!opendatakit.getCurrentInstanceId()",
             "_row_num": 2,
             "__rowNum__": 1,
             "_token_type": "goto_label",
@@ -15694,9 +15762,7 @@
             "name": "hh_id",
             "display": {
               "prompt": "hh_id",
-              "constraint_message": {
-                "text": "The Household ID must be in the format AAA-111."
-              },
+              "constraint_message": "invalid_hh_id",
               "section": "technical_h2"
             },
             "required": 1,
@@ -15753,9 +15819,7 @@
             "name": "location_count",
             "display": {
               "prompt": "rec_loc",
-              "constraint_message": {
-                "text": "One and only one location must be provided."
-              },
+              "constraint_message": "invalid_geolocation",
               "section": "technical_h2"
             },
             "constraint": "data('location_count') === null || data('location_count') === 1",
@@ -15996,9 +16060,7 @@
               },
               "new_button_label": "add_new_member",
               "hide_delete_button": 1,
-              "constraint_message": {
-                "text": "The number of members added does not match the number of members entered above. Please verify."
-              }
+              "constraint_message": "member_mismatch"
             },
             "constraint": "selected(data('new_hh_members'), 'no')  || selected(data('hh_minicenced'), 'no') || data('new_count') === null || data('new_count') == data('new_hh_members_number')",
             "model": {
@@ -16071,9 +16133,7 @@
             "display": {
               "prompt": "member_detail",
               "new_button_label": "add_new_member",
-              "constraint_message": {
-                "text": "The number of members added does not match the number of members entered above. Please verify."
-              },
+              "constraint_message": "member_mismatch",
               "section": "members_h2"
             },
             "constraint": "selected(data('hh_minicenced'), 'yes') || data('new_hh_count') === null || data('new_hh_count') == data('new_hh_n_residents')",
@@ -16153,9 +16213,7 @@
             "display": {
               "prompt": "hh_head_modify",
               "hint": "member_resident_required",
-              "constraint_message": {
-                "text": "The household head must be different from household head substitute"
-              }
+              "constraint_message": "head_sub_match"
             },
             "constraint": "!data('hh_head_new_select') || data('hh_head_new_select') !== data('hh_head_sub_new_select')",
             "hideInContents": 1,
@@ -16187,9 +16245,7 @@
             "display": {
               "prompt": "hh_head_sub_modify",
               "hint": "member_resident_required",
-              "constraint_message": {
-                "text": "The household head must be different from household head substitute"
-              }
+              "constraint_message": "head_sub_match"
             },
             "constraint": "!data('hh_head_sub_new_select') || data('hh_head_new_select') !== data('hh_head_sub_new_select')",
             "hideInContents": 1,
@@ -16704,9 +16760,7 @@
             "name": "latrine_count",
             "display": {
               "prompt": "latrine_detail",
-              "constraint_message": {
-                "text": "The number of latrines added does not match the number above. Please verify."
-              },
+              "constraint_message": "latrine_mismatch",
               "section": "socio_econ_h2"
             },
             "constraint": "data('latrine_count') === null || selected(data('hh_have_latrine'),'no')  || data('latrine_count') == data('hh_how_many_latrines')",
@@ -17907,9 +17961,7 @@
             "name": "water_count",
             "display": {
               "prompt": "water_detail",
-              "constraint_message": {
-                "text": "The number of water bodies added does not match the number entered above. Please verify."
-              },
+              "constraint_message": "water_mismatch",
               "section": "env_h2"
             },
             "constraint": "data('water_count') === null || selected(data('water_bodies'), 'no')  || data('water_count') == data('water_bodies_num')",
@@ -18037,9 +18089,7 @@
             "name": "net_count",
             "display": {
               "prompt": "net_detail",
-              "constraint_message": {
-                "text": "The number of nets added does not match the number entered above. Please verify."
-              },
+              "constraint_message": "nets_mismatch",
               "section": "malaria_h2"
             },
             "constraint": "data('net_count') === null || data('net_count') == data('hh_num_nets')",
@@ -18233,9 +18283,7 @@
               "prompt": "snake_linked_table",
               "hide_delete_button": 1,
               "hide_add_instance": 1,
-              "constraint_message": {
-                "text": "The number of members with snake bites added does not match the number entered above. Please verify."
-              }
+              "constraint_message": "snakes_mismatch"
             },
             "choice_filter": "_.contains(data('snake_bite_who'), choice_item.instance_id)",
             "constraint": "data('snake_count') === null || selected(data('any_snake_bite'), 'no') || data('snake_count') == data('any_snake_bite_num')",
@@ -18493,9 +18541,7 @@
             "name": "death_count",
             "display": {
               "prompt": "death_prompt",
-              "constraint_message": {
-                "text": "The number of deceased members added does not match the number entered above. Please verify."
-              }
+              "constraint_message": "deceased_mismatch"
             },
             "required": "selected(data('hh_minicenced'), 'no') && selected(data('hh_death'), 'yes')",
             "constraint": "data('death_count') === null || selected(data('hh_death'), 'no') || selected(data('hh_minicenced'), 'yes') || data('death_count') == data('hh_death_count')",

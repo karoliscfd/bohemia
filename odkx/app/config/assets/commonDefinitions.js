@@ -243,6 +243,11 @@ window.odkCommonDefinitions = {
       "string_token": "toc",
       "text": "Table of Contents",
       "_row_num": 38
+    },
+    "toc_subform": {
+      "string_token": "toc_subform",
+      "text": "Other parts of the census will be available after completion of this section",
+      "_row_num": 39
     }
   },
   "_locales": {
