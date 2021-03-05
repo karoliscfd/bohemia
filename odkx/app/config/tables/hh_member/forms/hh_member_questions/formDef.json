@@ -959,7 +959,8 @@
         "display": {
           "prompt": "ind_q18",
           "hint": "check_all_that_apply_hint",
-          "constraint_message": "w_none_pna"
+          "constraint_message": "w_none_pna",
+          "section": "health_morbidity_h2"
         },
         "constraint": "(not(selected(data('ind_deficiency'), 'pna')) || (selected(data('ind_deficiency'), 'pna') && countSelected(data('ind_deficiency')) === 1)) && (not(selected(data('ind_deficiency'), 'none')) || (selected(data('ind_deficiency'), 'none') && countSelected(data('ind_deficiency')) === 1))",
         "_row_num": 149
@@ -11375,7 +11376,8 @@
             "display": {
               "prompt": "ind_q18",
               "hint": "check_all_that_apply_hint",
-              "constraint_message": "w_none_pna"
+              "constraint_message": "w_none_pna",
+              "section": "health_morbidity_h2"
             },
             "constraint": "(not(selected(data('ind_deficiency'), 'pna')) || (selected(data('ind_deficiency'), 'pna') && countSelected(data('ind_deficiency')) === 1)) && (not(selected(data('ind_deficiency'), 'none')) || (selected(data('ind_deficiency'), 'none') && countSelected(data('ind_deficiency')) === 1))",
             "_row_num": 149,

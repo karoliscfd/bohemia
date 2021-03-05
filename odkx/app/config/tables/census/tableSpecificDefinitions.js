@@ -1659,9 +1659,9 @@ window.odkTableSpecificDefinitions = {
     "hh_absent": {
       "string_token": "hh_absent",
       "text": {
-        "default": "If a member is absent at the time of this interview, click on the \"edit\" icon to add details about their absence.",
-        "pt": "Se um membro estiver ausente no momento desta entrevista, clique no ícone \"editar\" para adicionar detalhes sobre sua ausência.",
-        "sw": "Ikiwa mwanakaya hayupo wakati wa mahojiano haya, bonyeza alama ya \"Edit/hariri\" ili kuongeza maelezo juu ya kutokuwepo kwao."
+        "default": "If a member is absent at the time of this interview, click on the <span class=\"glyphicon glyphicon-pencil\"></span> icon to add details about their absence.",
+        "pt": "Se um membro estiver ausente no momento desta entrevista, clique no ícone <span class=\"glyphicon glyphicon-pencil\"></span> para adicionar detalhes sobre sua ausência.",
+        "sw": "Ikiwa mwanakaya hayupo wakati wa mahojiano haya, bonyeza alama ya <span class=\"glyphicon glyphicon-pencil\"></span> ili kuongeza maelezo juu ya kutokuwepo kwao."
       },
       "_row_num": 192
     },
