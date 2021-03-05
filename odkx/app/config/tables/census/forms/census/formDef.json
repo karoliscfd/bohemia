@@ -419,7 +419,7 @@
           "prompt": "how_many",
           "constraint_message": "member_mismatch"
         },
-        "constraint": "(data('mini_members_count') + (data('new_hh_members_number') || 0) - (data('exit_count') || 0)) === data('minicensed_hh_n_residents')",
+        "constraint": "selected(data('hh_minicenced'), 'no')  || (data('mini_members_count') + (data('new_hh_members_number') || 0) - (data('exit_count') || 0)) === data('minicensed_hh_n_residents')",
         "model": {
           "isSessionVariable": 1,
           "valuesList": "hh_mini_members"
@@ -16061,7 +16061,7 @@
               "prompt": "how_many",
               "constraint_message": "member_mismatch"
             },
-            "constraint": "(data('mini_members_count') + (data('new_hh_members_number') || 0) - (data('exit_count') || 0)) === data('minicensed_hh_n_residents')",
+            "constraint": "selected(data('hh_minicenced'), 'no')  || (data('mini_members_count') + (data('new_hh_members_number') || 0) - (data('exit_count') || 0)) === data('minicensed_hh_n_residents')",
             "model": {
               "isSessionVariable": 1,
               "valuesList": "hh_mini_members"
