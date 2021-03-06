@@ -2,8 +2,18 @@ library(CrossVA)
 library(openVA)
 library(nbc4va)
 library(InterVA5)
+library(bohemia)
 
+# mozambique
+moz_forms <- load_odk_data(the_country = 'Mozambique',
+                           credentials_path = '../../credentials/credentials.yaml',
+                           users_path = '../../credentials/users.yaml',
+                           local = FALSE, 
+                           efficient=FALSE,
+                           use_cached = FALSE)
+va <- moz_forms$va
 
+# save.image('temp.RData')
 # CrossVA package example data (VA version 1.5.1)
 datafile_2016_151 <- system.file("sample", "who151_odk_export.csv", package = "CrossVA")
 records_2016_151 <- read.csv(datafile_2016_151)
