@@ -12,9 +12,9 @@ window.odkTableSpecificDefinitions = {
     "53aii": {
       "string_token": "53aii",
       "text": {
-        "default": "53a(ii). What is the type of water body close (<50m) to the household?",
-        "pt": "53a(ii). Qual é o tipo de corpo de água perto (<50 m) do agregado familiar?",
-        "sw": "53a (ii). Eneo la maji lililo karibu (< 50m) na kaya yako ni la aina gani?"
+        "default": "53a(ii). What is the type of water body close (&#60;50m) to the household?",
+        "pt": "53a(ii). Qual é o tipo de corpo de água perto (&#60;50 m) do agregado familiar?",
+        "sw": "53a (ii). Eneo la maji lililo karibu (&#60;50m) na kaya yako ni la aina gani?"
       },
       "_row_num": 3
     },

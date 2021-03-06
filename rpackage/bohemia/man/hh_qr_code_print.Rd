@@ -4,7 +4,15 @@
 \alias{hh_qr_code_print}
 \title{Household id to qr code print}
 \usage{
-hh_qr_code_print(base_img_path, hh_id, demo_sig, pi_sig, save_file = NULL, ...)
+hh_qr_code_print(
+  base_img_path,
+  hh_id,
+  demo_sig,
+  pi_sig,
+  country,
+  save_file = NULL,
+  ...
+)
 }
 \arguments{
 \item{base_img_path}{The path to the image that will be overlayed with a qr code}

@@ -25,22 +25,16 @@
       {
         "setting_name": "form_id",
         "value": "hh_geo_location",
-        "setting_name_1": "form_id",
-        "value_1": "hh_geo_location",
         "_row_num": 2
       },
       {
         "setting_name": "form_version",
-        "value": 20210204001,
-        "setting_name_1": "form_version",
-        "value_1": 20210221001,
+        "value": 20210221001,
         "_row_num": 3
       },
       {
         "setting_name": "table_id",
         "value": "hh_geo_location",
-        "setting_name_1": "table_id",
-        "value_1": "hh_geo_location",
         "_row_num": 4
       },
       {
@@ -48,16 +42,12 @@
         "display": {
           "title": {
             "text": {
-              "default": "Geo Location",
-              "pt": "Geo Location",
-              "sw": "Geo Location",
-              "pt_1": "Household Geolocation",
-              "sw_1": "Household Geolocation"
-            },
-            "text_1": "Household Geolocation"
+              "default": "Household Geolocation",
+              "pt": "Household Geolocation",
+              "sw": "Household Geolocation"
+            }
           }
         },
-        "setting_name_1": "survey",
         "_row_num": 5
       },
       {
@@ -67,14 +57,10 @@
             "text": {
               "default": "English",
               "pt": "English",
-              "sw": "English",
-              "pt_1": "English",
-              "sw_1": "English"
-            },
-            "text_1": "English"
+              "sw": "English"
+            }
           }
         },
-        "setting_name_1": "default",
         "_row_num": 6
       },
       {
@@ -84,14 +70,10 @@
             "text": {
               "default": "Português",
               "pt": "Português",
-              "sw": "Português",
-              "pt_1": "Português",
-              "sw_1": "Português"
-            },
-            "text_1": "Português"
+              "sw": "Português"
+            }
           }
         },
-        "setting_name_1": "pt",
         "_row_num": 7
       },
       {
@@ -101,19 +83,15 @@
             "text": {
               "default": "Kiswahili",
               "pt": "Kiswahili",
-              "sw": "Kiswahili",
-              "pt_1": "Kiswahili",
-              "sw_1": "Kiswahili"
-            },
-            "text_1": "Kiswahili"
+              "sw": "Kiswahili"
+            }
           }
         },
-        "setting_name_1": "sw",
         "_row_num": 8
       },
       {
-        "setting_name_1": "showFooter",
-        "value_1": 1,
+        "setting_name": "showFooter",
+        "value": 1,
         "_row_num": 9
       }
     ],
@@ -213,22 +191,16 @@
       "form_id": {
         "setting_name": "form_id",
         "value": "hh_geo_location",
-        "setting_name_1": "form_id",
-        "value_1": "hh_geo_location",
         "_row_num": 2
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210204001,
-        "setting_name_1": "form_version",
-        "value_1": 20210221001,
+        "value": 20210221001,
         "_row_num": 3
       },
       "table_id": {
         "setting_name": "table_id",
         "value": "hh_geo_location",
-        "setting_name_1": "table_id",
-        "value_1": "hh_geo_location",
         "_row_num": 4
       },
       "survey": {
@@ -236,16 +208,12 @@
         "display": {
           "title": {
             "text": {
-              "default": "Geo Location",
-              "pt": "Geo Location",
-              "sw": "Geo Location",
-              "pt_1": "Household Geolocation",
-              "sw_1": "Household Geolocation"
-            },
-            "text_1": "Household Geolocation"
+              "default": "Household Geolocation",
+              "pt": "Household Geolocation",
+              "sw": "Household Geolocation"
+            }
           }
         },
-        "setting_name_1": "survey",
         "_row_num": 5
       },
       "default": {
@@ -255,14 +223,10 @@
             "text": {
               "default": "English",
               "pt": "English",
-              "sw": "English",
-              "pt_1": "English",
-              "sw_1": "English"
-            },
-            "text_1": "English"
+              "sw": "English"
+            }
           }
         },
-        "setting_name_1": "default",
         "_row_num": 6
       },
       "pt": {
@@ -272,14 +236,10 @@
             "text": {
               "default": "Português",
               "pt": "Português",
-              "sw": "Português",
-              "pt_1": "Português",
-              "sw_1": "Português"
-            },
-            "text_1": "Português"
+              "sw": "Português"
+            }
           }
         },
-        "setting_name_1": "pt",
         "_row_num": 7
       },
       "sw": {
@@ -289,15 +249,16 @@
             "text": {
               "default": "Kiswahili",
               "pt": "Kiswahili",
-              "sw": "Kiswahili",
-              "pt_1": "Kiswahili",
-              "sw_1": "Kiswahili"
-            },
-            "text_1": "Kiswahili"
+              "sw": "Kiswahili"
+            }
           }
         },
-        "setting_name_1": "sw",
         "_row_num": 8
+      },
+      "showFooter": {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 9
       },
       "_locales": {
         "setting_name": "_locales",
@@ -309,11 +270,8 @@
                 "text": {
                   "default": "English",
                   "pt": "English",
-                  "sw": "English",
-                  "pt_1": "English",
-                  "sw_1": "English"
-                },
-                "text_1": "English"
+                  "sw": "English"
+                }
               }
             },
             "_row_num": 6,
@@ -325,11 +283,8 @@
                 "text": {
                   "default": "Português",
                   "pt": "Português",
-                  "sw": "Português",
-                  "pt_1": "Português",
-                  "sw_1": "Português"
-                },
-                "text_1": "Português"
+                  "sw": "Português"
+                }
               }
             },
             "_row_num": 7,
@@ -341,31 +296,12 @@
                 "text": {
                   "default": "Kiswahili",
                   "pt": "Kiswahili",
-                  "sw": "Kiswahili",
-                  "pt_1": "Kiswahili",
-                  "sw_1": "Kiswahili"
-                },
-                "text_1": "Kiswahili"
+                  "sw": "Kiswahili"
+                }
               }
             },
             "_row_num": 8,
             "name": "sw"
-          },
-          {
-            "display": {
-              "locale": {
-                "text": "pt_1"
-              }
-            },
-            "name": "pt_1"
-          },
-          {
-            "display": {
-              "locale": {
-                "text": "sw_1"
-              }
-            },
-            "name": "sw_1"
           }
         ]
       },
@@ -379,16 +315,12 @@
         "display": {
           "title": {
             "text": {
-              "default": "Geo Location",
-              "pt": "Geo Location",
-              "sw": "Geo Location",
-              "pt_1": "Household Geolocation",
-              "sw_1": "Household Geolocation"
-            },
-            "text_1": "Household Geolocation"
+              "default": "Household Geolocation",
+              "pt": "Household Geolocation",
+              "sw": "Household Geolocation"
+            }
           }
         },
-        "setting_name_1": "survey",
         "_row_num": 5
       }
     },
@@ -487,13 +419,10 @@
             "display": {
               "title": {
                 "text": {
-                  "default": "Geo Location",
-                  "pt": "Geo Location",
-                  "sw": "Geo Location",
-                  "pt_1": "Household Geolocation",
-                  "sw_1": "Household Geolocation"
-                },
-                "text_1": "Household Geolocation"
+                  "default": "Household Geolocation",
+                  "pt": "Household Geolocation",
+                  "sw": "Household Geolocation"
+                }
               }
             },
             "_branch_label_enclosing_screen": "survey/0"
@@ -885,7 +814,7 @@
         "_aspect": "default",
         "_key": "displayName",
         "_type": "object",
-        "_value": "{\"text\":{\"default\":\"Geo Location\",\"pt\":\"Geo Location\",\"sw\":\"Geo Location\",\"pt_1\":\"Household Geolocation\",\"sw_1\":\"Household Geolocation\"},\"text_1\":\"Household Geolocation\"}"
+        "_value": "{\"text\":{\"default\":\"Household Geolocation\",\"pt\":\"Household Geolocation\",\"sw\":\"Household Geolocation\"}}"
       },
       {
         "_partition": "Table",

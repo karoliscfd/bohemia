@@ -1,0 +1,824 @@
+iso,code,ward,village,hamlet,lng,lat,clinical_trial,n_cattle,n_goats,n_pigs,n_households,religion,electricity,telecom_have_data,telecom_have_voice,chief_name
+TZA,MKU,Bungu,Bungu A,Mkundi,39.05420587,-7.63224058,1,6 to 19,0,0,300,Muslim,Partially,Yes,Yes,Mohamed Seif Mniku
+TZA,MWE,Bungu,Bungu A,Mwenge,39.06306002,-7.64580415,1,1 to 5,1 to 5,0,600,Muslim,Partially,Yes,Yes,Ramadhani Rashid Mziwanda
+TZA,MWO,Bungu,Bungu A,Muongozo,39.05543704,-7.64354591,1,0,1 to 5,0,300,Muslim,Yes,Yes,Yes,JUMA MAULIDI MKIMA
+TZA,KIB,Bungu,Bungu B,Kibaoni,39.0697915,-7.63039229,1,20 or more,0,0,240,Muslim,Partially,Yes,Yes,ISMAIL SAIDI MIKOI
+TZA,KKW,Bungu,Bungu B,Kibwibwi,39.10989304,-7.62844407,1,6 to 19,6 to 19,0,420,Muslim,No,DK,Yes,Said Ismail Madinga
+TZA,KIN,Bungu,Bungu B,Kinyamale,39.08502699,-7.60915979,1,0,0,0,100,Muslim,No,DK,Yes,Hindu Ally Ngamba
+TZA,KIP,Bungu,Bungu B,Kipenya,39.07807678,-7.65328587,1,0,1 to 5,0,192,Muslim,No,Yes,Yes,Shamte mohamed kobwae
+TZA,KIT,Bungu,Bungu B,Kitula,39.0664432,-7.62717648,1,1 to 5,0,0,300,Muslim,Partially,Yes,Yes,JUMA MOHAMEDI MPUKUCHO
+TZA,AZI,Bungu,Mangombela,Azimio,39.06662592,-7.66536332,1,0,6 to 19,0,270,Muslim,No,Yes,Yes,RAMADHANI ABASI MKOPI
+TZA,NYM,Bungu,Mangombela,Nyamango,39.05913273,-7.64952504,1,0,0,0,150,Muslim,No,Yes,Yes,OMARI SAIDI MCHONJO
+TZA,BUN,Bungu,Msafiri,Bungu B,39.05666682,-7.62513543,1,1 to 5,0,0,257,Muslim,Yes,Yes,Yes,HAMIDU ZUBERI MAPANDE
+TZA,MSA,Bungu,Msafiri,Msafiri,39.06807301,-7.62022001,1,0,0,0,260,Muslim,Partially,Yes,Yes,REHEMA SEIF RWAMBO
+TZA,NGO,Bungu,Msafiri,Ngongoroka,39.07730163,-7.61249873,1,0,0,0,100,NA,NA,NA,NA,NA
+TZA,NYK,Bungu,Msafiri,Nyakilo,39.0438045,-7.6209337,1,0,0,0,162,Muslim,No,Yes,Yes,Abed Msham Mbindeki
+TZA,ZUM,Bungu,Msafiri,Zumbe,39.0621943,-7.58933371,1,0,0,0,256,Muslim,No,DK,Yes,SHAMTE HALFANI NYANYENGA
+TZA,DUN,Bungu,Nyambili,Dungutu,39.03266216,-7.58019901,1,20 or more,20 or more,0,884,Muslim,No,Yes,Yes,ALLY KASSIM MWANDI
+TZA,NYB,Bungu,Nyambili,Nyambili Kaskazini,39.02129509,-7.61763526,1,0,0,0,230,Muslim,No,Yes,Yes,JAMALI ABASI KIGUMI
+TZA,NYL,Bungu,Nyambili,Nyambili Kusini,39.02601235,-7.62159612,1,1 to 5,6 to 19,0,190,Muslim,Partially,No,Yes,AHAMISI ABDALAH MPONDI
+TZA,BES,Bungu,Nyambunda,Besabu,39.00458759,-7.58277635,1,20 or more,20 or more,0,160,Muslim,No,Yes,Yes,ATHUMANI OMARI MUHUNZI
+TZA,MKW,Bungu,Nyambunda,Mkwandara,38.99564647,-7.53632559,1,20 or more,20 or more,6 to 19,270,Muslim,No,No,Yes,MALULU HAKIBA MADISHA
+TZA,NAN,Bungu,Nyambunda,Nyangundu,38.98823455,-7.60593535,1,0,6 to 19,0,150,Muslim,No,Yes,Yes,OMARY SULTAN MGWAYA
+TZA,LUG,Bungu,Pagae,Lugome,39.01252937,-7.66766709,1,6 to 19,20 or more,0,560,Muslim,No,Yes,Yes,Omari Saidi Ndete
+TZA,MKA,Bungu,Pagae,Mkale,39.02458982,-7.70257618,1,0,20 or more,0,300,Muslim,No,Yes,Yes,Chande Abdala Logolo
+TZA,NYY,Bungu,Pagae,Nyameku,39.04396908,-7.66594593,1,0,6 to 19,0,150,Muslim,Yes,Yes,Yes,SUDI HEMEDI KULAMANJEMA
+TZA,UND,Bungu,Pagae,Undembo,39.03022769,-7.66606209,1,0,0,0,21,Muslim,Yes,Yes,Yes,ALLY SALUM MCHAMBUKA
+TZA,BON,Dimani,Bondeni,Bondeni,38.89008814,-7.79182074,1,20 or more,20 or more,0,93,Muslim,Partially,Yes,Yes,AMIRI MOHAMED EKILE
+TZA,DIM,Dimani,Dimani,Dimani,38.88106412,-7.74111458,1,0,0,0,1160,Muslim,Partially,Yes,Yes,Hashimu salumu saadi
+TZA,DIA,Dimani,Dimani A,Dimani A,38.86057652,-7.74467833,1,0,6 to 19,0,70,Muslim,Partially,No,Yes,RAJABU OMARI KILOKO
+TZA,DIN,Dimani,Dimani B,Dimani B,38.85857369,-7.74958763,1,0,0,0,125,Muslim,No,Yes,Yes,KASIMU MAURIDI KINGWALE
+TZA,KIL,Dimani,Kilimbili,Kilimbili,38.83685699,-7.76222781,1,20 or more,20 or more,0,103,Muslim,Partially,Yes,Yes,JAMALI SHAHA MATIMBWA
+TZA,KIM,Dimani,Kimbuga,Kimbuga,38.88207701,-7.73815205,1,0,0,0,150,Muslim,Yes,Yes,Yes,Swalehe Yusuph Mbembeni
+TZA,NGA,Dimani,Ng'ambo,Ng'ambo,38.89134959,-7.78713063,1,20 or more,20 or more,0,131,Muslim,Partially,Yes,Yes,Abdallah muhammedi mkele
+TZA,NGU,Dimani,Ngulakula,Ngulakula,38.83633328,-7.76174445,1,20 or more,20 or more,0,304,Muslim,Partially,Yes,Yes,Haji juma ngaugiya
+TZA,NYN,Dimani,Nyambangala,Nyambangala,38.88497548,-7.71933935,1,0,0,0,250,Muslim,No,Yes,Yes,Rashidi amanzi majawala
+TZA,PED,Dimani,Penda Kimbuga,Penda Kimbuga,38.82218654,-7.70158167,1,20 or more,0,0,400,Muslim,Partially,Yes,Yes,Bahati jemes kikombe
+TZA,PEA,Dimani,Penda Miwaga,Penda Miwaga,38.85850917,-7.74403688,1,0,0,0,54,Muslim,No,Yes,Yes,Salumu abdallah Matimbwa
+TZA,KKB,Kibiti,Kibiti Kati,Kibiti Kati,38.93788253,-7.71870631,1,0,20 or more,20 or more,998,Muslim,Partially,Yes,Yes,MOHAMED KATEMBO MPILI
+TZA,KIU,Kibiti,Kibiti Kusini,Kibiti Kusini,38.9362479,-7.72602123,1,0,1 to 5,0,1000,Muslim,Partially,Yes,Yes,Musssa butuka
+TZA,KIR,Kibiti,Kingwira,Kingwira,38.96357431,-7.74915617,1,20 or more,0,0,400,Muslim,Yes,Yes,Yes,Ally Abdallam Mpela
+TZA,KBI,Kibiti,Kitembo,Kitembo,38.94893293,-7.79158757,1,0,0,0,500,Muslim,Yes,DK,Yes,Salumu Abdallah Kikwawa
+TZA,LUM,Kibiti,Lumyonzi,Lumyonzi,38.91382083,-7.71216737,1,20 or more,20 or more,0,250,Muslim,No,Yes,Yes,EMMANUEL DEUS NKELEBE
+TZA,MAK,Kibiti,Makaoni,Makaoni,38.94047826,-7.72854002,1,20 or more,20 or more,0,2000,Muslim,Yes,Yes,Yes,HASSAN SHABANI MAJILO
+TZA,MBE,Kibiti,Mbebetini,Mbebetini,38.94642538,-7.72975835,1,0,1 to 5,0,310,Muslim,Partially,Yes,Yes,Daniel Marcus Juma
+TZA,MKB,Kibiti,Mkubuge,Mkubuge,38.91591433,-7.73758371,1,0,20 or more,0,84,Muslim,Partially,Yes,Yes,MANITU MKUMBA MALEKANO
+TZA,MKN,Kibiti,Mkundi,Mkundi,38.90147921,-7.75181311,1,0,1 to 5,0,101,Muslim,Partially,Yes,Yes,Jualako Halfani Mgane
+TZA,NYG,Kibiti,Nyamakingili,Nyamakingili,38.90630612,-7.72471525,1,0,0,0,196,Muslim,No,Yes,Yes,Omary abdalah mandwanga
+TZA,NYW,Kibiti,Nyangwego,Nyangwego,38.91821191,-7.73061625,1,0,6 to 19,0,90,Muslim,No,Yes,Yes,ZAINABU MUSA MASERA
+TZA,NYT,Kibiti,Nyatanga,Nyatanga,38.93091355,-7.72458374,1,6 to 19,20 or more,0,500,Muslim,Partially,Yes,Yes,JUMA MOHAMED KAENZA
+TZA,SOK,Kibiti,Sokoni,Sokoni,38.93840782,-7.72389243,1,20 or more,20 or more,0,670,Muslim,Yes,Yes,Yes,SAIDI ABDALLAH RWAMBO
+TZA,ZIM,Kibiti,Zimbwini,Zimbwini,38.930869,-7.68004722,1,0,0,0,250,Muslim,No,Yes,Yes,MAALIM OMAR KOBA
+TZA,BUM,Kiongoroni,Jaja,Bumbuamani,39.3673488,-8.17294951,0,20 or more,20 or more,0,70,Muslim,No,Yes,Yes,MOHAMEDI SHAWEJI MPOGO
+TZA,KGT,Kiongoroni,Jaja,Kitongani,39.35658576,-8.19435594,0,20 or more,20 or more,0,350,Muslim,No,No,Yes,BAKARI GIMBU
+TZA,MJI,Kiongoroni,Jaja,Mjimwema,39.36460951,-8.18348622,0,20 or more,20 or more,0,103,Muslim,No,Yes,Yes,OMAR NASSORO MKURUNGO
+TZA,BWE,Kiongoroni,Kiongoroni,Bweni,39.32855784,-8.15245007,0,20 or more,20 or more,0,120,Muslim,No,Yes,Yes,Omari Limbale
+TZA,MAE,Kiongoroni,Kiongoroni,Makwende,39.33319871,-8.15747406,0,20 or more,1 to 5,0,57,Muslim,No,Yes,Yes,Hamisi Ally Njechele
+TZA,NYO,Kiongoroni,Kiongoroni,Nyaobe,39.3328915,-8.16097773,0,20 or more,6 to 19,0,78,Muslim,No,Yes,Yes,Juma Ally Kulugio
+TZA,KAI,Kiongoroni,Pombwe,Kilambani,39.32543472,-8.24802031,0,6 to 19,20 or more,0,60,Muslim,No,Yes,Yes,Saidy Hamisi Mtota
+TZA,MBU,Kiongoroni,Pombwe,Mbungwi,39.26801351,-8.22705554,0,0,6 to 19,0,90,Muslim,No,Yes,Yes,Mwalami Yusuph Muki
+TZA,POM,Kiongoroni,Pombwe,Pombwe kubwa,39.33820937,-8.27384554,0,6 to 19,20 or more,0,70,Muslim,Partially,Yes,Yes,YUSUPHU ATHUMANI GIMBU
+TZA,SUN,Kiongoroni,Pombwe,Suni,39.33620666,-8.2374395,0,20 or more,0,0,54,Muslim,No,Yes,Yes,Shabani Kokoba
+TZA,BAN,Kiongoroni,Ruma,Bandarini,39.31217881,-8.18717323,0,6 to 19,6 to 19,0,105,Muslim,No,No,Yes,Ismail Amiri Mkinga
+TZA,EME,Kiongoroni,Ruma,Emelwa,39.31491404,-8.17961003,0,20 or more,20 or more,0,35,Muslim,No,Yes,Yes,JUMA SHABANI MPEMBENUE
+TZA,KKG,Kiongoroni,Ruma,King'ongo,39.25521695,-8.16203272,0,20 or more,20 or more,0,250,Muslim,No,Yes,Yes,Ahmad Said Ndembo
+TZA,MTA,Kiongoroni,Ruma,Mtanga,39.27817172,-8.15642297,0,20 or more,20 or more,0,230,Muslim,No,Yes,Yes,RAMADHANI BURHANI MBAGALO
+TZA,NNY,Kiongoroni,Ruma,Nyamikamba,39.30950652,-8.19428632,0,6 to 19,6 to 19,0,25,Muslim,No,DK,Yes,AISHA YUSUFU MKAGULYA
+TZA,KOK,Mahege,Hanga,Kimbogo,39.14947708,-7.66072004,0,0,20 or more,0,200,Muslim,Partially,Yes,Yes,OMARY KASIMU NDIKANYE
+TZA,MKI,Mahege,Hanga,Mkima,39.14605379,-7.65796906,0,0,6 to 19,0,300,Muslim,Partially,Yes,Yes,SHABANI MOHAMEDI MTAWAZI
+TZA,NGM,Mahege,Hanga,Ngambe,39.13304112,-7.64929237,0,0,6 to 19,0,150,Muslim,No,Yes,Yes,SULTANI SALEHE LWAMBO
+TZA,NYD,Mahege,Hanga,Nyambwanda,39.1213202,-7.67417488,0,0,6 to 19,0,374,Muslim,No,No,Yes,HARUNA HAMISI KIOLOLO
+TZA,MAW,Mahege,Mahege,Mawichi,39.18986284,-7.6594648,0,20 or more,0,0,177,Christian,No,Yes,Yes,YAHAYA MBWANA NYUMBA
+TZA,MTM,Mahege,Mahege,Mtembwe,39.17486347,-7.65652749,0,0,0,0,94,Muslim,Partially,Yes,Yes,Shamte Khalfani Shamte
+TZA,NMY,Mahege,Mahege,Nyamkingia,39.1903627,-7.6574714,0,0,0,0,40,Muslim,No,Yes,Yes,Hasani Saidi Mkitima
+TZA,UMB,Mahege,Mahege,Umba,39.18844283,-7.66345369,0,0,0,0,77,Muslim,Partially,Yes,Yes,MILAJI SHABANI MUHUA
+TZA,NGN,Mahege,Nyakinyo,Mlete Soso/Ngondae,39.14450489,-7.70835236,0,0,0,0,44,NA,NA,NA,NA,NA
+TZA,SOS,Mahege,Nyakinyo,Nyakinyo,39.17267973,-7.69791454,0,0,0,0,60,Muslim,No,Yes,Yes,AMINA OMARI MAPANDE
+TZA,MAP,Mahege,Nyanjati,Mapinduzi,39.1939109,-7.69266413,0,6 to 19,6 to 19,0,33,Muslim,No,Yes,Yes,MSATI ALLY RAMADHANI.
+TZA,MRE,Mahege,Nyanjati,Mrema,39.2055685,-7.68392007,0,0,0,0,488,Muslim,Yes,Yes,Yes,Mohamedi Hatibu Haruni
+TZA,MWI,Mahege,Nyanjati,Mwinyi,39.20620035,-7.68691481,0,0,0,0,288,Muslim,Yes,Yes,Yes,Amiri Rajabu Ngondae
+TZA,NYE,Mahege,Nyanjati,Nyerere,39.2067606,-7.68561867,0,0,0,0,130,Muslim,No,Yes,Yes,SHAMTE SALUM KESI
+TZA,SAU,Mahege,Nyanjati,Saudia,39.19331939,-7.71310659,0,20 or more,1 to 5,0,60,Muslim,No,Yes,Yes,HAMISI UKASHA KHALIDI
+TZA,SOO,Mahege,Nyanjati,Sokoine,39.20659303,-7.68847446,0,0,0,0,720,Muslim,Partially,Yes,Yes,SHABANI JUMA MPOGO
+TZA,HAL,Mahege,Tomoni,Halisi,39.13945007,-7.61494003,0,0,1 to 5,0,154,Muslim,No,Yes,Yes,HUSSEIN MOHAMED KOGELO
+TZA,MIB,Mahege,Tomoni,Mibuyusaba,39.16311187,-7.63097834,0,0,0,0,65,Muslim,Partially,Yes,Yes,Abdallah Hemedi Mandeleko
+TZA,MKL,Mahege,Tomoni,Mkali,39.15650153,-7.61371793,0,0,0,0,75,Muslim,No,Yes,Yes,Ally Issa Mchambulia
+TZA,NOI,Mahege,Tomoni,Nyakikongo,39.16707772,-7.63202544,0,20 or more,20 or more,0,100,Muslim,Partially,Yes,Yes,SHAHA MOHAMED NGARAMBE
+TZA,KAT,Maparoni,Kiechuru,Kati,39.39725189,-8.05871814,0,6 to 19,20 or more,0,290,Muslim,No,Yes,Yes,MWASHABANI ATHUMANI KISOMA
+TZA,KIY,Maparoni,Kiechuru,Kityanga,39.40843047,-8.05617839,0,20 or more,20 or more,0,52,Muslim,No,No,No,SHAMTE KASSIM CHEKE
+TZA,KOR,Maparoni,Kiechuru,Korango,39.39556,-8.060087,0,NA,NA,NA,56,Muslim,No,No,Yes,SHAMTE KASSIM CHEKE
+TZA,MGA,Maparoni,Kiechuru,Mgambo,39.39791957,-8.05619561,0,6 to 19,20 or more,0,70,Muslim,No,No,Yes,HAMISI HASSANI MATUPE
+TZA,GIN,Maparoni,Maparoni,Gingi,39.32616588,-8.05135187,0,20 or more,20 or more,0,40,Muslim,No,Yes,Yes,HATIBU MAULIDI MBANDU
+TZA,MBN,Maparoni,Maparoni,Mbangani,39.35319391,-8.05159831,0,1 to 5,20 or more,0,170,Muslim,No,Yes,Yes,AMIRI OMARY KIMEMBE
+TZA,TUW,Maparoni,Maparoni,Tuwa,39.36410744,-8.05509731,0,1 to 5,20 or more,0,170,Muslim,No,No,Yes,Rajabu Hamidu Mpili
+TZA,USI,Maparoni,Maparoni,Usimbe kiwanjani,39.2868571,-8.01701043,0,20 or more,20 or more,0,425,Muslim,No,No,Yes,MBARAKA SAID MTUPA
+TZA,USM,Maparoni,Maparoni,Usimbe kidoga,39.28767,-8.016932,0,NA,NA,NA,80,NA,NA,NA,NA,NA
+TZA,BAA,Mbuchi,Mbuchi,Barabarani,39.28560868,-8.08250925,0,20 or more,20 or more,0,240,Muslim,No,No,Yes,SHAHA ALLY MIKEMBA
+TZA,KAP,Mbuchi,Mbuchi,Kipoka,39.25900529,-8.07023317,0,20 or more,20 or more,0,230,Muslim,No,No,Yes,HASSAN YUSUPH KIAKA
+TZA,KKI,Mbuchi,Mbuchi,Kitingi,39.30267086,-8.11488155,0,6 to 19,20 or more,0,50,Muslim,No,Yes,Yes,SHABAN MIKIDADI BARUAN
+TZA,MAO,Mbuchi,Mbuchi,Makongoro,39.31243604,-8.11597004,0,0,1 to 5,0,21,Muslim,No,No,Yes,Mohamedi Omari Kwangaya
+TZA,MIK,Mbuchi,Mbuchi,Mikwang'ombe,39.27144394,-8.09023326,0,20 or more,20 or more,0,280,Muslim,No,Yes,Yes,Rajabu Ally Mtorya
+TZA,MNG,Mbuchi,Mbuchi,Mnganje/Nganje,39.3113577,-8.11838633,0,6 to 19,20 or more,0,22,Muslim,No,No,Yes,Tatu Iddi Munyilaka
+TZA,DOK,Mbuchi,Mbwera Magharibi,Doka,39.34334378,-8.09473559,0,20 or more,20 or more,0,60,Muslim,No,No,No,MUHIDINI RASHIDI MBWEMUKA
+TZA,KBR,Mbuchi,Mbwera Magharibi,Kibumbulo/Kimburu,39.36245204,-8.1083346,0,20 or more,20 or more,0,100,Muslim,No,Yes,Yes,MOHAMEDI BAKARI MWANGIA
+TZA,KII,Mbuchi,Mbwera Magharibi,Kiiongoro,39.34605845,-8.1025675,0,20 or more,20 or more,0,45,Muslim,No,No,No,MUHIDINI RASHIDI MBWEMUKA
+TZA,KUM,Mbuchi,Mbwera Magharibi,Kumbacha,39.3158827,-8.06159007,0,20 or more,20 or more,0,30,Muslim,No,Yes,Yes,OMARY YUSUFU MKONGONJE
+TZA,MKE,Mbuchi,Mbwera Magharibi,Mkepa,39.35279823,-8.10918303,0,20 or more,20 or more,0,40,Muslim,No,No,No,MUHIDINI RASHIDI MBWEMUKA
+TZA,MKR,Mbuchi,Mbwera Magharibi,Mkurumu,39.36876921,-8.10337142,0,20 or more,20 or more,0,60,Muslim,No,No,No,MUHIDINI RASHIDI MBWEMUKA
+TZA,MTW,Mbuchi,Mbwera Magharibi,Mtawatawa,39.36299888,-8.09980453,0,20 or more,20 or more,0,70,Muslim,No,No,No,MUHIDINI RASHIDI MBWEMUKA
+TZA,MAR,Mbuchi,Mbwera Mashariki,Marongoni,39.37904479,-8.11784953,0,20 or more,20 or more,0,115,Muslim,No,Yes,Yes,OMARI JUMA MREMA NDUGU
+TZA,MBM,Mbuchi,Mbwera Mashariki,Mbumburu,39.37691464,-8.10833919,0,20 or more,20 or more,0,200,Muslim,No,Yes,Yes,BAKARI SHAHA MMNYONGO
+TZA,MDA,Mbuchi,Mbwera Mashariki,Mdai,39.38669871,-8.10018274,0,20 or more,20 or more,0,200,Muslim,No,Yes,Yes,SHABANI RAMADHANI KICHAGE
+TZA,MKK,Mbuchi,Mbwera Mashariki,Mkirika,39.38927269,-8.12771172,0,20 or more,20 or more,0,290,Muslim,No,Yes,Yes,RAJABU RASHID NUBI
+TZA,MIS,Mchukwi,Mangwi,Misimbo,39.03523592,-7.81074379,0,0,0,0,20,Muslim,No,Yes,Yes,George Reonard Kasokola
+TZA,MNY,Mchukwi,Mangwi,Miyogoya,39.06355457,-7.80387182,0,20 or more,20 or more,0,40,Muslim,No,Yes,Yes,Bakari hamisi mingeti
+TZA,RON,Mchukwi,Mangwi,Rondo,39.06163648,-7.80920038,0,0,0,0,150,Muslim,No,Yes,Yes,Mussa barekele kamli
+TZA,MAT,Mchukwi,Mchukwi A,Matimbwani,39.02335106,-7.74296572,0,0,0,0,184,Muslim,No,DK,Yes,Idd Puta
+TZA,NMN,Mchukwi,Mchukwi A,Nyakaumbanga,39.02966061,-7.71071688,0,0,6 to 19,0,300,Muslim,No,Yes,Yes,ALLY KASSIMU MPONDI
+TZA,NYJ,Mchukwi,Mchukwi A,Nyamanjenga,39.00534294,-7.74926769,0,0,0,0,30,Muslim,No,Yes,Yes,Sultan koja
+TZA,UJO,Mchukwi,Mchukwi A,Ujongoni,39.00460718,-7.76003873,0,0,0,0,36,Muslim,No,Yes,Yes,ASIA ABDALAH MTULIA
+TZA,UKI,Mchukwi,Mchukwi A,Kitomondo,39.00062115,-7.76021185,0,1 to 5,0,0,70,Muslim,No,Yes,Yes,MUSA SAIDI KISOMA
+TZA,KIC,Mchukwi,Mchukwi B,Kichangani,39.00487843,-7.7650131,0,0,0,0,144,Muslim,Partially,Yes,Yes,Zana kasimu (diwani)
+TZA,MBI,Mchukwi,Mchukwi B,Mbindia,39.01426237,-7.78775883,0,20 or more,20 or more,0,240,NA,NA,NA,NA,NA
+TZA,MIE,Mchukwi,Mchukwi B,Miembeni,38.99557302,-7.76434687,0,0,0,0,160,Muslim,No,DK,Yes,BASHIRU HAMISI MAJONJO
+TZA,MSI,Mchukwi,Mchukwi B,Msikitini,38.99912668,-7.76053724,0,0,0,0,19,Muslim,Partially,DK,Yes,WEMA OMARI NGUBATAI
+TZA,NNI,Mchukwi,Mchukwi B,Nyaubi,38.9819995,-7.78615835,0,0,0,0,30,Christian,No,Yes,Yes,RAJABU URBAN HATTIA
+TZA,SON,Mchukwi,Mchukwi B,Songa,39.02544808,-7.77031499,0,6 to 19,6 to 19,0,330,Muslim,Partially,Yes,Yes,SAID ISMAIL KIMILA
+TZA,BAI,Mchukwi,Mkupuka,Bani,38.9567361,-7.84994356,0,0,20 or more,0,55,Other,No,Yes,Yes,ABDALA HASSAN MUBA
+TZA,MKM,Mchukwi,Mkupuka,Mkupuka,38.95423454,-7.83484485,0,0,20 or more,0,400,Muslim,Partially,Yes,Yes,Athumani Omary Sobo
+TZA,NYU,Mchukwi,Mkupuka,Nyunga,38.95557773,-7.83260755,0,0,20 or more,20 or more,210,Muslim,Partially,Yes,Yes,HAMISI HAUZIKI MANDOTI
+TZA,JIW,Mjawa,Jaribu Magharibi,Jiweni,39.1254811,-7.53927647,1,0,0,0,100,Muslim,Partially,Yes,Yes,SAIDI OMARI KIPENGA
+TZA,KNB,Mjawa,Jaribu Magharibi,Kibuyuni,39.12578531,-7.54719656,1,0,0,0,210,Muslim,No,Yes,Yes,FADHIL SHABANI NGAYONGA
+TZA,MID,Mjawa,Jaribu Magharibi,Mapinduzi,39.1248685,-7.54544299,1,0,0,0,300,Muslim,Yes,Yes,Yes,KASIMU MOHOMED RWAMBO
+TZA,MKO,Mjawa,Jaribu Magharibi,Mkongoni,39.12345355,-7.54175837,1,0,0,0,300,Muslim,Partially,Yes,Yes,HADIJA SAIDI NDWANGILA
+TZA,MII,Mjawa,Jaribu Mpakani,Mikwala,39.13442014,-7.54777383,1,0,0,0,250,Muslim,Partially,Yes,Yes,YUSUF SULTAN MATIMBWA
+TZA,MOT,Mjawa,Jaribu Mpakani,Motomoto,39.13263929,-7.54164865,1,0,0,0,435,Muslim,Partially,Yes,Yes,JUMA SEF NDAM E
+TZA,MTU,Mjawa,Jaribu Mpakani,Mtunda,39.13808367,-7.54065977,1,0,6 to 19,0,400,Muslim,Partially,Yes,Yes,MBWANA ALLY NGINGA
+TZA,MUU,Mjawa,Jaribu Mpakani,Muungano,39.12879742,-7.54819677,1,0,6 to 19,0,600,Muslim,Yes,Yes,Yes,SHABAN ABDALA MPONDA
+TZA,UJA,Mjawa,Jaribu Mpakani,Ujamaa,39.13261122,-7.54670141,1,0,0,0,215,Muslim,Yes,Yes,Yes,Hamis Sultan Lubanza
+TZA,BOJ,Mjawa,Mjawa,Bonjo,39.15916397,-7.59006922,1,0,0,0,130,Muslim,No,Yes,Yes,Sefu juto banba
+TZA,DUT,Mjawa,Mjawa,Dutani,39.14101066,-7.5746258,1,0,0,0,85,Muslim,Partially,Yes,Yes,RAJABU JUMA MAGWIRA
+TZA,GOS,Mjawa,Mjawa,Gosa,39.14138588,-7.56358374,1,0,6 to 19,0,90,Christian,Partially,No,Yes,SHAFIKA SULTANI MTETA
+TZA,MTE,Mjawa,Mjawa,Mtetani,39.14671768,-7.5665742,1,1 to 5,0,0,80,Muslim,No,Yes,Yes,MASUDI HAMISI MTANGA
+TZA,NGL,Mjawa,Mjawa,Ngalemwa,39.13400038,-7.56210336,1,0,1 to 5,0,150,Christian,Partially,Yes,Yes,PIUS GODRIN SOTTA
+TZA,GOL,Mjawa,Motomoto,Goloatanga,39.08859798,-7.53477823,1,20 or more,6 to 19,0,150,Muslim,Partially,Yes,Yes,HASHIMU ALLY MAUPA
+TZA,MIO,Mjawa,Motomoto,Misogole,39.10824222,-7.54225245,1,0,20 or more,0,120,Muslim,Partially,Yes,Yes,SAMORA DANIEL MENG'ANYI
+TZA,MSE,Mjawa,Ngalengwa,Msega,39.15616022,-7.53470651,1,0,20 or more,0,150,Other,No,Yes,Yes,ABEDI ALLY KIUKILA
+TZA,MTL,Mjawa,Ngalengwa,Mtuluma,39.16359497,-7.54069158,1,0,0,0,400,Muslim,No,Yes,Yes,MOHAMED NGOSHA MASHALA
+TZA,UCH,Mjawa,Uchembe,Uchembe Chini,39.09205532,-7.56446653,1,20 or more,20 or more,0,100,Muslim,No,Yes,Yes,MOHAMMED ALLY MTANGA
+TZA,UCE,Mjawa,Uchembe,Uchembe Juu,39.1082227,-7.58008064,1,0,6 to 19,0,500,NA,NA,NA,NA,NA
+TZA,UCM,Mjawa,Uponda,Uchembe Njianne,39.11625,-7.7603228,1,0,0,0,152,Other,No,Yes,Yes,ALUSANIA JANUARY KWIDU
+TZA,UPO,Mjawa,Uponda,Uponda Chini,39.14453656,-7.60471354,1,0,1 to 5,0,113,Muslim,No,No,No,SEIF SULTAN NYUMBA
+TZA,UPN,Mjawa,Uponda,Uponda Juu,39.11292542,-7.57856447,1,0,1 to 5,0,300,Muslim,Partially,No,No,ASIA ABDALAH MKIMA
+TZA,KBN,Mlanzi,Machipi,Kibuni,39.11189345,-7.74632651,0,0,0,0,29,Muslim,Yes,DK,Yes,MWAJUMA OMARY NUSURA
+TZA,MAB,Mlanzi,Machipi,Mangimbwage,39.12605845,-7.73553751,0,0,0,0,45,Muslim,No,No,Yes,FATUMA SALUM BANGANYOKO
+TZA,MSK,Mlanzi,Machipi,Msikitini,39.12980264,-7.73263664,0,0,0,0,90,Muslim,No,Yes,Yes,BAKARI SAIDI MAMBA
+TZA,NGJ,Mlanzi,Machipi,Ngonja,39.1106251,-7.72382851,0,0,0,0,30,Muslim,No,No,Yes,HASSAN MUHAMED MUKI
+TZA,RUA,Mlanzi,Machipi,Ruanda,39.11703509,-7.73945285,0,0,0,0,25,Muslim,No,Yes,Yes,ARAFAT MAULID MCHELE
+TZA,KIK,Mlanzi,Mlanzi,Kikimbili,39.0775331,-7.68830399,0,0,0,0,250,Muslim,No,Yes,Yes,MERICIAN HENRIC GEORGE
+TZA,KID,Mlanzi,Mlanzi,Kimbindu,39.10616706,-7.6684343,0,6 to 19,6 to 19,0,200,Muslim,Yes,Yes,Yes,SEIF JUMA TITIRI
+TZA,KGI,Mlanzi,Mlanzi,Kingweti,39.10122587,-7.67666631,0,0,0,0,150,Muslim,No,Yes,Yes,BAKARI SAIDI SOBO
+TZA,MIZ,Mlanzi,Mlanzi,Milonzi,39.12220978,-7.69192035,0,0,0,0,90,Muslim,No,Yes,Yes,OMAR BAKARI KENDA
+TZA,MLA,Mlanzi,Mlanzi,Mlanzi Magharibi,39.10827963,-7.69550505,0,0,0,0,450,Muslim,No,Yes,Yes,ZULFA ALLY MWANGU
+TZA,MLN,Mlanzi,Mlanzi,Mlanzi Mashariki,39.10908398,-7.69666057,0,0,0,0,370,Muslim,Partially,Yes,Yes,HAMISI SAIDI NONGE
+TZA,BOA,Mlanzi,Ngondae,Bora,39.13947433,-7.70688347,0,0,0,0,50,Muslim,Partially,Yes,Yes,Mussa Mohammed Linguya
+TZA,LIK,Mlanzi,Ngondae,Like,39.12895865,-7.70877847,0,0,0,0,50,Muslim,Partially,Yes,Yes,NAUSI HAMISI KINGALU
+TZA,MKJ,Mlanzi,Ngondae,Mkwajuni,39.14476145,-7.70858192,0,0,0,0,36,Muslim,Partially,Yes,Yes,NASFA HAMAD HAMISI
+TZA,MNL,Mlanzi,Nyamwimbe,Malenda,39.06932994,-7.72229096,0,0,6 to 19,0,40,Muslim,No,Yes,Yes,SAIDI MOHAMED SABIRIKWANZA
+TZA,MMN,Mlanzi,Nyamwimbe,Malenda Halisi,39.08812596,-7.7157007,0,0,1 to 5,0,70,Muslim,No,DK,Yes,Omari Mohammed Mgumba
+TZA,MRP,Mlanzi,Nyamwimbe,Miparani,39.06655209,-7.70660137,0,0,6 to 19,0,120,Christian,No,Yes,Yes,KASSIM KHATIBU KITAMBULIO
+TZA,NNE,Mlanzi,Nyamwimbe,Nyelelo,39.06105699,-7.72102487,0,0,0,0,160,Muslim,No,Yes,Yes,RAJABU ALLY MWENEYUN
+TZA,UMT,Mlanzi,Nyamwimbe,Umtanga,39.06524266,-7.72361703,0,20 or more,6 to 19,0,60,Muslim,No,Yes,Yes,KASIMU OMARY MTANGA
+TZA,NUN,Msala,Kiasi,Nunu,39.42086449,-8.01436074,0,0,20 or more,0,40,Muslim,No,Yes,Yes,SHABANI HAMISI MWANGAYA
+TZA,NNG,Msala,Kiasi,Nyunguni,39.41908484,-7.99943719,0,20 or more,20 or more,0,60,Muslim,No,Yes,Yes,HASSANI HAMISI KISINDE
+TZA,PLO,Msala,Kiasi,Ploti,39.42328282,-8.00335125,0,20 or more,20 or more,0,200,Muslim,No,Yes,Yes,BADIRU JAFARI NGORWE
+TZA,UWA,Msala,Kiasi,Uwandani,39.42730111,-7.97130978,0,20 or more,20 or more,0,300,Muslim,No,Yes,Yes,ABDUL ISMAIL RASHIDI
+TZA,MMA,Msala,Msala,Majaliwa,39.39522443,-7.97132993,0,1 to 5,20 or more,0,200,Muslim,No,Yes,Yes,RAMADHANI JUMA NDENDE
+TZA,MBL,Msala,Msala,Mbaleni,39.37482836,-8.02394528,0,0,0,0,174,Muslim,No,No,No,MUHAMED MUSSA MTETO
+TZA,MBO,Msala,Msala,Mbomboni,39.39477933,-7.97814496,0,0,20 or more,0,100,Muslim,No,Yes,Yes,FATE ATHUMANI DIFIKA
+TZA,UKO,Msala,Msala,Ukongoro,39.39647421,-7.97892465,0,0,0,0,50,Muslim,No,Yes,Yes,SHARABA ABDRUHMANI MKUGENZI
+TZA,WAS,Msala,Msala,Wasamande,39.37031452,-7.99458207,0,0,0,0,103,Muslim,No,No,No,MUHAMED MUSSA MTETO
+TZA,DOW,Msala,Twasalie,Domwe,39.32749063,-7.92471462,0,20 or more,0,0,70,Muslim,No,Yes,Yes,HAMZA SAIDI NGUNDE
+TZA,KIS,Msala,Twasalie,Kisimbya,39.34426707,-7.98007435,0,0,20 or more,0,600,Muslim,No,Yes,Yes,SADICK YUSUPH MTAMBO
+TZA,NYH,Msala,Twasalie,Nyahimba,39.30109038,-7.97150522,0,20 or more,0,0,200,Muslim,No,Yes,Yes,SAIDI JUMA KAYELA
+TZA,PLT,Msala,Twasalie,Poloti,39.35262933,-7.96983437,0,20 or more,20 or more,0,850,Muslim,No,Yes,Yes,JUMANNE ATHUMANI MANDULIJA
+TZA,TAR,Msala,Twasalie,Tarachu,39.32816391,-7.96615599,0,20 or more,0,0,120,Muslim,No,Yes,Yes,SAIDI RAMADHANI MUHENGA
+TZA,BUB,Mtawanya,Bumba,Bumba,38.91029168,-7.62505083,1,20 or more,20 or more,0,468,Muslim,No,Yes,Yes,Faustine M Msaga
+TZA,KYK,Mtawanya,Kinyanya Kati,Kinyanya Kati,38.95538033,-7.70024858,1,1 to 5,1 to 5,0,255,Muslim,Yes,Yes,Yes,Abdallah M Tindwa
+TZA,MOM,Mtawanya,Magogo Matatu,Magogo matatu,38.96965293,-7.68559837,1,0,0,0,290,Muslim,No,Yes,Yes,Hamza bakari Mpili
+TZA,MBT,Mtawanya,Umatumbi,Umatumbi,38.98113954,-7.69185352,1,0,0,0,150,Muslim,No,Yes,Yes,Athumani saidi mkatebiy
+TZA,MEM,Mtawanya,Mikendo,Mikendo,39.00373237,-7.68711231,1,0,6 to 19,0,72,Muslim,No,Yes,Yes,Mohamed Said Ponga
+TZA,MSO,Mtawanya,Msoro,Msoro,38.93667409,-7.58382751,1,0,0,0,500,Muslim,No,No,Yes,Juma hemedi mkandamburi
+TZA,MUE,Mtawanya,Mulandecha,Mulandecha,38.96961651,-7.70863353,1,0,0,0,130,Muslim,No,Yes,Yes,Saidi N Mkenda
+TZA,ROJ,Mtawanya,Roja,Roja,39.00032098,-7.68468504,1,0,0,0,110,Muslim,No,No,Yes,Juma Ally Mikendo
+TZA,UGE,Mtawanya,Ugezi,Ugezi,38.8454246,-7.57872917,1,0,0,0,49,Muslim,No,Yes,Yes,Warda Hamisi kiambwe
+TZA,UMI,Mtawanya,Umikendo,Umikendo,38.99599276,-7.68514289,1,0,0,0,52,Muslim,No,DK,Yes,Ally S Bora
+TZA,UMK,Mtawanya,Mkunama,Mkunama,39.00220709,-7.67526392,1,0,0,0,149,Muslim,No,No,Yes,Sauda saidi mkumbaru
+TZA,UNY,Mtawanya,Unyamlani,Unyamlani,38.96595668,-7.66764014,1,0,0,0,100,Muslim,No,Yes,Yes,Hamadi hamisi Tindwa
+TZA,UPA,Mtawanya,Upazi,Upazi,39.01164618,-7.6885839,1,0,0,0,95,Muslim,Partially,Yes,Yes,Abdallah Yusuf Ngondo
+TZA,ZOM,Mtawanya,Uzomboko,Uzomboko,38.97599059,-7.70080861,1,0,0,0,203,Muslim,Partially,DK,Yes,Seifu Salumu Mkengelwa
+TZA,KLA,Mtunda,Kikale,Kikale Mjini,39.20033512,-7.84247652,0,20 or more,20 or more,0,240,Muslim,No,Yes,Yes,SALAMA MBEGU MIRAMBO
+TZA,KLN,Mtunda,Kikale,Mtandu,39.19105755,-7.85284138,0,20 or more,20 or more,0,138,Muslim,No,Yes,Yes,SALUM SAIDI MATIMBWA
+TZA,MEG,Mtunda,Kikale,Makoge,39.19958698,-7.83880219,0,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,RASHIDI HAMISI KIDOLE
+TZA,MBG,Mtunda,Mtunda A,Mbongola,39.23779274,-7.94825827,0,20 or more,20 or more,0,310,Muslim,No,Yes,Yes,ATHUMANI RASHID KISOMA
+TZA,MBB,Mtunda,Mtunda A,Mbumi,39.18845357,-7.89055434,0,20 or more,20 or more,0,290,Muslim,No,Yes,Yes,Bakari Alli kingumba
+TZA,MIU,Mtunda,Mtunda A,Mikunguni,39.24917247,-7.9217859,0,20 or more,20 or more,0,120,Muslim,No,Yes,Yes,Hafidhi Shabani mpMikingi
+TZA,MTN,Mtunda,Mtunda A,Mtunda A,39.18554469,-7.89055895,0,20 or more,20 or more,0,258,Muslim,No,Yes,Yes,SINAINI W MLOCHWAKI
+TZA,NGR,Mtunda,Mtunda A,Ngualo,39.25876769,-8.01812746,0,20 or more,0,0,250,NA,NA,NA,NA,NA
+TZA,BET,Mtunda,Mtunda B,Beta,39.24597028,-8.0062562,0,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,NOMANI MKALE
+TZA,MCH,Mtunda,Mtunda B,Mchikichini,39.18842754,-7.88842308,0,20 or more,20 or more,0,156,Muslim,No,Yes,Yes,JUMA AMIRI MPENDU
+TZA,MTD,Mtunda,Mtunda B,Mtunda B,39.18556968,-7.88465174,0,20 or more,1 to 5,0,420,Muslim,No,Yes,Yes,YUNISU ABDALAMANI ABIDI
+TZA,NGY,Mtunda,Mtunda B,Nganyanga,39.28137439,-7.95449645,0,0,0,0,200,NA,NA,NA,NA,NA
+TZA,NYF,Mtunda,Mtunda B,Nyafeda,39.26731699,-7.93241314,0,0,0,0,162,Muslim,No,No,No,MAULID ADINAN NANGA
+TZA,MGM,Mtunda,Muyuyu,Magomeni,39.07306775,-7.91807857,0,0,0,0,152,Muslim,No,No,No,YOHANA PETER SAKANYA
+TZA,MMS,Mtunda,Muyuyu,Misuguli,39.05259619,-7.87348531,0,20 or more,1 to 5,0,120,Muslim,No,No,Yes,MAULIDI OMARY NGWERE
+TZA,MKT,Mtunda,Muyuyu,Mkata,39.06295379,-7.90986402,0,0,0,0,480,Muslim,No,Yes,Yes,Rashid Ndunguru Mponda
+TZA,MUY,Mtunda,Muyuyu,Muyuyu mjini,39.07533107,-7.92567775,0,20 or more,20 or more,0,290,NA,NA,NA,NA,NA
+TZA,NJI,Mtunda,Muyuyu,Njianne,39.03419804,-7.93384884,0,20 or more,20 or more,0,152,Muslim,No,No,Yes,Ramadhani Bakari kawambwa
+TZA,NBM,Mtunda,Muyuyu,Nyambele,39.16037301,-8.0300358,0,20 or more,6 to 19,0,381,Muslim,No,Yes,Yes,WAZIRI ABDU MATIMBWA
+TZA,SOY,Mtunda,Muyuyu,Sonywe,39.05404587,-7.96876015,0,20 or more,20 or more,0,280,Muslim,No,Yes,Yes,Moshi abdallah ndambasi luambo
+TZA,MOE,Mwambao,Kigunguli,Mkole,39.17629728,-7.5307215,0,0,0,0,181,Muslim,No,DK,Yes,HEMEDI MOHOMEDI MBONDE
+TZA,MPA,Mwambao,Kigunguli,Mpafuni,39.19565619,-7.54871101,0,20 or more,20 or more,0,315,Christian,No,Yes,Yes,MUSA MWISHEE JONGO
+TZA,MSL,Mwambao,Kigunguli,Mselema,39.18715493,-7.54083265,0,0,0,0,300,Muslim,No,Yes,Yes,MUSSA SAID KIPENGELE
+TZA,KAR,Mwambao,Kivinja A,Kariakoo,39.24961443,-7.60115454,0,20 or more,20 or more,0,175,Muslim,No,Yes,Yes,Shabani Shaha Chata
+TZA,KJN,Mwambao,Kivinja A,Kisanjani,39.25067438,-7.60343923,0,20 or more,20 or more,0,73,NA,NA,NA,NA,NA
+TZA,MAS,Mwambao,Kivinja A,Masakwi,39.22298884,-7.61817534,0,20 or more,20 or more,0,100,Muslim,No,Yes,Yes,HAMISI BAKARI KISI
+TZA,MFE,Mwambao,Kivinja B,Mfenesini,39.1948048,-7.58788567,0,0,0,0,200,Muslim,No,Yes,Yes,SELEMAN MPOLOLYA MWEYO
+TZA,MKG,Mwambao,Kivinja B,Mkegetoni,39.19887915,-7.58776731,0,20 or more,20 or more,0,85,Muslim,No,No,Yes,Haruna Mohamedi Kyale
+TZA,MWY,Mwambao,Kivinja B,Mweyubaruti,39.19373884,-7.60718341,0,0,1 to 5,0,260,Muslim,No,No,Yes,HATIBU ZUBERI SITU
+TZA,MIT,Mwambao,Mchungu,Mititimbo,39.28524294,-7.719025,0,20 or more,20 or more,0,280,Muslim,No,Yes,Yes,OMARI BAKARI HAKUNGWA
+TZA,MPE,Mwambao,Mchungu,Mpekeso,39.28592239,-7.71890432,0,0,20 or more,0,150,Muslim,No,Yes,Yes,Mosi Salum Faki
+TZA,KBO,Mwambao,Mkenda,Kikombe,39.19889629,-7.56725589,0,20 or more,20 or more,0,58,Muslim,No,Yes,Yes,Hamis Hassan Mlawa
+TZA,MKD,Mwambao,Mkenda,Mkenda Mnazi,39.19884427,-7.56724148,0,0,0,0,98,Muslim,No,Yes,Yes,Abdallah Rashidi Kibao
+TZA,NGG,Mwambao,Mkenda,Ngungule,39.18783044,-7.57641881,0,0,0,0,63,Muslim,No,Yes,Yes,Maulidi Hamisi Mkokwa
+TZA,GEN,Mwambao,Msindaji,Genju,39.21898306,-7.62317011,0,20 or more,0,0,46,Muslim,No,DK,Yes,Hussein Hatibu Jongo
+TZA,MAD,Mwambao,Msindaji,Madukani,39.26312194,-7.64580908,0,20 or more,20 or more,0,270,Muslim,No,Yes,Yes,HAMADI MSELEMU NGOKORO
+TZA,KTI,Ruaruke,Kilulatambwe,Kilulatambwe Kati,39.09808053,-7.74362768,1,0,0,0,100,Muslim,No,Yes,Yes,SHABANI O. KILAMBO
+TZA,MBS,Ruaruke,Kilulatambwe,Mbusi,39.08945122,-7.73921456,1,0,0,0,92,Muslim,No,Yes,Yes,SEIFU SAIDI MWEGIO
+TZA,MGL,Ruaruke,Kilulatambwe,Milonzi,39.10345626,-7.74344019,1,0,0,0,100,Muslim,No,Yes,Yes,HAMISI A.MWAG
+TZA,MOI,Ruaruke,Nyamatanga,Mkopi,39.13699174,-7.76743567,1,0,0,0,124,Muslim,Partially,Yes,Yes,SHABANI HAMISI KIGUMI
+TZA,MTO,Ruaruke,Nyamatanga,Mtomboloka,39.12877499,-7.77085351,1,0,20 or more,0,80,Muslim,No,Yes,Yes,JUMA ALLY RAI
+TZA,NMG,Ruaruke,Nyamatanga,Nyamatanga,39.13367865,-7.7715716,1,0,0,0,134,Muslim,Partially,Yes,Yes,OMARI MJUSI MKUMBI
+TZA,KAD,Ruaruke,Ruaruke A,Kindande,39.15337196,-7.75355635,1,0,0,0,200,Muslim,No,Yes,Yes,SAIDI HAMIS JUMA
+TZA,KIW,Ruaruke,Ruaruke A,Kiwaga,39.16514071,-7.75904314,1,1 to 5,20 or more,0,300,Muslim,No,No,No,Hilali mwinyikondo
+TZA,MWN,Ruaruke,Ruaruke A,Mwenge,39.16848076,-7.76612309,1,0,0,0,313,Muslim,Partially,Yes,Yes,Bakari ally ndimbwi
+TZA,NYP,Ruaruke,Ruaruke A,Nyambalapi,39.15091687,-7.77522698,1,0,0,0,140,NA,NA,NA,NA,NA
+TZA,KIF,Ruaruke,Ruaruke B,Kimbwere famiti,39.19543956,-7.74779576,1,1 to 5,6 to 19,0,70,NA,NA,NA,NA,NA
+TZA,MWB,Ruaruke,Ruaruke B,Mbawa,39.12671219,-7.86800665,1,20 or more,20 or more,0,300,NA,NA,NA,NA,NA
+TZA,MFU,Ruaruke,Ruaruke B,Mfule Mkumbini,39.19773351,-7.76363279,1,20 or more,6 to 19,0,200,Muslim,No,Yes,Yes,Ally jafari mchawi
+TZA,MGE,Ruaruke,Ruaruke B,Mgerezini,39.18048174,-7.76954156,1,0,0,0,426,Muslim,Yes,Yes,Yes,JUMA ABDALAH MWANDAMA
+TZA,NEK,Ruaruke,Ruaruke B,Nyanindi - Makoge,39.1744905,-7.79787833,1,6 to 19,0,0,200,Muslim,No,DK,Yes,Hamisi mussa mbweli
+TZA,SAW,Ruaruke,Ruaruke B,Sangweni Matosa,39.18969449,-7.78015652,1,20 or more,20 or more,0,115,Muslim,No,Yes,Yes,ABDRAMAN MGENI NYERANDU
+TZA,GAR,Ruaruke,Rungungu,Garibovu,39.09111648,-7.78366498,1,0,0,0,65,Christian,No,Yes,Yes,SAMWEL YOHANA DIMBUDI
+TZA,MIW,Ruaruke,Rungungu,Miwaleni,39.09186041,-7.78141964,1,0,6 to 19,0,200,Muslim,No,Yes,Yes,SADELIC KASHAN KIHONGOSI
+TZA,MWK,Ruaruke,Rungungu,Mkwende,39.04442798,-7.76995576,1,0,0,0,70,Muslim,No,Yes,Yes,SULTANI OMARI NGANOGA
+TZA,MUN,Ruaruke,Rungungu,Mungutwa,39.08762842,-7.76331817,1,0,0,0,95,Muslim,No,Yes,Yes,ABDALLAH MOHAMED MAPEMBA
+TZA,RUN,Ruaruke,Rungungu,Rungungu,39.07458085,-7.77531692,1,20 or more,20 or more,0,400,Muslim,Yes,Yes,Yes,Ramadhani juma malepa
+TZA,KIO,Salale,Kiomboni,Pwani,39.39925933,-7.80060418,0,20 or more,20 or more,0,130,Muslim,No,Yes,Yes,MIRAJI MOHAMED MAPEMBE
+TZA,TWA,Salale,Kiomboni,Twana,39.43805003,-7.85480059,0,0,20 or more,0,120,Muslim,No,Yes,Yes,SAIDI OMARI KILANGA
+TZA,URO,Salale,Kiomboni,Urongoni,39.38932938,-7.79002737,0,20 or more,20 or more,0,250,Muslim,No,Yes,Yes,HAMIS AYUBU MPEMBETA
+TZA,KLI,Salale,Mchinga,Kilwani,39.35778192,-7.8270171,0,20 or more,20 or more,0,69,Muslim,No,Yes,Yes,Amiri Bakari Mbonde
+TZA,MCI,Salale,Mchinga,Mchinga,39.37093085,-7.82159746,0,20 or more,20 or more,0,300,Muslim,No,Yes,Yes,MUUMINU JUMANNE KIGOMBA
+TZA,SAL,Salale,Mchinga,Salale,39.31990091,-7.83062304,0,20 or more,20 or more,0,165,Muslim,No,Yes,Yes,Iblahimu zakaria monelo
+TZA,SAI,Salale,Mchinga,Saninga,39.35654306,-7.79222357,0,20 or more,20 or more,0,54,Muslim,No,Yes,Yes,Abdulmaliki Abdalla Muhenga
+TZA,SIB,Salale,Mchinga,Simba Ulanga,39.35340713,-7.76420771,0,0,20 or more,0,210,Muslim,No,Yes,Yes,YUSUPH AHMAD MFAUME
+TZA,MFI,Salale,Mfisini,Mfisini A,39.35169681,-7.85924649,0,20 or more,20 or more,0,340,Muslim,No,Yes,Yes,FAISWALI YUSUPH MKONDA
+TZA,MFS,Salale,Mfisini,Mfisini B,39.34628796,-7.84705631,0,20 or more,20 or more,0,445,Muslim,No,Yes,Yes,KASIMU RAMADHANI KIBIANI
+TZA,MFN,Salale,Mfisini,Mfisini kati,39.35038574,-7.85691565,0,20 or more,20 or more,0,118,Muslim,No,Yes,Yes,Feiswal Yusuf konda
+TZA,KIH,Salale,Nyamisati,Kihingi Shule,39.27665238,-7.78127062,0,0,20 or more,0,1400,Muslim,Partially,Yes,Yes,Hija mussa taliani
+TZA,KKP,Salale,Nyamisati,Kihingi Pwani,39.27370043,-7.78737047,0,0,20 or more,0,700,NA,NA,NA,NA,NA
+TZA,MJE,Salale,Nyamisati,Mjengea,39.27622918,-7.77438925,0,6 to 19,6 to 19,0,300,Muslim,Partially,Yes,Yes,Hemedi mbwana jongo
+TZA,GOA,Chemchem,Golani,Golani,38.76186042,-7.99701413,0,20 or more,20 or more,0,500,Muslim,Yes,Yes,Yes,MOHAMED MCHUCHULI
+TZA,KWI,Chemchem,Kindwiti/Kidwitwi,Kindwiti/Kidwitwi,38.77937671,-8.00622381,0,20 or more,6 to 19,0,130,Muslim,Yes,Yes,Yes,SAID KINDEMBA
+TZA,KEI,Chemchem,Kipei,Kipei,38.85678612,-8.01256598,0,20 or more,20 or more,0,60,Muslim,No,Yes,Yes,MAISHA KASSIM KINDAMI
+TZA,NTY,Chemchem,Nyandakatundu,Nyandakatundu,38.81477995,-8.01367555,0,20 or more,20 or more,0,350,Muslim,Partially,No,Yes,SAID SALUMU MBALAPI
+TZA,NUD,Chemchem,Nyandumbi,Nyandumbi,38.85810241,-8.01402515,0,20 or more,20 or more,0,154,Muslim,No,No,No,ZIARA BAKARI NJECHERE
+TZA,NIY,Chemchem,Nyangwai,Nyangwai,38.76043509,-7.99350366,0,20 or more,20 or more,0,900,Muslim,Partially,Yes,Yes,MAULID SALUM TINDWA
+TZA,NNB,Chemchem,Nyawanje/Ngwembele,Nyawanje/ngwembele,38.68755142,-8.14340965,0,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,ADAM BAKARI NGAKONDA
+TZA,IPE,Chumbi,Chumbi A,Ipengo,39.12304677,-8.08473604,1,20 or more,20 or more,0,50,Muslim,No,DK,Yes,SAIDI SALUMU FUNDI
+TZA,KIE,Chumbi,Chumbi A,Kiegele,39.13041885,-8.09783993,1,20 or more,20 or more,0,105,Muslim,No,Yes,Yes,SAID HAMISI NGOENGO
+TZA,KGO,Chumbi,Chumbi A,Kigogo,39.10210967,-8.12683052,1,20 or more,20 or more,0,110,Muslim,Partially,Yes,Yes,MOHAMEDI ATHUMANI MKWANDA
+TZA,TAN,Chumbi,Chumbi A,Tangini,39.09684596,-8.1328629,1,20 or more,20 or more,0,262,Muslim,Partially,Yes,Yes,BAKARI SAIDI MKEMI
+TZA,BOT,Chumbi,Chumbi B,Boto,39.14658235,-8.11934585,1,20 or more,20 or more,0,180,Muslim,No,DK,Yes,KASSIMU SELEMANI MLANZI
+TZA,KKN,Chumbi,Chumbi B,Kilindi,39.130149,-8.06616761,1,20 or more,20 or more,0,360,Muslim,No,Yes,Yes,ALLI MOHAMEDI SAMBALE
+TZA,KKO,Chumbi,Chumbi B,Kipoka,39.25458196,-8.0668528,1,20 or more,20 or more,0,250,Muslim,No,Yes,Yes,DARUWESHI BAKARI MKENDA
+TZA,KSP,Chumbi,Chumbi B,Kipoka msomeni,39.22250973,-8.05135631,1,20 or more,20 or more,0,350,Muslim,No,Yes,Yes,MOHAMED KASIM MTAWAZI
+TZA,MST,Chumbi,Chumbi B,Msikitini,39.12856209,-8.13108124,1,20 or more,20 or more,0,300,Muslim,No,Yes,Yes,BAKARI MOHAMED MKUKU
+TZA,CHG,Chumbi,Chumbi C,Chumbi Magharibi,39.09499252,-8.12975999,1,20 or more,20 or more,0,150,Muslim,Partially,Yes,Yes,KADIRI SAID MITAU
+TZA,KAN,Chumbi,Chumbi C,Kanga,39.10204037,-8.0729017,1,20 or more,20 or more,0,167,Muslim,No,No,Yes,MOHAMEDI JUMA MCHUCHULI
+TZA,NLG,Chumbi,Chumbi C,Ngaro,39.06809419,-8.04958166,1,20 or more,20 or more,0,71,Muslim,No,DK,Yes,HAMISI ABASI RWAMBO
+TZA,NDK,Chumbi,Chumbi C,Nyakipande,39.05566961,-8.15449873,1,20 or more,20 or more,0,120,Muslim,No,DK,Yes,RAJABU NASORO KINYWAKI
+TZA,KAU,Ikwiriri,Ikwiriri Kaskazini,Kaunda,38.97556166,-7.92925297,1,0,20 or more,0,186,Muslim,Yes,Yes,Yes,Hija Ally Matibwa
+TZA,KAZ,Ikwiriri,Ikwiriri Kaskazini,Kazamoyo,38.93912949,-7.8886873,1,20 or more,20 or more,0,212,Muslim,Partially,Yes,Yes,Husein Ausi Mpakirwa
+TZA,MPR,Ikwiriri,Ikwiriri Kaskazini,Mparange,38.96301542,-7.86917809,1,20 or more,20 or more,0,350,Christian,Partially,Yes,Yes,Bakari Mpawane
+TZA,MTK,Ikwiriri,Ikwiriri Kaskazini,Mtakuja,38.98032934,-7.94176146,1,0,20 or more,0,275,Muslim,Yes,Yes,Yes,HARUNA SALUMU MPONDA
+TZA,MWG,Ikwiriri,Ikwiriri Kaskazini,Mwenge,38.97845174,-7.93667584,1,0,0,0,203,Muslim,Partially,Yes,Yes,Ally Ramadhan Upindo
+TZA,UJM,Ikwiriri,Ikwiriri Kaskazini,Ujamaa,38.98019317,-7.94085048,1,1 to 5,20 or more,0,300,Muslim,Yes,Yes,Yes,MWAJUMA MUSA TINDWA
+TZA,MSN,Ikwiriri,Ikwiriri Kati,Msikitini,38.97985428,-7.94652518,1,0,0,0,40,Muslim,Yes,Yes,Yes,HALISWA ABDALLAH MWINGO
+TZA,MWW,Ikwiriri,Ikwiriri Kati,Mwenge,38.98030678,-7.94514147,1,0,20 or more,0,250,Muslim,Partially,Yes,Yes,YAHAYA ALLY JONGO
+TZA,SID,Ikwiriri,Ikwiriri Kati,SIDO,38.98320423,-7.9469379,1,0,6 to 19,0,50,Muslim,Yes,Yes,Yes,SHIDA SHAWEJI MKURIA
+TZA,SIS,Ikwiriri,Ikwiriri Kati,Sisi kwa Sisi,38.9783433,-7.94661493,1,0,6 to 19,0,200,Muslim,Yes,Yes,Yes,Ramadhani Hamidu Mlanzi
+TZA,TAG,Ikwiriri,Ikwiriri Kati,Tangimoja,38.97812867,-7.94554007,1,0,20 or more,0,58,Muslim,Yes,No,Yes,RAMADHANI MOHAMED KIUMWA
+TZA,UJI,Ikwiriri,Ikwiriri Kati,Ujirani Mwema,38.98115906,-7.94333994,1,0,20 or more,0,170,Muslim,Yes,Yes,Yes,Juma Mohamedi Kisinga
+TZA,UMO,Ikwiriri,Ikwiriri Kati,Umoja,38.98125593,-7.94565182,1,0,20 or more,0,45,Muslim,Yes,Yes,Yes,MWAJUMA ABDALAH KAWAMBWA
+TZA,UPE,Ikwiriri,Ikwiriri Kati,Upendo,38.98000236,-7.94829867,1,0,20 or more,0,500,Muslim,Yes,Yes,Yes,SALUMU KASSIMU KINUKA
+TZA,KAM,Ikwiriri,Ikwiriri Kusini,Karume,38.98194878,-7.95148537,1,0,0,0,370,Muslim,Yes,No,Yes,FATUMA ABDULRAHMAN MTUMBUKA
+TZA,KAW,Ikwiriri,Ikwiriri Kusini,Kawawa,38.98099194,-7.94862975,1,1 to 5,20 or more,0,350,Muslim,Yes,Yes,Yes,JUMA ALLI BOMBO
+TZA,MLM,Ikwiriri,Ikwiriri Kusini,Malemba,38.98226508,-7.95245077,1,0,6 to 19,0,250,Muslim,Yes,Yes,Yes,Husna Yusuph Mahege
+TZA,MPM,Ikwiriri,Ikwiriri Kusini,Mpima,38.98446263,-7.95509551,1,0,0,0,83,Muslim,Yes,Yes,Yes,SAID MMENGO
+TZA,MOU,Ikwiriri,Ikwiriri Kusini,Muungano,38.98032135,-7.95373057,1,0,0,0,52,Muslim,Yes,Yes,Yes,TANO SEIFU MTUNYUNGU
+TZA,NYR,Ikwiriri,Ikwiriri Kusini,Nyerere,38.98139327,-7.95238639,1,0,20 or more,0,400,Muslim,Yes,No,Yes,ALI SAIDI MPAWANE
+TZA,PKI,Ikwiriri,Ikwiriri Kusini,P/Kisumo,38.98112878,-7.95376217,1,0,6 to 19,0,100,Muslim,Yes,Yes,Yes,ASHURA MUSA MTOLEA
+TZA,POT,Ikwiriri,Ikwiriri Kusini,Posta,38.98244905,-7.95000318,1,0,0,0,150,Muslim,Yes,Yes,Yes,RASHID ABDALAH MAKALE
+TZA,TAB,Ikwiriri,Ikwiriri Kusini,Tangimbili Kusini,38.98442407,-7.95276342,1,0,6 to 19,0,250,Muslim,Yes,Yes,Yes,RASHIDI OMARI MKURU
+TZA,UHU,Ikwiriri,Ikwiriri Kusini,Uhuru,38.98514796,-7.95500235,1,20 or more,20 or more,0,400,Muslim,Yes,Yes,Yes,JUMANNE MAULIDI MELI
+TZA,UJJ,Ikwiriri,Ikwiriri Kusini,Ujamaa,38.98384016,-7.95443822,1,0,20 or more,0,80,Muslim,Yes,Yes,Yes,SALUM SEIF KALAGABAO
+TZA,MOL,Kipugira,Kipo,Mawilo,38.50366743,-7.86227441,0,20 or more,20 or more,0,139,Muslim,Partially,DK,Yes,Abdallah Saidi Kibana
+TZA,MGO,Kipugira,Kipo,Mgohori,38.50405241,-7.86531226,0,0,0,0,160,Muslim,Partially,No,Yes,Salumu Abedi Limbetembe
+TZA,MPN,Kipugira,Kipo,Mpande,38.51086806,-7.8657033,0,20 or more,20 or more,0,102,Muslim,Partially,Yes,Yes,MOHAMEDI SAID MZERU
+TZA,NYI,Kipugira,Ndundunyikanza,Nyikanza,39.56919,-7.870281,0,NA,NA,NA,200,Muslim,No,Yes,Yes,Rashidi Hassan Mkwega
+TZA,KUK,Kipugira,Kipugira,Kipugira,38.46267634,-7.85659518,0,20 or more,20 or more,0,200,Muslim,Yes,Yes,Yes,SAID MUSA NDAGO
+TZA,PAG,Kipugira,Kipugira,Pangapanga,38.46457058,-7.85671365,0,20 or more,20 or more,0,60,Muslim,Yes,Yes,Yes,ALLY ATHUMANI LUSONZO.
+TZA,TET,Kipugira,Ndundunyikanza,Tetema,38.56105737,-7.86755962,0,20 or more,20 or more,0,180,Muslim,Yes,Yes,Yes,MRISHO MOSHI MLOYA
+TZA,MTT,Kipugira,Nyaminywili,Mtalula,38.41940454,-7.840494,0,20 or more,20 or more,0,480,Muslim,Yes,Yes,Yes,ABDALLAH ATHUMANI LICHIKA
+TZA,NAY,Kipugira,Nyaminywili,Nyaminywili,38.42612435,-7.84285876,0,20 or more,20 or more,0,350,Muslim,Yes,Yes,Yes,YUSSUPHU SULTANI MSASO
+TZA,KTA,Mbwara,Kitapi,Kitapi Magharibi,39.04908214,-8.33326134,0,0,6 to 19,0,120,Muslim,No,Yes,Yes,Ally Omari Nakapana
+TZA,KTH,Mbwara,Kitapi,Kitapi Mashariki,39.06606499,-8.28303742,0,20 or more,20 or more,0,427,Muslim,No,Yes,Yes,Dotto Antony Salvertory
+TZA,NAH,Mbwara,Kitapi,Namahamba,39.07536515,-8.2560206,0,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,Alli Omari Nakapena
+TZA,MBW,Mbwara,Mbwara,Mbwara magharibi,39.00585113,-8.26368571,0,20 or more,20 or more,0,120,Muslim,No,Yes,Yes,Ally Athumani Simba
+TZA,MBR,Mbwara,Mbwara,Mbwara Mashariki,39.02160173,-8.24107196,0,0,20 or more,0,260,Muslim,Yes,Yes,Yes,MOHAMEDI SAIDI MPUNJIKA
+TZA,MMI,Mbwara,Mbwara,Misimbo,39.04876974,-8.21587759,0,0,6 to 19,0,150,Muslim,No,Yes,Yes,HAMISI SAIDI ISSA
+TZA,KBU,Mbwara,Nambunju,Kikibu,38.98620104,-8.30670432,0,0,6 to 19,0,200,Muslim,Yes,Yes,Yes,AYUBU SAIDI MKANE
+TZA,MIA,Mbwara,Nambunju,Miangalaya,38.98366846,-8.35178199,0,0,20 or more,0,160,Muslim,No,No,No,BAKARI HEMEDI MUBA
+TZA,NAK,Mbwara,Nambunju,Namakono,39.0054444,-8.32650087,0,0,20 or more,0,300,Muslim,No,Yes,Yes,JUMA YASINI MTANGENANGE
+TZA,NAB,Mbwara,Nambunju,Nambunju Magharibi,38.98155865,-8.31570941,0,0,6 to 19,0,220,Muslim,Partially,Yes,Yes,OMARY ABDALLAH MBONDE
+TZA,NAU,Mbwara,Nambunju,Nambunju mashariki,38.98844538,-8.31747111,0,0,20 or more,0,650,Muslim,Partially,Yes,Yes,SHABANI SAIDI KIPENGELE
+TZA,NNR,Mbwara,Nyamwage,Nyamwage Magharibi,38.99701323,-8.12606083,0,20 or more,20 or more,0,350,Muslim,Yes,Yes,Yes,Hamisi Mussa Mpili
+TZA,NYS,Mbwara,Nyamwage,Nyamwage Mashariki,38.99693229,-8.12848799,0,20 or more,20 or more,0,270,Muslim,Partially,Yes,Yes,SUDI ABDALAH KINAWILO0782
+TZA,SHA,Mbwara,Nyamwage,Shauri moyo,38.97862773,-8.05124013,0,20 or more,20 or more,0,320,Muslim,No,Yes,Yes,Ahmadi Mohamedi Matimbwa
+TZA,GEG,Mbwara,Tawi,Gege,38.8655722,-8.27189743,0,0,6 to 19,0,90,Muslim,No,DK,Yes,Kassimu Mohamedi Mpulu
+TZA,KOB,Mbwara,Tawi,Kikobo,38.80064896,-8.36372188,0,20 or more,20 or more,0,85,Muslim,No,DK,Yes,Abdul Mchambe
+TZA,MMK,Mbwara,Tawi,Mkukiki,38.84727813,-8.28560161,0,0,20 or more,0,120,Muslim,No,Yes,Yes,Maulidi Mbwana Kitambulio
+TZA,MMW,Mbwara,Tawi,Mkwiri,38.87666682,-8.24898802,0,20 or more,20 or more,0,80,Muslim,No,DK,Yes,Saidi Kulamakwende
+TZA,JIT,Mgomba,Mgomba Kaskazini,Jitegemee,38.97467769,-7.94765634,1,0,20 or more,0,480,Muslim,Yes,Yes,Yes,RASHID HEMED KUONEWA
+TZA,MPP,Mgomba,Mgomba Kaskazini,Mpima,38.94470338,-7.94348572,1,20 or more,20 or more,0,500,Muslim,Partially,Yes,Yes,Peter Charles Malali
+TZA,SEK,Mgomba,Mgomba Kaskazini,Sekondari,38.97548774,-7.94483461,1,0,20 or more,0,600,Muslim,Partially,Yes,Yes,Shaban Abdala Mbelai
+TZA,UJU,Mgomba,Mgomba Kaskazini,Ujamaa,38.97541912,-7.94821435,1,0,20 or more,0,345,Muslim,Yes,Yes,Yes,HAMISI SALUM NGAKOPEA
+TZA,KIA,Mgomba,Mgomba Kati,Kiapo,38.97684163,-7.95137496,1,1 to 5,20 or more,0,700,Muslim,Partially,Yes,Yes,HUSSEIN HAMISI JUMA
+TZA,MNM,Mgomba,Mgomba Kati,Malenda,38.97051462,-7.9513638,1,6 to 19,20 or more,0,99,Muslim,Partially,Yes,Yes,SALUMU MOHAMEDI NDUNDU
+TZA,MDE,Mgomba,Mgomba Kati,Masenda,38.96949839,-7.95340657,1,0,20 or more,0,262,Muslim,Partially,Yes,Yes,INDO ATHUMANI NGAUGIA
+TZA,MTP,Mgomba,Mgomba Kati,Mtupa,38.9754715,-7.952051,1,0,6 to 19,0,150,Muslim,Yes,Yes,Yes,Mchungaji Robert Spemba mbao
+TZA,KIJ,Mgomba,Mgomba Kusini,Kijonjo,38.98185531,-7.95704114,1,0,20 or more,0,500,Muslim,Partially,Yes,Yes,MUSSA SALUMU KILUNGI
+TZA,KWN,Mgomba,Mgomba Kusini,Kingwande,38.97861865,-7.9563143,1,0,20 or more,0,400,Muslim,Yes,Yes,Yes,MOHAMEDI KASSIMU MWIGO
+TZA,MLP,Mgomba,Mgomba Kusini,Malipia,38.97893634,-7.95416779,1,0,20 or more,0,400,Muslim,Partially,Yes,Yes,TATU MOHAMED SUNGU
+TZA,NON,Mgomba,Mgomba Kusini,Nongwa,38.97559409,-7.95485991,1,0,20 or more,0,412,Muslim,Partially,Yes,Yes,HAMIS MOHAMED KAMBANGWA
+TZA,MBJ,Mkongo,Mbunju Mvuleni,Mbunju,38.89887664,-7.9311472,0,20 or more,20 or more,0,999,Muslim,Partially,Yes,Yes,YUSUPH ABDALAH MKWANYWE
+TZA,MVU,Mkongo,Mbunju Mvuleni,Mvuleni,38.8657,-7.91192195,0,20 or more,20 or more,0,261,Muslim,No,Yes,Yes,KADILI RAMADHANI NYUMBA
+TZA,KAA,Mkongo,Mkongo Kaskazini,Karakana,38.76300419,-7.88779118,0,20 or more,20 or more,0,200,Muslim,Yes,Yes,Yes,Moharami said mng'angi
+TZA,NRN,Mkongo,Mkongo Kaskazini,Nyipara,38.74474079,-7.87956036,0,20 or more,20 or more,0,70,Muslim,No,Yes,Yes,Hamisi ally mkoga
+TZA,RUS,Mkongo,Mkongo Kaskazini,Rusende,38.7493957,-7.88386832,0,0,0,0,200,Muslim,Yes,Yes,Yes,Moshi Said Mtapila
+TZA,KTK,Mkongo,Mkongo Kusini,Kitundu,38.74523039,-7.88449537,0,0,0,0,75,Muslim,Partially,Yes,Yes,Juma Hamisi Msumi
+TZA,KLK,Mkongo,Mkongo Kusini,Kiwili,38.74619592,-7.88642257,0,20 or more,0,0,27,Muslim,No,Yes,Yes,Salumu Saidi Mundu
+TZA,MME,Mkongo,Mkongo Kusini,Makonge,38.75957506,-7.88916464,0,20 or more,20 or more,0,53,Muslim,No,Yes,Yes,RASHID RASHID MUBA
+TZA,MGN,Mkongo,Mkongo Kusini,Mkunga,38.75294845,-7.88702557,0,0,0,0,85,Muslim,No,Yes,Yes,Saida ally matimbwa
+TZA,BEA,Mkongo,Ruwe,Beta,38.81714763,-7.91377688,0,20 or more,20 or more,0,168,Muslim,Partially,Yes,Yes,ALIHAJI SALUM MBINDA
+TZA,KRE,Mkongo,Ruwe,Kipera,38.82797774,-7.91964987,0,20 or more,20 or more,0,275,Muslim,No,Yes,Yes,RAMADHANI JUMANNE MNEKA
+TZA,NWE,Mkongo,Ruwe,Nyaringwe,38.8212913,-7.91608872,0,20 or more,20 or more,0,288,Muslim,Partially,Yes,Yes,HASAN MOHAMED MUBA
+TZA,CHY,Mohoro,King'ong'o,Chayonge,39.23645563,-8.15032768,1,20 or more,20 or more,0,70,Muslim,No,Yes,Yes,Ramadhan Athuman Mbeto
+TZA,KNK,Mohoro,King'ong'o,King'ong'o,39.24483882,-8.15234122,1,20 or more,20 or more,0,80,Muslim,No,Yes,Yes,Idrissa Halid Ngaigara
+TZA,KNI,Mohoro,King'ong'o,Kisangi,39.2210779,-8.15354671,1,20 or more,20 or more,0,105,Muslim,No,Yes,Yes,Said Musa Chici
+TZA,KWA,Mohoro,King'ong'o,Kwampakwila,39.24384188,-8.15351553,1,20 or more,20 or more,0,90,Muslim,No,Yes,Yes,Musa abdulhaman Mpaswa
+TZA,MPL,Mohoro,King'ong'o,Mpilipili,39.20019524,-8.16748988,1,20 or more,20 or more,0,360,Muslim,No,Yes,Yes,Kassim Omari kitundule
+TZA,KAG,Mohoro,Kiwanga,Kiwanga,39.19467823,-8.22953253,1,20 or more,20 or more,0,400,Muslim,Partially,Yes,Yes,Mohamed Elias Mpoka
+TZA,LON,Mohoro,Kiwanga,Londondo,39.18550706,-8.20067846,1,6 to 19,20 or more,1 to 5,380,Christian,No,Yes,Yes,Ahmad Chande Mrope
+TZA,MIH,Mohoro,Kiwanga,Mihiru,39.1201641,-8.311538,1,20 or more,20 or more,0,309,Christian,No,No,No,Hamis Yusuf Ngwembano
+TZA,MWA,Mohoro,Mohoro Magharibi,Mwanani,39.15718899,-8.12074798,1,20 or more,20 or more,0,120,Muslim,No,Yes,Yes,Ally Idd Lubanja
+TZA,NKA,Mohoro,Mohoro Magharibi,Nyakikai,39.17815728,-8.05726904,1,20 or more,20 or more,0,164,Muslim,No,Yes,Yes,Said Rajab mnabi
+TZA,NOD,Mohoro,Mohoro Magharibi,Nyandote,39.19231217,-8.09521526,1,20 or more,20 or more,0,450,Muslim,No,Yes,Yes,Said Hatib Kachale
+TZA,OLD,Mohoro,Mohoro Magharibi,Oldmohoro,39.18059416,-8.14306196,1,0,20 or more,0,200,Muslim,Yes,Yes,Yes,Mbwana Muhamed Mpekiya
+TZA,SUG,Mohoro,Mohoro Magharibi,Sunga Bara,39.17995797,-8.13991192,1,20 or more,20 or more,0,260,Muslim,Partially,Yes,Yes,Juma Said Fundi
+TZA,SUA,Mohoro,Mohoro Magharibi,Sungapwani,39.17829375,-8.1412557,1,0,0,0,250,Muslim,Yes,Yes,Yes,Musa Abdallah Mnemwa
+TZA,NEI,Mohoro,Mohoro Mashariki,Nyamidege/Chamwenge,39.2423735,-8.12926803,1,20 or more,20 or more,0,250,Muslim,No,Yes,Yes,Burhan Athuman Makombe
+TZA,NBN,Mohoro,Mohoro Mashariki,Nyampaku bara,39.18402957,-8.14162412,1,20 or more,20 or more,0,90,Muslim,Partially,Yes,Yes,Mohamed Shamte Jongo
+TZA,NIK,Mohoro,Mohoro Mashariki,Nyampaku mashariki,39.18509355,-8.14444884,1,20 or more,20 or more,0,450,Muslim,Partially,Yes,Yes,Bakari Abdallah Mbonde
+TZA,NIM,Mohoro,Mohoro Mashariki,Nyampaku pwani,39.18648786,-8.14604794,1,0,20 or more,0,300,Muslim,Partially,Yes,Yes,Shawejo Omari Mikele
+TZA,NAT,Mohoro,Mohoro Mashariki,Nyautika,39.24312536,-8.10212031,1,20 or more,20 or more,0,172,Muslim,No,Yes,Yes,Yusuf Jamal Ndekyo
+TZA,MNE,Mohoro,Ndundutawa,Makenzi,39.23543828,-8.19247152,1,0,6 to 19,0,60,Muslim,No,Yes,Yes,Hamis Said Kilagasi
+TZA,MSM,Mohoro,Ndundutawa,Msikitini,39.20289458,-8.17158484,1,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,Juma Bakari Msomi
+TZA,NDU,Mohoro,Ndundutawa,Ndundutawa,39.23282632,-8.18817408,1,0,20 or more,0,86,Muslim,No,Yes,Yes,Ally Bakari Kilangati
+TZA,NDA,Mohoro,Ndundutawa,Nyalindi,39.22484015,-8.17146919,1,20 or more,20 or more,0,105,Muslim,No,Yes,Yes,Athuman Said Msolopa
+TZA,KKT,Mohoro,Shela,Kindwitwi,39.1772163,-8.14783266,1,20 or more,20 or more,0,200,Muslim,No,Yes,Yes,Alife Mohamed Ngongobwe
+TZA,MOW,Mohoro,Shela,Mikolwa,39.15845335,-8.14034961,1,20 or more,20 or more,0,200,Muslim,Partially,Yes,Yes,Twalibu Muhamed Mtupa
+TZA,RAN,Mohoro,Shela,Rangitatu,39.14420458,-8.16432286,1,20 or more,20 or more,0,150,Christian,No,Yes,Yes,Mohemed Athuman Luwongo
+TZA,STE,Mohoro,Shela,Stendi,39.17722294,-8.1477518,1,20 or more,20 or more,0,350,Muslim,Partially,Yes,Yes,Rajab Mohamed Kipengele
+TZA,KWG,Mwaseni,Mloka,Kwangwazi,38.24005677,-7.7736032,0,0,20 or more,0,300,Muslim,Partially,Yes,Yes,HABIBU MUSA SELASELA
+TZA,MNA,Mwaseni,Mloka,Mkange,38.24648878,-7.77380872,0,20 or more,20 or more,0,225,Muslim,Partially,DK,Yes,ALLY SEIF BIDUMBA
+TZA,MPG,Mwaseni,Mloka,Mpanganya,38.24052699,-7.77641491,0,20 or more,20 or more,0,300,Muslim,Partially,Yes,Yes,SULTAN SEIF MBENA
+TZA,NKY,Mwaseni,Mloka,Nyakisiku,38.24187032,-7.77736849,0,20 or more,20 or more,0,460,Muslim,Partially,Yes,Yes,Shabani amiri ndago
+TZA,BIZ,Mwaseni,Mtanza /Msona,Bizi,38.34471367,-7.83923435,0,20 or more,20 or more,0,195,Muslim,Partially,Yes,Yes,ISSA MKANDU ISSA
+TZA,MSG,Mwaseni,Mtanza /Msona,Msiga,38.37113433,-7.83569695,0,20 or more,20 or more,0,74,Muslim,No,DK,Yes,HASSAN ABDALLAH KAMBANGWA
+TZA,MTZ,Mwaseni,Mtanza /Msona,Mtanza,38.36668386,-7.83677013,0,20 or more,20 or more,0,110,Muslim,Partially,Yes,Yes,SAID ABDALLAH SULE
+TZA,MTR,Mwaseni,Mtanza /Msona,Mturuma,38.34633726,-7.83520648,0,20 or more,20 or more,0,165,Muslim,No,No,Yes,MUSA BAKARI MPITU
+TZA,MIY,Mwaseni,Mwaseni,Mibuyusaba,38.30151462,-7.79458557,0,20 or more,20 or more,0,130,Muslim,Partially,Yes,Yes,SWALEHE OMARI MKUMBA
+TZA,MWS,Mwaseni,Mwaseni,Mwaseni,38.27344024,-7.78077674,0,0,0,0,182,Muslim,Yes,Yes,Yes,SEIFU SULITANI MKUMBIKE
+TZA,ZOB,Mwaseni,Mwaseni,Zombe,38.26284911,-7.78073904,0,20 or more,20 or more,0,55,Muslim,Partially,Yes,Yes,MBARAKA JUMA MSHINDO
+TZA,KUN,Ngarambe,Kungulwe,Kungulwe,38.65323425,-8.25496398,0,0,0,0,16,Muslim,No,Yes,Yes,Ally Omari Matimbwa
+TZA,NAO,Ngarambe,Namakono,Namakono,38.64870255,-8.33976426,0,0,0,0,65,Muslim,No,Yes,Yes,Said Abdalla Kipae
+TZA,NGB,Ngarambe,Ngarambe Mashariki,Ngarambe Mashariki,38.61387838,-8.44156821,0,0,0,0,321,Muslim,No,Yes,Yes,Mohamed Abdalla Kindemba
+TZA,NGE,Ngarambe,Ngarambemagharibi,NgarambeMagharibi,38.61143267,-8.44762878,0,0,0,0,263,Muslim,No,Yes,Yes,Sera Massi Mayolo
+TZA,TAP,Ngarambe,Tapika,Tapika,38.56711824,-8.29973737,0,0,20 or more,0,160,Muslim,No,Yes,Yes,Mbaraka Abdala Kabalika
+TZA,KLB,Ngorongo,Kilimani Magharibi,Kilombero,38.64880334,-7.95620526,1,0,0,0,154,Muslim,No,Yes,Yes,ALI MKIMA
+TZA,KSG,Ngorongo,Kilimani Magharibi,Kisagai,38.6685,-7.94641495,1,0,0,0,50,Muslim,No,Yes,Yes,JUMA OMARY BONYE
+TZA,MBY,Ngorongo,Kilimani Magharibi,Mbuyuni,38.67087803,-7.90753054,1,0,0,0,225,Muslim,Partially,Yes,Yes,Fate Hamisi Magenge
+TZA,MPY,Ngorongo,Kilimani Magharibi,Mpanganya,38.6373983,-7.92364273,1,20 or more,20 or more,0,97,Muslim,No,Yes,Yes,YUSUPHU MBWANA DIKULU
+TZA,TAT,Ngorongo,Kilimani Magharibi,Tangini,38.66993741,-7.90937301,1,20 or more,20 or more,0,300,Muslim,Partially,Yes,Yes,MWAJUMA ATHUMANI MZUNGA
+TZA,GEU,Ngorongo,Kilimani Mashariki,Gefu,38.67662733,-7.90913084,1,20 or more,6 to 19,0,250,Muslim,Partially,Yes,Yes,ABDALLAH JAFARI NGAKONDA
+TZA,GIE,Ngorongo,Kilimani Mashariki,Ginnery,38.67335405,-7.9103828,1,20 or more,20 or more,0,103,Muslim,Yes,Yes,Yes,SAID SALUM KIHAME
+TZA,MEN,Ngorongo,Kilimani Mashariki,Mkongeni,38.67821104,-7.90812781,1,20 or more,20 or more,0,85,Muslim,No,Yes,Yes,Shuari Mtandika
+TZA,MNK,Ngorongo,Kilimani Mashariki,Mkunga,38.67665662,-7.90692308,1,0,0,0,260,Muslim,No,Yes,Yes,RAMADHANI SALUMU NGAROKA
+TZA,UNO,Ngorongo,Kilimani Mashariki,Unyonge,38.67618812,-7.89816089,1,20 or more,20 or more,0,50,Muslim,No,Yes,Yes,MUSA SAID MAZONGE
+TZA,KOG,Ngorongo,Ngorongo Magharibi,Kikongono,38.62348332,-7.86835721,1,20 or more,20 or more,0,400,NA,NA,NA,NA,NA
+TZA,NNS,Ngorongo,Ngorongo Magharibi,Nyasungwi,38.63874082,-7.86503836,1,20 or more,20 or more,0,150,Muslim,No,Yes,Yes,ALLY ABDALLAH MNIMBA
+TZA,KAK,Ngorongo,Ngorongo Mashariki,Kipenda moyo,38.64627625,-7.86959743,1,20 or more,20 or more,0,155,Muslim,Partially,Yes,Yes,Omari Said Mbamba
+TZA,NRI,Ngorongo,Ngorongo Mashariki,Nyarwiru,38.65246779,-7.87113304,1,20 or more,20 or more,0,170,Muslim,Yes,Yes,Yes,Ramadan I Kasimu Mneka
+TZA,KLD,Umwe,Umwe Kaskazini,Kilwa road,38.98337278,-7.94435964,1,0,0,0,640,Muslim,Partially,Yes,Yes,Omari said ngwalima
+TZA,MCK,Umwe,Umwe Kaskazini,Mchikichini,38.99046045,-7.94022729,1,0,20 or more,0,3792,Muslim,Partially,Yes,Yes,Aminu saidi maramoja
+TZA,MJM,Umwe,Umwe Kaskazini,Mjimwema,38.98714635,-7.9466368,1,0,20 or more,0,506,Muslim,Partially,Yes,Yes,Halfani amiri mponda
+TZA,MMR,Umwe,Umwe Kaskazini,Mparange,38.99617028,-7.91450807,1,20 or more,20 or more,0,5000,Muslim,Yes,Yes,Yes,WESU SAID KISOMA
+TZA,MSS,Umwe,Umwe Kaskazini,Msikitini,38.98399263,-7.94532645,1,0,6 to 19,0,220,Muslim,Yes,Yes,Yes,Saidi Shabani Pazi
+TZA,VIW,Umwe,Umwe Kaskazini,Viwandani,38.98401259,-7.94465529,1,1 to 5,6 to 19,0,35,Muslim,Yes,Yes,Yes,Hassani Kesi luhanga
+TZA,AMA,Umwe,Umwe Kati,Amani,38.98960595,-7.95183883,1,0,20 or more,0,43,Muslim,Yes,Yes,Yes,Salum Ali Embe
+TZA,AZM,Umwe,Umwe Kati,Azimio,38.99025107,-7.95144872,1,0,6 to 19,0,528,Muslim,Yes,Yes,Yes,Juma IdiMtandika
+TZA,MTS,Umwe,Umwe Kati,Msikitini,38.98810441,-7.95366178,1,0,6 to 19,0,84,Muslim,Partially,Yes,Yes,Twaha Omari Mtanga
+TZA,SIA,Umwe,Umwe Kati,Siasa,38.98711436,-7.94799806,1,0,0,0,75,Muslim,Yes,Yes,Yes,Kaimu Hassan Mkwanywe
+TZA,SOI,Umwe,Umwe Kati,Sokoni,38.9862637,-7.94958578,1,0,6 to 19,0,35,Muslim,Yes,Yes,Yes,Omari Shamte Mpegia
+TZA,UMA,Umwe,Umwe Kati,Ujamaa,38.98609547,-7.95041646,1,0,6 to 19,0,99,Muslim,Yes,Yes,Yes,Jumane AHMD NGAZA0
+TZA,UMJ,Umwe,Umwe Kati,Umoja,38.99192521,-7.95072248,1,0,20 or more,0,161,Muslim,Yes,Yes,Yes,Adam Abdallah Mkenda
+TZA,UMW,Umwe,Umwe Kati,Umwe,38.98984283,-7.94800476,1,0,20 or more,0,480,Muslim,Partially,Yes,Yes,MUSSA HAMISI MAGANDA
+TZA,MAF,Umwe,Umwe Kusini,Makaravati,38.99750882,-7.95383718,1,0,20 or more,0,650,Muslim,Partially,Yes,Yes,RASHID OMARI MAYARUKA
+TZA,MEK,Umwe,Umwe Kusini,Makombe,38.99203345,-7.95454726,1,0,6 to 19,0,98,Muslim,Yes,Yes,Yes,KASIM MOHAMED NGONGONO
+TZA,MOB,Umwe,Umwe Kusini,Makumbusho,38.99523123,-7.95312578,1,0,20 or more,0,350,Muslim,Partially,Yes,Yes,AMIRI RAJABU PESAMALI
+TZA,MYU,Umwe,Umwe Kusini,Mbuyuni,38.98979009,-7.95332218,1,0,20 or more,0,40,Muslim,Yes,Yes,Yes,MAULI HATIBU NGAYONGA
+TZA,MTI,Umwe,Umwe Kusini,Msikitini,38.98836247,-7.95450712,1,0,20 or more,0,50,Muslim,Yes,Yes,Yes,HASSANI ABDALLAH NDUMBWASI
+TZA,MWU,Umwe,Umwe Kusini,Mwembe Muhoro,38.98847928,-7.95610913,1,0,20 or more,0,83,Muslim,Yes,Yes,Yes,HAMISI KASSIMU KIBOSI
+TZA,NGS,Umwe,Umwe Kusini,Ngasinda,38.98996394,-7.95499684,1,0,6 to 19,0,49,Muslim,Yes,Yes,Yes,JAFARI MOHAMEDI MKOBELA
+TZA,NJO,Umwe,Umwe Kusini,Njogoro,38.99141869,-7.95506941,1,20 or more,20 or more,0,300,Muslim,Partially,Yes,Yes,RAJABU MBWANA MATIMBWA784798524
+TZA,KTU,Utete,Kitundu,Kitundu,38.75800397,-7.99110207,0,6 to 19,6 to 19,0,500,Muslim,Yes,Yes,Yes,KASIMU JUMA TINDWA
+TZA,KWL,Utete,Kiwili,Kiwili,38.75622421,-7.98930713,0,20 or more,20 or more,0,390,Muslim,Partially,Yes,Yes,MTENGASHARI ALLI MTOLIA
+TZA,SII,Utete,Siasa,Siasa,38.67181742,-7.98948594,0,20 or more,20 or more,0,120,Muslim,No,DK,Yes,RAMADHANI RASHIDI MMINGE
+MOZ,ZVA,Mopeia sede | Cuacua,Chamanga,Zona Verde A,35.72449501,-17.98112477,0,0,1 to 5,20 or more,1600,Christian,Yes,Yes,Yes,NA
+MOZ,ZVB,Mopeia sede | Cuacua,Chamanga,Zona Verde B,35.73106382,-17.98562191,0,0,6 to 19,20 or more,500,Christian,Yes,Yes,Yes,ANTONIO LUIS NHAMONGA
+MOZ,EDU,Mopeia sede | Cuacua,Chamanga,Eduardo Mondlane,35.72132631,-17.97793688,0,0,1 to 5,6 to 19,800,Other,Yes,Yes,Yes,NA
+MOZ,DEX,Mopeia sede | Cuacua,Chamanga,25 de Setembro,35.71538505,-17.98285211,0,0,1 to 5,6 to 19,540,Christian,Partially,Yes,Yes,NA
+MOZ,AMB,Mopeia sede | Cuacua,Chamanga,Ambrosio,35.83600064,-18.04720128,0,0,20 or more,20 or more,217,Christian,No,No,Yes,TOME ALBERTO
+MOZ,CHT,Mopeia sede | Cuacua,Chamanga,Chitequeteque,35.73414107,-17.96385109,0,0,20 or more,6 to 19,74,Christian,No,DK,Yes,JOAO PAULO COSTA
+MOZ,NXG,Mopeia sede | Cuacua,Chamanga,Nhangona,35.82303182,-18.08025565,0,0,20 or more,20 or more,260,Christian,No,No,Yes,ARMINDO VERNINJO NDUMBE
+MOZ,MUR,Mopeia sede | Cuacua,Chamanga,Muriwa,35.68795988,-18.02748273,0,0,20 or more,20 or more,250,Christian,No,DK,Yes,NA
+MOZ,XAM,Mopeia sede | Cuacua,Chamanga,Bone,35.76039067,-18.0291208,0,0,20 or more,20 or more,150,Christian,No,Yes,Yes,CARLITOS BERNARDO
+MOZ,CHZ,Mopeia sede | Cuacua,Chamanga,Chizimba,35.77199752,-18.01181024,0,0,20 or more,20 or more,394,Traditional,No,DK,Yes,NA
+MOZ,TEW,Mopeia sede | Cuacua,Chamanga,Tewe,35.68922287,-18.00886887,0,20 or more,20 or more,20 or more,199,Christian,No,DK,Yes,NA
+MOZ,NOR,Mopeia sede | Cuacua,Chamanga,Norte,35.66599159,-18.00882189,0,0,20 or more,20 or more,304,Christian,No,DK,Yes,FILIPE CHIPUANHA NHONGO
+MOZ,NDI,Mopeia sede | Cuacua,Chamanga,Ndima Mangaze,35.80326294,-18.05104782,0,0,20 or more,20 or more,250,Traditional,No,DK,Yes,NA
+MOZ,MUT,Mopeia sede | Cuacua,Chamanga,Muto A,35.76008817,-18.0470872,0,0,20 or more,20 or more,116,Christian,Partially,DK,Yes,NA
+MOZ,MUB,Mopeia sede | Cuacua,Chamanga,Muto B,35.75899375,-18.04749054,0,0,20 or more,20 or more,185,Christian,Yes,Yes,Yes,AGUSTINHO LUCIANO CANLIGANA
+MOZ,MAL,Mopeia sede | Cuacua,Chamanga,Malulo,35.7851742,-18.07135357,0,0,20 or more,20 or more,289,Christian,Yes,Yes,Yes,NA
+MOZ,CHM,Mopeia sede | Cuacua,Chamanga,Chimpene,35.85332343,-18.06232399,0,0,20 or more,20 or more,100,Christian,No,No,Yes,JOSE MANUEL
+MOZ,DAN,Mopeia sede | Cuacua,Chamanga,Dande,35.82439053,-18.0954766,0,0,20 or more,20 or more,354,Other,Partially,Yes,Yes,NA
+MOZ,MUX,Mopeia sede | Cuacua,Chamanga,Cua cua muana,35.78697505,-18.00731893,0,0,20 or more,20 or more,256,Christian,No,No,Yes,Celestino Jorge Castigo
+MOZ,TCH,Mopeia sede | Cuacua,Chamanga,Mitchiu,35.74985378,-18.01400106,0,0,20 or more,20 or more,62,Christian,No,Yes,Yes,TORES DOMINGO TXISOMBA
+MOZ,NMX,Mopeia sede | Cuacua,Chamanga,Namacheta,35.79798175,-18.01543839,0,0,20 or more,20 or more,88,Christian,No,Yes,Yes,LUIS VASCO
+MOZ,GMX,Mopeia sede | Cuacua,Chamanga,Gemusse,35.80203306,-17.98424644,0,0,20 or more,20 or more,10,Christian,No,Yes,Yes,Tome Antonio
+MOZ,CHP,Mopeia sede | Cuacua,Chamanga,Chipire,35.80806929,-18.0198676,0,0,20 or more,20 or more,100,Christian,No,No,Yes,Pedro Domingos Nhama Mathua
+MOZ,NHX,Mopeia sede | Cuacua,Chamanga,Nhaminga,35.75022661,-18.00775709,0,0,20 or more,20 or more,64,Christian,No,Yes,Yes,Manuel Cesar Tole
+MOZ,MSC,Mopeia sede | Cuacua,Chamanga,Massancare,35.6356843,-17.9801225,0,0,6 to 19,6 to 19,113,Christian,No,Yes,Yes,Jhone Gimo Mamongo
+MOZ,ALF,Mopeia sede | Cuacua,Dombe,Alfredo,35.94240286,-18.0602426,0,0,20 or more,6 to 19,150,Christian,No,Yes,Yes,TOME VASCOJULIASS
+MOZ,MBZ,Mopeia sede | Cuacua,Dombe,Mbalame,36.01627685,-18.06030471,0,0,20 or more,20 or more,56,Christian,No,No,Yes,JOTA PESADO MAPULANGO
+MOZ,CUB,Mopeia sede | Cuacua,Dombe,Cubalalica,35.8810506,-18.0710628,0,0,20 or more,20 or more,58,Christian,No,No,Yes,Manuele Mela
+MOZ,BEN,Mopeia sede | Cuacua,Dombe,Benejuaque,35.94107475,-18.06832175,0,0,20 or more,20 or more,110,Christian,No,Yes,Yes,MIGUEL MARIO DAUSE
+MOZ,POS,Mopeia sede | Cuacua,Dombe,Posso,35.99240444,-18.07760647,0,0,20 or more,20 or more,120,Christian,No,No,Yes,LUCIANO SIMBE TANGE
+MOZ,CHU,Mopeia sede | Cuacua,Dombe,Chunga,35.9475108,-18.08042731,0,0,20 or more,20 or more,58,Christian,No,No,Yes,ALBERTO TOMAS SANDE CHUNGA
+MOZ,SAB,Mopeia sede | Cuacua,Dombe,Sabesse,35.99121496,-18.08440193,0,0,20 or more,20 or more,107,Christian,No,DK,Yes,MATEUS JORGE JO
+MOZ,CHI,Mopeia sede | Cuacua,Dombe,Chicote,35.96107414,-18.06019239,0,0,20 or more,6 to 19,40,Christian,No,Yes,Yes,FERNANDO JOAQUIM MACHINGA
+MOZ,ZOD,Mopeia sede | Cuacua,Dombe,Nzondoene,35.94081273,-18.05985682,0,0,20 or more,20 or more,60,Christian,No,No,Yes,Menigio Manual Nzamo
+MOZ,DEJ,Mopeia sede | Cuacua,Marruma,24 de Julho,35.68933552,-17.974464,0,NA,NA,NA,395,Other,Yes,Yes,Yes,NA
+MOZ,BBB,Mopeia sede | Cuacua,Marruma,24 de Julho B,35.68664962,-17.96797976,0,0,1 to 5,20 or more,360,Christian,Yes,Yes,Yes,BULANDE LUIS NOTA CANCHULUQUE
+MOZ,CIM,Mopeia sede | Cuacua,Marruma,Cimento,35.70931714,-17.97765692,0,0,1 to 5,20 or more,1615,Christian,Yes,Yes,Yes,ANTONIO JOAO CHABUCA
+MOZ,DEO,Mopeia sede | Cuacua,Marruma,4 de Outubro,35.71215592,-17.97179898,0,0,1 to 5,1 to 5,580,Other,Yes,Yes,Yes,NA
+MOZ,DEA,Mopeia sede | Cuacua,Marruma,7 de Abril,35.71386994,-17.97623707,0,0,1 to 5,6 to 19,668,Christian,Yes,Yes,Yes,NA
+MOZ,LUT,Mopeia sede | Cuacua,Marruma,Luta Continua,35.70337923,-17.975002,0,0,1 to 5,20 or more,450,Other,Yes,Yes,Yes,NA
+MOZ,MIF,Mopeia sede | Cuacua,Marruma,Mifarinha,35.70117865,-17.97585255,0,0,1 to 5,20 or more,210,Christian,Yes,Yes,Yes,NA
+MOZ,DEU,Mopeia sede | Cuacua,Marruma,25 de Junho,35.71482271,-17.97790184,0,0,6 to 19,20 or more,65,Christian,No,No,Yes,LUIS SANDRAMO
+MOZ,FFF,Mopeia sede | Cuacua,Marruma,Forca da Mudanca,35.70485135,-17.97882762,0,0,1 to 5,20 or more,250,Other,Yes,Yes,Yes,NA
+MOZ,JSA,Mopeia sede | Cuacua,Marruma,Josina Machel,35.69651118,-17.97588679,0,0,6 to 19,20 or more,237,Christian,Yes,Yes,Yes,NA
+MOZ,LIB,Mopeia sede | Cuacua,Marruma,Liberdade A,35.72239576,-17.95231851,0,0,6 to 19,20 or more,420,Christian,No,Yes,Yes,BATISTA JOSE NIVUVURI
+MOZ,LIE,Mopeia sede | Cuacua,Marruma,Liberdade B,35.72906658,-17.9344138,0,0,20 or more,6 to 19,150,Christian,No,No,Yes,PATRICIO HORERAUALE TESSIUA
+MOZ,NHM,Mopeia sede | Cuacua,Marruma,Nhamissundo,35.69655368,-17.96066802,0,0,20 or more,20 or more,40,Christian,No,DK,Yes,NA
+MOZ,CHV,Mopeia sede | Cuacua,Marruma,Chiverano,35.69668318,-17.93626465,0,0,1 to 5,1 to 5,48,Christian,No,No,Yes,FRESQUINHO MUANAMUKANE
+MOZ,DEM,Mopeia sede | Cuacua,Marruma,8 de Marco,35.69392914,-17.92899855,0,0,20 or more,20 or more,357,Other,No,DK,Yes,Manuel Gimo Janeiro
+MOZ,AGO,Mopeia sede | Cuacua,Marruma,Agostinho Neto,35.69109564,-17.68214111,0,0,6 to 19,20 or more,100,Christian,No,DK,Yes,Benjamin Bene
+MOZ,MMZ,Mopeia sede | Cuacua,Marruma,Mazembe,35.62596029,-17.94345654,0,20 or more,20 or more,20 or more,110,Christian,No,Yes,Yes,Fernando Oliva Macoco
+MOZ,NHA,Mopeia sede | Cuacua,Marruma,Nhalumbanda,35.65024325,-17.9588328,0,1 to 5,20 or more,20 or more,260,Muslim,No,DK,Yes,AMADE USSENE BACAR
+MOZ,SER,Mopeia sede | Cuacua,Marruma,Serracao,35.67988627,-17.82511282,0,0,20 or more,20 or more,389,Christian,No,No,Yes,Joaquim Pontesse Nsende
+MOZ,NTA,Mopeia sede | Cuacua,Marruma,Ntada,35.7004651,-17.86226682,0,0,20 or more,20 or more,250,Christian,No,DK,Yes,Verônica Aniva Marruma
+MOZ,BAX,Mopeia sede | Cuacua,Marruma,Mbaua,35.6908938,-17.85960289,0,0,1 to 5,0,701,Christian,No,DK,Yes,JOSE MARIA MELO
+MOZ,MAG,Mopeia sede | Cuacua,Sangalaza,Magamba,36.03270806,-18.08241189,0,0,20 or more,20 or more,78,Christian,No,No,Yes,JOSE VALENTE MIGUIL CHUNGA
+MOZ,MAN,Mopeia sede | Cuacua,Sangalaza,Mangala,36.00571951,-18.09151586,0,0,20 or more,20 or more,135,Christian,No,No,Yes,RICARDO CHUZI
+MOZ,CAP,Mopeia sede | Cuacua,Sangalaza,Capece,35.89337401,-18.06649261,0,0,20 or more,20 or more,125,Christian,No,DK,Yes,XAVIER LUIS BOLA CAPECE
+MOZ,TES,Mopeia sede | Cuacua,Sangalaza,Tesoura,36.02076125,-18.10622702,0,0,20 or more,20 or more,108,Christian,No,No,Yes,ANTONIO ZECA LOLE
+MOZ,TIQ,Mopeia sede | Cuacua,Sangalaza,Tiquita,35.90645959,-18.06363865,0,0,20 or more,20 or more,150,Christian,No,No,Yes,MANECAS TOLE DONSA
+MOZ,MIG,Mopeia sede | Cuacua,Sangalaza,Migoa,36.08404169,-18.03656921,0,0,20 or more,20 or more,65,Christian,No,No,Yes,Tome Andrazi Njala
+MOZ,MUL,Mopeia sede | Cuacua,Sangalaza,Mulaira,36.07049896,-18.07397266,0,0,20 or more,20 or more,50,Christian,No,No,Yes,Izequel Baptista Francisco
+MOZ,CUN,Mopeia sede | Cuacua,Sangalaza,Cunhanhassa,36.00802981,-18.11377865,0,0,20 or more,20 or more,60,Christian,No,No,Yes,JOSE OLESSE CUNHANHASSA
+MOZ,TAM,Mopeia sede | Cuacua,Sangalaza,Tambalico,36.05337591,-18.05886294,0,0,20 or more,20 or more,180,Christian,No,No,Yes,Joao Inacio Beca
+MOZ,VEM,Mopeia sede | Cuacua,Sangalaza,Vembe,36.06224748,-18.0882304,0,0,20 or more,20 or more,79,Christian,No,No,Yes,BERNARDO JOSE CAMBIRIPIR
+MOZ,VUM,Mopeia sede | Cuacua,Sangalaza,Vumbe,35.91304785,-18.08786001,0,0,20 or more,20 or more,121,Christian,No,Yes,No,JOSE CHAVE
+MOZ,NOT,Mopeia sede | Cuacua,Sangalaza,Nota,36.06822303,-18.03689653,0,0,20 or more,20 or more,90,Christian,No,No,Yes,ROQUE SANTOS CASSETE
+MOZ,GAL,Mopeia sede | Cuacua,Sangalaza,Gale,36.09817685,-18.06384464,0,0,20 or more,20 or more,93,Christian,No,No,Yes,CHICO JOAO INACIO
+MOZ,GMI,Mopeia sede | Cuacua,Sangalaza,Gomoi,36.02136626,-18.09640041,0,0,20 or more,20 or more,100,Christian,No,No,No,NA
+MOZ,NTG,Mopeia sede | Cuacua,Sangalaza,Ntongolo,35.9582429,-18.10388021,0,0,20 or more,20 or more,75,Christian,No,No,No,NA
+MOZ,NNX,Mopeia sede | Cuacua,Sangalaza,N'goma,35.9558072,-18.09700424,0,0,20 or more,20 or more,91,Christian,No,No,Yes,TOMAS JIWA TOMAS M'GOMA
+MOZ,BRS,Mopeia sede | Cuacua,Sangalaza,Barroso,35.9957655,-18.09889067,0,0,20 or more,20 or more,90,Christian,No,No,No,NA
+MOZ,CUM,Mopeia sede | Rovuma/Conho,Majambe,Cumbalenga,35.81613905,-17.91236617,0,0,20 or more,20 or more,270,Christian,No,No,Yes,FULAITE ANTONIO CUMBALENGA
+MOZ,LOT,Mopeia sede | Rovuma/Conho,Majambe,Lota,35.82868475,-17.89958226,0,0,6 to 19,20 or more,200,Christian,No,No,Yes,JOAO JHONE
+MOZ,NTR,Mopeia sede | Rovuma/Conho,Majambe,Ntruzao,35.8654668,-17.87382191,0,0,6 to 19,20 or more,60,Christian,No,No,Yes,Carlos Antonio Olesse
+MOZ,MAJ,Mopeia sede | Rovuma/Conho,Majambe,Majambe,35.83674872,-17.89536239,0,0,20 or more,20 or more,250,Christian,No,No,Yes,ARMINDO ANTONIO
+MOZ,ALR,Mopeia sede | Rovuma/Conho,Majambe,Alfredo,36.03037236,-17.79780965,0,6 to 19,20 or more,20 or more,50,Christian,No,No,No,FILIPE TATO ALFREDO
+MOZ,NSZ,Mopeia sede | Rovuma/Conho,Majambe,Nsanzo,35.85701684,-17.87407533,0,0,20 or more,20 or more,2000,Christian,No,Yes,Yes,FATIMA NAMBRA ONE NSANZO
+MOZ,NNU,Mopeia sede | Rovuma/Conho,Majambe,Nhangu,35.83223037,-17.90123559,0,0,6 to 19,20 or more,68,Christian,No,No,Yes,JOSE TOME
+MOZ,LGZ,Mopeia sede | Rovuma/Conho,Ndingo,Longodze,35.81392002,-17.62936215,0,0,0,6 to 19,40,Christian,No,Yes,Yes,ANTONIO DOMINGOS MARRIGULA
+MOZ,DNG,Mopeia sede | Rovuma/Conho,Ndingo,Ndingo,35.84538267,-17.6059074,0,0,20 or more,20 or more,200,Christian,No,Yes,Yes,ALBANO DOLIZ MAGANBA
+MOZ,TAO,Mopeia sede | Rovuma/Conho,Ndingo,Botao,35.90511044,-17.59059731,0,0,20 or more,20 or more,100,Christian,No,Yes,Yes,ESTEVENE VERNIZ BOTAO
+MOZ,VDA,Mopeia sede | Rovuma/Conho,Ndingo,Vundo A,35.87534068,-17.81783251,0,0,0,20 or more,53,Christian,No,No,No,AGOSTINHO MUANHELANE
+MOZ,VDB,Mopeia sede | Rovuma/Conho,Ndingo,Vundo B,35.8770459,-17.8141296,0,0,0,20 or more,56,Christian,No,No,No,Fernando Tomas Adriano
+MOZ,GNG,Mopeia sede | Rovuma/Conho,Ndingo,Ngangane,35.87972266,-17.81390647,0,0,0,20 or more,50,Christian,No,No,No,NDACOMA PAULO
+MOZ,SAE,Mopeia sede | Sambalendo,Sambalendo,Sambalendo,35.51856774,-17.74808871,0,0,20 or more,20 or more,56,Christian,No,Yes,Yes,Raul Luis
+MOZ,TAI,Mopeia sede | Sambalendo,Sambalendo,Taibo,35.50702619,-17.74454002,0,0,20 or more,20 or more,86,Christian,No,Yes,Yes,Into Saimone Taibo
+MOZ,SAS,Mopeia sede | Sambalendo,Sambalendo,Sassune,35.54941256,-17.73885164,0,0,20 or more,20 or more,1600,Christian,No,DK,Yes,FRANCISCO WHISK RUFAI
+MOZ,CHB,Mopeia sede | Sambalendo,Chimuara,Chizimba,35.42827168,-17.75515838,0,0,20 or more,20 or more,110,Christian,No,Yes,Yes,TOMAS RIBEIRO MAIA
+MOZ,SAN,Mopeia sede | Sambalendo,Chimuara,Sangate,35.44105785,-17.74798276,0,0,20 or more,20 or more,58,Christian,No,DK,Yes,ANTONIO LUIS TESOURA
+MOZ,MAA,Mopeia sede | Sambalendo,Chimuara,Magaio,35.46369938,-17.71647095,0,0,20 or more,20 or more,980,Christian,No,Yes,Yes,ISAIAS ANTONIO MAGAIO
+MOZ,VNT,Mopeia sede | Sambalendo,Chimuara,Vinte,35.51325202,-17.69683689,0,0,20 or more,6 to 19,893,Christian,No,Yes,Yes,JOAQUIM SALGADO VINTE
+MOZ,DDS,Mopeia sede | Sambalendo,Chimuara,7 de Setembro,35.41071192,-17.77074,0,0,20 or more,6 to 19,200,Christian,Yes,Yes,Yes,Jose Joaquim Almoco
+MOZ,JUL,Mopeia sede | Sambalendo,Chimuara,Julius Nyerere,35.40050821,-17.7882138,0,0,20 or more,0,186,Christian,Yes,Yes,Yes,ERNESTO COMISSARIO NDEMBE
+MOZ,ACD,Mopeia sede | Sambalendo,Chimuara,Acordos de Lusaka,35.39988837,-17.78467743,0,0,20 or more,0,118,Traditional,No,Yes,Yes,Jose Neves
+MOZ,SOM,Mopeia sede | Sambalendo,Chimuara,Somopo,35.40483965,-17.79838541,0,20 or more,20 or more,20 or more,50,Christian,No,Yes,Yes,BIZARO JOAO
+MOZ,DFO,Mopeia sede | Sambalendo,Chimuara,3 de Fevereiro,35.40970651,-17.77017997,0,0,20 or more,20 or more,53,Christian,No,DK,Yes,LUIS MINESES NHAMIZINGA
+MOZ,JSB,Mopeia sede | Sambalendo,Chimuara,Josina Machel,35.40704761,-17.77893637,0,0,6 to 19,1 to 5,350,Christian,Yes,Yes,Yes,Morais Dause Messias
+MOZ,JON,Mopeia sede | Sambalendo,Sambalendo,Josina Machel,35.72005469,-17.67566709,0,0,1 to 5,20 or more,70,Christian,No,Yes,Yes,Jose Joaquin Sena
+MOZ,DRX,Mopeia sede | Sambalendo,Chimuara,25 de Setembro,35.40078683,-17.78515063,0,0,20 or more,0,185,Christian,Yes,Yes,Yes,CRIMILDO ALEIXO ALFADINCA
+MOZ,EDX,Mopeia sede | Sambalendo,Chimuara,Eduardo Mondlane,35.39963281,-17.77973089,0,0,6 to 19,0,100,Christian,Partially,Yes,Yes,ALBERTO ANTONIO CAIXAO
+MOZ,MDM,Mopeia sede | Sambalendo,Chimuara,Mandawa,35.42122392,-17.61142282,0,6 to 19,20 or more,20 or more,324,Christian,No,No,Yes,IZAQUE DA COSTA QUEMBO
+MOZ,CHS,Mopeia sede | Sambalendo,Chimuara,Chimuara Sede,35.40632299,-17.7845222,0,20 or more,20 or more,20 or more,210,Christian,No,DK,Yes,MANUEL FINIASSE
+MOZ,DDE,Mopeia sede | Sambalendo,Chimuara,1 de Maio,35.4055703,-17.78452249,0,0,20 or more,20 or more,150,Christian,Partially,Yes,Yes,MINESES GUENTE
+MOZ,BRA,Mopeia sede | Sambalendo,Noere,Braz,35.37688759,-17.74441986,0,20 or more,20 or more,20 or more,560,Christian,Yes,Yes,Yes,JOAO PUNDUMA
+MOZ,MNI,Mopeia sede | Sambalendo,Noere,Muntaia,35.38839343,-17.76846884,0,0,1 to 5,6 to 19,60,Christian,No,No,Yes,ANTONIO BAPTISTA TOMAS
+MOZ,MIN,Mopeia sede | Sambalendo,Noere,Minjale,35.39337446,-17.77747164,0,20 or more,20 or more,20 or more,41,Christian,No,Yes,Yes,MANUEL MINESES ALEXO GAZELA
+MOZ,QUE,Mopeia sede | Sambalendo,Noere,Quembo,35.37682925,-17.73461572,0,20 or more,20 or more,20 or more,200,Christian,No,No,Yes,MANECAS JOAQUIM TOMO
+MOZ,SOA,Mopeia sede | Sambalendo,Noere,Soares,35.37293276,-17.72764453,0,20 or more,20 or more,20 or more,90,Christian,No,DK,Yes,MARIANO JOAO JASS
+MOZ,LIX,Mopeia sede | Sambalendo,Sambalendo,Liberdade,35.40806157,-17.78062499,0,0,20 or more,20 or more,150,Christian,No,DK,Yes,EUSENIO BIZEQUE
+MOZ,MAM,Mopeia sede | Sambalendo,Noere,Mambucha,35.49069632,-17.65096336,0,6 to 19,20 or more,20 or more,540,Christian,No,No,Yes,CARLITOS JAIME SEDA
+MOZ,NOE,Mopeia sede | Sambalendo,Noere,Noere,35.3585132,-17.70017071,0,20 or more,20 or more,20 or more,600,Christian,No,Yes,Yes,Horacio Pereira Manico
+MOZ,NHZ,Mopeia sede | Sambalendo,Noere,Nhamizinga,35.35060924,-17.68414669,0,0,20 or more,20 or more,490,Christian,No,DK,Yes,FELIS FRANCISCO JO
+MOZ,FAR,Mopeia sede | Sambalendo,Noere,Fardo,35.51442658,-17.69570244,0,0,20 or more,20 or more,50,Christian,No,No,Yes,Samuel Vasco
+MOZ,VAL,Mopeia sede | Sambalendo,Noere,Valeta,35.32422083,-17.62949173,0,0,6 to 19,6 to 19,70,Christian,No,No,Yes,ZITO CERAO
+MOZ,MRT,Mopeia sede | Sambalendo,Sambalendo,Murato,35.51494944,-17.78088885,0,0,20 or more,6 to 19,75,Christian,No,DK,Yes,Felizardo Alberto
+MOZ,RPO,Mopeia sede | Sambalendo,Sambalendo,Rapoio,35.51853371,-17.74986005,0,0,20 or more,20 or more,750,Christian,No,DK,Yes,ANTONIO JOHN MANJORy
+MOZ,SRD,Mopeia sede | Sambalendo,Sambalendo,Sassune Raunde (3 de Fevereiro),35.50526088,-17.86396227,0,0,20 or more,20 or more,425,Christian,No,Yes,Yes,BERNARDINHO DINA DOS SANTOS
+MOZ,SSS,Mopeia sede | Sambalendo,Sambalendo,Sassanha,35.54075246,-17.74745868,0,0,20 or more,20 or more,250,Christian,No,Yes,Yes,Adelino Vasco
+MOZ,DLO,Mopeia sede | Sambalendo,Sambalendo,Dolo,35.58779011,-17.73553341,0,1 to 5,20 or more,20 or more,120,Christian,No,No,Yes,AGOSTINHO AJUNTA CHOCACHOCA
+MOZ,BTE,Mopeia sede | Sambalendo,Sambalendo,Bote,35.41225319,-17.72530284,0,0,20 or more,20 or more,250,Christian,No,DK,Yes,ANTONIO JOAO BOTE
+MOZ,CNG,Mopeia sede | Sambalendo,Sambalendo,9 Congresso,35.51349761,-17.75389653,0,0,20 or more,20 or more,46,Christian,No,No,Yes,Antonio Jone Manjoro
+MOZ,JEI,Mopeia sede | Sambalendo,Sambalendo,Massonjoeira,35.51516494,-17.74116597,0,0,1 to 5,6 to 19,82,Christian,No,Yes,Yes,BISEQUE ARAUJO
+MOZ,VDJ,Mopeia sede | Sambalendo,Sambalendo,25 de Junho,35.51292244,-17.74530776,0,0,1 to 5,6 to 19,60,Christian,No,DK,Yes,Jacinto Siinbe
+MOZ,COY,Mopeia sede | Sambalendo,Sambalendo,Coyowe,35.4760647,-17.74772896,0,0,20 or more,20 or more,58,Christian,No,Yes,Yes,Ameida Cofe
+MOZ,NHU,Mopeia sede | Sambalendo,Nzero,Nhamingulo,35.6769531,-17.67262836,0,0,6 to 19,20 or more,48,Christian,No,No,Yes,FELIZ DOLIZ MALOTE
+MOZ,NAG,Mopeia sede | Sambalendo,Nzero,Nhamigonhane,35.70316273,-17.65966072,0,0,0,6 to 19,110,Christian,No,No,Yes,TOME AMERICO BINDA
+MOZ,GUL,Mopeia sede | Sambalendo,Nzero,Gulamo,35.66694251,-17.69371962,0,0,20 or more,20 or more,185,Christian,Partially,Yes,Yes,MAGAUA JACINTO MANENSE
+MOZ,CIE,Mopeia sede | Sambalendo,Nzero,Cimento,35.71403934,-17.66985064,0,0,6 to 19,20 or more,193,Christian,Yes,Yes,Yes,Manuel Mainato Nziza
+MOZ,LIZ,Mopeia sede | Sambalendo,Nzero,Liberdade,35.71584622,-17.6733549,0,0,0,0,49,Christian,No,DK,Yes,Tito Benjamim
+MOZ,NSU,Mopeia sede | Sambalendo,Nzero,Nsussa,35.74197957,-17.69811031,0,0,6 to 19,20 or more,100,Christian,No,Yes,Yes,BATISTA NCOCA NSUSA
+MOZ,DER,Mopeia sede | Sambalendo,Nzero,25 de Setembro,35.40263043,-17.78531659,0,20 or more,20 or more,20 or more,75,Christian,Yes,Yes,Yes,Manuel Joao Bulande
+MOZ,CHC,Mopeia sede | Sambalendo,Nzero,Chitucotuco,35.71276638,-17.67111802,0,0,1 to 5,20 or more,40,Christian,Yes,Yes,Yes,Bernardo Daimone
+MOZ,EDZ,Mopeia sede | Sambalendo,Nzero,Eduardo Mondlane,35.71931323,-17.67449409,0,0,1 to 5,6 to 19,57,Christian,Yes,No,Yes,PAULINO VASCO
+MOZ,NCO,Mopeia sede | Sambalendo,Nzero,Ncomati,35.74346267,-17.73510279,0,0,6 to 19,20 or more,90,Christian,Yes,No,Yes,TOME FERRAZ
+MOZ,AGX,Mopeia sede | Sambalendo,Nzero,Agostinho Neto,35.69099556,-17.68168455,0,0,0,20 or more,50,Christian,No,Yes,Yes,BENJAMIN
+MOZ,SEA,Mopeia sede | Sambalendo,Nzero,Sambane,35.76637267,-17.83088427,0,0,20 or more,20 or more,250,Christian,No,No,No,Mabalane viane chimica
+MOZ,NHP,Mopeia sede | Sambalendo,Nzero,Nhamipama,35.66136494,-17.69981012,0,0,20 or more,20 or more,245,Christian,No,Yes,Yes,FELIZARDO GUENTE
+MOZ,NAV,Mopeia sede | Sambalendo,Nzero,Navena,35.75328349,-17.66014297,0,0,6 to 19,20 or more,100,Christian,No,Yes,Yes,LUCAS ARAUJO BOMA
+MOZ,DDO,Mopeia sede | Nzanza,Veloso,12 de Outubro,35.48148276,-17.76052619,0,0,6 to 19,1 to 5,68,Christian,No,Yes,Yes,ARTUR VELOSO
+MOZ,SAX,Mopeia sede | Nzanza,Veloso,Samora Machel,35.48006815,-17.76382472,0,0,20 or more,6 to 19,94,Other,Yes,Yes,Yes,NA
+MOZ,DEZ,Mopeia sede | Nzanza,Veloso,7 de Abril,35.47933783,-17.76721864,0,0,20 or more,20 or more,16,Christian,No,Yes,Yes,MANITO TITO NCUDIZA
+MOZ,GNX,Mopeia sede | Nzanza,Veloso,Gundagunda,35.4670943,-17.78463883,0,0,1 to 5,6 to 19,60,Christian,No,No,No,JOANE FRAMENGA
+MOZ,NHC,Mopeia sede | Nzanza,Veloso,Nhacolo,35.43761817,-17.80750001,0,20 or more,20 or more,20 or more,50,Christian,No,Yes,Yes,MATEUS TIMOTEO CHARLES
+MOZ,WAX,Mopeia sede | Nzanza,Veloso,Waia,35.49484796,-17.79279107,0,0,20 or more,20 or more,38,Christian,No,No,Yes,ISMAEL JOAO JOAQUIM
+MOZ,MDX,Mopeia sede | Nzanza,Veloso,Muabado,35.48825081,-17.76169585,0,0,20 or more,20 or more,55,Christian,No,Yes,Yes,RUI DOMINGOS CHARLE
+MOZ,SAO,Mopeia sede | Nzanza,Nhamirere,Samora Machel,35.45858265,-17.82664059,0,20 or more,0,0,80,Christian,Partially,Yes,Yes,VICTOR GADA
+MOZ,DRM,Mopeia sede | Nzanza,Nhamirere,Acordo de Roma,35.46696061,-17.83356945,0,0,0,1 to 5,205,Christian,No,DK,Yes,JOSE NEVES WAN
+MOZ,FVX,Mopeia sede | Nzanza,Nhamirere,3 de Fevereiro,35.47449611,-17.84016991,0,0,20 or more,20 or more,55,Christian,No,Yes,Yes,LUIS MINEZ NHAMIZINGA
+MOZ,NRA,Mopeia sede | Nzanza,Nhamirere,Nhamirere A,35.47677054,-17.84596377,0,0,20 or more,20 or more,100,Christian,No,No,Yes,ZECA FUNDISSE PATRICIO
+MOZ,DMI,Mopeia sede | Nzanza,Nhamirere,1 de Maio,35.47756749,-17.84711884,0,6 to 19,20 or more,20 or more,155,Christian,No,No,Yes,MINESES GUENTE
+MOZ,MDL,Mopeia sede | Nzanza,Nhamirere,Eduardo Mondlane,35.39957975,-17.77993252,0,0,20 or more,20 or more,80,Christian,No,DK,Yes,BAPTISTA OFESSE
+MOZ,JSC,Mopeia sede | Nzanza,Nhamirere,Josina Machel,35.48601025,-17.84638245,0,0,20 or more,6 to 19,89,Christian,No,Yes,Yes,PINAWICHI
+MOZ,DXX,Mopeia sede | Nzanza,Nhamirere,25 de Junho,35.48013814,-17.84843941,0,6 to 19,6 to 19,1 to 5,90,Christian,Partially,DK,Yes,ROSARIO MANUEL BOCOSSE
+MOZ,CMX,Mopeia sede | Nzanza,Nhacatundo,Cimento,35.43667353,-17.80734235,0,0,20 or more,20 or more,232,Christian,Yes,Yes,Yes,CARLITOS NHAMITANBO
+MOZ,CCC,Mopeia sede | Nzanza,Nhacatundo,Cua-cua,35.44243366,-17.82070595,0,0,20 or more,20 or more,192,Christian,No,Yes,Yes,AUGUSTO NSONA
+MOZ,AEG,Mopeia sede | Nzanza,Nhacatundo,Armando Emilio Guebuza,35.44183779,-17.80463738,0,0,20 or more,20 or more,93,Christian,No,No,Yes,Victor Francisco
+MOZ,LRX,Mopeia sede | Nzanza,Nhacatundo,Liberdade,35.71780608,-17.67357325,0,0,1 to 5,20 or more,150,Christian,No,Yes,Yes,TOME JOAO ZUMBA
+MOZ,EMX,Mopeia sede | Nzanza,Nhacatundo,Eduardo Mondlane,35.72053003,-17.67527055,0,0,6 to 19,20 or more,124,Christian,No,DK,Yes,BATISTA OFECE XUNGA
+MOZ,JSD,Mopeia sede | Nzanza,Nhacatundo,Josina Machel,35.68014988,-17.68624573,0,0,20 or more,20 or more,55,Christian,No,Yes,Yes,PEDRO AMINA MUCUBELA
+MOZ,SMX,Mopeia sede | Nzanza,Nhacatundo,Samora Machel,35.45853831,-17.8266193,0,20 or more,0,0,57,Christian,No,Yes,Yes,Victor Gada Inacii
+MOZ,JAN,Mopeia sede | Nzanza,Nhacatundo,Janeiro,35.49807415,-17.85200444,0,0,20 or more,20 or more,67,Christian,No,No,No,ARVISTA DOMINGOS FOMBE
+MOZ,NDM,Mopeia sede | Nzanza,Nzanza,1 de Maio,35.51910929,-17.8807537,0,0,20 or more,20 or more,100,Christian,Yes,Yes,Yes,LUIS JOSE CHIRAMUA
+MOZ,NZA,Mopeia sede | Nzanza,Nzanza,Nzanza Sede,35.5188679,-17.88208977,0,0,20 or more,20 or more,120,Christian,Yes,Yes,Yes,JOSE ANBRESSE
+MOZ,FRX,Mopeia sede | Nzanza,Nzanza,Forca da Mudanca,35.52350032,-17.88600442,0,0,0,0,80,Christian,Yes,DK,Yes,MANUEL DOMINGOS BANA
+MOZ,OBX,Mopeia sede | Nzanza,Nzanza,Obra,35.5258294,-17.88964602,0,0,0,0,146,Christian,No,Yes,Yes,MANUEL JOAQUIM SENA
+MOZ,MTX,Mopeia sede | Nzanza,Nzanza,Matantune,35.5049018,-17.86406512,0,0,20 or more,20 or more,206,Christian,No,No,Yes,Arcanjo Alberto Balichoro
+MOZ,JSE,Mopeia sede | Nzanza,Nzanza,Josina Machel,35.48607521,-17.84627533,0,1 to 5,20 or more,20 or more,70,Christian,No,Yes,Yes,FRANCISCO LUIS PINAUCHE
+MOZ,TFX,Mopeia sede | Nzanza,Nzanza,3 de Fevereiro,35.4749629,-17.83997993,0,0,20 or more,20 or more,46,Christian,No,No,Yes,Luis Meneses
+MOZ,MZM,Mopeia sede | Nzanza,Nhanga,Mazembe,35.62593942,-17.94344845,0,20 or more,20 or more,20 or more,100,Traditional,No,No,No,FERNANDO ONIVA
+MOZ,NNZ,Mopeia sede | Nzanza,Nhanga,Nsanze,35.6477291,-17.95832691,0,20 or more,20 or more,20 or more,180,Christian,No,Yes,Yes,PEREIRA MARO CHOTE
+MOZ,NSD,Mopeia sede | Nzanza,Mefula,Nsondera,35.56463434,-17.90443773,0,0,0,0,115,Christian,No,Yes,Yes,VERNIJO FERNANDO COLO
+MOZ,LLE,Mopeia sede | Nzanza,Mefula,Liberdade,35.56196437,-17.90229381,0,0,0,0,120,Christian,No,Yes,Yes,JOSE JOAO CHAMANGA
+MOZ,MIX,Mopeia sede | Nzanza,Mefula,Mirui,35.55577073,-17.91216224,0,0,6 to 19,1 to 5,130,Christian,No,Yes,Yes,TOMO ERNESTO BUKA
+MOZ,NSG,Mopeia sede | Nzanza,Mefula,Nsalange,35.56757597,-17.90624059,0,0,1 to 5,6 to 19,120,Christian,No,Yes,Yes,VENACIO FAGIMA CHICO
+MOZ,TLE,Mopeia sede | Nzanza,Cocorico,Tole,35.62256218,-18.00466819,0,0,20 or more,6 to 19,30,Christian,No,DK,Yes,FLORINDO JOHN
+MOZ,NFI,Mopeia sede | Nzanza,Cocorico,Nhafimbo,35.59813924,-18.00214918,0,0,1 to 5,20 or more,189,Christian,No,Yes,Yes,ALBERTO CUMAGANA
+MOZ,SNG,Mopeia sede | Nzanza,Cocorico,Sanguimbe,35.59146674,-17.98424439,0,0,0,6 to 19,38,Christian,No,No,Yes,FLORINDO JANE NCOMBE
+MOZ,NGX,Mopeia sede | Nzanza,Cocorico,Ngimbe,35.5729735,-17.97716025,0,20 or more,6 to 19,6 to 19,20,Christian,No,DK,Yes,PESRO NGOMBE
+MOZ,COC,Mopeia sede | Nzanza,Cocorico,Cocorico,35.62617394,-18.00386156,0,20 or more,20 or more,20 or more,54,Christian,No,No,Yes,Luis Chano Gale
+MOZ,MEF,Mopeia sede | Nzanza,Cocorico,Mefula,35.54943996,-17.90142745,0,20 or more,20 or more,20 or more,120,NA,NA,NA,NA,NA
+MOZ,PZX,Campo | Luala,Lua Lua,Paz,36.26017422,-17.51583229,0,0,6 to 19,20 or more,215,Christian,Yes,Yes,Yes,VASCO MANECAS MORTAL
+MOZ,MAU,Campo | Luala,Lua Lua,Mauia,36.251895,-17.51781239,0,0,20 or more,20 or more,70,Christian,No,No,Yes,Joaquim Boscare
+MOZ,MIC,Campo | Luala,Caline,Micombezi,35.95222117,-17.59474828,0,0,20 or more,20 or more,175,Christian,No,No,Yes,Ambrosio Pereira
+MOZ,LMA,Campo | Luala,Lima,Lima A,36.07661004,-17.56302605,0,0,20 or more,20 or more,144,Christian,No,No,Yes,Paulino Luis
+MOZ,LMB,Campo | Luala,Lima,Lima B,36.07529324,-17.56310103,0,0,20 or more,6 to 19,175,Christian,No,DK,Yes,PAULINO LUIS
+MOZ,NNN,Campo | Luala,Lima,Namitangurine,36.02867628,-17.56065774,0,0,20 or more,20 or more,360,Christian,No,Yes,Yes,Mario Antonio
+MOZ,RIM,Campo | Luala,Rimba,Rimba,36.14779252,-17.54626279,0,0,20 or more,20 or more,129,Christian,No,No,Yes,Fabiao Almeida
+MOZ,LSX,Campo | Luala,Lua Lua,Acordos de Lusaka,36.26599344,-17.52037209,0,0,6 to 19,1 to 5,133,Christian,No,Yes,Yes,Felizarda Guta
+MOZ,CAA,Campo | Luala,Caline,Caline A,35.99412197,-17.57788993,0,0,20 or more,20 or more,340,Christian,No,No,Yes,Pedro Chiwewe
+MOZ,CAB,Campo | Luala,Caline,Caline B,35.99134907,-17.57887568,0,0,0,6 to 19,675,Christian,No,No,Yes,Jose Guedes
+MOZ,XNN,Campo | Luala,Caline,Nansenguene,35.9778724,-17.51396484,0,0,20 or more,20 or more,88,Christian,No,No,Yes,CARLITO ARVISTA
+MOZ,MIR,Campo | Luala,Lua Lua,Mirrongone,36.22356509,-17.51401756,0,0,20 or more,20 or more,70,Christian,No,No,Yes,Orlando Chifir
+MOZ,AAA,Campo | Luala,Simogo,7 de Abril A,36.36691986,-17.53587199,0,20 or more,20 or more,20 or more,245,Christian,No,Yes,Yes,SANTOS SARAIVA SIMOGO
+MOZ,AAB,Campo | Luala,Lua Lua,7 de Abril B,36.2666811,-17.53177718,0,0,6 to 19,20 or more,190,Christian,No,Yes,Yes,ORLANDO JOSE BANDE
+MOZ,XSO,Campo | Luala,Lua Lua,Samora Machel,36.26067974,-17.53632734,0,0,0,1 to 5,322,Christian,No,Yes,Yes,Alberto Chincamo
+MOZ,ADM,Campo | Luala,Lua Lua,3 de Marco,36.33818585,-17.53421925,0,6 to 19,20 or more,20 or more,158,Christian,No,No,Yes,Francisco Julio
+MOZ,CRB,Campo | Luala,Lua Lua,Cuerelo B,36.41672278,-17.7169579,0,0,0,0,98,Christian,No,No,Yes,Tomas Tome
+MOZ,JJJ,Campo | Luala,Lua Lua,Julius Nyerere,36.26812639,-17.5185137,0,0,0,0,135,Christian,No,No,Yes,Caetano Velasco
+MOZ,CTA,Campo | Luala,Lua Lua,Ceta A,36.29531225,-17.52910901,0,0,20 or more,20 or more,296,Christian,Partially,Yes,Yes,Muinde Intondo
+MOZ,CTB,Campo | Luala,Lua Lua,Ceta B,36.29972541,-17.5275921,0,0,0,1 to 5,136,Christian,No,Yes,Yes,Francisco Ronda
+MOZ,MUD,Campo | Luala,Lua Lua,Mudiba,36.27602298,-17.5269,0,0,6 to 19,20 or more,268,Christian,No,Yes,Yes,Pedro Zumbe
+MOZ,RFX,Campo | Luala,Lua Lua,3 de Fevereiro,36.26114426,-17.5145359,0,0,6 to 19,6 to 19,133,Christian,No,No,Yes,Elidio Botao
+MOZ,VVJ,Campo | Luala,Lua Lua,25 de Junho,36.2936212,-17.5234729,0,0,20 or more,20 or more,74,Christian,No,Yes,Yes,Vicente Antonio
+MOZ,XMM,Campo | Luala,Lua Lua,1 de Maio,36.28061685,-17.5189087,0,0,20 or more,20 or more,187,Traditional,No,Yes,Yes,Alberto Nhamela
+MOZ,LRD,Campo | Luala,Lua Lua,Liberdade,36.24669923,-17.5068375,0,0,20 or more,20 or more,101,Christian,No,No,Yes,Americo Joaquim
+MOZ,DEH,Campo | Luala,Lua Lua,1 de Junho,36.30650637,-17.53003479,0,0,0,1 to 5,100,Christian,No,No,Yes,JOSE JORDAO MAZAMBA
+MOZ,NAS,Campo | Luala,Lua Lua,Nasarone,36.29998399,-17.53025541,0,0,20 or more,20 or more,62,Christian,No,No,Yes,Juliao pedro
+MOZ,CXA,Campo | Luala,Lua Lua,Cuerelo A,36.33804982,-17.53503636,0,0,0,0,180,Christian,No,No,Yes,Antonio Cuerelo
+MOZ,SXA,Campo | Luala,Simogo,7 de Abril C,36.37890556,-17.54555439,0,0,6 to 19,20 or more,147,Christian,No,No,Yes,Ferragem Joaquim
+MOZ,PXA,Campo | Luala,Simogo,1 de Junho A,36.36704173,-17.53128483,0,0,1 to 5,6 to 19,100,Christian,No,Yes,Yes,DAVIDE SANTOS SARAIVA
+MOZ,MPX,Campo | Luala,Mpiaeca,Mpolossa,36.41200645,-17.56978932,0,0,1 to 5,1 to 5,137,Christian,No,DK,Yes,RAFAEL MPOLOSSA
+MOZ,NUX,Campo | Luala,Mpiaeca,Nuando,36.37331106,-17.5815216,0,0,0,6 to 19,85,Christian,No,Yes,Yes,LORIDO DOMINGO
+MOZ,MPI,Campo | Luala,Mpiaeca,Mpiaeca,36.38160252,-17.59493373,0,0,6 to 19,6 to 19,129,Christian,No,No,Yes,Lourindo Domingos
+MOZ,MRX,Campo | Luala,Mpiaeca,Mirebe,36.40007741,-17.6159418,0,0,0,0,59,Christian,No,Yes,Yes,HERNESTO MASTRA
+MOZ,NZZ,Campo | Luala,Lima,Nhamazemba,36.0898734,-17.60109104,0,0,0,20 or more,108,Christian,No,No,Yes,ADRIANO JOFESSE
+MOZ,CHR,Campo | Luala,Chiurine,Chiurine,36.263227,-17.5554812,0,0,20 or more,20 or more,110,Christian,No,No,Yes,Virgilio Jonas
+MOZ,SIT,Campo | Luala,Sitone,Sitone,36.254598,-17.56441983,0,0,20 or more,20 or more,208,Christian,No,No,No,Julinho Vasco
+MOZ,CAD,Campo | Luala,Cadongo,Cadongo,36.22340717,-17.60650591,0,0,20 or more,20 or more,320,Christian,No,No,Yes,Pedro Jaime Solera
+MOZ,NTX,Campo | Campo sede,Mongana,Ntxenga,36.20984509,-17.65922897,0,0,6 to 19,20 or more,200,Christian,No,No,Yes,Albano Jose
+MOZ,BAR,Campo | Campo sede,Mongana,Bariela,36.22773291,-17.73976807,0,0,6 to 19,20 or more,290,Christian,No,No,Yes,Manuel Albino
+MOZ,JOR,Campo | Campo sede,Mongana,Jorissa,36.27422422,-17.74546613,0,0,6 to 19,20 or more,115,Christian,No,No,Yes,Antonio Patricio
+MOZ,SOL,Campo | Campo sede,Mongana,Sololo,36.31461678,-17.77225947,0,0,20 or more,20 or more,90,Christian,No,No,Yes,Felix Jaime
+MOZ,CAI,Campo | Campo sede,Mongana,Caixote,36.29147066,-17.7571293,0,0,20 or more,20 or more,100,Christian,No,No,Yes,Moises Tangue
+MOZ,CUD,Campo | Campo sede,Mongana,Cundine,36.26068384,-17.73350189,0,20 or more,6 to 19,6 to 19,485,Christian,No,No,Yes,Assane Assane
+MOZ,VDX,Campo | Campo sede,Mongana,25 de Setembro,36.33202918,-17.76902523,0,0,6 to 19,20 or more,160,Christian,No,No,Yes,Abilio Caetano
+MOZ,TDX,Campo | Campo sede,Mongana,3 de Fevereiro,36.35117319,-17.77734691,0,0,6 to 19,20 or more,93,Christian,No,No,Yes,Caetano Caetano
+MOZ,ADX,Campo | Campo sede,Mongana,Acordos de Lusaka,36.3281378,-17.7667749,0,0,20 or more,20 or more,213,Christian,No,No,Yes,Antonio Campira
+MOZ,FDX,Campo | Campo sede,Mongana,4 de Outubro sede,36.31923898,-17.76021921,0,0,6 to 19,20 or more,266,Christian,No,No,Yes,Armando Pedro
+MOZ,MVX,Campo | Campo sede,Mongana,Mucombezi velho,36.02655306,-17.83332034,0,20 or more,20 or more,20 or more,110,Christian,No,No,No,MIGUEL MIDIA
+MOZ,PMP,Campo | Campo sede,Mongana,Pempe,36.02839096,-17.72706082,0,0,20 or more,20 or more,80,Christian,No,No,No,ISAIAS BENE
+MOZ,CUX,Campo | Campo sede,Mongana,Cuerelo A,36.41353824,-17.71407947,0,0,0,0,83,Christian,No,No,Yes,Mario Guerra
+MOZ,MSX,Campo | Campo sede,Mongana,Mussampnia,36.38686862,-17.71294439,0,0,20 or more,0,62,Christian,No,DK,Yes,JOAQUIM JOSE MILITAO
+MOZ,FNX,Campo | Campo sede,Mongana,Filipe Nyusi,36.25394044,-17.73081972,0,0,20 or more,20 or more,120,Christian,No,No,Yes,Lemos Sairose
+MOZ,SAC,Campo | Campo sede,Sacuane,Sacuane,36.24606245,-17.71696276,0,0,6 to 19,20 or more,300,Christian,No,DK,Yes,Bwamwa joao
+MOZ,MMX,Campo | Campo sede,Zuze,1 de Maio,36.39951733,-17.78450221,0,0,20 or more,20 or more,80,Christian,No,No,Yes,Rodrigues Mandala
+MOZ,JJX,Campo | Campo sede,Zuze,25 de Junho,36.38190729,-17.78400416,0,0,20 or more,20 or more,100,Christian,No,No,Yes,Bernardo Antonio
+MOZ,DDX,Campo | Campo sede,Zuze,4 de Outubro,36.41449043,-17.78752435,0,0,0,1 to 5,68,Christian,No,No,Yes,Antonio Mamudo
+MOZ,JSG,Campo | Campo sede,Zuze,Josina Machel,36.44446512,-17.80661472,0,0,20 or more,20 or more,150,Christian,No,No,Yes,Andrade Joao
+MOZ,EEX,Campo | Campo sede,Zuze,Eduardo Mondlane,36.48232475,-17.80289705,0,0,1 to 5,6 to 19,118,Christian,No,No,Yes,Vasco Assulai
+MOZ,AEX,Campo | Campo sede,Zuze,Armando E Guebuza,36.47336877,-17.79726646,0,0,6 to 19,20 or more,88,Christian,No,Yes,Yes,ADAMO JOAO VIANDRO
+MOZ,SAA,Campo | Campo sede,Zuze,Samaral,36.45452357,-17.80743619,0,0,1 to 5,6 to 19,100,Christian,No,No,Yes,Ernesto Suladane
+MOZ,ASS,Campo | Campo sede,Zuze,Assiate,36.47410772,-17.8052939,0,0,6 to 19,20 or more,83,Christian,No,No,Yes,Manuel Luis Olesse
+MOZ,MAI,Campo | Campo sede,Zuze,Maina,36.49958049,-17.78743118,0,0,1 to 5,6 to 19,82,Christian,No,No,Yes,Joao Madeira Data
+MOZ,MIL,Campo | Campo sede,Zuze,Milange,36.46436007,-17.80162786,0,0,6 to 19,20 or more,106,Christian,No,No,Yes,Eugenio Gejusse
+MOZ,NAM,Campo | Campo sede,Zuze,Namitala,36.49819085,-17.81432883,0,0,1 to 5,20 or more,108,Christian,No,No,Yes,Luis Pergondo
+MOZ,BAJ,Campo | Campo sede,Zuze,Bajone,36.44171996,-17.79027721,0,0,20 or more,20 or more,101,Christian,No,No,Yes,Victorino Jose
+MOZ,JCX,Campo | Campo sede,Zuze,Joaquim Chissano,36.41646269,-17.78914809,0,0,1 to 5,1 to 5,90,Christian,No,No,Yes,Sampaio da Silva
+MOZ,DDD,Campo | Campo sede,Zuze,8 de Marco,36.44567496,-17.80672691,0,0,6 to 19,6 to 19,88,Christian,No,No,Yes,Santos Gabriel
+MOZ,PZS,Campo | Campo sede,Zuze,Paz,36.47067131,-17.80328878,0,0,6 to 19,20 or more,103,Christian,No,No,Yes,Francisco Braz
+MOZ,XNZ,Campo | Campo sede,Zuze,Nhungulo,36.45783333,-17.79669964,0,0,20 or more,20 or more,128,Christian,No,No,Yes,Albino Franque
+MOZ,LJX,Campo | Campo sede,Zuze,LiconJe,36.48418528,-17.8076358,0,0,1 to 5,1 to 5,69,Christian,No,No,Yes,Martins Nota
+MOZ,FYX,Campo | Campo sede,Zuze,Filipe Nyusi,36.49027658,-17.8037958,0,0,1 to 5,6 to 19,78,Christian,No,No,Yes,Alberto Martins
+MOZ,XSA,Campo | Campo sede,Zuze,Samora Machel,36.42821621,-17.79517308,0,0,1 to 5,1 to 5,200,Christian,No,No,Yes,Joaquim Sabado
+MOZ,DNX,Campo | Campo sede,Zuze,19 de Outubro,36.45148848,-17.79220166,0,0,20 or more,20 or more,81,Christian,No,No,Yes,Benjamin Francisco
+MOZ,MUG,Campo | Campo sede,Mugurrumba,Mugurrumba Sede,36.24793497,-18.03348543,0,0,6 to 19,20 or more,50,Christian,No,Yes,Yes,DOMINGOS JO MAINDO MUGURRUMBA
+MOZ,DAH,Campo | Campo sede,Mugurrumba,Danhau,36.19774162,-18.2259952,0,0,20 or more,20 or more,450,Christian,No,Yes,Yes,VERNIJIO INACIO QUITE
+MOZ,XGN,Campo | Campo sede,Mugurrumba,Nhanga,36.29372254,-18.01841648,0,0,20 or more,20 or more,105,Christian,No,No,No,Fernando Alberto Dause
+MOZ,GON,Campo | Campo sede,Mugurrumba,Gonda,36.13081564,-18.16493064,0,0,20 or more,20 or more,60,Christian,No,No,No,MANUEL MARIO PAULINO
+MOZ,BAT,Campo | Campo sede,Mugurrumba,Batelao,36.14920705,-18.03072032,0,0,20 or more,20 or more,67,Christian,No,No,Yes,INACIO JUNTA MESSIAS
+MOZ,NSN,Campo | Campo sede,Mugurrumba,Nsando,36.1043362,-18.03617388,0,0,20 or more,20 or more,44,Christian,No,No,Yes,ALBERTO ANTONIO
+MOZ,XNH,Campo | Campo sede,Mugurrumba,Nhando,36.2570803,-18.02715131,0,0,0,20 or more,38,Christian,No,No,No,Olimpio Chico
+MOZ,XBA,Campo | Campo sede,Mugurrumba,Bantene,36.30553247,-18.0508407,0,0,0,20 or more,32,Christian,No,No,Yes,MARIO JOAO TOMAS
+MOZ,XAR,Campo | Campo sede,Mugurrumba,Arvai,36.22848074,-18.03464117,0,0,20 or more,20 or more,38,Christian,No,No,Yes,CARLITOS ALBANO COSTANJA
+MOZ,XMA,Campo | Campo sede,Mugurrumba,Maliganpase,36.23334224,-18.04053146,0,0,6 to 19,20 or more,70,Christian,No,No,No,NELITO DINO ANTONIO
+MOZ,XHC,Campo | Campo sede,Mugurrumba,Chimindwe,36.25486529,-18.04320676,0,0,0,6 to 19,140,Christian,No,No,No,JULIO JOAO ZUMBIRA
+MOZ,XPR,Campo | Campo sede,Mugurrumba,Prego,36.26168406,-18.08888821,0,0,0,20 or more,120,Traditional,No,No,No,ZINHO GIEMBA SANGOMA
+MOZ,XTO,Campo | Campo sede,Mugurrumba,Tonganhica,36.18679938,-18.03605159,0,0,20 or more,0,50,Christian,No,Yes,Yes,JASSE BOTAO
+MOZ,XGA,Campo | Campo sede,Mugurrumba,Gamba-Draban,36.17095758,-18.09526328,0,0,20 or more,20 or more,220,Christian,No,Yes,Yes,MANUEL MAPHAMTA
+MOZ,XNA,Campo | Campo sede,Mugurrumba,Nhamicoco,36.16307055,-18.15423097,0,0,20 or more,20 or more,60,Christian,No,No,No,SANTOS MARTINHO
+MOZ,XLH,Campo | Campo sede,Mugurrumba,Lhendha,36.25758782,-18.05679366,0,0,1 to 5,20 or more,40,Traditional,No,No,No,JOAO MARIO XAVIE
+MOZ,XJU,Campo | Campo sede,Mugurrumba,Junca,36.17376016,-18.06666146,0,0,20 or more,20 or more,130,Christian,No,No,No,INACIO JUNTA MESSIAS
+MOZ,XND,Campo | Campo sede,Mugurrumba,Nhambade,36.21019813,-18.24932987,0,0,20 or more,20 or more,125,Christian,No,Yes,Yes,TOMAS BIZIM DOMINGOS
+MOZ,XDU,Campo | Campo sede,Samurrenge,Dula,36.3159205,-18.01282207,0,0,20 or more,20 or more,100,Christian,No,Yes,Yes,CHARLES TENE NGUWELA
+MOZ,XTX,Campo | Campo sede,Samurrenge,Txicalo,36.34098968,-18.02489155,0,0,6 to 19,20 or more,67,Christian,No,No,No,TOMAS LUIS
+MOZ,XCA,Campo | Campo sede,Samurrenge,Calongola,36.30807202,-18.05375844,0,0,6 to 19,6 to 19,60,Christian,No,No,No,ZEFERINO EMILIO
+MOZ,XNO,Campo | Campo sede,Samurrenge,Nolie,36.30693854,-18.08468825,0,0,20 or more,20 or more,60,Christian,No,No,Yes,ANTONIO SANDE
+MOZ,XCH,Campo | Campo sede,Samurrenge,China,36.33623673,-18.10465307,0,0,0,6 to 19,25,Christian,No,No,No,VICTORINO MANUEL
+MOZ,XNG,Campo | Campo sede,Samurrenge,Ngunguline,36.36464652,-18.08040795,0,0,0,6 to 19,25,Christian,No,No,No,FELICIANO MARRUMA
+MOZ,MUM,Campo | Mungane,Biringuinho,Muanamaino,36.4434002,-17.84559526,0,0,0,20 or more,46,Christian,No,No,Yes,Vinte Lampiao
+MOZ,XAV,Campo | Mungane,Biringuinho,Avareia,36.44285998,-17.85524606,0,0,0,1 to 5,44,Christian,No,No,Yes,Agostinho Lopes
+MOZ,XMU,Campo | Mungane,Biringuinho,Mungombe,36.43201179,-17.84651455,0,0,20 or more,20 or more,40,Christian,No,No,Yes,Tomas Vasco
+MOZ,PAM,Campo | Mungane,Biringuinho,Pambane,36.45252868,-17.86206478,0,0,20 or more,20 or more,64,Christian,No,No,Yes,Luis Vasco Titororo
+MOZ,COM,Campo | Mungane,Biringuinho,Compone,36.44422632,-17.86385926,0,0,6 to 19,0,46,Christian,No,No,Yes,Champion Guemusse
+MOZ,MIJ,Campo | Mungane,Avalinho,Micajune,36.45223464,-17.87115407,0,0,0,0,85,Christian,No,No,No,Aurelio Castro Mussulumade
+MOZ,NAI,Campo | Mungane,Avalinho,Namicole,36.47906193,-17.88646211,0,0,6 to 19,20 or more,47,Christian,No,No,No,Eusebio Simao
+MOZ,XMI,Campo | Mungane,Avalinho,Mipurune,36.454081,-17.88441726,0,0,0,0,84,Christian,No,No,No,Rodrigues Caetano
+MOZ,LUA,Campo | Mungane,Chirama,Luala,36.45036673,-17.87916231,0,0,6 to 19,20 or more,75,Christian,No,No,No,Candido Mavonda
+MOZ,GUI,Campo | Mungane,Chirama,Guia,36.4538236,-17.89509614,0,0,1 to 5,20 or more,94,Christian,No,No,No,Alberto Armando Conhece
+MOZ,MIM,Campo | Mungane,Chirama,Mirerene,36.45043069,-17.89173961,0,0,6 to 19,20 or more,49,Christian,No,No,No,Michone
+MOZ,ZEN,Campo | Mungane,Chirama,Zengue,36.45575462,-17.89629706,0,0,0,20 or more,61,Christian,No,No,No,Bazilio Zainho
+MOZ,CHA,Campo | Catale,Catale,Changaue,36.45247201,-17.62257905,0,0,0,0,70,Christian,No,No,Yes,Lourenco Badaga
+MOZ,MAH,Campo | Catale,Catale,Manhai,36.46666358,-17.6390655,0,0,0,0,94,Christian,No,No,Yes,Pinto Armando
+MOZ,PAN,Campo | Catale,Catale,Panela,36.48067997,-17.69747794,0,0,1 to 5,20 or more,74,Christian,No,No,Yes,Remedio da Silva
+MOZ,ANT,Campo | Catale,Catale,Antonio,36.43913615,-17.71303546,0,0,20 or more,6 to 19,65,Christian,No,No,Yes,Duarte Chamai
+MOZ,RAP,Campo | Catale,Catale,Raposo,36.48612066,-17.70745156,0,0,20 or more,0,121,Christian,No,No,Yes,Tomas Murdiua
+MOZ,NAA,Campo | Catale,Catale,Namaria,36.563492,-17.70963429,0,0,1 to 5,1 to 5,90,Christian,No,No,No,Bento Merca
+MOZ,MUA,Campo | Catale,Catale,Muacaniua,36.55932141,-17.73524939,0,20 or more,20 or more,20 or more,111,Christian,No,No,Yes,Alimo Marciano
+MOZ,MUO,Campo | Catale,Catale,Murrongone,36.54848898,-17.73385012,0,0,20 or more,20 or more,115,Christian,No,No,Yes,Narcisio Tangue
+MOZ,AND,Campo | Catale,Catale,Andale,36.54146511,-17.74159311,0,20 or more,20 or more,0,104,Christian,No,No,Yes,Manuel Sinaportar
+MOZ,MBA,Campo | Catale,Catale,Mbawala,36.53411368,-17.68584373,0,0,0,0,80,Christian,No,No,No,Samuel Domingos
+MOZ,LIC,Campo | Catale,Catale,Licasse,36.5117687,-17.72686912,0,0,0,0,115,Christian,No,No,Yes,Mozva Nota waluma
+MOZ,NHO,Campo | Catale,Catale,Nhagoanine,36.55504673,-17.71150266,0,0,6 to 19,6 to 19,83,Christian,No,No,Yes,Lordino Alfazema
+MOZ,MOR,Campo | Catale,Catale,Morais,36.58050047,-17.72804116,0,6 to 19,6 to 19,20 or more,164,Christian,No,No,Yes,Alberto Meque
+MOZ,WAL,Campo | Catale,Catale,Waluto,36.49575432,-17.73283779,0,0,0,0,141,Christian,No,No,No,Campira Joao
+MOZ,XSE,Campo | Catale,Catale,25 de Setembro,36.47396481,-17.68338528,0,0,0,0,103,Christian,No,No,Yes,Waite Luis
+MOZ,XOU,Campo | Catale,Catale,4 de Outubro,36.52100329,-17.73569166,0,0,6 to 19,0,97,Christian,No,No,Yes,Fernando Nhacusse
+MOZ,XAB,Campo | Catale,Catale,7 de Abril,36.50279352,-17.74742821,0,0,1 to 5,0,88,Christian,No,No,Yes,Mario Nota
+MOZ,XMO,Campo | Catale,Catale,1 de Maio,36.58529291,-17.72309542,0,0,0,0,75,Christian,No,No,Yes,Custema Azevedo
+MOZ,XJN,Campo | Catale,Catale,25 de Junho,36.54470941,-17.75194048,0,0,0,0,75,Christian,No,No,Yes,Domingos Jose
+MOZ,NXX,Campo | Luala,Lua Lua,Nhamirimba,36.10576792,-17.55995668,0,0,20 or more,20 or more,78,Christian,No,No,No,Ernesto Furquia
+MOZ,CFE,Campo | Campo sede,Mongana,Cafe,36.24488186,-17.70214967,0,0,1 to 5,20 or more,85,Christian,No,No,Yes,Benjamin Augusto
+MOZ,SDS,Campo | Campo sede,Zuze,7 de Setembro,36.48495432,-17.79459758,0,0,1 to 5,20 or more,90,Christian,No,No,Yes,Ricardo Sande Mpimba
+MOZ,MHA,Mopeia sede | Cuacua,Mocha,Mocha,35.6688411,-17.90222239,0,0,20 or more,20 or more,350,Other,No,No,Yes,Albano Luís Gimo
+MOZ,AGG,Mopeia sede | Cuacua,Marruma,Armando Emilio Guebuza,35.6746283,-17.94948782,0,0,20 or more,20 or more,60,Christian,No,Yes,Yes,FRANCISCO GACHE
+MOZ,ZZE,Campo | Campo sede,Zuze,7 de abril,36.48952606,-17.78803711,0,0,6 to 19,20 or more,90,Christian,No,No,Yes,Bernardo Gasto
+MOZ,NOB,Mopeia sede | Nzanza,Cocorico,Ngombe,35.57312747,-17.97704207,0,20 or more,20 or more,20 or more,46,Christian,No,No,Yes,LUIS ANTONIO BENJAMIM
+MOZ,NIB,Mopeia sede | Sambalendo,Sambalendo,Nhamirere,35.4739502,-17.84471654,0,20 or more,20 or more,20 or more,85,Christian,No,Yes,Yes,Pedro Andre Faife
+MOZ,SMG,Campo | Luala,Lua Lua,Simogo,36.35677683,-17.53731951,0,0,20 or more,20 or more,350,Christian,No,Yes,Yes,Santos Saraiva Simogo
+MOZ,MOO,Mopeia sede | Rovuma/Conho,Majambe,Misao,35.83329622,-17.91035363,0,0,0,6 to 19,333,Christian,No,No,Yes,FERNANDO JOSE PINTO
+MOZ,NHB,Mopeia sede | Rovuma/Conho,Majambe,Nhangu B,35.82793138,-17.9169183,0,0,20 or more,20 or more,120,Christian,No,No,Yes,NA
+MOZ,AGZ,Mopeia sede | Sambalendo,Sambalendo,Armando Emilio Guebuza,35.40199801,-17.78132358,0,0,20 or more,20 or more,80,Traditional,No,Yes,Yes,TOMAS BEMJAMIM VERNIJO
+MOZ,SMM,Mopeia sede | Sambalendo,Sambalendo,Samora Machel,35.45841618,-17.82650317,0,20 or more,20 or more,20 or more,100,Christian,No,Yes,Yes,TITO BENJAMI PEQUENINO
+MOZ,ZAN,Mopeia sede | Cuacua,Chamanga,Zangatupe,NA,NA,0,,,,100,,,,,
+MOZ,MAZ,Mopeia sede | Cuacua,Chamanga,Mazalo,NA,NA,0,,,,100,,,,,
+MOZ,MEA,Mopeia sede | Rovuma/Conho,Ndingo,Nhamazade,NA,NA,0,,,,100,,,,,
+MOZ,BMN,Mopeia sede | Rovuma/Conho,Ndingo,Nhamitumbine,NA,NA,0,,,,100,,,,,
+MOZ,EER,Mopeia sede | Rovuma/Conho,Ndingo,Mirerene,NA,NA,0,,,,100,,,,,
+MOZ,NTI,Mopeia sede | Rovuma/Conho,Ndingo,Ntinho,NA,NA,0,,,,100,,,,,
+MOZ,ULU,Mopeia sede | Rovuma/Conho,Ndingo,Mulimba,NA,NA,0,,,,100,,,,,
+MOZ,IGM,Mopeia sede | Rovuma/Conho,Ndingo,Mugubia,NA,NA,0,,,,100,,,,,
+MOZ,CAM,Mopeia sede | Rovuma/Conho,Ndingo,Camuedane,NA,NA,0,,,,100,,,,,
+MOZ,ENE,Mopeia sede | Rovuma/Conho,Ndingo,Nhaminbingue,NA,NA,0,,,,100,,,,,
+MOZ,SIM,Mopeia sede | Sambalendo,Manbucha,Simenda,NA,NA,0,,,,100,,,,,
+MOZ,ROA,Mopeia sede | Sambalendo,Manbucha,Roase,NA,NA,0,,,,100,,,,,
+MOZ,ALO,Mopeia sede | Sambalendo,Manbucha,Bangamulopa,NA,NA,0,,,,100,,,,,
+MOZ,SSM,Mopeia sede | Sambalendo,Manbucha,Nhamassapadanga,NA,NA,0,,,,100,,,,,
+MOZ,AHM,Mopeia sede | Sambalendo,Manbucha,Nhamipama,NA,NA,0,,,,100,,,,,
+MOZ,XAA,Mopeia sede | Sambalendo,Manbucha,Xavier,NA,NA,0,,,,100,,,,,
+MOZ,AAN,Mopeia sede | Sambalendo,Manbucha,Nhaminhanga,NA,NA,0,,,,100,,,,,
+MOZ,EEN,Mopeia sede | Sambalendo,Manbucha,Mirerene,NA,NA,0,,,,100,,,,,
+MOZ,HNE,Mopeia sede | Sambalendo,Manbucha,Nhapumbue,NA,NA,0,,,,100,,,,,
+MOZ,AVC,Mopeia sede | Sambalendo,Manbucha,Nhacavacua,NA,NA,0,,,,100,,,,,
+MOZ,HNN,Mopeia sede | Sambalendo,Noere,Nhangumba,NA,NA,0,,,,100,,,,,
+MOZ,ONA,Mopeia sede | Sambalendo,Noere,Nhamaconque,NA,NA,0,,,,100,,,,,
+MOZ,ARM,Mopeia sede | Sambalendo,Noere,Armando Guebuza,NA,NA,0,,,,100,,,,,
+MOZ,CAS,Mopeia sede | Sambalendo,Noere,Samora Machel,NA,NA,0,,,,100,,,,,
+MOZ,COL,Mopeia sede | Sambalendo,Noere,Coleche,NA,NA,0,,,,100,,,,,
+MOZ,BEB,Mopeia sede | Sambalendo,Noere,4 de outubro,NA,NA,0,,,,100,,,,,
+MOZ,OEE,Mopeia sede | Sambalendo,Noere,1 de Maio,NA,NA,0,,,,100,,,,,
+MOZ,JOS,Mopeia sede | Sambalendo,Noere,Josina Machel,NA,NA,0,,,,100,,,,,
+MOZ,MON,Mopeia sede | Sambalendo,Noere,Monecra A,NA,NA,0,,,,100,,,,,
+MOZ,NEN,Mopeia sede | Sambalendo,Noere,Monecra B,NA,NA,0,,,,100,,,,,
+MOZ,MOC,Mopeia sede | Sambalendo,Noere-Coleche,Chamo,NA,NA,0,,,,100,,,,,
+MOZ,CON,Mopeia sede | Sambalendo,Noere-Coleche,Conde,NA,NA,0,,,,100,,,,,
+MOZ,JED,Mopeia sede | Sambalendo,Noere-Coleche,25 de junho,NA,NA,0,,,,100,,,,,
+MOZ,UBU,Mopeia sede | Sambalendo,Noere-Coleche,Mbuemba,NA,NA,0,,,,100,,,,,
+MOZ,ANM,Mopeia sede | Sambalendo,Noere-Coleche,Nhamaceze,NA,NA,0,,,,100,,,,,
+MOZ,INE,Mopeia sede | Sambalendo,Noere-Coleche,Nhamive I,NA,NA,0,,,,100,,,,,
+MOZ,BID,Mopeia sede | Sambalendo,Noere-Coleche,7 de Abril,NA,NA,0,,,,100,,,,,
+MOZ,INO,Mopeia sede | Sambalendo,Noere-Coleche,Josina Machel,NA,NA,0,,,,100,,,,,
+MOZ,EII,Mopeia sede | Sambalendo,Noere-Nhamizinga,1 de Maio,NA,NA,0,,,,100,,,,,
+MOZ,AOA,Mopeia sede | Sambalendo,Noere-Nhamizinga,Nhaibo,NA,NA,0,,,,100,,,,,
+MOZ,DES,Mopeia sede | Sambalendo,Noere-Nhamizinga,25 de Setembro,NA,NA,0,,,,100,,,,,
+MOZ,DIR,Mopeia sede | Sambalendo,Noere-Nhamizinga,7 de Abril,NA,NA,0,,,,100,,,,,
+MOZ,RLB,Mopeia sede | Sambalendo,Noere-Nhamizinga,Liberdade,NA,NA,0,,,,100,,,,,
+MOZ,AGA,Mopeia sede | Sambalendo,Noere-Nhamizinga,Nhangua,NA,NA,0,,,,100,,,,,
+MOZ,EOT,Mopeia sede | Sambalendo,Noere-Nhamizinga,4 de outubro,NA,NA,0,,,,100,,,,,
+MOZ,DEF,Mopeia sede | Sambalendo,Noere-Nhamizinga,3 de Fevereiro,NA,NA,0,,,,100,,,,,
+MOZ,ROP,Mopeia sede | Sambalendo,Nzero,Ropa,NA,NA,0,,,,100,,,,,
+MOZ,BLB,Campo | Luala,Lua Lua,7 de Abril A,NA,NA,0,,,,100,,,,,
+MOZ,EEE,Campo | Luala,Lua Lua,25 de Setembro,NA,NA,0,,,,100,,,,,
+MOZ,OMN,Campo | Luala,Cuerelo,Magodone,NA,NA,0,,,,100,,,,,
+MOZ,MAC,Campo | Luala,Cuerelo,Macossoera,NA,NA,0,,,,100,,,,,
+MOZ,BRE,Campo | Luala,Simogo,7 de Abril B,NA,NA,0,,,,100,,,,,
+MOZ,RBB,Campo | Luala,Rimba,Rimba B,NA,NA,0,,,,100,,,,,

@@ -46,6 +46,7 @@ suppressMessages({
   library(sf)
   library(gsheet)
   theme_bohemia <- ggplot2::theme_bw
+  theme_set(theme_bohemia())
 }
 )
 
@@ -172,10 +173,18 @@ targets <- gps %>%
 # Combine data
 odk_data <- list()
 odk_data$data <- list()
+iterator <- 1:length(moz)
+fixes_ad_hoc_index <- which(names(moz) == 'fixes_ad_hoc')
 for(i in 1:length(moz)){
-  odk_data$data[[i]] <- 
-    bind_rows(moz[[i]] %>% mutate(iso = 'MOZ'),
+  if(i == fixes_ad_hoc_index){
+    odk_data$data[[i]] <- 
+     moz[[i]] # fixes_ad_hoc share same data source
+  } else {
+    odk_data$data[[i]] <- 
+     bind_rows(moz[[i]] %>% mutate(iso = 'MOZ'),
               tza[[i]] %>% mutate(iso = 'TZA'))
+  }
+  
 }
 names(odk_data$data) <- names(moz)
 ```
@@ -431,7 +440,7 @@ odk_data$data$enumerations %>%
     group_by(Fieldworker) %>%
     filter(date >= last_month) %>%
     summarise(Pings = n(),
-              `Total distance recorded` = paste0(round(sum(distance, na.rm = TRUE)), ' KM'),
+              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
               `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
   DT::datatable(out)
 
@@ -460,7 +469,7 @@ odk_data$data$enumerations %>%
     group_by(Fieldworker) %>%
     filter(date >= last_month) %>%
     summarise(Pings = n(),
-              `Total distance recorded` = paste0(round(sum(distance, na.rm = TRUE)), ' KM'),
+              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
               `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
   DT::datatable(out)
 
@@ -491,12 +500,27 @@ an %>%
 
 ```
 
+### Ad-hoc corrections
+
+```{r}
+fixes_ad_hoc <- odk_data$data$fixes_ad_hoc
+```
+
+The below chart shows the status of anomaly-prompted corrections for each country. Additionally, `r nrow(fixes_ad_hoc)` corrections _not having to do with anomalies_ have been requested by the site and implemented by Databrew.
+
 ### Corrections Tanzania
+
+
+
+```{r}
+corrections <- odk_data$data$corrections %>% filter(iso == 'TZA')
+fixes <- odk_data$data$fixes%>% filter(iso == 'TZA')
+```
+
+
 
 ```{r}
 
-corrections <- odk_data$data$corrections %>% filter(iso == 'TZA')
-fixes <- odk_data$data$fixes%>% filter(iso == 'TZA')
 # save(anomalies, corrections, fixes, file = '/tmp/this.RData')
 
 joined <- left_join(an_tz,
@@ -541,7 +565,11 @@ ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
 
 corrections <- odk_data$data$corrections %>% filter(iso == 'MOZ')
 fixes <- odk_data$data$fixes%>% filter(iso == 'MOZ')
-# save(anomalies, corrections, fixes, file = '/tmp/this.RData')
+```
+
+
+
+```{r}
 
 joined <- left_join(an_moz,
                     corrections %>% dplyr::select(-instance_id))
@@ -583,7 +611,9 @@ ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
 
 ### Individual
 
-Tanzania
+
+#### Tanzania
+
 ```{r}
 left <- tibble(wid = sort(unique(as.character(fids$bohemia_id))))
                 
@@ -627,12 +657,12 @@ labs(x = 'FW',
      y = 'Forms per (working) day') +
 theme_bohemia() +
 geom_text(aes(label = forms, color='Number of forms'),
-          nudge_y = 0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = 0.5, size = 3, alpha = 0.8, angle = 90) +
 geom_text(aes(label = days, color='Working days'),
-          nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = -0.5, size = 3, alpha = 0.8, angle = 90) +
 scale_color_manual(name ='', 
                    values =colors) +
-theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12)) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 5)) +
 theme(axis.text = element_text(size = 12),
       axis.title = element_text(size = 14),
       plot.title = element_text(size = 20),
@@ -641,7 +671,8 @@ theme(axis.text = element_text(size = 12),
 
 ```
 
-Mozambique
+#### Mozambique
+
 ```{r}
 left <- tibble(wid = sort(unique(as.character(fids$bohemia_id))))
                 
@@ -685,12 +716,12 @@ labs(x = 'FW',
      y = 'Forms per (working) day') +
 theme_bohemia() +
 geom_text(aes(label = forms, color='Number of forms'),
-          nudge_y = 0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = 0.5, size = 3, alpha = 0.8, angle = 90) +
 geom_text(aes(label = days, color='Working days'),
-          nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
+          nudge_y = -0.5, size = 3, alpha = 0.8, angle = 90) +
 scale_color_manual(name ='', 
                    values =colors) +
-theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 12)) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 5)) +
 theme(axis.text = element_text(size = 12),
       axis.title = element_text(size = 14),
       plot.title = element_text(size = 20),
@@ -701,7 +732,10 @@ theme(axis.text = element_text(size = 12),
 
 ### Aggregate
 
-Tanzania
+Bar: daily observation; Red: smoothed trend line.
+
+#### Tanzania
+
 ```{r}
 # Join to minicensus
 pd <- odk_data$data$minicensus_main %>%
@@ -720,27 +754,27 @@ pdx <- pdx %>%
                         workers, ''))
 pdx <- pdx %>% filter(!is.na(forms))
 pdx <- pdx %>% arrange(desc(per_worker))
-ggplot(data = pdx,
-       aes(x = reorder(todays_date, -per_worker),
-           y = per_worker)) +
-  geom_bar(stat = 'identity') +
-  labs(x = 'FW',
-       y = 'Forms per worker',
-       caption = 'Numbers show forms on top, workers that day on bottom. A "working day" is a day on which that worker submitted any form of that type.') +
-  theme_bohemia() +
-  geom_text(aes(label = label),
-            nudge_y = 0, size = 5, alpha = 0.8,
-            angle = 90) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 10)) +
-  theme(axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14),
-        plot.title = element_text(size = 20),
-        plot.caption = element_text(size = 14))
 
-      
+pdxz <- pdx %>% gather(key, value, forms:per_worker) %>%
+  mutate(key = ifelse(key == 'forms', 'Minicensus forms',
+                      ifelse(key == 'per_worker', 'Forms per worker',
+                             ifelse(key == 'workers', 'Active workers on day', NA))))
+
+ggplot(data = pdxz, 
+       aes(x = todays_date,
+           y = value,
+           group = key)) +
+  geom_bar(stat = 'identity',
+           formula = value~todays_date) +
+  geom_line(stat = 'smooth', alpha = 0.6,
+            color = 'red') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Date',
+       y = 'Value') 
 ```
 
-Mozambique
+#### Mozambique
+
 ```{r}
 # Join to minicensus
 pd <- odk_data$data$minicensus_main %>%
@@ -759,24 +793,22 @@ pdx <- pdx %>%
                         workers, ''))
 pdx <- pdx %>% filter(!is.na(forms))
 pdx <- pdx %>% arrange(desc(per_worker))
-ggplot(data = pdx,
-       aes(x = reorder(todays_date, -per_worker),
-           y = per_worker)) +
-  geom_bar(stat = 'identity') +
-  labs(x = 'FW',
-       y = 'Forms per worker',
-       caption = 'Numbers show forms on top, workers that day on bottom. A "working day" is a day on which that worker submitted any form of that type.') +
-  theme_bohemia() +
-  geom_text(aes(label = label),
-            nudge_y = 0, size = 5, alpha = 0.8,
-            angle = 90) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5, size = 10)) +
-  theme(axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14),
-        plot.title = element_text(size = 20),
-        plot.caption = element_text(size = 14))
 
-      
+pdxz <- pdx %>% gather(key, value, forms:per_worker) %>%
+  mutate(key = ifelse(key == 'forms', 'Minicensus forms',
+                      ifelse(key == 'per_worker', 'Forms per worker',
+                             ifelse(key == 'workers', 'Active workers on day', NA))))
+
+ggplot(data = pdxz, 
+       aes(x = todays_date,
+           y = value,
+           group = key)) +
+  geom_bar(stat = 'identity') +
+  geom_line(stat = 'smooth', alpha = 0.6,
+            color = 'red') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Date',
+       y = 'Value')
 ```
 
 

@@ -27,6 +27,7 @@
         "display": {
           "prompt": "name_id"
         },
+        "hideInContents": 1,
         "_row_num": 4
       },
       {
@@ -41,6 +42,7 @@
         "type": "select_one_dropdown",
         "values_list": "return_time",
         "name": "absent_return",
+        "hideInContents": 1,
         "_row_num": 6
       },
       {
@@ -58,6 +60,7 @@
           "data-min-year": 2021,
           "data-max-year": 2025
         },
+        "hideInContents": 1,
         "_row_num": 8
       },
       {
@@ -3882,7 +3885,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210305001,
         "_row_num": 3
       },
       {
@@ -3979,7 +3982,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210225001,
+        "value": 20210305001,
         "_row_num": 3
       },
       "table_id": {
@@ -8718,6 +8721,7 @@
             "display": {
               "prompt": "name_id"
             },
+            "hideInContents": 1,
             "_row_num": 4,
             "__rowNum__": 3,
             "_token_type": "prompt",
@@ -8742,6 +8746,7 @@
             "type": "select_one_dropdown",
             "values_list": "return_time",
             "name": "absent_return",
+            "hideInContents": 1,
             "_row_num": 6,
             "__rowNum__": 5,
             "_token_type": "prompt",
@@ -8759,6 +8764,7 @@
               "data-min-year": 2021,
               "data-max-year": 2025
             },
+            "hideInContents": 1,
             "_row_num": 8,
             "__rowNum__": 7,
             "_token_type": "prompt",

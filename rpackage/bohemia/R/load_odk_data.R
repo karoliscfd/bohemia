@@ -174,7 +174,10 @@ load_odk_data <- function(the_country = 'Mozambique',
     # Read in corrections data
     corrections <- dbGetQuery(con, "SELECT * FROM corrections")
     fixes <- dbGetQuery(con, "SELECT * FROM fixes")
+    fixes_ad_hoc <- dbGetQuery(con, "SELECT * FROM fixes_ad_hoc")
+    
     data$fixes <- fixes
+    data$fixes_ad_hoc <- fixes_ad_hoc
     data$corrections <- corrections
     
     # Only disconnect if the connection was established in function

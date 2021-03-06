@@ -1,37 +1,63 @@
 <h4>{{localizeText 'toc'}}</h4>
+{{#if isSubform}}<p>{{localizeText 'toc_subform'}}</p>{{/if}}
 
-<div class="panel-group" id="accordion" role="tablist">
-    {{#each prompts}}
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading{{@key}}">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{@key}}">
-                        {{localizeTextSafe @key}}
-                    </a>
-                </h4>
-            </div>
-            <div id="collapse{{@key}}" class="panel-collapse collapse" role="tabpanel">
-                <div class="list-group">
-                    {{~#each this~}}
-                        {{#unless hideInContents}}
-                            <a href="#" class="list-group-item select-contents-item"
-                               label="{{_branch_label_enclosing_screen}}">
-                                <div class="contents-heading {{#if display.class}}{{display.class}}{{else}}h4{{/if}}">
-                                    {{#ifHasTextLocalization display.prompt}}
-                                        {{localizeTextSafe display.prompt}}
-                                    {{else}}
-                                        {{#ifHasTextLocalization display.title}}
-                                            {{localizeTextSafe display.title}}
+{{#if singleSection}}
+    <div class="list-group">
+        {{~#each prompts~}}
+            {{#unless hideInContents}}
+                <a href="#" class="list-group-item select-contents-item"
+                   label="{{_branch_label_enclosing_screen}}">
+                    <div class="contents-heading {{#if display.class}}{{display.class}}{{else}}h4{{/if}}">
+                        {{#ifHasTextLocalization display.prompt}}
+                            {{localizeTextSafe display.prompt}}
+                        {{else}}
+                            {{#ifHasTextLocalization display.title}}
+                                {{localizeTextSafe display.title}}
+                            {{/ifHasTextLocalization}}
+                        {{/ifHasTextLocalization}}
+                    </div>
+                    <span class="glyphicon glyphicon-chevron-right pull-right center-in-contents"></span>
+                    <p class="contents-description">{{formattedValueForContentsDisplay}}</p>
+                </a>
+            {{/unless}}
+        {{/each}}
+    </div>
+{{else}}
+    <div class="panel-group" id="tocAccordion" role="tablist">
+        {{#each prompts}}
+            <div class="panel panel-default" id="section{{@key}}">
+                <div class="panel-heading" role="tab" id="heading{{@key}}">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#tocAccordion" href="#collapse{{@key}}">
+                            {{localizeTextSafe @key}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{@key}}" class="panel-collapse collapse" role="tabpanel">
+                    <div class="list-group">
+                        {{~#each this~}}
+                            {{#unless hideInContents}}
+                                <a href="#" class="list-group-item select-contents-item"
+                                   label="{{_branch_label_enclosing_screen}}">
+                                    <div class="contents-heading {{#if
+                                            display.class}}{{display.class}}{{else}}h4{{/if}}">
+                                        {{#ifHasTextLocalization display.prompt}}
+                                            {{localizeTextSafe display.prompt}}
+                                        {{else}}
+                                            {{#ifHasTextLocalization display.title}}
+                                                {{localizeTextSafe display.title}}
+                                            {{/ifHasTextLocalization}}
                                         {{/ifHasTextLocalization}}
-                                    {{/ifHasTextLocalization}}
-                                </div>
-                                <span class="glyphicon glyphicon-chevron-right pull-right center-in-contents"></span>
-                                <p class="contents-description">{{formattedValueForContentsDisplay}}</p>
-                            </a>
-                        {{/unless}}
-                    {{~/each~}}
+                                    </div>
+                                    <span class="glyphicon glyphicon-chevron-right pull-right center-in-contents"></span>
+                                    <p class="contents-description">{{formattedValueForContentsDisplay}}</p>
+                                </a>
+                            {{/unless}}
+                        {{~/each~}}
+                    </div>
                 </div>
             </div>
-        </div>
-    {{/each}}
-</div>
+        {{/each}}
+    </div>
+
+{{/if}}

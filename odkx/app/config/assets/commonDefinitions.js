@@ -243,6 +243,53 @@ window.odkCommonDefinitions = {
       "string_token": "toc",
       "text": "Table of Contents",
       "_row_num": 38
+    },
+    "toc_subform": {
+      "string_token": "toc_subform",
+      "text": "Other parts of the census will be available after completion of this section",
+      "_row_num": 39
+    },
+    "last_saved": {
+      "string_token": "last_saved",
+      "text": "Last Saved",
+      "_row_num": 40
+    },
+    "name": {
+      "string_token": "name",
+      "text": "Name",
+      "_row_num": 41
+    },
+    "finalized": {
+      "string_token": "finalized",
+      "text": "Finalized",
+      "_row_num": 42
+    },
+    "resident": {
+      "string_token": "resident",
+      "text": {
+        "default": "Resident member",
+        "pt": "Membro residente",
+        "sw": "Mtu mkazi"
+      },
+      "_row_num": 43
+    },
+    "non_resident": {
+      "string_token": "non_resident",
+      "text": {
+        "default": "Non-Resident member",
+        "pt": "Membro não residente",
+        "sw": "Mtu asiye mkazi"
+      },
+      "_row_num": 44
+    },
+    "extid": {
+      "string_token": "extid",
+      "text": {
+        "default": "ExtID",
+        "pt": "ExtID",
+        "sw": "ExtID"
+      },
+      "_row_num": 45
     }
   },
   "_locales": {
