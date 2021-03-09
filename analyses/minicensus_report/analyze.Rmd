@@ -96,6 +96,9 @@ if(replace_local_files){
   }
 }
 
+# Get done hamlets
+done_hamlets <- dbGetQuery(conn = con, 'select * from done_hamlets')
+
 # Define a default fieldworkers data
 if(!'fids.csv' %in% dir('/tmp')){
   fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=0'
@@ -159,14 +162,14 @@ extract_ll <- function(x){
   return(tibble(lng = lng, lat = lat))
 }
 
-# Define "targets"
-targets <- gps %>%
-  filter(clinical_trial == 0) %>%
-  group_by(iso) %>%
-  summarise(n_households = sum(n_households)) %>%
-  ungroup %>%
-  mutate(country = ifelse(iso == 'MOZ', 'Mozambique', 'Tanzania')) %>%
-  mutate(n_households = ifelse(iso == 'MOZ', 30803, n_households)) # manual adjustment
+# Join gps and done_hamlets to get adjusted targets
+gps <- left_join(
+  gps, done_hamlets
+) %>%
+  mutate(done = !is.na(done_by)) %>%
+  dplyr::select(-done_by, -done_at)
+
+
 ```
 
 ```{r}
@@ -189,7 +192,28 @@ for(i in 1:length(moz)){
 names(odk_data$data) <- names(moz)
 ```
 
+```{r}
+# Get amount done by hamlet per minicensus
+right <- odk_data$data$minicensus_main %>%
+  group_by(code = hh_hamlet_code) %>%
+  summarise(done_so_far = n())
 
+# Join with gps
+gps <- left_join(gps, right)
+
+# Define "targets"
+targets <- gps %>%
+  filter(clinical_trial == 0) %>%
+  mutate(n_households = ifelse(iso == 'MOZ', n_households*0.55, n_households)) %>%
+  mutate(n_households_adjusted = ifelse(done, done_so_far,
+                                        n_households)) %>%
+  group_by(iso) %>%
+  summarise(n_households = sum(n_households, na.rm = TRUE),
+            n_households_from_done_list = sum(n_households_adjusted, na.rm = TRUE)) %>%
+  ungroup %>%
+  mutate(country = ifelse(iso == 'MOZ', 'Mozambique', 'Tanzania'))
+  # mutate(n_households = ifelse(iso == 'MOZ', 30803, n_households)) # manual adjustment
+```
 
 # Data collection progress {.tabset}
 
@@ -197,32 +221,56 @@ names(odk_data$data) <- names(moz)
 
 ### Chart: Household minicensus forms collected
 
-Red line: Cumulative; Bars: Weekly sum; Dotted line: Forward projection (linear regression); Orange line: recon-estimated total number of households
+Red line: Cumulative; Bars: Weekly sum; Dotted line: Forward projection (linear regression); Orange line: recon-estimated total number of households; Blue line: recon-estimated total number of households _adjusted for hamlets "marked as done" via app_.
 
 ```{r, fig.height = 8}
 pd <- odk_data$data$minicensus_main %>%
-  group_by(date = lubridate::floor_date(todays_date, 'week'),
+  group_by(date = lubridate::floor_date(todays_date, 'day'),
            country = hh_country) %>%
   tally %>%
   ungroup %>%
+  mutate(dummy = 1) %>%
   group_by(country) %>%
-  mutate(cs = cumsum(n))
+  mutate(cs = cumsum(n)) %>%
+  # mutate(days_since_start = cumsum(dummy))
+  mutate(days_since_start = date - min(date)) %>%
+  mutate(days_since_start = as.numeric(days_since_start))
 
 # Build a regression
-fit <- lm(cs ~ date + country, data = pd)
+fit <- lm(cs ~ 0 + days_since_start * country, data = pd)
+fit_moz <- lm(cs ~ 0 + days_since_start, data = pd[pd$country == 'Mozambique',])
+fit_tza <- lm(cs ~ 0 + days_since_start^2 , data = pd[pd$country == 'Tanzania',])
+
 # Build a prediction df
-pred_df <- 
-  expand.grid(date = seq(min(pd$date),
-                         as.Date('2021-12-05'),
-                         by = 'week'),
+# pred_df <- 
+#   expand.grid(date = seq(min(pd$date),
+#                          as.Date('2021-12-05'),
+#                          by = 'week'),
+#               country = sort(unique(pd$country)))
+pred_df <-
+  expand.grid(days_since_start = seq(0, 1000, 1),
               country = sort(unique(pd$country)))
-pred_df$y <- predict(fit, newdata = pred_df)
+pred_df <- left_join(pred_df, pd)
+# remove previous dates for tza
+tza_start <- min(pd$date[pd$country == 'Tanzania'])
+pred_df <- pred_df %>%
+  filter(country == 'Mozambique' |
+           (date >= tza_start))
+pred_df$y <- NA
+pred_df$y[pred_df$country == 'Mozambique'] <- predict(fit_moz, newdata = pred_df[pred_df$country == 'Mozambique',])
+pred_df$y[pred_df$country == 'Tanzania'] <- predict(fit_moz, newdata = pred_df[pred_df$country == 'Tanzania',])
+
 pred_df$remove <- 
   pred_df$country == 'Mozambique' &
-           pred_df$y > targets$n_households[targets$country == 'Mozambique'] |
+           pred_df$y > targets$n_households_from_done_list[targets$country == 'Mozambique'] |
   pred_df$country == 'Tanzania' &
-           pred_df$y > targets$n_households[targets$country == 'Tanzania']
+           pred_df$y > targets$n_households_from_done_list[targets$country == 'Tanzania']
 pred_df <- pred_df %>% filter(!remove)
+
+right_now <- pd %>%
+  group_by(country) %>%
+  filter(date == max(date)) %>%
+  ungroup
 
 
 ggplot(data = pd,
@@ -246,7 +294,23 @@ ggplot(data = pd,
   geom_hline(data = targets,
             aes(yintercept = n_households),
             color = 'darkorange',
-            alpha = 0.5)
+            alpha = 0.5) +
+  geom_hline(data = targets,
+            aes(yintercept = n_households_from_done_list),
+            color = 'blue',
+            alpha = 0.5) +
+  geom_hline(data = right_now,
+             aes(yintercept = cs),
+             alpha = 0.3) 
+```
+
+```{r}
+x <- targets %>%
+  dplyr::rename(Country = iso,
+                `Households per recon` = n_households,
+                `Households adjusted` = n_households_from_done_list) %>%
+  dplyr::select(-country)
+knitr::kable(x)
 ```
 
 
@@ -298,96 +362,183 @@ leaflet() %>%
 ```
 
 
-
-### Table: Household minicensus forms collected
+### Weekly table: Minicensus, VA, Enumerations forms
 
 ```{r}
-x <-odk_data$data$minicensus_main %>%
-  group_by(date = todays_date,
-           country = hh_country) %>%
-  tally %>%
-  ungroup %>%
-  group_by(country) %>%
-  mutate(cs = cumsum(n)) %>%
-  dplyr::select(-cs) %>%
-  tidyr::spread(key = country, value = n)
-bohemia::prettify(x, nrows = nrow(x), download_options = TRUE)
+
+# get forms 
+pd_minicensus <- odk_data$data$minicensus_main %>%
+  mutate(week = lubridate::floor_date(todays_date, 'week')) %>%
+  group_by(week) %>% 
+  summarise(`Minicensus MOZ` = length(which(hh_country == 'Mozambique')),
+            `Minicensus TZA` = length(which(hh_country == 'Tanzania')))
+
+pd_enumerations <- odk_data$data$enumerations %>%
+  mutate(week = lubridate::floor_date(todays_date, 'week')) %>%
+  group_by(week) %>% 
+  summarise(`Enumerations MOZ` = length(which(country == 'Mozambique')))
+
+pd_va <- odk_data$data$va %>%
+  mutate(week = lubridate::floor_date(todays_date, 'week')) %>%
+  group_by(week) %>% 
+  summarise(`VA MOZ` = length(which(server == 'https://sap.manhica.net:4442/ODKAggregate')),
+            `VA TZA` = length(which(server == 'https://bohemia.ihi.or.tz')))
+            
+            
+pd <- full_join(
+  pd_minicensus,
+  pd_va
+) %>%
+  full_join(pd_enumerations) %>%
+  dplyr::rename(week_start = week) %>%
+  mutate(week_start = as.character(week_start)) %>%
+  arrange(week_start)
+
+
+bohemia::prettify(pd, nrows = nrow(pd))
 ```
 
-: gps stuff, fw performance, errors and anomalies, etc (look in the app)
-
-## Daily submissions
-
-### Daily minicensus forms
+### Daily table: Minicensus, VA, Enumerations forms
 
 ```{r}
 # get forms 
-odk_data$data$minicensus_main %>%
-  mutate(week = lubridate::week(todays_date)) %>%
-  group_by(hh_country, todays_date) %>% 
-  summarise(counts = n()) %>% 
-  ggplot(aes(todays_date, counts)) + 
-  # scale_fill_manual(name = '', values = c("darkorange",  "#871F78")) +
-  geom_bar(stat='identity', position = 'dodge') +
-  labs(x = '', y = 'Minicensus forms submitted') +
-  facet_wrap(~hh_country, ncol = 1)
+pd_minicensus <- odk_data$data$minicensus_main %>%
+  group_by(todays_date) %>% 
+  summarise(`Minicensus MOZ` = length(which(hh_country == 'Mozambique')),
+            `Minicensus TZA` = length(which(hh_country == 'Tanzania')))
+
+pd_enumerations <- odk_data$data$enumerations %>%
+  group_by(todays_date) %>% 
+  summarise(`Enumerations MOZ` = length(which(country == 'Mozambique')))
+
+pd_va <- odk_data$data$va %>%
+  group_by(todays_date) %>% 
+  summarise(`VA MOZ` = length(which(server == 'https://sap.manhica.net:4442/ODKAggregate')),
+            `VA TZA` = length(which(server == 'https://bohemia.ihi.or.tz')))
+            
+            
+pd <- full_join(
+  pd_minicensus,
+  pd_va
+) %>%
+  full_join(pd_enumerations) %>%
+  dplyr::rename(date = todays_date) %>%
+  mutate(date = as.character(date)) %>%
+  arrange(date)
+
+
+bohemia::prettify(pd, nrows = nrow(pd))
 ```
 
-### Daily VA forms
 
-```{r}
-# get forms 
-odk_data$data$va %>%
-  mutate(week = lubridate::week(todays_date),
-         country = ifelse(iso=='MOZ', 'Mozambique', 'Tanzania')) %>%
-  group_by(country, todays_date) %>% 
-  summarise(counts = n()) %>% 
-  ggplot(aes(todays_date, counts)) + 
-  # scale_fill_manual(name = '', values = c("darkorange",  "#871F78")) +
-  geom_bar(stat='identity', position = 'dodge') +
-  labs(x = '', y = 'VA forms submitted') +
-  facet_wrap(~country, ncol = 1)
-```
-
-### Daily Enumeration forms (Mozambique only)
-
-```{r}
-# get forms 
-odk_data$data$enumerations %>%
-  mutate(week = lubridate::week(todays_date),
-         country = ifelse(iso=='MOZ', 'Mozambique', 'Tanzania')) %>%
-  group_by(country, todays_date) %>% 
-  summarise(counts = n()) %>% 
-  ggplot(aes(todays_date, counts)) + 
-  # scale_fill_manual(name = '', values = c("darkorange",  "#871F78")) +
-  geom_bar(stat='identity', position = 'dodge') +
-  labs(x = '', y = 'VA forms submitted') +
-  facet_wrap(~country, ncol = 1)
-```
 
 ## Tracking fieldworkers
+
+### Overall FW table
+
+```{r}
+pd_minicensus <- odk_data$data$minicensus_main %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'Minicensus')
+pd_va <- odk_data$data$va %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'VA') 
+pd_enumerations <- odk_data$data$enumerations %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'Enumerations')
+pd_anomalies <- an_moz %>% bind_rows(an_tz) %>%
+  mutate(wid = as.numeric(wid)) %>%
+  group_by(wid, Form = type) %>%
+  tally %>%
+  mutate(Form = ifelse(Form == 'anomaly', 'Anomalies', 'Errors'))
+pd <- bind_rows(pd_minicensus,
+                pd_va) %>%
+  bind_rows(pd_enumerations) %>%
+  bind_rows(pd_anomalies) %>%
+  dplyr::rename(bohemia_id = wid) %>%
+  spread(key = Form, value = n)
+pd <- left_join(fids,
+                pd) %>%
+  filter(bohemia_id < 601) %>%
+  filter(!is.na(last_name))
+bohemia::prettify(pd, nrows = nrow(pd))
+```
+
+
+### FW table (last 7 days only)
+
+```{r}
+date_range <- c(Sys.Date()-7, Sys.Date()-1)
+```
+
+Date range: `r paste0(date_range, collapse = ' through ')`.
+
+```{r}
+pd_minicensus <- odk_data$data$minicensus_main %>%
+  filter(todays_date >= date_range[1],
+         todays_date <= date_range[2]) %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'Minicensus')
+pd_va <- odk_data$data$va %>%
+  filter(todays_date >= date_range[1],
+         todays_date <= date_range[2]) %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'VA') 
+pd_enumerations <- odk_data$data$enumerations %>%
+  filter(todays_date >= date_range[1],
+         todays_date <= date_range[2]) %>%
+  group_by(wid) %>%
+  tally %>%
+  mutate(Form = 'Enumerations')
+pd_anomalies <- an_moz %>% bind_rows(an_tz) %>%
+  filter(date >= date_range[1],
+         date <= date_range[2]) %>%
+  mutate(wid = as.numeric(wid)) %>%
+  group_by(wid, Form = type) %>%
+  tally %>%
+  mutate(Form = ifelse(Form == 'anomaly', 'Anomalies', 'Errors'))
+  
+pd <- bind_rows(pd_minicensus,
+                pd_va) %>%
+  bind_rows(pd_enumerations) %>%
+  bind_rows(pd_anomalies) %>%
+  dplyr::rename(bohemia_id = wid) %>%
+  spread(key = Form, value = n)
+pd <- left_join(fids,
+                pd) %>%
+  filter(bohemia_id < 601) %>%
+  filter(!is.na(last_name))
+bohemia::prettify(pd, nrows = nrow(pd))
+```
+
+
 
 ### Most recent location (Tanzania)
 
 ```{r}
-  traccar_tz$date <- as.Date(traccar_tz$devicetime, 'EST')
- 
-  out <- traccar_tz %>%
-    mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
-    left_join(fids %>% dplyr::select(bohemia_id, 
-                                     first_name, 
-                                     last_name)) %>%
-    mutate(Fieldworker = paste0(bohemia_id, ' ',
-                                first_name, ' ',
-                                last_name)) %>%
-    group_by(Fieldworker) %>%
-    filter(devicetime == max(devicetime))
-  
-  leaflet() %>%
-    addTiles() %>%
-    addMarkers(data = out,
-               popup = paste0(out$Fieldworker, ' ',
-                              out$devicetime)) 
+traccar_tz$date <- as.Date(traccar_tz$devicetime, 'EST')
+
+out <- traccar_tz %>%
+  mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
+  left_join(fids %>% dplyr::select(bohemia_id, 
+                                   first_name, 
+                                   last_name)) %>%
+  mutate(Fieldworker = paste0(bohemia_id, ' ',
+                              first_name, ' ',
+                              last_name)) %>%
+  group_by(Fieldworker) %>%
+  filter(devicetime == max(devicetime))
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data = out,
+             popup = paste0(out$Fieldworker, ' ',
+                            out$devicetime)) 
 
 
 ```
@@ -395,219 +546,86 @@ odk_data$data$enumerations %>%
 ### Most recent location (Mozambique)
 
 ```{r}
-  traccar_moz$date <- as.Date(traccar_moz$devicetime, 'EST')
- 
-  out <- traccar_moz %>%
-    mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
-    left_join(fids %>% dplyr::select(bohemia_id, 
-                                     first_name, 
-                                     last_name)) %>%
-    mutate(Fieldworker = paste0(bohemia_id, ' ',
-                                first_name, ' ',
-                                last_name)) %>%
-    group_by(Fieldworker) %>%
-    filter(devicetime == max(devicetime))
-  
-  leaflet() %>%
-    addTiles() %>%
-    addMarkers(data = out,
-               popup = paste0(out$Fieldworker, ' ',
-                              out$devicetime)) 
+traccar_moz$date <- as.Date(traccar_moz$devicetime, 'EST')
+
+out <- traccar_moz %>%
+  mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
+  left_join(fids %>% dplyr::select(bohemia_id, 
+                                   first_name, 
+                                   last_name)) %>%
+  mutate(Fieldworker = paste0(bohemia_id, ' ',
+                              first_name, ' ',
+                              last_name)) %>%
+  group_by(Fieldworker) %>%
+  filter(devicetime == max(devicetime))
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data = out,
+             popup = paste0(out$Fieldworker, ' ',
+                            out$devicetime)) 
 
 ```
 
 ### Tracking history one month (Tanzania)
 
 ```{r}
-  todays_date <- Sys.Date()
-  last_month <- todays_date -30
-  traccar_tz$date <- as.Date(traccar_tz$devicetime, 'EST')
-  traccar_tz$time_of_day <- lubridate::round_date(traccar_tz$devicetime, 'hour')
-  traccar_tz$day <- lubridate::round_date(traccar_tz$devicetime, 'day')
-  traccar_tz$time_of_day <- as.character(traccar_tz$time_of_day)
-  traccar_tz$day <- as.character(traccar_tz$day)
-  
-  out <- traccar_tz %>%
-    mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
-    left_join(fids %>% dplyr::select(bohemia_id, 
-                                     first_name, 
-                                     last_name)) %>%
-    mutate(Fieldworker = paste0(bohemia_id, ' ',
-                                first_name, ' ',
-                                last_name))
-                                
-  out <- out %>%
-    group_by(Fieldworker) %>%
-    filter(date >= last_month) %>%
-    summarise(Pings = n(),
-              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
-              `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
-  DT::datatable(out)
+todays_date <- Sys.Date()
+last_month <- todays_date -30
+traccar_tz$date <- as.Date(traccar_tz$devicetime, 'EST')
+traccar_tz$time_of_day <- lubridate::round_date(traccar_tz$devicetime, 'hour')
+traccar_tz$day <- lubridate::round_date(traccar_tz$devicetime, 'day')
+traccar_tz$time_of_day <- as.character(traccar_tz$time_of_day)
+traccar_tz$day <- as.character(traccar_tz$day)
+
+out <- traccar_tz %>%
+  mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
+  left_join(fids %>% dplyr::select(bohemia_id, 
+                                   first_name, 
+                                   last_name)) %>%
+  mutate(Fieldworker = paste0(bohemia_id, ' ',
+                              first_name, ' ',
+                              last_name))
+                              
+out <- out %>%
+  group_by(Fieldworker) %>%
+  filter(date >= last_month) %>%
+  summarise(Pings = n(),
+            `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
+            `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
+DT::datatable(out)
 
 ```
 
 ### Tracking history one month (Mozambique)
 
 ```{r}
-  todays_date <- Sys.Date()
-  last_month <- todays_date -30
-  traccar_moz$date <- as.Date(traccar_moz$devicetime, 'EST')
-  traccar_moz$time_of_day <- lubridate::round_date(traccar_moz$devicetime, 'hour')
-  traccar_moz$day <- lubridate::round_date(traccar_moz$devicetime, 'day')
-  traccar_moz$time_of_day <- as.character(traccar_moz$time_of_day)
-  traccar_moz$day <- as.character(traccar_moz$day)
-  
-  out <- traccar_moz %>%
-    mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
-    left_join(fids %>% dplyr::select(bohemia_id, 
-                                     first_name, 
-                                     last_name)) %>%
-    mutate(Fieldworker = paste0(bohemia_id, ' ',
-                                first_name, ' ',
-                                last_name))
-  out <- out %>%
-    group_by(Fieldworker) %>%
-    filter(date >= last_month) %>%
-    summarise(Pings = n(),
-              `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
-              `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
-  DT::datatable(out)
+todays_date <- Sys.Date()
+last_month <- todays_date -30
+traccar_moz$date <- as.Date(traccar_moz$devicetime, 'EST')
+traccar_moz$time_of_day <- lubridate::round_date(traccar_moz$devicetime, 'hour')
+traccar_moz$day <- lubridate::round_date(traccar_moz$devicetime, 'day')
+traccar_moz$time_of_day <- as.character(traccar_moz$time_of_day)
+traccar_moz$day <- as.character(traccar_moz$day)
+
+out <- traccar_moz %>%
+  mutate(bohemia_id = as.numeric(as.character(unique_id))) %>%
+  left_join(fids %>% dplyr::select(bohemia_id, 
+                                   first_name, 
+                                   last_name)) %>%
+  mutate(Fieldworker = paste0(bohemia_id, ' ',
+                              first_name, ' ',
+                              last_name))
+out <- out %>%
+  group_by(Fieldworker) %>%
+  filter(date >= last_month) %>%
+  summarise(Pings = n(),
+            `Total KM recorded` = round(sum(distance/1000, na.rm = TRUE)),
+            `Average battery life` = paste0(round(mean(battery, na.rm=TRUE), 2), ' %'))
+DT::datatable(out)
 
 ```
 
-
-## Errors and anomalies
-
-### Over time
-
-```{r}
-an <- rbind(an_tz, an_moz)
-an %>% 
-  group_by(country,date) %>% 
-  filter(date>'2019-01-01') %>%
-  summarise(`# of anomalies` = sum(type == 'error', na.rm=TRUE),
-            `# of errors` = sum(type == 'anomaly', na.rm=TRUE)) %>%
-  gather(key=key, value=value, -date,-country) %>%
-  mutate(date = as.Date(date)) %>%
-  group_by(key) %>%
-  mutate(`cumulative_value` = cumsum(value)) %>%
-  ggplot(aes(date, value, fill=key)) +
-  geom_bar(stat = 'identity') +
-  scale_fill_manual(name = '', 
-                    values = c('black', 'grey')) +
-  labs(x='Date', y='') +
-  theme_bohemia() + facet_wrap(~country, ncol = 1)
-
-```
-
-### Ad-hoc corrections
-
-```{r}
-fixes_ad_hoc <- odk_data$data$fixes_ad_hoc
-```
-
-The below chart shows the status of anomaly-prompted corrections for each country. Additionally, `r nrow(fixes_ad_hoc)` corrections _not having to do with anomalies_ have been requested by the site and implemented by Databrew.
-
-### Corrections Tanzania
-
-
-
-```{r}
-corrections <- odk_data$data$corrections %>% filter(iso == 'TZA')
-fixes <- odk_data$data$fixes%>% filter(iso == 'TZA')
-```
-
-
-
-```{r}
-
-# save(anomalies, corrections, fixes, file = '/tmp/this.RData')
-
-joined <- left_join(an_tz,
-                    corrections %>% dplyr::select(-instance_id))
-joined <- left_join(joined, fixes)
-
-pd <- joined %>%
-  mutate(status = ifelse(!is.na(done_by), 'Done',
-                         ifelse(!is.na(response_details), 'Response submitted',
-                                'Needs response'))) %>%
-  group_by(category = status) %>%
-  tally %>%
-  ungroup %>%
-  mutate(fraction = n/ sum(n)) %>%
-  mutate(p = paste0(round(fraction * 100, digits = 1), '%')) %>%
-  mutate(ymax = cumsum(fraction)) %>%
-  mutate(ymin = c(0, head(ymax, n = -1))) %>%
-  mutate(label_position = (ymax + ymin) / 2) %>%
-  mutate(label = paste0(category, '\nN: ', n, ' (', p, ')'))
-
-cols <- c('darkgreen', grey(0.5),'darkorange')
-ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
-  geom_rect(alpha = 0.6) +
-  ggrepel::geom_text_repel( x=5, aes(y=label_position, label=label, color = category), size=4) +
-  coord_polar(theta="y") +
-  xlim(c(-1, 4)) +
-  theme_void() +
-  # scale_fill_brewer(palette=4) +
-  scale_fill_manual(name = '',
-                    values = cols) +
-  scale_color_manual(name = '',
-                     values = cols) +
-  theme(legend.position = "none") +
-  labs(x = '',
-       y = '',
-       title = 'Anomalies/errors status')
-```
-
-### Corrections Mozambique
-
-```{r}
-
-corrections <- odk_data$data$corrections %>% filter(iso == 'MOZ')
-fixes <- odk_data$data$fixes%>% filter(iso == 'MOZ')
-```
-
-
-
-```{r}
-
-joined <- left_join(an_moz,
-                    corrections %>% dplyr::select(-instance_id))
-joined <- left_join(joined, fixes)
-
-pd <- joined %>%
-  mutate(status = ifelse(!is.na(done_by), 'Done',
-                         ifelse(!is.na(response_details), 'Response submitted',
-                                'Needs response'))) %>%
-  group_by(category = status) %>%
-  tally %>%
-  ungroup %>%
-  mutate(fraction = n/ sum(n)) %>%
-  mutate(p = paste0(round(fraction * 100, digits = 1), '%')) %>%
-  mutate(ymax = cumsum(fraction)) %>%
-  mutate(ymin = c(0, head(ymax, n = -1))) %>%
-  mutate(label_position = (ymax + ymin) / 2) %>%
-  mutate(label = paste0(category, '\nN: ', n, ' (', p, ')'))
-
-cols <- c('darkgreen', grey(0.5),'darkorange')
-ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
-  geom_rect(alpha = 0.6) +
-  ggrepel::geom_text_repel( x=5, aes(y=label_position, label=label, color = category), size=4) +
-  coord_polar(theta="y") +
-  xlim(c(-1, 4)) +
-  theme_void() +
-  # scale_fill_brewer(palette=4) +
-  scale_fill_manual(name = '',
-                    values = cols) +
-  scale_color_manual(name = '',
-                     values = cols) +
-  theme(legend.position = "none") +
-  labs(x = '',
-       y = '',
-       title = 'Anomalies/errors status')
-```
-
-## Fieldworker performance
 
 ### Individual
 
@@ -813,3 +831,135 @@ ggplot(data = pdxz,
 
 
 
+
+
+## Errors and anomalies
+
+### Over time
+
+```{r}
+an <- rbind(an_tz, an_moz)
+an %>% 
+  group_by(country,date) %>% 
+  filter(date>'2019-01-01') %>%
+  summarise(`# of anomalies` = sum(type == 'error', na.rm=TRUE),
+            `# of errors` = sum(type == 'anomaly', na.rm=TRUE)) %>%
+  gather(key=key, value=value, -date,-country) %>%
+  mutate(date = as.Date(date)) %>%
+  group_by(key) %>%
+  mutate(`cumulative_value` = cumsum(value)) %>%
+  ggplot(aes(date, value, fill=key)) +
+  geom_bar(stat = 'identity') +
+  scale_fill_manual(name = '', 
+                    values = c('black', 'grey')) +
+  labs(x='Date', y='') +
+  theme_bohemia() + facet_wrap(~country, ncol = 1)
+
+```
+
+### Ad-hoc corrections
+
+```{r}
+fixes_ad_hoc <- odk_data$data$fixes_ad_hoc
+```
+
+The below chart shows the status of anomaly-prompted corrections for each country. Additionally, `r nrow(fixes_ad_hoc)` corrections _not having to do with anomalies_ have been requested by the site and implemented by Databrew.
+
+### Corrections Tanzania
+
+
+
+```{r}
+corrections <- odk_data$data$corrections %>% filter(iso == 'TZA')
+fixes <- odk_data$data$fixes%>% filter(iso == 'TZA')
+```
+
+
+
+```{r}
+
+# save(anomalies, corrections, fixes, file = '/tmp/this.RData')
+
+joined <- left_join(an_tz,
+                    corrections %>% dplyr::select(-instance_id))
+joined <- left_join(joined, fixes)
+
+pd <- joined %>%
+  mutate(status = ifelse(!is.na(done_by), 'Done',
+                         ifelse(!is.na(response_details), 'Response submitted',
+                                'Needs response'))) %>%
+  group_by(category = status) %>%
+  tally %>%
+  ungroup %>%
+  mutate(fraction = n/ sum(n)) %>%
+  mutate(p = paste0(round(fraction * 100, digits = 1), '%')) %>%
+  mutate(ymax = cumsum(fraction)) %>%
+  mutate(ymin = c(0, head(ymax, n = -1))) %>%
+  mutate(label_position = (ymax + ymin) / 2) %>%
+  mutate(label = paste0(category, '\nN: ', n, ' (', p, ')'))
+
+cols <- c('darkgreen', grey(0.5),'darkorange')
+ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
+  geom_rect(alpha = 0.6) +
+  ggrepel::geom_text_repel( x=5, aes(y=label_position, label=label, color = category), size=4) +
+  coord_polar(theta="y") +
+  xlim(c(-1, 4)) +
+  theme_void() +
+  # scale_fill_brewer(palette=4) +
+  scale_fill_manual(name = '',
+                    values = cols) +
+  scale_color_manual(name = '',
+                     values = cols) +
+  theme(legend.position = "none") +
+  labs(x = '',
+       y = '',
+       title = 'Anomalies/errors status')
+```
+
+### Corrections Mozambique
+
+```{r}
+
+corrections <- odk_data$data$corrections %>% filter(iso == 'MOZ')
+fixes <- odk_data$data$fixes%>% filter(iso == 'MOZ')
+```
+
+
+
+```{r}
+
+joined <- left_join(an_moz,
+                    corrections %>% dplyr::select(-instance_id))
+joined <- left_join(joined, fixes)
+
+pd <- joined %>%
+  mutate(status = ifelse(!is.na(done_by), 'Done',
+                         ifelse(!is.na(response_details), 'Response submitted',
+                                'Needs response'))) %>%
+  group_by(category = status) %>%
+  tally %>%
+  ungroup %>%
+  mutate(fraction = n/ sum(n)) %>%
+  mutate(p = paste0(round(fraction * 100, digits = 1), '%')) %>%
+  mutate(ymax = cumsum(fraction)) %>%
+  mutate(ymin = c(0, head(ymax, n = -1))) %>%
+  mutate(label_position = (ymax + ymin) / 2) %>%
+  mutate(label = paste0(category, '\nN: ', n, ' (', p, ')'))
+
+cols <- c('darkgreen', grey(0.5),'darkorange')
+ggplot(data = pd, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=2, fill=category)) +
+  geom_rect(alpha = 0.6) +
+  ggrepel::geom_text_repel( x=5, aes(y=label_position, label=label, color = category), size=4) +
+  coord_polar(theta="y") +
+  xlim(c(-1, 4)) +
+  theme_void() +
+  # scale_fill_brewer(palette=4) +
+  scale_fill_manual(name = '',
+                    values = cols) +
+  scale_color_manual(name = '',
+                     values = cols) +
+  theme(legend.position = "none") +
+  labs(x = '',
+       y = '',
+       title = 'Anomalies/errors status')
+```
