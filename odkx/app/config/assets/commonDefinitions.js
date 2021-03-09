@@ -4,7 +4,8 @@ window.odkCommonDefinitions = {
       "string_token": "op_title",
       "text": {
         "default": "BOHEMIA CENSUS",
-        "pt": "Censo do BOHEMIA"
+        "pt": "Censo do BOHEMIA",
+        "sw": "Sensa ya Bohemia"
       },
       "_row_num": 2
     },
@@ -12,7 +13,8 @@ window.odkCommonDefinitions = {
       "string_token": "fw_id_title",
       "text": {
         "default": "Fieldworker ID",
-        "pt": "ID do Inquiridor"
+        "pt": "ID do Inquiridor",
+        "sw": "Mhojaji"
       },
       "_row_num": 3
     },
@@ -29,7 +31,8 @@ window.odkCommonDefinitions = {
       "string_token": "member_placeholder",
       "text": {
         "default": "Enter Name",
-        "pt": "Insira o Nome"
+        "pt": "Insira o Nome",
+        "sw": "Ingiza jina"
       },
       "_row_num": 5
     },
@@ -37,7 +40,8 @@ window.odkCommonDefinitions = {
       "string_token": "fw_id_label",
       "text": {
         "default": "Fieldworker ID:",
-        "pt": "ID do Inquiridor"
+        "pt": "ID do Inquiridor",
+        "sw": "ID ya Mhojaji"
       },
       "_row_num": 6
     },
@@ -45,7 +49,8 @@ window.odkCommonDefinitions = {
       "string_token": "fw_id_button",
       "text": {
         "default": "Enter Fieldworker ID",
-        "pt": "Insira o ID do Inquiridor"
+        "pt": "Insira o ID do Inquiridor",
+        "sw": "Ingiza ID ya Mhojaji"
       },
       "_row_num": 7
     },
@@ -53,20 +58,26 @@ window.odkCommonDefinitions = {
       "string_token": "new_hh_button",
       "text": {
         "default": "Add New Household",
-        "pt": "Adicionar novo Agregado"
+        "pt": "Adicionar novo Agregado",
+        "sw": "Ingiza kaya mpya"
       },
       "_row_num": 8
     },
     "select_hh_button": {
       "string_token": "select_hh_button",
-      "text": "Select Household",
+      "text": {
+        "default": "Select Household",
+        "pt": "Selecionar Agregado",
+        "sw": "Chagua kaya"
+      },
       "_row_num": 9
     },
     "send_button": {
       "string_token": "send_button",
       "text": {
         "default": "Send Data",
-        "pt": "Enviar Dados"
+        "pt": "Enviar Dados",
+        "sw": "Tuma taarifa"
       },
       "_row_num": 10
     },
@@ -74,7 +85,8 @@ window.odkCommonDefinitions = {
       "string_token": "scan_button",
       "text": {
         "default": "Scan QR Code",
-        "pt": "Scanear Codigo QR"
+        "pt": "Scanear Codigo QR",
+        "sw": "Scan alama zako za QR"
       },
       "_row_num": 11
     },
@@ -91,7 +103,8 @@ window.odkCommonDefinitions = {
       "string_token": "submit_button",
       "text": {
         "default": "Submit",
-        "pt": "Submeter"
+        "pt": "Submeter",
+        "sw": "Wasilisha"
       },
       "_row_num": 13
     },
@@ -99,7 +112,8 @@ window.odkCommonDefinitions = {
       "string_token": "no_result",
       "text": {
         "default": "No Result",
-        "pt": "Sem resultado"
+        "pt": "Sem resultado",
+        "sw": "Hakuna majibu"
       },
       "_row_num": 14
     },
@@ -107,20 +121,26 @@ window.odkCommonDefinitions = {
       "string_token": "hh_tab",
       "text": {
         "default": "Search by Household ID",
-        "pt": "Procurar por ID do Agregado"
+        "pt": "Procurar por ID do Agregado",
+        "sw": "Tafuta kwa ID ya kaya"
       },
       "_row_num": 15
     },
     "hh_not_painted_tab": {
       "string_token": "hh_not_painted_tab",
-      "text": "Search on Map",
+      "text": {
+        "default": "Search on Map",
+        "pt": "Procurar no Mapa",
+        "sw": "Tafuta kwenye ramani"
+      },
       "_row_num": 16
     },
     "member_tab": {
       "string_token": "member_tab",
       "text": {
         "default": "Search by Member",
-        "pt": "Procurar por Membro"
+        "pt": "Procurar por Membro",
+        "sw": "Tafuta kwa mshiriki"
       },
       "_row_num": 17
     },
@@ -128,7 +148,8 @@ window.odkCommonDefinitions = {
       "string_token": "map_button",
       "text": {
         "default": "Map",
-        "pt": "Mapa"
+        "pt": "Mapa",
+        "sw": "Ramani"
       },
       "_row_num": 18
     },
@@ -136,7 +157,8 @@ window.odkCommonDefinitions = {
       "string_token": "search_button",
       "text": {
         "default": "Search",
-        "pt": "Procurar"
+        "pt": "Procurar",
+        "sw": "Tafuta"
       },
       "_row_num": 19
     },
@@ -144,7 +166,8 @@ window.odkCommonDefinitions = {
       "string_token": "cancel_button",
       "text": {
         "default": "Cancel",
-        "pt": "Cancelar"
+        "pt": "Cancelar",
+        "sw": "Sitisha"
       },
       "_row_num": 20
     },
@@ -152,7 +175,8 @@ window.odkCommonDefinitions = {
       "string_token": "proceed_button",
       "text": {
         "default": "Proceed",
-        "pt": "Avançar"
+        "pt": "Avançar",
+        "sw": "Endelea"
       },
       "_row_num": 21
     },
@@ -160,108 +184,189 @@ window.odkCommonDefinitions = {
       "string_token": "fw_id_updated",
       "text": {
         "default": "Fieldworker ID updated",
-        "pt": "ID do Inquiridor actualizado"
+        "pt": "ID do Inquiridor actualizado",
+        "sw": "ID ya mhojaji imebadilishwa (updated)"
       },
       "_row_num": 22
     },
     "yes_button": {
       "string_token": "yes_button",
-      "text": "Yes",
+      "text": {
+        "default": "Yes",
+        "pt": "Sim",
+        "sw": "Ndiyo"
+      },
       "_row_num": 23
     },
     "no_button": {
       "string_token": "no_button",
-      "text": "No",
+      "text": {
+        "default": "No",
+        "pt": "Não",
+        "sw": "Hapana"
+      },
       "_row_num": 24
     },
     "check_painted_id": {
       "string_token": "check_painted_id",
-      "text": "Does this house have a painted Bohemia ID?",
+      "text": {
+        "default": "Does this house have a painted Bohemia ID?",
+        "pt": "Este agregado esta Enumerado?",
+        "sw": "Je, Kaya hii imechora ID ya BOHEMIA?"
+      },
       "_row_num": 25
     },
     "roster_confirm_not_painted": {
       "string_token": "roster_confirm_not_painted",
-      "text": "Confirm with the person in the household that this list of members corresponds to the household you are in.",
+      "text": {
+        "default": "Confirm with the person in the household that this list of members corresponds to the household you are in.",
+        "pt": "Confirme com a pessoa do agregad se esta lista de membros corresponde ao agregado em que você está",
+        "sw": "Hakiki na mmoja wapo wa kwenye kaya kuwa orodha hii ya washiriki inaendana na kaya uliyopo"
+      },
       "_row_num": 26
     },
     "roster_confirm_painted": {
       "string_token": "roster_confirm_painted",
-      "text": "Confirm with the person in the household that",
+      "text": {
+        "default": "Confirm with the person in the household that",
+        "pt": "Confirme com a pessoa da casa que:",
+        "sw": "Hakiki na mmoja wapo wa hiyo kaya kwamba"
+      },
       "_row_num": 27
     },
     "roster_confirm_1": {
       "string_token": "roster_confirm_1",
-      "text": "This list of members corresponds to the household you are in, and",
+      "text": {
+        "default": "This list of members corresponds to the household you are in, and",
+        "pt": "Esta lista de membros corresponde à família em que você está, e",
+        "sw": "Hii orodha ya washiriki inaendana na kaya uliyopo, na"
+      },
       "_row_num": 28
     },
     "roster_confirm_2": {
       "string_token": "roster_confirm_2",
-      "text": "The painted ID matches the household ID in the screen.",
+      "text": {
+        "default": "The painted ID matches the household ID in the screen.",
+        "pt": "O ID pintado corresponde ao ID da família na tela.",
+        "sw": "Namba iliyochorwa inaendana na namba ya kaya inayoonekana kwenye kifaa chako"
+      },
       "_row_num": 29
     },
     "roster_confirm_hint": {
       "string_token": "roster_confirm_hint",
-      "text": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+      "text": {
+        "default": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+        "pt": "Pode ter havido algumas mudanças na lista de membros do agregado, mas pelo menos um membro deve estar correcto.",
+        "sw": "Kunaweza kukawa na mabadiliko katika orodha ya washiriki lakini angalau mtu mmoja anapaswa kuwa sahihi"
+      },
       "_row_num": 30
     },
     "hh_not_found": {
       "string_token": "hh_not_found",
-      "text": "Cannot find what you're looking for?",
+      "text": {
+        "default": "Cannot find what you're looking for?",
+        "pt": "Não consegue encontrar o que está procurando?",
+        "sw": "Hujapata unachokitafuta?"
+      },
       "_row_num": 31
     },
     "search_hint": {
       "string_token": "search_hint",
-      "text": "Try different search terms. If you still cannot find the household try to search on map or by member. If you cannot find the household searching in the map of by member, this is a new household.",
+      "text": {
+        "default": "Try different search terms. If you still cannot find the household try to search on map or by member. If you cannot find the household searching in the map of by member, this is a new household.",
+        "pt": "Experimente termos de pesquisa diferentes. Se você ainda não consegue encontrar o agregado, tente pesquisar no mapa ou por membro. Se você não conseguir encontrar a família pesquisando no mapa ou por membro, esta é uma nova família.",
+        "sw": "Jaribu maneno tofauti ya utafutaji. Ikiwa bado huwezi kupata kaya, jaribu kutafuta kwenye ramani au kwa kutumia washiriki. Ikiwa bado huwezi kupata kaya unayoitafuta kwenye ramani au kwa kutumia washiriki, hii ni kaya mpya"
+      },
       "_row_num": 32
     },
     "search_map_member": {
       "string_token": "search_map_member",
-      "text": "Search on map or by member",
+      "text": {
+        "default": "Search on map or by member",
+        "pt": "Procurar por mapa ou por membro",
+        "sw": "Tafuta kwenye ramani au kwa kutumia washiriki"
+      },
       "_row_num": 33
     },
     "member_search_hint": {
       "string_token": "member_search_hint",
-      "text": "Type the name of any hh member",
+      "text": {
+        "default": "Type the name of any hh member",
+        "pt": "Digite o nome de qualquer membro do agregado",
+        "sw": "Andika jina la mwanakaya yeyote"
+      },
       "_row_num": 34
     },
     "hh_id_search_hint": {
       "string_token": "hh_id_search_hint",
-      "text": "Type the hamlet code or the household ID",
+      "text": {
+        "default": "Type the hamlet code or the household ID",
+        "pt": "Digite o código do bairro ou o ID do agregado",
+        "sw": "Andika utambulisho wa kitongoji au namba ya kaya"
+      },
       "_row_num": 35
     },
     "hh_id_painted_hint": {
       "string_token": "hh_id_painted_hint",
-      "text": "Type the household ID",
+      "text": {
+        "default": "Type the household ID",
+        "pt": "Escreva o ID do agregado",
+        "sw": "Andika namba ya kaya"
+      },
       "_row_num": 36
     },
     "map_hint": {
       "string_token": "map_hint",
-      "text": "You are at the blue circle. Pins are households that were part of minicensus.",
+      "text": {
+        "default": "You are at the blue circle. Pins are households that were part of minicensus.",
+        "pt": "ocê está no círculo azul. Os pontos são famílias que faziam parte do minicenso.",
+        "sw": "Upo katika duara la blu. Alama za pini ni kaya zilizofanyiwa sensa fupi (minicensus)"
+      },
       "_row_num": 37
     },
     "toc": {
       "string_token": "toc",
-      "text": "Table of Contents",
+      "text": {
+        "default": "Table of Contents",
+        "pt": "Tabela de conteudos",
+        "sw": "Jedwali la Yaliyomo"
+      },
       "_row_num": 38
     },
     "toc_subform": {
       "string_token": "toc_subform",
-      "text": "Other parts of the census will be available after completion of this section",
+      "text": {
+        "default": "Other parts of the census will be available after completion of this section",
+        "pt": "Outras partes do censo estarão disponíveis após a conclusão desta seção",
+        "sw": "Sehemu zingine za sensa zitapatikana baada ya kumaliza sehemu hii"
+      },
       "_row_num": 39
     },
     "last_saved": {
       "string_token": "last_saved",
-      "text": "Last Saved",
+      "text": {
+        "default": "Last Saved",
+        "pt": "Salvo pela última vez",
+        "sw": "Tarehi ya mwisho kuhifadhiwa:"
+      },
       "_row_num": 40
     },
     "name": {
       "string_token": "name",
-      "text": "Name",
+      "text": {
+        "default": "Name",
+        "pt": "Nome",
+        "sw": "Jina"
+      },
       "_row_num": 41
     },
     "finalized": {
       "string_token": "finalized",
-      "text": "Finalized",
+      "text": {
+        "default": "Finalized",
+        "pt": "Finalizado",
+        "sw": "Imekamilika"
+      },
       "_row_num": 42
     },
     "resident": {

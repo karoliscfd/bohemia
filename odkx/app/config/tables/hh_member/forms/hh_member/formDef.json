@@ -6106,62 +6106,110 @@
       },
       {
         "string_token": "month_1",
-        "text": "January",
+        "text": {
+          "default": "January",
+          "pt": "Janeiro",
+          "sw": "Januari"
+        },
         "_row_num": 221
       },
       {
         "string_token": "month_2",
-        "text": "February",
+        "text": {
+          "default": "February",
+          "pt": "Fevereiro",
+          "sw": "Februari"
+        },
         "_row_num": 222
       },
       {
         "string_token": "month_3",
-        "text": "March",
+        "text": {
+          "default": "March",
+          "pt": "Março",
+          "sw": "Machi"
+        },
         "_row_num": 223
       },
       {
         "string_token": "month_4",
-        "text": "April",
+        "text": {
+          "default": "April",
+          "pt": "Abril",
+          "sw": "Aprili"
+        },
         "_row_num": 224
       },
       {
         "string_token": "month_5",
-        "text": "May",
+        "text": {
+          "default": "May",
+          "pt": "Maio",
+          "sw": "Mei"
+        },
         "_row_num": 225
       },
       {
         "string_token": "month_6",
-        "text": "June",
+        "text": {
+          "default": "June",
+          "pt": "Junho",
+          "sw": "Juni"
+        },
         "_row_num": 226
       },
       {
         "string_token": "month_7",
-        "text": "July",
+        "text": {
+          "default": "July",
+          "pt": "Julho",
+          "sw": "Julai"
+        },
         "_row_num": 227
       },
       {
         "string_token": "month_8",
-        "text": "August",
+        "text": {
+          "default": "August",
+          "pt": "Agosto",
+          "sw": "Agusti"
+        },
         "_row_num": 228
       },
       {
         "string_token": "month_9",
-        "text": "September",
+        "text": {
+          "default": "September",
+          "pt": "Setembro",
+          "sw": "Septemba"
+        },
         "_row_num": 229
       },
       {
         "string_token": "month_10",
-        "text": "October",
+        "text": {
+          "default": "October",
+          "pt": "Outubro",
+          "sw": "Oktoba"
+        },
         "_row_num": 230
       },
       {
         "string_token": "month_11",
-        "text": "November",
+        "text": {
+          "default": "November",
+          "pt": "Novembro",
+          "sw": "Novemba"
+        },
         "_row_num": 231
       },
       {
         "string_token": "month_12",
-        "text": "December",
+        "text": {
+          "default": "December",
+          "pt": "Dezembro",
+          "sw": "Disemba"
+        },
         "_row_num": 232
       },
       {
@@ -7534,27 +7582,47 @@
       },
       {
         "string_token": "invalid_dm",
-        "text": "Invalid date month combination",
+        "text": {
+          "default": "Invalid date month combination",
+          "pt": "Combinação de data / mês inválida",
+          "sw": "Tarehe na Mwezi si sahihi"
+        },
         "_row_num": 389
       },
       {
         "string_token": "invalid_dmy",
-        "text": "Invalid date month year combination",
+        "text": {
+          "default": "Invalid date month year combination",
+          "pt": "Combinação inválida de data, mês e ano",
+          "sw": "Tarehe,Mwezi na Mwaka si sahihi"
+        },
         "_row_num": 390
       },
       {
         "string_token": "invalid_time_q31",
-        "text": "The answer to Q31 cannot be earlier than that of Q30",
+        "text": {
+          "default": "The answer to Q31 cannot be earlier than that of Q30",
+          "pt": "A resposta a Q31 não pode ser anterior a Q30",
+          "sw": "Jibu la swali la Q31 haliwezi kuwa kabla ya jibu la Q30"
+        },
         "_row_num": 391
       },
       {
         "string_token": "invalid_time_q28",
-        "text": "The answer to Q28 cannot be earlier than that of Q27",
+        "text": {
+          "default": "The answer to Q28 cannot be earlier than that of Q27",
+          "pt": "A resposta à Q28 não pode ser anterior à Q27",
+          "sw": "Jibu la swali la Q28 haliwezi kuwa kabla ya jibu la Q27"
+        },
         "_row_num": 392
       },
       {
         "string_token": "unexpected_trips",
-        "text": "Unexpected number of trips recorded",
+        "text": {
+          "default": "Unexpected number of trips recorded",
+          "pt": "Número inesperado de viagens registradas",
+          "sw": "Idadi isiyotarajiwa ya safari zilizorekodiwa"
+        },
         "_row_num": 393
       },
       {
@@ -8495,7 +8563,11 @@
       },
       {
         "string_token": "hh_head_first_hint",
-        "text": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus. The substitue household head, if there is one, must also be a resident member.",
+        "text": {
+          "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus. The substitue household head, if there is one, must also be a resident member.",
+          "pt": "O chefe do agregado deve ser o primeiro membro adicionado e deve ser um membro residente. Seu ExtID deve terminar em - 001, a menos que ele / ela tenha um ID existente atribuído a partir do minicenso. O chefe substituto do agregado , se houver, também deve ser residente.",
+          "sw": "Mkuu wa kaya lazima awe wa kwanza kauandikishwa na lazima awe mkazi. Namba yake ya utambulisho inatakiwa kuishia na 001vinginevyo awe na namba ya utambulisho kutoka aliyopewa kwenye sensafupi (minicensus). Mbadala wa mkuu wa kaya, endapo yupo, ni lazima awe mkazi."
+        },
         "_row_num": 501
       },
       {
@@ -13940,62 +14012,110 @@
         },
         "month_1": {
           "string_token": "month_1",
-          "text": "January",
+          "text": {
+            "default": "January",
+            "pt": "Janeiro",
+            "sw": "Januari"
+          },
           "_row_num": 221
         },
         "month_2": {
           "string_token": "month_2",
-          "text": "February",
+          "text": {
+            "default": "February",
+            "pt": "Fevereiro",
+            "sw": "Februari"
+          },
           "_row_num": 222
         },
         "month_3": {
           "string_token": "month_3",
-          "text": "March",
+          "text": {
+            "default": "March",
+            "pt": "Março",
+            "sw": "Machi"
+          },
           "_row_num": 223
         },
         "month_4": {
           "string_token": "month_4",
-          "text": "April",
+          "text": {
+            "default": "April",
+            "pt": "Abril",
+            "sw": "Aprili"
+          },
           "_row_num": 224
         },
         "month_5": {
           "string_token": "month_5",
-          "text": "May",
+          "text": {
+            "default": "May",
+            "pt": "Maio",
+            "sw": "Mei"
+          },
           "_row_num": 225
         },
         "month_6": {
           "string_token": "month_6",
-          "text": "June",
+          "text": {
+            "default": "June",
+            "pt": "Junho",
+            "sw": "Juni"
+          },
           "_row_num": 226
         },
         "month_7": {
           "string_token": "month_7",
-          "text": "July",
+          "text": {
+            "default": "July",
+            "pt": "Julho",
+            "sw": "Julai"
+          },
           "_row_num": 227
         },
         "month_8": {
           "string_token": "month_8",
-          "text": "August",
+          "text": {
+            "default": "August",
+            "pt": "Agosto",
+            "sw": "Agusti"
+          },
           "_row_num": 228
         },
         "month_9": {
           "string_token": "month_9",
-          "text": "September",
+          "text": {
+            "default": "September",
+            "pt": "Setembro",
+            "sw": "Septemba"
+          },
           "_row_num": 229
         },
         "month_10": {
           "string_token": "month_10",
-          "text": "October",
+          "text": {
+            "default": "October",
+            "pt": "Outubro",
+            "sw": "Oktoba"
+          },
           "_row_num": 230
         },
         "month_11": {
           "string_token": "month_11",
-          "text": "November",
+          "text": {
+            "default": "November",
+            "pt": "Novembro",
+            "sw": "Novemba"
+          },
           "_row_num": 231
         },
         "month_12": {
           "string_token": "month_12",
-          "text": "December",
+          "text": {
+            "default": "December",
+            "pt": "Dezembro",
+            "sw": "Disemba"
+          },
           "_row_num": 232
         },
         "year_2021": {
@@ -15368,27 +15488,47 @@
         },
         "invalid_dm": {
           "string_token": "invalid_dm",
-          "text": "Invalid date month combination",
+          "text": {
+            "default": "Invalid date month combination",
+            "pt": "Combinação de data / mês inválida",
+            "sw": "Tarehe na Mwezi si sahihi"
+          },
           "_row_num": 389
         },
         "invalid_dmy": {
           "string_token": "invalid_dmy",
-          "text": "Invalid date month year combination",
+          "text": {
+            "default": "Invalid date month year combination",
+            "pt": "Combinação inválida de data, mês e ano",
+            "sw": "Tarehe,Mwezi na Mwaka si sahihi"
+          },
           "_row_num": 390
         },
         "invalid_time_q31": {
           "string_token": "invalid_time_q31",
-          "text": "The answer to Q31 cannot be earlier than that of Q30",
+          "text": {
+            "default": "The answer to Q31 cannot be earlier than that of Q30",
+            "pt": "A resposta a Q31 não pode ser anterior a Q30",
+            "sw": "Jibu la swali la Q31 haliwezi kuwa kabla ya jibu la Q30"
+          },
           "_row_num": 391
         },
         "invalid_time_q28": {
           "string_token": "invalid_time_q28",
-          "text": "The answer to Q28 cannot be earlier than that of Q27",
+          "text": {
+            "default": "The answer to Q28 cannot be earlier than that of Q27",
+            "pt": "A resposta à Q28 não pode ser anterior à Q27",
+            "sw": "Jibu la swali la Q28 haliwezi kuwa kabla ya jibu la Q27"
+          },
           "_row_num": 392
         },
         "unexpected_trips": {
           "string_token": "unexpected_trips",
-          "text": "Unexpected number of trips recorded",
+          "text": {
+            "default": "Unexpected number of trips recorded",
+            "pt": "Número inesperado de viagens registradas",
+            "sw": "Idadi isiyotarajiwa ya safari zilizorekodiwa"
+          },
           "_row_num": 393
         },
         "q1": {
@@ -16329,7 +16469,11 @@
         },
         "hh_head_first_hint": {
           "string_token": "hh_head_first_hint",
-          "text": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus. The substitue household head, if there is one, must also be a resident member.",
+          "text": {
+            "default": "The household head should be the first member added and must be a resident member. His/her ExtID should end in -001 unless he/she has an existing ID assigned from the minicensus. The substitue household head, if there is one, must also be a resident member.",
+            "pt": "O chefe do agregado deve ser o primeiro membro adicionado e deve ser um membro residente. Seu ExtID deve terminar em - 001, a menos que ele / ela tenha um ID existente atribuído a partir do minicenso. O chefe substituto do agregado , se houver, também deve ser residente.",
+            "sw": "Mkuu wa kaya lazima awe wa kwanza kauandikishwa na lazima awe mkazi. Namba yake ya utambulisho inatakiwa kuishia na 001vinginevyo awe na namba ya utambulisho kutoka aliyopewa kwenye sensafupi (minicensus). Mbadala wa mkuu wa kaya, endapo yupo, ni lazima awe mkazi."
+          },
           "_row_num": 501
         },
         "check_all_that_apply_hint": {

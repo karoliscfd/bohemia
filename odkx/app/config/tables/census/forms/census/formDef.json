@@ -7022,32 +7022,56 @@
       },
       {
         "string_token": "hh_roster_mismatch",
-        "text": "Since the list of members is not correct, this will be considered as a new household.",
+        "text": {
+          "default": "Since the list of members is not correct, this will be considered as a new household.",
+          "pt": "Uma vez que a lista de membros não está correcta, este será considerado um novo agregado famíliar.",
+          "sw": "Kwa kuwa orodha ya wanakaya si sahihi, hii itachukuliwa kama kaya mpya."
+        },
         "_row_num": 169
       },
       {
         "string_token": "hh_contact_sup",
-        "text": "Have you contacted your supervisor to get a household ID?",
+        "text": {
+          "default": "Have you contacted your supervisor to get a household ID?",
+          "pt": "Você entrou em contacto com o seu supervisor para obter uma identificação do agregado famíliar?",
+          "sw": "Je, umewasiliana na kiongozi wako kupata namba ya kaya?"
+        },
         "_row_num": 170
       },
       {
         "string_token": "fw_has_paint",
-        "text": "Do you have paint with you?",
+        "text": {
+          "default": "Do you have paint with you?",
+          "pt": "Voce tem material para enumeracao?",
+          "sw": "Je, upo na rangi?"
+        },
         "_row_num": 171
       },
       {
         "string_token": "fw_paint_instr",
-        "text": "Paint the household ID in a visible area.",
+        "text": {
+          "default": "Paint the household ID in a visible area.",
+          "pt": "Pinte o ID do agregado em uma area visivel.",
+          "sw": "Chora namba ya Kaya sehemu ya wazi"
+        },
         "_row_num": 172
       },
       {
         "string_token": "fw_no_paint",
-        "text": "Do not go forward with data collection until the house has been assigned an ID and can be painted.",
+        "text": {
+          "default": "Do not go forward with data collection until the house has been assigned an ID and can be painted.",
+          "pt": "Não prossiga com a recolha de dados até que a casa tenha recebido um ID e possa ser enumerada.",
+          "sw": "Usiendelee na mahojiano hadi kaya itakapopewa namba ya kaya na kuchorwa."
+        },
         "_row_num": 173
       },
       {
         "string_token": "fw_no_contact",
-        "text": "Please contact your supervisor to get a household ID",
+        "text": {
+          "default": "Please contact your supervisor to get a household ID",
+          "pt": "Por favor entre em contacto com seu supervisor para obter um ID do agregado.",
+          "sw": "Tafadhali wasiliana na kiongozi wako kupata namba ya kaya"
+        },
         "_row_num": 174
       },
       {
@@ -7070,7 +7094,11 @@
       },
       {
         "string_token": "geo_identification_invalid",
-        "text": "Invalid hamlet code",
+        "text": {
+          "default": "Invalid hamlet code",
+          "pt": "Código de bairro inválido",
+          "sw": "Utambulisho (code) wa kitongoji si sahihi"
+        },
         "_row_num": 178
       },
       {
@@ -7138,12 +7166,20 @@
       },
       {
         "string_token": "members_left",
-        "text": "Are all of these members still part of this household?",
+        "text": {
+          "default": "Are all of these members still part of this household?",
+          "pt": "Todos esses membros ainda fazem parte desta família?",
+          "sw": "Je, washiriki wote bado ni sehemu ya kaya hii?"
+        },
         "_row_num": 186
       },
       {
         "string_token": "member_left_select",
-        "text": "Which member(s) is/are no longer part in the household?",
+        "text": {
+          "default": "Which member(s) is/are no longer part in the household?",
+          "pt": "Qual (is) membro (s) ja não faz /fazem parte da família?",
+          "sw": "Je, ni mshiriki yupi/washiriki wapi ambao si sehemu ya kaya hii?"
+        },
         "_row_num": 187
       },
       {
@@ -7670,7 +7706,11 @@
       },
       {
         "string_token": "ind_prompt.hint",
-        "text": "Click on the name of each household member to fill the Individual questionnaire",
+        "text": {
+          "default": "Click on the name of each household member to fill the Individual questionnaire",
+          "pt": "Clique no nome de cada membro da família para preencher o questionário individual",
+          "sw": "Chagua jina la kila mshikiri ilikumjazia dodoso la mtu binafsi"
+        },
         "_row_num": 246
       },
       {
@@ -7684,12 +7724,20 @@
       },
       {
         "string_token": "member_resident_required",
-        "text": "This member must be a resident",
+        "text": {
+          "default": "This member must be a resident",
+          "pt": "Este membro deve ser um residente",
+          "sw": "Mshiriki huyu lazima awe mkazi"
+        },
         "_row_num": 248
       },
       {
         "string_token": "add_new_member",
-        "text": "New member addition",
+        "text": {
+          "default": "New member addition",
+          "pt": "Adição de novo membro",
+          "sw": "Kuongeza mshiriki mpya"
+        },
         "_row_num": 249
       },
       {
@@ -8108,12 +8156,20 @@
       },
       {
         "string_token": "q46ci.standing",
-        "text": "46c(i). For standing water, what is the type of water?",
+        "text": {
+          "default": "46c(i). For standing water, what is the type of water?",
+          "pt": "46c (i). Para água parada, qual é o tipo de água?",
+          "sw": "46c(i) Kwa maji yaliyotuama, je ni maji ya aina gani?"
+        },
         "_row_num": 297
       },
       {
         "string_token": "q46ci.flowing",
-        "text": "46c(i). For flowing water, what is the type of water?",
+        "text": {
+          "default": "46c(i). For flowing water, what is the type of water?",
+          "pt": "46c (i). Para água corrente, qual é o tipo de água?",
+          "sw": "46c(i) Kwa maji yanayotiririka, je ni maji ya aina gani?"
+        },
         "_row_num": 298
       },
       {
@@ -8424,52 +8480,92 @@
       },
       {
         "string_token": "contact_number_digits",
-        "text": "Contact numbers must be 9 digits.",
+        "text": {
+          "default": "Contact numbers must be 9 digits.",
+          "pt": "Os números de contato devem ter 9 dígitos",
+          "sw": "Namba za mawasiliano ni lazima ziwe na tarakimu 9"
+        },
         "_row_num": 333
       },
       {
         "string_token": "invalid_hh_id",
-        "text": "The Household ID must be in the format AAA-111.",
+        "text": {
+          "default": "The Household ID must be in the format AAA-111.",
+          "pt": "O ID do agregado deve estar no formato AAA-111.",
+          "sw": "Namba ya kaya ni lazima iwe na muundo wa AAA-111"
+        },
         "_row_num": 334
       },
       {
         "string_token": "invalid_geolocation",
-        "text": "One and only one location must be provided.",
+        "text": {
+          "default": "One and only one location must be provided.",
+          "pt": "Um e apenas um local deve ser fornecido.",
+          "sw": "Alama za utambuzi wa eneo ni lazima zichukuliwe mara moja tu"
+        },
         "_row_num": 335
       },
       {
         "string_token": "member_mismatch",
-        "text": "The number of members added does not match the number of members entered above. Please verify.",
+        "text": {
+          "default": "The number of members added does not match the number of members entered above. Please verify.",
+          "pt": "O número de membros adicionados não corresponde ao número de membros inseridos acima. Por favor verifique",
+          "sw": "Idadi ya washiriki walioingizwa haiendani na idadi ya washiriki walioingizwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 336
       },
       {
         "string_token": "head_sub_match",
-        "text": "The household head must be different from household head substitute",
+        "text": {
+          "default": "The household head must be different from household head substitute",
+          "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
+          "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
+        },
         "_row_num": 337
       },
       {
         "string_token": "latrine_mismatch",
-        "text": "The number of latrines added does not match the number above. Please verify.",
+        "text": {
+          "default": "The number of latrines added does not match the number above. Please verify.",
+          "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
+          "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 338
       },
       {
         "string_token": "water_mismatch",
-        "text": "The number of water bodies added does not match the number entered above. Please verify.",
+        "text": {
+          "default": "The number of water bodies added does not match the number entered above. Please verify.",
+          "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
+          "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 339
       },
       {
         "string_token": "nets_mismatch",
-        "text": "The number of nets added does not match the number entered above. Please verify.",
+        "text": {
+          "default": "The number of nets added does not match the number entered above. Please verify.",
+          "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
+          "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 340
       },
       {
         "string_token": "snakes_mismatch",
-        "text": "The number of members with snake bites added does not match the number entered above. Please verify.",
+        "text": {
+          "default": "The number of members with snake bites added does not match the number entered above. Please verify.",
+          "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
+          "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 341
       },
       {
         "string_token": "deceased_mismatch",
-        "text": "The number of deceased members added does not match the number entered above. Please verify.",
+        "text": {
+          "default": "The number of deceased members added does not match the number entered above. Please verify.",
+          "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
+          "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+        },
         "_row_num": 342
       }
     ],
@@ -12100,32 +12196,56 @@
         },
         "hh_roster_mismatch": {
           "string_token": "hh_roster_mismatch",
-          "text": "Since the list of members is not correct, this will be considered as a new household.",
+          "text": {
+            "default": "Since the list of members is not correct, this will be considered as a new household.",
+            "pt": "Uma vez que a lista de membros não está correcta, este será considerado um novo agregado famíliar.",
+            "sw": "Kwa kuwa orodha ya wanakaya si sahihi, hii itachukuliwa kama kaya mpya."
+          },
           "_row_num": 169
         },
         "hh_contact_sup": {
           "string_token": "hh_contact_sup",
-          "text": "Have you contacted your supervisor to get a household ID?",
+          "text": {
+            "default": "Have you contacted your supervisor to get a household ID?",
+            "pt": "Você entrou em contacto com o seu supervisor para obter uma identificação do agregado famíliar?",
+            "sw": "Je, umewasiliana na kiongozi wako kupata namba ya kaya?"
+          },
           "_row_num": 170
         },
         "fw_has_paint": {
           "string_token": "fw_has_paint",
-          "text": "Do you have paint with you?",
+          "text": {
+            "default": "Do you have paint with you?",
+            "pt": "Voce tem material para enumeracao?",
+            "sw": "Je, upo na rangi?"
+          },
           "_row_num": 171
         },
         "fw_paint_instr": {
           "string_token": "fw_paint_instr",
-          "text": "Paint the household ID in a visible area.",
+          "text": {
+            "default": "Paint the household ID in a visible area.",
+            "pt": "Pinte o ID do agregado em uma area visivel.",
+            "sw": "Chora namba ya Kaya sehemu ya wazi"
+          },
           "_row_num": 172
         },
         "fw_no_paint": {
           "string_token": "fw_no_paint",
-          "text": "Do not go forward with data collection until the house has been assigned an ID and can be painted.",
+          "text": {
+            "default": "Do not go forward with data collection until the house has been assigned an ID and can be painted.",
+            "pt": "Não prossiga com a recolha de dados até que a casa tenha recebido um ID e possa ser enumerada.",
+            "sw": "Usiendelee na mahojiano hadi kaya itakapopewa namba ya kaya na kuchorwa."
+          },
           "_row_num": 173
         },
         "fw_no_contact": {
           "string_token": "fw_no_contact",
-          "text": "Please contact your supervisor to get a household ID",
+          "text": {
+            "default": "Please contact your supervisor to get a household ID",
+            "pt": "Por favor entre em contacto com seu supervisor para obter um ID do agregado.",
+            "sw": "Tafadhali wasiliana na kiongozi wako kupata namba ya kaya"
+          },
           "_row_num": 174
         },
         "hh_identification": {
@@ -12148,7 +12268,11 @@
         },
         "geo_identification_invalid": {
           "string_token": "geo_identification_invalid",
-          "text": "Invalid hamlet code",
+          "text": {
+            "default": "Invalid hamlet code",
+            "pt": "Código de bairro inválido",
+            "sw": "Utambulisho (code) wa kitongoji si sahihi"
+          },
           "_row_num": 178
         },
         "hh_minicensed": {
@@ -12216,12 +12340,20 @@
         },
         "members_left": {
           "string_token": "members_left",
-          "text": "Are all of these members still part of this household?",
+          "text": {
+            "default": "Are all of these members still part of this household?",
+            "pt": "Todos esses membros ainda fazem parte desta família?",
+            "sw": "Je, washiriki wote bado ni sehemu ya kaya hii?"
+          },
           "_row_num": 186
         },
         "member_left_select": {
           "string_token": "member_left_select",
-          "text": "Which member(s) is/are no longer part in the household?",
+          "text": {
+            "default": "Which member(s) is/are no longer part in the household?",
+            "pt": "Qual (is) membro (s) ja não faz /fazem parte da família?",
+            "sw": "Je, ni mshiriki yupi/washiriki wapi ambao si sehemu ya kaya hii?"
+          },
           "_row_num": 187
         },
         "member_left_prompt": {
@@ -12748,7 +12880,11 @@
         },
         "ind_prompt.hint": {
           "string_token": "ind_prompt.hint",
-          "text": "Click on the name of each household member to fill the Individual questionnaire",
+          "text": {
+            "default": "Click on the name of each household member to fill the Individual questionnaire",
+            "pt": "Clique no nome de cada membro da família para preencher o questionário individual",
+            "sw": "Chagua jina la kila mshikiri ilikumjazia dodoso la mtu binafsi"
+          },
           "_row_num": 246
         },
         "cannot_enter_0": {
@@ -12762,12 +12898,20 @@
         },
         "member_resident_required": {
           "string_token": "member_resident_required",
-          "text": "This member must be a resident",
+          "text": {
+            "default": "This member must be a resident",
+            "pt": "Este membro deve ser um residente",
+            "sw": "Mshiriki huyu lazima awe mkazi"
+          },
           "_row_num": 248
         },
         "add_new_member": {
           "string_token": "add_new_member",
-          "text": "New member addition",
+          "text": {
+            "default": "New member addition",
+            "pt": "Adição de novo membro",
+            "sw": "Kuongeza mshiriki mpya"
+          },
           "_row_num": 249
         },
         "q11": {
@@ -13186,12 +13330,20 @@
         },
         "q46ci.standing": {
           "string_token": "q46ci.standing",
-          "text": "46c(i). For standing water, what is the type of water?",
+          "text": {
+            "default": "46c(i). For standing water, what is the type of water?",
+            "pt": "46c (i). Para água parada, qual é o tipo de água?",
+            "sw": "46c(i) Kwa maji yaliyotuama, je ni maji ya aina gani?"
+          },
           "_row_num": 297
         },
         "q46ci.flowing": {
           "string_token": "q46ci.flowing",
-          "text": "46c(i). For flowing water, what is the type of water?",
+          "text": {
+            "default": "46c(i). For flowing water, what is the type of water?",
+            "pt": "46c (i). Para água corrente, qual é o tipo de água?",
+            "sw": "46c(i) Kwa maji yanayotiririka, je ni maji ya aina gani?"
+          },
           "_row_num": 298
         },
         "q47.cattle": {
@@ -13502,52 +13654,92 @@
         },
         "contact_number_digits": {
           "string_token": "contact_number_digits",
-          "text": "Contact numbers must be 9 digits.",
+          "text": {
+            "default": "Contact numbers must be 9 digits.",
+            "pt": "Os números de contato devem ter 9 dígitos",
+            "sw": "Namba za mawasiliano ni lazima ziwe na tarakimu 9"
+          },
           "_row_num": 333
         },
         "invalid_hh_id": {
           "string_token": "invalid_hh_id",
-          "text": "The Household ID must be in the format AAA-111.",
+          "text": {
+            "default": "The Household ID must be in the format AAA-111.",
+            "pt": "O ID do agregado deve estar no formato AAA-111.",
+            "sw": "Namba ya kaya ni lazima iwe na muundo wa AAA-111"
+          },
           "_row_num": 334
         },
         "invalid_geolocation": {
           "string_token": "invalid_geolocation",
-          "text": "One and only one location must be provided.",
+          "text": {
+            "default": "One and only one location must be provided.",
+            "pt": "Um e apenas um local deve ser fornecido.",
+            "sw": "Alama za utambuzi wa eneo ni lazima zichukuliwe mara moja tu"
+          },
           "_row_num": 335
         },
         "member_mismatch": {
           "string_token": "member_mismatch",
-          "text": "The number of members added does not match the number of members entered above. Please verify.",
+          "text": {
+            "default": "The number of members added does not match the number of members entered above. Please verify.",
+            "pt": "O número de membros adicionados não corresponde ao número de membros inseridos acima. Por favor verifique",
+            "sw": "Idadi ya washiriki walioingizwa haiendani na idadi ya washiriki walioingizwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 336
         },
         "head_sub_match": {
           "string_token": "head_sub_match",
-          "text": "The household head must be different from household head substitute",
+          "text": {
+            "default": "The household head must be different from household head substitute",
+            "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
+            "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
+          },
           "_row_num": 337
         },
         "latrine_mismatch": {
           "string_token": "latrine_mismatch",
-          "text": "The number of latrines added does not match the number above. Please verify.",
+          "text": {
+            "default": "The number of latrines added does not match the number above. Please verify.",
+            "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
+            "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 338
         },
         "water_mismatch": {
           "string_token": "water_mismatch",
-          "text": "The number of water bodies added does not match the number entered above. Please verify.",
+          "text": {
+            "default": "The number of water bodies added does not match the number entered above. Please verify.",
+            "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
+            "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 339
         },
         "nets_mismatch": {
           "string_token": "nets_mismatch",
-          "text": "The number of nets added does not match the number entered above. Please verify.",
+          "text": {
+            "default": "The number of nets added does not match the number entered above. Please verify.",
+            "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
+            "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 340
         },
         "snakes_mismatch": {
           "string_token": "snakes_mismatch",
-          "text": "The number of members with snake bites added does not match the number entered above. Please verify.",
+          "text": {
+            "default": "The number of members with snake bites added does not match the number entered above. Please verify.",
+            "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
+            "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 341
         },
         "deceased_mismatch": {
           "string_token": "deceased_mismatch",
-          "text": "The number of deceased members added does not match the number entered above. Please verify.",
+          "text": {
+            "default": "The number of deceased members added does not match the number entered above. Please verify.",
+            "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
+            "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
+          },
           "_row_num": 342
         }
       }
