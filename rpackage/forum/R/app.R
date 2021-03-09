@@ -113,13 +113,17 @@ app_server <- function(input, output, session) {
   
   # create a reactive dataframe to store data
   x = reactiveValues(df=NULL)
-  # observe({
+  if(!'df_forum.RData' %in% dir('/tmp')){
     df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
     # removing details for now
     df$details <- NULL
     df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
-    x$df <- df
-  # })
+    save(df, file = '/tmp/df_forum.RData')
+  } else {
+    load('/tmp/df_forum.RData')
+  }
+  x$df <- df
+  
   
   # put data in table with options for saving a csv 
   output$contact_table <- DT::renderDataTable({
