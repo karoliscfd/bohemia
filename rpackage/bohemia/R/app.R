@@ -3175,6 +3175,7 @@ app_server <- function(input, output, session) {
               pd <- pd %>% 
                 filter(hh_country == co)
               deaths <- odk_data$data$minicensus_repeat_death_info
+              # save(deaths, file = '/tmp/deaths.RData')
               deaths <- deaths %>% filter(instance_id %in% pd$instance_id,
                                           !is.na(death_number))
               pd <- pd %>%
@@ -6044,7 +6045,9 @@ app_server <- function(input, output, session) {
                 arrange(`FW ID`, Description)
               
               by_type <- anx %>%
-                mutate(date = as.Date(date)) %>%
+                mutate(date = as.Date(date))
+              by_type$date[is.na(by_type$date)] <- Sys.Date()
+              by_type <- by_type %>%
                 filter(date >=date_range[1], 
                        date <= date_range[2]) %>%
                 group_by(description) %>%
