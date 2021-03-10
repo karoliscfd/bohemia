@@ -3960,6 +3960,7 @@ app_server <- function(input, output, session) {
                 if(nrow(pdx)==0){
                   NULL
                 } else {
+                  save(pdx, file = '/tmp/pdx.RData')
                   ggplot(data = pdx,
                          aes(x = reorder(wid, -per_day),
                              y = per_day)) +
@@ -3969,9 +3970,9 @@ app_server <- function(input, output, session) {
                          y = 'Forms per (working) day') +
                     theme_bohemia() +
                     geom_text(aes(label = forms, color='Number of forms'),
-                              nudge_y = 0.5, size = 5, alpha = 0.8, angle = 90) +
+                              nudge_y = max(pdx$per_day, na.rm = TRUE) * 0.1, size = sizex * 0.3, alpha = 0.8, angle = 90) +
                     geom_text(aes(label = days, color='Working days'),
-                              nudge_y = -0.5, size = 5, alpha = 0.8, angle = 90) +
+                              nudge_y = max(pdx$per_day, na.rm = TRUE) * -0.1, size = sizex * 0.3, alpha = 0.8, angle = 90) +
                     scale_color_manual(name ='', 
                                        values =colors) +
                     theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = sizex)) +
