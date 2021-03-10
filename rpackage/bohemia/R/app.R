@@ -3960,7 +3960,7 @@ app_server <- function(input, output, session) {
                 if(nrow(pdx)==0){
                   NULL
                 } else {
-                  save(pdx, file = '/tmp/pdx.RData')
+                  # save(pdx, file = '/tmp/pdx.RData')
                   ggplot(data = pdx,
                          aes(x = reorder(wid, -per_day),
                              y = per_day)) +
