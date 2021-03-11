@@ -1,6 +1,6 @@
 'use strict';
 
-define(['promptTypes', 'prompts'], function(promptTypes) {
+define(['./customErrorMsg', 'prompts'], function(customErrorMsg) {
   var buildDisplayVal = function (resultNum, resultObj) {
     return {
       title: {
@@ -11,7 +11,7 @@ define(['promptTypes', 'prompts'], function(promptTypes) {
   };
 
   return {
-    retrieve_extid: promptTypes.select_one_dropdown.extend({
+    retrieve_extid: customErrorMsg.select_one_dropdown.extend({
       type: 'retrieve_extid',
       hideInContents: true,
       populateChoicesViaQueryUsingAjax: function (query, ctxt) {

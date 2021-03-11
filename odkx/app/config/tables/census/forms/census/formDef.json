@@ -2786,9 +2786,17 @@
         "_row_num": 391
       },
       {
+        "clause": "end screen",
+        "_row_num": 392
+      },
+      {
         "clause": "if",
         "condition": "data('hh_num_nets') > 0",
-        "_row_num": 392
+        "_row_num": 393
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 394
       },
       {
         "type": "note",
@@ -2796,7 +2804,7 @@
           "prompt": "net_prompt"
         },
         "hideInContents": 1,
-        "_row_num": 393
+        "_row_num": 395
       },
       {
         "type": "linked_table_counting",
@@ -2813,15 +2821,15 @@
           "valuesList": "linked_mosquito_net"
         },
         "validation_tags": "finalize",
-        "_row_num": 394
-      },
-      {
-        "clause": "end if",
-        "_row_num": 395
+        "_row_num": 396
       },
       {
         "clause": "end screen",
-        "_row_num": 396
+        "_row_num": 397
+      },
+      {
+        "clause": "end if",
+        "_row_num": 398
       },
       {
         "type": "select_multiple",
@@ -2835,11 +2843,11 @@
         "choice_filter": "choice_item.country === data('hh_country')",
         "constraint": "(not(selected(data('malaria_prevention_method'), 'none')) || (selected(data('malaria_prevention_method'), 'none') && countSelected(data('malaria_prevention_method')) === 1)) && (not(selected(data('malaria_prevention_method'), 'dk')) || (selected(data('malaria_prevention_method'), 'dk') && countSelected(data('malaria_prevention_method')) === 1))",
         "validation_tags": "finalize",
-        "_row_num": 397
+        "_row_num": 399
       },
       {
         "clause": "begin screen",
-        "_row_num": 398
+        "_row_num": 400
       },
       {
         "type": "note",
@@ -2848,7 +2856,7 @@
           "class": "h2"
         },
         "hideInContents": 1,
-        "_row_num": 399
+        "_row_num": 401
       },
       {
         "type": "select_one_dropdown",
@@ -2863,7 +2871,7 @@
         "choice_filter": "choice_item.country === data('hh_country')",
         "constraint": "(!data('health_facility_formal_sick') && !data('health_facility_formal_type')) || (!!data('health_facility_formal_sick') ^ !!data('health_facility_formal_type'))",
         "validation_tags": "finalize",
-        "_row_num": 400
+        "_row_num": 402
       },
       {
         "type": "select_multiple",
@@ -2875,12 +2883,12 @@
         },
         "hideInContents": 1,
         "validation_tags": "finalize",
-        "_row_num": 401
+        "_row_num": 403
       },
       {
         "clause": "if",
         "condition": "selected(data('health_facility_formal_type'), 'other')",
-        "_row_num": 402
+        "_row_num": 404
       },
       {
         "type": "text",
@@ -2888,34 +2896,34 @@
         "display": {
           "prompt": "specify"
         },
-        "_row_num": 403
+        "_row_num": 405
       },
       {
         "clause": "end if",
-        "_row_num": 404
+        "_row_num": 406
       },
       {
         "clause": "if",
         "condition": "!!data('health_facility_formal_type')",
-        "_row_num": 405
+        "_row_num": 407
       },
       {
         "type": "assign",
         "name": "health_facility_formal_sick",
         "calculation": "null",
-        "_row_num": 406
-      },
-      {
-        "clause": "end if",
-        "_row_num": 407
-      },
-      {
-        "clause": "end screen",
         "_row_num": 408
       },
       {
-        "clause": "begin screen",
+        "clause": "end if",
         "_row_num": 409
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 410
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 411
       },
       {
         "type": "note",
@@ -2923,7 +2931,7 @@
           "prompt": "snake_h3",
           "section": "health_h2"
         },
-        "_row_num": 410
+        "_row_num": 412
       },
       {
         "type": "select_one",
@@ -2933,16 +2941,16 @@
           "prompt": "q58",
           "section": "health_h2"
         },
-        "_row_num": 411
+        "_row_num": 413
       },
       {
         "clause": "end screen",
-        "_row_num": 412
+        "_row_num": 414
       },
       {
         "clause": "if",
         "condition": "selected(data('any_snake_bite'), 'yes')",
-        "_row_num": 413
+        "_row_num": 415
       },
       {
         "type": "assign",
@@ -2951,7 +2959,7 @@
         "model": {
           "isSessionVariable": 1
         },
-        "_row_num": 414
+        "_row_num": 416
       },
       {
         "type": "integer",
@@ -2964,16 +2972,16 @@
         "required": "selected(data('any_snake_bite'), 'yes')",
         "constraint": "not(selected(data('any_snake_bite'), 'yes')) || data('any_snake_bite_num') > 0",
         "validation_tags": "finalize",
-        "_row_num": 415
+        "_row_num": 417
       },
       {
         "clause": "if",
         "condition": "data('any_snake_bite_num') >0",
-        "_row_num": 416
+        "_row_num": 418
       },
       {
         "clause": "begin screen",
-        "_row_num": 417
+        "_row_num": 419
       },
       {
         "type": "note",
@@ -2981,7 +2989,7 @@
           "prompt": "snake_prompt"
         },
         "hideInContents": 1,
-        "_row_num": 418
+        "_row_num": 420
       },
       {
         "type": "note",
@@ -2989,7 +2997,7 @@
           "prompt": "snake_detail",
           "section": "health_h2"
         },
-        "_row_num": 419
+        "_row_num": 421
       },
       {
         "type": "select_multiple",
@@ -2999,7 +3007,7 @@
           "prompt": "q59a",
           "section": "health_h2"
         },
-        "_row_num": 420
+        "_row_num": 422
       },
       {
         "type": "linked_table_counting",
@@ -3019,23 +3027,23 @@
         },
         "hideInContents": 1,
         "validation_tags": "finalize",
-        "_row_num": 421
-      },
-      {
-        "clause": "end screen",
-        "_row_num": 422
-      },
-      {
-        "clause": "end if",
         "_row_num": 423
       },
       {
-        "clause": "end if",
+        "clause": "end screen",
         "_row_num": 424
       },
       {
-        "clause": "begin screen",
+        "clause": "end if",
         "_row_num": 425
+      },
+      {
+        "clause": "end if",
+        "_row_num": 426
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 427
       },
       {
         "type": "note",
@@ -3044,7 +3052,7 @@
           "class": "h2"
         },
         "hideInContents": 1,
-        "_row_num": 426
+        "_row_num": 428
       },
       {
         "type": "note",
@@ -3052,22 +3060,22 @@
           "prompt": "q60",
           "section": "contact_h2"
         },
-        "_row_num": 427
+        "_row_num": 429
       },
       {
         "clause": "if",
         "condition": "selected(data('hh_contact_no'), 'no_contact_num')",
-        "_row_num": 428
+        "_row_num": 430
       },
       {
         "type": "assign",
         "name": "hh_contact",
         "calculation": "null",
-        "_row_num": 429
+        "_row_num": 431
       },
       {
         "clause": "else",
-        "_row_num": 430
+        "_row_num": 432
       },
       {
         "type": "text",
@@ -3081,11 +3089,11 @@
         },
         "hideInContents": 1,
         "validation_tags": "finalize",
-        "_row_num": 431
+        "_row_num": 433
       },
       {
         "clause": "end if",
-        "_row_num": 432
+        "_row_num": 434
       },
       {
         "type": "select_multiple",
@@ -3095,15 +3103,15 @@
           "prompt": "or_capital"
         },
         "hideInContents": 1,
-        "_row_num": 433
+        "_row_num": 435
       },
       {
         "clause": "end screen",
-        "_row_num": 434
+        "_row_num": 436
       },
       {
         "clause": "begin screen",
-        "_row_num": 435
+        "_row_num": 437
       },
       {
         "type": "note",
@@ -3111,22 +3119,22 @@
           "prompt": "q61",
           "section": "contact_h2"
         },
-        "_row_num": 436
+        "_row_num": 438
       },
       {
         "clause": "if",
         "condition": "selected(data('hh_contact_alt_no'), 'no_alt_contact_num')",
-        "_row_num": 437
+        "_row_num": 439
       },
       {
         "type": "assign",
         "name": "hh_contact_alt",
         "calculation": "null",
-        "_row_num": 438
+        "_row_num": 440
       },
       {
         "clause": "else",
-        "_row_num": 439
+        "_row_num": 441
       },
       {
         "type": "text",
@@ -3140,11 +3148,11 @@
         },
         "hideInContents": 1,
         "validation_tags": "finalize",
-        "_row_num": 440
+        "_row_num": 442
       },
       {
         "clause": "end if",
-        "_row_num": 441
+        "_row_num": 443
       },
       {
         "type": "select_multiple",
@@ -3154,16 +3162,16 @@
           "prompt": "or_capital"
         },
         "hideInContents": 1,
-        "_row_num": 442
+        "_row_num": 444
       },
       {
         "clause": "end screen",
-        "_row_num": 443
+        "_row_num": 445
       },
       {
         "clause": "if",
         "condition": "!!data('hh_contact_alt')",
-        "_row_num": 444
+        "_row_num": 446
       },
       {
         "type": "select_one",
@@ -3173,12 +3181,12 @@
           "prompt": "q62",
           "section": "contact_h2"
         },
-        "_row_num": 445
+        "_row_num": 447
       },
       {
         "clause": "if",
         "condition": "selected(data('hh_contact_alt_2'), 'yes')",
-        "_row_num": 446
+        "_row_num": 448
       },
       {
         "type": "text",
@@ -3193,20 +3201,20 @@
           "type": "tel"
         },
         "validation_tags": "finalize",
-        "_row_num": 447
-      },
-      {
-        "clause": "end if",
-        "_row_num": 448
-      },
-      {
-        "clause": "end if",
         "_row_num": 449
+      },
+      {
+        "clause": "end if",
+        "_row_num": 450
+      },
+      {
+        "clause": "end if",
+        "_row_num": 451
       },
       {
         "clause": "if",
         "condition": "not(selected(data('hh_contact_no'), 'no_contact_num')) || not(selected(data('hh_contact_alt_no'), 'no_alt_contact_num'))",
-        "_row_num": 450
+        "_row_num": 452
       },
       {
         "type": "select_one",
@@ -3216,20 +3224,20 @@
           "prompt": "q63",
           "section": "contact_h2"
         },
-        "_row_num": 451
+        "_row_num": 453
       },
       {
         "clause": "end if",
-        "_row_num": 452
+        "_row_num": 454
       },
       {
         "clause": "if",
         "condition": "selected(data('hh_minicenced'), 'no')",
-        "_row_num": 454
+        "_row_num": 456
       },
       {
         "clause": "begin screen",
-        "_row_num": 455
+        "_row_num": 457
       },
       {
         "type": "note",
@@ -3238,7 +3246,7 @@
           "class": "h2"
         },
         "hideInContents": 1,
-        "_row_num": 456
+        "_row_num": 458
       },
       {
         "type": "note",
@@ -3246,7 +3254,7 @@
           "prompt": "death_new_only"
         },
         "hideInContents": 1,
-        "_row_num": 457
+        "_row_num": 459
       },
       {
         "type": "select_one",
@@ -3259,20 +3267,20 @@
         "required": "selected(data('hh_minicenced'), 'no')",
         "hideInContents": "selected(data('hh_minicenced'), 'yes')",
         "validation_tags": "finalize",
-        "_row_num": 458
+        "_row_num": 460
       },
       {
         "clause": "end screen",
-        "_row_num": 459
+        "_row_num": 461
       },
       {
         "clause": "if",
         "condition": "selected(data('hh_death'), 'yes')",
-        "_row_num": 460
+        "_row_num": 462
       },
       {
         "clause": "begin screen",
-        "_row_num": 461
+        "_row_num": 463
       },
       {
         "type": "assign",
@@ -3281,7 +3289,7 @@
         "model": {
           "isSessionVariable": 1
         },
-        "_row_num": 462
+        "_row_num": 464
       },
       {
         "type": "next_extid_deceased",
@@ -3289,7 +3297,7 @@
         "model": {
           "isSessionVariable": 1
         },
-        "_row_num": 463
+        "_row_num": 465
       },
       {
         "type": "integer",
@@ -3303,7 +3311,7 @@
           "step": 1
         },
         "hideInContents": "selected(data('hh_minicenced'), 'yes')",
-        "_row_num": 464
+        "_row_num": 466
       },
       {
         "type": "linked_table_counting",
@@ -3321,23 +3329,23 @@
         },
         "hideInContents": 1,
         "validation_tags": "finalize",
-        "_row_num": 465
-      },
-      {
-        "clause": "end screen",
-        "_row_num": 466
-      },
-      {
-        "clause": "end if",
         "_row_num": 467
       },
       {
-        "clause": "end if",
+        "clause": "end screen",
         "_row_num": 468
       },
       {
-        "clause": "begin screen",
+        "clause": "end if",
+        "_row_num": 469
+      },
+      {
+        "clause": "end if",
         "_row_num": 470
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 472
       },
       {
         "type": "note",
@@ -3346,7 +3354,7 @@
           "class": "h2",
           "section": "ind_h2"
         },
-        "_row_num": 471
+        "_row_num": 473
       },
       {
         "type": "linked_table_counting",
@@ -3364,11 +3372,11 @@
           "valuesList": "member_questionnaire"
         },
         "hideInContents": 1,
-        "_row_num": 472
+        "_row_num": 474
       },
       {
         "clause": "end screen",
-        "_row_num": 473
+        "_row_num": 475
       }
     ],
     "choices": [
@@ -5099,7 +5107,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210305001,
+        "value": 20210311001,
         "_row_num": 3
       },
       {
@@ -7167,9 +7175,9 @@
       {
         "string_token": "members_left",
         "text": {
-          "default": "Are all of these members still part of this household?",
-          "pt": "Todos esses membros ainda fazem parte desta família?",
-          "sw": "Je, washiriki wote bado ni sehemu ya kaya hii?"
+          "default": "7. Are all of these members still part of this household?",
+          "pt": "7. Todos esses membros ainda fazem parte desta família?",
+          "sw": "7. Je, washiriki wote bado ni sehemu ya kaya hii?"
         },
         "_row_num": 186
       },
@@ -8515,13 +8523,18 @@
         "_row_num": 336
       },
       {
+        "string_token": "member_total_mismatch",
+        "text": "The number of members added does not match the total number of members entered above, please verify.",
+        "_row_num": 337
+      },
+      {
         "string_token": "head_sub_match",
         "text": {
           "default": "The household head must be different from household head substitute",
           "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
           "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
         },
-        "_row_num": 337
+        "_row_num": 338
       },
       {
         "string_token": "latrine_mismatch",
@@ -8530,7 +8543,7 @@
           "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
           "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 338
+        "_row_num": 339
       },
       {
         "string_token": "water_mismatch",
@@ -8539,7 +8552,7 @@
           "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 339
+        "_row_num": 340
       },
       {
         "string_token": "nets_mismatch",
@@ -8548,7 +8561,7 @@
           "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 340
+        "_row_num": 341
       },
       {
         "string_token": "snakes_mismatch",
@@ -8557,7 +8570,7 @@
           "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 341
+        "_row_num": 342
       },
       {
         "string_token": "deceased_mismatch",
@@ -8566,7 +8579,7 @@
           "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 342
+        "_row_num": 343
       }
     ],
     "model": [
@@ -8693,7 +8706,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210305001,
+        "value": 20210311001,
         "_row_num": 3
       },
       "table_id": {
@@ -12341,9 +12354,9 @@
         "members_left": {
           "string_token": "members_left",
           "text": {
-            "default": "Are all of these members still part of this household?",
-            "pt": "Todos esses membros ainda fazem parte desta família?",
-            "sw": "Je, washiriki wote bado ni sehemu ya kaya hii?"
+            "default": "7. Are all of these members still part of this household?",
+            "pt": "7. Todos esses membros ainda fazem parte desta família?",
+            "sw": "7. Je, washiriki wote bado ni sehemu ya kaya hii?"
           },
           "_row_num": 186
         },
@@ -13688,6 +13701,11 @@
           },
           "_row_num": 336
         },
+        "member_total_mismatch": {
+          "string_token": "member_total_mismatch",
+          "text": "The number of members added does not match the total number of members entered above, please verify.",
+          "_row_num": 337
+        },
         "head_sub_match": {
           "string_token": "head_sub_match",
           "text": {
@@ -13695,7 +13713,7 @@
             "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
             "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
           },
-          "_row_num": 337
+          "_row_num": 338
         },
         "latrine_mismatch": {
           "string_token": "latrine_mismatch",
@@ -13704,7 +13722,7 @@
             "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
             "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 338
+          "_row_num": 339
         },
         "water_mismatch": {
           "string_token": "water_mismatch",
@@ -13713,7 +13731,7 @@
             "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 339
+          "_row_num": 340
         },
         "nets_mismatch": {
           "string_token": "nets_mismatch",
@@ -13722,7 +13740,7 @@
             "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 340
+          "_row_num": 341
         },
         "snakes_mismatch": {
           "string_token": "snakes_mismatch",
@@ -13731,7 +13749,7 @@
             "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 341
+          "_row_num": 342
         },
         "deceased_mismatch": {
           "string_token": "deceased_mismatch",
@@ -13740,7 +13758,7 @@
             "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 342
+          "_row_num": 343
         }
       }
     },
@@ -14011,7 +14029,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 414,
+            "_row_num": 416,
             "section_name": "survey"
           },
           {
@@ -14153,7 +14171,7 @@
         "isSessionVariable": 1,
         "_defn": [
           {
-            "_row_num": 463,
+            "_row_num": 465,
             "section_name": "survey"
           },
           {
@@ -15352,7 +15370,7 @@
       "net_count": {
         "_defn": [
           {
-            "_row_num": 394,
+            "_row_num": 396,
             "section_name": "survey"
           }
         ],
@@ -15365,7 +15383,7 @@
       "malaria_prevention_method": {
         "_defn": [
           {
-            "_row_num": 397,
+            "_row_num": 399,
             "section_name": "survey"
           }
         ],
@@ -15380,7 +15398,7 @@
       "health_facility_formal_sick": {
         "_defn": [
           {
-            "_row_num": 400,
+            "_row_num": 402,
             "section_name": "survey"
           }
         ],
@@ -15391,7 +15409,7 @@
       "health_facility_formal_type": {
         "_defn": [
           {
-            "_row_num": 401,
+            "_row_num": 403,
             "section_name": "survey"
           }
         ],
@@ -15406,7 +15424,7 @@
       "health_facility_formal_type_specify": {
         "_defn": [
           {
-            "_row_num": 403,
+            "_row_num": 405,
             "section_name": "survey"
           }
         ],
@@ -15416,7 +15434,7 @@
       "any_snake_bite": {
         "_defn": [
           {
-            "_row_num": 411,
+            "_row_num": 413,
             "section_name": "survey"
           }
         ],
@@ -15427,7 +15445,7 @@
       "any_snake_bite_num": {
         "_defn": [
           {
-            "_row_num": 415,
+            "_row_num": 417,
             "section_name": "survey"
           }
         ],
@@ -15437,7 +15455,7 @@
       "snake_bite_who": {
         "_defn": [
           {
-            "_row_num": 420,
+            "_row_num": 422,
             "section_name": "survey"
           }
         ],
@@ -15452,7 +15470,7 @@
       "snake_count": {
         "_defn": [
           {
-            "_row_num": 421,
+            "_row_num": 423,
             "section_name": "survey"
           }
         ],
@@ -15465,7 +15483,7 @@
       "hh_contact": {
         "_defn": [
           {
-            "_row_num": 431,
+            "_row_num": 433,
             "section_name": "survey"
           }
         ],
@@ -15475,7 +15493,7 @@
       "hh_contact_no": {
         "_defn": [
           {
-            "_row_num": 433,
+            "_row_num": 435,
             "section_name": "survey"
           }
         ],
@@ -15490,7 +15508,7 @@
       "hh_contact_alt": {
         "_defn": [
           {
-            "_row_num": 440,
+            "_row_num": 442,
             "section_name": "survey"
           }
         ],
@@ -15500,7 +15518,7 @@
       "hh_contact_alt_no": {
         "_defn": [
           {
-            "_row_num": 442,
+            "_row_num": 444,
             "section_name": "survey"
           }
         ],
@@ -15515,7 +15533,7 @@
       "hh_contact_alt_2": {
         "_defn": [
           {
-            "_row_num": 445,
+            "_row_num": 447,
             "section_name": "survey"
           }
         ],
@@ -15526,7 +15544,7 @@
       "hh_contact_alt_2_num": {
         "_defn": [
           {
-            "_row_num": 447,
+            "_row_num": 449,
             "section_name": "survey"
           }
         ],
@@ -15536,7 +15554,7 @@
       "contact_for_project": {
         "_defn": [
           {
-            "_row_num": 451,
+            "_row_num": 453,
             "section_name": "survey"
           }
         ],
@@ -15547,7 +15565,7 @@
       "hh_death": {
         "_defn": [
           {
-            "_row_num": 458,
+            "_row_num": 460,
             "section_name": "survey"
           }
         ],
@@ -15558,7 +15576,7 @@
       "hh_death_count": {
         "_defn": [
           {
-            "_row_num": 464,
+            "_row_num": 466,
             "section_name": "survey"
           }
         ],
@@ -15568,7 +15586,7 @@
       "death_count": {
         "_defn": [
           {
-            "_row_num": 465,
+            "_row_num": 467,
             "section_name": "survey"
           }
         ],
@@ -15581,7 +15599,7 @@
       "ind_count": {
         "_defn": [
           {
-            "_row_num": 472,
+            "_row_num": 474,
             "section_name": "survey"
           }
         ],
@@ -18435,11 +18453,11 @@
               "prompt": "net_prompt"
             },
             "hideInContents": 1,
-            "_row_num": 393,
-            "__rowNum__": 392,
+            "_row_num": 395,
+            "__rowNum__": 394,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen389",
+            "_branch_label_enclosing_screen": "survey/_screen394",
             "promptIdx": 150
           },
           {
@@ -18457,11 +18475,11 @@
               "valuesList": "linked_mosquito_net"
             },
             "validation_tags": "finalize",
-            "_row_num": 394,
-            "__rowNum__": 393,
+            "_row_num": 396,
+            "__rowNum__": 395,
             "_token_type": "prompt",
             "_type": "linked_table_counting",
-            "_branch_label_enclosing_screen": "survey/_screen389",
+            "_branch_label_enclosing_screen": "survey/_screen394",
             "promptIdx": 151
           },
           {
@@ -18476,11 +18494,11 @@
             "choice_filter": "choice_item.country === data('hh_country')",
             "constraint": "(not(selected(data('malaria_prevention_method'), 'none')) || (selected(data('malaria_prevention_method'), 'none') && countSelected(data('malaria_prevention_method')) === 1)) && (not(selected(data('malaria_prevention_method'), 'dk')) || (selected(data('malaria_prevention_method'), 'dk') && countSelected(data('malaria_prevention_method')) === 1))",
             "validation_tags": "finalize",
-            "_row_num": 397,
-            "__rowNum__": 396,
+            "_row_num": 399,
+            "__rowNum__": 398,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen397",
+            "_branch_label_enclosing_screen": "survey/_screen399",
             "promptIdx": 152
           },
           {
@@ -18490,11 +18508,11 @@
               "class": "h2"
             },
             "hideInContents": 1,
-            "_row_num": 399,
-            "__rowNum__": 398,
+            "_row_num": 401,
+            "__rowNum__": 400,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen398",
+            "_branch_label_enclosing_screen": "survey/_screen400",
             "promptIdx": 153
           },
           {
@@ -18510,11 +18528,11 @@
             "choice_filter": "choice_item.country === data('hh_country')",
             "constraint": "(!data('health_facility_formal_sick') && !data('health_facility_formal_type')) || (!!data('health_facility_formal_sick') ^ !!data('health_facility_formal_type'))",
             "validation_tags": "finalize",
-            "_row_num": 400,
-            "__rowNum__": 399,
+            "_row_num": 402,
+            "__rowNum__": 401,
             "_token_type": "prompt",
             "_type": "select_one_dropdown",
-            "_branch_label_enclosing_screen": "survey/_screen398",
+            "_branch_label_enclosing_screen": "survey/_screen400",
             "promptIdx": 154
           },
           {
@@ -18527,11 +18545,11 @@
             },
             "hideInContents": 1,
             "validation_tags": "finalize",
-            "_row_num": 401,
-            "__rowNum__": 400,
+            "_row_num": 403,
+            "__rowNum__": 402,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen398",
+            "_branch_label_enclosing_screen": "survey/_screen400",
             "promptIdx": 155
           },
           {
@@ -18540,11 +18558,11 @@
             "display": {
               "prompt": "specify"
             },
-            "_row_num": 403,
-            "__rowNum__": 402,
+            "_row_num": 405,
+            "__rowNum__": 404,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen398",
+            "_branch_label_enclosing_screen": "survey/_screen400",
             "promptIdx": 156
           },
           {
@@ -18553,11 +18571,11 @@
               "prompt": "snake_h3",
               "section": "health_h2"
             },
-            "_row_num": 410,
-            "__rowNum__": 409,
+            "_row_num": 412,
+            "__rowNum__": 411,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen409",
+            "_branch_label_enclosing_screen": "survey/_screen411",
             "promptIdx": 157
           },
           {
@@ -18568,11 +18586,11 @@
               "prompt": "q58",
               "section": "health_h2"
             },
-            "_row_num": 411,
-            "__rowNum__": 410,
+            "_row_num": 413,
+            "__rowNum__": 412,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen409",
+            "_branch_label_enclosing_screen": "survey/_screen411",
             "promptIdx": 158
           },
           {
@@ -18586,11 +18604,11 @@
             "required": "selected(data('any_snake_bite'), 'yes')",
             "constraint": "not(selected(data('any_snake_bite'), 'yes')) || data('any_snake_bite_num') > 0",
             "validation_tags": "finalize",
-            "_row_num": 415,
-            "__rowNum__": 414,
+            "_row_num": 417,
+            "__rowNum__": 416,
             "_token_type": "prompt",
             "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen415",
+            "_branch_label_enclosing_screen": "survey/_screen417",
             "promptIdx": 159
           },
           {
@@ -18599,11 +18617,11 @@
               "prompt": "snake_prompt"
             },
             "hideInContents": 1,
-            "_row_num": 418,
-            "__rowNum__": 417,
+            "_row_num": 420,
+            "__rowNum__": 419,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen417",
+            "_branch_label_enclosing_screen": "survey/_screen419",
             "promptIdx": 160
           },
           {
@@ -18612,11 +18630,11 @@
               "prompt": "snake_detail",
               "section": "health_h2"
             },
-            "_row_num": 419,
-            "__rowNum__": 418,
+            "_row_num": 421,
+            "__rowNum__": 420,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen417",
+            "_branch_label_enclosing_screen": "survey/_screen419",
             "promptIdx": 161
           },
           {
@@ -18627,11 +18645,11 @@
               "prompt": "q59a",
               "section": "health_h2"
             },
-            "_row_num": 420,
-            "__rowNum__": 419,
+            "_row_num": 422,
+            "__rowNum__": 421,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen417",
+            "_branch_label_enclosing_screen": "survey/_screen419",
             "promptIdx": 162
           },
           {
@@ -18652,11 +18670,11 @@
             },
             "hideInContents": 1,
             "validation_tags": "finalize",
-            "_row_num": 421,
-            "__rowNum__": 420,
+            "_row_num": 423,
+            "__rowNum__": 422,
             "_token_type": "prompt",
             "_type": "linked_table_counting",
-            "_branch_label_enclosing_screen": "survey/_screen417",
+            "_branch_label_enclosing_screen": "survey/_screen419",
             "promptIdx": 163
           },
           {
@@ -18666,11 +18684,11 @@
               "class": "h2"
             },
             "hideInContents": 1,
-            "_row_num": 426,
-            "__rowNum__": 425,
+            "_row_num": 428,
+            "__rowNum__": 427,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen425",
+            "_branch_label_enclosing_screen": "survey/_screen427",
             "promptIdx": 164
           },
           {
@@ -18679,11 +18697,11 @@
               "prompt": "q60",
               "section": "contact_h2"
             },
-            "_row_num": 427,
-            "__rowNum__": 426,
+            "_row_num": 429,
+            "__rowNum__": 428,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen425",
+            "_branch_label_enclosing_screen": "survey/_screen427",
             "promptIdx": 165
           },
           {
@@ -18698,11 +18716,11 @@
             },
             "hideInContents": 1,
             "validation_tags": "finalize",
-            "_row_num": 431,
-            "__rowNum__": 430,
+            "_row_num": 433,
+            "__rowNum__": 432,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen425",
+            "_branch_label_enclosing_screen": "survey/_screen427",
             "promptIdx": 166
           },
           {
@@ -18713,11 +18731,11 @@
               "prompt": "or_capital"
             },
             "hideInContents": 1,
-            "_row_num": 433,
-            "__rowNum__": 432,
+            "_row_num": 435,
+            "__rowNum__": 434,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen425",
+            "_branch_label_enclosing_screen": "survey/_screen427",
             "promptIdx": 167
           },
           {
@@ -18726,11 +18744,11 @@
               "prompt": "q61",
               "section": "contact_h2"
             },
-            "_row_num": 436,
-            "__rowNum__": 435,
+            "_row_num": 438,
+            "__rowNum__": 437,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen435",
+            "_branch_label_enclosing_screen": "survey/_screen437",
             "promptIdx": 168
           },
           {
@@ -18745,11 +18763,11 @@
             },
             "hideInContents": 1,
             "validation_tags": "finalize",
-            "_row_num": 440,
-            "__rowNum__": 439,
+            "_row_num": 442,
+            "__rowNum__": 441,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen435",
+            "_branch_label_enclosing_screen": "survey/_screen437",
             "promptIdx": 169
           },
           {
@@ -18760,11 +18778,11 @@
               "prompt": "or_capital"
             },
             "hideInContents": 1,
-            "_row_num": 442,
-            "__rowNum__": 441,
+            "_row_num": 444,
+            "__rowNum__": 443,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen435",
+            "_branch_label_enclosing_screen": "survey/_screen437",
             "promptIdx": 170
           },
           {
@@ -18775,11 +18793,11 @@
               "prompt": "q62",
               "section": "contact_h2"
             },
-            "_row_num": 445,
-            "__rowNum__": 444,
+            "_row_num": 447,
+            "__rowNum__": 446,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen445",
+            "_branch_label_enclosing_screen": "survey/_screen447",
             "promptIdx": 171
           },
           {
@@ -18795,11 +18813,11 @@
               "type": "tel"
             },
             "validation_tags": "finalize",
-            "_row_num": 447,
-            "__rowNum__": 446,
+            "_row_num": 449,
+            "__rowNum__": 448,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen447",
+            "_branch_label_enclosing_screen": "survey/_screen449",
             "promptIdx": 172
           },
           {
@@ -18810,11 +18828,11 @@
               "prompt": "q63",
               "section": "contact_h2"
             },
-            "_row_num": 451,
-            "__rowNum__": 450,
+            "_row_num": 453,
+            "__rowNum__": 452,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen451",
+            "_branch_label_enclosing_screen": "survey/_screen453",
             "promptIdx": 173
           },
           {
@@ -18824,11 +18842,11 @@
               "class": "h2"
             },
             "hideInContents": 1,
-            "_row_num": 456,
-            "__rowNum__": 455,
+            "_row_num": 458,
+            "__rowNum__": 457,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen455",
+            "_branch_label_enclosing_screen": "survey/_screen457",
             "promptIdx": 174
           },
           {
@@ -18837,11 +18855,11 @@
               "prompt": "death_new_only"
             },
             "hideInContents": 1,
-            "_row_num": 457,
-            "__rowNum__": 456,
+            "_row_num": 459,
+            "__rowNum__": 458,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen455",
+            "_branch_label_enclosing_screen": "survey/_screen457",
             "promptIdx": 175
           },
           {
@@ -18855,11 +18873,11 @@
             "required": "selected(data('hh_minicenced'), 'no')",
             "hideInContents": "selected(data('hh_minicenced'), 'yes')",
             "validation_tags": "finalize",
-            "_row_num": 458,
-            "__rowNum__": 457,
+            "_row_num": 460,
+            "__rowNum__": 459,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen455",
+            "_branch_label_enclosing_screen": "survey/_screen457",
             "promptIdx": 176
           },
           {
@@ -18868,11 +18886,11 @@
             "model": {
               "isSessionVariable": 1
             },
-            "_row_num": 463,
-            "__rowNum__": 462,
+            "_row_num": 465,
+            "__rowNum__": 464,
             "_token_type": "prompt",
             "_type": "next_extid_deceased",
-            "_branch_label_enclosing_screen": "survey/_screen461",
+            "_branch_label_enclosing_screen": "survey/_screen463",
             "promptIdx": 177
           },
           {
@@ -18887,11 +18905,11 @@
               "step": 1
             },
             "hideInContents": "selected(data('hh_minicenced'), 'yes')",
-            "_row_num": 464,
-            "__rowNum__": 463,
+            "_row_num": 466,
+            "__rowNum__": 465,
             "_token_type": "prompt",
             "_type": "integer",
-            "_branch_label_enclosing_screen": "survey/_screen461",
+            "_branch_label_enclosing_screen": "survey/_screen463",
             "promptIdx": 178
           },
           {
@@ -18910,11 +18928,11 @@
             },
             "hideInContents": 1,
             "validation_tags": "finalize",
-            "_row_num": 465,
-            "__rowNum__": 464,
+            "_row_num": 467,
+            "__rowNum__": 466,
             "_token_type": "prompt",
             "_type": "linked_table_counting",
-            "_branch_label_enclosing_screen": "survey/_screen461",
+            "_branch_label_enclosing_screen": "survey/_screen463",
             "promptIdx": 179
           },
           {
@@ -18924,11 +18942,11 @@
               "class": "h2",
               "section": "ind_h2"
             },
-            "_row_num": 471,
-            "__rowNum__": 470,
+            "_row_num": 473,
+            "__rowNum__": 472,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen470",
+            "_branch_label_enclosing_screen": "survey/_screen472",
             "promptIdx": 180
           },
           {
@@ -18947,19 +18965,19 @@
               "valuesList": "member_questionnaire"
             },
             "hideInContents": 1,
-            "_row_num": 472,
-            "__rowNum__": 471,
+            "_row_num": 474,
+            "__rowNum__": 473,
             "_token_type": "prompt",
             "_type": "linked_table_counting",
-            "_branch_label_enclosing_screen": "survey/_screen470",
+            "_branch_label_enclosing_screen": "survey/_screen472",
             "promptIdx": 181
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 474,
-            "_branch_label_enclosing_screen": "survey/_screen474",
+            "_row_num": 476,
+            "_branch_label_enclosing_screen": "survey/_screen476",
             "promptIdx": 182
           }
         ],
@@ -20677,62 +20695,99 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 396,
-              "__rowNum__": 395,
+              "_row_num": 392,
+              "__rowNum__": 391,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(149);\nif (data('hh_num_nets') > 0) {\nactivePromptIndicies.push(150);\nactivePromptIndicies.push(151);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(149);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 194
           },
           {
-            "_row_num": 397,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(152);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 195
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 398,
-            "__rowNum__": 397,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 408,
-              "__rowNum__": 407,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(153);\nactivePromptIndicies.push(154);\nactivePromptIndicies.push(155);\nif (selected(data('health_facility_formal_type'), 'other')) {\nactivePromptIndicies.push(156);\n}\nif (!!data('health_facility_formal_type')) {\nassign('health_facility_formal_sick', null);\n}\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 196
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 409,
-            "__rowNum__": 408,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 412,
-              "__rowNum__": 411,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(157);\nactivePromptIndicies.push(158);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 197
-          },
-          {
             "clause": "if",
-            "condition": "selected(data('any_snake_bite'), 'yes')",
-            "_row_num": 413,
-            "__rowNum__": 412,
+            "condition": "data('hh_num_nets') > 0",
+            "_row_num": 393,
+            "__rowNum__": 392,
             "_token_type": "goto_label",
-            "_branch_label": "_then413",
-            "operationIdx": 198
+            "_branch_label": "_then393",
+            "operationIdx": 195
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else424",
-            "_row_num": 424,
+            "_branch_label": "_else398",
+            "_row_num": 398,
+            "operationIdx": 196
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 394,
+            "__rowNum__": 393,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 397,
+              "__rowNum__": 396,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(150);\nactivePromptIndicies.push(151);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 197
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif398",
+            "_row_num": 398,
+            "operationIdx": 198
+          },
+          {
+            "_row_num": 399,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(152);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 199
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 400,
+            "__rowNum__": 399,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 410,
+              "__rowNum__": 409,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(153);\nactivePromptIndicies.push(154);\nactivePromptIndicies.push(155);\nif (selected(data('health_facility_formal_type'), 'other')) {\nactivePromptIndicies.push(156);\n}\nif (!!data('health_facility_formal_type')) {\nassign('health_facility_formal_sick', null);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 200
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 411,
+            "__rowNum__": 410,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 414,
+              "__rowNum__": 413,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(157);\nactivePromptIndicies.push(158);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 201
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('any_snake_bite'), 'yes')",
+            "_row_num": 415,
+            "__rowNum__": 414,
+            "_token_type": "goto_label",
+            "_branch_label": "_then415",
+            "operationIdx": 202
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else426",
+            "_row_num": 426,
+            "operationIdx": 203
           },
           {
             "type": "assign",
@@ -20741,284 +20796,284 @@
             "model": {
               "isSessionVariable": 1
             },
-            "_row_num": 414,
-            "__rowNum__": 413,
+            "_row_num": 416,
+            "__rowNum__": 415,
             "_token_type": "assign",
-            "operationIdx": 200
+            "operationIdx": 204
           },
           {
-            "_row_num": 415,
+            "_row_num": 417,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(159);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 201
+            "operationIdx": 205
           },
           {
             "clause": "if",
             "condition": "data('any_snake_bite_num') >0",
-            "_row_num": 416,
-            "__rowNum__": 415,
+            "_row_num": 418,
+            "__rowNum__": 417,
             "_token_type": "goto_label",
-            "_branch_label": "_then416",
-            "operationIdx": 202
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_else423",
-            "_row_num": 423,
-            "operationIdx": 203
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 417,
-            "__rowNum__": 416,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 422,
-              "__rowNum__": 421,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(160);\nactivePromptIndicies.push(161);\nactivePromptIndicies.push(162);\nactivePromptIndicies.push(163);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 204
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif423",
-            "_row_num": 423,
-            "operationIdx": 205
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif424",
-            "_row_num": 424,
+            "_branch_label": "_then418",
             "operationIdx": 206
           },
           {
-            "clause": "begin screen",
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else425",
             "_row_num": 425,
-            "__rowNum__": 424,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 434,
-              "__rowNum__": 433,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(164);\nactivePromptIndicies.push(165);\nif (selected(data('hh_contact_no'), 'no_contact_num')) {\nassign('hh_contact', null);\n}\nelse {\nactivePromptIndicies.push(166);\n}\nactivePromptIndicies.push(167);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 207
           },
           {
             "clause": "begin screen",
-            "_row_num": 435,
-            "__rowNum__": 434,
+            "_row_num": 419,
+            "__rowNum__": 418,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 443,
-              "__rowNum__": 442,
+              "_row_num": 424,
+              "__rowNum__": 423,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(168);\nif (selected(data('hh_contact_alt_no'), 'no_alt_contact_num')) {\nassign('hh_contact_alt', null);\n}\nelse {\nactivePromptIndicies.push(169);\n}\nactivePromptIndicies.push(170);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(160);\nactivePromptIndicies.push(161);\nactivePromptIndicies.push(162);\nactivePromptIndicies.push(163);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 208
           },
           {
-            "clause": "if",
-            "condition": "!!data('hh_contact_alt')",
-            "_row_num": 444,
-            "__rowNum__": 443,
+            "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_then444",
+            "_branch_label": "_endif425",
+            "_row_num": 425,
             "operationIdx": 209
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else449",
-            "_row_num": 449,
+            "_branch_label": "_endif426",
+            "_row_num": 426,
             "operationIdx": 210
           },
           {
-            "_row_num": 445,
+            "clause": "begin screen",
+            "_row_num": 427,
+            "__rowNum__": 426,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(171);\n\nreturn activePromptIndicies;\n}\n",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 436,
+              "__rowNum__": 435,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(164);\nactivePromptIndicies.push(165);\nif (selected(data('hh_contact_no'), 'no_contact_num')) {\nassign('hh_contact', null);\n}\nelse {\nactivePromptIndicies.push(166);\n}\nactivePromptIndicies.push(167);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 211
           },
           {
+            "clause": "begin screen",
+            "_row_num": 437,
+            "__rowNum__": 436,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 445,
+              "__rowNum__": 444,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(168);\nif (selected(data('hh_contact_alt_no'), 'no_alt_contact_num')) {\nassign('hh_contact_alt', null);\n}\nelse {\nactivePromptIndicies.push(169);\n}\nactivePromptIndicies.push(170);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 212
+          },
+          {
             "clause": "if",
-            "condition": "selected(data('hh_contact_alt_2'), 'yes')",
+            "condition": "!!data('hh_contact_alt')",
             "_row_num": 446,
             "__rowNum__": 445,
             "_token_type": "goto_label",
             "_branch_label": "_then446",
-            "operationIdx": 212
+            "operationIdx": 213
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else448",
-            "_row_num": 448,
-            "operationIdx": 213
+            "_branch_label": "_else451",
+            "_row_num": 451,
+            "operationIdx": 214
           },
           {
             "_row_num": 447,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(172);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 214
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif448",
-            "_row_num": 448,
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(171);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 215
           },
           {
-            "clause": "end if",
+            "clause": "if",
+            "condition": "selected(data('hh_contact_alt_2'), 'yes')",
+            "_row_num": 448,
+            "__rowNum__": 447,
             "_token_type": "goto_label",
-            "_branch_label": "_endif449",
-            "_row_num": 449,
+            "_branch_label": "_then448",
             "operationIdx": 216
           },
           {
-            "clause": "if",
-            "condition": "not(selected(data('hh_contact_no'), 'no_contact_num')) || not(selected(data('hh_contact_alt_no'), 'no_alt_contact_num'))",
-            "_row_num": 450,
-            "__rowNum__": 449,
+            "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_then450",
+            "_branch_label": "_else450",
+            "_row_num": 450,
             "operationIdx": 217
+          },
+          {
+            "_row_num": 449,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(172);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 218
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else452",
-            "_row_num": 452,
-            "operationIdx": 218
-          },
-          {
-            "_row_num": 451,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(173);\n\nreturn activePromptIndicies;\n}\n",
+            "_branch_label": "_endif450",
+            "_row_num": 450,
             "operationIdx": 219
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif452",
-            "_row_num": 452,
+            "_branch_label": "_endif451",
+            "_row_num": 451,
             "operationIdx": 220
           },
           {
             "clause": "if",
-            "condition": "selected(data('hh_minicenced'), 'no')",
-            "_row_num": 454,
-            "__rowNum__": 453,
+            "condition": "not(selected(data('hh_contact_no'), 'no_contact_num')) || not(selected(data('hh_contact_alt_no'), 'no_alt_contact_num'))",
+            "_row_num": 452,
+            "__rowNum__": 451,
             "_token_type": "goto_label",
-            "_branch_label": "_then454",
+            "_branch_label": "_then452",
             "operationIdx": 221
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else468",
-            "_row_num": 468,
+            "_branch_label": "_else454",
+            "_row_num": 454,
             "operationIdx": 222
           },
           {
+            "_row_num": 453,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(173);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 223
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif454",
+            "_row_num": 454,
+            "operationIdx": 224
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('hh_minicenced'), 'no')",
+            "_row_num": 456,
+            "__rowNum__": 455,
+            "_token_type": "goto_label",
+            "_branch_label": "_then456",
+            "operationIdx": 225
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else470",
+            "_row_num": 470,
+            "operationIdx": 226
+          },
+          {
             "clause": "begin screen",
-            "_row_num": 455,
-            "__rowNum__": 454,
+            "_row_num": 457,
+            "__rowNum__": 456,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 459,
-              "__rowNum__": 458,
+              "_row_num": 461,
+              "__rowNum__": 460,
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(174);\nactivePromptIndicies.push(175);\nactivePromptIndicies.push(176);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 223
+            "operationIdx": 227
           },
           {
             "clause": "if",
             "condition": "selected(data('hh_death'), 'yes')",
-            "_row_num": 460,
-            "__rowNum__": 459,
+            "_row_num": 462,
+            "__rowNum__": 461,
             "_token_type": "goto_label",
-            "_branch_label": "_then460",
-            "operationIdx": 224
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_else467",
-            "_row_num": 467,
-            "operationIdx": 225
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 461,
-            "__rowNum__": 460,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 466,
-              "__rowNum__": 465,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(177);\nactivePromptIndicies.push(178);\nactivePromptIndicies.push(179);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 226
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif467",
-            "_row_num": 467,
-            "operationIdx": 227
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif468",
-            "_row_num": 468,
+            "_branch_label": "_then462",
             "operationIdx": 228
           },
           {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else469",
+            "_row_num": 469,
+            "operationIdx": 229
+          },
+          {
             "clause": "begin screen",
-            "_row_num": 470,
-            "__rowNum__": 469,
+            "_row_num": 463,
+            "__rowNum__": 462,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 473,
-              "__rowNum__": 472,
+              "_row_num": 468,
+              "__rowNum__": 467,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('workaround', null);\nactivePromptIndicies.push(177);\nactivePromptIndicies.push(178);\nactivePromptIndicies.push(179);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 230
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif469",
+            "_row_num": 469,
+            "operationIdx": 231
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif470",
+            "_row_num": 470,
+            "operationIdx": 232
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 472,
+            "__rowNum__": 471,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 475,
+              "__rowNum__": 474,
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(180);\nactivePromptIndicies.push(181);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 229
+            "operationIdx": 233
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 474,
-            "operationIdx": 230
+            "_row_num": 476,
+            "operationIdx": 234
           },
           {
-            "_row_num": 474,
+            "_row_num": 476,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(182);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 231
+            "operationIdx": 235
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 474,
-            "operationIdx": 232
+            "_row_num": 476,
+            "operationIdx": 236
           }
         ],
         "branch_label_map": {
@@ -21214,42 +21269,46 @@
           "_else388": 194,
           "_endif388": 194,
           "_screen389": 194,
-          "_screen397": 195,
-          "_screen398": 196,
-          "_screen409": 197,
-          "_then413": 200,
-          "_screen415": 201,
-          "_then416": 204,
-          "_screen417": 204,
-          "_else423": 206,
-          "_endif423": 206,
-          "_else424": 207,
-          "_endif424": 207,
-          "_screen425": 207,
-          "_screen435": 208,
-          "_then444": 211,
-          "_screen445": 211,
-          "_then446": 214,
-          "_screen447": 214,
-          "_else448": 216,
-          "_endif448": 216,
-          "_else449": 217,
-          "_endif449": 217,
-          "_then450": 219,
-          "_screen451": 219,
-          "_else452": 221,
-          "_endif452": 221,
-          "_then454": 223,
-          "_screen455": 223,
-          "_then460": 226,
-          "_screen461": 226,
-          "_else467": 228,
-          "_endif467": 228,
-          "_else468": 229,
-          "_endif468": 229,
-          "_screen470": 229,
-          "_contents": 231,
-          "_screen474": 231
+          "_then393": 197,
+          "_screen394": 197,
+          "_else398": 199,
+          "_endif398": 199,
+          "_screen399": 199,
+          "_screen400": 200,
+          "_screen411": 201,
+          "_then415": 204,
+          "_screen417": 205,
+          "_then418": 208,
+          "_screen419": 208,
+          "_else425": 210,
+          "_endif425": 210,
+          "_else426": 211,
+          "_endif426": 211,
+          "_screen427": 211,
+          "_screen437": 212,
+          "_then446": 215,
+          "_screen447": 215,
+          "_then448": 218,
+          "_screen449": 218,
+          "_else450": 220,
+          "_endif450": 220,
+          "_else451": 221,
+          "_endif451": 221,
+          "_then452": 223,
+          "_screen453": 223,
+          "_else454": 225,
+          "_endif454": 225,
+          "_then456": 227,
+          "_screen457": 227,
+          "_then462": 230,
+          "_screen463": 230,
+          "_else469": 232,
+          "_endif469": 232,
+          "_else470": 233,
+          "_endif470": 233,
+          "_screen472": 233,
+          "_contents": 235,
+          "_screen476": 235
         }
       }
     },
@@ -21301,7 +21360,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 414,
+            "_row_num": 416,
             "section_name": "survey"
           },
           {
@@ -21486,7 +21545,7 @@
         "isSessionVariable": 1,
         "_defn": [
           {
-            "_row_num": 463,
+            "_row_num": 465,
             "section_name": "survey"
           },
           {
@@ -23092,7 +23151,7 @@
       "net_count": {
         "_defn": [
           {
-            "_row_num": 394,
+            "_row_num": 396,
             "section_name": "survey"
           }
         ],
@@ -23108,7 +23167,7 @@
       "malaria_prevention_method": {
         "_defn": [
           {
-            "_row_num": 397,
+            "_row_num": 399,
             "section_name": "survey"
           }
         ],
@@ -23133,7 +23192,7 @@
       "health_facility_formal_sick": {
         "_defn": [
           {
-            "_row_num": 400,
+            "_row_num": 402,
             "section_name": "survey"
           }
         ],
@@ -23147,7 +23206,7 @@
       "health_facility_formal_type": {
         "_defn": [
           {
-            "_row_num": 401,
+            "_row_num": 403,
             "section_name": "survey"
           }
         ],
@@ -23172,7 +23231,7 @@
       "health_facility_formal_type_specify": {
         "_defn": [
           {
-            "_row_num": 403,
+            "_row_num": 405,
             "section_name": "survey"
           }
         ],
@@ -23185,7 +23244,7 @@
       "any_snake_bite": {
         "_defn": [
           {
-            "_row_num": 411,
+            "_row_num": 413,
             "section_name": "survey"
           }
         ],
@@ -23199,7 +23258,7 @@
       "any_snake_bite_num": {
         "_defn": [
           {
-            "_row_num": 415,
+            "_row_num": 417,
             "section_name": "survey"
           }
         ],
@@ -23212,7 +23271,7 @@
       "snake_bite_who": {
         "_defn": [
           {
-            "_row_num": 420,
+            "_row_num": 422,
             "section_name": "survey"
           }
         ],
@@ -23237,7 +23296,7 @@
       "snake_count": {
         "_defn": [
           {
-            "_row_num": 421,
+            "_row_num": 423,
             "section_name": "survey"
           }
         ],
@@ -23253,7 +23312,7 @@
       "hh_contact": {
         "_defn": [
           {
-            "_row_num": 431,
+            "_row_num": 433,
             "section_name": "survey"
           }
         ],
@@ -23266,7 +23325,7 @@
       "hh_contact_no": {
         "_defn": [
           {
-            "_row_num": 433,
+            "_row_num": 435,
             "section_name": "survey"
           }
         ],
@@ -23291,7 +23350,7 @@
       "hh_contact_alt": {
         "_defn": [
           {
-            "_row_num": 440,
+            "_row_num": 442,
             "section_name": "survey"
           }
         ],
@@ -23304,7 +23363,7 @@
       "hh_contact_alt_no": {
         "_defn": [
           {
-            "_row_num": 442,
+            "_row_num": 444,
             "section_name": "survey"
           }
         ],
@@ -23329,7 +23388,7 @@
       "hh_contact_alt_2": {
         "_defn": [
           {
-            "_row_num": 445,
+            "_row_num": 447,
             "section_name": "survey"
           }
         ],
@@ -23343,7 +23402,7 @@
       "hh_contact_alt_2_num": {
         "_defn": [
           {
-            "_row_num": 447,
+            "_row_num": 449,
             "section_name": "survey"
           }
         ],
@@ -23356,7 +23415,7 @@
       "contact_for_project": {
         "_defn": [
           {
-            "_row_num": 451,
+            "_row_num": 453,
             "section_name": "survey"
           }
         ],
@@ -23370,7 +23429,7 @@
       "hh_death": {
         "_defn": [
           {
-            "_row_num": 458,
+            "_row_num": 460,
             "section_name": "survey"
           }
         ],
@@ -23384,7 +23443,7 @@
       "hh_death_count": {
         "_defn": [
           {
-            "_row_num": 464,
+            "_row_num": 466,
             "section_name": "survey"
           }
         ],
@@ -23397,7 +23456,7 @@
       "death_count": {
         "_defn": [
           {
-            "_row_num": 465,
+            "_row_num": 467,
             "section_name": "survey"
           }
         ],
@@ -23413,7 +23472,7 @@
       "ind_count": {
         "_defn": [
           {
-            "_row_num": 472,
+            "_row_num": 474,
             "section_name": "survey"
           }
         ],

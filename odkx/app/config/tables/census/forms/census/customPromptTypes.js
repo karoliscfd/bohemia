@@ -5,6 +5,7 @@ define([
   '../../../../assets/customPromptTypes/next_extid',
   '../../../../assets/customPromptTypes/customToc',
   '../../../../assets/customPromptTypes/customNote',
+  '../../../../assets/customPromptTypes/customErrorMsg',
   'promptTypes',
   'controller',
   'formulaFunctions',
@@ -14,6 +15,7 @@ define([
              next_extid,
              customToc,
              customNote,
+             customErrorMsg,
              promptTypes,
              controller,
              formulaFunctions,
@@ -32,7 +34,7 @@ define([
     return hhId;
   }
 
-  return Object.assign({}, linked_table_counting, next_extid, customToc, customNote, {
+  return Object.assign({}, customErrorMsg, linked_table_counting, next_extid, customToc, customNote, {
     exit_survey: promptTypes.base.extend({
       type: 'exit_survey',
       template: function () {

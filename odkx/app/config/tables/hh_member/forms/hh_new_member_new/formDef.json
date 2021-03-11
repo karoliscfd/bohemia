@@ -345,7 +345,7 @@
       },
       {
         "clause": "if",
-        "condition": "selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')",
+        "condition": "!data('id') && (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))",
         "_row_num": 51
       },
       {
@@ -4176,7 +4176,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210305001,
+        "value": 20210311001,
         "_row_num": 3
       },
       {
@@ -4280,7 +4280,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210305001,
+        "value": 20210311001,
         "_row_num": 3
       },
       "table_id": {
@@ -9523,7 +9523,7 @@
               "__rowNum__": 56,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\nif (selected(data('new_hh_member_censed'), 'yes')) {\nactivePromptIndicies.push(19);\nif (not(selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(20);\n}\nactivePromptIndicies.push(21);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nactivePromptIndicies.push(22);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\nif (selected(data('new_hh_member_censed'), 'yes')) {\nactivePromptIndicies.push(19);\nif (not(selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))) {\nactivePromptIndicies.push(20);\n}\nactivePromptIndicies.push(21);\n}\nif (!data('id') && (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible'))) {\nassign('id', data('id_candidate')[data('resident_status')]);\n}\nif (selected(data('new_hh_member_censed'), 'no') || selected(data('new_hh_member_censed'), 'dk') || selected(data('new_hh_member_censed_extid_not_possible'), 'not_possible')) {\nactivePromptIndicies.push(22);\n}\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 9
           },
           {

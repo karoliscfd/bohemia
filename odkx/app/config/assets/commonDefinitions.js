@@ -395,6 +395,114 @@ window.odkCommonDefinitions = {
         "sw": "ExtID"
       },
       "_row_num": 45
+    },
+    "month_1": {
+      "string_token": "month_1",
+      "text": {
+        "default": "January",
+        "pt": "Janeiro",
+        "sw": "Januari"
+      },
+      "_row_num": 46
+    },
+    "month_2": {
+      "string_token": "month_2",
+      "text": {
+        "default": "February",
+        "pt": "Fevereiro",
+        "sw": "Februari"
+      },
+      "_row_num": 47
+    },
+    "month_3": {
+      "string_token": "month_3",
+      "text": {
+        "default": "March",
+        "pt": "Março",
+        "sw": "Machi"
+      },
+      "_row_num": 48
+    },
+    "month_4": {
+      "string_token": "month_4",
+      "text": {
+        "default": "April",
+        "pt": "Abril",
+        "sw": "Aprili"
+      },
+      "_row_num": 49
+    },
+    "month_5": {
+      "string_token": "month_5",
+      "text": {
+        "default": "May",
+        "pt": "Maio",
+        "sw": "Mei"
+      },
+      "_row_num": 50
+    },
+    "month_6": {
+      "string_token": "month_6",
+      "text": {
+        "default": "June",
+        "pt": "Junho",
+        "sw": "Juni"
+      },
+      "_row_num": 51
+    },
+    "month_7": {
+      "string_token": "month_7",
+      "text": {
+        "default": "July",
+        "pt": "Julho",
+        "sw": "Julai"
+      },
+      "_row_num": 52
+    },
+    "month_8": {
+      "string_token": "month_8",
+      "text": {
+        "default": "August",
+        "pt": "Agosto",
+        "sw": "Agusti"
+      },
+      "_row_num": 53
+    },
+    "month_9": {
+      "string_token": "month_9",
+      "text": {
+        "default": "September",
+        "pt": "Setembro",
+        "sw": "Septemba"
+      },
+      "_row_num": 54
+    },
+    "month_10": {
+      "string_token": "month_10",
+      "text": {
+        "default": "October",
+        "pt": "Outubro",
+        "sw": "Oktoba"
+      },
+      "_row_num": 55
+    },
+    "month_11": {
+      "string_token": "month_11",
+      "text": {
+        "default": "November",
+        "pt": "Novembro",
+        "sw": "Novemba"
+      },
+      "_row_num": 56
+    },
+    "month_12": {
+      "string_token": "month_12",
+      "text": {
+        "default": "December",
+        "pt": "Dezembro",
+        "sw": "Disemba"
+      },
+      "_row_num": 57
     }
   },
   "_locales": {
