@@ -14,6 +14,10 @@ body {
     font-size:large;
 }
 
+table {
+    word-break: break-all;
+}
+
 @media all and (max-width: 25em) {
     .my-breakpoint-no-nav-btn-text.ui-grid-b .ui-block-a { width: 54.95%; }
     .my-breakpoint-no-nav-btn-text.ui-grid-b .ui-block-b,

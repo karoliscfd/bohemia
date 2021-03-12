@@ -1,6 +1,8 @@
 'use strict';
 
-define(['promptTypes', 'opendatakit', 'database', 'jquery', 'underscore', 'prompts'], function (promptTypes, opendatakit, database, $, _) {
+define([
+  './customErrorMsg', 'opendatakit', 'database', 'jquery', 'underscore', 'prompts'
+], function (customErrMsg, opendatakit, database, $, _) {
   var getDataSingleRow = function (backingObj, index) {
     return function (elementKeyOrPath) {
       return backingObj.getData(index, elementKeyOrPath);
@@ -107,12 +109,12 @@ define(['promptTypes', 'opendatakit', 'database', 'jquery', 'underscore', 'promp
   ];
 
   return {
-    linked_table: promptTypes.linked_table.extend({
+    linked_table: customErrMsg.linked_table.extend({
       templatePath: '../config/assets/customPromptTypes/templates/linked_table.handlebars',
       configureRenderContext: function (ctxt) {
         var that = this;
 
-        promptTypes.linked_table.prototype.configureRenderContext.apply(this, [$.extend({}, ctxt, {
+        customErrMsg.linked_table.prototype.configureRenderContext.apply(this, [$.extend({}, ctxt, {
           success: function () {
             that.renderContext.columns = standardColumns;
             ctxt.success();
@@ -121,13 +123,13 @@ define(['promptTypes', 'opendatakit', 'database', 'jquery', 'underscore', 'promp
       }
     }),
 
-    linked_table_counting: promptTypes.linked_table.extend({
+    linked_table_counting: customErrMsg.linked_table.extend({
       templatePath: '../config/assets/customPromptTypes/templates/linked_table.handlebars',
       configureRenderContext: function (ctxt) {
         var that = this;
         var queryDefn = opendatakit.getQueriesDefinition(this.values_list);
 
-        promptTypes.linked_table.prototype.configureRenderContext.apply(this, [$.extend({}, ctxt, {
+        customErrMsg.linked_table.prototype.configureRenderContext.apply(this, [$.extend({}, ctxt, {
           success: function () {
             that.renderContext.columns = standardColumns;
             if (!!that.display.showResident) {
