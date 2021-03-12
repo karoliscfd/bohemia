@@ -44,7 +44,20 @@ theme_set(databrew::theme_simple())
 
 
 ```{r}
-source('../../rpackage/bohemia/R/app_functions.R')
+# source('../../rpackage/bohemia/R/app_functions.R')
+
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
 
 if('data.RData' %in% dir()){
   load('data.RData')
@@ -62,6 +75,7 @@ if('data.RData' %in% dir()){
        pd_tza,
        file = 'data.RData')
 }
+
 minicensus_main <- bind_rows(
   pd_moz$minicensus_main,
   pd_tza$minicensus_main
@@ -130,15 +144,34 @@ df <-
                                               code = hh_hamlet_code,
                                               n_people = hh_size,
                                               location = hh_geo_location)) 
+# Function for extracting lng and lat from a odk geocode object
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
 locs <- extract_ll(df$location)
-df$lng <- locs$lng; df$lat <- locs$lat
-df <- left_join(df, bohemia::locations %>% dplyr::select(code, clinical_trial))
+df$lng <- df$x <- locs$lng; df$lat <- df$y <- locs$lat
+# df$code <- df$hh_hamlet_code
+df <- left_join(df, bohemia::locations %>% 
+                  dplyr::distinct(code, .keep_all = TRUE) %>%
+                  dplyr::select(code, clinical_trial))
 
 df <- df %>% filter(lat < -3)
 df <- df %>%
   filter((lat < -16 & country == 'Mozambique') |
            (lat > -12 & country == 'Tanzania')
   )
+# df <- hh
+library(sp)
+
 # Get the data grouped by codes
 codes <- sort(unique(df$code))
 locations_list <- list()
@@ -164,11 +197,15 @@ for(i in 1:length(codes)){
     message('Removing ', length(remove_these), ' of ', nrow(ss), ' due to weird distances.')
     this_data <- this_data[!(1:nrow(this_data)) %in% remove_these,]
     ss <- ss[!(1:nrow(ss)) %in% remove_these,]
+  } else {
+    message('No removals')
   }
   locations_list_ll[[i]] <- this_data
   locations_list[[i]] <- ss
 }
 names(locations_list) <- names(locations_list_ll) <- codes
+locations_df <- do.call('rbind', locations_list)
+df <- locations_df@data
 df_sp <- df
 coordinates(df_sp) <- ~lng+lat
 proj4string(df_sp) <- proj4string(bohemia::mop2)
@@ -193,8 +230,6 @@ df <- df %>%
             lng = mean(lng),
             lat = mean(lat))
 df <- df %>% arrange(code)
-
-
 ```
 
 
@@ -237,7 +272,7 @@ Note: this is excluding hamlets in other clinical trial
 
 ```{r, echo = TRUE}
 out <- try_clusters_hh_level(the_country = 'Tanzania',
-                         include_clinical = TRUE,
+                         include_clinical = FALSE,
                          minimum_households = 0,
                          minimum_children = 30,
                          minimum_humans = 0,
@@ -281,7 +316,7 @@ out_minimal <- keep_only_n(out$cluster_xdf)
 
 ```{r, echo = TRUE}
 out <- try_clusters_hh_level(the_country = 'Mozambique',
-                         include_clinical = TRUE,
+                         include_clinical = FALSE,
                          minimum_households = 0,
                          minimum_children = 30,
                          minimum_humans = 0,
