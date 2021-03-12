@@ -1,0 +1,114 @@
+---
+title: "VA mockup"
+date: "`r Sys.Date()`"
+output: flexdashboard::flex_dashboard
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+```
+
+```{r}
+#!/usr/bin/Rscript
+start_time <- Sys.time()
+message('System time is: ', as.character(start_time))
+message('---Timezone: ', as.character(Sys.timezone()))
+keyfile_path <- '../../credentials/bohemia_pub.pem'
+creds_fpath <- '../../credentials/credentials.yaml'
+creds <- yaml::yaml.load_file(creds_fpath)
+suppressMessages({
+  library(RPostgres)
+  library(bohemia)
+  library(yaml)
+  library(dplyr)
+  library(ggplot2)
+  library(leaflet)
+  library(leaflet.extras)
+  library(leafgl)
+  library(readr)
+  library(tidyr)
+  library(DT)
+  library(sf)
+  library(gsheet)
+  theme_bohemia <- ggplot2::theme_bw
+  theme_set(theme_bohemia())
+}
+)
+
+is_local <- FALSE
+drv <- RPostgres::Postgres()
+# read in credenstials 
+creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
+
+
+if(is_local){
+  con <- dbConnect(drv, dbname='bohemia')
+} else {
+  psql_end_point = creds$endpoint
+  psql_user = creds$psql_master_username
+  psql_pass = creds$psql_master_password
+  con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
+                   port=5432,
+                   user=psql_user, password=psql_pass)
+}
+
+va <- dbGetQuery(conn = con,
+                 'SELECT * FROM va LIMIT 100')
+
+dbDisconnect(con)
+```
+
+Column
+-----------------------------------------------------------------------
+
+```{r}
+library(readxl)
+va_xl <- read_excel('../../forms/va153b/va153b.xlsx')
+names_matcher <- tibble(column_name = tolower(va_xl$name),
+                        new_name = va_xl$`label::English`)
+for(j in 1:ncol(va)){
+  this_column <- tolower(names(va)[j])
+  if(this_column %in% names_matcher$column_name){
+    new_name <- names_matcher$new_name[names_matcher$column_name == this_column]
+    new_name <- new_name[!is.na(new_name)]
+    if(length(new_name) > 0){
+          new_name <- new_name[1]
+    message('Replacing ', this_column, ' with ', new_name)
+    names(va)[j] <- new_name
+    }
+  }
+}
+va <- va[,grepl('(Id', names(va), fixed = TRUE)]
+```
+
+### Verbal autopsy report
+
+```{r}
+vax <- va[12,]
+pd <- tibble(Question = names(vax),
+             answer = as.character(vax[1,]))
+pd <- pd %>% filter(nchar(answer) < 700)
+DT::datatable(pd, rownames = FALSE)
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Cause of death
+
+```{r}
+icd <- read_csv('icd10.csv')
+DT::datatable(icd, rownames = FALSE)
+```
+
