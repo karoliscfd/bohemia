@@ -96,7 +96,7 @@ ages <-
   mutate(years_old = days_old / 365.25) %>%
   mutate(is_child  = ifelse(country == 'Mozambique',
                             years_old >= 0 & years_old <= 5,
-                            years_old >= 0 & years_old <= 15)) %>%
+                            years_old >= 5 & years_old <= 15)) %>%
   group_by(country) %>%
   summarise(children = length(which(is_child)),
             people = n()) %>%
