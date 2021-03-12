@@ -5,6 +5,14 @@ library(InterVA5)
 library(bohemia)
 library(RPostgres)
 
+# See useful presentation at https://zehangli.com/openVA/openVA-ghana_2017.html#data-preparation
+# See useful vignette at http://openva.net/vignettes/using-crossva-and-openva.html
+
+# See useful slide on conversion on first presentation. Example:
+# toyDataNew <- ConvertData(toyData, yesLabel = "Yes", noLabel = "No", 
+#                           missLabel = c("Don't know", "Refused to answer"))
+# toyDataNew
+
 # See interva fields 
 ## data(causetextV5)
 data(causetextV5)
