@@ -4,6 +4,15 @@ library(nbc4va)
 library(InterVA5)
 library(bohemia)
 library(RPostgres)
+
+# See interva fields 
+## data(causetextV5)
+data(causetextV5)
+data(RandomVA5) # format should be this
+data(probbaseV5)
+data(probbaseV5_14)
+data(probbaseV5_17)
+
 is_local <- FALSE
 drv <- RPostgres::Postgres()
 # read in credenstials 
