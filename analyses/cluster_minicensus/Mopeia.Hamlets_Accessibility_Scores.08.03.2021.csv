@@ -1,0 +1,377 @@
+Country,Region,District,Ward,Village,Hamlet,clinical_trial,code,new_hamlet,Accessibility_Scores
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Zona Verde A,0,ZVA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Zona Verde B,0,ZVB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Eduardo Mondlane,0,EDU,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,25 de Setembro,0,DEX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Ambrosio,0,AMB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Chitequeteque,0,CHT,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Nhangona,0,NXG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Muriwa,0,MUR,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Bone,0,XAM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Chizimba,0,CHZ,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Tewe,0,TEW,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Norte,0,NOR,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Ndima Mangaze,0,NDI,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Muto A,0,MUT,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Muto B,0,MUB,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Malulo,0,MAL,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Chimpene,0,CHM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Dande,0,DAN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Cua cua muana,0,MUX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Mitchiu,0,TCH,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Namacheta,0,NMX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Gemusse,0,GMX,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Chipire,0,CHP,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Nhaminga,0,NHX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Massancare,0,MSC,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Alfredo,0,ALF,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Mbalame,0,MBZ,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Cubalalica,0,CUB,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Benejuaque,0,BEN,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Posso,0,POS,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Chunga,0,CHU,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Sabesse,0,SAB,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Chicote,0,CHI,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Dombe,Nzondoene,0,ZOD,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,24 de Julho,0,DEJ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,24 de Julho B,0,BBB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Cimento,0,CIM,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,4 de Outubro,0,DEO,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,7 de Abril,0,DEA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Luta Continua,0,LUT,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Mifarinha,0,MIF,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,25 de Junho,0,DEU,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Forca da Mudanca,0,FFF,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Josina Machel,0,JSA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Liberdade A,0,LIB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Liberdade B,0,LIE,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Nhamissundo,0,NHM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Chiverano,0,CHV,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,8 de Marco,0,DEM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Agostinho Neto,0,AGO,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Mazembe,0,MMZ,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Nhalumbanda,0,NHA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Serracao,0,SER,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Ntada,0,NTA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Mbaua,0,BAX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Magamba,0,MAG,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Mangala,0,MAN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Capece,0,CAP,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Tesoura,0,TES,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Tiquita,0,TIQ,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Migoa,0,MIG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Mulaira,0,MUL,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Cunhanhassa,0,CUN,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Tambalico,0,TAM,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Vembe,0,VEM,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Vumbe,0,VUM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Nota,0,NOT,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Gale,0,GAL,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Gomoi,0,GMI,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Ntongolo,0,NTG,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,N'goma,0,NNX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Sangalaza,Barroso,0,BRS,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Cumbalenga,0,CUM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Lota,0,LOT,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Ntruzao,0,NTR,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Majambe,0,MAJ,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Alfredo,0,ALR,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Nsanzo,0,NSZ,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Nhangu,0,NNU,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Longodze,0,LGZ,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Ndingo,0,DNG,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Botao,0,TAO,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Vundo A,0,VDA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Vundo B,0,VDB,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Ngangane,0,GNG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Sambalendo,0,SAE,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Taibo,0,TAI,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Sassune,0,SAS,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Chizimba,0,CHB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Sangate,0,SAN,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Magaio,0,MAA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Vinte,0,VNT,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,7 de Setembro,0,DDS,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Julius Nyerere,0,JUL,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Acordos de Lusaka,0,ACD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Somopo,0,SOM,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,3 de Fevereiro,0,DFO,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Josina Machel,0,JSB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Josina Machel,0,JON,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,25 de Setembro,0,DRX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Eduardo Mondlane,0,EDX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Mandawa,0,MDM,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,Chimuara Sede,0,CHS,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Chimuara,1 de Maio,0,DDE,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Braz,0,BRA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Muntaia,0,MNI,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Minjale,0,MIN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Quembo,0,QUE,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Soares,0,SOA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Liberdade,0,LIX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Mambucha,0,MAM,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Noere,0,NOE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Nhamizinga,0,NHZ,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Fardo,0,FAR,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Valeta,0,VAL,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Murato,0,MRT,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Rapoio,0,RPO,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Sassune Raunde (3 de Fevereiro),0,SRD,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Sassanha,0,SSS,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Dolo,0,DLO,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Bote,0,BTE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,9 Congresso,0,CNG,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Massonjoeira,0,JEI,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,25 de Junho,0,VDJ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Coyowe,0,COY,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Nhamingulo,0,NHU,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Nhamigonhane,0,NAG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Gulamo,0,GUL,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Cimento,0,CIE,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Liberdade,0,LIZ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Nsussa,0,NSU,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,25 de Setembro,0,DER,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Chitucotuco,0,CHC,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Eduardo Mondlane,0,EDZ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Ncomati,0,NCO,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Agostinho Neto,0,AGX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Sambane,0,SEA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Nhamipama,0,NHP,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Navena,0,NAV,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,12 de Outubro,0,DDO,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,Samora Machel,0,SAX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,7 de Abril,0,DEZ,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,Gundagunda,0,GNX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,Nhacolo,0,NHC,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,Waia,0,WAX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Veloso,Muabado,0,MDX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,Samora Machel,0,SAO,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,Acordo de Roma,0,DRM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,3 de Fevereiro,0,FVX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,Nhamirere A,0,NRA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,1 de Maio,0,DMI,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,Eduardo Mondlane,0,MDL,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,Josina Machel,0,JSC,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhamirere,25 de Junho,0,DXX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Cimento,0,CMX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Cua-cua,0,CCC,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Armando Emilio Guebuza,0,AEG,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Liberdade,0,LRX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Eduardo Mondlane,0,EMX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Josina Machel,0,JSD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Samora Machel,0,SMX,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhacatundo,Janeiro,0,JAN,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,1 de Maio,0,NDM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,Nzanza Sede,0,NZA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,Forca da Mudanca,0,FRX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,Obra,0,OBX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,Matantune,0,MTX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,Josina Machel,0,JSE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nzanza,3 de Fevereiro,0,TFX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhanga,Mazembe,0,MZM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Nhanga,Nsanze,0,NNZ,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Mefula,Nsondera,0,NSD,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Mefula,Liberdade,0,LLE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Mefula,Mirui,0,MIX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Mefula,Nsalange,0,NSG,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Tole,0,TLE,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Nhafimbo,0,NFI,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Sanguimbe,0,SNG,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Ngimbe,0,NGX,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Cocorico,0,COC,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Mefula,0,MEF,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Paz,0,PZX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Mauia,0,MAU,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Caline,Micombezi,0,MIC,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lima,Lima A,0,LMA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lima,Lima B,0,LMB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lima,Namitangurine,0,NNN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Rimba,Rimba,0,RIM,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Acordos de Lusaka,0,LSX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Caline,Caline A,0,CAA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Caline,Caline B,0,CAB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Caline,Nansenguene,0,XNN,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Mirrongone,0,MIR,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Simogo,7 de Abril A,0,AAA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,7 de Abril B,0,AAB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Samora Machel,0,XSO,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,3 de Marco,0,ADM,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Cuerelo B,0,CRB,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Julius Nyerere,0,JJJ,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Ceta A,0,CTA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Ceta B,0,CTB,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Mudiba,0,MUD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,3 de Fevereiro,0,RFX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,25 de Junho,0,VVJ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,1 de Maio,0,XMM,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Liberdade,0,LRD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,1 de Junho,0,DEH,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Nasarone,0,NAS,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Cuerelo A,0,CXA,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Luala,Simogo,7 de Abril C,0,SXA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Simogo,1 de Junho A,0,PXA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Mpiaeca,Mpolossa,0,MPX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Mpiaeca,Nuando,0,NUX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Mpiaeca,Mpiaeca,0,MPI,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Luala,Mpiaeca,Mirebe,0,MRX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lima,Nhamazemba,0,NZZ,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Luala,Chiurine,Chiurine,0,CHR,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Sitone,Sitone,0,SIT,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Cadongo,Cadongo,0,CAD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Ntxenga,0,NTX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Bariela,0,BAR,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Jorissa,0,JOR,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Sololo,0,SOL,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Caixote,0,CAI,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Cundine,0,CUD,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,25 de Setembro,0,VDX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,3 de Fevereiro,0,TDX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Acordos de Lusaka,0,ADX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,4 de Outubro sede,0,FDX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Mucombezi velho,0,MVX,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Pempe,0,PMP,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Cuerelo A,0,CUX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Mussampnia,0,MSX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Filipe Nyusi,0,FNX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Sacuane,Sacuane,0,SAC,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,1 de Maio,0,MMX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,25 de Junho,0,JJX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,4 de Outubro,0,DDX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Josina Machel,0,JSG,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Eduardo Mondlane,0,EEX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Armando E Guebuza,0,AEX,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Samaral,0,SAA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Assiate,0,ASS,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Maina,0,MAI,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Milange,0,MIL,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Namitala,0,NAM,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Bajone,0,BAJ,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Joaquim Chissano,0,JCX,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,8 de Marco,0,DDD,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Paz,0,PZS,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Nhungulo,0,XNZ,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,LiconJe,0,LJX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Filipe Nyusi,0,FYX,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,Samora Machel,0,XSA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,19 de Outubro,0,DNX,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Mugurrumba Sede,0,MUG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Danhau,0,DAH,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Nhanga,0,XGN,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Gonda,0,GON,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Batelao,0,BAT,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Nsando,0,NSN,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Nhando,0,XNH,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Bantene,0,XBA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Arvai,0,XAR,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Maliganpase,0,XMA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Chimindwe,0,XHC,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Prego,0,XPR,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Tonganhica,0,XTO,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Gamba-Draban,0,XGA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Nhamicoco,0,XNA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Lhendha,0,XLH,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Junca,0,XJU,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mugurrumba,Nhambade,0,XND,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,Dula,0,XDU,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,Txicalo,0,XTX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,Calongola,0,XCA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,Nolie,0,XNO,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,China,0,XCH,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Samurrenge,Ngunguline,0,XNG,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Biringuinho,Muanamaino,0,MUM,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Biringuinho,Avareia,0,XAV,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Biringuinho,Mungombe,0,XMU,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Biringuinho,Pambane,0,PAM,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Biringuinho,Compone,0,COM,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Avalinho,Micajune,0,MIJ,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Avalinho,Namicole,0,NAI,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Avalinho,Mipurune,0,XMI,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Chirama,Luala,0,LUA,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Chirama,Guia,0,GUI,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Chirama,Mirerene,0,MIM,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Mungane,Chirama,Zengue,0,ZEN,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Changaue,0,CHA,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Manhai,0,MAH,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Panela,0,PAN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Antonio,0,ANT,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Raposo,0,RAP,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Namaria,0,NAA,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Muacaniua,0,MUA,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Murrongone,0,MUO,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Andale,0,AND,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Mbawala,0,MBA,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Licasse,0,LIC,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Nhagoanine,0,NHO,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Morais,0,MOR,FALSE,Very Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,Waluto,0,WAL,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,25 de Setembro,0,XSE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,4 de Outubro,0,XOU,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,7 de Abril,0,XAB,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,1 de Maio,0,XMO,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Catale,Catale,25 de Junho,0,XJN,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Nhamirimba,0,NXX,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Mongana,Cafe,0,CFE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,7 de Setembro,0,SDS,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Mocha,Mocha,0,MHA,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Marruma,Armando Emilio Guebuza,0,AGG,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Campo sede,Zuze,7 de abril,0,ZZE,FALSE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Nzanza,Cocorico,Ngombe,0,NOB,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Nhamirere,0,NIB,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,Simogo,0,SMG,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Misao,0,MOO,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Majambe,Nhangu B,0,NHB,FALSE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Armando Emilio Guebuza,0,AGZ,FALSE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Sambalendo,Samora Machel,0,SMM,FALSE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Zangatupe,0,ZAN,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Cuacua,Chamanga,Mazalo,0,MAZ,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Nhamazade,0,MEA,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Nhamitumbine,0,BMN,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Mirerene,0,EER,TRUE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Ntinho,0,NTI,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Mulimba,0,ULU,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Mugubia,0,IGM,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Camuedane,0,CAM,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Rovuma/Conho,Ndingo,Nhaminbingue,0,ENE,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Simenda,0,SIM,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Roase,0,ROA,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Bangamulopa,0,ALO,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Nhamassapadanga,0,SSM,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Nhamipama,0,AHM,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Xavier,0,XAA,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Nhaminhanga,0,AAN,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Mirerene,0,EEN,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Nhapumbue,0,HNE,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Manbucha,Nhacavacua,0,AVC,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Nhangumba,0,HNN,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Nhamaconque,0,ONA,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Armando Guebuza,0,ARM,TRUE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Samora Machel,0,CAS,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Coleche,0,COL,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,4 de outubro,0,BEB,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,1 de Maio,0,OEE,TRUE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Josina Machel,0,JOS,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Monecra A,0,MON,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere,Monecra B,0,NEN,TRUE,This will be deleted
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Chamo,0,MOC,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Conde,0,CON,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,25 de junho,0,JED,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Mbuemba,0,UBU,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Nhamaceze,0,ANM,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Nhamive I,0,INE,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,7 de Abril,0,BID,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Coleche,Josina Machel,0,INO,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,1 de Maio,0,EII,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,Nhaibo,0,AOA,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,25 de Setembro,0,DES,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,7 de Abril,0,DIR,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,Liberdade,0,RLB,TRUE,Normal
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,Nhangua,0,AGA,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,4 de outubro,0,EOT,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Noere-Nhamizinga,3 de Fevereiro,0,DEF,TRUE,Very Hard
+Mozambique,Zambezia,Mopeia,Mopeia sede | Sambalendo,Nzero,Ropa,0,ROP,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,7 de Abril A,0,BLB,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Lua Lua,25 de Setembro,0,EEE,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Cuerelo,Magodone,0,OMN,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Luala,Cuerelo,Macossoera,0,MAC,TRUE,Hard
+Mozambique,Zambezia,Mopeia,Campo | Luala,Simogo,7 de Abril B,0,BRE,TRUE,Easy
+Mozambique,Zambezia,Mopeia,Campo | Luala,Rimba,Rimba B,0,RBB,TRUE,Easy

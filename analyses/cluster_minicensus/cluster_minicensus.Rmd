@@ -64,10 +64,12 @@ if('data.RData' %in% dir()){
 } else {
   pd_moz <- load_odk_data(the_country = 'Mozambique',
                     credentials_path = '../../credentials/credentials.yaml',
-                    users_path = '../../credentials/users.yaml')
+                    users_path = '../../credentials/users.yaml',
+                    efficient = FALSE)
   pd_tza <- load_odk_data(the_country = 'Tanzania',
                       credentials_path = '../../credentials/credentials.yaml',
-                      users_path = '../../credentials/users.yaml')
+                      users_path = '../../credentials/users.yaml',
+                      efficient = FALSE)
   is_local <- FALSE
   library(DBI)
   library(RPostgres)
@@ -136,10 +138,16 @@ left <- minicensus_people %>%
                             years_old >= 0 & years_old <= 15)) %>%
   group_by(country, instance_id) %>%
   summarise(n_members = n(),
+            n_females = length(which(gender == 'female')),
+            n_males = length(which(gender == 'male')),
             n_children = length(which(is_child)))
 df <-
   left_join(left,
             minicensus_main %>% dplyr::select(instance_id,
+                                              cows_1_year_plus = hh_n_cows_greater_than_1_year,
+                                              cows_babies = hh_n_cows_less_than_1_year,
+                                              pigs_6_weeks_plus = hh_n_pigs_greater_than_6_weeks,
+                                              pigs_babies = hh_n_pigs_less_than_6_weeks,
                                               # country = hh_country,
                                               code = hh_hamlet_code,
                                               n_people = hh_size,
@@ -223,13 +231,31 @@ df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +dat
 df <- df %>%
   group_by(code) %>%
   summarise(n_humans = sum(n_members),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
             n_households = n(),
             n_children = sum(n_children),
             clinical_trial = dplyr::first(clinical_trial),
             country = dplyr::first(country),
             lng = mean(lng),
-            lat = mean(lat))
+            lat = mean(lat),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+            cows_babies = sum(cows_babies, na.rm = TRUE),
+            pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+            pigs_babies = sum(pigs_babies, na.rm = TRUE))
 df <- df %>% arrange(code)
+
+
+# Read in cluster difficulty access scores (sent from Eldo)
+difficulty <- read_csv('Mopeia.Hamlets_Accessibility_Scores.08.03.2021.csv')
+difficulty <- difficulty %>% dplyr::select(code, difficulty = Accessibility_Scores)
+difficulty$difficulty_value <- 
+  ifelse(difficulty$difficulty == 'Easy', 1,
+         ifelse(difficulty$difficulty == 'Normal', 2,
+                ifelse(difficulty$difficulty == 'Hard', 3,
+                       ifelse(difficulty$difficulty == 'Very Hard', 4,
+                              NA))))
+df <- left_join(df, difficulty)
 ```
 
 
@@ -255,7 +281,7 @@ We consider that the number of clusters is "enough" if 147 are reached (ie, suff
 
 We allow for clusters to be formed by more than one hamlet, but we do not allow for the splitting of hamlets. 
 
-We consider that a "child" is some between 5 or younger in Mozambique and 15 or younger in Tanzania. 
+We consider that a "child" is some between 5 or younger in Mozambique and 5 to 15 in Tanzania. 
 
 
 The clustering algorithm:  
@@ -311,10 +337,142 @@ out_minimal <- keep_only_n(out$cluster_xdf)
 ```
 
 
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
+
+
 ## Mozambique
 
+Here, we present multiple results for Mozambique. The reason: we want to see how clustering would be affected if we exclude certain hamlets based on difficulty of access, as reported by Eldo in early March.
+
+First, a map of difficulty of access (click on hamlet to see points):
+
+```{r}
+x <- df %>% filter(country == 'Mozambique')
+color_var <- rainbow(8)[c(5,4,2,1)][x$difficulty_value]
+
+leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addCircleMarkers(data = x,
+                   color = color_var,
+                   popup = paste0(x$code, '). ', x$difficulty, '. Households: ', x$n_households))
+```
+
+The distribution of difficulty of access by number of households / children is below:
+
+```{r}
+pd <- x %>%
+  group_by(difficulty) %>%
+  summarise(Households = sum(n_households),
+            Children = sum(n_children)) %>%
+  tidyr::gather(key, value, `Households`:`Children`)
+pd$difficulty <- factor(pd$difficulty,
+                        levels = c('Easy',
+                                   'Normal',
+                                   'Hard',
+                                   'Very Hard'))
+
+ggplot(data = pd,
+       aes(x = difficulty,
+           y = value,
+           group = key,
+           fill = key)) +
+  geom_bar(stat = 'identity',
+           position = position_dodge(width = 0.8)) +
+  scale_fill_manual(name = '',
+                    values = c('red', 'black')) +
+  labs(x = 'Difficulty',
+       y = '') +
+  theme(legend.position = 'bottom') +
+  geom_text(position = position_dodge(width = 0.8),
+            aes(y = value + 1000,
+                label = value))
+  
+```
+
+
+The distribution of difficulty of access by number of hamlets is below:
+
+```{r}
+pd <- x %>%
+  group_by(difficulty) %>%
+  summarise(Hamlets = n()) %>%
+  tidyr::gather(key, value, `Hamlets`)
+pd$difficulty <- factor(pd$difficulty,
+                        levels = c('Easy',
+                                   'Normal',
+                                   'Hard',
+                                   'Very Hard'))
+
+ggplot(data = pd,
+       aes(x = difficulty,
+           y = value,
+           group = key,
+           fill = key)) +
+  geom_bar(stat = 'identity',
+           position = position_dodge(width = 0.8)) +
+  scale_fill_manual(name = '',
+                    values = c('black')) +
+  labs(x = 'Difficulty',
+       y = '') +
+  theme(legend.position = 'bottom') +
+  geom_text(position = position_dodge(width = 0.8),
+            aes(y = value + 20,
+                label = value))
+  
+```
+
+Next, we'll go through each difficulty level, excluding those that are more difficult than the level indicated.
+
+
+### Including all hamlets
+
+(Except those 18 hamlets which Eldo has designated as being excluded from the location hierarchy entirely)
 
 ```{r, echo = TRUE}
+set.seed(5)
+keep_index <- which(!is.na(df$difficulty_value))
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
@@ -327,19 +485,293 @@ out <- try_clusters_hh_level(the_country = 'Mozambique',
                          km = 2,
                          max_km_from_hq = 1000,
                          start_at_hq = FALSE,
-                         df = df,
-                         locations_list = locations_list)
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
 ```
 
 ```{r}
 out$map
 ```
 
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
+
+### Excluding the "very hard"
+
+
+```{r, echo = TRUE}
+set.seed(5)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 4)
+out <- try_clusters_hh_level(the_country = 'Mozambique',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 30,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+```{r}
+out$map
+```
 
 #### Summary
 
 ```{r, results='asis'}
 cat(paste0(out$summary_text))
+```
+
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
+
+### Excluding the "very hard" and "hard" (ie, keeping only "normal" and "easy")
+
+
+```{r, echo = TRUE}
+set.seed(5)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 3)
+out <- try_clusters_hh_level(the_country = 'Mozambique',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 30,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+```{r}
+out$map
+```
+
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
+
+
+### Excluding the "very hard", "hard", and "normal" (ie, only keeping easy)
+
+
+```{r, echo = TRUE}
+set.seed(5)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 2)
+out <- try_clusters_hh_level(the_country = 'Mozambique',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 30,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+```{r}
+out$map
+```
+
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free_y') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
 ```
 
 
@@ -358,12 +790,4 @@ out_maximal <- out$cluster_xdf
 # If we do not cense those in buffer areas, this is estimated to reduce the number of participating households from `r sum(out_maximal$n_households)` to `r sum(out_minimal$n_households)`.
 
 ```
-
-
-
-## More resources
-
-- Source code for the hamlet-level clustering algorithm: [here](https://github.com/databrew/bohemia/blob/master/rpackage/bohemia/inst/shiny/operations/try_clusters.R) 
-- Interactive web app for modifying parameters and re-running cluster algorithm: [here](https://bohemia.team/operations) ("Clustering" tab)
-
 
