@@ -68,7 +68,7 @@ move_from,move_from,string,[]
 move_from_census_extid_not_possible,move_from_census_extid_not_possible,array,"[""move_from_census_extid_not_possible_items""]"
 move_from_census_extid_not_possible_items,items,string,[]
 move_from_district_census,move_from_district_census,string,[]
-name,name,string,[]
+name,name,string(1024),[]
 new_hh_member_censed,new_hh_member_censed,string,[]
 new_hh_member_censed_extid_not_possible,new_hh_member_censed_extid_not_possible,array,"[""new_hh_member_censed_extid_not_possible_items""]"
 new_hh_member_censed_extid_not_possible_items,items,string,[]
@@ -101,7 +101,7 @@ snake_bite_occur,snake_bite_occur,array,"[""snake_bite_occur_items""]"
 snake_bite_occur_items,items,string,[]
 snake_bite_occur_other,snake_bite_occur_other,string,[]
 snake_bite_outcome,snake_bite_outcome,string,[]
-surname,surname,string,[]
+surname,surname,string(1024),[]
 time_get_out_bed,time_get_out_bed,string,[]
 time_go_bed,time_go_bed,string,[]
 time_go_outside,time_go_outside,string,[]
