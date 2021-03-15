@@ -7,7 +7,7 @@ creds_fpath <- '../credentials/credentials.yaml'
 creds <- yaml::yaml.load_file(creds_fpath)
 is_local <- FALSE
 
-# # load data from odk for both countries
+# # # load data from odk for both countries
 #   odk_data <- odk_data_moz <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
 #                                 the_country = 'Mozambique',
 #                             users_path = '../credentials/users.yaml',
@@ -215,3 +215,23 @@ dbDisconnect(con)
 # #   }
 # # }
 # 
+
+x <- dbGetQuery(conn = con,
+                'select * from minicensus_main;')
+y <- dbGetQuery(conn = con,
+                'select * from minicensus_repeat_death_info')
+
+x <- odk_data_moz
+
+pd <- x$minicensus_main
+deaths <- x$minicensus_repeat_death_info
+
+
+multi_main <- pd %>% filter(!is.na(how_many_deaths)) #%>%
+  filter(how_many_deaths > 1)
+
+multi_deaths <- deaths %>%
+  filter(instance_id %in% multi_main$instance_id)
+
+keep <- deaths %>%
+  filter(instance_id %in% multi_main$instance_id)
