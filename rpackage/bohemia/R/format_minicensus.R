@@ -114,6 +114,8 @@ format_minicensus <- function(data, keyfile){
   # death
   repeat_death_info <- data$repeats$repeat_death_info 
   repeat_death_info <- repeat_death_info %>% filter(!is.na(repeated_id))
+  # Keep only the true diers
+  repeat_death_info <- repeat_death_info %>% filter(!is.na(death_id))
   repeat_death_ok <- FALSE
   if(!is.null(repeat_death_info)){
     if(nrow(repeat_death_info) > 0){
