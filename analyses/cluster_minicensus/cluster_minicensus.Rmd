@@ -111,8 +111,8 @@ ages <-
   mutate(days_old = Sys.Date() - dob) %>%
   mutate(years_old = days_old / 365.25) %>%
   mutate(is_child  = ifelse(country == 'Mozambique',
-                            years_old >= 0 & years_old <= 5,
-                            years_old >= 5 & years_old <= 15)) %>%
+                            years_old >= 0 & years_old < 5,
+                            years_old >= 5 & years_old < 15)) %>%
   group_by(country) %>%
   summarise(children = length(which(is_child)),
             people = n()) %>%
@@ -273,7 +273,7 @@ Clusters will be formed using full data from the minicensus on the spatial distr
 Since one incorrectly geocoded household can radically throw off the convex hull of a hamlet, we remove any households which are > 3km from the estimated centroid (median longitude / latitude) of the others from that hamlet.
 
 We consider a cluster to be "complete" if it has the following characteristics:
-- At least 30 children (25 +5 to account for potential lost to follow-up)  
+- At least 35 children (30 +5 to account for potential lost to follow-up)  
 - NO ANIMAL FLOOR  
 - At least 2 kilometers between clusters of different treatment assignments (ie, a 1km "buffer" for each cluster, except in the case that the nearby cluster is of identical treatment assignment)  
 
@@ -300,7 +300,7 @@ Note: this is excluding hamlets in other clinical trial
 out <- try_clusters_hh_level(the_country = 'Tanzania',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -370,7 +370,7 @@ ggplot(data = pdx,
        aes(x = assignment_group,
            y = value)) +
   geom_bar(stat = 'identity') +
-  facet_wrap(~key, scales = 'free_y') +
+  facet_wrap(~key, scales = 'free') +
   labs(x = 'Assignment group',
        y = 'Value') +
   geom_text(aes(label = value),
@@ -471,12 +471,12 @@ Next, we'll go through each difficulty level, excluding those that are more diff
 (Except those 18 hamlets which Eldo has designated as being excluded from the location hierarchy entirely)
 
 ```{r, echo = TRUE}
-set.seed(5)
+set.seed(25)
 keep_index <- which(!is.na(df$difficulty_value))
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -532,7 +532,7 @@ ggplot(data = pdx,
        aes(x = assignment_group,
            y = value)) +
   geom_bar(stat = 'identity') +
-  facet_wrap(~key, scales = 'free_y') +
+  facet_wrap(~key, scales = 'free') +
   labs(x = 'Assignment group',
        y = 'Value') +
   geom_text(aes(label = value),
@@ -552,7 +552,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 4)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -609,7 +609,7 @@ ggplot(data = pdx,
        aes(x = assignment_group,
            y = value)) +
   geom_bar(stat = 'identity') +
-  facet_wrap(~key, scales = 'free_y') +
+  facet_wrap(~key, scales = 'free') +
   labs(x = 'Assignment group',
        y = 'Value') +
   geom_text(aes(label = value),
@@ -629,7 +629,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 3)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -686,7 +686,7 @@ ggplot(data = pdx,
        aes(x = assignment_group,
            y = value)) +
   geom_bar(stat = 'identity') +
-  facet_wrap(~key, scales = 'free_y') +
+  facet_wrap(~key, scales = 'free') +
   labs(x = 'Assignment group',
        y = 'Value') +
   geom_text(aes(label = value),
@@ -707,7 +707,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 2)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -764,7 +764,7 @@ ggplot(data = pdx,
        aes(x = assignment_group,
            y = value)) +
   geom_bar(stat = 'identity') +
-  facet_wrap(~key, scales = 'free_y') +
+  facet_wrap(~key, scales = 'free') +
   labs(x = 'Assignment group',
        y = 'Value') +
   geom_text(aes(label = value),
