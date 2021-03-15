@@ -3565,11 +3565,13 @@
         "comment": "Registration",
         "name": "name",
         "type": "text",
+        "elementType": "string(1024)",
         "_row_num": 13
       },
       {
         "name": "surname",
         "type": "text",
+        "elementType": "string(1024)",
         "_row_num": 14
       },
       {
@@ -4075,7 +4077,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210311001,
+        "value": 20210312001,
         "_row_num": 4
       },
       {
@@ -8503,7 +8505,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210311001,
+        "value": 20210312001,
         "_row_num": 4
       },
       "survey": {
@@ -16410,6 +16412,7 @@
           }
         ],
         "comment": "Registration",
+        "elementType": "string(1024)",
         "elementKey": "name"
       },
       "surname": {
@@ -16424,6 +16427,7 @@
             "section_name": "model"
           }
         ],
+        "elementType": "string(1024)",
         "elementKey": "surname"
       },
       "dob_day": {
@@ -18121,6 +18125,7 @@
           }
         ],
         "comment": "Registration",
+        "elementType": "string(1024)",
         "elementKey": "name",
         "elementName": "name",
         "elementSet": "data",
@@ -18138,6 +18143,7 @@
             "section_name": "model"
           }
         ],
+        "elementType": "string(1024)",
         "elementKey": "surname",
         "elementName": "surname",
         "elementSet": "data",
