@@ -117,7 +117,7 @@ format_minicensus <- function(data, keyfile){
   repeat_death_ok <- FALSE
   if(!is.null(repeat_death_info)){
     if(nrow(repeat_death_info) > 0){
-      if('death_name' %in% repeat_death_info){
+      if('death_name' %in% names(repeat_death_info)){
         repeat_death_ok <- TRUE
       }
     } 
