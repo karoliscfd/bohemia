@@ -312,7 +312,7 @@ if(moz){
     user = creds$moz_odk_user
     password = creds$moz_odk_pass
     suppressWarnings({
-      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va')
+      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va_refusals')
     })
     if (nrow(existing_uuids)< 0){
       existing_uuids <- c()
