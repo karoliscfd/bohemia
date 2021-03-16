@@ -221,6 +221,17 @@ x <- dbGetQuery(conn = con,
 y <- dbGetQuery(conn = con,
                 'select * from minicensus_repeat_death_info')
 
+table(y$instance_id %in% x$instance_id)
+table(x$instance_id %in% y$instance_id)
+table(duplicated(y$instance_id))
+sort(unique(y$death_id))
+
+multi_deaths <- x %>% filter(how_many_deaths > 1)
+multi_va <- y %>% group_by(instance_id) %>% tally %>% arrange(desc(n)) %>%
+  filter(n > 1)
+table(multi_va$instance_id %in% multi_deaths$instance_id)
+table(multi_deaths$instance_id %in% multi_va$instance_id)
+
 x <- odk_data_moz
 
 pd <- x$minicensus_main

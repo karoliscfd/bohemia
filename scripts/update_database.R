@@ -13,7 +13,7 @@ suppressMessages({
 }
 )
 
-is_local <- TRUE
+is_local <- FALSE
 drv <- RPostgres::Postgres()
 
 if(is_local){
@@ -312,7 +312,7 @@ if(moz){
     user = creds$moz_odk_user
     password = creds$moz_odk_pass
     suppressWarnings({
-      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va')
+      existing_uuids <- dbGetQuery(con, 'SELECT instance_id FROM va_refusals')
     })
     if (nrow(existing_uuids)< 0){
       existing_uuids <- c()
@@ -544,7 +544,7 @@ message('--- NOW EXECUTING CLEANING CODE ---')
 source('clean_database.R')
 
 
-    ####### ANOMALIES CREATION ##################################################
+####### ANOMALIES CREATION ##################################################
 library(dplyr)
 data_moz <- load_odk_data(the_country = 'Mozambique', 
                           credentials_path = '../credentials/credentials.yaml',
