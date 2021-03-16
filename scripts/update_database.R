@@ -544,7 +544,7 @@ message('--- NOW EXECUTING CLEANING CODE ---')
 source('clean_database.R')
 
 
-    ####### ANOMALIES CREATION ##################################################
+####### ANOMALIES CREATION ##################################################
 library(dplyr)
 data_moz <- load_odk_data(the_country = 'Mozambique', 
                           credentials_path = '../credentials/credentials.yaml',
