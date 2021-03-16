@@ -49,12 +49,12 @@ dat <- rbind(dat, dat)
 # https://trello.com/c/ZiqTjBeD/2328-bohemia-get-our-data-into-interva-5-format
 # right now only one row, so create a fake 2nd row
 
+# get data names
 who_names <- tolower(unlist(lapply(strsplit(names(dat), '.',fixed = TRUE), function(x) x[length(x)])))
 va_names <- names(va)
 
 # loop through va names and find the matching names in the WHO data and add the prefix
-# names(va)[grepl('Id10221', names(va))]
-i=36
+
 # 36 and 39 are wet/dry and gender gor va
 for(i in 1:length(va_names)){
   this_name <- va_names[i]
@@ -82,8 +82,8 @@ for(i in 1:length(va_names)){
 temp_who <- odk2openVA_v151(dat, id_col = 'meta.instanceID')
 temp_va <- odk2openVA_v151(va, id_col = 'instance_id')
 
-temp2 <- InterVA5(temp_va,  HIV = "l", Malaria = "l", directory = getwd())
-summary(temp2)
+out <- InterVA5(temp_va,  HIV = "l", Malaria = "l", directory = getwd())
+summary(out)
 
 
 #####################################
