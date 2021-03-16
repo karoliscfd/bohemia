@@ -7,11 +7,11 @@ s = ezsheets.Spreadsheet('https://docs.google.com/spreadsheets/d/1GRgZ96GRCjM39q
 s.downloadAsExcel()
 
 ## Convert to xml
-os.system('xls2xform audio.xlsx audio.xml ')
+os.system('xls2xform transcription.xlsx transcription.xml ')
 
 # Move
-shutil.move('audio.xlsx', '../forms/audio/audio.xlsx')
-shutil.move('audio.xml',  '../forms/audio/audio.xml')
+shutil.move('transcription.xlsx', '../forms/transcription/transcription.xlsx')
+shutil.move('transcription.xml',  '../forms/transcription/transcription.xml')
 # shutil.move('itemsets.csv', '../forms/varefusals/itemsets.csv')
 
-print('Done. Docs in forms/audio.')
+print('Done. Docs in forms/transcription.')
