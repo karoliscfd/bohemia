@@ -44,7 +44,7 @@ va <- dbGetQuery(conn = con,
 dbDisconnect(con)
 #id10004 is wet/dry and id10007a is gender
 # our data (VA version 1.5.3)
-dat <- read.csv('~/Desktop/2016_WHO_Verbal_Autopsy_Form_1_5_3_results.csv')
+dat <- read.csv('2016_WHO_Verbal_Autopsy_Form_1_5_3_results.csv')
 dat <- rbind(dat, dat)
 # https://trello.com/c/ZiqTjBeD/2328-bohemia-get-our-data-into-interva-5-format
 # right now only one row, so create a fake 2nd row
@@ -85,6 +85,13 @@ temp_va <- odk2openVA_v151(va, id_col = 'instance_id')
 out <- InterVA5(temp_va,  HIV = "l", Malaria = "l", directory = getwd())
 summary(out)
 
+# Get into dataframe format
+out_list <- list()
+individual <- out$VA5
+for(i in 1:length(individual)){
+  this_individual <- individual[[i]]
+  cause1 <- this_individual$ID
+}
 
 #####################################
 # interva source code. the odk2openVA function works, but interVA5 algorithm returns a broken output. 
