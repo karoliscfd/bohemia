@@ -26,6 +26,9 @@ app_ui <- function(request) {
             text="Main",
             tabName="main"),
           menuItem(
+            text="History",
+            tabName="history"),
+          menuItem(
             text = 'About',
             tabName = 'about')
         )),
@@ -43,7 +46,8 @@ app_ui <- function(request) {
                 column(8,
                        uiOutput('ui_select_va')),
                 column(4,
-                       uiOutput('ui_assign_cod'))
+                       uiOutput('ui_assign_cod'),
+                       uiOutput('ui_submission'))
               ),
               fluidRow(
                 column(12,
@@ -71,21 +75,20 @@ app_ui <- function(request) {
 app_server <- function(input, output, session) {
   is_local <- TRUE
   logged_in <- reactiveVal(value = FALSE)
+  submission_success <- reactiveVal(value = NULL)
   log_in_fail <- reactiveVal(value=FALSE)
   # Connect to database
   message('Connecting to database : ', ifelse(is_local, ' local', 'remote'))
   con <- get_db_connection(local = is_local)
-  # Get list of authorized users
+  # Get list of authorized users, session, and cod tables
   users <- dbReadTable(conn = con, 'users')
-  
-  data <- reactiveValues(va = data.frame())
-  
+  data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
+
   # Upon log in, read in data
   observeEvent(input$log_in,{
     liu <- input$log_in_user
     lip <- input$log_in_password
     # See if the user exists and the password is correct
-    # save(users, liu, lip, file = 'temp_data.RData')
     ok <- FALSE
     if(tolower(liu) %in% users$username & tolower(lip) %in% users$password){
       ok <-TRUE
@@ -93,7 +96,18 @@ app_server <- function(input, output, session) {
     if(ok){
       logged_in(TRUE)
       removeModal()
+      # load data
       data$va <- load_va_data()
+      
+      # create table with same columns as session table in database (to append upon logout)
+      user_id <- users %>% filter(username == tolower(liu)) %>% .$user_id
+      start_time <- Sys.time()
+      end_time <- NA
+      data$session <- tibble(user_id = user_id, start_time=start_time, end_time=end_time)
+      
+      # create cod table
+      data$cod <- tibble(user_id = user_id, death_id = NA, cod = NA, time_stamp = NA)
+      
     } else {
       logged_in(FALSE)
       log_in_fail(TRUE)
@@ -122,7 +136,6 @@ app_server <- function(input, output, session) {
       fluidPage(h1('Username or password incorrect'))
     } else {
       fluidPage(h1('Not logged in'))
-      
     }
   })
   
@@ -154,6 +167,7 @@ app_server <- function(input, output, session) {
       NULL
     }
   })
+  
   
   output$va_table <- DT::renderDataTable({
     li <- logged_in()
@@ -191,12 +205,31 @@ app_server <- function(input, output, session) {
   })
   observeEvent(input$log_out, {
     logged_in(FALSE)
+    session_data <- data$session
+    session_data$end_time <- Sys.time()
+    dbAppendTable(conn = con, name = 'sessions', value = session_data)
   })
   
-  # Observe submission of cause of death and save
-  observeEvent(input$submit_cod, {
-    message('COD submitted, need to do some stuff here...')
-  })
+  # # Observe submission of cause of death and save
+  # observeEvent(input$submit_cod, {
+  #   cod_data <- data$cod
+  #   cod_data$cod = input$cod
+  #   cod_data$death_id = input$death_id
+  #   cod_data$time_stamp <- Sys.time()
+  #   dbAppendTable(conn = con, name = 'cods', value = cod_data)
+  #   submission_success(TRUE)
+  # })
+  # 
+  # output$ui_submission <- renderUI({
+  #   ss <- submission_success()
+  #   if(is.null(ss)){
+  #     NULL
+  #   } else if(ss){
+  #     fluidPage(h1('Submission successful'))
+  #   } else {
+  #     fluidPage(h1('Submission unsuccessful'))
+  #   }
+  # })
 
   session$onSessionEnded(function(){
     cat(paste0('Session ended.'))
