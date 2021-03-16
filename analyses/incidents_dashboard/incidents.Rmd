@@ -1,0 +1,111 @@
+---
+title: "Incidents dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+    
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+
+suppressMessages({
+  library(RPostgres)
+  library(bohemia)
+  library(yaml)
+  library(dplyr)
+  library(ggplot2)
+  library(leaflet)
+  library(leaflet.extras)
+  library(leafgl)
+  library(readr)
+  library(tidyr)
+  library(DT)
+  library(sf)
+  library(gsheet)
+  theme_bohemia <- ggplot2::theme_bw
+  theme_set(theme_bohemia())
+}
+)
+
+```
+
+
+Row
+-------------------------------------
+    
+### Map
+
+(Interactive map of all incidents, coded by incident type. Click on a point to get more details. In final version, when you click on a point on this map, the table on the bottom right will show details on the incident in question)
+    
+```{r}
+library(sp)
+
+pts <- spsample(bohemia::ruf2, n = 40, 'random')
+pal <- rainbow(5)
+type_categories <- c('Danger', 'Transport difficulty', 'Cultural challenge')
+indexer <- sample(1:3, length(pts), replace = T)
+cols <- pal[indexer]
+types <- type_categories[indexer]
+make_hamlet_name <- function(){
+  paste0(sample(LETTERS, 3, replace = T), collapse = '')
+}
+hamlet_labels <- c()
+for(i in 1:length(pts)){
+  hamlet_labels[i] <- make_hamlet_name()
+}
+hamlet_names <- hamlet_labels
+hamlet_labels <- paste0(hamlet_labels, ': ', types)
+dates <- sample(seq(Sys.Date() - 100, Sys.Date(), 1),
+                length(pts), replace = T)
+dates <- format(dates, '%B %d, %Y')
+hamlet_labels <- paste0(hamlet_labels, '. ', dates)
+
+leaflet() %>%
+  addProviderTiles(providers$OpenStreetMap) %>%
+  addPolylines(data = bohemia::ruf2) %>% addCircleMarkers(data = pts,
+                                                          color = cols,
+                                                          popup = hamlet_labels)
+```
+   
+Row
+-------------------------------------
+    
+### Table of all incidents
+
+(In final version, when you click on a row in this table, the location on the map will get highlighted and the table to the right will show details on the incident in question)
+    
+```{r}
+df <- tibble(
+  Hamlet = hamlet_names,
+  Type = types,
+  Date = dates,
+  Details = 'Some details go here on the incident'
+)
+databrew::prettify(df)
+```
+    
+### Details on selected incident
+
+
+```{r}
+df <- tibble(
+  Hamlet = hamlet_names,
+  Type = types,
+  Date = dates,
+  Details = 'Some details go here on the incident',
+  `FW` = 123,
+  `Time registered` = '12:03:15 AM'
+)
+t(df)
+```
+
