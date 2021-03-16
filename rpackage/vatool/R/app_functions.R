@@ -3,21 +3,39 @@ library(dplyr)
 
 # load VA data (for now, this is fake)
 load_va_data <- function(){
-  out <-
-    tibble(death_id = c('ABC-123-702', 'QRS-567-703', 'XYZ-987-701'),
-           country = c('Mozambique', 'Tanzania', 'Mozambique'),
-           age_in_years = sample(1:100, 3),
-           date_of_death = random_date(),
-           date_of_birth = random_date(),
-           date_of_interview = random_date(50),
-           fever = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-           fever_days = sample(1:10, size = 3, replace = TRUE),
-           HIV = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-           malaria_test = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-           malaria_positive = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-           TB = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-           phone_number = rep(12345, 3))
+  # out <-
+  #   tibble(death_id = c('ABC-123-702', 'QRS-567-703', 'XYZ-987-701'),
+  #          country = c('Mozambique', 'Tanzania', 'Mozambique'),
+  #          age_in_years = sample(1:100, 3),
+  #          date_of_death = random_date(),
+  #          date_of_birth = random_date(),
+  #          date_of_interview = random_date(50),
+  #          fever = sample(c('Yes', 'No'), size = 3, replace = TRUE),
+  #          fever_days = sample(1:10, size = 3, replace = TRUE),
+  #          HIV = sample(c('Yes', 'No'), size = 3, replace = TRUE),
+  #          malaria_test = sample(c('Yes', 'No'), size = 3, replace = TRUE),
+  #          malaria_positive = sample(c('Yes', 'No'), size = 3, replace = TRUE),
+  #          TB = sample(c('Yes', 'No'), size = 3, replace = TRUE),
+  #          phone_number = rep(12345, 3))
+  # return(out)
+  # read in va data (load from database later)
+  out <- read.csv('../data-raw/va.csv')
+
+
   return(out)
+}
+
+# function for getting readable names 
+get_va_names <- function(va_data){
+  col_names <- names(va_data)
+  for(i in 1:length(col_names)){
+    this_col <- col_names[i]
+    if(any(this_col==tolower(va_names$name))){
+      name_index <- which(this_col ==tolower(va_names$name))
+      names(va_data)[i] <- as.character(va_names$label_english[name_index])
+    }
+  }
+  return(va_data)
 }
 
 

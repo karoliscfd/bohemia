@@ -71,7 +71,7 @@ app_ui <- function(request) {
 app_server <- function(input, output, session) {
   is_local <- TRUE
   logged_in <- reactiveVal(value = FALSE)
-
+  log_in_fail <- reactiveVal(value=FALSE)
   # Connect to database
   message('Connecting to database : ', ifelse(is_local, ' local', 'remote'))
   con <- get_db_connection(local = is_local)
@@ -82,16 +82,22 @@ app_server <- function(input, output, session) {
   
   # Upon log in, read in data
   observeEvent(input$log_in,{
-    
+    liu <- input$log_in_user
+    lip <- input$log_in_password
     # See if the user exists and the password is correct
-    # some code here -----------------------------------------------------------------------
-    ok <- TRUE
+    # save(users, liu, lip, file = 'temp_data.RData')
+    ok <- FALSE
+    if(tolower(liu) %in% users$username & tolower(lip) %in% users$password){
+      ok <-TRUE
+    }
     if(ok){
       logged_in(TRUE)
       removeModal()
       data$va <- load_va_data()
     } else {
       logged_in(FALSE)
+      log_in_fail(TRUE)
+      removeModal()
     }
     
   })
@@ -109,10 +115,14 @@ app_server <- function(input, output, session) {
   # Define the placeholder main ui
   output$ui_main <- renderUI({
     li <- logged_in()
+    lif <- log_in_fail()
     if(li){
       fluidPage(h1('Logged in'))
+    } else if (lif){
+      fluidPage(h1('Username or password incorrect'))
     } else {
       fluidPage(h1('Not logged in'))
+      
     }
   })
   
@@ -153,6 +163,7 @@ app_server <- function(input, output, session) {
       if(!is.null(idi)){
         pd <- data$va
         person <- pd %>% filter(death_id == idi)
+        person <- get_va_names(person)
         out <- 
           tibble(Variable = names(person),
                  Response = as.character(person[1,]))
@@ -168,9 +179,9 @@ app_server <- function(input, output, session) {
       fluidPage(
         fluidRow(
           column(6,
-                 textInput('email', 'Email')),
+                 textInput('log_in_user', 'User')),
           column(6,
-                 passwordInput('password', 'Password'))
+                 passwordInput('log_in_password', 'Password'))
         ),
         fluidRow(
           actionButton('log_in', 'Log in')
