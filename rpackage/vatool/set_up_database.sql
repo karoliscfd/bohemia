@@ -22,5 +22,6 @@ CREATE TABLE sessions (
 CREATE TABLE cods (
   user_id INT,
   death_id VARCHAR(16),
-  cod VARCHAR(64)
+  cod VARCHAR(64),
+  time_stamp TIMESTAMP
 );
