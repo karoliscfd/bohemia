@@ -303,7 +303,11 @@ app_server <- function(input, output, session) {
         #          Response = person[1,])
       }
     } 
-    out
+    if(!is.null(out)){
+      if(is.data.frame(out)){
+        databrew::prettify(out, nrows = nrow(out))
+      }
+    }
   })
 
   observeEvent(input$show, {

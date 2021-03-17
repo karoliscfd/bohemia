@@ -19,7 +19,12 @@ load_va_data <- function(){
   #          phone_number = rep(12345, 3))
   # return(out)
   # read in va data (load from database later)
-  out <- read.csv('../data-raw/va.csv')
+  if(file.exists('../data-raw/va.csv')){
+    out <- read.csv('../data-raw/va.csv')
+  } else {
+    stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
+  }
+  
 
 
   return(out)
