@@ -29,6 +29,9 @@ app_ui <- function(request) {
             text="History",
             tabName="history"),
           menuItem(
+            text="Adjudicate",
+            tabName="adjudicate"),
+          menuItem(
             text = 'About',
             tabName = 'about')
         )),
@@ -58,6 +61,24 @@ app_ui <- function(request) {
             )
           ),
           tabItem(
+            tabName = 'history',
+            fluidRow(
+              column(12,
+                     h2('User info'),
+                     DT::dataTableOutput('user_table'),
+                     br(),
+                     h2('Submission history'),
+                     DT::dataTableOutput('history_table'))
+            )
+          ),
+          tabItem(
+            tabName = 'adjudicate',
+            fluidRow(
+              column(4,
+                     uiOutput('ui_adj_inputs'))
+            )
+          ),
+          tabItem(
             tabName = 'about',
             make_about()
           )
@@ -84,6 +105,7 @@ app_server <- function(input, output, session) {
   con <- get_db_connection(local = is_local)
   # Get list of authorized users, session, and cod tables
   users <- dbReadTable(conn = con, 'users')
+  cods <- dbReadTable(conn=con, 'cods')
   data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
 
   # Upon log in, read in data
@@ -118,6 +140,35 @@ app_server <- function(input, output, session) {
     
   })
 
+  # HERE NEED SUBMIT BUTTON, BUT ALSO NEED TABLE TO VIEW THE DEATH ID AND ANOTHER TABLE TO SHOW WHAT PREVIOUS DOCTORS PUT DOWN
+  # Selection input for VA ID
+  output$ui_adj_inputs <- renderUI({
+    li <- logged_in()
+    if(li){
+      liu <- input$log_in_user
+      user_role <- users %>% filter(username == tolower(liu)) %>% .$role
+      cod <- cods %>% group_by(death_id, cod) %>% summarise(counts = n())
+      if(user_role == 'Adjudicator'){
+        # get ids that have more than one diagnosis
+        death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
+        cods_choices <- cod_choices()
+        fluidPage(
+          fluidRow(
+            selectInput('adj_death_id', 'Select death ID', choices = death_id_choices),
+            selectInput('adj_cods', 'Choose cause of death',  choices = cods_choices)
+          )
+        )
+        
+      } else {
+        fluidRow(
+          h2('You must be an Adjudicator to view this page')
+        )
+      }
+    } else {
+      NULL
+    }
+  })
+  
   # Define the button
   output$top_button <- renderUI({
     li <- logged_in()
@@ -182,7 +233,6 @@ app_server <- function(input, output, session) {
         pd <- data$va
         person <- pd %>% filter(death_id == idi)
         person <- get_va_names(person)
-        # save(person, file = 'temp_person.rda')
         # remove columns with NA
         person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
       
@@ -190,7 +240,6 @@ app_server <- function(input, output, session) {
         remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         
         person <- person[, !grepl(remove_these, names(person))]
-        save(person, file ='temp_person.rda')
         out <- as.data.frame(t(person))
         out$Question <- rownames(out)
         names(out) <- c('Answer', 'Question')
@@ -253,6 +302,30 @@ app_server <- function(input, output, session) {
     } else {
       h3('Submission unsuccessful')
     }
+  })
+  
+  # history table 
+  output$user_table <- DT::renderDataTable({
+    li <- logged_in()
+    out <- NULL
+    if(li){
+      liu <- input$log_in_user
+      out <- users %>% filter(username == tolower(liu))
+    } 
+    out
+  })
+  
+  # history table 
+  output$history_table <- DT::renderDataTable({
+    li <- logged_in()
+    out <- NULL
+    if(li){
+      liu <- input$log_in_user
+      user <- users %>% filter(username == tolower(liu))
+      userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
+      out <- cods %>% filter(user_id == userid)
+    } 
+    out
   })
 
   session$onSessionEnded(function(){
