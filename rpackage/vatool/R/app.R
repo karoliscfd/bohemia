@@ -40,17 +40,19 @@ app_ui <- function(request) {
           tabItem(
             tabName="main",
             fluidPage(
-              uiOutput('top_button'),
-              uiOutput('ui_main'),
               fluidRow(
-                column(8,
-                       uiOutput('ui_select_va')),
-                column(4,
-                       uiOutput('ui_assign_cod'),
-                       uiOutput('ui_submission'))
+                column(4, 
+                       uiOutput('top_button'),
+                       br(),
+                       uiOutput('ui_main', inline = TRUE))
               ),
+              br(),
               fluidRow(
-                column(12,
+                column(4,
+                       uiOutput('ui_select_va'),
+                       uiOutput('ui_assign_cod'),
+                       uiOutput('ui_submission')),
+                column(8,
                        DT::dataTableOutput('va_table'))
               )
             )
@@ -131,11 +133,13 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     lif <- log_in_fail()
     if(li){
-      fluidPage(h1('Logged in'))
+      liu <- input$log_in_user
+      li_text <- paste0('Welcome ', liu)
+      p(li_text)
     } else if (lif){
-      fluidPage(h1('Username or password incorrect'))
+      p('Username or password incorrect')
     } else {
-      fluidPage(h1('Not logged in'))
+      p('Not logged in')
     }
   })
   
@@ -145,7 +149,7 @@ app_server <- function(input, output, session) {
     if(li){
       pd <- data$va
       choices <- pd$death_id
-      selectInput('death_id', 'VA ID', choices = choices, selected = choices[1])
+      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1])
     } else {
       NULL
     }
@@ -157,10 +161,10 @@ app_server <- function(input, output, session) {
       choices <- cod_choices()
       fluidPage(
         fluidRow(
-          selectInput('cod', 'Cause of death', choices = choices, selected = choices[1])
+          selectInput('cod', 'Select cause of death', choices = choices, selected = choices[1])
         ),
         fluidRow(
-          actionButton('submit_cod', 'Submit')
+          actionButton('submit_cod', 'Submit cause of death')
         )
       )
     } else {
@@ -178,9 +182,24 @@ app_server <- function(input, output, session) {
         pd <- data$va
         person <- pd %>% filter(death_id == idi)
         person <- get_va_names(person)
-        out <- 
-          tibble(Variable = names(person),
-                 Response = as.character(person[1,]))
+        # save(person, file = 'temp_person.rda')
+        # remove columns with NA
+        person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
+      
+        # remove other columns 
+        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
+        
+        person <- person[, !grepl(remove_these, names(person))]
+        save(person, file ='temp_person.rda')
+        out <- as.data.frame(t(person))
+        out$Question <- rownames(out)
+        names(out) <- c('Answer', 'Question')
+        rownames(out) <- NULL
+        out <- out[, c('Question', 'Answer')]
+        out <- out[which(nchar(as.character(out$Answer)) < 700),]
+        # out <- 
+        #   tibble(Variable = names(person),
+        #          Response = person[1,])
       }
     } 
     out
@@ -210,26 +229,31 @@ app_server <- function(input, output, session) {
     dbAppendTable(conn = con, name = 'sessions', value = session_data)
   })
   
-  # # Observe submission of cause of death and save
-  # observeEvent(input$submit_cod, {
-  #   cod_data <- data$cod
-  #   cod_data$cod = input$cod
-  #   cod_data$death_id = input$death_id
-  #   cod_data$time_stamp <- Sys.time()
-  #   dbAppendTable(conn = con, name = 'cods', value = cod_data)
-  #   submission_success(TRUE)
-  # })
-  # 
-  # output$ui_submission <- renderUI({
-  #   ss <- submission_success()
-  #   if(is.null(ss)){
-  #     NULL
-  #   } else if(ss){
-  #     fluidPage(h1('Submission successful'))
-  #   } else {
-  #     fluidPage(h1('Submission unsuccessful'))
-  #   }
-  # })
+  # Observe submission of cause of death and save
+  observeEvent(input$submit_cod, {
+    cod_data <- data$cod
+    cod_data$cod = input$cod
+    cod_data$death_id = input$death_id
+    cod_data$time_stamp <- Sys.time()
+    dbAppendTable(conn = con, name = 'cods', value = cod_data)
+    submission_success(TRUE)
+  })
+  
+  # Observe changes in inputs
+  observeEvent(c(input$cod,input$death_id), {
+    submission_success(NULL)
+  })
+
+  output$ui_submission <- renderUI({
+    ss <- submission_success()
+    if(is.null(ss)){
+      NULL
+    } else if(ss){
+      h3('Submission successful')
+    } else {
+      h3('Submission unsuccessful')
+    }
+  })
 
   session$onSessionEnded(function(){
     cat(paste0('Session ended.'))
