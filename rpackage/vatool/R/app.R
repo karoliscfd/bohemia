@@ -74,11 +74,7 @@ app_ui <- function(request) {
           tabItem(
             tabName = 'adjudicate',
             fluidRow(
-              column(4,
-                     uiOutput('ui_adj_inputs')),
-              column(8,
-                     DT::dataTableOutput('adj_table_1'),
-                     DT::dataTableOutput('adj_table_2'))
+              uiOutput('ui_adjudicate')
             )
           ),
           tabItem(
@@ -133,7 +129,7 @@ app_server <- function(input, output, session) {
       data$session <- tibble(user_id = user_id, start_time=start_time, end_time=end_time)
       
       # create cod table
-      data$cod <- tibble(user_id = user_id, death_id = NA, cod = NA, time_stamp = NA)
+      data$cod <- tibble(user_id = user_id, death_id = NA, cod_code = NA,cod =NA, time_stamp = NA)
       
     } else {
       logged_in(FALSE)
@@ -144,7 +140,7 @@ app_server <- function(input, output, session) {
   })
 
   # Selection input for VA ID
-  output$ui_adj_inputs <- renderUI({
+  output$ui_adjudicate <- renderUI({
     li <- logged_in()
     if(li){
       liu <- input$log_in_user
@@ -155,19 +151,25 @@ app_server <- function(input, output, session) {
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
         cods_choices <- cod_choices()
         fluidPage(
-          # fluidRow(h2('Review the disputed Diagnosis in the tables below')),
           fluidRow(
-            selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-            br(),
-            selectInput('adj_cods', 'Select cause of death',  choices = cods_choices),
-            br(),
-            actionButton('adj_submit_cod', 'Submit cause of death')
+            column(4,
+                   br(),
+                   selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
+                   selectInput('adj_cods', 'Select cause of death',  choices = cods_choices),
+                   br(),
+                   actionButton('adj_submit_cod', 'Submit cause of death')),
+            column(8,
+                   h2('Previous diagnoses'),
+                   DT::dataTableOutput('adj_table_2'),
+                   h2('Patient info'),
+                   DT::dataTableOutput('adj_table_1'))
           )
         )
-        
       } else {
-        fluidRow(
-          h2('You must be an Adjudicator to view this page')
+        fluidPage(
+          fluidRow(
+            h2('You must be an Adjudicator to view this page')
+          ) 
         )
       }
     } else {
@@ -330,10 +332,12 @@ app_server <- function(input, output, session) {
   
   # Observe submission of cause of death and save
   observeEvent(input$submit_cod, {
+    cod_names <- cod_data()
     cod_data <- data$cod
-    cod_data$cod = input$cod
+    cod_data$cod_code = input$cod
     cod_data$death_id = input$death_id
     cod_data$time_stamp <- Sys.time()
+    cod_data$cod <- cod_names$cod_names[cod_names$cod_code==cod_data$cod_code]
     dbAppendTable(conn = con, name = 'cods', value = cod_data)
     submission_success(TRUE)
   })
