@@ -75,7 +75,10 @@ app_ui <- function(request) {
             tabName = 'adjudicate',
             fluidRow(
               column(4,
-                     uiOutput('ui_adj_inputs'))
+                     uiOutput('ui_adj_inputs')),
+              column(8,
+                     DT::dataTableOutput('adj_table_1'),
+                     DT::dataTableOutput('adj_table_2'))
             )
           ),
           tabItem(
@@ -140,7 +143,6 @@ app_server <- function(input, output, session) {
     
   })
 
-  # HERE NEED SUBMIT BUTTON, BUT ALSO NEED TABLE TO VIEW THE DEATH ID AND ANOTHER TABLE TO SHOW WHAT PREVIOUS DOCTORS PUT DOWN
   # Selection input for VA ID
   output$ui_adj_inputs <- renderUI({
     li <- logged_in()
@@ -153,9 +155,13 @@ app_server <- function(input, output, session) {
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
         cods_choices <- cod_choices()
         fluidPage(
+          # fluidRow(h2('Review the disputed Diagnosis in the tables below')),
           fluidRow(
-            selectInput('adj_death_id', 'Select death ID', choices = death_id_choices),
-            selectInput('adj_cods', 'Choose cause of death',  choices = cods_choices)
+            selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
+            br(),
+            selectInput('adj_cods', 'Select cause of death',  choices = cods_choices),
+            br(),
+            actionButton('adj_submit_cod', 'Submit cause of death')
           )
         )
         
@@ -167,6 +173,50 @@ app_server <- function(input, output, session) {
     } else {
       NULL
     }
+  })
+  
+  # table showing 
+  output$adj_table_1 <- DT::renderDataTable({
+    li <- logged_in()
+    out <- NULL
+    if(li){
+      idi <- input$adj_death_id
+      if(!is.null(idi)){
+        pd <- data$va
+        person <- pd %>% filter(death_id == idi)
+        person <- get_va_names(person)
+        # remove columns with NA
+        person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
+        
+        # remove other columns 
+        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
+        
+        person <- person[, !grepl(remove_these, names(person))]
+        out <- as.data.frame(t(person))
+        out$Question <- rownames(out)
+        names(out) <- c('Answer', 'Question')
+        rownames(out) <- NULL
+        out <- out[, c('Question', 'Answer')]
+        out <- out[which(nchar(as.character(out$Answer)) < 700),]
+        # out <- 
+        #   tibble(Variable = names(person),
+        #          Response = person[1,])
+      }
+    } 
+    out
+  })
+  
+  # table showing 
+  output$adj_table_2 <- DT::renderDataTable({
+    li <- logged_in()
+    out <- NULL
+    if(li){
+      idi <- input$adj_death_id
+      if(!is.null(idi)){
+        out <- cods %>% filter(death_id == idi)
+      }
+    } 
+    out
   })
   
   # Define the button
