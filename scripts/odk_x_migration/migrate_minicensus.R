@@ -14,6 +14,7 @@ EXT_ID_LENGTH <- 4 * 3 - 1
 HH_CSV_PATH <- 'odk_x_hh.csv'
 MEMBER_CSV_PATH <- 'odk_x_member.csv'
 GEO_LOCATION_CSV_PATH <- 'odk_x_geolocation.csv'
+DEATH_CSV_PATH <- 'odk_x_death.csv'
 
 minicensus_data_path <- 'minicensus_data.RData'
 
@@ -54,7 +55,28 @@ load(minicensus_data_path)
 message('Processing clean_minicensus_main')
 odk_x_hh <- out_list$clean_minicensus_main %>%
   distinct(hh_id, .keep_all = TRUE) %>%
-  select(instance_id, hh_member_num, hh_head_id, hh_contact_info_number, hh_contact_info_number_alternate, hh_id, hh_geo_location) %>%
+  select(
+    instance_id,
+    hh_member_num,
+    hh_head_id,
+    hh_contact_info_number,
+    hh_contact_info_number_alternate,
+    hh_id,
+    hh_geo_location,
+    hh_animals_distance_cattle_dry_season,
+    hh_animals_distance_cattle_rainy_season,
+    hh_animals_dry_season_distance_pigs,
+    hh_animals_rainy_season_distance_pigs,
+    hh_animals_where_cattle_rainy_season,
+    hh_animals_where_cattle_dry_season,
+    hh_animals_rainy_season_pigs,
+    hh_animals_dry_season_pigs,
+    hh_main_building_type,
+    hh_main_energy_source_for_lighting,
+    hh_main_wall_material,
+    hh_n_constructions,
+    hh_n_constructions_sleep
+  ) %>%
   filter(nchar(hh_id) == HH_ID_LENGTH) %>%
   mutate(across(
     c(
@@ -66,6 +88,44 @@ odk_x_hh <- out_list$clean_minicensus_main %>%
   mutate(hh_contact_no = case_when(is.na(hh_contact_info_number) ~ format_select_multiple('no_contact_num'))) %>%
   mutate(hh_contact_alt_no = case_when(is.na(hh_contact_info_number_alternate) ~ format_select_multiple('no_alt_contact_num'))) %>%
   mutate(hh_head_id = paste(hh_id, str_pad(hh_head_id, 3, pad = '0'), sep = '-')) %>%
+  mutate(across(
+    c(
+      hh_animals_where_cattle_rainy_season,
+      hh_animals_where_cattle_dry_season,
+      hh_animals_rainy_season_pigs,
+      hh_animals_dry_season_pigs
+    ),
+    ~ recode(
+      .,
+      `Inside the compound but not inside a structure, but more than 15 meters from the house` = 'Inside the compound but not inside a structure, but >15 meters from the house',
+      `Inside the compound but not inside a structure, within 15 meters from the house` = 'Inside the compound but not inside a structure within 15 meters from the household',
+      `There is no fixed space to house them` = 'Unspecified location for keeping them'
+    )
+  )) %>%
+  separate(
+    col = 'hh_main_wall_material',
+    sep = 'other',
+    fill = 'right',
+    into = c('house_wall_material', 'house_wall_material_other')
+  ) %>%
+  mutate(house_wall_material = ifelse(
+    is.na(house_wall_material_other),
+    house_wall_material,
+    paste0(house_wall_material, 'other')
+  )) %>%
+  mutate(across(
+    c('house_wall_material', 'house_wall_material_other'),
+    ~ str_trim(.)
+  )) %>%
+  mutate(house_wall_material = sapply(str_split(house_wall_material, pattern = ' '), format_select_multiple)) %>%
+  left_join(
+    select(rename(out_list$clean_minicensus_repeat_water, water_bodies_num = num), instance_id, water_bodies_num),
+    by = 'instance_id'
+  ) %>%
+  left_join(
+    select(rename(out_list$clean_minicensus_repeat_mosquito_net, hh_num_nets = num), instance_id, hh_num_nets),
+    by = 'instance_id'
+  ) %>%
   tibble::add_column(hh_minicenced = 'yes')
 
 message('Processing geolocation')
@@ -82,10 +142,28 @@ odk_x_hh_geo_location <- odk_x_hh %>%
     )
   )
 
-# TODO: merge substitute
+message('Processing clean_minicensus_repeat_hh_sub')
 odk_x_hh_sub <- out_list$clean_minicensus_repeat_hh_sub %>%
-  filter(hh_sub_count == 1) %>%
-  select(instance_id, hh_sub_id, hh_sub_relationship)
+  filter(!is.na(hh_sub_id)) %>%
+  inner_join(
+    select(odk_x_hh, instance_id, hh_id),
+    by = 'instance_id'
+  ) %>%
+  mutate(hh_sub_id = paste(hh_id, str_pad(hh_sub_id, 3, pad = '0'), sep = '-')) %>%
+  mutate(hh_sub_relationship = recode(
+    hh_sub_relationship,
+    husband_or_wife = 'husband_wife',
+    son_or_daughter = 'son_daughter',
+    brother_or_sister = 'brother_sister',
+    father = 'father_mother',
+    mother = 'father_mother',
+    son_or_daughter_in_law = 'son_daughterinlaw',
+    brother_or_sister_in_law = 'brother_sisterinlaw',
+    uncle_or_aunt = 'uncle_aunt',
+    grandson_or_granddaughter = 'grandson_granddaughter',
+    adopted_son_or_daughter = 'adopted_son_daughter',
+    newphew_or_niece = 'nephew_niece'
+  ))
 
 message('Processing clean_minicensus_people')
 odk_x_member <- out_list$clean_minicensus_people %>%
@@ -116,6 +194,29 @@ odk_x_member <- out_list$clean_minicensus_people %>%
   ) %>%
   select(-instance_id, -dob)
 
+odk_x_death <- out_list$clean_minicensus_repeat_death_info %>%
+  filter(!is.na(death_id)) %>%
+  select(
+    instance_id,
+    death_age,
+    death_age_unit,
+    death_dob_unknown,
+    death_dod,
+    death_gender,
+    death_id,
+    death_name,
+    death_surname
+  ) %>%
+  mutate(death_age = ifelse(death_age_unit == 'Years' | is.na(death_age_unit), death_age, 0)) %>%
+  mutate(death_age = coalesce(death_age, death_dob_unknown)) %>%
+  mutate(death_dod = format(death_dod, '%Y-%m-%d')) %>%
+  mutate(hh_death_date_dk = ifelse(is.na(death_dod), format_select_multiple('dk'), NA)) %>%
+  inner_join(
+    select(odk_x_hh, instance_id, hh_id),
+    by = 'instance_id'
+  ) %>%
+  select(-death_age_unit, -death_dob_unknown, -instance_id)
+
 # Add UUID for individuals
 # The UUID needs to be generated here to populate the HH head column in the HH table
 message('Generating UUIDs')
@@ -126,23 +227,50 @@ odk_x_member <- tibble::add_column(
 )
 
 # Note that some hh_head_id cannot be found in the member table
-message('Writing CSVs')
+message('Processing HH head and HH head sub')
 odk_x_hh <- odk_x_hh %>%
+  left_join(
+    select(odk_x_hh_sub, instance_id, hh_sub_id, hh_sub_relationship),
+    by = 'instance_id'
+  ) %>%
   left_join(
     select(rename(odk_x_member, hh_head_uuid = `_id`), pid, hh_head_uuid),
     by = c('hh_head_id' = 'pid')
   ) %>%
-  select(-hh_head_id) %>%
-  rename(hh_head_id = hh_head_uuid)
+  left_join(
+    select(rename(odk_x_member, hh_sub_uuid = `_id`), pid, hh_sub_uuid),
+    by = c('hh_sub_id' = 'pid')
+  ) %>%
+  select(-hh_head_id, -hh_sub_id) %>%
+  rename(
+    hh_head_id = hh_head_uuid,
+    hh_sub_id = hh_sub_uuid
+  ) %>%
+  mutate(no_hh_head_sub = ifelse(is.na(hh_sub_id), format_select_multiple('no_sub'), NA))
 
 # Rename columns and write to CSV
+message('Writing CSVs')
 odk_x_hh %>%
+  mutate(instance_id = str_c('uuid:', instance_id)) %>%
   rename(
     `_id` = instance_id,
     minicensed_hh_n_residents = hh_member_num,
     hh_head_new_select = hh_head_id,
+    hh_head_sub_new_select = hh_sub_id,
     hh_contact = hh_contact_info_number,
-    hh_contact_alt = hh_contact_info_number_alternate
+    hh_contact_alt = hh_contact_info_number_alternate,
+    distance_cattle_rainy_season = hh_animals_distance_cattle_rainy_season,
+    distance_cattle_dry_season = hh_animals_distance_cattle_dry_season,
+    distance_pigs_rainy_season = hh_animals_rainy_season_distance_pigs,
+    distance_pigs_dry_season = hh_animals_dry_season_distance_pigs,
+    where_cattle_rainy_season = hh_animals_where_cattle_rainy_season,
+    where_cattle_dry_season = hh_animals_where_cattle_dry_season,
+    where_pigs_rainy_season = hh_animals_rainy_season_pigs,
+    where_pigs_dry_season = hh_animals_dry_season_pigs,
+    house_building_type = hh_main_building_type,
+    main_energy_lighting = hh_main_energy_source_for_lighting,
+    num_houses = hh_n_constructions,
+    num_houses_sleep = hh_n_constructions_sleep
   ) %>%
   select(-hh_geo_location) %>%
   add_metadata_col('census') %>%
@@ -161,3 +289,15 @@ odk_x_member %>%
 odk_x_hh_geo_location %>%
   add_metadata_col('hh_geo_location') %>%
   write.csv(GEO_LOCATION_CSV_PATH, na = '', row.names = FALSE, fileEncoding = 'UTF-8')
+
+odk_x_death %>%
+  rename(
+    hh_death_id = death_id,
+    hh_death_name = death_name,
+    hh_death_surname = death_surname,
+    hh_death_gender = death_gender,
+    hh_death_date = death_dod,
+    hh_death_age = death_age
+  ) %>%
+  add_metadata_col('hh_death') %>%
+  write.csv(DEATH_CSV_PATH, na = '', row.names = FALSE, fileEncoding = 'UTF-8')
