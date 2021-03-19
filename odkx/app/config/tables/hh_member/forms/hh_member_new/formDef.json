@@ -316,7 +316,7 @@
         "_row_num": 44
       },
       {
-        "type": "note",
+        "type": "text",
         "name": "id",
         "display": {
           "prompt": "q16a"
@@ -324,6 +324,7 @@
         "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
         "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
         "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
+        "disabled": 1,
         "_row_num": 45
       },
       {
@@ -8523,10 +8524,14 @@
         "elementKey": "resident_status"
       },
       "id": {
-        "prompt_type_name": "retrieve_extid",
         "type": "string",
+        "prompt_type_name": "retrieve_extid",
         "valuesList": "retrieve_extid",
         "_defn": [
+          {
+            "_row_num": 45,
+            "section_name": "survey"
+          },
           {
             "_row_num": 107,
             "section_name": "survey"
@@ -9834,7 +9839,7 @@
             "promptIdx": 17
           },
           {
-            "type": "note",
+            "type": "text",
             "name": "id",
             "display": {
               "prompt": "q16a"
@@ -9842,10 +9847,11 @@
             "required": "selected(data('new_member_newborn_or_moved_in'), 'newborn')",
             "constraint": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household') || /^[A-Z]{3}-[0-9]{3}-[0-9]{3}$/.test(data('id'))",
             "hideInContents": "selected(data('new_member_newborn_or_moved_in'),'someone_new_in_the_household')",
+            "disabled": 1,
             "_row_num": 45,
             "__rowNum__": 44,
             "_token_type": "prompt",
-            "_type": "note",
+            "_type": "text",
             "_branch_label_enclosing_screen": "survey/_screen40",
             "promptIdx": 18
           },
@@ -11125,10 +11131,14 @@
         "elementPath": "resident_status"
       },
       "id": {
-        "prompt_type_name": "retrieve_extid",
         "type": "string",
+        "prompt_type_name": "retrieve_extid",
         "valuesList": "retrieve_extid",
         "_defn": [
+          {
+            "_row_num": 45,
+            "section_name": "survey"
+          },
           {
             "_row_num": 107,
             "section_name": "survey"
