@@ -95,7 +95,7 @@ define([
   var columnsWithResident = [
     {title: 'last_saved'},
     {title: 'name'},
-    {title: 'resident'},
+    {title: 'resident_status'},
     {title: 'finalized'},
     {title: ''}
   ];

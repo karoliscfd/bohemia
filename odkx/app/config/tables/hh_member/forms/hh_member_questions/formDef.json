@@ -1173,7 +1173,7 @@
           "prompt": "n_nets",
           "constraint_message": "not_one"
         },
-        "constraint": "data('sleep_net_last_night_num') !== 1 && data('sleep_net_last_night_num') < 10",
+        "constraint": "selected(data('sleep_net_last_night_num_dk'), 'dk') || (data('sleep_net_last_night_num') != 1 && data('sleep_net_last_night_num') < 10)",
         "hideInContents": 1,
         "_row_num": 179
       },
@@ -5272,7 +5272,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210304001,
+        "value": 20210319001,
         "_row_num": 3
       },
       {
@@ -5443,7 +5443,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210304001,
+        "value": 20210319001,
         "_row_num": 3
       },
       "table_id": {
@@ -11600,7 +11600,7 @@
               "prompt": "n_nets",
               "constraint_message": "not_one"
             },
-            "constraint": "data('sleep_net_last_night_num') !== 1 && data('sleep_net_last_night_num') < 10",
+            "constraint": "selected(data('sleep_net_last_night_num_dk'), 'dk') || (data('sleep_net_last_night_num') != 1 && data('sleep_net_last_night_num') < 10)",
             "hideInContents": 1,
             "_row_num": 179,
             "__rowNum__": 178,

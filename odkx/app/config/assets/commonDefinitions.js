@@ -503,6 +503,15 @@ window.odkCommonDefinitions = {
         "sw": "Disemba"
       },
       "_row_num": 57
+    },
+    "resident_status": {
+      "string_token": "resident_status",
+      "text": {
+        "default": "Resident status",
+        "pt": "Estado de residencia",
+        "sw": "Hali ya mkazi"
+      },
+      "_row_num": 58
     }
   },
   "_locales": {
