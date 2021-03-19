@@ -312,21 +312,38 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
     mutate(non_child_females = n_females - n_girls) %>%
     group_by(assignment_group) %>%
     summarise(Humans = sum(n_humans),
-             `Non-children` = sum(eligibles),
+             `Total non-children` = sum(eligibles),
               Females = sum(n_females),
              `Non-child females` = sum(non_child_females)) %>%
-    mutate(`Estimated pregnant` = Females * p_pregnant) %>%
-    mutate(`Estimated non-participation` = `Non-children` * p_no_participate) %>%
+    mutate(`Estimated pregnant` = `Non-child females` * p_pregnant) %>%
+    mutate(`Eligible for treatment` = `Total non-children` - `Estimated pregnant`) %>%
+    mutate(`Coverage 90%` = `Eligible for treatment` * 0.9) %>%
+    mutate(`Drug requirements 90` = `Coverage 90%` * 19.8) %>%
+        mutate(`Coverage 80%` = `Eligible for treatment` * 0.8) %>%
+    mutate(`Drug requirements 80` = `Coverage 80%` * 19.8) %>%
+        mutate(`Coverage 70%` = `Eligible for treatment` * 0.7) %>%
+    mutate(`Drug requirements 70` = `Coverage 70%` * 19.8) %>%
     mutate(assignment_group = as.character(assignment_group)) %>%
-    mutate(assignment_group = ifelse(is.na(assignment_group), 'Buffer', assignment_group)) 
+    mutate(assignment_group = ifelse(is.na(assignment_group), 'Buffer', assignment_group)) %>%
+    dplyr::select(-`Non-child females`)
   no_buffer <- pdx %>% filter(assignment_group != 'Buffer')
   next_row <- tibble(assignment_group = c('Total estimated eligibles'),
                      Humans = sum(no_buffer$Humans),
-                     `Non-children` = sum(no_buffer$`Non-children`),
+                     `Total non-children` = sum(no_buffer$`Total non-children`),
                      Females = sum(no_buffer$Females),
                      `Non-child females` = sum(no_buffer$`Non-child females`),
-                     `Estimated pregnant` = sum(no_buffer$`Estimated pregnant`),
-                     `Estimated non-participation` = sum(no_buffer$`Estimated non-participation`))
+                     `Estimated pregnant` = sum(no_buffer$`Estimated pregnant`)) %>%
+        mutate(`Estimated pregnant` = Females * p_pregnant) %>%
+    mutate(`Eligible for treatment` = `Total non-children` - `Estimated pregnant`) %>%
+    mutate(`Coverage 90%` = `Eligible for treatment` * 0.9) %>%
+    mutate(`Drug requirements 90` = `Coverage 90%` * 19.8) %>%
+        mutate(`Coverage 80%` = `Eligible for treatment` * 0.8) %>%
+    mutate(`Drug requirements 80` = `Coverage 80%` * 19.8) %>%
+        mutate(`Coverage 70%` = `Eligible for treatment` * 0.7) %>%
+    mutate(`Drug requirements 70` = `Coverage 70%` * 19.8) %>%
+    mutate(assignment_group = as.character(assignment_group)) %>%
+    mutate(assignment_group = ifelse(is.na(assignment_group), 'Buffer', assignment_group)) %>%
+    dplyr::select(-`Non-child females`)
   final_row <- next_row
   for(j in 2:ncol(final_row)){
     final_row[,j] <- final_row[,j] * (2/3)
@@ -335,11 +352,9 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
   
   final <- list()
   final[[1]] <- pdx %>%
-        mutate(Final = `Non-children` - `Estimated pregnant` - `Estimated non-participation`) %>%
     dplyr::rename(`Assignment group` = assignment_group)
   final[[2]] <- final_row %>%
-        mutate(Final = `Non-children` - `Estimated pregnant` - `Estimated non-participation`) %>%
-      .$Final
+      .$`Coverage 90%`
 
   return(final)
 }
@@ -375,7 +390,7 @@ cat(paste0(out$summary_text))
 
 ```{r, results='asis'}
 f <- get_eligible_for_ttm(out = out)
-cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin.'))
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
 
 ```{r}
@@ -534,7 +549,7 @@ Next, we'll go through each difficulty level, excluding those that are more diff
 (Except those 18 hamlets which Eldo has designated as being excluded from the location hierarchy entirely)
 
 ```{r, echo = TRUE}
-set.seed(25)
+set.seed(27)
 keep_index <- which(!is.na(df$difficulty_value))
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
@@ -563,15 +578,15 @@ cat(paste0(out$summary_text))
 ```
 
 
+
 ```{r, results='asis'}
 f <- get_eligible_for_ttm(out = out)
-cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin.'))
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
 
 ```{r}
 knitr::kable(f[[1]])
 ```
-
 
 #### Humans and animals
 
@@ -650,15 +665,16 @@ cat(paste0(out$summary_text))
 ```
 
 
+
+
 ```{r, results='asis'}
 f <- get_eligible_for_ttm(out = out)
-cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin.'))
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
 
 ```{r}
 knitr::kable(f[[1]])
 ```
-
 
 
 #### Humans and animals
@@ -739,15 +755,15 @@ cat(paste0(out$summary_text))
 
 
 
+
 ```{r, results='asis'}
 f <- get_eligible_for_ttm(out = out)
-cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin.'))
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
 
 ```{r}
 knitr::kable(f[[1]])
 ```
-
 
 #### Humans and animals
 
@@ -827,16 +843,15 @@ cat(paste0(out$summary_text))
 ```
 
 
+
 ```{r, results='asis'}
 f <- get_eligible_for_ttm(out = out)
-cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin.'))
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
 
 ```{r}
 knitr::kable(f[[1]])
 ```
-
-
 #### Humans and animals
 
 The below shows the number of humans and animals per assignment group
