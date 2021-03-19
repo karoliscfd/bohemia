@@ -2982,16 +2982,11 @@ window.odkTableSpecificDefinitions = {
     "member_mismatch": {
       "string_token": "member_mismatch",
       "text": {
-        "default": "The number of members added does not match the number of members entered above. Please verify.",
+        "default": "The number of members added does not match the total number of members entered above. Please verify.",
         "pt": "O número de membros adicionados não corresponde ao número de membros inseridos acima. Por favor verifique",
         "sw": "Idadi ya washiriki walioingizwa haiendani na idadi ya washiriki walioingizwa hapo juu. Tafadhali hakiki"
       },
       "_row_num": 336
-    },
-    "member_total_mismatch": {
-      "string_token": "member_total_mismatch",
-      "text": "The number of members added does not match the total number of members entered above, please verify.",
-      "_row_num": 337
     },
     "head_sub_match": {
       "string_token": "head_sub_match",
@@ -3000,7 +2995,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
         "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
       },
-      "_row_num": 338
+      "_row_num": 337
     },
     "latrine_mismatch": {
       "string_token": "latrine_mismatch",
@@ -3009,7 +3004,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
         "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
       },
-      "_row_num": 339
+      "_row_num": 338
     },
     "water_mismatch": {
       "string_token": "water_mismatch",
@@ -3018,7 +3013,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
         "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
-      "_row_num": 340
+      "_row_num": 339
     },
     "nets_mismatch": {
       "string_token": "nets_mismatch",
@@ -3027,7 +3022,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
         "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
-      "_row_num": 341
+      "_row_num": 340
     },
     "snakes_mismatch": {
       "string_token": "snakes_mismatch",
@@ -3036,7 +3031,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
         "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
-      "_row_num": 342
+      "_row_num": 341
     },
     "deceased_mismatch": {
       "string_token": "deceased_mismatch",
@@ -3045,7 +3040,7 @@ window.odkTableSpecificDefinitions = {
         "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
         "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
-      "_row_num": 343
+      "_row_num": 342
     }
   }
 }

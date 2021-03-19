@@ -448,7 +448,7 @@
       },
       {
         "type": "linked_table_counting",
-        "values_list": "hh_members_roster_all",
+        "values_list": "hh_members_roster_current",
         "name": "roster_count",
         "display": {
           "prompt": "hh_roster",
@@ -460,7 +460,7 @@
         },
         "model": {
           "isSessionVariable": 1,
-          "valuesList": "hh_members_roster_all"
+          "valuesList": "hh_members_roster_current"
         },
         "hideInContents": 1,
         "_row_num": 48
@@ -505,17 +505,13 @@
         "_row_num": 54
       },
       {
-        "clause": "end if",
+        "clause": "if",
+        "condition": "countSelected(data('hh_roster_not_correct')) > 0",
         "_row_num": 55
       },
       {
-        "clause": "if",
-        "condition": "countSelected(data('hh_roster_not_correct')) > 0",
-        "_row_num": 56
-      },
-      {
         "clause": "begin screen",
-        "_row_num": 57
+        "_row_num": 56
       },
       {
         "type": "note",
@@ -524,7 +520,7 @@
           "section": "members_h2"
         },
         "hideInContents": "selected(data('hh_minicenced'), 'no')  || not(countSelected(data('hh_roster_not_correct')) > 0)",
-        "_row_num": 58
+        "_row_num": 57
       },
       {
         "type": "linked_table_counting",
@@ -542,10 +538,14 @@
           "valuesList": "linked_members_exit"
         },
         "hideInContents": "selected(data('hh_minicenced'), 'no')  || not(countSelected(data('hh_roster_not_correct')) > 0)",
-        "_row_num": 59
+        "_row_num": 58
       },
       {
         "clause": "end screen",
+        "_row_num": 59
+      },
+      {
+        "clause": "end if",
         "_row_num": 60
       },
       {
@@ -699,7 +699,8 @@
           "prompt": "member_detail",
           "new_button_label": "add_new_member",
           "constraint_message": "member_mismatch",
-          "section": "members_h2"
+          "section": "members_h2",
+          "showResident": 1
         },
         "constraint": "selected(data('hh_minicenced'), 'yes') || data('new_hh_count') === null || data('new_hh_count') == data('new_hh_n_residents')",
         "model": {
@@ -5205,7 +5206,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210311001,
+        "value": 20210319001,
         "_row_num": 3
       },
       {
@@ -5492,6 +5493,17 @@
         "_row_num": 12
       },
       {
+        "query_name": "hh_members_roster_current",
+        "query_type": "linked_table",
+        "linked_form_id": "hh_member",
+        "linked_table_id": "hh_member",
+        "selection": "hh_id = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1 ]",
+        "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member: 1, _locale: getCurrentLocale() }",
+        "openRowInitialElementKeyToValueMap": "{ form_status_hh_member: 1, _locale: getCurrentLocale() }",
+        "_row_num": 13
+      },
+      {
         "query_name": "linked_members_absent",
         "query_type": "linked_table",
         "linked_form_id": "hh_member_absent",
@@ -5501,7 +5513,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_absent: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_absent: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_absent",
-        "_row_num": 13
+        "_row_num": 14
       },
       {
         "query_name": "linked_members_exit",
@@ -5513,19 +5525,19 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_exit: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_exit: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_exit",
-        "_row_num": 14
+        "_row_num": 15
       },
       {
         "query_name": "linked_members_new",
         "query_type": "linked_table",
         "linked_form_id": "hh_member_new",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ? AND form_status_hh_member_new = ?",
-        "selectionArgs": "[ data('hh_id'), 1 ]",
+        "selection": "hh_id = ? AND form_status_hh_member_new = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1, 1 ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_member_new: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_new",
-        "_row_num": 15
+        "_row_num": 16
       },
       {
         "query_name": "member_questionnaire",
@@ -5537,7 +5549,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ hh_head: data('hh_head_new_select'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_questions",
-        "_row_num": 16
+        "_row_num": 17
       },
       {
         "query_name": "linked_new_hh_info",
@@ -5549,7 +5561,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_new_member_new",
-        "_row_num": 17
+        "_row_num": 18
       },
       {
         "query_name": "linked_member_snake_bit",
@@ -5561,7 +5573,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_snake: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_snake: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_snake",
-        "_row_num": 18
+        "_row_num": 19
       },
       {
         "query_name": "linked_mosquito_net",
@@ -5572,7 +5584,7 @@
         "selectionArgs": "[ data('hh_id') ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
-        "_row_num": 19
+        "_row_num": 20
       },
       {
         "query_name": "linked_water_body",
@@ -5583,7 +5595,7 @@
         "selectionArgs": "[ data('hh_id') ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
-        "_row_num": 20
+        "_row_num": 21
       },
       {
         "query_name": "linked_fw_location",
@@ -5595,7 +5607,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_row_id: opendatakit.getCurrentInstanceId(), timestamp: '' + new Date().getTime(), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
         "comment": "This queries the fw_location for rows with a matching hh_id and timestamp within +- 12 hrs.",
-        "_row_num": 21
+        "_row_num": 22
       },
       {
         "query_name": "hh_mini_members",
@@ -5606,7 +5618,7 @@
         "selectionArgs": "[ data('hh_id'), 1 ]",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
-        "_row_num": 22
+        "_row_num": 23
       }
     ],
     "prompt_types": [
@@ -8614,16 +8626,11 @@
       {
         "string_token": "member_mismatch",
         "text": {
-          "default": "The number of members added does not match the number of members entered above. Please verify.",
+          "default": "The number of members added does not match the total number of members entered above. Please verify.",
           "pt": "O número de membros adicionados não corresponde ao número de membros inseridos acima. Por favor verifique",
           "sw": "Idadi ya washiriki walioingizwa haiendani na idadi ya washiriki walioingizwa hapo juu. Tafadhali hakiki"
         },
         "_row_num": 336
-      },
-      {
-        "string_token": "member_total_mismatch",
-        "text": "The number of members added does not match the total number of members entered above, please verify.",
-        "_row_num": 337
       },
       {
         "string_token": "head_sub_match",
@@ -8632,7 +8639,7 @@
           "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
           "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
         },
-        "_row_num": 338
+        "_row_num": 337
       },
       {
         "string_token": "latrine_mismatch",
@@ -8641,7 +8648,7 @@
           "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
           "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 339
+        "_row_num": 338
       },
       {
         "string_token": "water_mismatch",
@@ -8650,7 +8657,7 @@
           "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 340
+        "_row_num": 339
       },
       {
         "string_token": "nets_mismatch",
@@ -8659,7 +8666,7 @@
           "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 341
+        "_row_num": 340
       },
       {
         "string_token": "snakes_mismatch",
@@ -8668,7 +8675,7 @@
           "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 342
+        "_row_num": 341
       },
       {
         "string_token": "deceased_mismatch",
@@ -8677,7 +8684,7 @@
           "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
           "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
-        "_row_num": 343
+        "_row_num": 342
       }
     ],
     "model": [
@@ -8804,7 +8811,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210311001,
+        "value": 20210319001,
         "_row_num": 3
       },
       "table_id": {
@@ -13793,16 +13800,11 @@
         "member_mismatch": {
           "string_token": "member_mismatch",
           "text": {
-            "default": "The number of members added does not match the number of members entered above. Please verify.",
+            "default": "The number of members added does not match the total number of members entered above. Please verify.",
             "pt": "O número de membros adicionados não corresponde ao número de membros inseridos acima. Por favor verifique",
             "sw": "Idadi ya washiriki walioingizwa haiendani na idadi ya washiriki walioingizwa hapo juu. Tafadhali hakiki"
           },
           "_row_num": 336
-        },
-        "member_total_mismatch": {
-          "string_token": "member_total_mismatch",
-          "text": "The number of members added does not match the total number of members entered above, please verify.",
-          "_row_num": 337
         },
         "head_sub_match": {
           "string_token": "head_sub_match",
@@ -13811,7 +13813,7 @@
             "pt": "O chefe do agregado deve ser diferente do substituto do chefe do chefe do agregado.",
             "sw": "Mkuu wa kaya ni lazima awe tofauti na mbadala wa mkuu wa kaya"
           },
-          "_row_num": 338
+          "_row_num": 337
         },
         "latrine_mismatch": {
           "string_token": "latrine_mismatch",
@@ -13820,7 +13822,7 @@
             "pt": "O número de latrinas adicionadas não corresponde ao número acima. Por favor verifique.",
             "sw": "Idadi ya vyoo vilivyoingizwa haiendani na namba iliyoingiwzwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 339
+          "_row_num": 338
         },
         "water_mismatch": {
           "string_token": "water_mismatch",
@@ -13829,7 +13831,7 @@
             "pt": "O número de corpos d'água adicionados não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya maeneo ya maji yaliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 340
+          "_row_num": 339
         },
         "nets_mismatch": {
           "string_token": "nets_mismatch",
@@ -13838,7 +13840,7 @@
             "pt": "O número de redes adicionadas não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya vyandarua iliyoingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 341
+          "_row_num": 340
         },
         "snakes_mismatch": {
           "string_token": "snakes_mismatch",
@@ -13847,7 +13849,7 @@
             "pt": "O número de membros com picadas de cobra adicionadas não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya washiriki waliogongwa na nyoka haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 342
+          "_row_num": 341
         },
         "deceased_mismatch": {
           "string_token": "deceased_mismatch",
@@ -13856,7 +13858,7 @@
             "pt": "O número de membros falecidos adicionado não corresponde ao número inserido acima. Por favor verifique.",
             "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
-          "_row_num": 343
+          "_row_num": 342
         }
       }
     },
@@ -13958,6 +13960,17 @@
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member: 1, _locale: getCurrentLocale() }",
         "_row_num": 12
       },
+      "hh_members_roster_current": {
+        "query_name": "hh_members_roster_current",
+        "query_type": "linked_table",
+        "linked_form_id": "hh_member",
+        "linked_table_id": "hh_member",
+        "selection": "hh_id = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1 ]",
+        "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member: 1, _locale: getCurrentLocale() }",
+        "openRowInitialElementKeyToValueMap": "{ form_status_hh_member: 1, _locale: getCurrentLocale() }",
+        "_row_num": 13
+      },
       "linked_members_absent": {
         "query_name": "linked_members_absent",
         "query_type": "linked_table",
@@ -13968,7 +13981,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_absent: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_absent: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_absent",
-        "_row_num": 13
+        "_row_num": 14
       },
       "linked_members_exit": {
         "query_name": "linked_members_exit",
@@ -13980,19 +13993,19 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_exit: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_exit: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_exit",
-        "_row_num": 14
+        "_row_num": 15
       },
       "linked_members_new": {
         "query_name": "linked_members_new",
         "query_type": "linked_table",
         "linked_form_id": "hh_member_new",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ? AND form_status_hh_member_new = ?",
-        "selectionArgs": "[ data('hh_id'), 1 ]",
+        "selection": "hh_id = ? AND form_status_hh_member_new = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1, 1 ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_member_new: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_new",
-        "_row_num": 15
+        "_row_num": 16
       },
       "member_questionnaire": {
         "query_name": "member_questionnaire",
@@ -14004,7 +14017,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ hh_head: data('hh_head_new_select'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_questions",
-        "_row_num": 16
+        "_row_num": 17
       },
       "linked_new_hh_info": {
         "query_name": "linked_new_hh_info",
@@ -14016,7 +14029,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_new_member_new",
-        "_row_num": 17
+        "_row_num": 18
       },
       "linked_member_snake_bit": {
         "query_name": "linked_member_snake_bit",
@@ -14028,7 +14041,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), form_status_hh_member_snake: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ form_status_hh_member_snake: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_snake",
-        "_row_num": 18
+        "_row_num": 19
       },
       "linked_mosquito_net": {
         "query_name": "linked_mosquito_net",
@@ -14039,7 +14052,7 @@
         "selectionArgs": "[ data('hh_id') ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
-        "_row_num": 19
+        "_row_num": 20
       },
       "linked_water_body": {
         "query_name": "linked_water_body",
@@ -14050,7 +14063,7 @@
         "selectionArgs": "[ data('hh_id') ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
-        "_row_num": 20
+        "_row_num": 21
       },
       "linked_fw_location": {
         "query_name": "linked_fw_location",
@@ -14062,7 +14075,7 @@
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_row_id: opendatakit.getCurrentInstanceId(), timestamp: '' + new Date().getTime(), _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ _locale: getCurrentLocale() }",
         "comment": "This queries the fw_location for rows with a matching hh_id and timestamp within +- 12 hrs.",
-        "_row_num": 21
+        "_row_num": 22
       },
       "hh_mini_members": {
         "query_name": "hh_mini_members",
@@ -14073,7 +14086,7 @@
         "selectionArgs": "[ data('hh_id'), 1 ]",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
-        "_row_num": 22
+        "_row_num": 23
       }
     },
     "calculates": {
@@ -14388,7 +14401,7 @@
         "prompt_type_name": "linked_table_counting",
         "type": "integer",
         "isSessionVariable": 1,
-        "valuesList": "hh_members_roster_all",
+        "valuesList": "hh_members_roster_current",
         "elementKey": "roster_count"
       },
       "hh_minicenced_members_correct": {
@@ -14420,7 +14433,7 @@
       "exit_count": {
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 58,
             "section_name": "survey"
           }
         ],
@@ -16385,7 +16398,7 @@
           },
           {
             "type": "linked_table_counting",
-            "values_list": "hh_members_roster_all",
+            "values_list": "hh_members_roster_current",
             "name": "roster_count",
             "display": {
               "prompt": "hh_roster",
@@ -16397,7 +16410,7 @@
             },
             "model": {
               "isSessionVariable": 1,
-              "valuesList": "hh_members_roster_all"
+              "valuesList": "hh_members_roster_current"
             },
             "hideInContents": 1,
             "_row_num": 48,
@@ -16446,11 +16459,11 @@
               "section": "members_h2"
             },
             "hideInContents": "selected(data('hh_minicenced'), 'no')  || not(countSelected(data('hh_roster_not_correct')) > 0)",
-            "_row_num": 58,
-            "__rowNum__": 57,
+            "_row_num": 57,
+            "__rowNum__": 56,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen57",
+            "_branch_label_enclosing_screen": "survey/_screen56",
             "promptIdx": 16
           },
           {
@@ -16469,11 +16482,11 @@
               "valuesList": "linked_members_exit"
             },
             "hideInContents": "selected(data('hh_minicenced'), 'no')  || not(countSelected(data('hh_roster_not_correct')) > 0)",
-            "_row_num": 59,
-            "__rowNum__": 58,
+            "_row_num": 58,
+            "__rowNum__": 57,
             "_token_type": "prompt",
             "_type": "linked_table_counting",
-            "_branch_label_enclosing_screen": "survey/_screen57",
+            "_branch_label_enclosing_screen": "survey/_screen56",
             "promptIdx": 17
           },
           {
@@ -16609,7 +16622,8 @@
               "prompt": "member_detail",
               "new_button_label": "add_new_member",
               "constraint_message": "member_mismatch",
-              "section": "members_h2"
+              "section": "members_h2",
+              "showResident": 1
             },
             "constraint": "selected(data('hh_minicenced'), 'yes') || data('new_hh_count') === null || data('new_hh_count') == data('new_hh_n_residents')",
             "model": {
@@ -19273,8 +19287,8 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else55",
-            "_row_num": 55,
+            "_branch_label": "_else61",
+            "_row_num": 61,
             "operationIdx": 12
           },
           {
@@ -19292,40 +19306,40 @@
             "operationIdx": 13
           },
           {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif55",
+            "clause": "if",
+            "condition": "countSelected(data('hh_roster_not_correct')) > 0",
             "_row_num": 55,
+            "__rowNum__": 54,
+            "_token_type": "goto_label",
+            "_branch_label": "_then55",
             "operationIdx": 14
           },
           {
-            "clause": "if",
-            "condition": "countSelected(data('hh_roster_not_correct')) > 0",
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else60",
+            "_row_num": 60,
+            "operationIdx": 15
+          },
+          {
+            "clause": "begin screen",
             "_row_num": 56,
             "__rowNum__": 55,
-            "_token_type": "goto_label",
-            "_branch_label": "_then56",
-            "operationIdx": 15
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 59,
+              "__rowNum__": 58,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 16
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else61",
-            "_row_num": 61,
-            "operationIdx": 16
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 57,
-            "__rowNum__": 56,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 60,
-              "__rowNum__": 59,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "_branch_label": "_endif60",
+            "_row_num": 60,
             "operationIdx": 17
           },
           {
@@ -21310,10 +21324,10 @@
           "_screen46": 10,
           "_then51": 13,
           "_screen52": 13,
-          "_else55": 15,
-          "_endif55": 15,
-          "_then56": 17,
-          "_screen57": 17,
+          "_then55": 16,
+          "_screen56": 16,
+          "_else60": 18,
+          "_endif60": 18,
           "_else61": 19,
           "_endif61": 19,
           "_screen62": 19,
@@ -21927,7 +21941,7 @@
         "prompt_type_name": "linked_table_counting",
         "type": "integer",
         "isSessionVariable": 1,
-        "valuesList": "hh_members_roster_all",
+        "valuesList": "hh_members_roster_current",
         "elementKey": "roster_count",
         "elementName": "roster_count",
         "elementSet": "data",
@@ -21975,7 +21989,7 @@
       "exit_count": {
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 58,
             "section_name": "survey"
           }
         ],
