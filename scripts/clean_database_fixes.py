@@ -4595,6 +4595,35 @@ implement(id='repeat_hh_id_22aef102-1320-4487-9674-6dc3bc1e3d4f,e714a9f6-572c-44
 iid = "'ade9172b-3b03-4254-b252-54e92b9a63e4'"
 implement(id = 'hh_head_too_young_old_ade9172b-3b03-4254-b252-54e92b9a63e4', query = "DELETE FROM clean_minicensus_main WHERE instance_id=" + iid + "; DELETE FROM clean_minicensus_people WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_water WHERE instance_id= " + iid + ";", who = 'Xing Brew')
 
+iid = "'278c70f7-8cfa-4d60-9066-d85ff56cd33f'"
+implement(id = 'energy_ownership_mismatch_278c70f7-8cfa-4d60-9066-d85ff56cd33f', query = "DELETE FROM clean_minicensus_main WHERE instance_id=" + iid + "; DELETE FROM clean_minicensus_people WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_water WHERE instance_id= " + iid + ";", who = 'Xing Brew')
+
+implement(id='energy_ownership_mismatch_4dfdeb27-9ee9-43e6-a452-e78d86b15921', query = "UPDATE clean_minicensus_main SET hh_possessions = 'cell_phone' WHERE instance_id='4dfdeb27-9ee9-43e6-a452-e78d86b15921'", who='Xing Brew')
+implement(id='energy_ownership_mismatch_6a59b203-50e3-4cdc-8978-1ebda7d6fa72', query = "UPDATE clean_minicensus_main SET hh_possessions = 'radio' WHERE instance_id='6a59b203-50e3-4cdc-8978-1ebda7d6fa72'", who='Xing Brew')
+implement(id='energy_ownership_mismatch_9a09e70e-ccc3-471a-bf25-e80e257ad9c0', query = "UPDATE clean_minicensus_main SET hh_possessions = 'radio cell_phone' WHERE instance_id='9a09e70e-ccc3-471a-bf25-e80e257ad9c0'", who='Xing Brew')
+implement(id='energy_ownership_mismatch_f070562f-9dde-472b-8a94-7ad6094dc864', query = "UPDATE clean_minicensus_main SET hh_possessions = 'radio cell_phone' WHERE instance_id='f070562f-9dde-472b-8a94-7ad6094dc864'", who='Xing Brew')
+implement(id='energy_ownership_mismatch_168b71e9-bed7-44f7-bd96-92afbdc5980f', query = "UPDATE clean_minicensus_main SET hh_possessions = 'radio cell_phone' WHERE instance_id='168b71e9-bed7-44f7-bd96-92afbdc5980f'", who='Xing Brew')
+
+implement(id='all_males_5a55169f-0808-4e45-8474-4b4feeaf29f7', query = "UPDATE clean_minicensus_main SET hh_head_gender = 'female' WHERE instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7'; UPDATE clean_minicensus_people SET gender='female' WHERE num='1' and instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7'; UPDATE clean_minicensus_people SET gender='female' WHERE num='2' and instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7';  UPDATE clean_minicensus_people SET gender='female' WHERE num='4' and instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7';  UPDATE clean_minicensus_people SET gender='female' WHERE num='5' and instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7';  UPDATE clean_minicensus_people SET gender='female' WHERE num='6' and instance_id='5a55169f-0808-4e45-8474-4b4feeaf29f7'", who='Xing Brew')
+
+implement(id = 'fw_too_few_hh_members_1f7700d0-7ef1-49c3-a8fb-f5a4be1dc77c', is_ok = True)
+implement(id = 'fw_too_few_hh_members_25344086-ca1c-4bd9-be35-40ca19220e11', is_ok = True)
+implement(id = 'fw_too_few_hh_members_35315371-8b25-48fd-b785-0e085ada6a1f', is_ok = True)
+implement(id = 'fw_too_few_hh_members_9b56c4d0-b153-469e-9fe5-b743c1876190', is_ok = True)
+implement(id = 'fw_too_few_hh_members_c16b9ef0-ceee-4ff2-bdff-4e84912a3581', is_ok = True)
+implement(id = 'fw_too_few_hh_members_d3034101-beba-4680-ac03-a47646df61a8', is_ok = True)
+implement(id = 'fw_too_few_hh_members_fdca8a9b-bcab-4572-a8c8-b9a63b9232ca', is_ok = True)
+implement(id = 'hh_head_too_young_old_04f54ea2-d2ba-4dec-8ef4-480012fc64b1', is_ok = True)
+implement(id = 'hh_head_too_young_old_0847fe9b-9c16-4a58-8446-087e9c50750e', is_ok = True)
+implement(id = 'hh_head_too_young_old_33961c78-8623-4ad0-90e3-5860934eb4ba', is_ok = True)
+implement(id = 'hh_head_too_young_old_6668a61a-d8b2-4fac-8ef9-592842116fb5', is_ok = True)
+implement(id = 'hh_head_too_young_old_7442b575-2d94-41c9-b81e-05802abb515e', is_ok = True)
+implement(id = 'hh_head_too_young_old_81926365-324b-413f-b7a0-6f1965c8125d', is_ok = True)
+implement(id = 'hh_head_too_young_old_87dfc908-26df-4706-a87c-a34cfa680ff2', is_ok = True)
+implement(id = 'hh_head_too_young_old_8b1f1bb3-b871-467c-9a7d-d4640220131e', is_ok = True)
+implement(id = 'hh_head_too_young_old_a4004808-ef0e-4712-9f84-aabc80c6877e', is_ok = True)
+implement(id = 'hh_head_too_young_old_bb6d0709-0943-44a1-bb2a-148e7f05be1e', is_ok = True)
+implement(id = 'hh_head_too_young_old_ef14a995-7112-41ec-9f89-b1893a1d5db5', is_ok = True)
 
 
 dbconn.commit()
