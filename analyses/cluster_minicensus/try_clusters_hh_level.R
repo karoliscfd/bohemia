@@ -371,10 +371,45 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
   cluster_xdf <- left_join(cluster_xdf, complete_clusters)
   polys@data <- left_join(polys@data, cluster_xdf)
   
+  # Get multiple clusters per those clusters with > minimum_children
+  cluster_val <- cluster_xdf %>% 
+    dplyr::select(n_children, cluster,
+                  assignment_group) %>%
+    mutate(cluster_val = n_children %/% minimum_children) %>%
+    filter(cluster != 0)
+  
   # Apply the cap
   ccs <- which(cluster_xdf$complete_cluster)
   cap <- ifelse(length(ccs) < cap, length(ccs), cap)
-  keepers <- unique(sample(ccs, cap, replace = F))
+  cluster_val <- cluster_val %>%
+    dplyr::sample_frac(size = 1, replace = FALSE)
+  # Go through each row and keep once at cap
+  all_done <- FALSE
+  done_value <- NA
+  i <- 0
+  while(!all_done){
+    i <- i + 1
+    this_data <- cluster_val[1:i,]
+    grp <- this_data %>%
+      group_by(assignment_group) %>%
+      summarise(n_clusters = sum(cluster_val))
+    left <- tibble(assignment_group = 1:3) %>%
+      left_join(grp, by = 'assignment_group') %>%
+      mutate(n_clusters = ifelse(is.na(n_clusters),
+                                 0, 
+                                 n_clusters))
+    is_done <- all(left$n_clusters >= 49) 
+    if(i >= nrow(cluster_val)){
+      is_done <- TRUE
+    }
+    if(is_done){
+      done_value <- i
+      all_done <- TRUE
+    }
+  }
+  keep_df <- cluster_val[1:done_value,]
+  keepers <- keep_df$cluster
+  
   polys@data$cluster <- ifelse(polys@data$cluster %in% keepers,
                                polys@data$cluster,
                                0) 
@@ -384,15 +419,23 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
   cluster_xdf <- cluster_xdf %>% 
     mutate(cluster = ifelse(is.na(cluster), 0, cluster)) %>%
     mutate(cluster = ifelse(cluster %in% keepers, cluster, 0))
-  
+  cluster_xdf <- left_join(cluster_xdf,
+                           cluster_val %>% dplyr::select(cluster, cluster_val))
+  hamlet_xdf <- left_join(hamlet_xdf,
+                           cluster_val %>% dplyr::select(cluster, cluster_val))
+  polys@data <- left_join(polys@data,
+                          cluster_val %>% dplyr::select(cluster, cluster_val))
   
   
   # Get a summary text
   summary_text <- paste0(
-    length(unique(cluster_xdf$cluster)), ' complete clusters were able to be formed with the given rules. ', 'These were made up of ',
-    nrow(hamlet_xdf), ' hamlets, of which ',
-    length(which(hamlet_xdf$cluster == 0)), ' fall into "buffer" areas or areas randomly excluded by the 147 cluster cap. '
-  ) 
+    sum(cluster_xdf$cluster_val[cluster_xdf$cluster != 0]),
+    ' clusters formed with given rules. These were made up of ',
+      length(unique(hamlet_xdf$code[hamlet_xdf$cluster != 0])),
+      ' hamlets. The other ',
+      length(unique(hamlet_xdf$code[hamlet_xdf$cluster == 0])),
+      ' hamlets were either in buffers or unnecessary and therefore randomly removed.'
+    )
   # Make a leaflet object
   cols <- rainbow(max(cluster_xdf$cluster) + 1)
   cols <- sample(cols, length(cols))

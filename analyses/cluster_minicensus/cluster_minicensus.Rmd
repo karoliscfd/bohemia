@@ -279,7 +279,7 @@ Clusters will be formed using full data from the minicensus on the spatial distr
 Since one incorrectly geocoded household can radically throw off the convex hull of a hamlet, we remove any households which are > 3km from the estimated centroid (median longitude / latitude) of the others from that hamlet.
 
 We consider a cluster to be "complete" if it has the following characteristics:
-- At least 30 children 
+- At least 35 children 
 - No required number of animals  
 - At least 2 kilometers between clusters of different treatment assignments (ie, a 1km "buffer" for each cluster, except in the case that the nearby cluster is of identical treatment assignment)  
 
@@ -312,6 +312,7 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
     mutate(non_child_females = n_females - n_girls) %>%
     group_by(assignment_group) %>%
     summarise(Humans = sum(n_humans),
+              Children = sum(n_children),
              `Total non-children` = sum(eligibles),
               Females = sum(n_females),
              `Non-child females` = sum(non_child_females)) %>%
@@ -355,6 +356,17 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
     dplyr::rename(`Assignment group` = assignment_group)
   final[[2]] <- final_row %>%
       .$`Coverage 90%`
+  children <- sum(pdx$Children[pdx$assignment_group %in% as.character(1:3)]) * (2/3)
+  non_children <- sum(pdx$`Total non-children`[pdx$assignment_group %in% as.character(1:3)]) * (2/3)
+  ratio <- non_children / children
+  final[[3]] <- 
+    paste0('Children in included clusters: ',
+           round(children, digits = 2),
+           '. Non-children: ',
+          round(non_children, digits = 2),
+          '. Ratio of non-children to children: ',
+          round(ratio, digits = 2)
+          )
 
   return(final)
 }
@@ -369,7 +381,7 @@ Note: this is excluding hamlets in other clinical trial
 out <- try_clusters_hh_level(the_country = 'Tanzania',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -392,6 +404,13 @@ cat(paste0(out$summary_text))
 f <- get_eligible_for_ttm(out = out)
 cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
+
 
 ```{r}
 knitr::kable(f[[1]])
@@ -554,7 +573,7 @@ keep_index <- which(!is.na(df$difficulty_value))
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -583,6 +602,12 @@ cat(paste0(out$summary_text))
 f <- get_eligible_for_ttm(out = out)
 cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
 
 ```{r}
 knitr::kable(f[[1]])
@@ -641,7 +666,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 4)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -671,6 +696,12 @@ cat(paste0(out$summary_text))
 f <- get_eligible_for_ttm(out = out)
 cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
 
 ```{r}
 knitr::kable(f[[1]])
@@ -730,7 +761,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 3)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -760,6 +791,12 @@ cat(paste0(out$summary_text))
 f <- get_eligible_for_ttm(out = out)
 cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
 
 ```{r}
 knitr::kable(f[[1]])
@@ -819,7 +856,7 @@ keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 2)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,
                          minimum_households = 0,
-                         minimum_children = 30,
+                         minimum_children = 35,
                          minimum_humans = 0,
                          minimum_animals = 0,
                          minimum_cattle = 0,
@@ -848,6 +885,12 @@ cat(paste0(out$summary_text))
 f <- get_eligible_for_ttm(out = out)
 cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
 ```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
 
 ```{r}
 knitr::kable(f[[1]])
