@@ -636,7 +636,7 @@ ggplot(data = pdx,
 
 
 ```{r, echo = TRUE}
-set.seed(5)
+set.seed(13)
 keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 4)
 out <- try_clusters_hh_level(the_country = 'Mozambique',
                          include_clinical = FALSE,

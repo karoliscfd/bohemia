@@ -14,6 +14,7 @@
 #' @param start_at_hq Make the start point be whatever is nearest to HQ so as to get clusters as close to HQ as possible
 #' @param df A dataframe with one row for each hamlet and other variables like n_children, n_goats, etc.
 #' @param locations_list list a list of locations for each hamlet in the same order as df
+#' @param cap The cap of the number of clusters. Defaults to 147
 #' @return A list
 #' @import rgeos
 #' @import deldir
@@ -35,7 +36,8 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
                          max_km_from_hq = 1000,
                          start_at_hq = FALSE,
                          df = NULL,
-                         locations_list = NULL){
+                         locations_list = NULL,
+                         cap = 147){
   # set.seed(1)
   # the_country = 'Tanzania'
   # include_clinical = TRUE
@@ -369,11 +371,27 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
   cluster_xdf <- left_join(cluster_xdf, complete_clusters)
   polys@data <- left_join(polys@data, cluster_xdf)
   
+  # Apply the cap
+  ccs <- which(cluster_xdf$complete_cluster)
+  cap <- ifelse(length(ccs) < cap, length(ccs), cap)
+  keepers <- unique(sample(ccs, cap, replace = F))
+  polys@data$cluster <- ifelse(polys@data$cluster %in% keepers,
+                               polys@data$cluster,
+                               0) 
+  hamlet_xdf <- hamlet_xdf %>% 
+    mutate(cluster = ifelse(is.na(cluster), 0, cluster)) %>%
+    mutate(cluster = ifelse(cluster %in% keepers, cluster, 0)) 
+  cluster_xdf <- cluster_xdf %>% 
+    mutate(cluster = ifelse(is.na(cluster), 0, cluster)) %>%
+    mutate(cluster = ifelse(cluster %in% keepers, cluster, 0))
+  
+  
+  
   # Get a summary text
   summary_text <- paste0(
-    1-nrow(cluster_xdf[cluster_xdf$complete_cluster,]), ' complete clusters were able to be formed with the given rules. ', 'These were made up of ',
+    length(unique(cluster_xdf$cluster)), ' complete clusters were able to be formed with the given rules. ', 'These were made up of ',
     nrow(hamlet_xdf), ' hamlets, of which ',
-    length(which(hamlet_xdf$cluster == 0)), ' fall into "buffer" areas. '
+    length(which(hamlet_xdf$cluster == 0)), ' fall into "buffer" areas or areas randomly excluded by the 147 cluster cap. '
   ) 
   # Make a leaflet object
   cols <- rainbow(max(cluster_xdf$cluster) + 1)
