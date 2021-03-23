@@ -50,7 +50,7 @@ ind_rel_hh_head,ind_rel_hh_head,string,[]
 ind_religion,ind_religion,string,[]
 ind_sign_assent,ind_sign_assent,string,[]
 ind_sign_consent,ind_sign_consent,string,[]
-ind_treatment,ind_treatment,array,"[""ind_treatment_items""]"
+ind_treatment,ind_treatment,array(512),"[""ind_treatment_items""]"
 ind_treatment_items,items,string,[]
 ind_tunga,ind_tunga,string,[]
 ind_under_12_parent_sign_consent,ind_under_12_parent_sign_consent,string,[]

@@ -16,9 +16,12 @@ define(['./customErrorMsg', 'prompts'], function(customErrorMsg) {
       hideInContents: true,
       populateChoicesViaQueryUsingAjax: function (query, ctxt) {
         var that = this;
-        var search = (query.uri() || '').trim().replace(/\s/g, '');
 
-        if (!search) {
+        var name = query.uri() || {};
+        var firstName = (name.firstName || '').trim().replace(/\s/g, '');
+        var lastName = (name.lastName || '').trim().replace(/\s/g, '');
+
+        if (!firstName || !lastName) {
           that.renderContext.choices = [];
           ctxt.success('success');
           return;
@@ -26,8 +29,10 @@ define(['./customErrorMsg', 'prompts'], function(customErrorMsg) {
 
         odkData.query(
           'hh_member',
-          "lower(replace(name || surname, ' ', '')) LIKE lower(?) AND length(id) = 11 AND _savepoint_type = ?",
-          ['%' + search + '%', 'COMPLETE'],
+          "lower(replace(name, ' ', '')) LIKE lower(?) AND " +
+          "lower(replace(surname, ' ', '')) LIKE lower(?) AND " +
+          "length(id) = 11 AND _savepoint_type = ?",
+          ['%' + firstName + '%', '%' + lastName + '%', 'COMPLETE'],
           null,
           null,
           'id',
