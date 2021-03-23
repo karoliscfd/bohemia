@@ -38,53 +38,22 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
                          df = NULL,
                          locations_list = NULL,
                          cap = 147){
-  # set.seed(1)
-  # the_country = 'Tanzania'
-  # include_clinical = TRUE
-  # minimum_households = 0
-  # minimum_children = 30
-  # minimum_humans = 0
-  # minimum_animals = 0
-  # minimum_cattle = 0
-  # minimum_pigs = 0
-  # minimum_goats = 0
-  # km = 2
-  # max_km_from_hq = 100
-  # start_at_hq = FALSE
-  
-  # save(the_country,
-  #      include_clinical,
-  #      interpolate_animals,
-  #      interpolate_humans,
-  #      humans_per_household,
-  #      p_children,
-  #      minimum_households,
-  #      minimum_children,
-  #      minimum_humans,
-  #      minimum_animals,
-  #      minimum_cattle,
-  #      minimum_pigs,
-  #      minimum_goats,
-  #      km,
-  #      df,
-  #      file = '~/Desktop/temp.RData')
-# #   # Temporary, just for testing
-  # the_country = 'Tanzania'
-  # include_clinical = TRUE
-  # interpolate_animals = TRUE
-  # interpolate_humans = TRUE
-  # humans_per_household = 5
-  # p_children = 30
-  # minimum_households = 0
-  # minimum_children = 35
-  # minimum_humans = 0
-  # minimum_animals = 35
-  # minimum_cattle = 0
-  # minimum_pigs = 0
-  # minimum_goats = 0
-  # km = 2
-  # max_km_from_hq = 100
-  # start_at_hq = FALSE
+  set.seed(27)
+  keep_index <- which(!is.na(df$difficulty_value))
+  the_country = 'Tanzania'
+                               include_clinical = FALSE
+                               minimum_households = 0
+                               minimum_children = 35
+                               minimum_humans = 0
+                               minimum_animals = 0
+                               minimum_cattle = 0
+                               minimum_pigs = 0
+                               minimum_goats = 0
+                               km = 2
+                               max_km_from_hq = 1000
+                               start_at_hq = FALSE
+                               df = df[keep_index,]
+                               locations_list = locations_list[keep_index]
 
   # Define the shp based on the country
   if(the_country == 'Tanzania'){

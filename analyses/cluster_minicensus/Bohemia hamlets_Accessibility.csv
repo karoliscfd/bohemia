@@ -1,0 +1,227 @@
+region,districts,ward,village,hamlet,hamlet_code,Accessibility
+Pwani,Kibiti,Mahege,Tomoni,Halisi,HAL,Hard
+Pwani,Kibiti,Mahege,Hanga,Kimbogo,KOK,Normal
+Pwani,Kibiti,Mahege,Nyanjati,Mapinduzi,MAP,Hard
+Pwani,Kibiti,Mahege,Mahege,Mawichi,MAW,Very Hard
+Pwani,Kibiti,Mahege,Tomoni,Mibuyusaba,MIB,Easy
+Pwani,Kibiti,Mahege,Tomoni,Mkali,MKL,Normal
+Pwani,Kibiti,Mahege,Hanga,Mkima,MKI,Normal
+Pwani,Kibiti,Mahege,Nyakinyo,Mlete soso/Ngondae,NGN,Normal
+Pwani,Kibiti,Mahege,Nyanjati,Mrema,MRE,Easy
+Pwani,Kibiti,Mahege,Mahege,Mtembwe,MTM,Easy
+Pwani,Kibiti,Mahege,Nyanjati,Mwinyi,MWI,Easy
+Pwani,Kibiti,Mahege,Hanga,Ngambe,NGM,Hard
+Pwani,Kibiti,Mahege,Tomoni,Nyakikongo,NOI,Easy
+Pwani,Kibiti,Mahege,Nyakinyo,Nyakinyo,SOS,Hard
+Pwani,Kibiti,Mahege,Hanga,Nyambwanda,NYD,Easy
+Pwani,Kibiti,Mahege,Mahege,Nyamkingia,NMY,Easy
+Pwani,Kibiti,Mahege,Nyanjati,Nyerere,NYE,Easy
+Pwani,Kibiti,Mahege,Nyanjati,Saudia,SAU,Normal
+Pwani,Kibiti,Mahege,Nyanjati,Sokoine,SOO,Easy
+Pwani,Kibiti,Mahege,Mahege,Umba,UMB,Easy
+Pwani,Kibiti,Mchukwi,Mkupuka,Bani,BAI,Very Hard
+Pwani,Kibiti,Mchukwi,Mkupuka,Mkupuka,MKM,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi A,kitomondo,UKI,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi A,Ujongoni,UJO,Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Msikitini,MSI,Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Miembeni,MIE,Hard
+Pwani,Kibiti,Mchukwi,Mangwi,Misimbo,MIS,Very Hard
+Pwani,Kibiti,Mchukwi,Mangwi,Miyogoya,MNY,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Kichagani,KIC,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Mbinda,MBI,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi A,Nyakaumbanga,NMN,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi A,Nyamanjenga,NYJ,Very Hard
+Pwani,Kibiti,Mchukwi,Mkupuka,Nyunga,NYU,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Nyaubi,NNI,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi B,Songa,SON,Normal
+Pwani,Kibiti,Mchukwi,Mangwi,Rondo,RON,Very Hard
+Pwani,Kibiti,Mchukwi,Mchukwi A,Matimbwani,MAT,Very Hard
+Pwani,Kibiti,Mlanzi,Ngondae,Bora,BOA,Easy
+Pwani,Kibiti,Mlanzi,Machipi,Kibuni,KBN,Hard
+Pwani,Kibiti,Mlanzi,Mlanzi,Kikimbili,KIK,Easy
+Pwani,Kibiti,Mlanzi,Mlanzi,Kimbindu,KID,Easy
+Pwani,Kibiti,Mlanzi,Mlanzi,Kingweti,KGI,Easy
+Pwani,Kibiti,Mlanzi,Ngondae,Like,LIK,Hard
+Pwani,Kibiti,Mlanzi,Nyamwimbe,Malenda,MNL,Normal
+Pwani,Kibiti,Mlanzi,Nyamwimbe,Malenda halisi,MMN,Hard
+Pwani,Kibiti,Mlanzi,Machipi,Mangimbwage,MAB,Hard
+Pwani,Kibiti,Mlanzi,Mlanzi,Milonzi,MIZ,Easy
+Pwani,Kibiti,Mlanzi,Nyamwimbe,Miparani,MRP,Hard
+Pwani,Kibiti,Mlanzi,Ngondae,Mkwajuni,MKJ,Hard
+Pwani,Kibiti,Mlanzi,Mlanzi,Mlanzi magharibi,MLA,Easy
+Pwani,Kibiti,Mlanzi,Mlanzi,Mlanzi mashariki,MLN,Easy
+Pwani,Kibiti,Mlanzi,Machipi,Msikitini,MSK,Normal
+Pwani,Kibiti,Mlanzi,Machipi,Ngonja,NGJ,Normal
+Pwani,Kibiti,Mlanzi,Nyamwimbe,Nyelelo,NNE,Hard
+Pwani,Kibiti,Mlanzi,Machipi,Ruanda,RUA,Normal
+Pwani,Kibiti,Mlanzi,Nyamwimbe,Umtanga,UMT,Normal
+Pwani,Kibiti,Mtunda,Mtunda B,Beta,BET,Very Hard
+Pwani,Kibiti,Mtunda,Kikale,Kikale Mjini,KLA,Easy
+Pwani,Kibiti,Mtunda,Muyuyu,Magomeni,MGM,Easy
+Pwani,Kibiti,Mtunda,Kikale,Makoge,MEG,Easy
+Pwani,Kibiti,Mtunda,Mtunda A,Mbongola,MBG,Very Hard
+Pwani,Kibiti,Mtunda,Mtunda A,Mbumi,MBB,Easy
+Pwani,Kibiti,Mtunda,Mtunda B,Mchikichini,MCH,Easy
+Pwani,Kibiti,Mtunda,Mtunda A,Mikunguni,MIU,Very Hard
+Pwani,Kibiti,Mtunda,Muyuyu,Misuguli,MMS,Very Hard
+Pwani,Kibiti,Mtunda,Muyuyu,Mkata,MKT,Normal
+Pwani,Kibiti,Mtunda,Kikale,Mtandu,KLN,Easy
+Pwani,Kibiti,Mtunda,Mtunda A,Mtunda A,MTN,Easy
+Pwani,Kibiti,Mtunda,Mtunda B,Mtunda B,MTD,Easy
+Pwani,Kibiti,Mtunda,Muyuyu,Muyuyu mjini,MUY,Hard
+Pwani,Kibiti,Mtunda,Mtunda B,Nganyanga,NGY,Very Hard
+Pwani,Kibiti,Mtunda,Mtunda A,Ngualo,NGR,Very Hard
+Pwani,Kibiti,Mtunda,Muyuyu,Njianne,NJI,Normal
+Pwani,Kibiti,Mtunda,Mtunda B,Nyafeda,NYF,Very Hard
+Pwani,Kibiti,Mtunda,Muyuyu,Nyambele,NBM,Very Hard
+Pwani,Kibiti,Mtunda,Muyuyu,Sonywe,SOY,Normal
+Pwani,Kibiti,Mwambao,Msindaji,Genju,GEN,Very Hard
+Pwani,Kibiti,Mwambao,Kivinja A,Kariakoo,KAR,Very Hard
+Pwani,Kibiti,Mwambao,Mkenda,Kikombe,KBO,Normal
+Pwani,Kibiti,Mwambao,Kivinja A,Kisanjani,KJN,Normal
+Pwani,Kibiti,Mwambao,Msindaji,Madukani,MAD,Very Hard
+Pwani,Kibiti,Mwambao,Kivinja A,Masakwi,MAS,Normal
+Pwani,Kibiti,Mwambao,Kivinja B,Mfenesini,MFE,Hard
+Pwani,Kibiti,Mwambao,Mchungu,Mititimbo,MIT,Hard
+Pwani,Kibiti,Mwambao,Kivinja B,Mkegetoni,MKG,Hard
+Pwani,Kibiti,Mwambao,Mkenda,Mkenda mnazi,MKD,Normal
+Pwani,Kibiti,Mwambao,Kigunguli,Mkole,MOE,Hard
+Pwani,Kibiti,Mwambao,Kigunguli,Mpafuni,MPA,Hard
+Pwani,Kibiti,Mwambao,Mchungu,Mpekeso,MPE,Hard
+Pwani,Kibiti,Mwambao,Kigunguli,Mselema,MSL,Hard
+Pwani,Kibiti,Mwambao,Kivinja B,Mweyubaruti,MWY,Very Hard
+Pwani,Kibiti,Mwambao,Mkenda,Ngungule,NGG,Normal
+Pwani,Rufiji,Chemchem,Golani,Golani,GOA,Normal
+Pwani,Rufiji,Chemchem,Kindwiti/Kidwitwi,Kindwiti/Kidwitwi,KWI,Easy
+Pwani,Rufiji,Chemchem,Kipei,Kipei,KEI,Easy
+Pwani,Rufiji,Chemchem,Nyandakatundu,Nyandakatundu,NTY,Easy
+Pwani,Rufiji,Chemchem,Nyandumbi,Nyandumbi,NUD,Hard
+Pwani,Rufiji,Chemchem,Nyangwai,Nyangwai,NIY,Hard
+Pwani,Rufiji,Chemchem,Nyawanje/Ngwembele,Nyawanje/Ngwembele,NNB,Normal
+Pwani,Rufiji,Kipugira,Kipugira,Kipugira,KUK,Easy
+Pwani,Rufiji,Kipugira,Kipo,Mawilo,MOL,Easy
+Pwani,Rufiji,Kipugira,Kipo,Mgohori,MGO,Normal
+Pwani,Rufiji,Kipugira,Kipo,Mpande,KUK,Normal
+Pwani,Rufiji,Kipugira,Kipugira,Pangapanga,PAG,Easy
+Pwani,Rufiji,Kipugira,Nyaminywili,Nyaminywili,NAY,Easy
+Pwani,Rufiji,Kipugira,Nyaminywili,Mtalula,MTT,Easy
+Pwani,Rufiji,Kipugira,Ndundunyikaza,Nyikanza,NYI,Normal
+Pwani,Rufiji,Kipugira,Ndundunyikaza,Tetema,TET,Normal
+Pwani,Rufiji,Mbwara,Tawi,Gege,GEG,Normal
+Pwani,Rufiji,Mbwara,Nambunju,Kikibu,KBU,Easy
+Pwani,Rufiji,Mbwara,Tawi,kikobo,KOB,Very Hard
+Pwani,Rufiji,Mbwara,Kitapi,Kitapi Magharibi,KTA,Very Hard
+Pwani,Rufiji,Mbwara,Kitapi,Kitapi Mashariki,KTH,Very Hard
+Pwani,Rufiji,Mbwara,Mbwara,Mbwara magharibi,MBW,Normal
+Pwani,Rufiji,Mbwara,Mbwara,Mbwara mashariki,MBR,Normal
+Pwani,Rufiji,Mbwara,Nambunju,Miangalaya,MIA,Very Hard
+Pwani,Rufiji,Mbwara,Mbwara,Misimbo,MMI,Easy
+Pwani,Rufiji,Mbwara,Tawi,Mkukiki,MMK,Normal
+Pwani,Rufiji,Mbwara,Tawi,Mkwiri,MMW,Easy
+Pwani,Rufiji,Mbwara,Kitapi,Namahamba,NAH,Very Hard
+Pwani,Rufiji,Mbwara,Nyamwage,Nyamwage Magharibi,NNR,Easy
+Pwani,Rufiji,Mbwara,Nambunju,Namakono,NAK,Very Hard
+Pwani,Rufiji,Mbwara,Nambunju,Nambunju magharibi,NAB,Easy
+Pwani,Rufiji,Mbwara,Nambunju,Nambunju mashariki,NAU,Easy
+Pwani,Rufiji,Mbwara,Nyamwage,Nyamwage Mashariki,NYS,Easy
+Pwani,Rufiji,Mbwara,Nyamwage,Shauri moyo,SHA,Very Hard
+Pwani,Rufiji,Mkongo,Ruwe,Beta,BEA,Easy
+Pwani,Rufiji,Mkongo,Mkongo Kaskazini,Karakana,KAA,Easy
+Pwani,Rufiji,Mkongo,Ruwe,Kipera,KRE,Hard
+Pwani,Rufiji,Mkongo,Mkongo Kusini,Kitundu,KTK,Easy
+Pwani,Rufiji,Mkongo,Mkongo Kusini,Kiwili,KLK,Easy
+Pwani,Rufiji,Mkongo,Mkongo Kusini,Makonge,MME,Easy
+Pwani,Rufiji,Mkongo,Mbunju Mvuleni,Mbunju,MBJ,Hard
+Pwani,Rufiji,Mkongo,Mkongo Kusini,Mkunga,MGN,Easy
+Pwani,Rufiji,Mkongo,Mbunju Mvuleni,Mvuleni,MVU,Hard
+Pwani,Rufiji,Mkongo,Ruwe,Nyaringwe,NWE,Easy
+Pwani,Rufiji,Mkongo,Mkongo Kaskazini,Nyipara,NRN,Easy
+Pwani,Rufiji,Mkongo,Mkongo Kaskazini,Rusende,RUS,Easy
+Pwani,Rufiji,Mwaseni,Mtanza/Msona,Bizi,BIZ,Very Hard
+Pwani,Rufiji,Mwaseni,Mloka,Kwangwazi,KWG,Normal
+Pwani,Rufiji,Mwaseni,Mwaseni,Mibuyusaba,MIY,Normal
+Pwani,Rufiji,Mwaseni,Mloka,Mkange,MNA,Hard
+Pwani,Rufiji,Mwaseni,Mloka,Mpanganya,MPG,Normal
+Pwani,Rufiji,Mwaseni,Mtanza/Msona,Mturuma,MTR,Very Hard
+Pwani,Rufiji,Mwaseni,Mtanza/Msona,Mtanza,MTZ,Very Hard
+Pwani,Rufiji,Mwaseni,Mtanza/Msona,Msiga,MSG,Very Hard
+Pwani,Rufiji,Mwaseni,Mwaseni,Mwaseni,MWS,Very Hard
+Pwani,Rufiji,Mwaseni,Mloka,Nyakisiku,NKY,Normal
+Pwani,Rufiji,Mwaseni,Mwaseni,Zombe,ZOB,Very Hard
+Pwani,Rufiji,Ngarambe,Kungulwe,Kungulwe,KUN,Very Hard
+Pwani,Rufiji,Ngarambe,Namakono,Namakono,NAO,Very Hard
+Pwani,Rufiji,Ngarambe,Ngarambe Magharibi,Ngarambe Magharibi,NGB,Very Hard
+Pwani,Rufiji,Ngarambe,Ngarambe Mashariki,Ngarambe Mashariki,NGE,Very Hard
+Pwani,Rufiji,Ngarambe,Tapika,Tapika,TAP,Very Hard
+Pwani,Rufiji,Utete,Kitundu,Kitundu,KTU,Easy
+Pwani,Rufiji,Utete,Kiwili,Kiwili,KWL,Easy
+Pwani,Rufiji,Utete,Siasa,Siasa,SIL,Normal
+Pwani,Kibiti,Kiongoroni,Ruma,Bandarini,BAN,Very Hard
+Pwani,Kibiti,Kiongoroni,Jaja,Bumbuamani,BUM,Very Hard
+Pwani,Kibiti,Kiongoroni,Kiongoroni,Bweni,BWE,Very Hard
+Pwani,Kibiti,Kiongoroni,Ruma,Emelwa,EME,Very Hard
+Pwani,Kibiti,Kiongoroni,Pombwe,Kilambani,KAI,Very Hard
+Pwani,Kibiti,Kiongoroni,Ruma,King`ongo,KKG,Very Hard
+Pwani,Kibiti,Kiongoroni,Jaja,Kitongani,KGT,Very Hard
+Pwani,Kibiti,Kiongoroni,Kiongoroni,Makwende,MAE,Very Hard
+Pwani,Kibiti,Kiongoroni,Pombwe,Mbungwi,MBU,Very Hard
+Pwani,Kibiti,Kiongoroni,Jaja,Mjimwema,MJI,Very Hard
+Pwani,Kibiti,Kiongoroni,Ruma,Mtanga,MTA,Very Hard
+Pwani,Kibiti,Kiongoroni,Ruma,Nyamikamba,NNY,Very Hard
+Pwani,Kibiti,Kiongoroni,Kiongoroni,Nyaobe,NYO,Very Hard
+Pwani,Kibiti,Kiongoroni,Pombwe,Pombwe Kubwa,POM,Very Hard
+Pwani,Kibiti,Kiongoroni,Pombwe,Suni,SUN,Very Hard
+Pwani,Kibiti,Maparoni,Maparoni,Gingi,GIN,Normal
+Pwani,Kibiti,Maparoni,Kiechuru,Kiechuru Kati,KAT,Normal
+Pwani,Kibiti,Maparoni,Kiechuru,Kityanga,KIY,Easy
+Pwani,Kibiti,Maparoni,Kiechuru,Korango,KOR,Normal
+Pwani,Kibiti,Maparoni,Maparoni,Mbangani,MBN,Hard
+Pwani,Kibiti,Maparoni,Kiechuru,Mgambo,MGA,Easy
+Pwani,Kibiti,Maparoni,Maparoni,Tuwa,TUW,Hard
+Pwani,Kibiti,Maparoni,Maparoni,Usimbe kidoga,USM,Very Hard
+Pwani,Kibiti,Maparoni,Maparoni,Usimbe Kiwanjani,USI,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Barabarani,BAA,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Doka,DOK,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Kibumbulo/Kimburu,KBR,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Kiiongoro,KII,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Kipoka,KAP,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Kitingi,KKI,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Kumbacha,KUM,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Makongoro,MAO,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Mashariki,Marongoni,MAR,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Mashariki,Mbumburu,MBM,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Mashariki,Mdai,MDA,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Mikwang`ombe,MIK,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Mkepa,MKE,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Mashariki,Mkirika,MKK,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Mkurumu,MKR,Very Hard
+Pwani,Kibiti,Mbuchi,Mbwera Magharibi,Mtawatawa,MTW,Very Hard
+Pwani,Kibiti,Mbuchi,Mbuchi,Nganje/Mnganje,MNG,Very Hard
+Pwani,Kibiti,Msala,Twasalie,Domwe,DOW,Normal
+Pwani,Kibiti,Msala,Twasalie,Kisimbya,KIS,Normal
+Pwani,Kibiti,Msala,Msala,Majaliwa,MMA,Very Hard
+Pwani,Kibiti,Msala,Msala,Mbaleni,MBL,Very Hard
+Pwani,Kibiti,Msala,Msala,Mbomboni,MBO,Very Hard
+Pwani,Kibiti,Msala,Kiasi,Nunu,NUN,Very Hard
+Pwani,Kibiti,Msala,Twasalie,Nyahimba,NYH,Easy
+Pwani,Kibiti,Msala,Kiasi,Nyunguni,NNG,Very Hard
+Pwani,Kibiti,Msala,Kiasi,Ploti,PLO,Very Hard
+Pwani,Kibiti,Msala,Twasalie,Poloti,PLT,Hard
+Pwani,Kibiti,Msala,Twasalie,Tarachu,TAR,Normal
+Pwani,Kibiti,Msala,Msala,Ukongoro,UKO,Very Hard
+Pwani,Kibiti,Msala,Kiasi,Uwandani,UWA,Very Hard
+Pwani,Kibiti,Msala,Msala,Wasamande,WAS,Very Hard
+Pwani,Kibiti,Salale,Nyamisati,Kihingi Pwani,KKP,Easy
+Pwani,Kibiti,Salale,Nyamisati,Kihingi Shule,KIH,Easy
+Pwani,Kibiti,Salale,Mchinga,Kilwani,KLI,Very Hard
+Pwani,Kibiti,Salale,Mchinga,Mchinga,MCI,Very Hard
+Pwani,Kibiti,Salale,Mfisini,Mfisini A,MFI,Very Hard
+Pwani,Kibiti,Salale,Mfisini,Mfisini B,MFS,Very Hard
+Pwani,Kibiti,Salale,Mfisini,Mfisini Kati,MFN,Very Hard
+Pwani,Kibiti,Salale,Nyamisati,Mjengea,MJE,Very Hard
+Pwani,Kibiti,Salale,Kiomboni,Pwani,KIO,Very Hard
+Pwani,Kibiti,Salale,Mchinga,Salale,SAL,Very Hard
+Pwani,Kibiti,Salale,Mchinga,Saninga,SAI,Very Hard
+Pwani,Kibiti,Salale,Mchinga,Simbaulanga,SIB,Very Hard
+Pwani,Kibiti,Salale,Kiomboni,Twana,TWA,Very Hard
+Pwani,Kibiti,Salale,Kiomboni,Urongoni,URO,Very Hard

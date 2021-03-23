@@ -182,6 +182,7 @@ df <- df %>%
            (lat > -12 & country == 'Tanzania')
   )
 # df <- hh
+df <- df %>% filter(!duplicated(code))
 library(sp)
 
 # Get the data grouped by codes
@@ -261,7 +262,20 @@ difficulty$difficulty_value <-
                 ifelse(difficulty$difficulty == 'Hard', 3,
                        ifelse(difficulty$difficulty == 'Very Hard', 4,
                               NA))))
+# Read in difficulty sent by Imani on March 22 2021
+difficulty_tza <- read_csv('Bohemia hamlets_Accessibility.csv') %>%
+  dplyr::select(code = hamlet_code,
+                difficulty = Accessibility) %>%
+  mutate(difficulty_value = 
+             ifelse(difficulty == 'Easy', 1,
+         ifelse(difficulty == 'Normal', 2,
+                ifelse(difficulty == 'Hard', 3,
+                       ifelse(difficulty == 'Very Hard', 4,
+                              NA)))))
+difficulty_tza <- difficulty_tza %>% filter(!duplicated(code))
+difficulty <- bind_rows(difficulty, difficulty_tza)
 df <- left_join(df, difficulty)
+df <- df %>% filter(!duplicated(code))
 ```
 
 
@@ -374,10 +388,98 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
 
 ## Tanzania
 
-Note: this is excluding hamlets in other clinical trial
+Note: this is excluding hamlets in other clinical trial.
+
+
+
+Here, we present multiple results for Tanzania The reason: we want to see how clustering would be affected if we exclude certain hamlets based on difficulty of access, as reported by Imani in mid March.
+
+First, a map of difficulty of access (click on hamlet to see points):
+
+```{r}
+x <- df %>% filter(country == 'Tanzania')
+color_var <- rainbow(8)[c(5,4,2,1)][x$difficulty_value]
+
+leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addCircleMarkers(data = x,
+                   color = color_var,
+                   popup = paste0(x$code, '). ', x$difficulty, '. Households: ', x$n_households))
+```
+
+The distribution of difficulty of access by number of households / children is below:
+
+```{r}
+pd <- x %>%
+  group_by(difficulty) %>%
+  summarise(Households = sum(n_households),
+            Children = sum(n_children)) %>%
+  tidyr::gather(key, value, `Households`:`Children`)
+pd$difficulty <- factor(pd$difficulty,
+                        levels = c('Easy',
+                                   'Normal',
+                                   'Hard',
+                                   'Very Hard'))
+
+ggplot(data = pd,
+       aes(x = difficulty,
+           y = value,
+           group = key,
+           fill = key)) +
+  geom_bar(stat = 'identity',
+           position = position_dodge(width = 0.8)) +
+  scale_fill_manual(name = '',
+                    values = c('red', 'black')) +
+  labs(x = 'Difficulty',
+       y = '') +
+  theme(legend.position = 'bottom') +
+  geom_text(position = position_dodge(width = 0.8),
+            aes(y = value + 1000,
+                label = value))
+  
+```
+
+
+The distribution of difficulty of access by number of hamlets is below:
+
+```{r}
+pd <- x %>%
+  group_by(difficulty) %>%
+  summarise(Hamlets = n()) %>%
+  tidyr::gather(key, value, `Hamlets`)
+pd$difficulty <- factor(pd$difficulty,
+                        levels = c('Easy',
+                                   'Normal',
+                                   'Hard',
+                                   'Very Hard'))
+
+ggplot(data = pd,
+       aes(x = difficulty,
+           y = value,
+           group = key,
+           fill = key)) +
+  geom_bar(stat = 'identity',
+           position = position_dodge(width = 0.8)) +
+  scale_fill_manual(name = '',
+                    values = c('black')) +
+  labs(x = 'Difficulty',
+       y = '') +
+  theme(legend.position = 'bottom') +
+  geom_text(position = position_dodge(width = 0.8),
+            aes(y = value + 10,
+                label = value))
+  
+```
+
+Next, we'll go through each difficulty level, excluding those that are more difficult than the level indicated.
+
+
+### Including all hamlets
 
 
 ```{r, echo = TRUE}
+set.seed(27)
+keep_index <- which(!is.na(df$difficulty_value))
 out <- try_clusters_hh_level(the_country = 'Tanzania',
                          include_clinical = FALSE,
                          minimum_households = 0,
@@ -390,9 +492,10 @@ out <- try_clusters_hh_level(the_country = 'Tanzania',
                          km = 2,
                          max_km_from_hq = 1000,
                          start_at_hq = FALSE,
-                         df = df,
-                         locations_list = locations_list)
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
 ```
+
 
 #### Summary
 
@@ -431,6 +534,58 @@ keep_only_n <- function(cluster_xdf, n = n_required){
 out_minimal <- keep_only_n(out$cluster_xdf)
 
 # If we keep only the minimal number required (`r n_required` clusters per arm) and do not cense those in buffer areas, this is estimated to reduce the number of participating households from `r gps %>% filter(iso == 'TZA', clinical_trial == 0) %>% summarise(x = sum(n_households)) %>% .$x` to `r sum(out_minimal$n_households)`.
+```
+
+
+
+### Excluding the "very hard"
+
+
+
+```{r, echo = TRUE}
+set.seed(27)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 4)
+out <- try_clusters_hh_level(the_country = 'Tanzania',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 35,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+```{r, results='asis'}
+f <- get_eligible_for_ttm(out = out)
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
+```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
+
+
+```{r}
+knitr::kable(f[[1]])
+```
+
+```{r}
+out$map
 ```
 
 
@@ -476,6 +631,194 @@ ggplot(data = pdx,
             size = 3)
 
 ```
+
+
+### Excluding the "very hard" and "hard" (ie, keeping only "normal" and "easy")
+
+
+```{r, echo = TRUE}
+set.seed(27)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 3)
+out <- try_clusters_hh_level(the_country = 'Tanzania',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 35,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+```{r, results='asis'}
+f <- get_eligible_for_ttm(out = out)
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
+```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
+
+
+```{r}
+knitr::kable(f[[1]])
+```
+
+```{r}
+out$map
+```
+
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
+
+### Excluding the "very hard", "hard", and "normal" (ie, only keeping easy)
+
+```{r, echo = TRUE}
+set.seed(27)
+keep_index <- which(!is.na(df$difficulty_value) & df$difficulty_value < 2)
+out <- try_clusters_hh_level(the_country = 'Tanzania',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 35,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+```
+
+
+#### Summary
+
+```{r, results='asis'}
+cat(paste0(out$summary_text))
+```
+
+```{r, results='asis'}
+f <- get_eligible_for_ttm(out = out)
+cat(paste0('Estimated ', scales::comma(f[[2]]), ' people to be treated with ivermectin at 90% coverage'))
+```
+
+
+```{r, results = 'asis'}
+cat(f[[3]])
+```
+
+
+
+```{r}
+knitr::kable(f[[1]])
+```
+
+```{r}
+out$map
+```
+
+
+#### Humans and animals
+
+The below shows the number of humans and animals per assignment group
+
+```{r, fig.height = 10}
+pd <- out$hamlet_xdf %>% #filter(cluster != 0) %>%
+  left_join(df %>% dplyr::select(code,
+                                 n_males, n_females,
+                                 cows_1_year_plus, cows_babies, pigs_6_weeks_plus,
+                                 pigs_babies))
+
+pdx <- pd %>%
+  group_by(assignment_group) %>%
+  summarise(n_humans = sum(n_humans),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_households = sum(n_households),
+            n_children = sum(n_children),
+            n_cows_1_year_plus = sum(cows_1_year_plus), 
+            n_cows_babies = sum(cows_babies),
+            n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus),
+            n_pigs_babies = sum(pigs_babies)) %>%
+  tidyr::gather(key, value, n_humans:n_pigs_babies) %>%
+  mutate(key = gsub('n_', '', key)) %>%
+  mutate(key = gsub('_', ' ', key)) %>%
+  mutate(key = Hmisc::capitalize(key)) %>%
+  mutate(assignment_group = ifelse(is.na(assignment_group),
+                                   'None', as.character(assignment_group)))
+
+ggplot(data = pdx,
+       aes(x = assignment_group,
+           y = value)) +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~key, scales = 'free') +
+  labs(x = 'Assignment group',
+       y = 'Value') +
+  geom_text(aes(label = value),
+            color = 'white',
+            vjust = 1, 
+            size = 3)
+
+```
+
 
 
 
