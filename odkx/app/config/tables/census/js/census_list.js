@@ -77,8 +77,8 @@
 
     odkData.arbitraryQuery(
       'hh_member',
-      'SELECT name, surname, id FROM hh_member WHERE hh_id = ? ORDER BY id ASC',
-      [hhId],
+      'SELECT name, surname, id FROM hh_member WHERE hh_id = ? AND form_status_hh_member_exit IS NOT ? ORDER BY id ASC',
+      [hhId, 1],
       null,
       null,
       function (result) {
