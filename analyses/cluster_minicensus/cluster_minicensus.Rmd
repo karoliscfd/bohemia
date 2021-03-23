@@ -181,12 +181,60 @@ df <- df %>%
   filter((lat < -16 & country == 'Mozambique') |
            (lat > -12 & country == 'Tanzania')
   )
-# df <- hh
-df <- df %>% filter(!duplicated(code))
 library(sp)
 
+
+# Aggregate df
+df_agg <- df %>%
+  group_by(code) %>%
+  summarise(n_humans = sum(n_members),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_boys = sum(n_boys),
+            n_girls = sum(n_girls),
+            n_households = n(),
+            n_children = sum(n_children),
+            clinical_trial = dplyr::first(clinical_trial),
+            country = dplyr::first(country),
+            lng = mean(lng),
+            lat = mean(lat),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+            cows_babies = sum(cows_babies, na.rm = TRUE),
+            pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+            pigs_babies = sum(pigs_babies, na.rm = TRUE))
+df_agg <- df_agg %>% arrange(code)
+
+
+# Read in cluster difficulty access scores (sent from Eldo)
+difficulty <- read_csv('Mopeia.Hamlets_Accessibility_Scores.08.03.2021.csv')
+difficulty <- difficulty %>% dplyr::select(code, difficulty = Accessibility_Scores)
+difficulty$difficulty_value <- 
+  ifelse(difficulty$difficulty == 'Easy', 1,
+         ifelse(difficulty$difficulty == 'Normal', 2,
+                ifelse(difficulty$difficulty == 'Hard', 3,
+                       ifelse(difficulty$difficulty == 'Very Hard', 4,
+                              NA))))
+# Read in difficulty sent by Imani on March 22 2021
+difficulty_tza <- read_csv('Bohemia hamlets_Accessibility.csv') %>%
+  dplyr::select(code = hamlet_code,
+                difficulty = Accessibility) %>%
+  mutate(difficulty_value = 
+             ifelse(difficulty == 'Easy', 1,
+         ifelse(difficulty == 'Normal', 2,
+                ifelse(difficulty == 'Hard', 3,
+                       ifelse(difficulty == 'Very Hard', 4,
+                              NA)))))
+difficulty_tza <- difficulty_tza %>% filter(!duplicated(code))
+difficulty <- bind_rows(difficulty, difficulty_tza)
+difficulty <- difficulty %>% filter(!is.na(difficulty_value))
+df_agg <- left_join(df_agg, difficulty)
+df_agg <- df_agg %>% filter(!duplicated(code))
+df_agg <- df_agg %>% filter(!is.na(difficulty_value))
+
+
+
 # Get the data grouped by codes
-codes <- sort(unique(df$code))
+codes <- sort(unique(df_agg$code))
 locations_list <- list()
 locations_list_ll <- list()
 for(i in 1:length(codes)){
@@ -211,7 +259,7 @@ for(i in 1:length(codes)){
     this_data <- this_data[!(1:nrow(this_data)) %in% remove_these,]
     ss <- ss[!(1:nrow(ss)) %in% remove_these,]
   } else {
-    message('No removals')
+    message('No removals for hamlet of ', nrow(ss))
   }
   locations_list_ll[[i]] <- this_data
   locations_list[[i]] <- ss
@@ -225,14 +273,8 @@ proj4string(df_sp) <- proj4string(bohemia::mop2)
 df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
 )
 
-# plot(df_proj, col = 'white')
-# cols <- rainbow(length(locations_list))
-# for(i in 1:length(locations_list)){
-#   this_location <- locations_list[[i]]
-#   points(this_location, col = cols[i], add = TRUE, pch = '.')
-# }
 
-# Aggregate df
+# Remake the aggregated dataframe, overwriting df
 df <- df %>%
   group_by(code) %>%
   summarise(n_humans = sum(n_members),
@@ -253,29 +295,8 @@ df <- df %>%
 df <- df %>% arrange(code)
 
 
-# Read in cluster difficulty access scores (sent from Eldo)
-difficulty <- read_csv('Mopeia.Hamlets_Accessibility_Scores.08.03.2021.csv')
-difficulty <- difficulty %>% dplyr::select(code, difficulty = Accessibility_Scores)
-difficulty$difficulty_value <- 
-  ifelse(difficulty$difficulty == 'Easy', 1,
-         ifelse(difficulty$difficulty == 'Normal', 2,
-                ifelse(difficulty$difficulty == 'Hard', 3,
-                       ifelse(difficulty$difficulty == 'Very Hard', 4,
-                              NA))))
-# Read in difficulty sent by Imani on March 22 2021
-difficulty_tza <- read_csv('Bohemia hamlets_Accessibility.csv') %>%
-  dplyr::select(code = hamlet_code,
-                difficulty = Accessibility) %>%
-  mutate(difficulty_value = 
-             ifelse(difficulty == 'Easy', 1,
-         ifelse(difficulty == 'Normal', 2,
-                ifelse(difficulty == 'Hard', 3,
-                       ifelse(difficulty == 'Very Hard', 4,
-                              NA)))))
-difficulty_tza <- difficulty_tza %>% filter(!duplicated(code))
-difficulty <- bind_rows(difficulty, difficulty_tza)
+# Combine with difficulty
 df <- left_join(df, difficulty)
-df <- df %>% filter(!duplicated(code))
 ```
 
 
