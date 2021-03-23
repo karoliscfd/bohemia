@@ -38,22 +38,22 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
                          df = NULL,
                          locations_list = NULL,
                          cap = 147){
-  set.seed(27)
-  keep_index <- which(!is.na(df$difficulty_value))
-  the_country = 'Tanzania'
-                               include_clinical = FALSE
-                               minimum_households = 0
-                               minimum_children = 35
-                               minimum_humans = 0
-                               minimum_animals = 0
-                               minimum_cattle = 0
-                               minimum_pigs = 0
-                               minimum_goats = 0
-                               km = 2
-                               max_km_from_hq = 1000
-                               start_at_hq = FALSE
-                               df = df[keep_index,]
-                               locations_list = locations_list[keep_index]
+  # set.seed(27)
+  # keep_index <- which(!is.na(df$difficulty_value))
+  # the_country = 'Tanzania'
+  #                              include_clinical = FALSE
+  #                              minimum_households = 0
+  #                              minimum_children = 35
+  #                              minimum_humans = 0
+  #                              minimum_animals = 0
+  #                              minimum_cattle = 0
+  #                              minimum_pigs = 0
+  #                              minimum_goats = 0
+  #                              km = 2
+  #                              max_km_from_hq = 1000
+  #                              start_at_hq = FALSE
+  #                              df = df[keep_index,]
+  #                              locations_list = locations_list[keep_index]
 
   # Define the shp based on the country
   if(the_country == 'Tanzania'){
