@@ -133,6 +133,7 @@ left <- minicensus_people %>%
   left_join(minicensus_main %>% dplyr::select(instance_id,
                                               country = hh_country)) %>%
   mutate(years_old = (Sys.Date() - dob)/ 365.25) %>%
+  mutate(under5 = years_old >= 0 & years_old <= 5) %>%
    mutate(is_child  = ifelse(country == 'Mozambique',
                             years_old >= 0 & years_old <= 5,
                             years_old >= 0 & years_old <= 15)) %>%
@@ -140,6 +141,8 @@ left <- minicensus_people %>%
   mutate(is_girl = is_child & gender == 'female') %>%
   group_by(country, instance_id) %>%
   summarise(n_members = n(),
+            under5s = length(which(under5)),
+            reproductive = length(which(gender == 'female' & years_old >=13 & years_old <= 49)),
             n_females = length(which(gender == 'female')),
             n_males = length(which(gender == 'male')),
             n_boys = length(which(is_boy)),
@@ -276,8 +279,11 @@ df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +dat
 
 # Remake the aggregated dataframe, overwriting df
 df <- df %>%
+  ungroup %>%
   group_by(code) %>%
   summarise(n_humans = sum(n_members),
+            under5s = sum(under5s),
+            n_reproductive = sum(reproductive),
             n_females = sum(n_females),
             n_males = sum(n_males),
             n_boys = sum(n_boys),
@@ -405,6 +411,41 @@ get_eligible_for_ttm <- function(out, p_pregnant = 0.07, p_no_participate = 0.05
 
   return(final)
 }
+
+# Define function for carlos table
+carlos_table <- function(out, country = 'Tanzania'){
+  
+
+  if(country == 'Mozambique'){
+      pd <- out$hamlet_xdf %>%
+    mutate(eligibles = n_humans - n_children) %>%
+    mutate(non_child_females = n_females - n_girls) %>%
+    group_by(`Assignment group` = assignment_group) %>%
+    summarise(Households = sum(n_households),
+              Humans = sum(n_humans),
+              Children = sum(n_children),
+             `Adults` = sum(eligibles),
+             `Women of reproductive age` = sum(n_reproductive),
+             `Cows eligible for TTM`= sum(cows_1_year_plus),
+             `Pigs eligible for TTM` = sum(pigs_6_weeks_plus)
+             )
+  } else {
+  pd <- out$hamlet_xdf %>%
+    mutate(eligibles = n_humans - n_children) %>%
+    mutate(non_child_females = n_females - n_girls) %>%
+    group_by(`Assignment group` = assignment_group) %>%
+    summarise(Households = sum(n_households),
+              Humans = sum(n_humans),
+              `Non-eligible children` = sum(under5s),
+              `Eligible children` = sum(n_children),
+             `Adults` = sum(eligibles),
+             `Women of reproductive age` = sum(n_reproductive),
+             `Cows eligible for TTM`= sum(cows_1_year_plus),
+             `Pigs eligible for TTM` = sum(pigs_6_weeks_plus)
+             )
+  }
+  return(pd)
+}
 ```
 
 ## Tanzania
@@ -515,6 +556,7 @@ out <- try_clusters_hh_level(the_country = 'Tanzania',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Tanzania'))
 ```
 
 
@@ -580,6 +622,8 @@ out <- try_clusters_hh_level(the_country = 'Tanzania',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Tanzania'))
+
 ```
 
 
@@ -674,6 +718,8 @@ out <- try_clusters_hh_level(the_country = 'Tanzania',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Tanzania'))
+
 ```
 
 
@@ -767,6 +813,8 @@ out <- try_clusters_hh_level(the_country = 'Tanzania',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Tanzania'))
+
 ```
 
 
@@ -948,6 +996,8 @@ out <- try_clusters_hh_level(the_country = 'Mozambique',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Mozambique'))
+
 ```
 
 ```{r}
@@ -1041,6 +1091,8 @@ out <- try_clusters_hh_level(the_country = 'Mozambique',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Mozambique'))
+
 ```
 
 ```{r}
@@ -1136,6 +1188,8 @@ out <- try_clusters_hh_level(the_country = 'Mozambique',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Mozambique'))
+
 ```
 
 ```{r}
@@ -1231,6 +1285,8 @@ out <- try_clusters_hh_level(the_country = 'Mozambique',
                          start_at_hq = FALSE,
                          df = df[keep_index,],
                          locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Mozambique'))
+
 ```
 
 ```{r}

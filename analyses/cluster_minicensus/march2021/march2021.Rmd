@@ -1,0 +1,519 @@
+---
+title: "Cluster generation from (incomplete) minicensus"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: "hide"
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+options(scipen=999)
+```
+
+```{r}
+## Load libraries
+library(bohemia)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(sp)
+library(raster)
+library(ggthemes)
+library(sf)
+library(RColorBrewer)
+library(readr)
+library(tidyr)
+library(leaflet)
+library(rgeos)
+# options(scipen = '999')
+theme_set(databrew::theme_simple())
+```
+
+
+```{r}
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
+
+if('data.RData' %in% dir()){
+  load('data.RData')
+} else {
+  pd_moz <- load_odk_data(the_country = 'Mozambique',
+                    credentials_path = '../../credentials/credentials.yaml',
+                    users_path = '../../credentials/users.yaml',
+                    efficient = FALSE)
+  pd_tza <- load_odk_data(the_country = 'Tanzania',
+                      credentials_path = '../../credentials/credentials.yaml',
+                      users_path = '../../credentials/users.yaml',
+                      efficient = FALSE)
+  is_local <- FALSE
+  library(DBI)
+  library(RPostgres)
+  save(pd_moz,
+       pd_tza,
+       file = 'data.RData')
+}
+
+minicensus_main <- bind_rows(
+  pd_moz$minicensus_main,
+  pd_tza$minicensus_main
+)
+minicensus_people <- bind_rows(
+  pd_moz$minicensus_people,
+  pd_tza$minicensus_people
+)
+na_to_zero <- function(x){ifelse(is.na(x), 0, x)}
+gps <- bohemia::gps
+
+df_adjust <- function(df){
+  df %>%
+    mutate(n_households = ifelse(df$iso == 'TZA', n_households * 1,
+                                 ifelse(df$iso == 'MOZ', n_households * 0.55, 
+                                        NA)))
+}
+
+# source('global.R')
+source('try_clusters_hh_level.R')
+
+# Define the number of clusters required of each type
+n_required <- 49
+
+# Get age and household details
+ages <- 
+  bind_rows(
+    pd_moz$minicensus_people %>% mutate(country = 'Mozambique'),
+    pd_tza$minicensus_people %>% mutate(country = 'Tanzania')
+  ) %>%
+  mutate(days_old = Sys.Date() - dob) %>%
+  mutate(years_old = days_old / 365.25) %>%
+  mutate(is_child  = ifelse(country == 'Mozambique',
+                            years_old >= 0 & years_old < 5,
+                            years_old >= 5 & years_old < 15)) %>%
+  group_by(country) %>%
+  summarise(children = length(which(is_child)),
+            people = n()) %>%
+  ungroup %>%
+  mutate(percent_children = round(children / people * 100, digits = 2))
+
+hh <- bind_rows(
+  pd_moz$minicensus_main %>% mutate(country = 'Mozambique'),
+  pd_tza$minicensus_main %>% mutate(country = 'Tanzania')
+) %>%
+  group_by(country) %>%
+  summarise(avg_size = mean(hh_size))
+```
+
+```{r}
+# Create a df based on minicensus
+left <- minicensus_people %>%
+  left_join(minicensus_main %>% dplyr::select(instance_id,
+                                              country = hh_country)) %>%
+  mutate(years_old = (Sys.Date() - dob)/ 365.25) %>%
+  mutate(under5 = years_old >= 0 & years_old <= 5) %>%
+   mutate(is_child  = ifelse(country == 'Mozambique',
+                            years_old >= 0 & years_old <= 5,
+                            years_old >= 0 & years_old <= 15)) %>%
+  mutate(is_boy = is_child & gender == 'male') %>%
+  mutate(is_girl = is_child & gender == 'female') %>%
+  group_by(country, instance_id) %>%
+  summarise(n_members = n(),
+            under5s = length(which(under5)),
+            reproductive = length(which(gender == 'female' & years_old >=13 & years_old <= 49)),
+            n_females = length(which(gender == 'female')),
+            n_males = length(which(gender == 'male')),
+            n_boys = length(which(is_boy)),
+            n_girls = length(which(is_girl)),
+            n_children = length(which(is_child)))
+df_full <- df <-
+  left_join(left,
+            minicensus_main %>% dplyr::select(instance_id,
+                                              cows_1_year_plus = hh_n_cows_greater_than_1_year,
+                                              cows_babies = hh_n_cows_less_than_1_year,
+                                              pigs_6_weeks_plus = hh_n_pigs_greater_than_6_weeks,
+                                              pigs_babies = hh_n_pigs_less_than_6_weeks,
+                                              # country = hh_country,
+                                              code = hh_hamlet_code,
+                                              n_people = hh_size,
+                                              location = hh_geo_location)) 
+# Function for extracting lng and lat from a odk geocode object
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
+locs <- extract_ll(df$location)
+df$lng <- df$x <- locs$lng; df$lat <- df$y <- locs$lat
+# df$code <- df$hh_hamlet_code
+df <- left_join(df, bohemia::locations %>% 
+                  dplyr::distinct(code, .keep_all = TRUE) %>%
+                  dplyr::select(code, clinical_trial))
+
+df <- df %>% filter(lat < -3)
+df <- df %>%
+  filter((lat < -16 & country == 'Mozambique') |
+           (lat > -12 & country == 'Tanzania')
+  )
+library(sp)
+
+
+# Aggregate df
+df_agg <- df %>%
+  group_by(code) %>%
+  summarise(n_humans = sum(n_members),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_boys = sum(n_boys),
+            n_girls = sum(n_girls),
+            n_households = n(),
+            n_children = sum(n_children),
+            clinical_trial = dplyr::first(clinical_trial),
+            country = dplyr::first(country),
+            lng = mean(lng),
+            lat = mean(lat),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+            cows_babies = sum(cows_babies, na.rm = TRUE),
+            pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+            pigs_babies = sum(pigs_babies, na.rm = TRUE))
+df_agg <- df_agg %>% arrange(code)
+
+
+# Read in cluster difficulty access scores (sent from Eldo)
+difficulty <- read_csv('Mopeia.Hamlets_Accessibility_Scores.08.03.2021.csv')
+difficulty <- difficulty %>% dplyr::select(code, difficulty = Accessibility_Scores)
+difficulty$difficulty_value <- 
+  ifelse(difficulty$difficulty == 'Easy', 1,
+         ifelse(difficulty$difficulty == 'Normal', 2,
+                ifelse(difficulty$difficulty == 'Hard', 3,
+                       ifelse(difficulty$difficulty == 'Very Hard', 4,
+                              NA))))
+# Read in difficulty sent by Imani on March 22 2021
+difficulty_tza <- read_csv('Bohemia hamlets_Accessibility.csv') %>%
+  dplyr::select(code = hamlet_code,
+                difficulty = Accessibility) %>%
+  mutate(difficulty_value = 
+             ifelse(difficulty == 'Easy', 1,
+         ifelse(difficulty == 'Normal', 2,
+                ifelse(difficulty == 'Hard', 3,
+                       ifelse(difficulty == 'Very Hard', 4,
+                              NA)))))
+difficulty_tza <- difficulty_tza %>% filter(!duplicated(code))
+difficulty <- bind_rows(difficulty, difficulty_tza)
+difficulty <- difficulty %>% filter(!is.na(difficulty_value))
+df_agg <- left_join(df_agg, difficulty)
+df_agg <- df_agg %>% filter(!duplicated(code))
+df_agg <- df_agg %>% filter(!is.na(difficulty_value))
+
+
+
+# Get the data grouped by codes
+codes <- sort(unique(df_agg$code))
+locations_list <- list()
+locations_list_ll <- list()
+for(i in 1:length(codes)){
+  # message('INDEX ', i)
+  this_code <- codes[i]
+  this_data <- df %>% filter(code == this_code) %>% mutate(x = lng, y = lat)
+  coordinates(this_data) <- ~x+y
+  proj4string(this_data) <- proj4string(bohemia::mop2)
+  # CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+  ss <- spTransform(this_data, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+  # Get distances
+  # dd <- rgeos::gDistance(ss, byid = TRUE)
+  # Throw out anything more than 3k from centroid?
+  centroid <- apply(coordinates(ss), 2, median)
+  centroid <- data.frame(t(as.data.frame(centroid)))
+  coordinates(centroid) <- ~x+y
+  proj4string(centroid) <- proj4string(ss)
+  distance_from_centroid <- rgeos::gDistance(ss, centroid, byid = TRUE)
+  remove_these <- which(distance_from_centroid > 3000)
+  if(length(remove_these) > 0){
+    message('Removing ', length(remove_these), ' of ', nrow(ss), ' due to weird distances.')
+    this_data <- this_data[!(1:nrow(this_data)) %in% remove_these,]
+    ss <- ss[!(1:nrow(ss)) %in% remove_these,]
+  } else {
+    message('No removals for hamlet of ', nrow(ss))
+  }
+  locations_list_ll[[i]] <- this_data
+  locations_list[[i]] <- ss
+}
+names(locations_list) <- names(locations_list_ll) <- codes
+locations_df <- do.call('rbind', locations_list)
+df <- locations_df@data
+df_sp <- df
+coordinates(df_sp) <- ~lng+lat
+proj4string(df_sp) <- proj4string(bohemia::mop2)
+df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+)
+
+
+# Remake the aggregated dataframe, overwriting df
+df <- df %>%
+  ungroup %>%
+  group_by(code) %>%
+  summarise(n_humans = sum(n_members),
+            under5s = sum(under5s),
+            n_reproductive = sum(reproductive),
+            n_females = sum(n_females),
+            n_males = sum(n_males),
+            n_boys = sum(n_boys),
+            n_girls = sum(n_girls),
+            n_households = n(),
+            n_children = sum(n_children),
+            clinical_trial = dplyr::first(clinical_trial),
+            country = dplyr::first(country),
+            lng = mean(lng),
+            lat = mean(lat),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+            cows_babies = sum(cows_babies, na.rm = TRUE),
+            pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+            pigs_babies = sum(pigs_babies, na.rm = TRUE))
+df <- df %>% arrange(code)
+
+
+# Combine with difficulty
+df <- left_join(df, difficulty)
+
+
+```
+
+## K means
+
+```{r}
+x <- df %>% filter(country == 'Mozambique')
+# ggplot(data = x,
+#        aes(x = lng,
+#            y = lat,
+#            color = n_children>=35)) +
+#   geom_point()
+
+
+# # Create a dataframe of only children
+# child_list <- list()
+# counter <- 0
+# for(i in 1:nrow(df_full)){
+#   message(i, ' of ', nrow(df_full))
+#   this_hh <- df_full[i,]
+#   n_children <- this_hh$n_children
+#   if(n_children > 0){
+#     counter <- counter +1
+#     out_df <- tibble(number = 1:n_children,
+#                      code = this_hh$code,
+#                      instance_id = this_hh$instance_id,
+#                      location = this_hh$location)
+#     child_list[[counter]] <- out_df
+#   }
+# }
+# children <- bind_rows(child_list)
+# x <- children %>%
+#   left_join(df %>% dplyr::select(code,
+#                                  country)) %>%
+#   filter(country == 'Mozambique')
+# locs <- extract_ll(x$location)
+# x$lng <- locs$lng; x$lat <- locs$lat
+
+k <- kmeans(x = x[,c('lng', 'lat')],
+            centers = 150)
+
+k_centroids <- k$centers
+plot(bohemia::mop2)
+points(k_centroids)
+
+x$cluster <- k$cluster
+# x$cluster <- as.numeric(factor(x$code))
+cols <- rainbow(max(x$cluster))
+cols_vec <- adjustcolor(cols[x$cluster], alpha.f = 0.3)
+plot(x$lng, x$lat, col = cols_vec, pch = '.', cex = 1)
+
+ggplot(data = x,
+       aes(x = lng,
+           y = lat,
+           col = factor(cluster))) +
+  geom_point(alpha = 0.4, size = 0.4) +
+  theme(legend.position = 'none')
+
+# leaflet() %>%
+#   addProviderTiles(providers$Esri.WorldImagery) %>%
+#   addCircleMarkers(data = x,
+#                    weight = 3,
+#                    opacity = 0,
+#                    fillOpacity = 0.7,
+#                    fillColor = cols_vec)
+
+agg <- x %>% 
+  group_by(cluster) %>%
+  summarise(n = n())
+
+
+```
+
+
+## Simple method (outward in)
+
+```{r}
+# Hamlet method
+pd <- df_sp[df_sp@data$country == 'Mozambique',]
+coords <- coordinates(pd)
+pd@data$lng <- coords[,1]
+pd@data$lat <- coords[,2]
+pd$id <- pd$code
+
+# # Children method
+# pd <- x
+# pd$id <- pd$cluster
+# pd$x <- pd$lng; pd$y <- pd$lat
+# coordinates(pd) <- ~x+y
+# proj4string(pd) <- proj4string(bohemia::mop2)
+
+
+v <- voronoi(shp = pd, poly = bohemia::mop2)
+
+# Create an assignment vector
+assignment_vector <- c(rep(1, 49), rep(2, 49), rep(3, 49))
+assignment_vector <- sample(assignment_vector, length(assignment_vector))
+# Add to it in case we have more than 3*48 clusters
+part2 <- sample(1:3, size = 1000000 - length(assignment_vector), replace = TRUE)
+assignment_vector <- c(assignment_vector, part2) # this is now unnecessarily long, but at least has perfect uniform distribution for the first 144 elements, which is needed
+v@data$assignment_group <- assignment_vector[1:nrow(v)]
+
+# Project
+vp <- spTransform(v, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+
+# Get inner buffer of 1 km
+vb <- gBuffer(vp, byid = T, width = -1000)
+
+# Cast back to lng/lat
+vbll <- spTransform(vb, proj4string(bohemia::mopeia2))
+
+
+# Plot
+plot(vbll)
+
+# Get how many people are in each area
+hh <- x#df_sp[df_sp@data$country == 'Mozambique',]
+coordinates(hh) <- ~lng+lat
+proj4string(hh) <- proj4string(bohemia::mop2)
+coords <- coordinates(hh)
+hh@data$lng <- coords[,1]
+hh@data$lat <- coords[,2]
+hh$id <- hh$code
+overx <- over(hh, polygons(vbll))
+
+keep <- hh[!is.na(overx),]
+points(keep, col = 'red', pch = '.')
+nrow(keep)
+keep@data %>%
+  group_by(cluster) %>%
+  tally
+# Get which households
+```
+
+```{r}
+set.seed(27)
+keep_index <- which(!is.na(df$difficulty_value))
+out <- try_clusters_hh_level(the_country = 'Tanzania',
+                         include_clinical = FALSE,
+                         minimum_households = 0,
+                         minimum_children = 35,
+                         minimum_humans = 0,
+                         minimum_animals = 0,
+                         minimum_cattle = 0,
+                         minimum_pigs = 0,
+                         minimum_goats = 0,
+                         km = 2,
+                         max_km_from_hq = 1000,
+                         start_at_hq = FALSE,
+                         df = df[keep_index,],
+                         locations_list = locations_list[keep_index])
+knitr::kable(carlos_table(out = out, country = 'Tanzania'))
+```
+
+## Complex (but smaller N) method
+
+```{r}
+# Get distances between hamlets
+df_agg <- df %>% filter(country == 'Mozambique')
+df_agg_sp <- df_agg
+coordinates(df_agg_sp) <- c('lng', 'lat')
+proj4string(df_agg_sp) <- proj4string(bohemia::mop2)
+df_agg_sp_proj <- spTransform(df_agg_sp, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+distances <- spDists(x = df_agg_sp_proj,
+                     y = df_agg_sp_proj)
+
+# Define a random order to go through clusters
+random_index <- sample(1:nrow(df_agg), nrow(df_agg))
+
+# Re-arrange both df and location lists accordingly
+df_agg <- df_agg[random_index,]
+locations_list <- locations_list[random_index]
+locations_list_ll <- locations_list_ll[random_index]
+
+# Create an assignment vector
+assignment_vector <- c(rep(1, 49), rep(2, 49), rep(3, 49))
+assignment_vector <- sample(assignment_vector, length(assignment_vector))
+# Add to it in case we have more than 3*48 clusters
+part2 <- sample(1:3, size = 1000000 - length(assignment_vector), replace = TRUE)
+assignment_vector <- c(assignment_vector, part2) # this is now unnecessarily long, but at least has perfect uniform distribution for the first 144 elements, which is needed
+
+# Go through each row of df, and start building outward clusters
+time_to_stop <- FALSE
+counter <- 0
+out_list <- list()
+assigned <- c()
+hamlet_codes <- df_agg$code
+while(!time_to_stop){
+  possible_hamlet_codes <- hamlet_codes[!hamlet_codes %in% assigned]
+  counter <- counter + 1
+  new_hamlet_code <- possible_hamlet_codes[1]
+  these_hamlet_codes <- new_hamlet_code
+  these_hamlets <- df_agg %>% filter(code %in% these_hamlet_codes)
+  these_indices <- which(df_agg$code %in% these_hamlet_codes)
+  assigned <- c(assigned, this_hamlet_code)
+  these_locations <- locations_list[[these_indices]]
+  # Get if sufficient or not
+  is_sufficient <- sum(these_hamlets$n_children) >= 35
+  while(!is_sufficient){
+    # Get the nearest non-assigned hamlet and add to it
+    distance_to_others <- distances[df_agg$code == new_hamlet_code,]
+    distance_df <- tibble(code = df_agg$code,
+                          distance = distance_to_others)
+    # Filter down to keep only (a) other hamlets and (b) those not yet assigned
+    distance_df <- distance_df %>% filter(!code %in% assigned) %>%
+      arrange(distance)
+    new_hamlet_code <- distance_df$code[1]
+    # mark as assigned
+    assigned <- c(assigned, new_hamlet_code)
+    these_hamlets <- df_agg %>% filter(code %in% these_hamlet_codes)
+    this_cluster 
+  }
+}
+
+```

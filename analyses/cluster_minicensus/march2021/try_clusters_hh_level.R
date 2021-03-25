@@ -38,22 +38,22 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
                          df = NULL,
                          locations_list = NULL,
                          cap = 147){
-  set.seed(27)
-  keep_index <- which(!is.na(df$difficulty_value))
-  the_country = 'Tanzania'
-                               include_clinical = FALSE
-                               minimum_households = 0
-                               minimum_children = 35
-                               minimum_humans = 0
-                               minimum_animals = 0
-                               minimum_cattle = 0
-                               minimum_pigs = 0
-                               minimum_goats = 0
-                               km = 2
-                               max_km_from_hq = 1000
-                               start_at_hq = FALSE
-                               df = df[keep_index,]
-                               locations_list = locations_list[keep_index]
+  # set.seed(27)
+  # keep_index <- which(!is.na(df$difficulty_value))
+  # the_country = 'Tanzania'
+  #                              include_clinical = FALSE
+  #                              minimum_households = 0
+  #                              minimum_children = 35
+  #                              minimum_humans = 0
+  #                              minimum_animals = 0
+  #                              minimum_cattle = 0
+  #                              minimum_pigs = 0
+  #                              minimum_goats = 0
+  #                              km = 2
+  #                              max_km_from_hq = 1000
+  #                              start_at_hq = FALSE
+  #                              df = df[keep_index,]
+  #                              locations_list = locations_list[keep_index]
 
   # Define the shp based on the country
   if(the_country == 'Tanzania'){
@@ -152,12 +152,9 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
   part2 <- sample(1:3, size = 1000000 - length(assignment_vector), replace = TRUE)
   assignment_vector <- c(assignment_vector, part2) # this is now unnecessarily long, but at least has perfect uniform distribution for the first 144 elements, which is needed
   
-  # Get a household level projected form
-  df_sp_proj <- spTransform(df_sp, new_proj)
-  
   done <- FALSE
   cluster_counter <- 1
-  poly_list <- complete_clusters <- buffer_list <- list()
+  poly_list <- complete_clusters <- list()
   next_hamlet_id <- polys <-  NULL
   while(!done){
     message('Cluster number: ', cluster_counter)
@@ -184,6 +181,7 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
     radius <- 0.0000001
     # cluster_convex <- SpatialPolygonsDataFrame(Sr = gConvexHull(spgeom = gBuffer(this_cluster_sp, width = radius)), 
     #                                            data = data.frame(cluster = cluster_counter))
+    this_locx <- sub_locations_list[[this_hamlet_id]]
     if(nrow(this_locx) == 1){
       this_locx <- gBuffer(this_locx, width = radius)
     }
@@ -258,29 +256,8 @@ try_clusters_hh_level <- function(the_country = 'Tanzania',
     }
     # Now is sufficient. So, save polygons, record sufficiency, and bump up cluster counter
     poly_list[[cluster_counter]] <- cluster_convex
-    if(is_sufficient & !done_with_overlap_test){
-      complete_clusters[[cluster_counter]] <- TRUE} else { 
-        complete_clusters[[cluster_counter]] <- FALSE}
-    
-    # MARCH 25
-    # # Also get households in buffer, and mark as already assigned
-    # # Need to just get the core area
-    # this_buffer <- gBuffer(cluster_convex, width = 1000)
-    # # Get buffer only zone
-    # buffer_only <- gDifference(this_buffer, cluster_convex)
-    # # Get households in buffer only
-    # in_buffer_only_indices <- over(df_sp_proj, polygons(buffer_only))
-    # in_buffer_hh <- df_sp_proj[!is.na(in_buffer_only_indices),]
-    # in_buffer_hh_df <- in_buffer_hh@data %>%
-    #   mutate(cluster = cluster_counter)
-    # buffer_list[[length(buffer_list)+1]] <- in_buffer_hh_df
-    
-    
+    if(is_sufficient & !done_with_overlap_test){complete_clusters[[cluster_counter]] <- TRUE} else { complete_clusters[[cluster_counter]] <- FALSE}
     cluster_counter <- cluster_counter + 1
-    
-
-    
-    
     # See if we're done. 
     done <- all(xdf$assigned)
     # If not done, get the next starting point (ie, a point away from all previous clusters with a different assignment)
