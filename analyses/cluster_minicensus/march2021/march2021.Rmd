@@ -447,15 +447,29 @@ plot(buffers_df)
 # go through each individual household, defining cores along the way
 households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
 households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+# Get distances between all households
+all_distances <- gDistance(households_projected, byid = T)
+```
+
+
+```{r}
+carlos_list <- list()
+buffer_distances <- seq(100, 2000, 100)
+for(bf in 1:length(buffer_distances)){
+  buffer_distance  <- buffer_distances[bf]
+  
+# go through each individual household, defining cores along the way
+households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
+households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
 households_projected@data$id <- 1:nrow(households_projected)
 households_projected$status <- 'available'
 households_projected$cluster <- households_projected$cc <- households_projected$assignment_group <- NA
-# Get distances between all households
-all_distances <- gDistance(households_projected, byid = T)
+
 households_projected@data$distance_id <- 1:nrow(households_projected)
 
 
 # Define a function for creating a core given a point and a set of eligible households
+
 create_core <- function(pt, eligibles, n_clusters = 1){
   # Get distance from pt to eligibles
   distances <- spDists(pt, eligibles)
@@ -464,19 +478,33 @@ create_core <- function(pt, eligibles, n_clusters = 1){
   keep <- order(distances)
   enough <- FALSE
   counter <- 0
-  cc_vec <- c()
+  cc_vec <- cluster_number_vec <- c()
+  cluster_number <- 1
   while(!enough){
+    # message('---working on cluster ', cluster_number)
     counter <- counter + 1
-    # message(counter)
-    # message(counter)
+
     keep_only <- keep[1:counter]
     core <- eligibles[keep_only,]
     n_children <- sum(core@data$n_children)
     cc_vec[counter] <- n_children
-    enough <- n_children >= (35*n_clusters)
+    cluster_number_vec[counter] <- cluster_number
+    xdf <- tibble(cc = cc_vec,
+                  cluster = cluster_number_vec) %>%
+      mutate(n_c = cc - dplyr::lag(cc, 1)) %>%
+      mutate(n_c = ifelse(is.na(n_c), cc, n_c))
+    xdf <- xdf %>% filter(cluster == cluster_number)
+    # see if we've just passed the threshold for this cluster
+    just_passed <- FALSE
+    if(nrow(xdf) > 1){
+        just_passed <- sum(xdf$n_c) >=35
+        if(just_passed){
+          cluster_number <- cluster_number + 1
+        }
+    }
+    enough <- cluster_number > n_clusters #n_children >= (35*n_clusters)
   }
-  cc_out <- (cc_vec %/% 35) + 1
-  cc_out <- ifelse(cc_out >= n_clusters, n_clusters, cc_out)
+  cc_out <- cluster_number_vec
   core@data$cc <- cc_out
   message('---Successfully created a core area of ', n_children)
   return(core)
@@ -512,7 +540,6 @@ ag_df <- tibble(assignment = assignment_vector,
                 assignment_group = assignment_groups)
 ag_counter <- 0
 cols <- palette[ag_df$assignment]
-buffer_distance <- 1000
 
 
 while(!done){
@@ -540,7 +567,7 @@ while(!done){
     as_close_to_here_as_possible <- previous_not_nas <- previous[!is.na(previous@data$assignment),]
     previous_not_nas <- previous_not_nas[previous_not_nas@data$assignment != this_assignment,]
     stay_away_from_these <- previous_not_nas
-    # stay_away_from_these <- hull_polygon(stay_away_from_these, hull_type = 'concave')#gConvexHull(core)
+  # stay_away_from_these <- hull_polygon(stay_away_from_these, hull_type = 'concave')#gConvexHull(core)
   #   stay_away_from_these <- SpatialPolygonsDataFrame(
   #   Sr = stay_away_from_these,
   #   data = data.frame(x = 1),
@@ -570,6 +597,9 @@ while(!done){
   this_hh <- elbs[random_index,]
   # Create core
   core <- create_core(pt = this_hh, eligibles = elbs, n_clusters = nr)
+  core@data %>%
+    group_by(cc) %>%
+    summarise(kids = sum(n_children))
   # Create convex hull
   suppressMessages({
     hull <- hull_polygon(core, hull_type = 'concave')#gConvexHull(core)
@@ -598,14 +628,18 @@ while(!done){
   ids_in_core <- core@data$id
   # ids_in_buffer <- ids_in_buffer[!ids_in_buffer %in% ids_in_core]
   message('------', length(ids_in_core), ' households in core.')
+  message('------', sum(core@data$n_children), ' children in core.')
   # message('------', length(ids_in_buffer), ' households in buffer')
   # Write to the master dataframe
   # households_projected@data$status[households_projected@data$id %in% ids_in_buffer] <- 'buffer'
-  households_projected@data$status[households_projected@data$id %in% ids_in_core] <- 'core'
+  # households_projected@data$status[households_projected@data$id %in% ids_in_core] <- 'core'
   # households_projected@data$assignment_group[households_projected@data$id %in% ids_in_buffer] <- ag_counter
-  households_projected@data$assignment_group[households_projected@data$id %in% ids_in_core] <- ag_counter
-  households_projected@data$cc[households_projected@data$id %in% ids_in_core] <- core@data$cc
-
+  # households_projected@data$assignment_group[households_projected@data$id %in% ids_in_core] <- ag_counter
+  core@data$assignment_group <- ag_counter
+  core@data$status <- 'core'
+  # Get the cc number
+  non_core <- households_projected[!households_projected@data$id %in% ids_in_core,]
+  households_projected <- rbind(core, non_core)
   # # Save polygons
   # buffers_list[[ag_counter]] <- buffer
   # cores_list[[ag_counter]] <- core
@@ -630,9 +664,13 @@ while(!done){
   plot(all_cores, add = T)
   
 
-  title(main = paste0(ag_counter, ' assignment groups finished.'),
+  title(main = paste0(ag_counter, ' assignment groups finished.\nBuffer distance: ', buffer_distance),
         sub = paste0(nrow(sub_ag_df), ' clusters done.'))
-  print(table(households_projected@data$assignment_group[households_projected@data$status == 'core']))
+  tt <- households_projected@data %>%
+    group_by(assignment_group, cc) %>%
+    summarise(kids = sum(n_children))
+  print(ungroup(tt))
+  # print(table(households_projected@data$assignment_group[households_projected@data$status == 'core']))
   # Sys.sleep(0.35)
   # Check to see if done
   cluster_counter <- nrow(sub_ag_df)
@@ -674,7 +712,7 @@ plot(ags,
      col = cols[ags@data$assignment])
 
 # Get buffers
-gbufs <- gBuffer(ags, width = 1000)
+gbufs <- gBuffer(ags, width = buffer_distance)
 plot(gbufs, add = T) # this is visually nice, but a bit misleading, since it sometimes shows shapes in areas which aren't really there
 
 # Buffer points
@@ -686,8 +724,17 @@ plot(core_points, pch = '.', col = cols[core_points@data$assignment])
 
 # Get the correct cluster number for each core
 households_projected@data$cluster <- as.numeric(factor(paste0(households_projected@data$assignment_group, '-', households_projected@data$cc)))
-table(households_projected@data$cluster)
 households_projected@data$cluster <- ifelse(households_projected@data$cluster > 147, NA, households_projected@data$cluster)
+households_projected@data %>%
+  group_by(cluster) %>%
+  summarise(kids = sum(n_children)) %>%
+  arrange((kids))
+
+households_projected@data %>%
+  group_by(assignment_group, cc) %>%
+  summarise(kids = sum(n_children)) %>%
+  arrange((kids))
+
 
 # Need to get the buffer status of all households NOT in core
 # will do so by getting the status of the nearest one
@@ -700,7 +747,9 @@ distance_to_cores <-
 min_distance <- apply(distance_to_cores, 1, min)
 nearest_one <- apply(distance_to_cores, 1, which.min)
 households_non_core@data$assignment <- households_core@data$assignment[nearest_one]
-households_non_core@data$status <- ifelse(nearest_one <= 1000, 'buffer', 'non-study')
+households_non_core@data$status <- ifelse(as.numeric(min_distance) <= buffer_distance, 'buffer', 'non-study')
+households_non_core@data$assignment <- ifelse(households_non_core@data$status == 'non-study',NA, households_non_core@data$assignment)
+table(households_non_core@data$assignment, households_non_core@data$status)
 # Join back to households main
 households_projected <-
   rbind(households_core,
@@ -710,7 +759,8 @@ households_projected <-
 down_sampled <- households_projected@data %>%
   filter(!is.na(assignment))
 oos <- households_projected@data %>%
-  filter(is.na(assignment))
+  filter(is.na(assignment) | is.na(cluster))
+table(households_projected@data$status, households_projected@data$assignment)
 
 # Group by assignment and get some values
 carlos <- down_sampled %>%
@@ -728,9 +778,53 @@ carlos <- down_sampled %>%
   mutate(adults = people - kids,
          adults_core = people_core - kids_core,
          adults_buffer = people_buffer - kids_buffer) %>%
-  dplyr::select(-people, -people_core, -people_buffer, -kids)
-carlos
+  dplyr::select(-people, -people_core, -people_buffer, -kids) %>%
+  mutate(buffer_meters = buffer_distance)
 message('Out of study: ', nrow(oos), ' households with ', sum(oos$n_people), ' people')
+message('Number of adults in core+buffer areas: ', sum(carlos$adults_buffer + carlos$adults_core), ' (should be <=30k)')
+save(households_projected, carlos, file = paste0(buffer_distance, '.RData'))
+carlos_list[[bf]] <- carlos
+}
+carlos <- bind_rows(carlos_list)
+
+
+# Make a map
+in_core <- households_projected[households_projected@data$status == 'core',]
+in_core <- spTransform(in_core, proj4string(bohemia::mop2))
+
+icons <- awesomeIcons(
+  # icon = 'ios-close',
+  # iconColor = 'black',
+  library = 'ion',
+  markerColor = cols[in_core@data$assignment]
+)
+
+in_buffer <- households_projected[households_projected@data$status == 'buffer',]
+in_buffer <- spTransform(in_buffer, proj4string(bohemia::mop2))
+non_study <- households_projected[households_projected@data$status == 'non-study',]
+non_study <- spTransform(non_study, proj4string(bohemia::mop2))
+greenLeafIcon <- makeIcon(
+  iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+  iconWidth = 5, iconHeight = 12,
+  iconAnchorX = 2, iconAnchorY = 12#,
+  # shadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+  # shadowWidth = 50, shadowHeight = 64,
+  # shadowAnchorX = 4, shadowAnchorY = 62
+)
+l = leaflet() %>%
+  addTiles() %>%
+  # addAwesomeMarkers(data = in_core, icon=icons)
+
+  addCircleMarkers(data = in_core, fillColor = cols[in_core@data$assignment],
+                   weight = 2, radius = 6,
+                   color =  cols[in_core@data$assignment]) %>%
+    # addMarkers(data = in_buffer, icon = greenLeafIcon) %>%
+  addCircleMarkers(data = in_buffer, col = 'yellow',
+                   radius = 4,
+             weight = 2, fillColor = cols[in_buffer@data$assignment]) %>%
+  addCircleMarkers(data = non_study, col = 'black',
+                   weight = 0, radius = 2) 
+htmlwidgets::saveWidget(widget = l, file = '~/Desktop/vis.html', selfcontained = F)
 ```
 
 # Splitting hamlets, 35-kid clusters with no buffer (combine then buffer later)
@@ -906,7 +1000,7 @@ plot(gtab, col = rainbow(3)[gtab@data$assignment])
 
 # Create internal borders
 gtabb <- gBuffer(gtab, byid = TRUE, id = gtab@data$assignment,
-                 width = -1000)
+                 width = -1 * buffer_distance)
 plot(gtabb, col = adjustcolor(rainbow(3)[gtabb@data$assignment], alpha.f = 0.3))
 
 # Now we've got our ttm areas clear, just not to get the number of people in each
