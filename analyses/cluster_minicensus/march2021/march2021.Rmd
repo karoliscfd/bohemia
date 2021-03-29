@@ -685,8 +685,9 @@ plot(core_points, pch = '.', col = cols[core_points@data$assignment])
 # They should also be correct (at least in terms of assignment) for the buffer areas too
 
 # Get the correct cluster number for each core
-households_projected@data$cluster <- households_projected@data$assignment_group + households_projected@data$cc - 1
+households_projected@data$cluster <- as.numeric(factor(paste0(households_projected@data$assignment_group, '-', households_projected@data$cc)))
 table(households_projected@data$cluster)
+households_projected@data$cluster <- ifelse(households_projected@data$cluster > 147, NA, households_projected@data$cluster)
 
 # Need to get the buffer status of all households NOT in core
 # will do so by getting the status of the nearest one
@@ -707,10 +708,9 @@ households_projected <-
 
 # Downsample to just clusters 1:147
 down_sampled <- households_projected@data %>%
-  filter(!is.na(assignment)) %>%
-  filter(cluster %in% 1:147)
+  filter(!is.na(assignment))
 oos <- households_projected@data %>%
-  filter(is.na(assignment) | cluster > 147)
+  filter(is.na(assignment))
 
 # Group by assignment and get some values
 carlos <- down_sampled %>%
