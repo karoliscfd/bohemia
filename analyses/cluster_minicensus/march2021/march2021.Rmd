@@ -61,12 +61,12 @@ if('data.RData' %in% dir()){
   load('data.RData')
 } else {
   pd_moz <- load_odk_data(the_country = 'Mozambique',
-                    credentials_path = '../../credentials/credentials.yaml',
-                    users_path = '../../credentials/users.yaml',
+                    credentials_path = '../../../credentials/credentials.yaml',
+                    users_path = '../../../credentials/users.yaml',
                     efficient = FALSE)
   pd_tza <- load_odk_data(the_country = 'Tanzania',
-                      credentials_path = '../../credentials/credentials.yaml',
-                      users_path = '../../credentials/users.yaml',
+                    credentials_path = '../../../credentials/credentials.yaml',
+                    users_path = '../../../credentials/users.yaml',
                       efficient = FALSE)
   is_local <- FALSE
   library(DBI)
@@ -301,8 +301,670 @@ df <- df %>% arrange(code)
 
 # Combine with difficulty
 df <- left_join(df, difficulty)
+```
+
+# Combine first
+
+```{r}
+x <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
+x$cluster <- as.numeric(factor(as.character(x$code)))
+# Get smallest adjoining
+clusters <- sort(unique(x$cluster))
+for(i in 1:length(clusters)){
+  this_cluster <- clusters[i]
+  message(this_cluster, '. ', i, ' of ', length(clusters))
+  these_hh <- x[x@data$cluster == this_cluster,]
+  n_children <- sum(these_hh@data$n_children)
+  while(n_children < 35){
+    message('---', n_children, ' is too low. Adding')
+    other_hh <- x[x@data$cluster != this_cluster,]
+    # not enough children, add to nearby area
+    distances <- spDists(x = these_hh,
+                         y = other_hh)
+    nearest_index <- which.min(apply(distances, 2, min))
+    nearest_cluster <- other_hh@data$cluster[nearest_index]
+    # Assign those to the same cluster
+    x@data$cluster[x@data$cluster == nearest_cluster] <- this_cluster
+    these_hh <- x[x@data$cluster %in% c(this_cluster),]
+    n_children <- sum(these_hh@data$n_children)
+  }
+}
+
+# Check to make sure that we have 35 or more per cluster
+outcome <- x@data %>%
+  group_by(cluster) %>%
+  summarise(n_children = sum(n_children)) %>%
+  arrange(n_children)
+
+# Re number the clusters
+x@data$cluster <- as.numeric(factor(as.character(x$cluster)))
+
+# Sanity check (plot)
+color_palette <- rainbow(length(unique(x@data$cluster)))
+color_palette <- sample(color_palette, size = length(color_palette))
+cols_vec <- color_palette[x@data$cluster]
+leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(data = x,
+                   weight = 1,
+                   opacity = 0.6,
+                   fillOpacity = 0.7,
+                   fillColor = cols_vec,
+                   popup = paste0(
+                     'Cluster: ', x@data$cluster,
+                     ' Hamlet: ', x@data$code
+                   ))
+
+# Now that we have clusters, and all clusters have >= 35 children, time to establish cores and buffers
+# Define function to get a "core" based on a distribution
+get_core <- function(spatial_dataframe){
+  # spatial_dataframe <- x[x@data$cluster == 1,]
+  # Project
+  original_projection <- proj4string(spatial_dataframe)
+  projected <- spTransform(spatial_dataframe, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+# Get those points which are nearest to other points
+  distances <- spDists(x = spatial_dataframe)
+  dd <- apply(distances, 1, mean)
+  # Keep only those needed to get up to 35 children
+  keep <- order(dd)#[1:35]
+  enough <- FALSE
+  counter <- 0
+  while(!enough){
+    counter <- counter + 1
+    # message(counter)
+    keep_only <- keep[1:counter]
+    core <- projected[keep_only,]
+    n_children <- sum(core@data$n_children)
+    enough <- n_children >= 35
+  }
+
+  # Create the core
+  core <- projected[keep_only,]
+  # Create the convex hull
+  hull <- gConvexHull(core)
+  # Add the buffer to it
+  buffer <- gBuffer(hull, width = 2000)
+  buffer <- SpatialPolygonsDataFrame(
+    Sr = buffer,
+    data = data.frame(cluster = spatial_dataframe$cluster[1]),
+    match.ID = FALSE
+  )
+  
+  # plot(buffer)
+  # points(projected)
+  # plot(hull, add = T, col = adjustcolor('red', alpha.f = 0.3))
+  
+  # Return just those points in the core
+  # return_object <- spTransform(core, original_projection)
+  return_object <- buffer
+  return(return_object)
+}
+
+buffers_list <- list()
+clusters <- sort(unique(x@data$cluster))
+for(i in 1:length(clusters)){
+  message(i, ' of ', length(clusters))
+  this_cluster <- clusters[i]
+  this_df <- x[x@data$cluster == this_cluster,]
+  this_buffer <- get_core(this_df)
+  buffers_list[[i]] <- this_buffer
+}
+buffers <- do.call('rbind', buffers_list)
+
+# Loop through each cluster, remove its overlappers, then keep going
+buffers_df <- buffers
+done <- FALSE
+counter <- 0
+while(!done){
+  counter <- counter + 1
+  this_buffer <- buffers_df[counter,]  
+  other_buffers <- buffers_df[!(1:nrow(buffers_df)) %in% counter,]
+  # Identify overlappers
+  overlappers <- gIntersects(spgeom1 = this_buffer,
+                             spgeom2 = other_buffers, byid = T)
+  overlappers <- overlappers[,1]
+  message('Going to remove ',
+          length(which(overlappers)),
+          ' overlapping clusters')
+  # plot(buffers)
+  # plot(this_buffer, col = 'red', add = TRUE)
+  # plot(other_buffers[overlappers,],
+  #      col = adjustcolor('blue', alpha.f = 0.3),
+  #      add = T)
+  # Remove the overlappers
+  buffers_df <- buffers_df[!overlappers,]
+  done <- counter >= nrow(buffers_df)
+  # Sys.sleep(3)
+}
+plot(buffers_df)
+
+# The above demonstrates that we have to split hamlets
+```
+
+# Splitting hamlets
+
+```{r}
+# go through each individual household, defining cores along the way
+households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
+households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+households_projected@data$id <- 1:nrow(households_projected)
+households_projected$status <- 'available'
+households_projected$cluster <- households_projected$cc <- households_projected$assignment_group <- NA
+# Get distances between all households
+all_distances <- gDistance(households_projected, byid = T)
+households_projected@data$distance_id <- 1:nrow(households_projected)
 
 
+# Define a function for creating a core given a point and a set of eligible households
+create_core <- function(pt, eligibles, n_clusters = 1){
+  # Get distance from pt to eligibles
+  distances <- spDists(pt, eligibles)
+  distances <- distances[1,]
+  
+  keep <- order(distances)
+  enough <- FALSE
+  counter <- 0
+  cc_vec <- c()
+  while(!enough){
+    counter <- counter + 1
+    # message(counter)
+    # message(counter)
+    keep_only <- keep[1:counter]
+    core <- eligibles[keep_only,]
+    n_children <- sum(core@data$n_children)
+    cc_vec[counter] <- n_children
+    enough <- n_children >= (35*n_clusters)
+  }
+  cc_out <- (cc_vec %/% 35) + 1
+  cc_out <- ifelse(cc_out >= n_clusters, n_clusters, cc_out)
+  core@data$cc <- cc_out
+  message('---Successfully created a core area of ', n_children)
+  return(core)
+}
+
+
+# Define a random starting point
+set.seed(1)
+library(rangemap)
+done <- FALSE
+cluster_counter <- 0
+buffers_list <- cores_list <- cores_poly_list <- list()
+palette <- rainbow(3)
+
+# Create an assignment vector
+assignment_vector <- c(rep(1, 49), rep(2, 49), rep(3, 49))
+assignment_vector <- sample(assignment_vector, length(assignment_vector))
+# Add to it in case we have more than 3*48 clusters
+part2 <- sample(1:3, size = 1000000 - length(assignment_vector), replace = TRUE)
+assignment_vector <- c(assignment_vector, part2) # this is now unnecessarily long, but at least has perfect uniform distribution for the first 144 elements, which is needed
+
+# Based on assignment vector, get a vector of grouped assignments
+assignment_groups <- c(1)
+counter <- 1
+for(i in 2:length(assignment_vector)){
+  if(!assignment_vector[i] == assignment_vector[i-1]){
+    counter <- counter + 1
+  }
+  assignment_groups[i] <- counter
+}
+unique_assignment_groups <- sort(unique(assignment_groups))
+ag_df <- tibble(assignment = assignment_vector,
+                assignment_group = assignment_groups)
+ag_counter <- 0
+cols <- palette[ag_df$assignment]
+buffer_distance <- 1000
+
+
+while(!done){
+  ag_counter <- ag_counter + 1  
+  this_assignment <- ag_df$assignment[ag_df$assignment_group == ag_counter][1]
+
+  # Get the n rows for the assignment group
+  nr <- ag_df %>% filter(assignment_group == ag_counter) %>% nrow()
+  # Get number of children
+  n <- nr * 35
+  # cluster_counter <- cluster_counter + 1
+  # this_assignment <- assignment_vector[cluster_counter]
+  message('Working on assignment group: ', ag_counter, '. ', nr, ' clusters')
+  # elbs <- households_projected[households_projected@data$status == 'available',]
+  elbs <- households_projected[households_projected@data$status != 'core',]
+  eligible_ids <- elbs@data$distance_id
+  
+  if(ag_counter > 1){
+      # Eligibles have to be at least 2km from the edge of the already assigned areas
+     # elbs_distances <- gDistance(all_buffers, elbs, byid = T) # get distance from all_buffers
+    # We want to get those which are FAR from households already assigned to ANOTHER assignment status
+    previous <- households_projected
+    previous@data <- left_join(previous@data, ag_df %>% dplyr::distinct(assignment_group, assignment))
+    # previous_nas <- previous[is.na(previous@data$assignment),] 
+    as_close_to_here_as_possible <- previous_not_nas <- previous[!is.na(previous@data$assignment),]
+    previous_not_nas <- previous_not_nas[previous_not_nas@data$assignment != this_assignment,]
+    stay_away_from_these <- previous_not_nas
+    # stay_away_from_these <- hull_polygon(stay_away_from_these, hull_type = 'concave')#gConvexHull(core)
+  #   stay_away_from_these <- SpatialPolygonsDataFrame(
+  #   Sr = stay_away_from_these,
+  #   data = data.frame(x = 1),
+  #   match.ID = FALSE
+  # )
+    stay_away_from_these_ids <- stay_away_from_these@data$distance_id
+    
+    # Keep ONLY households which are sufficiently far from the stay-away households
+    these_distances <- all_distances[eligible_ids, stay_away_from_these_ids]
+    elbs_distances <- apply(these_distances, 1, min)
+    keep_elbs <- elbs_distances >= (buffer_distance*2) # multiply by 2, since the distance is not including their buffer
+    elbs <- elbs[keep_elbs,]
+
+    # Now we have only eligible points. But we want to start the next one as close as possible to
+    # the already assigned areas
+    eligible_ids <- elbs@data$distance_id
+
+    as_close_to_here_as_possible_ids <- as_close_to_here_as_possible@data$distance_id
+    these_distances <- all_distances[eligible_ids, as_close_to_here_as_possible_ids]
+    elbs_distances <- apply(these_distances, 1, min)
+    random_index <- which.min(elbs_distances)[1]
+  } else {
+    random_index <- sample(1:nrow(elbs), 1)
+  }
+
+  this_hh <- elbs[random_index,]
+  # Create core
+  core <- create_core(pt = this_hh, eligibles = elbs, n_clusters = nr)
+  # Create convex hull
+  suppressMessages({
+    hull <- hull_polygon(core, hull_type = 'concave')#gConvexHull(core)
+    hull <- SpatialPolygonsDataFrame(
+    Sr = hull,
+    data = data.frame(assignment_group = ag_counter,
+                      assignment = this_assignment),
+    match.ID = FALSE
+  )
+  })
+  # # Create buffer 
+  # buffer <- gBuffer(core, width = buffer_distance)
+  # buffer <- SpatialPolygonsDataFrame(
+  #   Sr = buffer,
+  #   data = data.frame(assignment_group = ag_counter,
+  #                     assignment = this_assignment),
+  #   match.ID = FALSE
+  # )
+  # # Identify the households in the buffer
+  # hh_in_buffer_index <- over(households_projected, polygons(buffer))
+  # hh_in_buffer_index <- which(!is.na(hh_in_buffer_index))
+  # hh_in_buffer <- households_projected[hh_in_buffer_index,]
+  # # Get the ids of those in the buffer
+  # ids_in_buffer <- hh_in_buffer@data$id
+  # Get the ids of those in core
+  ids_in_core <- core@data$id
+  # ids_in_buffer <- ids_in_buffer[!ids_in_buffer %in% ids_in_core]
+  message('------', length(ids_in_core), ' households in core.')
+  # message('------', length(ids_in_buffer), ' households in buffer')
+  # Write to the master dataframe
+  # households_projected@data$status[households_projected@data$id %in% ids_in_buffer] <- 'buffer'
+  households_projected@data$status[households_projected@data$id %in% ids_in_core] <- 'core'
+  # households_projected@data$assignment_group[households_projected@data$id %in% ids_in_buffer] <- ag_counter
+  households_projected@data$assignment_group[households_projected@data$id %in% ids_in_core] <- ag_counter
+  households_projected@data$cc[households_projected@data$id %in% ids_in_core] <- core@data$cc
+
+  # # Save polygons
+  # buffers_list[[ag_counter]] <- buffer
+  # cores_list[[ag_counter]] <- core
+  cores_poly_list[[ag_counter]] <- hull
+  # 
+  # 
+  # # Create an evolving map of buffers
+  # all_buffers <- do.call('rbind', buffers_list)
+  # all_buffers <- spTransform(all_buffers, proj4string(households_projected))
+  all_cores <- do.call('rbind', cores_poly_list)
+  all_cores <- spTransform(all_cores, proj4string(households_projected))
+
+  sub_ag_df <- ag_df %>% filter(assignment_group <= ag_counter)
+  already_assigned <- households_projected[households_projected@data$status == 'core',]
+  already_assigned@data <- left_join(already_assigned@data, ag_df %>% dplyr::distinct(assignment, assignment_group))
+  # plot(households_projected, pch = '.', cex = 0.5,
+  #      col = adjustcolor('black', alpha.f = 0.3))
+  # plot(all_cores, add = T,
+  #      col = adjustcolor(cols[1:ag_counter], alpha.f = 0.3))
+  plot(already_assigned, pch = '.',
+         col = cols[already_assigned@data$assignment])
+  plot(all_cores, add = T)
+  
+
+  title(main = paste0(ag_counter, ' assignment groups finished.'),
+        sub = paste0(nrow(sub_ag_df), ' clusters done.'))
+  print(table(households_projected@data$assignment_group[households_projected@data$status == 'core']))
+  # Sys.sleep(0.35)
+  # Check to see if done
+  done <- cluster_counter >= 547
+
+}
+
+# Having assigned, now get summary data
+households_projected@data <- households_projected@data %>% left_join(ag_df %>% dplyr::distinct(assignment, assignment_group))
+sub_data <- households_projected[households_projected@data$status == 'core',]
+plot(sub_data,
+     col = cols[sub_data@data$assignment])
+ags <- sub_data@data %>%
+  group_by(assignment_group) %>%
+  tally %>%
+  filter(n > 1) %>%
+  .$assignment_group
+ags <- sort(unique(sub_data@data$assignment_group))
+ag_list <- list()
+counter <- 0
+for(i in 1:length(ags)){
+  message(i)
+  this_ag <- ags[i]
+  this_ag_data <- sub_data[sub_data@data$assignment_group == this_ag,]
+  if(nrow(this_ag_data) > 2){
+    counter <- counter + 1
+  this_hull <- hull_polygon(this_ag_data, hull_type = 'concave')
+  hull <- SpatialPolygonsDataFrame(
+    Sr = this_hull,
+    data = data.frame(assignment_group = this_ag,
+                      assignment = this_ag_data@data$assignment[1]),
+    match.ID = FALSE)
+  ag_list[[counter]] <- hull
+  }
+}
+ags <- do.call('rbind', ag_list)
+
+plot(ags,
+     col = cols[ags@data$assignment])
+
+# Get buffers
+gbufs <- gBuffer(ags, width = 1000)
+plot(gbufs, add = T) # this is visually nice, but a bit misleading, since it sometimes shows shapes in areas which aren't really there
+
+# Buffer points
+core_points <- households_projected[households_projected@data$status == 'core',]
+buffer_points <- households_projected[households_projected@data$status == 'buffer',]
+plot(core_points, pch = '.', col = cols[core_points@data$assignment])
+points(buffer_points, pch = '.', col = adjustcolor(cols[buffer_points@data$assignment], alpha.f = 0.3))
+
+# The assignment / assignment group variables tell us which core areas get what treatment
+# They should also be correct (at least in terms of assignment) for the buffer areas too
+
+# Get the correct cluster number for each core
+households_projected@data$cluster <- households_projected@data$assignment_group + households_projected@data$cc - 1
+table(households_projected@data$cluster)
+
+# Downsample to just clusters 1:147
+down_sampled <- households_projected@data %>%
+  filter(!is.na(assignment)) %>%
+  filter(cluster %in% 1:147)
+oos <- households_projected@data %>%
+  filter(is.na(assignment) | cluster > 147)
+
+# Group by assignment and get some values
+carlos <- down_sampled %>%
+  group_by(assignment) %>%
+  summarise(hh = n(),
+            n_cluster = length(unique(cluster[status == 'core'])),
+            hh_core = length(which(status == 'core')),
+            hh_buffer = length(which(status == 'buffer')),
+            people = sum(n_people),
+            people_core = sum(n_people[status == 'core']),
+            people_buffer = sum(n_people[status == 'buffer']),
+            kids = sum(n_children),
+            kids_core = sum(n_children[status == 'core']),
+            kids_buffer = sum(n_children[status == 'buffer'])) %>%
+  mutate(adults = people - kids,
+         adults_core = people_core - kids_core,
+         adults_buffer = people_buffer - kids_buffer) %>%
+  dplyr::select(-people, -people_core, -people_buffer, -kids)
+carlos
+message('Out of study: ', nrow(oos), ' households with ', sum(oos$n_people), ' people')
+```
+
+# Splitting hamlets, 35-kid clusters with no buffer (combine then buffer later)
+
+```{r}
+# go through each individual household, defining cores along the way
+households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
+households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+households_projected@data$id <- 1:nrow(households_projected)
+households_projected$status <- 'available'
+households_projected$cluster <- NA
+
+# Define a function for creating a core given a point and a set of eligible households
+# Consider putting an overlapper here?
+create_core <- function(pt, eligibles){
+  # Get distance from pt to eligibles
+  distances <- spDists(pt, eligibles)
+  distances <- distances[1,]
+  
+  keep <- order(distances)
+  enough <- FALSE
+  counter <- 0
+  while(!enough){
+    counter <- counter + 1
+    # message(counter)
+    keep_only <- keep[1:counter]
+    core <- eligibles[keep_only,]
+    n_children <- sum(core@data$n_children)
+    enough <- n_children >= 35
+  }
+  message('---Successfully created a core area of ', n_children)
+  return(core)
+}
+
+
+# Define a random starting point
+set.seed(1)
+library(rangemap)
+done <- FALSE
+cluster_counter <- 0
+buffers_list <- cores_list <- cores_poly_list <- list()
+palette <- rainbow(200)
+palette <- sample(palette, length(palette))
+# # get distances
+# message('Calculating all distances (slow)')
+# all_distances <- gDistance(spgeom1 = households_projected, byid = TRUE)
+while(!done){
+  cluster_counter <- cluster_counter + 1
+  message('Working on cluster number: ', cluster_counter)
+  elbs <- households_projected[households_projected@data$status == 'available',]
+  # Eligibles have to be at least 2km from the already assigned areas
+  if(cluster_counter > 1){
+    elbs_distances <- gDistance(all_buffers, elbs, byid = T)
+    elbs_distances <- apply(elbs_distances, 1, min)
+    keep_elbs <- elbs_distances >= 0.00001
+    # keep_elbs <- keep_elbs[,1]
+    elbs <- elbs[keep_elbs,]
+      # Pick a random point to start at among the eligibles (could be optimized by going as close as possible)
+  # random_index <- sample(1:nrow(elbs), 1) # random approach
+  new_elbs_distances <- gDistance(all_buffers,elbs, byid = T)
+  if(length(new_elbs_distances) == 0){
+    message('Could not create cluster number ', cluster_counter, '. Stopping at ', cluster_counter -1)
+    done <- TRUE
+    break
+  }
+  new_elbs_distances <- apply(new_elbs_distances, 1, min)
+  random_index <- which.min(new_elbs_distances)[1]
+  } else {
+    random_index <- sample(1:nrow(elbs), 1)
+  }
+  this_hh <- elbs[random_index,]
+  # Create core
+  core <- create_core(pt = this_hh, eligibles = elbs)
+  # Create convex hull
+  suppressMessages({
+    hull <- hull_polygon(core, hull_type = 'concave', concave_distance_lim = 1)#gConvexHull(core)
+    hull <- SpatialPolygonsDataFrame(
+    Sr = hull,
+    data = data.frame(cluster = cluster_counter),
+    match.ID = FALSE
+  )
+  })
+  # Create buffer
+  buffer <- gBuffer(hull, width = 0.00001)
+  buffer <- SpatialPolygonsDataFrame(
+    Sr = buffer,
+    data = data.frame(cluster = cluster_counter, overlap = FALSE),
+    match.ID = FALSE
+  )
+  # See if the buffer overlaps with any of the previous ones
+  if(cluster_counter > 1){
+    overlaps <- gIntersects(buffer, all_buffers)
+    if(overlaps){
+      message('------Detected an overlap. Flagging')
+      buffer@data$overlap <- overlaps
+    }
+  }
+  
+  # Identify the households in the buffer
+  hh_in_buffer_index <- over(households_projected, polygons(buffer))
+  hh_in_buffer_index <- which(!is.na(hh_in_buffer_index))
+  hh_in_buffer <- households_projected[hh_in_buffer_index,]
+  # Get the ids of those in the buffer
+  ids_in_buffer <- hh_in_buffer@data$id
+  # Get the ids of those in core
+  ids_in_core <- core@data$id
+  ids_in_buffer <- ids_in_buffer[!ids_in_buffer %in% ids_in_core]
+  message('------', length(ids_in_core), ' households in core.')
+  message('------', length(ids_in_buffer), ' households in buffer')
+  # Write to the master dataframe
+  households_projected@data$status[households_projected@data$id %in% ids_in_buffer] <- 'buffer'
+  households_projected@data$status[households_projected@data$id %in% ids_in_core] <- 'core'
+  households_projected@data$cluster[households_projected@data$id %in% ids_in_buffer] <- cluster_counter
+    households_projected@data$cluster[households_projected@data$id %in% ids_in_core] <- cluster_counter
+
+  # Save polygons
+  buffers_list[[cluster_counter]] <- buffer
+  cores_list[[cluster_counter]] <- core
+  cores_poly_list[[cluster_counter]] <- hull
+  # Create an evolving map of buffers
+  all_buffers <- do.call('rbind', buffers_list)
+  all_buffers <- spTransform(all_buffers, proj4string(households_projected))
+  all_cores <- do.call('rbind', cores_poly_list)
+  all_cores <- spTransform(all_cores, proj4string(households_projected))
+
+  # plot(households_projected, pch = '.',
+  #      col = adjustcolor('black', alpha.f = 0.3))
+  # plot(all_buffers, add = T, col = adjustcolor(palette[1:cluster_counter], alpha.f = 0.3))
+  # already <- households_projected[households_projected@data$status != 'available',]
+  # points(already, col = 'red', pch = '.')
+  # # plot(all_cores, add = T, col = adjustcolor(palette[1:cluster_counter], alpha.f = 0.8),
+  # #      border = NA)
+  # 
+  # title(main = paste0(cluster_counter, ' clusters created'))
+  # Sys.sleep(0.15)
+  # Check to see if done
+  done <- cluster_counter >= 100000
+}
+
+# Now, having created micro-clusters of 35 children, randomly give assignments
+assignment_df <- 
+  tibble(cluster = 1:cluster_counter,
+         assignment = sample(1:3, cluster_counter, replace = T))
+
+# Get all buffers
+ab <- all_buffers
+ab@data <- left_join(ab@data, assignment_df)
+# Remove the overlappers
+ab <- ab[!ab@data$overlap,]
+plot(ab)
+
+# Tesselate ab
+tab <- dismo::voronoi(ab)
+
+# Plot tab with the assignment colors
+plot(tab, col = rainbow(3)[tab@data$assignment])
+
+# Use the above to point treatment assignments on to all households
+ttms <- over(households_projected, polygons(tab))
+cluster_numbers <- tab@data$cluster[ttms]
+households_projected@data$cluster <- ttms
+households_projected@data$assignment <- tab@data$assignment[ttms]
+
+
+# Collapse based on assignment status
+gtab <- gUnaryUnion(spgeom = tab, id = tab@data$assignment)
+gtab <- SpatialPolygonsDataFrame(Sr = gtab,
+                                 data = tibble(assignment = 1:3),
+                                 match.ID = FALSE)
+plot(gtab, col = rainbow(3)[gtab@data$assignment])
+
+
+
+# Create internal borders
+gtabb <- gBuffer(gtab, byid = TRUE, id = gtab@data$assignment,
+                 width = -1000)
+plot(gtabb, col = adjustcolor(rainbow(3)[gtabb@data$assignment], alpha.f = 0.3))
+
+# Now we've got our ttm areas clear, just not to get the number of people in each
+points(households_projected,
+       col = rainbow(3)[households_projected@data$assignment], 
+       pch = '.')
+
+# Get new statuses
+xx <- over(households_projected, polygons(gtabb))
+households_projected@data$final_status <- gtabb@data$assignment[xx]
+households_projected@data$final_status <- 
+  ifelse(is.na(households_projected@data$final_status),
+         'buffer', 
+         'core')
+z <- households_projected[households_projected@data$final_status == 'core',]
+points(z)
+# Examine
+out <- households_projected@data %>%
+  group_by(cluster) %>%
+  summarise(hh_core = length(which(final_status == 'core')),
+            hh_buffer = length(which(final_status == 'buffer')),
+            n_hh = n(),
+            kids  = sum(n_children),
+            n_children_core = sum(n_children[final_status == 'core'], na.rm = T))
+table(out$n_children_core >= 35)
+
+households_projected@data %>%
+  group_by(assignment) %>%
+  summarise(hh_core = length(which(final_status == 'core')),
+            hh_buffer = length(which(final_status == 'buffer')),
+            adults = sum(n_people, na.rm = TRUE),
+            n_people_core = sum(n_people[final_status == 'core'], na.rm = TRUE),
+            n_hh = n(),
+            kids  = sum(n_children),
+            n_children_core = sum(n_children[final_status == 'core'], na.rm = T)) %>%
+  mutate(adults = adults - kids) %>%
+    mutate(adults_core = n_people_core - n_children_core)
+
+
+
+# Keep only those points in the above polygons
+pts_in <- over(households_projected, polygons(ab))
+hh <- households_projected
+hh@data$polygon_number <- as.numeric(pts_in)
+right <- tibble(polygon_number = 1:nrow(ab),
+                polygon_cluster = ab@data$cluster)
+hh@data <- left_join(hh@data, right)
+
+hh@data %>%
+  group_by(polygon_cluster) %>%
+  summarise(children = sum(n_children))
+
+# Tesselate
+library(dismo)
+
+
+# Join assignments to households
+out <- households_projected
+out@data <- left_join(out@data, assignment_df)
+
+# Convert back to ll
+out <- spTransform(out, proj4string(bohemia::mop2))
+
+# Get coords
+coords <- coordinates(out)
+out@data$lng <- coords[,1]
+out@data$lat <- coords[,2]
+save.image(file = '~/Desktop/out.RData')
+# Do voronoi tesselation
+out@data$id <- out@data$assignment
+out <- out[!is.na(out@data$assignment),]
+col_vec <- rainbow(3)[out@data$assignment]
+
+plot(all_buffers[!all_buffers@data$overlap,])
+v <- voronoi(shp = out, poly = bohemia::mop2)
 ```
 
 ## K means
@@ -357,7 +1019,7 @@ ggplot(data = x,
        aes(x = lng,
            y = lat,
            col = factor(cluster))) +
-  geom_point(alpha = 0.4, size = 0.4) +
+  geom_point(alpha = 0.8, size = 0.8) +
   theme(legend.position = 'none')
 
 # leaflet() %>%
