@@ -1,0 +1,2156 @@
+{
+  "xlsx": {
+    "initial": [
+      {
+        "clause": "do section survey",
+        "_row_num": 2
+      },
+      {
+        "clause": "goto _finalize",
+        "_row_num": 3
+      }
+    ],
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "part1_h2",
+          "class": "h2"
+        },
+        "hideInContents": 1,
+        "_row_num": 3
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "rand_h3",
+          "class": "h3"
+        },
+        "hideInContents": 1,
+        "_row_num": 4
+      },
+      {
+        "type": "select_one",
+        "values_list": "yn",
+        "name": "rand_selected",
+        "display": {
+          "prompt": "rand_selected"
+        },
+        "_row_num": 5
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 6
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('rand_selected'), 'no')",
+        "_row_num": 8
+      },
+      {
+        "type": "text",
+        "name": "orig_hh_id",
+        "display": {
+          "prompt": "orig_hh_id",
+          "hint": "orig_hh_id.hint"
+        },
+        "inputAttributes": {
+          "placeholder": "ABC-123"
+        },
+        "hideInContents": "not(selected(data('rand_selected'), 'no'))",
+        "_row_num": 9
+      },
+      {
+        "clause": "end if",
+        "_row_num": 10
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 12
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "part2_h2",
+          "class": "h2"
+        },
+        "hideInContents": 1,
+        "_row_num": 13
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "part2a_h3",
+          "class": "h3"
+        },
+        "hideInContents": 1,
+        "_row_num": 14
+      },
+      {
+        "type": "select_one",
+        "values_list": "yn",
+        "name": "qa1",
+        "display": {
+          "prompt": "qa1"
+        },
+        "_row_num": 15
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 16
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('qa1'), 'no')",
+        "_row_num": 18
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "ic_no"
+        },
+        "_row_num": 19
+      },
+      {
+        "clause": "// TODO: what to do here",
+        "_row_num": 20
+      },
+      {
+        "clause": "end if",
+        "_row_num": 21
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "yn",
+        "data_value": "yes",
+        "display": {
+          "title": "yes"
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "yn",
+        "data_value": "no",
+        "display": {
+          "title": "no"
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "chicken",
+        "display": {
+          "title": "chicken"
+        },
+        "_row_num": 4
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "dog",
+        "display": {
+          "title": "dog"
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "cow",
+        "display": {
+          "title": "cow"
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "goat",
+        "display": {
+          "title": "goat"
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "cat",
+        "display": {
+          "title": "cat"
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "pig",
+        "display": {
+          "title": "pig"
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "animal_indoor",
+        "data_value": "other",
+        "display": {
+          "title": "other"
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "cement_block",
+        "display": {
+          "title": "cement_block"
+        },
+        "tza": 1,
+        "moz": 1,
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "brick_block",
+        "display": {
+          "title": "brick_block"
+        },
+        "moz": 1,
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "wood",
+        "display": {
+          "title": "wood"
+        },
+        "moz": 1,
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "zinc",
+        "display": {
+          "title": "zinc"
+        },
+        "moz": 1,
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "adobe_block",
+        "display": {
+          "title": "adobe_block"
+        },
+        "moz": 1,
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "reed",
+        "display": {
+          "title": "reed"
+        },
+        "moz": 1,
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "bamboo",
+        "display": {
+          "title": "bamboo"
+        },
+        "moz": 1,
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "palm_tree",
+        "display": {
+          "title": "palm_tree"
+        },
+        "moz": 1,
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "tinned_wood",
+        "display": {
+          "title": "tinned_wood"
+        },
+        "moz": 1,
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "tin",
+        "display": {
+          "title": "tin"
+        },
+        "moz": 1,
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "cardboard",
+        "display": {
+          "title": "cardboard"
+        },
+        "moz": 1,
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "paper",
+        "display": {
+          "title": "paper"
+        },
+        "moz": 1,
+        "_row_num": 22
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "plastic_bag",
+        "display": {
+          "title": "plastic_bag"
+        },
+        "moz": 1,
+        "_row_num": 23
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "bark",
+        "display": {
+          "title": "bark"
+        },
+        "moz": 1,
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "stone",
+        "display": {
+          "title": "stone"
+        },
+        "tza": 1,
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "pole_mud",
+        "display": {
+          "title": "pole_mud"
+        },
+        "tza": 1,
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "baked_sand_brick",
+        "display": {
+          "title": "baked_sand_brick"
+        },
+        "tza": 1,
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "timber_and_iron_sheet",
+        "display": {
+          "title": "timber_and_iron_sheet"
+        },
+        "tza": 1,
+        "_row_num": 28
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "thatch",
+        "display": {
+          "title": "thatch"
+        },
+        "tza": 1,
+        "_row_num": 29
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "tent",
+        "display": {
+          "title": "tent"
+        },
+        "tza": 1,
+        "_row_num": 30
+      },
+      {
+        "choice_list_name": "wall_material",
+        "data_value": "grass",
+        "display": {
+          "title": "grass"
+        },
+        "tza": 1,
+        "_row_num": 31
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "concrete_slab",
+        "display": {
+          "title": "concrete_slab"
+        },
+        "tza": 1,
+        "moz": 1,
+        "_row_num": 32
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "tile",
+        "display": {
+          "title": "tile"
+        },
+        "moz": 1,
+        "_row_num": 33
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "lusalite_sheet",
+        "display": {
+          "title": "lusalite_sheet"
+        },
+        "moz": 1,
+        "_row_num": 34
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "zinc_sheet",
+        "display": {
+          "title": "zinc_sheet"
+        },
+        "moz": 1,
+        "_row_num": 35
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "asbestos",
+        "display": {
+          "title": "asbestos"
+        },
+        "tza": 1,
+        "_row_num": 36
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "mud",
+        "display": {
+          "title": "mud"
+        },
+        "tza": 1,
+        "_row_num": 37
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "zinc_iron_sheet",
+        "display": {
+          "title": "zinc_iron_sheet"
+        },
+        "tza": 1,
+        "_row_num": 38
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "thatch",
+        "display": {
+          "title": "thatch"
+        },
+        "tza": 1,
+        "_row_num": 39
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "tent",
+        "display": {
+          "title": "tent"
+        },
+        "tza": 1,
+        "_row_num": 40
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "grass",
+        "display": {
+          "title": "grass"
+        },
+        "moz": 1,
+        "_row_num": 41
+      },
+      {
+        "choice_list_name": "roof_material",
+        "data_value": "palm_tree",
+        "display": {
+          "title": "palm_tree"
+        },
+        "moz": 1,
+        "_row_num": 42
+      }
+    ],
+    "model": [
+      {
+        "name": "hh_id",
+        "type": "string",
+        "_row_num": 2
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "ento_household",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20210328001,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "ento_household",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Household",
+              "pt": "Household",
+              "sw": "Household"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "instance_name",
+        "_row_num": 6
+      },
+      {
+        "setting_name": "default",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "English",
+              "pt": "English",
+              "sw": "English"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "setting_name": "pt",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "Português",
+              "pt": "Português",
+              "sw": "Português"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "setting_name": "sw",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "Kiswahili",
+              "pt": "Kiswahili",
+              "sw": "Kiswahili"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
+      }
+    ],
+    "table_specific_translations": [
+      {
+        "string_token": "yes",
+        "text": {
+          "default": "Yes",
+          "pt": "Sim",
+          "sw": "Ndiyo"
+        },
+        "_row_num": 2
+      },
+      {
+        "string_token": "no",
+        "text": {
+          "default": "No",
+          "pt": "Não",
+          "sw": "Hapana"
+        },
+        "_row_num": 3
+      },
+      {
+        "string_token": "other",
+        "text": {
+          "default": "Other",
+          "pt": "Outro",
+          "sw": "Nyingine"
+        },
+        "_row_num": 4
+      },
+      {
+        "string_token": "specify",
+        "text": {
+          "default": "Specify",
+          "pt": "Especificar",
+          "sw": "Taja"
+        },
+        "_row_num": 5
+      },
+      {
+        "string_token": "chicken",
+        "text": "Chicken",
+        "_row_num": 7
+      },
+      {
+        "string_token": "dog",
+        "text": "Dog",
+        "_row_num": 8
+      },
+      {
+        "string_token": "cow",
+        "text": "Cow",
+        "_row_num": 9
+      },
+      {
+        "string_token": "goat",
+        "text": "Goat",
+        "_row_num": 10
+      },
+      {
+        "string_token": "cat",
+        "text": "Cat",
+        "_row_num": 11
+      },
+      {
+        "string_token": "pig",
+        "text": "Pig",
+        "_row_num": 12
+      },
+      {
+        "string_token": "cement_block",
+        "text": "Cement blocks",
+        "_row_num": 13
+      },
+      {
+        "string_token": "brick_block",
+        "text": "Brick block",
+        "_row_num": 14
+      },
+      {
+        "string_token": "wood",
+        "text": "Wood",
+        "_row_num": 15
+      },
+      {
+        "string_token": "zinc",
+        "text": "Zinc",
+        "_row_num": 16
+      },
+      {
+        "string_token": "adobe_block",
+        "text": "Adobe block",
+        "_row_num": 17
+      },
+      {
+        "string_token": "reed",
+        "text": "Reed",
+        "_row_num": 18
+      },
+      {
+        "string_token": "bamboo",
+        "text": "Bamboo",
+        "_row_num": 19
+      },
+      {
+        "string_token": "palm_tree",
+        "text": "Palm tree",
+        "_row_num": 20
+      },
+      {
+        "string_token": "tinned_wood",
+        "text": "Tinned Wood",
+        "_row_num": 21
+      },
+      {
+        "string_token": "tin",
+        "text": "Tin",
+        "_row_num": 22
+      },
+      {
+        "string_token": "cardboard",
+        "text": "Cardboard",
+        "_row_num": 23
+      },
+      {
+        "string_token": "paper",
+        "text": "Paper",
+        "_row_num": 24
+      },
+      {
+        "string_token": "plastic_bag",
+        "text": "Plastic Bags",
+        "_row_num": 25
+      },
+      {
+        "string_token": "bark",
+        "text": "Bark",
+        "_row_num": 26
+      },
+      {
+        "string_token": "stone",
+        "text": "Stones",
+        "_row_num": 27
+      },
+      {
+        "string_token": "pole_mud",
+        "text": "Poles and mud",
+        "_row_num": 28
+      },
+      {
+        "string_token": "baked_sand_brick",
+        "text": "Baked sand bricks",
+        "_row_num": 29
+      },
+      {
+        "string_token": "timber_and_iron_sheet",
+        "text": "Timber and iron sheet",
+        "_row_num": 30
+      },
+      {
+        "string_token": "thatch",
+        "text": "Thatch",
+        "_row_num": 31
+      },
+      {
+        "string_token": "tent",
+        "text": "Tent",
+        "_row_num": 32
+      },
+      {
+        "string_token": "grass",
+        "text": "Grass",
+        "_row_num": 33
+      },
+      {
+        "string_token": "concrete_slab",
+        "text": "Concrete slab",
+        "_row_num": 34
+      },
+      {
+        "string_token": "tile",
+        "text": "Tile",
+        "_row_num": 35
+      },
+      {
+        "string_token": "lusalite_sheet",
+        "text": "Lusalite sheet",
+        "_row_num": 36
+      },
+      {
+        "string_token": "zinc_sheet",
+        "text": "Zinc sheet",
+        "_row_num": 37
+      },
+      {
+        "string_token": "asbestos",
+        "text": "Asbestos",
+        "_row_num": 38
+      },
+      {
+        "string_token": "mud",
+        "text": "Mud",
+        "_row_num": 39
+      },
+      {
+        "string_token": "zinc_iron_sheet",
+        "text": "Zinc/iron sheet",
+        "_row_num": 40
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path",
+      "hideInContents": "formula"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "ento_household",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20210328001,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "ento_household",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Household",
+              "pt": "Household",
+              "sw": "Household"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      "instance_name": {
+        "setting_name": "instance_name",
+        "_row_num": 6
+      },
+      "default": {
+        "setting_name": "default",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "English",
+              "pt": "English",
+              "sw": "English"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      "pt": {
+        "setting_name": "pt",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "Português",
+              "pt": "Português",
+              "sw": "Português"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      "sw": {
+        "setting_name": "sw",
+        "display": {
+          "locale": {
+            "text": {
+              "default": "Kiswahili",
+              "pt": "Kiswahili",
+              "sw": "Kiswahili"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      "showFooter": {
+        "setting_name": "showFooter",
+        "value": 1,
+        "_row_num": 10
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "default": "English",
+                  "pt": "English",
+                  "sw": "English"
+                }
+              }
+            },
+            "_row_num": 7,
+            "name": "default"
+          },
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "default": "Português",
+                  "pt": "Português",
+                  "sw": "Português"
+                }
+              }
+            },
+            "_row_num": 8,
+            "name": "pt"
+          },
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "default": "Kiswahili",
+                  "pt": "Kiswahili",
+                  "sw": "Kiswahili"
+                }
+              }
+            },
+            "_row_num": 9,
+            "name": "sw"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Household",
+              "pt": "Household",
+              "sw": "Household"
+            }
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "yn": [
+        {
+          "choice_list_name": "yn",
+          "data_value": "yes",
+          "display": {
+            "title": "yes"
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "yn",
+          "data_value": "no",
+          "display": {
+            "title": "no"
+          },
+          "_row_num": 3
+        }
+      ],
+      "animal_indoor": [
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "chicken",
+          "display": {
+            "title": "chicken"
+          },
+          "_row_num": 4
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "dog",
+          "display": {
+            "title": "dog"
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "cow",
+          "display": {
+            "title": "cow"
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "goat",
+          "display": {
+            "title": "goat"
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "cat",
+          "display": {
+            "title": "cat"
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "pig",
+          "display": {
+            "title": "pig"
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "animal_indoor",
+          "data_value": "other",
+          "display": {
+            "title": "other"
+          },
+          "_row_num": 10
+        }
+      ],
+      "wall_material": [
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "cement_block",
+          "display": {
+            "title": "cement_block"
+          },
+          "tza": 1,
+          "moz": 1,
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "brick_block",
+          "display": {
+            "title": "brick_block"
+          },
+          "moz": 1,
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "wood",
+          "display": {
+            "title": "wood"
+          },
+          "moz": 1,
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "zinc",
+          "display": {
+            "title": "zinc"
+          },
+          "moz": 1,
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "adobe_block",
+          "display": {
+            "title": "adobe_block"
+          },
+          "moz": 1,
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "reed",
+          "display": {
+            "title": "reed"
+          },
+          "moz": 1,
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "bamboo",
+          "display": {
+            "title": "bamboo"
+          },
+          "moz": 1,
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "palm_tree",
+          "display": {
+            "title": "palm_tree"
+          },
+          "moz": 1,
+          "_row_num": 18
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "tinned_wood",
+          "display": {
+            "title": "tinned_wood"
+          },
+          "moz": 1,
+          "_row_num": 19
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "tin",
+          "display": {
+            "title": "tin"
+          },
+          "moz": 1,
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "cardboard",
+          "display": {
+            "title": "cardboard"
+          },
+          "moz": 1,
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "paper",
+          "display": {
+            "title": "paper"
+          },
+          "moz": 1,
+          "_row_num": 22
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "plastic_bag",
+          "display": {
+            "title": "plastic_bag"
+          },
+          "moz": 1,
+          "_row_num": 23
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "bark",
+          "display": {
+            "title": "bark"
+          },
+          "moz": 1,
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "stone",
+          "display": {
+            "title": "stone"
+          },
+          "tza": 1,
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "pole_mud",
+          "display": {
+            "title": "pole_mud"
+          },
+          "tza": 1,
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "baked_sand_brick",
+          "display": {
+            "title": "baked_sand_brick"
+          },
+          "tza": 1,
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "timber_and_iron_sheet",
+          "display": {
+            "title": "timber_and_iron_sheet"
+          },
+          "tza": 1,
+          "_row_num": 28
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "thatch",
+          "display": {
+            "title": "thatch"
+          },
+          "tza": 1,
+          "_row_num": 29
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "tent",
+          "display": {
+            "title": "tent"
+          },
+          "tza": 1,
+          "_row_num": 30
+        },
+        {
+          "choice_list_name": "wall_material",
+          "data_value": "grass",
+          "display": {
+            "title": "grass"
+          },
+          "tza": 1,
+          "_row_num": 31
+        }
+      ],
+      "roof_material": [
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "concrete_slab",
+          "display": {
+            "title": "concrete_slab"
+          },
+          "tza": 1,
+          "moz": 1,
+          "_row_num": 32
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "tile",
+          "display": {
+            "title": "tile"
+          },
+          "moz": 1,
+          "_row_num": 33
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "lusalite_sheet",
+          "display": {
+            "title": "lusalite_sheet"
+          },
+          "moz": 1,
+          "_row_num": 34
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "zinc_sheet",
+          "display": {
+            "title": "zinc_sheet"
+          },
+          "moz": 1,
+          "_row_num": 35
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "asbestos",
+          "display": {
+            "title": "asbestos"
+          },
+          "tza": 1,
+          "_row_num": 36
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "mud",
+          "display": {
+            "title": "mud"
+          },
+          "tza": 1,
+          "_row_num": 37
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "zinc_iron_sheet",
+          "display": {
+            "title": "zinc_iron_sheet"
+          },
+          "tza": 1,
+          "_row_num": 38
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "thatch",
+          "display": {
+            "title": "thatch"
+          },
+          "tza": 1,
+          "_row_num": 39
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "tent",
+          "display": {
+            "title": "tent"
+          },
+          "tza": 1,
+          "_row_num": 40
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "grass",
+          "display": {
+            "title": "grass"
+          },
+          "moz": 1,
+          "_row_num": 41
+        },
+        {
+          "choice_list_name": "roof_material",
+          "data_value": "palm_tree",
+          "display": {
+            "title": "palm_tree"
+          },
+          "moz": 1,
+          "_row_num": 42
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {
+        "yes": {
+          "string_token": "yes",
+          "text": {
+            "default": "Yes",
+            "pt": "Sim",
+            "sw": "Ndiyo"
+          },
+          "_row_num": 2
+        },
+        "no": {
+          "string_token": "no",
+          "text": {
+            "default": "No",
+            "pt": "Não",
+            "sw": "Hapana"
+          },
+          "_row_num": 3
+        },
+        "other": {
+          "string_token": "other",
+          "text": {
+            "default": "Other",
+            "pt": "Outro",
+            "sw": "Nyingine"
+          },
+          "_row_num": 4
+        },
+        "specify": {
+          "string_token": "specify",
+          "text": {
+            "default": "Specify",
+            "pt": "Especificar",
+            "sw": "Taja"
+          },
+          "_row_num": 5
+        },
+        "chicken": {
+          "string_token": "chicken",
+          "text": "Chicken",
+          "_row_num": 7
+        },
+        "dog": {
+          "string_token": "dog",
+          "text": "Dog",
+          "_row_num": 8
+        },
+        "cow": {
+          "string_token": "cow",
+          "text": "Cow",
+          "_row_num": 9
+        },
+        "goat": {
+          "string_token": "goat",
+          "text": "Goat",
+          "_row_num": 10
+        },
+        "cat": {
+          "string_token": "cat",
+          "text": "Cat",
+          "_row_num": 11
+        },
+        "pig": {
+          "string_token": "pig",
+          "text": "Pig",
+          "_row_num": 12
+        },
+        "cement_block": {
+          "string_token": "cement_block",
+          "text": "Cement blocks",
+          "_row_num": 13
+        },
+        "brick_block": {
+          "string_token": "brick_block",
+          "text": "Brick block",
+          "_row_num": 14
+        },
+        "wood": {
+          "string_token": "wood",
+          "text": "Wood",
+          "_row_num": 15
+        },
+        "zinc": {
+          "string_token": "zinc",
+          "text": "Zinc",
+          "_row_num": 16
+        },
+        "adobe_block": {
+          "string_token": "adobe_block",
+          "text": "Adobe block",
+          "_row_num": 17
+        },
+        "reed": {
+          "string_token": "reed",
+          "text": "Reed",
+          "_row_num": 18
+        },
+        "bamboo": {
+          "string_token": "bamboo",
+          "text": "Bamboo",
+          "_row_num": 19
+        },
+        "palm_tree": {
+          "string_token": "palm_tree",
+          "text": "Palm tree",
+          "_row_num": 20
+        },
+        "tinned_wood": {
+          "string_token": "tinned_wood",
+          "text": "Tinned Wood",
+          "_row_num": 21
+        },
+        "tin": {
+          "string_token": "tin",
+          "text": "Tin",
+          "_row_num": 22
+        },
+        "cardboard": {
+          "string_token": "cardboard",
+          "text": "Cardboard",
+          "_row_num": 23
+        },
+        "paper": {
+          "string_token": "paper",
+          "text": "Paper",
+          "_row_num": 24
+        },
+        "plastic_bag": {
+          "string_token": "plastic_bag",
+          "text": "Plastic Bags",
+          "_row_num": 25
+        },
+        "bark": {
+          "string_token": "bark",
+          "text": "Bark",
+          "_row_num": 26
+        },
+        "stone": {
+          "string_token": "stone",
+          "text": "Stones",
+          "_row_num": 27
+        },
+        "pole_mud": {
+          "string_token": "pole_mud",
+          "text": "Poles and mud",
+          "_row_num": 28
+        },
+        "baked_sand_brick": {
+          "string_token": "baked_sand_brick",
+          "text": "Baked sand bricks",
+          "_row_num": 29
+        },
+        "timber_and_iron_sheet": {
+          "string_token": "timber_and_iron_sheet",
+          "text": "Timber and iron sheet",
+          "_row_num": 30
+        },
+        "thatch": {
+          "string_token": "thatch",
+          "text": "Thatch",
+          "_row_num": 31
+        },
+        "tent": {
+          "string_token": "tent",
+          "text": "Tent",
+          "_row_num": 32
+        },
+        "grass": {
+          "string_token": "grass",
+          "text": "Grass",
+          "_row_num": 33
+        },
+        "concrete_slab": {
+          "string_token": "concrete_slab",
+          "text": "Concrete slab",
+          "_row_num": 34
+        },
+        "tile": {
+          "string_token": "tile",
+          "text": "Tile",
+          "_row_num": 35
+        },
+        "lusalite_sheet": {
+          "string_token": "lusalite_sheet",
+          "text": "Lusalite sheet",
+          "_row_num": 36
+        },
+        "zinc_sheet": {
+          "string_token": "zinc_sheet",
+          "text": "Zinc sheet",
+          "_row_num": 37
+        },
+        "asbestos": {
+          "string_token": "asbestos",
+          "text": "Asbestos",
+          "_row_num": 38
+        },
+        "mud": {
+          "string_token": "mud",
+          "text": "Mud",
+          "_row_num": 39
+        },
+        "zinc_iron_sheet": {
+          "string_token": "zinc_iron_sheet",
+          "text": "Zinc/iron sheet",
+          "_row_num": 40
+        }
+      }
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "hh_id": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "hh_id"
+      },
+      "rand_selected": {
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "yn",
+        "elementKey": "rand_selected"
+      },
+      "orig_hh_id": {
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementKey": "orig_hh_id"
+      },
+      "qa1": {
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "yn",
+        "elementKey": "qa1"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": {
+                  "default": "Household",
+                  "pt": "Household",
+                  "sw": "Household"
+                }
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 4,
+            "_branch_label_enclosing_screen": "initial/_screen4",
+            "promptIdx": 1
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "do section survey",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 0
+          },
+          {
+            "clause": "goto _finalize",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 1
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 4,
+            "operationIdx": 2
+          },
+          {
+            "_row_num": 4,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 3
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 4,
+            "operationIdx": 4
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 4,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 4,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 6
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 4,
+            "operationIdx": 7
+          }
+        ],
+        "branch_label_map": {
+          "_contents": 3,
+          "_screen4": 3,
+          "_finalize": 5
+        }
+      },
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "note",
+            "display": {
+              "prompt": "part1_h2",
+              "class": "h2"
+            },
+            "hideInContents": 1,
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "rand_h3",
+              "class": "h3"
+            },
+            "hideInContents": 1,
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "type": "select_one",
+            "values_list": "yn",
+            "name": "rand_selected",
+            "display": {
+              "prompt": "rand_selected"
+            },
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 2
+          },
+          {
+            "type": "text",
+            "name": "orig_hh_id",
+            "display": {
+              "prompt": "orig_hh_id",
+              "hint": "orig_hh_id.hint"
+            },
+            "inputAttributes": {
+              "placeholder": "ABC-123"
+            },
+            "hideInContents": "not(selected(data('rand_selected'), 'no'))",
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 3
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "part2_h2",
+              "class": "h2"
+            },
+            "hideInContents": 1,
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 4
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "part2a_h3",
+              "class": "h3"
+            },
+            "hideInContents": 1,
+            "_row_num": 14,
+            "__rowNum__": 13,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 5
+          },
+          {
+            "type": "select_one",
+            "values_list": "yn",
+            "name": "qa1",
+            "display": {
+              "prompt": "qa1"
+            },
+            "_row_num": 15,
+            "__rowNum__": 14,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 6
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "ic_no"
+            },
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen19",
+            "promptIdx": 7
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 22,
+            "_branch_label_enclosing_screen": "survey/_screen22",
+            "promptIdx": 8
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 6,
+              "__rowNum__": 5,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('rand_selected'), 'no')",
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "goto_label",
+            "_branch_label": "_then8",
+            "operationIdx": 1
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else10",
+            "_row_num": 10,
+            "operationIdx": 2
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif10",
+            "_row_num": 10,
+            "operationIdx": 4
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 12,
+            "__rowNum__": 11,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 16,
+              "__rowNum__": 15,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qa1'), 'no')",
+            "_row_num": 18,
+            "__rowNum__": 17,
+            "_token_type": "goto_label",
+            "_branch_label": "_then18",
+            "operationIdx": 6
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else21",
+            "_row_num": 21,
+            "operationIdx": 7
+          },
+          {
+            "_row_num": 19,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 8
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif21",
+            "_row_num": 21,
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 22,
+            "operationIdx": 10
+          },
+          {
+            "_row_num": 22,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 11
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 22,
+            "operationIdx": 12
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_then8": 3,
+          "_screen9": 3,
+          "_else10": 5,
+          "_endif10": 5,
+          "_screen12": 5,
+          "_then18": 8,
+          "_screen19": 8,
+          "_else21": 10,
+          "_endif21": 10,
+          "_contents": 11,
+          "_screen22": 11
+        }
+      }
+    },
+    "dataTableModel": {
+      "hh_id": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "hh_id",
+        "elementName": "hh_id",
+        "elementSet": "data",
+        "elementPath": "hh_id"
+      },
+      "rand_selected": {
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "yn",
+        "elementKey": "rand_selected",
+        "elementName": "rand_selected",
+        "elementSet": "data",
+        "elementPath": "rand_selected"
+      },
+      "orig_hh_id": {
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementKey": "orig_hh_id",
+        "elementName": "orig_hh_id",
+        "elementSet": "data",
+        "elementPath": "orig_hh_id"
+      },
+      "qa1": {
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "yn",
+        "elementKey": "qa1",
+        "elementName": "qa1",
+        "elementSet": "data",
+        "elementPath": "qa1"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "qa1",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"yn\",\"data_value\":\"yes\",\"display\":{\"title\":\"yes\"},\"_row_num\":2},{\"choice_list_name\":\"yn\",\"data_value\":\"no\",\"display\":{\"title\":\"no\"},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "rand_selected",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"yn\",\"data_value\":\"yes\",\"display\":{\"title\":\"yes\"},\"_row_num\":2},{\"choice_list_name\":\"yn\",\"data_value\":\"no\",\"display\":{\"title\":\"no\"},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "ento_household"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":{\"default\":\"Household\",\"pt\":\"Household\",\"sw\":\"Household\"}}"
+      }
+    ]
+  }
+}
