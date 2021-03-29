@@ -555,13 +555,14 @@ while(!done){
     elbs <- elbs[keep_elbs,]
 
     # Now we have only eligible points. But we want to start the next one as close as possible to
-    # the already assigned areas
-    eligible_ids <- elbs@data$distance_id
-
-    as_close_to_here_as_possible_ids <- as_close_to_here_as_possible@data$distance_id
-    these_distances <- all_distances[eligible_ids, as_close_to_here_as_possible_ids]
-    elbs_distances <- apply(these_distances, 1, min)
-    random_index <- which.min(elbs_distances)[1]
+    # the already assigned areas. THIS CAUSES ISSUES. COMMENTING OUT
+    # eligible_ids <- elbs@data$distance_id
+    # as_close_to_here_as_possible_ids <- as_close_to_here_as_possible@data$distance_id
+    # these_distances <- all_distances[eligible_ids, as_close_to_here_as_possible_ids]
+    # elbs_distances <- apply(these_distances, 1, min)
+    # random_index <- which.min(elbs_distances)[1]
+    random_index <- sample(1:nrow(elbs), 1)
+    
   } else {
     random_index <- sample(1:nrow(elbs), 1)
   }
@@ -634,7 +635,8 @@ while(!done){
   print(table(households_projected@data$assignment_group[households_projected@data$status == 'core']))
   # Sys.sleep(0.35)
   # Check to see if done
-  done <- cluster_counter >= 547
+  cluster_counter <- nrow(sub_ag_df)
+  done <- cluster_counter >= 147
 
 }
 
@@ -677,9 +679,7 @@ plot(gbufs, add = T) # this is visually nice, but a bit misleading, since it som
 
 # Buffer points
 core_points <- households_projected[households_projected@data$status == 'core',]
-buffer_points <- households_projected[households_projected@data$status == 'buffer',]
 plot(core_points, pch = '.', col = cols[core_points@data$assignment])
-points(buffer_points, pch = '.', col = adjustcolor(cols[buffer_points@data$assignment], alpha.f = 0.3))
 
 # The assignment / assignment group variables tell us which core areas get what treatment
 # They should also be correct (at least in terms of assignment) for the buffer areas too
@@ -687,6 +687,23 @@ points(buffer_points, pch = '.', col = adjustcolor(cols[buffer_points@data$assig
 # Get the correct cluster number for each core
 households_projected@data$cluster <- households_projected@data$assignment_group + households_projected@data$cc - 1
 table(households_projected@data$cluster)
+
+# Need to get the buffer status of all households NOT in core
+# will do so by getting the status of the nearest one
+households_core <- households_projected[households_projected@data$status == 'core',]
+core_ids <- households_core@data$distance_id
+households_non_core <- households_projected[households_projected@data$status != 'core',]
+non_core_ids <- households_non_core@data$distance_id
+distance_to_cores <- 
+  all_distances[non_core_ids, core_ids]
+min_distance <- apply(distance_to_cores, 1, min)
+nearest_one <- apply(distance_to_cores, 1, which.min)
+households_non_core@data$assignment <- households_core@data$assignment[nearest_one]
+households_non_core@data$status <- ifelse(nearest_one <= 1000, 'buffer', 'non-study')
+# Join back to households main
+households_projected <-
+  rbind(households_core,
+        households_non_core)
 
 # Downsample to just clusters 1:147
 down_sampled <- households_projected@data %>%
