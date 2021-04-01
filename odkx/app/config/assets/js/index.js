@@ -30,6 +30,13 @@
       );
     });
 
+    document.getElementById('entoForm').addEventListener('click', function () {
+      odkTables.launchHTML(
+        null,
+        'config/assets/entoForms.html'
+      );
+    });
+
     localStorage.removeItem('bohemiaHhSearch');
     localStorage.removeItem('bohemiaMemberSearch');
     localStorage.removeItem('hasPaintedId');
