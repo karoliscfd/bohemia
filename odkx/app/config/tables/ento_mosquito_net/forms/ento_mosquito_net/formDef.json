@@ -31,6 +31,7 @@
         "display": {
           "prompt": "specify"
         },
+        "hideInContents": 1,
         "_row_num": 5
       },
       {
@@ -959,6 +960,7 @@
             "display": {
               "prompt": "specify"
             },
+            "hideInContents": 1,
             "_row_num": 5,
             "__rowNum__": 4,
             "_token_type": "prompt",
