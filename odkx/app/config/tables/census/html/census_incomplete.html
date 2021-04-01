@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="../../../assets/css/bootstrap-4.6.0/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="../../../assets/css/bohemia.css" type="text/css" rel="stylesheet">
+
+    <script defer src="../../../assets/commonDefinitions.js"></script>
+    <script defer src="../tableSpecificDefinitions.js"></script>
+    <script defer src="../../../../system/js/odkCommon.js"></script>
+    <script defer src="../../../../system/js/odkData.js"></script>
+    <script defer src="../../../../system/tables/js/odkTables.js"></script>
+
+    <script defer src="../../../assets/js/localize.js"></script>
+    <script defer src="../js/census_incomplete.js"></script>
+</head>
+<body>
+<div class="d-flex d-none flex-column vh-100" id="wrapper">
+    <h1 class="text-uppercase text-center my-1">
+        <span data-localize="incomplete_hh"></span>
+    </h1>
+
+    <main class="container-fluid mt-3 d-flex h-100">
+        <div class="overflow-auto h-100 w-100">
+            <ul class="list-group" id="hhIncompleteList"></ul>
+        </div>
+        <h3 class="d-none" data-localize="incomplete_no_result" id="hhIncompleteNoResult"></h3>
+    </main>
+</div>
+
+<template id="hhListTemplate">
+    <li class="list-group-item d-flex flex-column py-1 px-2">
+        <div class="d-flex w-100 justify-content-end align-items-center">
+            <div class="d-flex flex-column flex-grow-1">
+                <span class="h5 mb-1 hh-list-field"></span>
+                <div>
+                    <span>Head: </span>
+                    <span class="hh-list-field"></span>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success mr-1">
+                    <!-- https://icons.getbootstrap.com/icons/pencil-square/ -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd"
+                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </li>
+</template>
+
+<script src="../../../../system/libs/jquery-3.4.1.js"></script>
+<script src="../../../assets/js/bootstrap.min.js"></script>
+</body>
+</html>

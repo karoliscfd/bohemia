@@ -30,6 +30,23 @@
       );
     });
 
+    document.getElementById('entoForm').addEventListener('click', function () {
+      odkTables.launchHTML(
+        null,
+        'config/assets/entoForms.html'
+      );
+    });
+
+    document.getElementById('incompleteHh').addEventListener('click', function () {
+      odkTables.openTableToListView(
+        null,
+        'census',
+        null,
+        null,
+        'config/tables/census/html/census_incomplete.html'
+      );
+    });
+
     localStorage.removeItem('bohemiaHhSearch');
     localStorage.removeItem('bohemiaMemberSearch');
     localStorage.removeItem('hasPaintedId');
