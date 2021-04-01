@@ -301,7 +301,395 @@ df <- df %>% arrange(code)
 
 # Combine with difficulty
 df <- left_join(df, difficulty)
+
+# Define the relationship between n children and n clusters
+library(readxl)
+sizes_df <- read_excel('Children cluster size etc.xlsx', skip = 1)
+sizes_df <- sizes_df[,c(1,6)]
+names(sizes_df) <- c('n_children', 'n_clusters')
 ```
+
+## Voronoi households first
+
+```{r}
+households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
+households <- spTransform(households, proj4string(bohemia::mop2))
+coords <- coordinates(households)
+households@data$lng <- coords[,1]
+households@data$lat <- coords[,2]
+households@data$id <- 1:nrow(households)
+households@data$n_children <- ifelse(is.na(households@data$n_children), 
+                                     0, households@data$n_children)
+households@data$n_adults <- households@data$n_people - households@data$n_children
+households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+
+v <- voronoi(shp = households, poly = bohemia::mop2)
+proj4string(v) <- proj4string(bohemia::mop2)
+v@data$id <- 1:nrow(v)#  as.numeric(as.character(v@data$id))
+vp <- spTransform(v, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+o <- over(households_projected, polygons(vp))
+households_projected@data$id <- vp@data$id[o] # Overwriting due to irregularities
+households_projected <- households_projected[!duplicated(households_projected@data$id),]
+
+# Get supp info
+vp@data <- v@data <- left_join(vp@data, households_projected@data)
+vp@data$n_children <- ifelse(is.na(vp@data$n_children), 
+                                     0, vp@data$n_children)
+# Get the common boundary data
+if(!'gt.RData' %in% dir()){
+  gt <- gTouches(spgeom1 = vp, byid = TRUE)
+  coords <- coordinates(vp)
+  coords_df <- tibble(x = coords[,1], y = coords[,2])
+  coordinates(coords_df) <- ~x+y
+  proj4string(coords_df) <- proj4string(vp)
+  gd <- gDistance(spgeom1 = coords_df, byid = T)
+  save(gt, gd, file = 'gt.RData')
+} else {
+  load('gt.RData')
+}
+
+
+# Define a function for creating a core
+set.seed(1)
+library(rangemap)
+library(raster)
+create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
+                        n_kids = 35){
+  # this = vp[5,]
+  # eligibles = vp
+  no_more <- FALSE
+  original <- this
+  enough <- sum(this@data$n_children) >= n_kids
+  counter <- 0
+  while(!enough){
+    counter <- counter + 1
+    # message(counter)
+    # Get the possible nearby ones
+    sub_gt <- gt[this@data$id,
+                 eligibles@data$id]
+    if(is.matrix(sub_gt)){
+      sub_gt <- apply(sub_gt, 2, any)
+    }
+    sub_eligibles <- eligibles[sub_gt,]
+    # Sample one of them
+    sample_vec <- sub_eligibles@data$id
+    sample_vec <- sample_vec[!sample_vec %in% this@data$id]
+    # Get the closest one to the core
+    sub_gd <- gd[original@data$id, sample_vec]
+    if(is.matrix(sub_gd)){
+      sub_gd <- apply(sub_gd, 1, min)
+    }
+    keep <- sample_vec[which.min(sub_gd)]
+    new_one <- sub_eligibles[sub_eligibles@data$id %in% keep,]
+    if(nrow(new_one@data) == 0){
+      enough <- TRUE
+      no_more <- TRUE
+    } else {
+    this <- rbind(
+      this,
+      new_one
+    )
+    n_children <- sum(this@data$n_children, na.rm = TRUE)
+    enough <- n_children >= n_kids
+    }
+  }
+  if(no_more){
+    out <- list(0)
+    names(out) <- 'done'
+  } else {
+    # Get output object
+    poly <- this
+    pts <- households_projected[households_projected@data$id %in% poly@data$id,]
+    if(nrow(pts) == 1){
+      hull <- gBuffer(pts, width = 0.1)
+    } else if(nrow(pts) == 2){
+      ll <- spLines(pts); proj4string(ll) <- proj4string(pts)
+      hull <- gBuffer(ll, width = 0.1)
+    } else {
+      suppressMessages({hull <- hull_polygon(pts, hull_type = 'concave')})
+    }
+    hull <- SpatialPolygonsDataFrame(Sr = hull,data = data.frame(x = 1), match.ID = F)
+    buf <- gBuffer(hull, width = buffer_distance, quadsegs = 1000)
+    buf <- SpatialPolygonsDataFrame(Sr = buf,data = data.frame(x = 1), match.ID = F)
+    out <- list(poly, pts, hull, buf)
+    names(out) <- c('poly', 'pts', 'hull', 'buf') 
+  }
+  return(out)
+}
+
+# Loop through some parameters
+buffer_distances <- c(25, 50, 75, 100, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000)
+n_childrens <- c(5, 7, 10, 12, 15, 17, 20, 25, 30, 35)
+iterations <- length(buffer_distances) * length(n_childrens)
+master_counter <- 0
+master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
+for(buffer_distance in buffer_distances){
+  for(n_children in n_childrens){
+    master_counter <- master_counter + 1
+    
+    # Loop through each polygon, joining only to adjacent polygons
+    # buffer_distance <- 1000
+    # n_children <- 35
+    n_clusters <- sizes_df$n_clusters[sizes_df$n_children == n_children]
+    done <- FALSE
+    eligibles <- vp
+    cluster_counter <- 0
+    pts_list <- poly_list <- hull_list <- buf_list <- list()
+    while(!done){
+      set.seed(1)
+      cluster_counter <- cluster_counter + 1
+      message('Iteration ', master_counter, ' of ', iterations, ' | Distance: ', buffer_distance, '. Children per cluster: ', n_children, '. Cluster ', cluster_counter, '. Clusters needed: ', n_clusters)
+      cant_find_starter <- TRUE
+      failure_counter <- 0
+      while(cant_find_starter){
+        if(failure_counter > 0){
+          message('---', failure_counter, ' failures...')
+        }
+        # Get a random starting point
+        random_index <- sample(eligibles@data$id, 1)
+        # Create a core
+        starter <- eligibles[eligibles@data$id == random_index,]
+        core <- create_core(this = starter,
+                            eligibles = eligibles,
+                            gt = gt,
+                            gd = gd,
+                            buffer_distance = buffer_distance,
+                            n_kids = n_children)
+        if(length(core) > 1){
+          cant_find_starter <- FALSE
+        } else {
+          failure_counter <- failure_counter + 1
+          if(failure_counter > 30){
+            break
+          }
+        }
+      }
+
+      if(length(core) == 1){
+        # try again with a different random index
+        message('All done with ', cluster_counter, ' clusters.')
+        done <- TRUE
+      } else {
+         # Identify overlaps between this buffer and any points remaining in eligibles
+        eligible_pts <- households_projected[households_projected@data$id %in% eligibles@data$id,]
+        o <- over(eligible_pts, polygons(core$buf))
+        remove_inidices <- which(!is.na(o))
+        remove_these <- eligible_pts@data$id[remove_inidices]
+        removed <- eligibles[eligibles@data$id %in% remove_these,]
+        removed_pts <- eligible_pts[eligible_pts@data$id %in% remove_these,]
+        removed_pts <- removed_pts[!removed_pts@data$id %in% core$pts@data$id,]
+        # Remove from future eligibles all those which are in current buffers
+        # also need to go a further kilometer out in order to ensure that buffers don't overlap
+        o2 <- over(eligible_pts, gBuffer(polygons(core$buf), width = buffer_distance))
+        remove_inidices <- which(!is.na(o2))
+        remove_these <- eligible_pts@data$id[remove_inidices]
+        eligibles <- eligibles[!eligibles@data$id %in% remove_these,]
+        # Save the results in lists
+        pts <- core$pts
+        pts@data$cluster <- cluster_counter
+        poly <- core$poly
+        poly@data$cluster <- cluster_counter
+        hull <- core$hull 
+        hull@data$cluster <- cluster_counter
+        buf <- core$buf
+        buf@data$cluster <- cluster_counter
+        # Combine the pts in the core with those in the buffer
+        pts@data$status <- 'core'
+        removed_pts@data$status <- 'buffer'
+        removed_pts@data$cluster <- cluster_counter
+        pts <- rbind(pts, removed_pts)
+        # Combine the polys in the core with the polys in the buffer
+        poly@data$status <- 'core'
+        removed@data$status <- 'buffer'
+        removed@data$cluster <- cluster_counter
+        poly <- rbind(poly, removed)
+        poly_list[[cluster_counter]] <- poly
+        hull_list[[cluster_counter]] <- hull
+        pts_list[[cluster_counter]] <- pts
+        buf_list[[cluster_counter]] <- buf
+        
+        # # Get some combined stuff and plot
+        # combined_poly <- do.call('rbind', poly_list)
+        # combined_pts <- do.call('rbind', pts_list)
+        # combined_hull <- do.call('rbind', hull_list)
+        # combined_buf <- do.call('rbind', buf_list)
+        # plot(combined_buf)
+        # plot(combined_hull, add = T)
+        # points(combined_pts, col = ifelse(combined_pts@data$status == 'core', 'green', 'red'),
+        #      pch = '.')
+        # title(main = paste0('Done with cluster number ', cluster_counter, ' of ', n_clusters),
+        #       sub = paste0('So far: ', sum(combined_pts@data$n_adults), ' adults and ',
+        #                    nrow(combined_pts@data), ' households'))
+      
+        done <- cluster_counter >= n_clusters
+        # Sys.sleep(1) 
+      }
+    }
+    
+    combined_poly <- do.call('rbind', poly_list)
+    combined_pts <- do.call('rbind', pts_list)
+    combined_hull <- do.call('rbind', hull_list)
+    combined_buf <- do.call('rbind', buf_list)
+    
+    # Save to the final outcomes list
+    combined_poly@data$iter_buffer_distance <- buffer_distance
+    combined_pts@data$iter_buffer_distance <- buffer_distance
+    combined_hull@data$iter_buffer_distance <- buffer_distance
+    combined_buf@data$iter_buffer_distance <- buffer_distance
+    combined_poly@data$iter_n_children <- n_children
+    combined_pts@data$iter_n_children <- n_children
+    combined_hull@data$iter_n_children <- n_children
+    combined_buf@data$iter_n_children <- n_children
+    
+    master_poly_list[[master_counter]] <- combined_poly
+    master_pts_list[[master_counter]] <- combined_pts
+    master_hull_list[[master_counter]] <- combined_hull
+    master_buf_list[[master_counter]] <- combined_buf
+  }
+}
+
+
+# Create combined "master
+master_poly <- do.call('rbind', master_poly_list)
+master_pts <- do.call('rbind', master_pts_list)
+master_hull <- do.call('rbind', master_hull_list)
+master_buf <- do.call('rbind', master_buf_list)
+
+# save(master_poly, master_pts, master_hull, master_buf, file = 'master2.RData')
+# save(master_poly, master_pts, master_hull, master_buf, file = 'master3.RData')
+# save(master_poly, master_pts, master_hull, master_buf, file = 'master4.RData')
+
+# Get some analysis for each scenario
+pd <- master_pts@data %>%
+  ungroup %>%
+  group_by(iter_buffer_distance,
+           iter_n_children) %>%
+  summarise(n_real_clusters = length(unique(cluster)),
+            n_children_core = sum(n_children[status == 'core']),
+            treatable_adults = sum(n_adults)) %>%
+  ungroup %>%
+  left_join(sizes_df,
+            by = c('iter_n_children' = 'n_children')) %>%
+  mutate(valid = n_real_clusters >= n_clusters) %>%
+  filter(valid)
+  # mutate(valid = ifelse(valid, 'Sufficient number of clusters',
+  #                       'Not enough clusters formed'))
+
+cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+# cols[3:4] <- c('black', 'grey')
+ggplot(data = pd,
+       aes(x = iter_buffer_distance,
+           y = treatable_adults)) +
+  geom_point(aes(#pch = valid,
+                 color = factor(iter_n_children)),
+             size = 2,
+             alpha = 0.5) +
+  theme(legend.position = 'bottom') +
+  geom_line(aes(color = factor(iter_n_children),
+                group = factor(iter_n_children)),
+            size = 2,
+            alpha = 0.9) +
+  scale_color_manual(name = 'Number of\nchildren in core',
+                     values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+  labs(x = 'Buffer distance (meters)',
+       y = 'Treatable adults (buffer + core)',
+       title = 'Cluster formation strategies comparison') #+
+  # scale_shape_manual(name = '',
+  #                    values = c('X', 'O')) 
+
+# Also get distance to edge of buffer, distance to nearest contaminant, etc
+sub_gd <- gd[households_projected@data$id, households_projected@data$id]
+
+iters_buffer_distance <- sort(unique(master_pts@data$iter_buffer_distance))
+iters_n_children <- sort(unique(master_pts@data$iter_n_children))
+contaminant_list <- list()
+counter <- 0
+iters <- length(iters_buffer_distance) * length(iters_n_children)
+for(buffer_distance in iters_buffer_distance){
+  for(n_children in iters_n_children){
+    counter <- counter + 1
+    message(counter, ' of ', iters, '. Buffer: ', buffer_distance, '. Children: ', n_children)
+    # Get the points
+    these_buf <- master_buf[master_buf@data$iter_buffer_distance == buffer_distance & master_buf@data$iter_n_children == n_children,]
+    these_pts <- master_pts[master_pts@data$iter_buffer_distance == buffer_distance & master_pts@data$iter_n_children == n_children,]
+    # Keep only those in the core
+    core <- these_pts[these_pts@data$status == 'core',]
+    buff <- these_pts[!is.na(these_pts@data$status),]
+
+    # Assign temporary assignations for the purpose of estimating
+    # distances to contaminants
+    assignment_df <- tibble(
+      cluster = sort(unique(core@data$cluster))
+    )
+    a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+    a <- sample(a, size = length(a), replace = F)
+    assignment_df$assignment <- a[1:nrow(assignment_df)]
+    buff@data <- left_join(buff@data, assignment_df)
+    # Bring the assignment into ALL points, since that is how contamination is determined
+    all_pts <- households_projected
+    all_pts@data <- left_join(all_pts@data, buff@data %>% ungroup %>% dplyr::select(assignment, id))
+
+    # Assuming that non-cluster areas are group 1
+    all_pts@data$assignment <- ifelse(is.na(all_pts@data$assignment), 1, all_pts@data$assignment)
+    
+    # Get distance to contaminant
+    all_pts@data$nearest_contaminant <- NA
+    # Get for group 1
+    for(i in 1:3){
+      message('...group ', i, ' of 3')
+      g1 <- sub_gd[which(all_pts@data$assignment == i),
+             which(all_pts@data$assignment != i)]
+      g2 <- apply(g1, 1, function(x){min(x, na.rm = TRUE)})
+      all_pts@data$nearest_contaminant[all_pts@data$assignment == i] <- g2
+    }
+    # Subset to only include those in the study core
+    keep <- all_pts[all_pts@data$id %in% core@data$id,]
+    keep@data$iter_n_children <- n_children
+    keep@data$iter_buffer_distance <- buffer_distance
+    flag <- length(which(is.na(keep@data$nearest_contaminant)))
+    if(flag > 0){
+      'PROBLEM!!!'
+    }
+    contaminant_list[[counter]] <- keep
+  }
+}
+all_pts <- do.call('rbind', contaminant_list)
+save(all_pts, file = 'all_pts.RData')
+pd <- all_pts@data %>%
+  group_by(assignment,
+           iter_n_children,
+           iter_buffer_distance) %>%
+  summarise(hh = n(),
+            avg_distance_to_nearest_contaminant = mean(nearest_contaminant, na.rm = TRUE),
+            p25 = quantile(nearest_contaminant, 0.25, na.rm = TRUE),
+            p75 = quantile(nearest_contaminant, 0.75, na.rm = TRUE),
+            mn = median(nearest_contaminant, na.rm = TRUE),
+            p95 = quantile(nearest_contaminant, 0.95, na.rm = TRUE),
+            p05 = quantile(nearest_contaminant, 0.05, na.rm = TRUE))
+
+cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+cols[3:4] <- c('black', 'grey')
+ggplot(data = pd,
+       aes(x = iter_buffer_distance,
+           y = avg_distance_to_nearest_contaminant)) +
+  geom_point(aes(#pch = valid,
+                 color = factor(iter_n_children)),
+             size = 2,
+             alpha = 0.5) +
+  facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
+  theme(legend.position = 'bottom') +
+  geom_line(aes(color = factor(iter_n_children),
+                group = factor(iter_n_children)),
+            size = 1.4,
+            alpha = 0.9) +
+  scale_color_manual(name = 'Number of\nchildren in core',
+                     values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+  labs(x = 'Minimum buffer distance (meters)',
+       y = 'Average meters to nearest contaminant\namong "core" households',
+       title = 'Cluster formation strategies comparison')
+ggsave('~/Desktop/distance.png', height = 8, width = 12)
+```
+
 
 ## Jelly beans of 200 adults
 
@@ -335,7 +723,7 @@ df <- left_join(df, difficulty)
 # Makes the distance between a child and the next discordant household at least 1 km
 # Leverages neighbors with same status to create larger cores of children
 
-buffer_distance <- 0.01
+buffer_distance <- 1000
 households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
 households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
 # Get distances between all households
@@ -378,8 +766,10 @@ create_core <- function(pt, eligibles, n_clusters = 1){
 
     keep_only <- keep[1:counter]
     core <- eligibles[keep_only,]
-    n_adults <- sum(core@data$n_adults)
-    cc_vec[counter] <- n_adults
+    # n_adults <- sum(core@data$n_adults)
+    n_children <- sum(core@data$n_children)
+
+    cc_vec[counter] <- n_children
     cluster_number_vec[counter] <- cluster_number
     xdf <- tibble(cc = cc_vec,
                   cluster = cluster_number_vec) %>%
@@ -389,7 +779,7 @@ create_core <- function(pt, eligibles, n_clusters = 1){
     # see if we've just passed the threshold for this cluster
     just_passed <- FALSE
     if(nrow(xdf) > 1){
-        just_passed <- sum(xdf$n_c) >= 200
+        just_passed <- sum(xdf$n_c) >= 35
         if(just_passed){
           cluster_number <- cluster_number + 1
         }
@@ -398,7 +788,7 @@ create_core <- function(pt, eligibles, n_clusters = 1){
   }
   cc_out <- cluster_number_vec
   core@data$cc <- cc_out
-  message('---Successfully created a core area of ', n_adults)
+  message('---Successfully created a core area of ', n_children)
   return(core)
 }
 
@@ -583,7 +973,6 @@ households_projected@data <-
               dplyr::distinct(assignment, assignment_group))
 table(households_projected@data$assignment)
 
-# Get number of children per 
 ```
 
 
@@ -599,10 +988,10 @@ for(i in 1:length(clusters)){
   this_cluster <- clusters[i]
   message(this_cluster, '. ', i, ' of ', length(clusters))
   these_hh <- x[x@data$cluster == this_cluster,]
-  # n_children <- sum(these_hh@data$n_children)
-  n_adults <- sum(these_hh@data$n_adults)
-  while(n_adults < 200){
-  # while(n_children < 35){
+  n_children <- sum(these_hh@data$n_children)
+  # n_adults <- sum(these_hh@data$n_adults)
+  # while(n_adults < 200){
+  while(n_children < 35){
     # message('---', n_children, ' is too low. Adding')
     message('---', n_adults, ' is too low. Adding')
 
@@ -615,18 +1004,18 @@ for(i in 1:length(clusters)){
     # Assign those to the same cluster
     x@data$cluster[x@data$cluster == nearest_cluster] <- this_cluster
     these_hh <- x[x@data$cluster %in% c(this_cluster),]
-    # n_children <- sum(these_hh@data$n_children)
-    n_adults <- sum(these_hh@data$n_adults)
+    n_children <- sum(these_hh@data$n_children)
+    # n_adults <- sum(these_hh@data$n_adults)
   }
 }
 
 # Check to make sure that we have 35 or more per cluster
 outcome <- x@data %>%
   group_by(cluster) %>%
-  summarise(n_adults = sum(n_adults)) %>%
-  arrange(n_adults)
-  # summarise(n_children = sum(n_children)) %>%
-  # arrange(n_children)
+  # summarise(n_adults = sum(n_adults)) %>%
+  # arrange(n_adults)
+  summarise(n_children = sum(n_children)) %>%
+  arrange(n_children)
 
 # Re number the clusters
 x@data$cluster <- as.numeric(factor(as.character(x$cluster)))
@@ -666,10 +1055,10 @@ get_core <- function(spatial_dataframe){
     # message(counter)
     keep_only <- keep[1:counter]
     core <- projected[keep_only,]
-    n_adults = sum(core@data$n_adults)
-    enough <- n_adults >= 200
+    # n_adults = sum(core@data$n_adults)
+    # enough <- n_adults >= 200
     n_children <- sum(core@data$n_children)
-    # enough <- n_children >= 35
+    enough <- n_children >= 35
   }
 
   # Create the core
