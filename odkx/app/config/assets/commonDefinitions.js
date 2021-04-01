@@ -512,6 +512,16 @@ window.odkCommonDefinitions = {
         "sw": "Hali ya mkazi"
       },
       "_row_num": 58
+    },
+    "incomplete_no_result": {
+      "string_token": "incomplete_no_result",
+      "text": "All households have been finalized.",
+      "_row_num": 59
+    },
+    "incomplete_hh": {
+      "string_token": "incomplete_hh",
+      "text": "Incomplete Households",
+      "_row_num": 60
     }
   },
   "_locales": {
