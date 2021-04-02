@@ -32,7 +32,8 @@ define([
               that.renderContext.singleSection = true;
             }
 
-            that.renderContext.isSubform = opendatakit.getSettingValue('form_id') !== 'census';
+            var tableId = opendatakit.getSettingValue('table_id');
+            that.renderContext.isSubform = tableId !== 'census' && !tableId.startsWith('ento_');
 
             ctxt.success();
           }

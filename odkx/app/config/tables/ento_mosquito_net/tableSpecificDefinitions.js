@@ -110,8 +110,8 @@ window.odkTableSpecificDefinitions = {
       "text": "B3b. How long ago did you obtain the net?",
       "_row_num": 21
     },
-    "qb3b.followup": {
-      "string_token": "qb3b.followup",
+    "qb3b_followup": {
+      "string_token": "qb3b_followup",
       "text": "B3b. How did you obtain the net?",
       "_row_num": 23
     }
