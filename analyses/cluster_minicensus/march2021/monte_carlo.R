@@ -418,8 +418,8 @@ if('master.RData' %in% dir()){
   load('master.RData')
 } else {
   # Loop through some parameters
-  buffer_distances <- buffer_distances <- c(250, 450, 800)  #c(100, 200, 300, 400, 500, 600)
-  n_childrens <- c(5,6,7,8, 9,10,11,12,13,15,17,18,20,22,25,27,30,35)   #c(6,9,11)#  c(30, 35)#c(8, 13, 18) #c(7, 12, 17, 22, 27)#c(5, 10, 15, 20, 25)
+  buffer_distances <- buffer_distances <- c(100, 200, 300, 400, 500, 600)
+  n_childrens <- c(8, 13, 18) #c(7, 12, 17, 22, 27)#c(5, 10, 15, 20, 25)
   iterations <- length(buffer_distances) * length(n_childrens)
   master_counter <- 0
   master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -599,7 +599,7 @@ if('master.RData' %in% dir()){
   master_pts <- do.call('rbind', master_pts_list)
   master_hull <- do.call('rbind', master_hull_list)
   master_buf <- do.call('rbind', master_buf_list)
-  save(master_poly, master_pts, master_hull, master_buf, file = 'master6.RData')
+  save(master_poly, master_pts, master_hull, master_buf, file = 'master3.RData')
 }
 
 ######################## DELETE THE BELOW
@@ -607,7 +607,7 @@ xx <- households_projected
 xx <- spTransform(xx, proj4string(bohemia::mop2))
 
 right <- master_pts[master_pts@data$iter_buffer_distance == 1000 &
-                   master_pts@data$iter_n_children == 20,]
+                      master_pts@data$iter_n_children == 20,]
 table(duplicated(right@data$id))
 dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
 # View(dd@data)
@@ -678,7 +678,7 @@ ggsave('~/Desktop/strategies.png', height = 12, width = 8)
 if('all_pts.RData' %in% dir()){
   load('all_pts.RData')
 } else {
-
+  
   # Get a 1 km border around each household
   radius <- gBuffer(households_projected, byid = T, width = 1000)
   
@@ -691,11 +691,11 @@ if('all_pts.RData' %in% dir()){
     radius_list[[j]] <- out
   }
   radius_df <- bind_rows(radius_list)
-
+  
   # # Get distances between households
   # sub_gd <- gd[households_projected@data$id, households_projected@data$id]
-
-
+  
+  
   iters_buffer_distance <- sort(unique(master_pts@data$iter_buffer_distance))
   iters_n_children <- sort(unique(master_pts@data$iter_n_children))
   contaminant_list <- list()
@@ -814,7 +814,7 @@ ggplot(data = all_pts@data %>%
   labs(x = 'Percent of identical status within 1000 meter radius') +
   theme(legend.position = 'bottom') +
   scale_fill_manual(name = 'Assignment group',
-                     values = cols) +
+                    values = cols) +
   theme(axis.text = element_text(size = 6),
         strip.text = element_text(size = 8)) +
   labs(y = 'Density') +
