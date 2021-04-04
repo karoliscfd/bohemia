@@ -418,8 +418,9 @@ if('master.RData' %in% dir()){
   load('master.RData')
 } else {
   # Loop through some parameters
-  buffer_distances <- buffer_distances <- c(100, 200, 300, 400, 500, 600)
-  n_childrens <- c(8, 13, 18) #c(7, 12, 17, 22, 27)#c(5, 10, 15, 20, 25)
+  seeds <- 1:10
+  buffer_distances <- buffer_distances <- c(100, 200, 250, 300, 400, 450, 500, 600, 800)
+  n_childrens <- c(5,6,7,8, 9,10,11,12,13,15,17,18,20,22,25,27,30,35)  
   iterations <- length(buffer_distances) * length(n_childrens)
   master_counter <- 0
   master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -599,23 +600,42 @@ if('master.RData' %in% dir()){
   master_pts <- do.call('rbind', master_pts_list)
   master_hull <- do.call('rbind', master_hull_list)
   master_buf <- do.call('rbind', master_buf_list)
-  save(master_poly, master_pts, master_hull, master_buf, file = 'master3.RData')
+  save(master_poly, master_pts, master_hull, master_buf, file = 'masterx.RData')
 }
+
+load('master.RData')
+master_poly0 <- master_poly; master_pts0 <- master_pts; master_hull0 <- master_hull; master_buf0 <- master_buf
+load('master2.RData')
+master_poly2 <- master_poly; master_pts2 <- master_pts; master_hull2 <- master_hull; master_buf2 <- master_buf
+load('master3.RData')
+master_poly3 <- master_poly; master_pts3 <- master_pts; master_hull3 <- master_hull; master_buf3 <- master_buf
+load('master4.RData')
+master_poly4 <- master_poly; master_pts4 <- master_pts; master_hull4 <- master_hull; master_buf4 <- master_buf
+load('master5.RData')
+master_poly5 <- master_poly; master_pts5 <- master_pts; master_hull5 <- master_hull; master_buf5 <- master_buf
+load('master6.RData')
+master_poly6 <- master_poly; master_pts6 <- master_pts; master_hull6 <- master_hull; master_buf6 <- master_buf
+# need to add 6 to the below
+master_poly <- rbind(master_poly0, master_poly2, master_poly3, master_poly4, master_poly5)
+master_pts <- rbind(master_pts0, master_pts2, master_pts3, master_pts4, master_pts5)
+master_hull <- rbind(master_hull0, master_hull2, master_hull3, master_hull4, master_hull5)
+master_buf <- rbind(master_buf0, master_buf2, master_buf3, master_buf4, master_buf5)
+
 
 ######################## DELETE THE BELOW
 xx <- households_projected
 xx <- spTransform(xx, proj4string(bohemia::mop2))
 
-right <- master_pts[master_pts@data$iter_buffer_distance == 1000 &
-                      master_pts@data$iter_n_children == 20,]
+right <- master_pts[master_pts@data$iter_buffer_distance == 200 &
+                      master_pts@data$iter_n_children == 10,]
 table(duplicated(right@data$id))
 dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
 # View(dd@data)
-xpolys <- master_hull[master_hull@data$iter_buffer_distance == 1000 &
-                        master_hull@data$iter_n_children == 20,]
+xpolys <- master_hull[master_hull@data$iter_buffer_distance == 200 &
+                        master_hull@data$iter_n_children == 10,]
 xpolys <- spTransform(xpolys, proj4string(bohemia::mop2))
-xbuf <- master_buf[master_buf@data$iter_buffer_distance == 1000 &
-                     master_buf@data$iter_n_children == 20,]
+xbuf <- master_buf[master_buf@data$iter_buffer_distance == 200 &
+                     master_buf@data$iter_n_children == 10,]
 xbuf <- spTransform(xbuf, proj4string(bohemia::mop2))
 xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
 xx@data$color <- ifelse(xx@data$status == 'core', 'red',
@@ -647,7 +667,7 @@ pd <- master_pts@data %>%
 # mutate(valid = ifelse(valid, 'Sufficient number of clusters',
 #                       'Not enough clusters formed'))
 
-cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+cols <- colorRampPalette(RColorBrewer::brewer.pal(n = 9, 'Spectral'))(length(unique(pd$iter_n_children)))
 # cols[3] <- 'darkgrey'
 # cols[3:4] <- c('black', 'grey')
 ggplot(data = pd,
@@ -797,7 +817,7 @@ if('all_pts.RData' %in% dir()){
 cols <- c('black', 'red', 'darkorange')
 agg <- all_pts@data %>% 
   mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
-  mutate(iter_n_children = paste0('Kids: ', iter_n_children)) %>%
+  mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
   mutate(assignment = factor(assignment)) %>%
   group_by(iter_buffer_distance, iter_n_children, assignment) %>%
   summarise(hh = n(),
@@ -809,7 +829,7 @@ ggplot(data = all_pts@data %>%
          mutate(assignment = factor(assignment)),
        aes(x = p_same,
            group = assignment)) +
-  geom_density(aes(fill = assignment), alpha = 0.6, size = 0.3) +
+  geom_histogram(aes(fill = assignment), alpha = 0.6, size = 0.3) +
   facet_grid(iter_n_children~iter_buffer_distance) +
   labs(x = 'Percent of identical status within 1000 meter radius') +
   theme(legend.position = 'bottom') +
@@ -833,6 +853,30 @@ ggplot(data = all_pts@data %>%
                      values = cols)
 ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
 
+ggplot(data = agg,
+       aes(x = assignment,
+           y = avg_p_same,
+           fill = assignment)) +
+  facet_grid(iter_n_children~iter_buffer_distance) +
+  geom_bar(stat = 'identity') +
+  labs(x = 'Percent of identical status within 1000 meter radius') +
+  theme(axis.text = element_text(size = 6),
+        strip.text = element_text(size = 8)) +
+  labs(y = '%') +
+  geom_text(data = agg,
+            aes(x = assignment,
+                y = avg_p_same,
+                label = round(avg_p_same)),
+            size = 3,
+            nudge_y = -20,
+            color = 'white') +
+  scale_fill_manual(name = 'Assignment group',
+                     values = cols) +
+  theme(legend.position = 'none') 
+  
+ggsave('~/Desktop/radius_distributions2.png', width= 9, height = 12)
+
+
 # Plot of percent contamination
 pd <- all_pts@data %>%
   group_by(assignment,
@@ -841,7 +885,9 @@ pd <- all_pts@data %>%
   summarise(hh = n(),
             med_p_same = median(p_same, na.rm = TRUE),
             avg_p_same = mean(p_same, na.rm = TRUE))
-cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+# cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+cols <- colorRampPalette(RColorBrewer::brewer.pal(n = 9, 'Spectral'))(length(unique(pd$iter_n_children)))
+
 # cols[3:4] <- c('black', 'grey')
 ggplot(data = pd,
        aes(x = iter_buffer_distance,
@@ -859,7 +905,7 @@ ggplot(data = pd,
   scale_color_manual(name = 'Number of\nchildren in core',
                      values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
   labs(x = 'Minimum buffer distance (meters)',
-       y = 'Average % with identical assignment\nstatus within 1 km radius',
+       y = 'Median % with identical assignment\nstatus within 1 km radius',
        title = 'Cluster formation strategies comparison')
 ggsave('~/Desktop/radius.png', height = 8, width = 12)
 
