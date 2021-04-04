@@ -414,8 +414,8 @@ create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
   return(out)
 }
 
-if('master.RData' %in% dir()){
-  load('master.RData')
+if('masterx.RData' %in% dir()){
+  load('masterx.RData')
 } else {
   # Loop through some parameters
   seeds <- 1:10
@@ -603,23 +603,24 @@ if('master.RData' %in% dir()){
   save(master_poly, master_pts, master_hull, master_buf, file = 'masterx.RData')
 }
 
-load('master.RData')
-master_poly0 <- master_poly; master_pts0 <- master_pts; master_hull0 <- master_hull; master_buf0 <- master_buf
-load('master2.RData')
-master_poly2 <- master_poly; master_pts2 <- master_pts; master_hull2 <- master_hull; master_buf2 <- master_buf
-load('master3.RData')
-master_poly3 <- master_poly; master_pts3 <- master_pts; master_hull3 <- master_hull; master_buf3 <- master_buf
-load('master4.RData')
-master_poly4 <- master_poly; master_pts4 <- master_pts; master_hull4 <- master_hull; master_buf4 <- master_buf
-load('master5.RData')
-master_poly5 <- master_poly; master_pts5 <- master_pts; master_hull5 <- master_hull; master_buf5 <- master_buf
-load('master6.RData')
-master_poly6 <- master_poly; master_pts6 <- master_pts; master_hull6 <- master_hull; master_buf6 <- master_buf
-# need to add 6 to the below
-master_poly <- rbind(master_poly0, master_poly2, master_poly3, master_poly4, master_poly5)
-master_pts <- rbind(master_pts0, master_pts2, master_pts3, master_pts4, master_pts5)
-master_hull <- rbind(master_hull0, master_hull2, master_hull3, master_hull4, master_hull5)
-master_buf <- rbind(master_buf0, master_buf2, master_buf3, master_buf4, master_buf5)
+# load('master.RData')
+# master_poly0 <- master_poly; master_pts0 <- master_pts; master_hull0 <- master_hull; master_buf0 <- master_buf
+# load('master2.RData')
+# master_poly2 <- master_poly; master_pts2 <- master_pts; master_hull2 <- master_hull; master_buf2 <- master_buf
+# load('master3.RData')
+# master_poly3 <- master_poly; master_pts3 <- master_pts; master_hull3 <- master_hull; master_buf3 <- master_buf
+# load('master4.RData')
+# master_poly4 <- master_poly; master_pts4 <- master_pts; master_hull4 <- master_hull; master_buf4 <- master_buf
+# load('master5.RData')
+# master_poly5 <- master_poly; master_pts5 <- master_pts; master_hull5 <- master_hull; master_buf5 <- master_buf
+# load('master6.RData')
+# master_poly6 <- master_poly; master_pts6 <- master_pts; master_hull6 <- master_hull; master_buf6 <- master_buf
+# # need to add 6 to the below
+# master_poly <- rbind(master_poly0, master_poly2, master_poly3, master_poly4, master_poly5)
+# master_pts <- rbind(master_pts0, master_pts2, master_pts3, master_pts4, master_pts5)
+# master_hull <- rbind(master_hull0, master_hull2, master_hull3, master_hull4, master_hull5)
+# master_buf <- rbind(master_buf0, master_buf2, master_buf3, master_buf4, master_buf5)
+
 
 
 ######################## DELETE THE BELOW
