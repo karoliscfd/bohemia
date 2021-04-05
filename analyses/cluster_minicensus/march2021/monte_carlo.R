@@ -638,6 +638,51 @@ if(read_sims){
   }
 }
 
+# Write a csv of outputs for Carlos
+if(read_sims){
+  data_list <- list()
+  for(i in 1:length(master_pts_list)){
+    data_list[[i]] <- master_pts_list[[i]]@data
+  }
+  x <- do.call('rbind', data_list)
+  
+  # Get numbers per different parameters
+  pd <- x %>%
+    ungroup %>%
+    group_by(iter_buffer_distance,
+             iter_n_children, sim) %>%
+    summarise(n_real_clusters = length(unique(cluster)),
+              n_children_core = sum(n_children[status == 'core']),
+              treatable_adults = sum(n_adults),
+              n_reproductive = sum(reproductive),
+              n_cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+              n_cows_babies = sum(cows_babies, na.rm = TRUE),
+              n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+              n_pigs_babies = sum(pigs_babies, na.rm = TRUE)) %>%
+    ungroup %>%
+    left_join(sizes_df,
+              by = c('iter_n_children' = 'n_children')) %>%
+    mutate(valid = n_real_clusters >= n_clusters) %>%
+    filter(valid) %>%
+    # get average per sim
+    group_by(iter_buffer_distance,
+             iter_n_children) %>%
+    summarise(n_children_core = mean(n_children_core),
+              n_real_clusters = mean(n_real_clusters),
+              adults = mean(treatable_adults),
+              n_reproductive = mean(n_reproductive),
+              n_cows_1_year_plus = mean(n_cows_1_year_plus),
+              n_cows_babies = mean(n_cows_babies),
+              n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
+              n_pigs_babies = mean(n_pigs_babies))
+  write_csv(pd, 'carlos.csv')
+  # Get just for the 400 m 12 kids scenario
+  out <- pd %>% filter(iter_buffer_distance == 400,
+                       iter_n_children == 12)
+  
+  
+  
+}
 
 
 # ######################## DELETE THE BELOW
@@ -868,18 +913,40 @@ if(read_sims){
     data_list[[i]] <- all_pts_list[[i]]@data
   }
   x <- bind_rows(data_list)
-  agg <- x %>%
+  x <- x %>%
     mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
     mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
-    mutate(assignment = factor(assignment)) %>%
+    mutate(assignment = factor(assignment))
+  agg <- x %>%
     group_by(iter_buffer_distance, iter_n_children, assignment) %>%
     summarise(hh = n(),
               avg_p_same = mean(p_same, na.rm = TRUE),
-              med_p_same = median(p_same, na.rm = TRUE))
-  ggplot(data = x %>%
-           mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
-           mutate(iter_n_children = paste0('Kids: ', iter_n_children)) %>%
-           mutate(assignment = factor(assignment)),
+              med_p_same = median(p_same, na.rm = TRUE),
+              n_children_core = sum(n_children),
+              treatable_adults = sum(n_adults),
+              n_reproductive = sum(reproductive),
+              n_cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+              n_cows_babies = sum(cows_babies, na.rm = TRUE),
+              n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+              n_pigs_babies = sum(pigs_babies, na.rm = TRUE)) %>%
+    ungroup %>%
+    # get average per sim
+    group_by(iter_buffer_distance,
+             iter_n_children,
+             assignment) %>%
+    summarise(hh = mean(hh),
+              avg_p_same = mean(avg_p_same),
+              med_p_same = mean(med_p_same),
+              n_children_core = mean(n_children_core),
+              adults = mean(treatable_adults),
+              n_reproductive = mean(n_reproductive),
+              n_cows_1_year_plus = mean(n_cows_1_year_plus),
+              n_cows_babies = mean(n_cows_babies),
+              n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
+              n_pigs_babies = mean(n_pigs_babies))
+  
+  
+  ggplot(data = x,
          aes(x = p_same,
              group = assignment)) +
     geom_density(aes(fill = assignment), alpha = 0.6, size = 0.3) +
@@ -905,7 +972,8 @@ if(read_sims){
     scale_color_manual(name = 'Assignment group',
                        values = cols)
   ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
-
+  write_csv(agg, 'carlos2.csv')
+  
   ggplot(data = agg,
          aes(x = assignment,
              y = avg_p_same,
