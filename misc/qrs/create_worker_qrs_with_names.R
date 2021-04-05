@@ -21,13 +21,29 @@ fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8
 fids3 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Catalonia')
 fids <- bind_rows(fids1, fids2, fids3)
 fids <- fids[1:600,]
-fids <- fids %>% filter(bohemia_id %in% c(1:200, 301:500))
-
+# fids <- fids %>% filter(bohemia_id %in% c(1:200, 301:500))
+fids <- fids %>% filter(bohemia_id <= 600)
 numbers <- fids$bohemia_id
 numbers <- add_zero(numbers, 3)
 fid_names <- paste0(ifelse(is.na(fids$first_name), '', fids$first_name), ' ', 
                     ifelse(is.na(fids$last_name), '', fids$last_name))
 fid_names[fid_names == 'NA NA'] <- ''
+
+# Get ALL numbers
+joined <- left_join(
+  tibble(number = add_zero(1:600, 3)),
+  tibble(number = numbers,
+         name = fid_names)
+)
+joined <- joined %>%
+  mutate(name = ifelse(is.na(name), '',
+                       ifelse(name %in% c('test1 test1',
+                                          'test2 test2',
+                                          'test3 test3'),
+                              '',
+                              ifelse(name == 'Ben Brew', '', name))))
+numbers <- joined$number
+fid_names <- joined$name
 
 ggqrcode <- function(text, color="black", alpha=1) {
   pkg <- "qrcode"
