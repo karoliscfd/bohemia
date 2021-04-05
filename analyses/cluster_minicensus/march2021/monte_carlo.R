@@ -726,254 +726,277 @@ if(read_sims){
 
 
 # Also get distance to edge of buffer, distance to nearest contaminant, etc
-seed_pts_name <- paste0('all_pts_', seedy, '.RData')
-if(seed_pts_name %in% dir()){
-  load(seed_pts_name)
+if(read_sims){
+  # Identify what the sims files are
+  sim_files <- dir()
+  sim_files <- sim_files[grepl('.RData', sim_files)]
+  sim_files <- sim_files[grepl('all_pts_', sim_files)]
+  all_pts_list <- list()
+  for(i in 1:length(sim_files)){
+    this_sim_file <- sim_files[i]
+    load(this_sim_file)
+    all_pts@data$sim <- i
+    all_pts_list[[i]] <- all_pts
+  }
+
 } else {
-  
-  # Get a 1 km border around each household
-  radius <- gBuffer(households_projected, byid = T, width = 1000)
-  
-  # Get which houses are in each radius 1000 meters
-  over_radius <- over(x = households_projected, y = polygons(radius), returnList = T)
-  radius_list <- list()
-  for(j in 1:length(over_radius)){
-    out <- tibble(this_id = households_projected@data$id[j],
-                  id = households_projected@data$id[unlist(over_radius[[j]])])
-    radius_list[[j]] <- out
-  }
-  radius_df <- bind_rows(radius_list)
-  
-  # # Get distances between households
-  # sub_gd <- gd[households_projected@data$id, households_projected@data$id]
-  
-  
-  iters_buffer_distance <- sort(unique(master_pts@data$iter_buffer_distance))
-  iters_n_children <- sort(unique(master_pts@data$iter_n_children))
-  contaminant_list <- list()
-  counter <- 0
-  iters <- length(iters_buffer_distance) * length(iters_n_children)
-  for(buffer_distance in iters_buffer_distance){
-    for(n_children in iters_n_children){
-      counter <- counter + 1
-      message(counter, ' of ', iters, '. Buffer: ', buffer_distance, '. Children: ', n_children)
-      # Get the points
-      these_buf <- master_buf[master_buf@data$iter_buffer_distance == buffer_distance & master_buf@data$iter_n_children == n_children,]
-      these_pts <- master_pts[master_pts@data$iter_buffer_distance == buffer_distance & master_pts@data$iter_n_children == n_children,]
-      
-      # # # Delete the below #####################33
-      # xx <- households_projected
-      # xx@data <- left_join(xx@data %>% ungroup,
-      #                      these_pts@data %>% ungroup %>% dplyr::select(id, status))
-      # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
-      #                         ifelse(xx@data$status == 'buffer', 'blue',
-      #                                'black'))
-      # leaflet() %>% addTiles() %>%
-      #   addCircleMarkers(data = spTransform(xx, proj4string(bohemia::mop2)),
-      #                    color = xx@data$color) %>%
-      #   addMeasure(primaryLengthUnit = 'meters')
-      # # ###########################################3
-      
-      # Keep only those in the core
-      core <- these_pts[these_pts@data$status == 'core',]
-      buff <- these_pts[!is.na(these_pts@data$status),]
-      
-      # Assign temporary assignations for the purpose of estimating
-      # distances to contaminants
-      assignment_df <- tibble(
-        cluster = sort(unique(core@data$cluster))
-      )
-      a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
-      a <- sample(a, size = length(a), replace = F)
-      assignment_df$assignment <- a[1:nrow(assignment_df)]
-      buff@data <- left_join(buff@data, assignment_df)
-      # Bring the assignment into ALL points, since that is how contamination is determined
-      all_pts <- households_projected
-      all_pts@data <- left_join(all_pts@data, buff@data %>% ungroup %>% dplyr::select(assignment, id),
-                                by = 'id')
-      
-      # Assuming that non-cluster areas are group 1
-      all_pts@data$assignment <- ifelse(is.na(all_pts@data$assignment), 1, all_pts@data$assignment)
-      
-      # Get the assignments into the radius data
-      # (this will contain one row for each assignment in the 1 km area)
-      sub_radius <- radius_df %>%
-        left_join(all_pts@data %>% ungroup %>% dplyr::select(id, assignment)) %>%
-        dplyr::select(-id) %>%
-        dplyr::rename(id = this_id) %>%
-        # now grouping by id to get each type
-        group_by(id, assignment) %>%
-        summarise(n_assig = n()) %>%
-        ungroup %>% 
-        # get the assignment for the person in question
-        left_join(all_pts@data %>% ungroup %>% dplyr::select(id, self_assignment = assignment)) %>%
-        mutate(is_same = assignment == self_assignment) %>%
-        group_by(id) %>%
-        summarise(n_same = sum(n_assig[is_same]),
-                  n_diff = sum(n_assig[!is_same]),
-                  n_1k = sum(n_assig)) %>%
-        ungroup %>%
-        mutate(p_same = n_same / n_1k * 100,
-               n_diff = n_diff / n_1k * 100)
-      all_pts@data <- left_join(all_pts@data,
-                                sub_radius)
-      
-      
-      # Get number of people within a radius of identical assignment status
-      all_pts@data$nearest_contaminant <- NA
-      
-      # # Get distance to contaminant
-      # for(i in 1:3){
-      #   message('...group ', i, ' of 3')
-      #   g1 <- sub_gd[which(all_pts@data$assignment == i),
-      #                which(all_pts@data$assignment != i)]
-      #   g2 <- apply(g1, 1, function(x){min(x, na.rm = TRUE)})
-      #   all_pts@data$nearest_contaminant[all_pts@data$assignment == i] <- g2
-      # }
-      # Subset to only include those in the study core
-      keep <- all_pts[all_pts@data$id %in% core@data$id,]
-      keep@data$iter_n_children <- n_children
-      keep@data$iter_buffer_distance <- buffer_distance
-      # flag <- length(which(is.na(keep@data$nearest_contaminant)))
-      # if(flag > 0){
-      #   message('PROBLEM!!!')
-      # }
-      contaminant_list[[counter]] <- keep
+  seed_pts_name <- paste0('all_pts_', seedy, '.RData')
+  if(seed_pts_name %in% dir()){
+    load(seed_pts_name)
+  } else {
+    
+    # Get a 1 km border around each household
+    radius <- gBuffer(households_projected, byid = T, width = 1000)
+    
+    # Get which houses are in each radius 1000 meters
+    over_radius <- over(x = households_projected, y = polygons(radius), returnList = T)
+    radius_list <- list()
+    for(j in 1:length(over_radius)){
+      out <- tibble(this_id = households_projected@data$id[j],
+                    id = households_projected@data$id[unlist(over_radius[[j]])])
+      radius_list[[j]] <- out
     }
+    radius_df <- bind_rows(radius_list)
+    
+    # # Get distances between households
+    # sub_gd <- gd[households_projected@data$id, households_projected@data$id]
+    
+    
+    iters_buffer_distance <- sort(unique(master_pts@data$iter_buffer_distance))
+    iters_n_children <- sort(unique(master_pts@data$iter_n_children))
+    contaminant_list <- list()
+    counter <- 0
+    iters <- length(iters_buffer_distance) * length(iters_n_children)
+    for(buffer_distance in iters_buffer_distance){
+      for(n_children in iters_n_children){
+        counter <- counter + 1
+        message(counter, ' of ', iters, '. Buffer: ', buffer_distance, '. Children: ', n_children)
+        # Get the points
+        these_buf <- master_buf[master_buf@data$iter_buffer_distance == buffer_distance & master_buf@data$iter_n_children == n_children,]
+        these_pts <- master_pts[master_pts@data$iter_buffer_distance == buffer_distance & master_pts@data$iter_n_children == n_children,]
+        
+        # # # Delete the below #####################33
+        # xx <- households_projected
+        # xx@data <- left_join(xx@data %>% ungroup,
+        #                      these_pts@data %>% ungroup %>% dplyr::select(id, status))
+        # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
+        #                         ifelse(xx@data$status == 'buffer', 'blue',
+        #                                'black'))
+        # leaflet() %>% addTiles() %>%
+        #   addCircleMarkers(data = spTransform(xx, proj4string(bohemia::mop2)),
+        #                    color = xx@data$color) %>%
+        #   addMeasure(primaryLengthUnit = 'meters')
+        # # ###########################################3
+        
+        # Keep only those in the core
+        core <- these_pts[these_pts@data$status == 'core',]
+        buff <- these_pts[!is.na(these_pts@data$status),]
+        
+        # Assign temporary assignations for the purpose of estimating
+        # distances to contaminants
+        assignment_df <- tibble(
+          cluster = sort(unique(core@data$cluster))
+        )
+        a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+        a <- sample(a, size = length(a), replace = F)
+        assignment_df$assignment <- a[1:nrow(assignment_df)]
+        buff@data <- left_join(buff@data, assignment_df)
+        # Bring the assignment into ALL points, since that is how contamination is determined
+        all_pts <- households_projected
+        all_pts@data <- left_join(all_pts@data, buff@data %>% ungroup %>% dplyr::select(assignment, id),
+                                  by = 'id')
+        
+        # Assuming that non-cluster areas are group 1
+        all_pts@data$assignment <- ifelse(is.na(all_pts@data$assignment), 1, all_pts@data$assignment)
+        
+        # Get the assignments into the radius data
+        # (this will contain one row for each assignment in the 1 km area)
+        sub_radius <- radius_df %>%
+          left_join(all_pts@data %>% ungroup %>% dplyr::select(id, assignment)) %>%
+          dplyr::select(-id) %>%
+          dplyr::rename(id = this_id) %>%
+          # now grouping by id to get each type
+          group_by(id, assignment) %>%
+          summarise(n_assig = n()) %>%
+          ungroup %>% 
+          # get the assignment for the person in question
+          left_join(all_pts@data %>% ungroup %>% dplyr::select(id, self_assignment = assignment)) %>%
+          mutate(is_same = assignment == self_assignment) %>%
+          group_by(id) %>%
+          summarise(n_same = sum(n_assig[is_same]),
+                    n_diff = sum(n_assig[!is_same]),
+                    n_1k = sum(n_assig)) %>%
+          ungroup %>%
+          mutate(p_same = n_same / n_1k * 100,
+                 n_diff = n_diff / n_1k * 100)
+        all_pts@data <- left_join(all_pts@data,
+                                  sub_radius)
+        
+        
+        # Get number of people within a radius of identical assignment status
+        all_pts@data$nearest_contaminant <- NA
+        
+        # # Get distance to contaminant
+        # for(i in 1:3){
+        #   message('...group ', i, ' of 3')
+        #   g1 <- sub_gd[which(all_pts@data$assignment == i),
+        #                which(all_pts@data$assignment != i)]
+        #   g2 <- apply(g1, 1, function(x){min(x, na.rm = TRUE)})
+        #   all_pts@data$nearest_contaminant[all_pts@data$assignment == i] <- g2
+        # }
+        # Subset to only include those in the study core
+        keep <- all_pts[all_pts@data$id %in% core@data$id,]
+        keep@data$iter_n_children <- n_children
+        keep@data$iter_buffer_distance <- buffer_distance
+        # flag <- length(which(is.na(keep@data$nearest_contaminant)))
+        # if(flag > 0){
+        #   message('PROBLEM!!!')
+        # }
+        contaminant_list[[counter]] <- keep
+      }
+    }
+    all_pts <- do.call('rbind', contaminant_list)
+    save(all_pts, file = seed_pts_name)
   }
-  all_pts <- do.call('rbind', contaminant_list)
-  save(all_pts, file = seed_pts_name)
 }
 
-# # Plot of percent contamination 
-# cols <- c('black', 'red', 'darkorange')
-# agg <- all_pts@data %>% 
-#   mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
-#   mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
-#   mutate(assignment = factor(assignment)) %>%
-#   group_by(iter_buffer_distance, iter_n_children, assignment) %>%
-#   summarise(hh = n(),
-#             avg_p_same = mean(p_same, na.rm = TRUE),
-#             med_p_same = median(p_same, na.rm = TRUE))
-# ggplot(data = all_pts@data %>% 
-#          mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
-#          mutate(iter_n_children = paste0('Kids: ', iter_n_children)) %>%
-#          mutate(assignment = factor(assignment)),
-#        aes(x = p_same,
-#            group = assignment)) +
-#   geom_histogram(aes(fill = assignment), alpha = 0.6, size = 0.3) +
-#   facet_grid(iter_n_children~iter_buffer_distance) +
-#   labs(x = 'Percent of identical status within 1000 meter radius') +
-#   theme(legend.position = 'bottom') +
-#   scale_fill_manual(name = 'Assignment group',
-#                     values = cols) +
-#   theme(axis.text = element_text(size = 6),
-#         strip.text = element_text(size = 8)) +
-#   labs(y = 'Density') +
-#   geom_point(data = agg,
-#              aes(x = avg_p_same,
-#                  y = 0.04,
-#                  color = assignment),
-#              pch = 'I') +
-#   geom_text(data = agg,
-#             aes(x = avg_p_same,
-#                 y = 0.035,
-#                 color = assignment,
-#                 label = round(avg_p_same)),
-#             size = 3) +
-#   scale_color_manual(name = 'Assignment group',
-#                      values = cols)
-# ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
-# 
-# ggplot(data = agg,
-#        aes(x = assignment,
-#            y = avg_p_same,
-#            fill = assignment)) +
-#   facet_grid(iter_n_children~iter_buffer_distance) +
-#   geom_bar(stat = 'identity') +
-#   labs(x = 'Percent of identical status within 1000 meter radius') +
-#   theme(axis.text = element_text(size = 6),
-#         strip.text = element_text(size = 8)) +
-#   labs(y = '%') +
-#   geom_text(data = agg,
-#             aes(x = assignment,
-#                 y = avg_p_same,
-#                 label = round(avg_p_same)),
-#             size = 3,
-#             nudge_y = -20,
-#             color = 'white') +
-#   scale_fill_manual(name = 'Assignment group',
-#                      values = cols) +
-#   theme(legend.position = 'none') 
-#   
-# ggsave('~/Desktop/radius_distributions2.png', width= 9, height = 12)
-# 
-# 
-# # Plot of percent contamination
-# pd <- all_pts@data %>%
-#   group_by(assignment,
-#            iter_n_children,
-#            iter_buffer_distance) %>%
-#   summarise(hh = n(),
-#             med_p_same = median(p_same, na.rm = TRUE),
-#             avg_p_same = mean(p_same, na.rm = TRUE))
-# # cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
-# cols <- colorRampPalette(RColorBrewer::brewer.pal(n = 9, 'Spectral'))(length(unique(pd$iter_n_children)))
-# 
-# # cols[3:4] <- c('black', 'grey')
-# ggplot(data = pd,
-#        aes(x = iter_buffer_distance,
-#            y = med_p_same)) +
-#   geom_point(aes(#pch = valid,
-#     color = factor(iter_n_children)),
-#     size = 2,
-#     alpha = 0.5) +
-#   facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
-#   theme(legend.position = 'bottom') +
-#   geom_line(aes(color = factor(iter_n_children),
-#                 group = factor(iter_n_children)),
-#             size = 1.4,
-#             alpha = 0.9) +
-#   scale_color_manual(name = 'Number of\nchildren in core',
-#                      values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
-#   labs(x = 'Minimum buffer distance (meters)',
-#        y = 'Median % with identical assignment\nstatus within 1 km radius',
-#        title = 'Cluster formation strategies comparison')
-# ggsave('~/Desktop/radius.png', height = 8, width = 12)
-# 
-# # Plot of nearest contaminant
-# pd <- all_pts@data %>%
-#   group_by(assignment,
-#            iter_n_children,
-#            iter_buffer_distance) %>%
-#   summarise(hh = n(),
-#             avg_distance_to_nearest_contaminant = mean(nearest_contaminant, na.rm = TRUE),
-#             p25 = quantile(nearest_contaminant, 0.25, na.rm = TRUE),
-#             p75 = quantile(nearest_contaminant, 0.75, na.rm = TRUE),
-#             mn = median(nearest_contaminant, na.rm = TRUE),
-#             p95 = quantile(nearest_contaminant, 0.95, na.rm = TRUE),
-#             p05 = quantile(nearest_contaminant, 0.05, na.rm = TRUE))
-# 
-# cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
-# cols[3:4] <- c('black', 'grey')
-# ggplot(data = pd,
-#        aes(x = iter_buffer_distance,
-#            y = avg_distance_to_nearest_contaminant)) +
-#   geom_point(aes(#pch = valid,
-#     color = factor(iter_n_children)),
-#     size = 2,
-#     alpha = 0.5) +
-#   facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
-#   theme(legend.position = 'bottom') +
-#   geom_line(aes(color = factor(iter_n_children),
-#                 group = factor(iter_n_children)),
-#             size = 1.4,
-#             alpha = 0.9) +
-#   scale_color_manual(name = 'Number of\nchildren in core',
-#                      values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
-#   labs(x = 'Minimum buffer distance (meters)',
-#        title = 'Cluster formation strategies comparison') +
-#   geom_hline(yintercept = seq(0, 2500, 250), lty = 2, alpha = 0.6) +
-#   scale_y_continuous(name = 'Average meters to nearest contaminant\namong "core" households',
-#                      breaks = seq(0, 2500, 250))
-# ggsave('~/Desktop/distance.png', height = 8, width = 12)
+if(read_sims){
+  # Plot of percent contamination
+  cols <- c('black', 'red', 'darkorange')
+  data_list <- list()
+  for(i in 1:length(all_pts_list)){
+    data_list[[i]] <- all_pts_list[[i]]@data
+  }
+  x <- bind_rows(data_list)
+  agg <- x %>%
+    mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
+    mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
+    mutate(assignment = factor(assignment)) %>%
+    group_by(iter_buffer_distance, iter_n_children, assignment) %>%
+    summarise(hh = n(),
+              avg_p_same = mean(p_same, na.rm = TRUE),
+              med_p_same = median(p_same, na.rm = TRUE))
+  ggplot(data = x %>%
+           mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
+           mutate(iter_n_children = paste0('Kids: ', iter_n_children)) %>%
+           mutate(assignment = factor(assignment)),
+         aes(x = p_same,
+             group = assignment)) +
+    geom_density(aes(fill = assignment), alpha = 0.6, size = 0.3) +
+    facet_grid(iter_n_children~iter_buffer_distance, scales = 'free_y') +
+    labs(x = 'Percent of identical status within 1000 meter radius') +
+    theme(legend.position = 'bottom') +
+    scale_fill_manual(name = 'Assignment group',
+                      values = cols) +
+    theme(axis.text = element_text(size = 6),
+          strip.text = element_text(size = 8)) +
+    labs(y = 'Density') +
+    geom_point(data = agg,
+               aes(x = avg_p_same,
+                   y = 0.04,
+                   color = assignment),
+               pch = 'I') +
+    geom_text(data = agg,
+              aes(x = avg_p_same,
+                  y = 0.035,
+                  color = assignment,
+                  label = round(avg_p_same)),
+              size = 3) +
+    scale_color_manual(name = 'Assignment group',
+                       values = cols)
+  ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
+
+  ggplot(data = agg,
+         aes(x = assignment,
+             y = avg_p_same,
+             fill = assignment)) +
+    facet_grid(iter_n_children~iter_buffer_distance) +
+    geom_bar(stat = 'identity') +
+    labs(x = 'Percent of identical status within 1000 meter radius') +
+    theme(axis.text = element_text(size = 6),
+          strip.text = element_text(size = 8)) +
+    labs(y = '%') +
+    geom_text(data = agg,
+              aes(x = assignment,
+                  y = avg_p_same,
+                  label = round(avg_p_same)),
+              size = 3,
+              nudge_y = -20,
+              color = 'white') +
+    scale_fill_manual(name = 'Assignment group',
+                       values = cols) +
+    theme(legend.position = 'none')
+
+  ggsave('~/Desktop/radius_distributions2.png', width= 9, height = 12)
+
+
+  # Plot of percent contamination
+  pd <- x %>%
+    group_by(assignment,
+             iter_n_children,
+             iter_buffer_distance) %>%
+    summarise(hh = n(),
+              med_p_same = median(p_same, na.rm = TRUE),
+              avg_p_same = mean(p_same, na.rm = TRUE))
+  # cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+  cols <- colorRampPalette(RColorBrewer::brewer.pal(n = 9, 'Spectral'))(length(unique(pd$iter_n_children)))
+
+  # cols[3:4] <- c('black', 'grey')
+  ggplot(data = pd,
+         aes(x = iter_buffer_distance,
+             y = med_p_same)) +
+    geom_point(aes(#pch = valid,
+      color = factor(iter_n_children)),
+      size = 2,
+      alpha = 0.5) +
+    facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
+    theme(legend.position = 'bottom') +
+    geom_line(aes(color = factor(iter_n_children),
+                  group = factor(iter_n_children)),
+              size = 1.4,
+              alpha = 0.9) +
+    scale_color_manual(name = 'Number of\nchildren in core',
+                       values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+    labs(x = 'Minimum buffer distance (meters)',
+         y = 'Median % with identical assignment\nstatus within 1 km radius',
+         title = 'Cluster formation strategies comparison')
+  ggsave('~/Desktop/radius.png', height = 8, width = 12)
+
+  # Plot of nearest contaminant
+  pd <- all_pts@data %>%
+    group_by(assignment,
+             iter_n_children,
+             iter_buffer_distance) %>%
+    summarise(hh = n(),
+              avg_distance_to_nearest_contaminant = mean(nearest_contaminant, na.rm = TRUE),
+              p25 = quantile(nearest_contaminant, 0.25, na.rm = TRUE),
+              p75 = quantile(nearest_contaminant, 0.75, na.rm = TRUE),
+              mn = median(nearest_contaminant, na.rm = TRUE),
+              p95 = quantile(nearest_contaminant, 0.95, na.rm = TRUE),
+              p05 = quantile(nearest_contaminant, 0.05, na.rm = TRUE))
+
+  cols <- RColorBrewer::brewer.pal(n = length(unique(pd$iter_n_children)), 'Spectral')
+  cols[3:4] <- c('black', 'grey')
+  ggplot(data = pd,
+         aes(x = iter_buffer_distance,
+             y = avg_distance_to_nearest_contaminant)) +
+    geom_point(aes(#pch = valid,
+      color = factor(iter_n_children)),
+      size = 2,
+      alpha = 0.5) +
+    facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
+    theme(legend.position = 'bottom') +
+    geom_line(aes(color = factor(iter_n_children),
+                  group = factor(iter_n_children)),
+              size = 1.4,
+              alpha = 0.9) +
+    scale_color_manual(name = 'Number of\nchildren in core',
+                       values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+    labs(x = 'Minimum buffer distance (meters)',
+         title = 'Cluster formation strategies comparison') +
+    geom_hline(yintercept = seq(0, 2500, 250), lty = 2, alpha = 0.6) +
+    scale_y_continuous(name = 'Average meters to nearest contaminant\namong "core" households',
+                       breaks = seq(0, 2500, 250))
+  ggsave('~/Desktop/distance.png', height = 8, width = 12)
+  
+} 
