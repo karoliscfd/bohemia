@@ -15,14 +15,7 @@
 
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
-usethis::use_package( "dplyr" )
-usethis::use_package( "shiny" )
-usethis::use_package( "shinydashboard" )
-usethis::use_package( "tidyr" )
-usethis::use_package( "ggplot2" )
-usethis::use_package( "ggthemes" )
-usethis::use_package( "RColorBrewer" )
-
+usethis::use_package( "thinkr" )
 
 ## Add modules ----
 ## Create a module infrastructure in R/
@@ -51,14 +44,14 @@ usethis::use_test( "app" )
 # Documentation
 
 ## Vignette ----
-usethis::use_vignette("saint")
+usethis::use_vignette("forum")
 devtools::build_vignettes()
 
 ## Code coverage ----
 ## (You'll need GitHub there)
-# usethis::use_github()
-# usethis::use_travis()
-# usethis::use_appveyor()
+usethis::use_github()
+usethis::use_travis()
+usethis::use_appveyor()
 
 # You're now set! ----
 # go to dev/03_deploy.R

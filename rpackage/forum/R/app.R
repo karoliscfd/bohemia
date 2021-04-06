@@ -129,7 +129,7 @@ app_server <- function(input, output, session) {
   output$contact_table <- DT::renderDataTable({
     li <- logged_in()
     if(li){
-      DT::datatable(x$df, editable = 'row',
+      DT::datatable(x$df, editable = 'cell',
                     extensions = 'Buttons', 
                     filter = 'top', 
                     options = list(pageLength = nrow(x$df), info = FALSE, dom='Bfrtip', buttons = list('csv')))
