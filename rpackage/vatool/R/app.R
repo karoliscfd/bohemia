@@ -145,7 +145,7 @@ app_server <- function(input, output, session) {
     if(li){
       liu <- input$log_in_user
       user_role <- users %>% filter(username == tolower(liu)) %>% .$role
-      cod <- cods %>% group_by(death_id, cod_1) %>% summarise(counts = n())
+      cod <- cods %>% group_by(death_id, cod_3) %>% summarise(counts = n())
       if(user_role == 'Adjudicator'){
         # get ids that have more than one diagnosis
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
@@ -155,9 +155,9 @@ app_server <- function(input, output, session) {
             column(4,
                    br(),
                    selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                   selectInput('adj_cods', 'Select cause of death',  choices = cods_choices),
+                   selectInput('adj_cods', 'Select underlying cause of death',  choices = cods_choices),
                    br(),
-                   actionButton('adj_submit_cod', 'Submit immediate cause of death')),
+                   actionButton('adj_submit_cod', 'Submit cause of death')),
             column(8,
                    h2('Previous diagnoses'),
                    DT::dataTableOutput('adj_table_2'),
@@ -264,12 +264,11 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     if(li){
       choices <- cod_choices()
-      
       fluidPage(
         fluidRow(
-          selectInput('cod_1', 'Select immediate cause of death', choices = choices, selected = choices[1]),
-          selectInput('cod_2', 'Select intermediary cause of death', choices = choices, selected = choices[1]),
-          selectInput('cod_3', 'Select underlying cause of death', choices = choices, selected = choices[1])
+          selectInput('cod_1', 'Select immediate cause of death', choices = names(choices), selected = choices[1]),
+          selectInput('cod_2', 'Select intermediary cause of death', choices = names(choices), selected = choices[1]),
+          selectInput('cod_3', 'Select underlying cause of death', choices = names(choices), selected = choices[1])
         ),
         fluidRow(
           actionButton('submit_cod', 'Submit cause of death')
@@ -348,14 +347,15 @@ app_server <- function(input, output, session) {
     cod_2 = input$cod_2
     cod_3 = input$cod_3
     death_id = input$death_id
-    cod_data$cod_code_1 = cod_1
-    cod_data$cod_code_2 = cod_2
-    cod_data$cod_code_3 = cod_3
+    cod_data$cod_1 = cod_1
+    cod_data$cod_2 = cod_2
+    cod_data$cod_3 = cod_3
     cod_data$death_id = death_id
     cod_data$time_stamp <- Sys.time()
-    cod_data$cod_1 <- cod_names$cod_names[cod_names$cod_code==cod_data$cod_code_1]
-    cod_data$cod_2 <- cod_names$cod_names[cod_names$cod_code==cod_data$cod_code_2]
-    cod_data$cod_3 <- cod_names$cod_names[cod_names$cod_code==cod_data$cod_code_3]
+    # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
+    cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+    cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
+    cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
     
     dbAppendTable(conn = con, name = 'cods', value = cod_data)
     submission_success(TRUE)
