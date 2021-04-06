@@ -678,7 +678,49 @@ if(read_sims){
   write_csv(pd, 'carlos.csv')
   # Get just for the 400 m 12 kids scenario
   out <- pd %>% filter(iter_buffer_distance == 400,
-                       iter_n_children == 12)
+                       iter_n_children == 20)
+  
+  # Get numbers for different parameters BY ASSIGNMENT STATUS
+  
+  assignment_df <- tibble(
+    cluster = sort(unique(x$cluster))
+  )
+  a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+  a <- sample(a, size = length(a), replace = F)
+  assignment_df$assignment <- a[1:nrow(assignment_df)]
+  x <- left_join(x, assignment_df)
+ 
+  pd <- x %>%
+    ungroup %>%
+    group_by(iter_buffer_distance,
+             iter_n_children, sim,
+             assignment) %>%
+    summarise(n_real_clusters = length(unique(cluster)),
+              n_children_core = sum(n_children[status == 'core']),
+              treatable_adults = sum(n_adults),
+              n_reproductive = sum(reproductive),
+              n_cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+              n_cows_babies = sum(cows_babies, na.rm = TRUE),
+              n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+              n_pigs_babies = sum(pigs_babies, na.rm = TRUE)) %>%
+    ungroup %>%
+    left_join(sizes_df,
+              by = c('iter_n_children' = 'n_children')) %>%
+    # mutate(valid = n_real_clusters >= n_clusters) %>%
+    # filter(valid) %>% # doesnt work because n_real is just 1/3 of actual
+    # get average per sim
+    group_by(iter_buffer_distance,
+             iter_n_children, assignment) %>%
+    summarise(n_children_core = mean(n_children_core),
+              n_real_clusters = mean(n_real_clusters),
+              adults = mean(treatable_adults),
+              n_reproductive = mean(n_reproductive),
+              n_cows_1_year_plus = mean(n_cows_1_year_plus),
+              n_cows_babies = mean(n_cows_babies),
+              n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
+              n_pigs_babies = mean(n_pigs_babies))
+  carlos_table <- pd
+  write_csv(pd, 'carlos3.csv')
   
   
   
@@ -689,16 +731,16 @@ if(read_sims){
 # xx <- households_projected
 # xx <- spTransform(xx, proj4string(bohemia::mop2))
 # 
-# right <- master_pts[master_pts@data$iter_buffer_distance == 200 &
-#                       master_pts@data$iter_n_children == 10,]
+# right <- master_pts[master_pts@data$iter_buffer_distance == 600 &
+#                       master_pts@data$iter_n_children == 20,]
 # table(duplicated(right@data$id))
 # dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
 # # View(dd@data)
-# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 200 &
-#                         master_hull@data$iter_n_children == 10,]
+# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 600 &
+#                         master_hull@data$iter_n_children == 20,]
 # xpolys <- spTransform(xpolys, proj4string(bohemia::mop2))
-# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 200 &
-#                      master_buf@data$iter_n_children == 10,]
+# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 600 &
+#                      master_buf@data$iter_n_children == 20,]
 # xbuf <- spTransform(xbuf, proj4string(bohemia::mop2))
 # xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
 # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
@@ -791,22 +833,24 @@ if(read_sims){
   } else {
     
     # Get a 1 km border around each household
-    radius <- gBuffer(households_projected, byid = T, width = 1000)
-    
-    # Get which houses are in each radius 1000 meters
+    # radius_distances <- seq(500, 1000, 100)
+    # full_list <- list()
+    # for(i in 1:length(radius_distances)){
+      # this_distance <- radius_distances[i]
+    this_distance <- 1000
+    radius <- gBuffer(households_projected, byid = T, width = this_distance)
     over_radius <- over(x = households_projected, y = polygons(radius), returnList = T)
     radius_list <- list()
     for(j in 1:length(over_radius)){
       out <- tibble(this_id = households_projected@data$id[j],
-                    id = households_projected@data$id[unlist(over_radius[[j]])])
+                    id = households_projected@data$id[unlist(over_radius[[j]])]) #%>%
+      # mutate(radius_distance = this_distance)
       radius_list[[j]] <- out
     }
     radius_df <- bind_rows(radius_list)
-    
-    # # Get distances between households
-    # sub_gd <- gd[households_projected@data$id, households_projected@data$id]
-    
-    
+    # full_list[[i]] <- radius_df
+    # }
+
     iters_buffer_distance <- sort(unique(master_pts@data$iter_buffer_distance))
     iters_n_children <- sort(unique(master_pts@data$iter_n_children))
     contaminant_list <- list()
@@ -819,20 +863,7 @@ if(read_sims){
         # Get the points
         these_buf <- master_buf[master_buf@data$iter_buffer_distance == buffer_distance & master_buf@data$iter_n_children == n_children,]
         these_pts <- master_pts[master_pts@data$iter_buffer_distance == buffer_distance & master_pts@data$iter_n_children == n_children,]
-        
-        # # # Delete the below #####################33
-        # xx <- households_projected
-        # xx@data <- left_join(xx@data %>% ungroup,
-        #                      these_pts@data %>% ungroup %>% dplyr::select(id, status))
-        # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
-        #                         ifelse(xx@data$status == 'buffer', 'blue',
-        #                                'black'))
-        # leaflet() %>% addTiles() %>%
-        #   addCircleMarkers(data = spTransform(xx, proj4string(bohemia::mop2)),
-        #                    color = xx@data$color) %>%
-        #   addMeasure(primaryLengthUnit = 'meters')
-        # # ###########################################3
-        
+
         # Keep only those in the core
         core <- these_pts[these_pts@data$status == 'core',]
         buff <- these_pts[!is.na(these_pts@data$status),]
@@ -913,6 +944,8 @@ if(read_sims){
     data_list[[i]] <- all_pts_list[[i]]@data
   }
   x <- bind_rows(data_list)
+  
+  
   x <- x %>%
     mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
     mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
@@ -922,13 +955,15 @@ if(read_sims){
     summarise(hh = n(),
               avg_p_same = mean(p_same, na.rm = TRUE),
               med_p_same = median(p_same, na.rm = TRUE),
-              n_children_core = sum(n_children),
-              treatable_adults = sum(n_adults),
-              n_reproductive = sum(reproductive),
-              n_cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
-              n_cows_babies = sum(cows_babies, na.rm = TRUE),
-              n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
-              n_pigs_babies = sum(pigs_babies, na.rm = TRUE)) %>%
+              n_children_core = sum(n_children)#,
+              # COMMENTING OUT THE BELOW SINCE IT IS CORE ONLY
+              # treatable_adults = sum(n_adults),
+              # n_reproductive = sum(reproductive),
+              # n_cows_1_year_plus = sum(cows_1_year_plus, na.rm = TRUE),
+              # n_cows_babies = sum(cows_babies, na.rm = TRUE),
+              # n_pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = TRUE),
+              # n_pigs_babies = sum(pigs_babies, na.rm = TRUE)
+              ) %>%
     ungroup %>%
     # get average per sim
     group_by(iter_buffer_distance,
@@ -937,13 +972,14 @@ if(read_sims){
     summarise(hh = mean(hh),
               avg_p_same = mean(avg_p_same),
               med_p_same = mean(med_p_same),
-              n_children_core = mean(n_children_core),
-              adults = mean(treatable_adults),
-              n_reproductive = mean(n_reproductive),
-              n_cows_1_year_plus = mean(n_cows_1_year_plus),
-              n_cows_babies = mean(n_cows_babies),
-              n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
-              n_pigs_babies = mean(n_pigs_babies))
+              n_children_core = mean(n_children_core)#,
+              # adults = mean(treatable_adults),
+              # n_reproductive = mean(n_reproductive),
+              # n_cows_1_year_plus = mean(n_cows_1_year_plus),
+              # n_cows_babies = mean(n_cows_babies),
+              # n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
+              # n_pigs_babies = mean(n_pigs_babies)
+              )
   
   
   ggplot(data = x,
@@ -972,6 +1008,18 @@ if(read_sims){
     scale_color_manual(name = 'Assignment group',
                        values = cols)
   ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
+  # Join the data here with some of the assignment-group level data from the previous section
+  # Join some data here with previous section at assignment level
+  right <- carlos_table
+  right <- right %>%
+    mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
+    mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
+    mutate(assignment = factor(assignment)) %>%
+    dplyr::select(-n_children_core)
+  out <- left_join(agg, right)
+  write_csv(out, 'carlos_combined.csv')
+  
+  
   write_csv(agg, 'carlos2.csv')
   
   ggplot(data = agg,
@@ -1068,3 +1116,148 @@ if(read_sims){
   ggsave('~/Desktop/distance.png', height = 8, width = 12)
   
 } 
+
+extra <- FALSE
+# Calculate radius differences at the sweet spot
+if(extra){
+  # Get a 1 km border around each household
+  radius_distances <- seq(100, 1200, by = 100)
+  full_list <- list()
+  for(i in 1:length(radius_distances)){
+    this_distance <- radius_distances[i]
+    message(this_distance)
+    radius <- gBuffer(households_projected, byid = T, width = this_distance)
+    over_radius <- over(x = households_projected, y = polygons(radius), returnList = T)
+    radius_list <- list()
+    for(j in 1:length(over_radius)){
+      out <- tibble(this_id = households_projected@data$id[j],
+                    id = households_projected@data$id[unlist(over_radius[[j]])]) %>%
+        mutate(radius_distance = this_distance)
+      radius_list[[j]] <- out
+    }
+    radius_df <- bind_rows(radius_list)
+    full_list[[i]] <- radius_df
+  }
+  radius_df <- bind_rows(full_list)
+  
+  # Not doing everything here
+  iters_buffer_distance <- 400# sort(unique(master_pts@data$iter_buffer_distance))
+  iters_n_children <- 20#sort(unique(master_pts@data$iter_n_children))
+  contaminant_list <- list()
+  counter <- 0
+  iters <- length(iters_buffer_distance) * length(iters_n_children)
+  for(radius_distance in radius_distances){
+    for(buffer_distance in iters_buffer_distance){
+      for(n_children in iters_n_children){
+        counter <- counter + 1
+        message(counter, ' of ', iters, '. Buffer: ', buffer_distance, '. Children: ', n_children)
+        # Get the points
+        these_buf <- master_buf[master_buf@data$iter_buffer_distance == buffer_distance & master_buf@data$iter_n_children == n_children,]
+        these_pts <- master_pts[master_pts@data$iter_buffer_distance == buffer_distance & master_pts@data$iter_n_children == n_children,]
+        
+        # Keep only those in the core
+        core <- these_pts[these_pts@data$status == 'core',]
+        buff <- these_pts[!is.na(these_pts@data$status),]
+        
+        # Assign temporary assignations for the purpose of estimating
+        # distances to contaminants
+        assignment_df <- tibble(
+          cluster = sort(unique(core@data$cluster))
+        )
+        a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+        a <- sample(a, size = length(a), replace = F)
+        assignment_df$assignment <- a[1:nrow(assignment_df)]
+        buff@data <- left_join(buff@data, assignment_df)
+        # Bring the assignment into ALL points, since that is how contamination is determined
+        all_pts <- households_projected
+        all_pts@data <- left_join(all_pts@data, buff@data %>% ungroup %>% dplyr::select(assignment, id),
+                                  by = 'id')
+        
+        # Assuming that non-cluster areas are group 1
+        all_pts@data$assignment <- ifelse(is.na(all_pts@data$assignment), 1, all_pts@data$assignment)
+        
+        # Get the assignments into the radius data
+        # (this will contain one row for each assignment in the 1 km area)
+        rd <- radius_distance
+        sub_radius <- radius_df %>%
+          filter(radius_distance == rd) %>%
+          left_join(all_pts@data %>% ungroup %>% dplyr::select(id, assignment)) %>%
+          dplyr::select(-id) %>%
+          dplyr::rename(id = this_id) %>%
+          # now grouping by id to get each type
+          group_by(id, assignment) %>%
+          summarise(n_assig = n()) %>%
+          ungroup %>% 
+          # get the assignment for the person in question
+          left_join(all_pts@data %>% ungroup %>% dplyr::select(id, self_assignment = assignment)) %>%
+          mutate(is_same = assignment == self_assignment) %>%
+          group_by(id) %>%
+          summarise(n_same = sum(n_assig[is_same]),
+                    n_diff = sum(n_assig[!is_same]),
+                    n_1k = sum(n_assig)) %>%
+          ungroup %>%
+          mutate(p_same = n_same / n_1k * 100,
+                 n_diff = n_diff / n_1k * 100)
+        all_pts@data <- left_join(all_pts@data,
+                                  sub_radius)
+        
+        
+        # Get number of people within a radius of identical assignment status
+        all_pts@data$nearest_contaminant <- NA
+        
+        # # Get distance to contaminant
+        # for(i in 1:3){
+        #   message('...group ', i, ' of 3')
+        #   g1 <- sub_gd[which(all_pts@data$assignment == i),
+        #                which(all_pts@data$assignment != i)]
+        #   g2 <- apply(g1, 1, function(x){min(x, na.rm = TRUE)})
+        #   all_pts@data$nearest_contaminant[all_pts@data$assignment == i] <- g2
+        # }
+        # Subset to only include those in the study core
+        keep <- all_pts[all_pts@data$id %in% core@data$id,]
+        keep@data$iter_n_children <- n_children
+        keep@data$iter_buffer_distance <- buffer_distance
+        keep@data$radius_distance <- radius_distance
+        # flag <- length(which(is.na(keep@data$nearest_contaminant)))
+        # if(flag > 0){
+        #   message('PROBLEM!!!')
+        # }
+        contaminant_list[[counter]] <- keep
+      }
+    }
+  }
+
+  radius_pts <- do.call('rbind', contaminant_list)
+  
+  pd <- radius_pts@data
+  
+  x <- pd %>%
+    mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%
+    mutate(iter_n_children = paste0( bohemia::add_zero(iter_n_children, 2), ' kids')) %>%
+    mutate(assignment = factor(assignment))
+  agg <- x %>%
+    group_by(iter_buffer_distance, iter_n_children, assignment, radius_distance) %>%
+    summarise(hh = n(),
+              avg_p_same = mean(p_same, na.rm = TRUE),
+              med_p_same = median(p_same, na.rm = TRUE),
+              n_children_core = sum(n_children)
+    ) %>%
+    ungroup 
+  
+  ggplot(data = agg,
+         aes(x = radius_distance,
+             y = avg_p_same,
+             color = assignment,
+             group = assignment)) +
+    facet_grid(iter_n_children~iter_buffer_distance) +
+    geom_line(size = 3, alpha = 0.8) +
+    labs(x = 'Size of radius for measuring percent contamination',
+         y = 'Percent of adults in radius with identical assignment status',
+         title = 'Different measurements of contamination at "sweet spot"') +
+    theme(axis.text = element_text(size = 6),
+          strip.text = element_text(size = 8)) +
+    theme(legend.position = 'bottom')
+  
+  ggsave('~/Desktop/sweet_spot_radii.png', width= 10, height = 9)
+  
+}
