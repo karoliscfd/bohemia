@@ -114,14 +114,16 @@ if('pre_load.RData' %in% dir()){
                                                 country = hh_country)) %>%
     mutate(years_old = (Sys.Date() - dob)/ 365.25) %>%
     mutate(under5 = years_old >= 0 & years_old <= 5) %>%
+    mutate(over15 = years_old >= 15) %>%
     mutate(is_child  = ifelse(country == 'Mozambique',
-                              years_old >= 0 & years_old <= 5,
-                              years_old >= 0 & years_old <= 15)) %>%
+                              years_old >= 0 & years_old < 5,
+                              years_old >= 5 & years_old < 15)) %>%
     mutate(is_boy = is_child & gender == 'male') %>%
     mutate(is_girl = is_child & gender == 'female') %>%
     group_by(country, instance_id) %>%
     summarise(n_members = n(),
               under5s = length(which(under5)),
+              over15 = length(which(over15)),
               reproductive = length(which(gender == 'female' & years_old >=13 & years_old <= 49)),
               n_females = length(which(gender == 'female')),
               n_males = length(which(gender == 'male')),
@@ -177,6 +179,7 @@ if('pre_load.RData' %in% dir()){
               n_girls = sum(n_girls),
               n_households = n(),
               n_children = sum(n_children),
+              n_over15s = sum(over15),
               clinical_trial = dplyr::first(clinical_trial),
               country = dplyr::first(country),
               lng = mean(lng),
@@ -263,6 +266,7 @@ if('pre_load.RData' %in% dir()){
     group_by(code) %>%
     summarise(n_humans = sum(n_members),
               under5s = sum(under5s),
+              over15s = sum(over15),
               n_reproductive = sum(reproductive),
               n_females = sum(n_females),
               n_males = sum(n_males),
@@ -309,7 +313,12 @@ if('vh.RData' %in% dir()){
   households@data$id <- 1:nrow(households)
   households@data$n_children <- ifelse(is.na(households@data$n_children), 
                                        0, households@data$n_children)
-  households@data$n_adults <- households@data$n_people - households@data$n_children
+  co <- households$country[1]
+  if(co == 'Mozambique'){
+    households@data$n_adults <- households@data$n_people - households@data$n_children
+  } else {
+    households@data$n_adults <- households@data$over15
+  }
   households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
   
   v <- voronoi(shp = households, poly = bohemia::ruf2)
@@ -456,8 +465,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(200, 400, 600)
-    n_childrens <- c(5, 10, 15, 20, 25)
+    buffer_distances <- buffer_distances <- c(400, 600, 800)
+    n_childrens <- c(15, 20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -1121,7 +1130,7 @@ if(read_sims){
   
 } 
 
-extra <- FALSE
+extra <- TRUE
 # Calculate radius differences at the sweet spot
 if(extra){
   # Get a 1 km border around each household
