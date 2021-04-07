@@ -225,7 +225,7 @@ if('pre_load.RData' %in% dir()){
     this_code <- codes[i]
     this_data <- df %>% filter(code == this_code) %>% mutate(x = lng, y = lat)
     coordinates(this_data) <- ~x+y
-    proj4string(this_data) <- proj4string(bohemia::mop2)
+    proj4string(this_data) <- proj4string(bohemia::ruf2)
     # CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
     ss <- spTransform(this_data, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
     # Get distances
@@ -252,7 +252,7 @@ if('pre_load.RData' %in% dir()){
   df <- locations_df@data
   df_sp <- df
   coordinates(df_sp) <- ~lng+lat
-  proj4string(df_sp) <- proj4string(bohemia::mop2)
+  proj4string(df_sp) <- proj4string(bohemia::ruf2)
   df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
   )
   
@@ -286,9 +286,12 @@ if('pre_load.RData' %in% dir()){
   
   # Define the relationship between n children and n clusters
   library(readxl)
-  sizes_df <- read_excel('Children cluster size etc.xlsx', skip = 1)
+  sizes_df <- read_excel('Children cluster size etcTZA.xlsx', skip = 0)
   sizes_df <- sizes_df[,c(1,6)]
   names(sizes_df) <- c('n_children', 'n_clusters')
+  sizes_df <- sizes_df[1:31,]
+  sizes_df$n_children <- as.numeric(sizes_df$n_children)
+  sizes_df$n_clusters <- sizes_df$n_clusters
   save(df, df_sp, sizes_df, difficulty, df_full, file = 'pre_load.RData')
 }
 
@@ -298,8 +301,8 @@ if('pre_load.RData' %in% dir()){
 if('vh.RData' %in% dir()){
   load('vh.RData')
 } else {
-  households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
-  households <- spTransform(households, proj4string(bohemia::mop2))
+  households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Tanzania'],]# %>% filter(country == 'Mozambique')
+  households <- spTransform(households, proj4string(bohemia::ruf2))
   coords <- coordinates(households)
   households@data$lng <- coords[,1]
   households@data$lat <- coords[,2]
@@ -309,8 +312,8 @@ if('vh.RData' %in% dir()){
   households@data$n_adults <- households@data$n_people - households@data$n_children
   households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
   
-  v <- voronoi(shp = households, poly = bohemia::mop2)
-  proj4string(v) <- proj4string(bohemia::mop2)
+  v <- voronoi(shp = households, poly = bohemia::ruf2)
+  proj4string(v) <- proj4string(bohemia::ruf2)
   v@data$id <- 1:nrow(v)#  as.numeric(as.character(v@data$id))
   vp <- spTransform(v, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
   o <- over(households_projected, polygons(vp))
@@ -453,8 +456,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(200, 300, 400, 500, 600)# c(100, 200, 300, 400, 500, 600, 800)
-    n_childrens <- c(5, 7, 10, 12, 15, 17, 20)#   c(5,6,7,8, 9,10,11,12,13,15,17,18,20,22,25,27,30,35)  
+    buffer_distances <- buffer_distances <- c(200, 400, 600)
+    n_childrens <- c(5, 10, 15, 20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -676,7 +679,7 @@ if(read_sims){
               n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
               n_pigs_babies = mean(n_pigs_babies))
   write_csv(pd, 'carlos.csv')
-  # Get just for the 400 m 12 kids scenario
+  # Get just for the 400 m 20 kids scenario
   out <- pd %>% filter(iter_buffer_distance == 400,
                        iter_n_children == 20)
   
@@ -727,32 +730,33 @@ if(read_sims){
 }
 
 
-# ######################## DELETE THE BELOW
+# # ######################## DELETE THE BELOW
 # xx <- households_projected
-# xx <- spTransform(xx, proj4string(bohemia::mop2))
+# xx <- spTransform(xx, proj4string(bohemia::ruf2))
 # 
-# right <- master_pts[master_pts@data$iter_buffer_distance == 600 &
+# right <- master_pts[master_pts@data$iter_buffer_distance == 400 &
 #                       master_pts@data$iter_n_children == 20,]
 # table(duplicated(right@data$id))
 # dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
 # # View(dd@data)
-# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 600 &
+# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 400 &
 #                         master_hull@data$iter_n_children == 20,]
-# xpolys <- spTransform(xpolys, proj4string(bohemia::mop2))
-# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 600 &
+# xpolys <- spTransform(xpolys, proj4string(bohemia::ruf2))
+# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 400 &
 #                      master_buf@data$iter_n_children == 20,]
-# xbuf <- spTransform(xbuf, proj4string(bohemia::mop2))
+# xbuf <- spTransform(xbuf, proj4string(bohemia::ruf2))
 # xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
 # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
 #                         ifelse(xx@data$status == 'buffer', 'blue',
 #                                'black'))
-# leaflet() %>% addTiles() %>%
+# l <- leaflet() %>% addTiles() %>%
 #   addCircleMarkers(data = xx,
 #                    color = xx@data$color,
 #                    popup = paste0('Status ', xx@data$status, ' Cluster number ', xx@data$cluster)) %>%
 #   addMeasure(primaryLengthUnit = 'meters') %>%
 #   addPolylines(data = xpolys, weight = 3, color = 'red') %>%
 #   addPolylines(data = xbuf, weight = 3, color = 'black')
+# htmlwidgets::saveWidget(l, file = '~/Desktop/clusters_tza.html', selfcontained = FALSE)
 # 
 # ########################
 
