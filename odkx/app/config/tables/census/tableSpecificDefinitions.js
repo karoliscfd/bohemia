@@ -1487,12 +1487,20 @@ window.odkTableSpecificDefinitions = {
     },
     "minicensus_loc_hint": {
       "string_token": "minicensus_loc_hint",
-      "text": "Geolocation recorded in minicensus",
+      "text": {
+        "default": "Geolocation recorded in minicensus",
+        "pt": "Geolocalização gravada no minicenso",
+        "sw": "Alama za GPS zilizorekodiwa katika sensa ndogo (minicensus)"
+      },
       "_row_num": 168
     },
     "census_loc_hint": {
       "string_token": "census_loc_hint",
-      "text": "Record census geolocation",
+      "text": {
+        "default": "Record census geolocation",
+        "pt": "Gravar geolocalização do censo",
+        "sw": "Rekodi alama za GPS za eneo unalofanyia Sensa"
+      },
       "_row_num": 169
     },
     "rec_survey_loc": {
@@ -1704,7 +1712,11 @@ window.odkTableSpecificDefinitions = {
     },
     "hh_all_present": {
       "string_token": "hh_all_present",
-      "text": "<span style=\"color:red\">If everybody is present in the house at the time of the visit, go to the next screen and don't edit anything here.</span>",
+      "text": {
+        "default": "<span style=\"color:red\">If everybody is present in the house at the time of the visit, go to the next screen and don't edit anything here.</span>",
+        "pt": "<span style=\"color:red\">Se todos estao presentes na casa no momento da visita, va para a proxima pagina e não altere nada aqui.</span>",
+        "sw": "<span style = \"color: red\"> Ikiwa kila mtu yupo nyumbani wakati wa ziara ya Sensa, nenda kwenye skrini inayofuata na usibadilishe chochote hapa. </span>"
+      },
       "_row_num": 194
     },
     "hh_absent": {

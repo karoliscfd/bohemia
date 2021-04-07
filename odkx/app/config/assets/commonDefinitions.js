@@ -515,12 +515,20 @@ window.odkCommonDefinitions = {
     },
     "incomplete_no_result": {
       "string_token": "incomplete_no_result",
-      "text": "All households have been finalized.",
+      "text": {
+        "default": "All households have been finalized.",
+        "pt": "Todos os agregados estão finalizados",
+        "sw": "Kaya zote zimekamilika."
+      },
       "_row_num": 59
     },
     "incomplete_hh": {
       "string_token": "incomplete_hh",
-      "text": "Incomplete Households",
+      "text": {
+        "default": "Incomplete Households",
+        "pt": "Agregados Incompletos",
+        "sw": "Kaya ambazo hazijakamilika"
+      },
       "_row_num": 60
     }
   },

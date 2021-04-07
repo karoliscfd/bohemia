@@ -129,7 +129,7 @@ app_server <- function(input, output, session) {
       data$session <- tibble(user_id = user_id, start_time=start_time, end_time=end_time)
       
       # create cod table
-      data$cod <- tibble(user_id = user_id, death_id = NA, cod_code = NA,cod =NA, time_stamp = NA)
+      data$cod <- tibble(user_id = user_id, death_id = NA, cod_code_1 = NA,cod_1 =NA,cod_code_2 = NA,cod_2 =NA,cod_code_3 = NA,cod_3 =NA, time_stamp = NA)
       
     } else {
       logged_in(FALSE)
@@ -145,7 +145,7 @@ app_server <- function(input, output, session) {
     if(li){
       liu <- input$log_in_user
       user_role <- users %>% filter(username == tolower(liu)) %>% .$role
-      cod <- cods %>% group_by(death_id, cod) %>% summarise(counts = n())
+      cod <- cods %>% group_by(death_id, cod_3) %>% summarise(counts = n())
       if(user_role == 'Adjudicator'){
         # get ids that have more than one diagnosis
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
@@ -155,7 +155,7 @@ app_server <- function(input, output, session) {
             column(4,
                    br(),
                    selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                   selectInput('adj_cods', 'Select cause of death',  choices = cods_choices),
+                   selectInput('adj_cods', 'Select underlying cause of death',  choices = cods_choices),
                    br(),
                    actionButton('adj_submit_cod', 'Submit cause of death')),
             column(8,
@@ -191,7 +191,7 @@ app_server <- function(input, output, session) {
         person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
         
         # remove other columns 
-        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
+        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_username|Take a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         
         person <- person[, !grepl(remove_these, names(person))]
         out <- as.data.frame(t(person))
@@ -218,6 +218,8 @@ app_server <- function(input, output, session) {
         out <- cods %>% filter(death_id == idi)
       }
     } 
+    
+    names(out) <- c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
   })
   
@@ -264,7 +266,9 @@ app_server <- function(input, output, session) {
       choices <- cod_choices()
       fluidPage(
         fluidRow(
-          selectInput('cod', 'Select cause of death', choices = choices, selected = choices[1])
+          selectInput('cod_1', 'Select immediate cause of death', choices = names(choices), selected = choices[1]),
+          selectInput('cod_2', 'Select intermediary cause of death', choices = names(choices), selected = choices[1]),
+          selectInput('cod_3', 'Select underlying cause of death', choices = names(choices), selected = choices[1])
         ),
         fluidRow(
           actionButton('submit_cod', 'Submit cause of death')
@@ -305,6 +309,7 @@ app_server <- function(input, output, session) {
     } 
     if(!is.null(out)){
       if(is.data.frame(out)){
+       
         databrew::prettify(out, nrows = nrow(out))
       }
     }
@@ -338,10 +343,20 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_cod, {
     cod_names <- cod_data()
     cod_data <- data$cod
-    cod_data$cod_code = input$cod
-    cod_data$death_id = input$death_id
+    cod_1 = input$cod_1
+    cod_2 = input$cod_2
+    cod_3 = input$cod_3
+    death_id = input$death_id
+    cod_data$cod_1 = cod_1
+    cod_data$cod_2 = cod_2
+    cod_data$cod_3 = cod_3
+    cod_data$death_id = death_id
     cod_data$time_stamp <- Sys.time()
-    cod_data$cod <- cod_names$cod_names[cod_names$cod_code==cod_data$cod_code]
+    # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
+    cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+    cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
+    cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
+    
     dbAppendTable(conn = con, name = 'cods', value = cod_data)
     submission_success(TRUE)
   })
@@ -370,6 +385,8 @@ app_server <- function(input, output, session) {
       liu <- input$log_in_user
       out <- users %>% filter(username == tolower(liu))
     } 
+    
+    names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
     out
   })
   
@@ -383,6 +400,8 @@ app_server <- function(input, output, session) {
       userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
       out <- cods %>% filter(user_id == userid)
     } 
+   
+    names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
   })
 
