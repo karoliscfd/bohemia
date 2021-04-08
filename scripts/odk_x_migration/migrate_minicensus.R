@@ -45,6 +45,8 @@ format_select_multiple <- function(...) {
 migrate_to_odk_x <- function(
   out_list,
   full_migration = FALSE,
+  sample_hh = FALSE,
+  truncate_name = FALSE,
   hh_csv_path = 'odk_x_hh.csv',
   member_csv_path = 'odk_x_member.csv',
   geo_location_csv_path = 'odk_x_geolocation.csv',
@@ -95,6 +97,11 @@ migrate_to_odk_x <- function(
     mutate(hh_contact_alt_no = case_when(is.na(hh_contact_info_number_alternate) ~ format_select_multiple('no_alt_contact_num'))) %>%
     mutate(hh_head_id = paste(hh_id, str_pad(hh_head_id, 3, pad = '0'), sep = '-')) %>%
     tibble::add_column(hh_minicenced = 'yes')
+
+  if (sample_hh) {
+    set.seed(sample_hh)
+    odk_x_hh <- sample_n(odk_x_hh, sample_hh, replace = FALSE)
+  }
 
   if (full_migration) {
     odk_x_hh <- odk_x_hh %>%
@@ -155,6 +162,7 @@ migrate_to_odk_x <- function(
   message('Processing clean_minicensus_repeat_hh_sub')
   odk_x_hh_sub <- out_list$clean_minicensus_repeat_hh_sub %>%
     filter(!is.na(hh_sub_id)) %>%
+    distinct(instance_id, .keep_all = TRUE) %>%
     inner_join(
       select(odk_x_hh, instance_id, hh_id),
       by = 'instance_id'
@@ -207,6 +215,11 @@ migrate_to_odk_x <- function(
       dob_year = as.numeric(format(dob, '%Y'))
     ) %>%
     select(-instance_id, -dob)
+
+  if (truncate_name) {
+    odk_x_member <- odk_x_member %>%
+      mutate(across(c(first_name, last_name), ~ str_sub(., end = 11)))
+  }
 
   if (full_migration) {
     message('Processing clean_minicensus_repeat_death_info')
@@ -342,3 +355,6 @@ message('Loading minicensus data')
 load('minicensus_data.RData')
 
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE)
+
+# Sample 1000 and truncate names
+# migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = TRUE)
