@@ -1020,7 +1020,7 @@ if(read_sims){
               size = 3) +
     scale_color_manual(name = 'Assignment group',
                        values = cols)
-  ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
+  # ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
   # Join the data here with some of the assignment-group level data from the previous section
   # Join some data here with previous section at assignment level
   right <- carlos_table
@@ -1087,9 +1087,30 @@ if(read_sims){
     scale_color_manual(name = 'Number of\nchildren in core',
                        values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
     labs(x = 'Minimum buffer distance (meters)',
-         y = 'Median % with identical assignment\nstatus within 1 km radius',
+         y = 'MEDIAN % with identical assignment\nstatus within 1 km radius',
          title = 'Cluster formation strategies comparison')
-  ggsave('~/Desktop/radius.png', height = 8, width = 12)
+  ggsave('~/Desktop/radius_median.png', height = 8, width = 12)
+  
+  # cols[3:4] <- c('black', 'grey')
+  ggplot(data = pd,
+         aes(x = iter_buffer_distance,
+             y = avg_p_same)) +
+    geom_point(aes(#pch = valid,
+      color = factor(iter_n_children)),
+      size = 2,
+      alpha = 0.5) +
+    facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
+    theme(legend.position = 'bottom') +
+    geom_line(aes(color = factor(iter_n_children),
+                  group = factor(iter_n_children)),
+              size = 1.4,
+              alpha = 0.9) +
+    scale_color_manual(name = 'Number of\nchildren in core',
+                       values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+    labs(x = 'Minimum buffer distance (meters)',
+         y = 'MEAN % with identical assignment\nstatus within 1 km radius',
+         title = 'Cluster formation strategies comparison')
+  ggsave('~/Desktop/radius_mean.png', height = 8, width = 12)
 
   # Plot of nearest contaminant
   pd <- all_pts@data %>%
