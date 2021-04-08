@@ -1,3 +1,4 @@
+read_sims <- TRUE
 seedy <- as.numeric(Sys.time())
 # Basic knitr options
 library(knitr)
@@ -428,7 +429,6 @@ create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
 }
 
 # Decide whether we are just using already created simulations, or running a simulation
-read_sims <- TRUE
 if(read_sims){
   # Identify what the sims files are
   sim_files <- dir()
@@ -466,7 +466,7 @@ if(read_sims){
   } else {
     # Loop through some parameters
     buffer_distances <- buffer_distances <- c(400, 600, 800)
-    n_childrens <- c(15, 20, 25)
+    n_childrens <- c(10, 15, 20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -1130,7 +1130,7 @@ if(read_sims){
   
 } 
 
-extra <- TRUE
+extra <- read_sims
 # Calculate radius differences at the sweet spot
 if(extra){
   # Get a 1 km border around each household
@@ -1154,8 +1154,8 @@ if(extra){
   radius_df <- bind_rows(full_list)
   
   # Not doing everything here
-  iters_buffer_distance <- 400# sort(unique(master_pts@data$iter_buffer_distance))
-  iters_n_children <- 20#sort(unique(master_pts@data$iter_n_children))
+  iters_buffer_distance <- 600# sort(unique(master_pts@data$iter_buffer_distance))
+  iters_n_children <- 15#sort(unique(master_pts@data$iter_n_children))
   contaminant_list <- list()
   counter <- 0
   iters <- length(iters_buffer_distance) * length(iters_n_children)
