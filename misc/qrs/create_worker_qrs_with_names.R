@@ -20,9 +20,9 @@ fids2 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, 
 fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=179257508'
 fids3 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Catalonia')
 fids <- bind_rows(fids1, fids2, fids3)
-fids <- fids[1:600,]
+# fids <- fids[1:600,]
 # fids <- fids %>% filter(bohemia_id %in% c(1:200, 301:500))
-fids <- fids %>% filter(bohemia_id <= 600)
+fids <- fids %>% filter(!bohemia_id %in% 601:700)
 numbers <- fids$bohemia_id
 numbers <- add_zero(numbers, 3)
 fid_names <- paste0(ifelse(is.na(fids$first_name), '', fids$first_name), ' ', 
@@ -31,7 +31,7 @@ fid_names[fid_names == 'NA NA'] <- ''
 
 # Get ALL numbers
 joined <- left_join(
-  tibble(number = add_zero(1:600, 3)),
+  tibble(number = add_zero(c(1:600, 988:1612), 3)),
   tibble(number = numbers,
          name = fid_names)
 )
@@ -63,8 +63,9 @@ ggqrcode <- function(text, color="black", alpha=1) {
 } # https://github.com/GuangchuangYu/yyplot/blob/master/R/ggqrcode.R
 
 # Generate pdf
-dir.create('pdfs_workers')
+# dir.create('pdfs_workers')
 for(i in 1:length(numbers)){
+# for(i in 601:620){
   message(i, ' of ', length(numbers))
 # for(i in 1:2){
   this_number <- numbers[i]
@@ -101,7 +102,7 @@ for(i in 1:length(numbers)){
 # Combine to 12 per page
 setwd('pdfs_workers')
 dir.create('to_print')
-n <- length(numbers)
+n <- max(as.numeric(as.character(numbers)))
 ends <- (1:n)[1:n %% 12 == 0]
 starts <- ends - 11
 
@@ -112,8 +113,8 @@ for(i in 1:length(starts)){
   these_numbers <- add_zero(these_numbers, 3)
   these_files <- paste0(these_numbers, '.pdf')
   file_string <- paste0(these_files, collapse = ' ')
-  out_file <- paste0('to_print/', add_zero(this_start, 3), '-',
-                     add_zero(this_end, 3), '.pdf')
+  out_file <- paste0('to_print/', add_zero(this_start, 5), '-',
+                     add_zero(this_end, 5), '.pdf')
   command_string <- paste0('pdfjam ', file_string,
                            ' --nup 3x4 --landscape --outfile ',
                            out_file)

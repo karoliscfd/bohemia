@@ -1,6 +1,8 @@
 ---
-title: "Anomalies and completion snapshot"
-output: html_document
+title: "Anomalies and errors report"
+output:
+  html_document:
+    code_folding: "hide"
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -138,7 +140,7 @@ Total:
 
 ```{r}
 minicensus_main %>%
-  nrow
+  nrow %>% knitr::kable()
 ```
 
 By country:
@@ -146,7 +148,7 @@ By country:
 ```{r}
 minicensus_main %>%
   group_by(hh_country) %>%
-  tally
+  tally %>% knitr::kable()
 ```
 
 By date / country:
@@ -156,7 +158,8 @@ minicensus_main %>%
   group_by(country = hh_country, date = todays_date) %>% tally %>%
     ggplot(aes(x = date, y = n, color = country)) + geom_point() + geom_line() +
   labs(x = 'Date', y = 'Minicensus forms') +
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'bottom') +
+  theme_bw()
 ```
 
 
@@ -168,5 +171,94 @@ minicensus_main %>%
   ungroup %>% group_by(country) %>% mutate(n = cumsum(n)) %>%
     ggplot(aes(x = date, y = n, color = country)) + geom_point() + geom_line() +
   labs(x = 'Date', y = 'Minicensus forms') +
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'bottom') +
+  theme_bw()
+```
+
+# By type
+
+```{r}
+pd <- anomalies %>%
+  mutate(description = substr(description, 1, 80)) %>%
+  group_by(description) %>%
+  tally %>%
+  arrange(desc(n)) 
+pd$description <- factor(pd$description, levels = pd$description)
+
+ggplot(data = pd,
+       aes(x = description,
+           y = n,
+           group = 1)) +
+  geom_area(fill = 'darkorange', alpha = 0.3) +
+  geom_point() +
+  coord_flip() +
+  theme_bw() +
+  labs(x = 'Ocurrences',
+       y = 'Description')
+
+```
+
+
+# By type and country
+
+```{r}
+pd <- anomalies %>%
+  mutate(description = substr(description, 1, 80)) %>%
+  group_by(description, country) %>%
+  tally %>%
+  arrange(desc(n)) 
+pd$description <- factor(pd$description, levels = unique(pd$description))
+
+ggplot(data = pd,
+       aes(x = description,
+           y = n,
+           group = country,
+           color = country)) +
+  geom_point() +
+  geom_line(alpha = 0.5) +
+  coord_flip() +
+  theme_bw() +
+  labs(x = 'Ocurrences',
+       y = 'Description') +
+  theme(legend.position = 'bottom') +
+  scale_color_manual(name = '', values = c('red', 'blue'))
+
+```
+
+## By type and time
+
+```{r}
+pd <- anomalies %>%
+  mutate(description = substr(description, 1, 80)) %>%
+  group_by(description, country, month = as.Date(lubridate::floor_date(date, 'month')) + 15) %>%
+  tally %>%
+  arrange(desc(n)) 
+
+types <- sort(unique(anomalies$description))
+
+for(i in 1:length(types)){
+  this_type <- types[i]
+  this_data <- pd %>%
+    filter(description == this_type)
+  if(nrow(this_data) > 0){
+      g <- ggplot(data = this_data,
+              aes(x = month,
+                  y = n,
+                  group = country,
+                  color = country)) +
+    # geom_bar(stat = 'identity', position = position_dodge(width = 0.7)) +
+    geom_line() +
+    geom_point(size = 2, alpha = 0.7) +
+    facet_wrap(~country, nrow = 1) +
+      theme_bw() +
+  labs(x = 'Ocurrences',
+       y = 'Description',
+       title = this_type) +
+  theme(legend.position = 'none') +
+  scale_color_manual(name = '', values = c('red', 'blue')) 
+  print(g)
+  print(knitr::kable(this_data %>% dplyr::select(-description)))
+  }
+
+}
 ```

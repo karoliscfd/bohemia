@@ -1,3 +1,4 @@
+read_sims <- TRUE
 seedy <- as.numeric(Sys.time())
 # Basic knitr options
 library(knitr)
@@ -114,14 +115,16 @@ if('pre_load.RData' %in% dir()){
                                                 country = hh_country)) %>%
     mutate(years_old = (Sys.Date() - dob)/ 365.25) %>%
     mutate(under5 = years_old >= 0 & years_old <= 5) %>%
+    mutate(over15 = years_old >= 15) %>%
     mutate(is_child  = ifelse(country == 'Mozambique',
-                              years_old >= 0 & years_old <= 5,
-                              years_old >= 0 & years_old <= 15)) %>%
+                              years_old >= 0 & years_old < 5,
+                              years_old >= 5 & years_old < 15)) %>%
     mutate(is_boy = is_child & gender == 'male') %>%
     mutate(is_girl = is_child & gender == 'female') %>%
     group_by(country, instance_id) %>%
     summarise(n_members = n(),
               under5s = length(which(under5)),
+              over15 = length(which(over15)),
               reproductive = length(which(gender == 'female' & years_old >=13 & years_old <= 49)),
               n_females = length(which(gender == 'female')),
               n_males = length(which(gender == 'male')),
@@ -177,6 +180,7 @@ if('pre_load.RData' %in% dir()){
               n_girls = sum(n_girls),
               n_households = n(),
               n_children = sum(n_children),
+              n_over15s = sum(over15),
               clinical_trial = dplyr::first(clinical_trial),
               country = dplyr::first(country),
               lng = mean(lng),
@@ -225,7 +229,7 @@ if('pre_load.RData' %in% dir()){
     this_code <- codes[i]
     this_data <- df %>% filter(code == this_code) %>% mutate(x = lng, y = lat)
     coordinates(this_data) <- ~x+y
-    proj4string(this_data) <- proj4string(bohemia::mop2)
+    proj4string(this_data) <- proj4string(bohemia::ruf2)
     # CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
     ss <- spTransform(this_data, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
     # Get distances
@@ -252,7 +256,7 @@ if('pre_load.RData' %in% dir()){
   df <- locations_df@data
   df_sp <- df
   coordinates(df_sp) <- ~lng+lat
-  proj4string(df_sp) <- proj4string(bohemia::mop2)
+  proj4string(df_sp) <- proj4string(bohemia::ruf2)
   df_proj <- spTransform(df_sp,   CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
   )
   
@@ -263,6 +267,7 @@ if('pre_load.RData' %in% dir()){
     group_by(code) %>%
     summarise(n_humans = sum(n_members),
               under5s = sum(under5s),
+              over15s = sum(over15),
               n_reproductive = sum(reproductive),
               n_females = sum(n_females),
               n_males = sum(n_males),
@@ -286,9 +291,12 @@ if('pre_load.RData' %in% dir()){
   
   # Define the relationship between n children and n clusters
   library(readxl)
-  sizes_df <- read_excel('Children cluster size etc.xlsx', skip = 1)
+  sizes_df <- read_excel('Children cluster size etcTZA.xlsx', skip = 0)
   sizes_df <- sizes_df[,c(1,6)]
   names(sizes_df) <- c('n_children', 'n_clusters')
+  sizes_df <- sizes_df[1:31,]
+  sizes_df$n_children <- as.numeric(sizes_df$n_children)
+  sizes_df$n_clusters <- sizes_df$n_clusters
   save(df, df_sp, sizes_df, difficulty, df_full, file = 'pre_load.RData')
 }
 
@@ -298,19 +306,24 @@ if('pre_load.RData' %in% dir()){
 if('vh.RData' %in% dir()){
   load('vh.RData')
 } else {
-  households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Mozambique'],]# %>% filter(country == 'Mozambique')
-  households <- spTransform(households, proj4string(bohemia::mop2))
+  households <- df_sp[df_sp@data$code %in% df$code[df$country == 'Tanzania'],]# %>% filter(country == 'Mozambique')
+  households <- spTransform(households, proj4string(bohemia::ruf2))
   coords <- coordinates(households)
   households@data$lng <- coords[,1]
   households@data$lat <- coords[,2]
   households@data$id <- 1:nrow(households)
   households@data$n_children <- ifelse(is.na(households@data$n_children), 
                                        0, households@data$n_children)
-  households@data$n_adults <- households@data$n_people - households@data$n_children
+  co <- households$country[1]
+  if(co == 'Mozambique'){
+    households@data$n_adults <- households@data$n_people - households@data$n_children
+  } else {
+    households@data$n_adults <- households@data$over15
+  }
   households_projected <- spTransform(households, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
   
-  v <- voronoi(shp = households, poly = bohemia::mop2)
-  proj4string(v) <- proj4string(bohemia::mop2)
+  v <- voronoi(shp = households, poly = bohemia::ruf2)
+  proj4string(v) <- proj4string(bohemia::ruf2)
   v@data$id <- 1:nrow(v)#  as.numeric(as.character(v@data$id))
   vp <- spTransform(v, CRS("+proj=utm +zone=36 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
   o <- over(households_projected, polygons(vp))
@@ -416,7 +429,6 @@ create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
 }
 
 # Decide whether we are just using already created simulations, or running a simulation
-read_sims <- TRUE
 if(read_sims){
   # Identify what the sims files are
   sim_files <- dir()
@@ -453,8 +465,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(200, 300, 400, 500, 600)# c(100, 200, 300, 400, 500, 600, 800)
-    n_childrens <- c(5, 7, 10, 12, 15, 17, 20)#   c(5,6,7,8, 9,10,11,12,13,15,17,18,20,22,25,27,30,35)  
+    buffer_distances <- buffer_distances <- c(400, 600, 800)
+    n_childrens <- c(10, 15, 20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -676,7 +688,7 @@ if(read_sims){
               n_pigs_6_weeks_plus = mean(n_pigs_6_weeks_plus),
               n_pigs_babies = mean(n_pigs_babies))
   write_csv(pd, 'carlos.csv')
-  # Get just for the 400 m 12 kids scenario
+  # Get just for the 400 m 20 kids scenario
   out <- pd %>% filter(iter_buffer_distance == 400,
                        iter_n_children == 20)
   
@@ -727,32 +739,33 @@ if(read_sims){
 }
 
 
-# ######################## DELETE THE BELOW
+# # ######################## DELETE THE BELOW
 # xx <- households_projected
-# xx <- spTransform(xx, proj4string(bohemia::mop2))
+# xx <- spTransform(xx, proj4string(bohemia::ruf2))
 # 
-# right <- master_pts[master_pts@data$iter_buffer_distance == 600 &
+# right <- master_pts[master_pts@data$iter_buffer_distance == 400 &
 #                       master_pts@data$iter_n_children == 20,]
 # table(duplicated(right@data$id))
 # dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
 # # View(dd@data)
-# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 600 &
+# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 400 &
 #                         master_hull@data$iter_n_children == 20,]
-# xpolys <- spTransform(xpolys, proj4string(bohemia::mop2))
-# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 600 &
+# xpolys <- spTransform(xpolys, proj4string(bohemia::ruf2))
+# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 400 &
 #                      master_buf@data$iter_n_children == 20,]
-# xbuf <- spTransform(xbuf, proj4string(bohemia::mop2))
+# xbuf <- spTransform(xbuf, proj4string(bohemia::ruf2))
 # xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
 # xx@data$color <- ifelse(xx@data$status == 'core', 'red',
 #                         ifelse(xx@data$status == 'buffer', 'blue',
 #                                'black'))
-# leaflet() %>% addTiles() %>%
+# l <- leaflet() %>% addTiles() %>%
 #   addCircleMarkers(data = xx,
 #                    color = xx@data$color,
 #                    popup = paste0('Status ', xx@data$status, ' Cluster number ', xx@data$cluster)) %>%
 #   addMeasure(primaryLengthUnit = 'meters') %>%
 #   addPolylines(data = xpolys, weight = 3, color = 'red') %>%
 #   addPolylines(data = xbuf, weight = 3, color = 'black')
+# htmlwidgets::saveWidget(l, file = '~/Desktop/clusters_tza.html', selfcontained = FALSE)
 # 
 # ########################
 
@@ -1007,7 +1020,7 @@ if(read_sims){
               size = 3) +
     scale_color_manual(name = 'Assignment group',
                        values = cols)
-  ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
+  # ggsave('~/Desktop/radius_distributions.png', width= 9, height = 7)
   # Join the data here with some of the assignment-group level data from the previous section
   # Join some data here with previous section at assignment level
   right <- carlos_table
@@ -1074,9 +1087,30 @@ if(read_sims){
     scale_color_manual(name = 'Number of\nchildren in core',
                        values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
     labs(x = 'Minimum buffer distance (meters)',
-         y = 'Median % with identical assignment\nstatus within 1 km radius',
+         y = 'MEDIAN % with identical assignment\nstatus within 1 km radius',
          title = 'Cluster formation strategies comparison')
-  ggsave('~/Desktop/radius.png', height = 8, width = 12)
+  ggsave('~/Desktop/radius_median.png', height = 8, width = 12)
+  
+  # cols[3:4] <- c('black', 'grey')
+  ggplot(data = pd,
+         aes(x = iter_buffer_distance,
+             y = avg_p_same)) +
+    geom_point(aes(#pch = valid,
+      color = factor(iter_n_children)),
+      size = 2,
+      alpha = 0.5) +
+    facet_wrap(~paste0('Assignment\ngroup ', assignment)) +
+    theme(legend.position = 'bottom') +
+    geom_line(aes(color = factor(iter_n_children),
+                  group = factor(iter_n_children)),
+              size = 1.4,
+              alpha = 0.9) +
+    scale_color_manual(name = 'Number of\nchildren in core',
+                       values = cols) + #  rainbow(length(unique(pd$iter_n_children)))) +
+    labs(x = 'Minimum buffer distance (meters)',
+         y = 'MEAN % with identical assignment\nstatus within 1 km radius',
+         title = 'Cluster formation strategies comparison')
+  ggsave('~/Desktop/radius_mean.png', height = 8, width = 12)
 
   # Plot of nearest contaminant
   pd <- all_pts@data %>%
@@ -1117,7 +1151,7 @@ if(read_sims){
   
 } 
 
-extra <- FALSE
+extra <- read_sims
 # Calculate radius differences at the sweet spot
 if(extra){
   # Get a 1 km border around each household
@@ -1141,8 +1175,8 @@ if(extra){
   radius_df <- bind_rows(full_list)
   
   # Not doing everything here
-  iters_buffer_distance <- 400# sort(unique(master_pts@data$iter_buffer_distance))
-  iters_n_children <- 20#sort(unique(master_pts@data$iter_n_children))
+  iters_buffer_distance <- 600# sort(unique(master_pts@data$iter_buffer_distance))
+  iters_n_children <- 15#sort(unique(master_pts@data$iter_n_children))
   contaminant_list <- list()
   counter <- 0
   iters <- length(iters_buffer_distance) * length(iters_n_children)
