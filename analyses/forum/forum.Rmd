@@ -1,0 +1,37 @@
+---
+title: "Contact list"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gsheet)
+library(DT)
+# read in data
+if(!'df_forum.RData' %in% dir('/tmp')){
+    df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
+    # removing details for now
+    df$details <- NULL
+    df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
+    save(df, file = '/tmp/df_forum.RData')
+  } else {
+    load('/tmp/df_forum.RData')
+  }
+```
+
+
+```{r}
+names(df) <- c('Country', 'First name', 'Last name', 'Institution', 'Position', 'Email', 'Phone')
+# knitr::kable(df,bootstrap_options = "striped")
+DT::datatable(df, editable = 'cell',
+                    extensions = 'Buttons', 
+                    filter = 'top', 
+                    options = list(pageLength = 15, info = FALSE, dom='Bfrtip', buttons = list('csv')))
+```
+
+
+
