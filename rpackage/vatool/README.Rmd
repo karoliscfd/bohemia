@@ -29,18 +29,18 @@ devtools::install_github('databrew/bohemia', subdir = 'rpackage/bohemia')
 
 ## Setting up back-end
 
-You'll need to set up a back-end. In order to this, create a postgres database named `va`:
+You'll need to set up a back-end. In order to this, create a postgres database named `bohemia`:
 
 ```
 psql
-create database va;
+create database bohemia;
 exit
 ```
 
-Then go into the psql cli in va:
+Then go into the psql cli in bohemia:
 
 ```
-psql va
+psql bohemia
 ```
 
 and copy-paste the code from `set_up_database.sql`

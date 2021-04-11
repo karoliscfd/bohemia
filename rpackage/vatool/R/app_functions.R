@@ -97,12 +97,12 @@ get_db_connection <- function(local = FALSE){
   drv <- RPostgres::Postgres()
   
   if(local){
-    con <- dbConnect(drv, dbname = 'va')
+    con <- dbConnect(drv, dbname = 'bohemia')
   } else {
     psql_end_point = creds$endpoint
     psql_user = creds$psql_master_username
     psql_pass = creds$psql_master_password
-    con <- dbConnect(drv, dbname='va', host=psql_end_point, 
+    con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
                      port=5432,
                      user=psql_user, password=psql_pass)
   }

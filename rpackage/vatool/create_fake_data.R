@@ -1,18 +1,23 @@
 is_local <- TRUE
 library(dplyr)
 library(RPostgres)
+library(yaml)
 
 # Define credentials
-creds <- list(dbname = 'va')
+creds <- list(dbname = 'bohemia')
+
+password <- yaml::yaml.load_file('credentials/users.yaml')
+
+# Read in users from the main bohemia app
 
 users <- 
-  tibble(user_id = 1:5,
-         username = c('joe', 'ben', 'xing', 'cece', 'ramona'),
-         password = 'password',
-         first_name = c('Joe', 'Ben', 'Xing', 'Cece', 'Ramona'),
-         last_name = 'Brew',
-         country = c('Tanzania', 'Mozambique', 'Tanzania', 'Mozambique', 'Tanzania'),
-         role = c('Adjudicator', 'Adjudicator', 'Viewer', 'Physician', 'Physician'))
+  tibble(user_id = 1:6,
+         username = c('joe', 'ben', 'xing', 'cece', 'ramona', 'hansel'),
+         password = password$`joe@databrew.cc`,
+         first_name = c('Joe', 'Ben', 'Xing', 'Cece', 'Ramona', 'Hansel'),
+         last_name = c(rep('Brew', 5), 'Manduca'),
+         country = c('Tanzania', 'Mozambique', 'Tanzania', 'Mozambique', 'Tanzania', 'Spain'),
+         role = c('Adjudicator', 'Adjudicator', 'Viewer', 'Physician', 'Physician', 'Physician'))
 
 # create cods data 
 cods <- 
@@ -33,10 +38,15 @@ if(is_local){
   con <- dbConnect(drv = drv,
                    dbname = creds$dbname)
 } else {
-  stop('REMOTE NOT READY YET')
+  psql_end_point = creds$endpoint
+  psql_user = creds$psql_master_username
+  psql_pass = creds$psql_master_password
+  con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
+                   port=5432,
+                   user=psql_user, password=psql_pass)
 }
 
 # Write table
-dbWriteTable(conn = con, name = 'users', value = users, overwrite = TRUE)
-dbWriteTable(conn = con, name = 'cods', value = cods, overwrite = TRUE)
+dbWriteTable(conn = con, name = 'vatool_users', value = users, overwrite = TRUE)
+dbWriteTable(conn = con, name = 'vatool_cods', value = cods, overwrite = TRUE)
 dbDisconnect(con)

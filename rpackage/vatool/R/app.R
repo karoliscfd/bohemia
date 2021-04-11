@@ -95,7 +95,7 @@ app_ui <- function(request) {
 #' @import shiny
 #' @import leaflet
 app_server <- function(input, output, session) {
-  is_local <- TRUE
+  is_local <- FALSE
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
   log_in_fail <- reactiveVal(value=FALSE)
@@ -103,8 +103,8 @@ app_server <- function(input, output, session) {
   message('Connecting to database : ', ifelse(is_local, ' local', 'remote'))
   con <- get_db_connection(local = is_local)
   # Get list of authorized users, session, and cod tables
-  users <- dbReadTable(conn = con, 'users')
-  cods <- dbReadTable(conn=con, 'cods')
+  users <- dbReadTable(conn = con, 'vatool_users')
+  cods <- dbReadTable(conn=con, 'vatool_cods')
   data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
 
   # Upon log in, read in data
@@ -336,7 +336,7 @@ app_server <- function(input, output, session) {
     logged_in(FALSE)
     session_data <- data$session
     session_data$end_time <- Sys.time()
-    dbAppendTable(conn = con, name = 'sessions', value = session_data)
+    dbAppendTable(conn = con, name = 'vatool_sessions', value = session_data)
   })
   
   # Observe submission of cause of death and save
@@ -357,7 +357,7 @@ app_server <- function(input, output, session) {
     cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
     cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
     
-    dbAppendTable(conn = con, name = 'cods', value = cod_data)
+    dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
     submission_success(TRUE)
   })
   
