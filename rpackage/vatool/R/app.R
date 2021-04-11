@@ -132,7 +132,8 @@ app_server <- function(input, output, session) {
       # create table with same columns as session table in database (to append upon logout)
       print(users)
       message('at point 2')
-      user_id <- users %>% filter(username == tolower(liu)) %>% .$user_id
+      save(users, file = '/tmp/users.RData')
+      user_id <- users %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
       start_time <- Sys.time()
       end_time <- NA
       data$session <- tibble(user_id = user_id, start_time=start_time, end_time=end_time)
@@ -156,7 +157,7 @@ app_server <- function(input, output, session) {
     if(li){
       liu <- input$log_in_user
       message('at point 3')
-      user_role <- users %>% filter(username == tolower(liu)) %>% .$role
+      user_role <- users %>% dplyr::filter(username == tolower(liu)) %>% .$role
       cod <- cods %>% group_by(death_id, cod_3) %>% summarise(counts = n())
       if(user_role == 'Adjudicator'){
         # get ids that have more than one diagnosis
@@ -397,7 +398,7 @@ app_server <- function(input, output, session) {
       if(!is.null(users)){
         message('at point 4')
         liu <- input$log_in_user
-        out <- users %>% filter(username == tolower(liu))
+        out <- users %>% dplyr::filter(username == tolower(liu))
         names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
         out
       }
@@ -413,9 +414,9 @@ app_server <- function(input, output, session) {
       if(!is.null(users)){
         message('at point 5')
         liu <- input$log_in_user
-        user <- users %>% filter(username == tolower(liu))
-        userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
-        out <- cods %>% filter(user_id == userid)
+        user <- users %>% dplyr::filter(username == tolower(liu))
+        userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
+        out <- cods %>% dplyr::filter(user_id == userid)
         names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
       }
     } 
