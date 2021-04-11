@@ -111,11 +111,13 @@ app_server <- function(input, output, session) {
   
   # Upon log in, read in data
   observeEvent(input$log_in,{
+    message('in observeEvent(input$log_in')
     liu <- input$log_in_user
     lip <- input$log_in_password
     # See if the user exists and the password is correct
     ok <- FALSE
     if(!is.null(users)){
+      message('at point 6')
       if(tolower(liu) %in% users$username & tolower(lip) %in% users$password){
         ok <-TRUE
       }
@@ -129,6 +131,7 @@ app_server <- function(input, output, session) {
       
       # create table with same columns as session table in database (to append upon logout)
       print(users)
+      message('at point 2')
       user_id <- users %>% filter(username == tolower(liu)) %>% .$user_id
       start_time <- Sys.time()
       end_time <- NA
@@ -152,6 +155,7 @@ app_server <- function(input, output, session) {
     li <- li & uu
     if(li){
       liu <- input$log_in_user
+      message('at point 3')
       user_role <- users %>% filter(username == tolower(liu)) %>% .$role
       cod <- cods %>% group_by(death_id, cod_3) %>% summarise(counts = n())
       if(user_role == 'Adjudicator'){
@@ -391,6 +395,7 @@ app_server <- function(input, output, session) {
     out <- NULL
     if(li){
       if(!is.null(users)){
+        message('at point 4')
         liu <- input$log_in_user
         out <- users %>% filter(username == tolower(liu))
         names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
@@ -406,6 +411,7 @@ app_server <- function(input, output, session) {
     out <- NULL
     if(li){
       if(!is.null(users)){
+        message('at point 5')
         liu <- input$log_in_user
         user <- users %>% filter(username == tolower(liu))
         userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
