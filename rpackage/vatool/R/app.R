@@ -95,6 +95,7 @@ app_ui <- function(request) {
 ##################################################
 #' @import shiny
 #' @import leaflet
+#' @import dplyr
 app_server <- function(input, output, session) {
   is_local <- FALSE
   logged_in <- reactiveVal(value = FALSE)
@@ -137,10 +138,10 @@ app_server <- function(input, output, session) {
       user_id <- users %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
       start_time <- Sys.time()
       end_time <- NA
-      data$session <- tibble(user_id = user_id, start_time=start_time, end_time=end_time)
+      data$session <- dplyr::tibble(user_id = user_id, start_time=start_time, end_time=end_time)
       
       # create cod table
-      data$cod <- tibble(user_id = user_id, death_id = NA, cod_code_1 = NA,cod_1 =NA,cod_code_2 = NA,cod_2 =NA,cod_code_3 = NA,cod_3 =NA, time_stamp = NA)
+      data$cod <- dplyr::tibble(user_id = user_id, death_id = NA, cod_code_1 = NA,cod_1 =NA,cod_code_2 = NA,cod_2 =NA,cod_code_3 = NA,cod_3 =NA, time_stamp = NA)
       
     } else {
       logged_in(FALSE)
