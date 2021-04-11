@@ -15,9 +15,12 @@ mod_error_check_ui <- function(id, question = 'Some rando') {
     column(4,
            checkboxInput(ns('question1'), question, value = FALSE)),
     column(4,
-           radioButtons(ns('question2'), label = 'Check the ICF, has the error been corrected in the field by the field worker?',
+           shinyjs::hidden(radioButtons(ns('question2'), label = 'Check the ICF, has the error been corrected in the field by the field worker?',
                         choices = c('Yes', 'No'),
-                        selected = character(length = 0)))#,
+                        selected = character(length = 0)
+                        # selected = 'No'
+                        ))
+           )#,
     # column(4,
     #        uiOutput(ns('q2')))
   )

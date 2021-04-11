@@ -146,53 +146,11 @@ app_ui <- function(request) {
               fluidRow(column(12,
                               DT::dataTableOutput('person_table'))),
               fluidRow(
-                h3('Transcription of errors detected in the field'),
-                p('Check the "Verification list for supervisors", did the ICF present any of the following errors detected by the supervisor in the field?'),
-                mod_error_check_ui("error_1", error_list[1]),
-                mod_error_check_ui("error_2", error_list[2]),
-                mod_error_check_ui("error_3", error_list[3]),
-                mod_error_check_ui("error_4", error_list[4]),
-                mod_error_check_ui("error_5", error_list[5]),
-                mod_error_check_ui("error_6", error_list[6]),
-                mod_error_check_ui("error_7", error_list[7]),
-                mod_error_check_ui("error_8", error_list[8]),
-                mod_error_check_ui("error_9", error_list[9]),
-                mod_error_check_ui("error_10", error_list[10]),
-                mod_error_check_ui("error_11", error_list[11]),
-                mod_error_check_ui("error_12", error_list[12]),
-                checkboxInput('no_errors', 'No errors', value = FALSE)
-                
-              ),
-              fluidRow(
-                h3('Errors detected by the archivist'),
-                p('Does the ICF present any of the following errors?'),
-                mod_error_check_archivist_ui('error_arc_1', error_list[1]),
-                mod_error_check_archivist_ui('error_arc_2', error_list[2]),
-                mod_error_check_archivist_ui('error_arc_3', error_list[3]),
-                mod_error_check_archivist_ui('error_arc_4', error_list[4]),
-                mod_error_check_archivist_ui('error_arc_5', error_list[5]),
-                mod_error_check_archivist_ui('error_arc_6', error_list[6]),
-                mod_error_check_archivist_ui('error_arc_7', error_list[7]),
-                mod_error_check_archivist_ui('error_arc_8', error_list[8]),
-                mod_error_check_archivist_ui('error_arc_9', error_list[9]),
-                mod_error_check_archivist_ui('error_arc_10', error_list[10]),
-                mod_error_check_archivist_ui('error_arc_11', error_list[11]),
-                mod_error_check_archivist_ui('error_arc_12', error_list[12]),
-                mod_error_check_archivist_ui('error_arc_13', error_list[13]),
-                mod_error_check_archivist_ui('error_arc_14', error_list[14]),
-                mod_error_check_archivist_ui('error_arc_15', error_list[15]),
-                mod_error_check_archivist_ui('error_arc_16', error_list[16]),
-                mod_error_check_archivist_ui('error_arc_17', error_list[17]),
-                mod_error_check_archivist_ui('error_arc_18', error_list[18]),
-                mod_error_check_archivist_ui('error_arc_19', error_list[19]),
-                mod_error_check_archivist_ui('error_arc_20', error_list[20]),
-                mod_error_check_archivist_ui('error_arc_21', error_list[21]),
-                mod_error_check_archivist_ui('error_arc_22', error_list[22]),
-                mod_error_check_archivist_ui('error_arc_23', error_list[23]),
-                checkboxInput('other', 'Other', value = FALSE),
-                uiOutput('ui_other'),
-                checkboxInput('no_errors_arc', 'No errors', value = FALSE),
-                uiOutput('ui_arc_end')
+                radioButtons('icf_present', 'Is the ICF present?', choices = c('Yes', 'No'),
+                             selected = character(0),
+                             inline = TRUE),
+                uiOutput('ui_present'),
+                uiOutput('ui_big')    
               )
             )
           ),
@@ -335,6 +293,74 @@ app_server <- function(input, output, session) {
                                  searching = FALSE))
   })
   
+  output$ui_present <- renderUI({
+    icf_present <- input$icf_present
+    if(!is.null(icf_present)){
+      if(icf_present == 'No'){
+        fluidPage(
+          h3('Report missing ICF (list 1)'),
+          actionButton('submit_list_1', 'Submit data')
+        )
+      }
+    }
+  })
+  
+  output$ui_big <- renderUI({
+    icf_present <- input$icf_present
+    if(!is.null(icf_present)){
+      if(icf_present == 'Yes'){
+        fluidPage(
+          fluidRow(
+            h3('Transcription of errors detected in the field'),
+          p('Check the "Verification list for supervisors", did the ICF present any of the following errors detected by the supervisor in the field?'),
+          mod_error_check_ui("error_1", error_list[1]),
+          mod_error_check_ui("error_2", error_list[2]),
+          mod_error_check_ui("error_3", error_list[3]),
+          mod_error_check_ui("error_4", error_list[4]),
+          mod_error_check_ui("error_5", error_list[5]),
+          mod_error_check_ui("error_6", error_list[6]),
+          mod_error_check_ui("error_7", error_list[7]),
+          mod_error_check_ui("error_8", error_list[8]),
+          mod_error_check_ui("error_9", error_list[9]),
+          mod_error_check_ui("error_10", error_list[10]),
+          mod_error_check_ui("error_11", error_list[11]),
+          mod_error_check_ui("error_12", error_list[12]),
+          checkboxInput('no_errors', 'No errors', value = FALSE)),
+        fluidRow(
+          h3('Errors detected by the archivist'),
+          p('Does the ICF present any of the following errors?'),
+          mod_error_check_archivist_ui('error_arc_1', error_list[1]),
+          mod_error_check_archivist_ui('error_arc_2', error_list[2]),
+          mod_error_check_archivist_ui('error_arc_3', error_list[3]),
+          mod_error_check_archivist_ui('error_arc_4', error_list[4]),
+          mod_error_check_archivist_ui('error_arc_5', error_list[5]),
+          mod_error_check_archivist_ui('error_arc_6', error_list[6]),
+          mod_error_check_archivist_ui('error_arc_7', error_list[7]),
+          mod_error_check_archivist_ui('error_arc_8', error_list[8]),
+          mod_error_check_archivist_ui('error_arc_9', error_list[9]),
+          mod_error_check_archivist_ui('error_arc_10', error_list[10]),
+          mod_error_check_archivist_ui('error_arc_11', error_list[11]),
+          mod_error_check_archivist_ui('error_arc_12', error_list[12]),
+          mod_error_check_archivist_ui('error_arc_13', error_list[13]),
+          mod_error_check_archivist_ui('error_arc_14', error_list[14]),
+          mod_error_check_archivist_ui('error_arc_15', error_list[15]),
+          mod_error_check_archivist_ui('error_arc_16', error_list[16]),
+          mod_error_check_archivist_ui('error_arc_17', error_list[17]),
+          mod_error_check_archivist_ui('error_arc_18', error_list[18]),
+          mod_error_check_archivist_ui('error_arc_19', error_list[19]),
+          mod_error_check_archivist_ui('error_arc_20', error_list[20]),
+          mod_error_check_archivist_ui('error_arc_21', error_list[21]),
+          mod_error_check_archivist_ui('error_arc_22', error_list[22]),
+          mod_error_check_archivist_ui('error_arc_23', error_list[23]),
+          checkboxInput('other', 'Other', value = FALSE),
+          uiOutput('ui_other'),
+          checkboxInput('no_errors_arc', 'No errors', value = FALSE),
+          uiOutput('ui_arc_end')
+        )
+        )
+      }
+    }
+  })
   
   output$ui_other <- renderUI({
     pd <- input$other
@@ -388,9 +414,11 @@ app_server <- function(input, output, session) {
       error_7(), error_8(), error_9(), error_10(), error_11(), error_12())
   })
   any_errors_part_1 <- reactive({
-    # This is problematic because it's not taking into account the follow-up questions
+    el1 <- error_list_1()
+    message('el1 is')
+    print(el1)
     out <- any(
-      error_list_1(),
+      el1,
       na.rm = T)
     message('Any errors in part 1: ', out)
     out
@@ -403,15 +431,17 @@ app_server <- function(input, output, session) {
       error_arc_19(), error_arc_20(), error_arc_21(), error_arc_22(), error_arc_23())
   })
   any_errors_part_2 <- reactive({
+    el2 <- error_list_2()
+    message('Error list 2 is: ')
+    print(el2)
     out <- any(
-      error_list_2(),
+      el2,
       na.rm = T)
     message('Any errors in part 2: ', out)
     out
   })
   
-  output$ui_arc_end <- renderUI({
-    
+  list_3_input <- reactive({
     # See if "no errors" were declared
     ne1 <- input$no_errors
     ne2 <- input$no_errors_arc
@@ -419,8 +449,6 @@ app_server <- function(input, output, session) {
     # See if any errors were ticked
     ae1 <- any_errors_part_1()
     ae2 <- any_errors_part_2()
-    
-    out <- NULL
     
     # If any error was marked on #7 the information about each error will feed List 3: ICFs to be corrected and be submitted to the server.
     if(ae2){
@@ -437,18 +465,43 @@ app_server <- function(input, output, session) {
       for(j in 1:ncol(p2)){
         combined[,names(p2)[j]] <- p2[,j]
       }
-      combined_dt <- DT::datatable(combined)
+      combined
       
+    } else {
+      NULL
+    }
+    
+  })
+  
+  output$ui_arc_end <- renderUI({
+    out <- NULL
+    
+    # See if "no errors" were declared
+    ne1 <- input$no_errors
+    ne2 <- input$no_errors_arc
+    
+    # See if any errors were ticked
+    ae1 <- any_errors_part_1()
+    ae2 <- any_errors_part_2()
+    
+    combined <- list_3_input()
+    if(!is.null(combined)){
+      combined_dt <- bohemia::prettify(combined, download_options = TRUE, nrows = nrow(combined))
       out <-
         fluidPage(
-          fluidRow(h1('List 3')),
-          fluidRow(combined_dt)
+          fluidRow(h1('ICFs to be corrected (list 3)')),
+          fluidRow(combined_dt),
+          fluidRow(actionButton('submit_list_3', 'Submit data'))
         )
     } else {
       if(ae1 & ne2){
         out <- "You have marked errors not corrected in the field by field worker in 'Transcription of errors detected in the field' but have marked no errors in 'Errors detected by the archivist'. Please review."
       } else if(ne2){
-        out <- 'Congratulations. You can file this ICF.'
+        out <- 
+          fluidPage(
+            h2('Congratulations. You can file this ICF. It will go to "List 2: Correct ICFs". Click below to do so.'),
+            actionButton('submit_list_2', 'Submit data')
+          )
       } 
       if(!is.null(out)){
         out <- h3(out)
@@ -457,6 +510,25 @@ app_server <- function(input, output, session) {
     
     
     return(out)
+  })
+  
+  
+  observeEvent(input$submit_list_1,{
+    showModal( modalDialog(
+      h2("List 1 submission"), "Once data flow is clear, data will be submitted at this point"
+    ))
+  })
+  
+  observeEvent(input$submit_list_2,{
+    showModal( modalDialog(
+      h2("List 2 submission"), "Once data flow is clear, data will be submitted at this point"
+    ))
+  })
+  
+  observeEvent(input$submit_list_3,{
+    showModal( modalDialog(
+      h2("List 3 submission"), "Once data flow is clear, data will be submitted at this point"
+    ))
   })
 }
 
