@@ -276,6 +276,11 @@ app_server <- function(input, output, session) {
     if(!is.null(person_id)){
       out <- out %>% filter(pid == person_id)
     }
+    if(is.null(person_id) |
+       is.null(xhid) |
+       is.null(date_of_visit)){
+      out <- NULL
+    }
     return(out)
   })
   
