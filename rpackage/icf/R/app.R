@@ -19,7 +19,7 @@ suppressPackageStartupMessages(
 
 library(dplyr)
 if('ifc.RData' %in% dir('/tmp')){
-  load('ifc.RData')
+  load('/tmp/ifc.RData')
 } else {
   # Get fieldworker data
   # Define a default fieldworkers data
