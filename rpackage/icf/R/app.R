@@ -105,7 +105,6 @@ error_list <- c('Participant did not sign',
 
 app_ui <- function(request) {
   options(scipen = '999')
-  useShinyjs()
   
   tagList(
     mobile_golem_add_external_resources(),
@@ -132,6 +131,7 @@ app_ui <- function(request) {
           tabItem(
             tabName="icf1",
             fluidPage(
+              shinyjs::useShinyjs(),
               fluidRow(
                 uiOutput('top_button')
               ),
