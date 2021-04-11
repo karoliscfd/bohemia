@@ -12,6 +12,7 @@
 #' @import shinyMobile
 #' @import DBI
 #' @import RPostgres
+#' @import dplyr
 app_ui <- function(request) {
   options(scipen = '999')
 
