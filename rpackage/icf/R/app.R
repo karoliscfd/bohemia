@@ -115,8 +115,11 @@ app_ui <- function(request) {
       dashboardSidebar(
         sidebarMenu(
           menuItem(
-            text="Main",
-            tabName="main"),
+            text="ICF First Verification",
+            tabName="icf1"),
+          menuItem(
+            text="ICF Return Verification",
+            tabName="icf2"),
           menuItem(
             text = 'About',
             tabName = 'about')
@@ -127,7 +130,7 @@ app_ui <- function(request) {
         # ),
         tabItems(
           tabItem(
-            tabName="main",
+            tabName="icf1",
             fluidPage(
               fluidRow(
                 uiOutput('top_button')
@@ -193,6 +196,11 @@ app_ui <- function(request) {
               )
             )
           ),
+          tabItem(
+            tabName = 'icf2',
+            fluidPage(
+              h1('Pending input')
+            )),
           tabItem(
             tabName = 'about',
             fluidPage(
@@ -375,21 +383,28 @@ app_server <- function(input, output, session) {
   error_arc_23 <- callModule(mod_error_check_archivist, 'error_arc_23')
   
   # Create a reactive object for capturing any errors by part
+  error_list_1 <- reactive({
+    c(error_1(), error_2(), error_3(), error_4(), error_5(), error_6(),
+      error_7(), error_8(), error_9(), error_10(), error_11(), error_12())
+  })
   any_errors_part_1 <- reactive({
+    # This is problematic because it's not taking into account the follow-up questions
     out <- any(
-      error_1(), error_2(), error_3(), error_4(), error_5(), error_6(),
-      error_7(), error_8(), error_9(), error_10(), error_11(), error_12(),
+      error_list_1(),
       na.rm = T)
     message('Any errors in part 1: ', out)
     out
   })
   
-  any_errors_part_2 <- reactive({
-    out <- any(
-      error_arc_1(), error_arc_2(), error_arc_3(), error_arc_4(), error_arc_5(), error_arc_6(),
+  error_list_2 <- reactive({
+    c(error_arc_1(), error_arc_2(), error_arc_3(), error_arc_4(), error_arc_5(), error_arc_6(),
       error_arc_7(), error_arc_8(), error_arc_9(), error_arc_10(), error_arc_11(), error_arc_12(),
       error_arc_13(), error_arc_14(), error_arc_15(), error_arc_16(), error_arc_17(), error_arc_18(),
-      error_arc_19(), error_arc_20(), error_arc_21(), error_arc_22(), error_arc_23(),
+      error_arc_19(), error_arc_20(), error_arc_21(), error_arc_22(), error_arc_23())
+  })
+  any_errors_part_2 <- reactive({
+    out <- any(
+      error_list_2(),
       na.rm = T)
     message('Any errors in part 2: ', out)
     out
@@ -406,16 +421,41 @@ app_server <- function(input, output, session) {
     ae2 <- any_errors_part_2()
     
     out <- NULL
-    if(ae1 & ne2){
-      out <- "You have marked errors not corrected in the field by field worker in #6 but have marked no errors in #7, please review."
-    } else if(ne2){
-      out <- 'Congratulations. You can file this ICF.'
+    
+    # If any error was marked on #7 the information about each error will feed List 3: ICFs to be corrected and be submitted to the server.
+    if(ae2){
+      
+      # Get the part 2 errors
+      e2_index <- error_list_2()
+      e2 <- error_list[e2_index]
+      
+      # Get the person-level data
+      p2 <- dfr()
+      
+      # Combine them
+      combined <- tibble(Error = e2)
+      for(j in 1:ncol(p2)){
+        combined[,names(p2)[j]] <- p2[,j]
+      }
+      combined_dt <- DT::datatable(combined)
+      
+      out <-
+        fluidPage(
+          fluidRow(h1('List 3')),
+          fluidRow(combined_dt)
+        )
     } else {
-      out <- 'Please complete the above.'
+      if(ae1 & ne2){
+        out <- "You have marked errors not corrected in the field by field worker in 'Transcription of errors detected in the field' but have marked no errors in 'Errors detected by the archivist'. Please review."
+      } else if(ne2){
+        out <- 'Congratulations. You can file this ICF.'
+      } 
+      if(!is.null(out)){
+        out <- h3(out)
+      }
     }
-    if(!is.null(out)){
-      out <- h3(out)
-    }
+    
+    
     return(out)
   })
 }
