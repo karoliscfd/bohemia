@@ -107,15 +107,20 @@ app_server <- function(input, output, session) {
   cods <- dbReadTable(conn=con, 'vatool_cods')
   data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
 
+  print(users)
+  
   # Upon log in, read in data
   observeEvent(input$log_in,{
     liu <- input$log_in_user
     lip <- input$log_in_password
     # See if the user exists and the password is correct
     ok <- FALSE
-    if(tolower(liu) %in% users$username & tolower(lip) %in% users$password){
-      ok <-TRUE
+    if(!is.null(users)){
+      if(tolower(liu) %in% users$username & tolower(lip) %in% users$password){
+        ok <-TRUE
+      }
     }
+    
     if(ok){
       logged_in(TRUE)
       removeModal()
