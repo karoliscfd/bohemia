@@ -2,31 +2,27 @@ library(shiny)
 library(dplyr)
 
 # load VA data (for now, this is fake)
-load_va_data <- function(is_local = FALSE){
-  # out <-
-  #   tibble(death_id = c('ABC-123-702', 'QRS-567-703', 'XYZ-987-701'),
-  #          country = c('Mozambique', 'Tanzania', 'Mozambique'),
-  #          age_in_years = sample(1:100, 3),
-  #          date_of_death = random_date(),
-  #          date_of_birth = random_date(),
-  #          date_of_interview = random_date(50),
-  #          fever = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-  #          fever_days = sample(1:10, size = 3, replace = TRUE),
-  #          HIV = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-  #          malaria_test = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-  #          malaria_positive = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-  #          TB = sample(c('Yes', 'No'), size = 3, replace = TRUE),
-  #          phone_number = rep(12345, 3))
-  # return(out)
-  # read in va data (load from database later)
+load_va_data <- function(is_local = FALSE, use_cached = TRUE){
+
+  if(use_cached){
+    if(file.exists('/tmp/va.RData')){
+      load('/tmp/va.RData')
+      get_new <- FALSE
+    } else {
+      get_new <- TRUE
+    }
+  }
   # if(file.exists('../data-raw/va.csv')){
   #   out <- read.csv('../data-raw/va.csv')
   # } else {
   #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
   # }
-  con <- get_db_connection(local = is_local)
-  out <- dbReadTable(conn = con, name = 'va')
-  dbDisconnect(con)
+  if(get_new){
+    con <- get_db_connection(local = is_local)
+    out <- dbReadTable(conn = con, name = 'va')
+    dbDisconnect(con)
+    save(out, file = '/tmp/va.RData')
+  }
   return(out)
 }
 
