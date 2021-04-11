@@ -148,6 +148,8 @@ app_server <- function(input, output, session) {
   # Selection input for VA ID
   output$ui_adjudicate <- renderUI({
     li <- logged_in()
+    uu <- !is.null(users)
+    li <- li & uu
     if(li){
       liu <- input$log_in_user
       user_role <- users %>% filter(username == tolower(liu)) %>% .$role
@@ -388,11 +390,13 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     out <- NULL
     if(li){
-      liu <- input$log_in_user
-      out <- users %>% filter(username == tolower(liu))
+      if(!is.null(users)){
+        liu <- input$log_in_user
+        out <- users %>% filter(username == tolower(liu))
+        names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
+        out
+      }
     } 
-    
-    names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
     out
   })
   
@@ -401,13 +405,14 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     out <- NULL
     if(li){
-      liu <- input$log_in_user
-      user <- users %>% filter(username == tolower(liu))
-      userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
-      out <- cods %>% filter(user_id == userid)
+      if(!is.null(users)){
+        liu <- input$log_in_user
+        user <- users %>% filter(username == tolower(liu))
+        userid <- user %>% filter(username == tolower(liu)) %>% .$user_id
+        out <- cods %>% filter(user_id == userid)
+        names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
+      }
     } 
-   
-    names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
   })
 
