@@ -2,7 +2,7 @@ library(shiny)
 library(dplyr)
 
 # load VA data (for now, this is fake)
-load_va_data <- function(){
+load_va_data <- function(is_local = FALSE){
   # out <-
   #   tibble(death_id = c('ABC-123-702', 'QRS-567-703', 'XYZ-987-701'),
   #          country = c('Mozambique', 'Tanzania', 'Mozambique'),
@@ -19,14 +19,14 @@ load_va_data <- function(){
   #          phone_number = rep(12345, 3))
   # return(out)
   # read in va data (load from database later)
-  if(file.exists('../data-raw/va.csv')){
-    out <- read.csv('../data-raw/va.csv')
-  } else {
-    stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
-  }
-  
-
-
+  # if(file.exists('../data-raw/va.csv')){
+  #   out <- read.csv('../data-raw/va.csv')
+  # } else {
+  #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
+  # }
+  con <- get_db_connection(local = is_local)
+  out <- dbReadTable(conn = con, name = 'va')
+  dbDisconnect(con)
   return(out)
 }
 

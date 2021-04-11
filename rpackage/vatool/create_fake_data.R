@@ -38,6 +38,7 @@ if(is_local){
   con <- dbConnect(drv = drv,
                    dbname = creds$dbname)
 } else {
+  creds <- yaml::yaml.load_file('credentials/credentials.yaml')
   psql_end_point = creds$endpoint
   psql_user = creds$psql_master_username
   psql_pass = creds$psql_master_password

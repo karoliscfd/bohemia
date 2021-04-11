@@ -120,7 +120,7 @@ app_server <- function(input, output, session) {
       logged_in(TRUE)
       removeModal()
       # load data
-      data$va <- load_va_data()
+      data$va <- load_va_data(is_local = is_local)
       
       # create table with same columns as session table in database (to append upon logout)
       user_id <- users %>% filter(username == tolower(liu)) %>% .$user_id
