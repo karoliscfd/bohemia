@@ -2,7 +2,19 @@
 
 | Form                                   | Description                                                              | Author | Location                           | Type    | Status           |
 |----------------------------------------|--------------------------------------------------------------------------|--------|------------------------------------|---------|------------------|
-| Minicensus                             | minicensus                                                               |        | [link][minicensus]                 | Collect | Finished         |
+| animalannex                            |                                                                          |        | [link][animalannex]                | Collect | Finished         |
+| Census training                        |                                                                          |        | [link][censustraining]             | Collect | Finished         |
+| bohemia_enumerations_b                 |                                                                          |        | [link][enumerationsb]              | Collect | Finished         |
+| Geocoding                              |                                                                          |        | [link][geocoding]                  | Collect | Finished         |
+| bohemia_incidents                      |                                                                          |        | [link][incidents]                  | Collect | Finished         |
+| Passive Malaria Surveillance           |                                                                          |        | [link][passivemalariasurveillance] | Collect | Finished         |
+| Recon                                  |                                                                          |        | [link][recon]                      | Collect | Finished         |
+| bohemia_refusals_b                     |                                                                          |        | [link][refusalsb]                  | Collect | Finished         |
+| bohemia_smallcensus_b                  |                                                                          |        | [link][smallcensusb]               | Collect | Finished         |
+| bohemia_transcription                  |                                                                          |        | [link][transcription]              | Collect | Finished         |
+| bohemia_va153_b                        |                                                                          |        | [link][va153b]                     | Collect | Finished         |
+| bohemia_va_refusals                    |                                                                          |        | [link][varefusals]                 | Collect | Finished         |
+| Minicensus                             | minicensus                                                               |        | [link][censusmin]                  | Collect | Finished         |
 | Census                                 | household questionnaire for census                                       |        | [link][census]                     | ODK-X   | Finished         |
 | Household Recent Deaths                | recent deaths for census                                                 |        | [link][hh_death]                   | ODK-X   | Finished         |
 | Fieldworker Location                   | fieldworker geolocation for census                                       | Li     | [link][fw_location]                | ODK-X   | Finished         |
@@ -34,7 +46,19 @@
 | Entomology IHI laboratory processing   |                                                                          |        |                                    |         | Not Started      |
 
 
-[minicensus]: https://github.com/databrew/bohemia/tree/master/forms/censusmin
+[animalannex]: https://github.com/databrew/bohemia/tree/master/forms/animalannex
+[censustraining]: https://github.com/databrew/bohemia/tree/master/forms/censustraining
+[enumerationsb]: https://github.com/databrew/bohemia/tree/master/forms/enumerationsb
+[geocoding]: https://github.com/databrew/bohemia/tree/master/forms/geocoding
+[incidents]: https://github.com/databrew/bohemia/tree/master/forms/incidents
+[passivemalariasurveillance]: https://github.com/databrew/bohemia/tree/master/forms/passivemalariasurveillance
+[recon]: https://github.com/databrew/bohemia/tree/master/forms/recon
+[refusalsb]: https://github.com/databrew/bohemia/tree/master/forms/refusalsb
+[smallcensusb]: https://github.com/databrew/bohemia/tree/master/forms/smallcensusb
+[transcription]: https://github.com/databrew/bohemia/tree/master/forms/transcription
+[va153b]: https://github.com/databrew/bohemia/tree/master/forms/va153b
+[varefusals]: https://github.com/databrew/bohemia/tree/master/forms/varefusals
+[censusmin]: https://github.com/databrew/bohemia/tree/master/forms/censusmin
 [census]: https://github.com/databrew/bohemia/tree/master/odkx/app/config/tables/census/forms/census
 [hh_death]: https://github.com/databrew/bohemia/tree/master/odkx/app/config/tables/hh_death/forms/hh_death
 [fw_location]: https://github.com/databrew/bohemia/tree/master/odkx/app/config/tables/fw_location/forms/fw_location
