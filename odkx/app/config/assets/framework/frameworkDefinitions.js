@@ -237,7 +237,7 @@ window.odkFrameworkDefinitions = {
     "finalize_survey_button_label": {
       "string_token": "finalize_survey_button_label",
       "text": {
-        "default": "Finalize",
+        "default": "Finalize Form",
         "pt": "Finalizar",
         "sw": "Kamilisha"
       },
@@ -246,7 +246,7 @@ window.odkFrameworkDefinitions = {
     "save_as_incomplete_survey_button_label": {
       "string_token": "save_as_incomplete_survey_button_label",
       "text": {
-        "default": "Incomplete",
+        "default": "Save Form",
         "pt": "Incompleto",
         "sw": "Haijakamilika"
       },
@@ -321,7 +321,7 @@ window.odkFrameworkDefinitions = {
     "options_popup_save_changes_heading": {
       "string_token": "options_popup_save_changes_heading",
       "text": {
-        "default": "Save Changes + Exit",
+        "default": "Save Form + Exit",
         "pt": "Guardar Mudanças + Sair",
         "sw": "Hifadhi Mabadiliko + Utoke"
       },
@@ -330,7 +330,7 @@ window.odkFrameworkDefinitions = {
     "options_popup_finalize_changes_heading": {
       "string_token": "options_popup_finalize_changes_heading",
       "text": {
-        "default": "Finalize Changes + Exit",
+        "default": "Finalize Form + Exit",
         "pt": "Finalizar Mudanças + Sair",
         "sw": "Kamilisha Mabadiliko + Utoke"
       },
