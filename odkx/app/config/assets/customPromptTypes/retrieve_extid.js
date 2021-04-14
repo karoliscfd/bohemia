@@ -29,8 +29,8 @@ define(['./customErrorMsg', 'prompts'], function(customErrorMsg) {
 
         odkData.query(
           'hh_member',
-          "lower(replace(name, ' ', '')) LIKE lower(?) AND " +
-          "lower(replace(surname, ' ', '')) LIKE lower(?) AND " +
+          "(lower(replace(name, ' ', '')) LIKE lower(?) OR " +
+          "lower(replace(surname, ' ', '')) LIKE lower(?)) AND " +
           "length(id) = 11 AND _savepoint_type = ?",
           ['%' + firstName + '%', '%' + lastName + '%', 'COMPLETE'],
           null,
