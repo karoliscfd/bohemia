@@ -45,6 +45,17 @@ A Shiny Application serves as the web interface for the data pipeline. Its main 
  - Manually obtain snapshots of Sync Endpoint data
  - Accept or deny anomaly resolutions
 
+The interface contains 2 pages:
+ - Report
+ - Anomaly resolution
+
+#### Report
+The report page contains UI elements to display a summary of the latest snapshot, controls to select another snaphsot, and controls to obtain a new snapshot.
+The summary displays the changes (if any) between the latest snapshot and the previous snapshot. The information includes data added, modified, and removed for each table tracked by the pipeline. If automated cleaning was performed on the snapshot, the report also displays the actions performed and data affected. In the case that anomalies were detected in the snapshot, this page also displays the anomalies and guide the user to resolve the anomalies using ODK-X.
+
+#### Anomaly Resolution
+This page displays a list of corrections that are pending to be applied. After anomaly corrections are entered through ODK-X, the modifications will be shown here for confirmation. The atomic unit for accepting and denying changes is 1 row of data. This page only provides controls for accepting and denying changes. If the changes are partially incorrect, they should be rectified through ODK-X. Once all pending corrections have been reviewed, the corrections will be applied and a new snapshot taken.
+
 ### R Scripts
 A collection of scripts to
  - Pull data from a Sync Endoint server, in order to obtain a snapshot and save the snapshot to a PostgreSQL database
