@@ -739,35 +739,97 @@ if(read_sims){
 }
 
 
-# # ######################## DELETE THE BELOW
-# xx <- households_projected
-# xx <- spTransform(xx, proj4string(bohemia::ruf2))
-# 
-# right <- master_pts[master_pts@data$iter_buffer_distance == 400 &
-#                       master_pts@data$iter_n_children == 20,]
-# table(duplicated(right@data$id))
-# dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
-# # View(dd@data)
-# xpolys <- master_hull[master_hull@data$iter_buffer_distance == 400 &
-#                         master_hull@data$iter_n_children == 20,]
-# xpolys <- spTransform(xpolys, proj4string(bohemia::ruf2))
-# xbuf <- master_buf[master_buf@data$iter_buffer_distance == 400 &
-#                      master_buf@data$iter_n_children == 20,]
-# xbuf <- spTransform(xbuf, proj4string(bohemia::ruf2))
-# xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
-# xx@data$color <- ifelse(xx@data$status == 'core', 'red',
-#                         ifelse(xx@data$status == 'buffer', 'blue',
-#                                'black'))
-# l <- leaflet() %>% addTiles() %>%
-#   addCircleMarkers(data = xx,
-#                    color = xx@data$color,
-#                    popup = paste0('Status ', xx@data$status, ' Cluster number ', xx@data$cluster)) %>%
-#   addMeasure(primaryLengthUnit = 'meters') %>%
-#   addPolylines(data = xpolys, weight = 3, color = 'red') %>%
-#   addPolylines(data = xbuf, weight = 3, color = 'black')
+# ######################## DELETE THE BELOW
+xx <- households_projected
+xx <- spTransform(xx, proj4string(bohemia::ruf2))
+
+right <- master_pts[master_pts@data$iter_buffer_distance == 600 &
+                      master_pts@data$iter_n_children == 25,]
+table(duplicated(right@data$id))
+dd <- right[right@data$id %in% right@data$id[duplicated(right@data$id)],]
+# View(dd@data)
+xpolys <- master_hull[master_hull@data$iter_buffer_distance == 600 &
+                        master_hull@data$iter_n_children == 25,]
+xpolys <- spTransform(xpolys, proj4string(bohemia::ruf2))
+xbuf <- master_buf[master_buf@data$iter_buffer_distance == 600 &
+                     master_buf@data$iter_n_children == 25,]
+xbuf <- spTransform(xbuf, proj4string(bohemia::ruf2))
+xx@data <- left_join(xx@data %>% ungroup, right@data %>% ungroup %>% dplyr::select(id, status, cluster))
+xx@data$color <- ifelse(xx@data$status == 'core', 'red',
+                        ifelse(xx@data$status == 'buffer', 'blue',
+                               'black'))
+l <- leaflet() %>% addTiles() %>%
+  addCircleMarkers(data = xx,
+                   color = xx@data$color,
+                   popup = paste0('Status ', xx@data$status, ' Cluster number ', xx@data$cluster)) %>%
+  addMeasure(primaryLengthUnit = 'meters') %>%
+  addPolylines(data = xpolys, weight = 3, color = 'red') %>%
+  addPolylines(data = xbuf, weight = 3, color = 'black')
 # htmlwidgets::saveWidget(l, file = '~/Desktop/clusters_tza.html', selfcontained = FALSE)
-# 
-# ########################
+
+
+# Request 13 april 2021
+assignment_df <- tibble(
+  cluster = sort(unique(xx@data$cluster))
+)
+a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+a <- sample(a, size = length(a), replace = F)
+assignment_df$assignment <- a[1:nrow(assignment_df)]
+xx@data <- left_join(xx@data,
+                     assignment_df)
+
+pd <- xx@data %>%
+  group_by(assignment, cluster) %>%
+  summarise(pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = T),
+            pigs_babies = sum(pigs_babies, na.rm = T),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = T),
+            cows_babies = sum(cows_babies, na.rm = T))
+
+
+# Carlos request, 2021-04-13
+
+# 1. Histogram of animal numbers by cluster assignment group (to assess need for stratification)
+
+pdx <- pd %>% tidyr::gather(key, value, pigs_6_weeks_plus:cows_babies) %>%
+  filter(!is.na(assignment)) %>%
+  mutate(assignment = paste0('Assignment group ', assignment))
+ggplot(data = pdx,
+       aes(x = value+0.001)) +
+  geom_density(alpha = 0.6,
+               fill = 'darkorange') +
+  facet_grid(key~assignment) +
+  scale_x_log10() +
+  theme(strip.text = element_text(size = 6),
+        plot.title = element_text(size = 12)) +
+  labs(x = 'Value', y = 'Density',
+       title = 'Distribution of animals per cluster, TZA')
+
+
+# 2. The list of hamlets included in clusters so far (to prioritize FW assignment and hiring)
+xx@data <- left_join(
+  xx@data,
+  households@data %>% dplyr::select(instance_id, code)
+)
+pd <- xx@data %>%
+  filter(!is.na(status)) %>%
+  group_by(code) %>%
+  summarise(n_hh = n()) %>%
+  ungroup %>%
+  arrange(desc(n_hh))
+pd <- left_join(pd,
+                locations %>% dplyr::select(code,
+                                            Village,
+                                            Hamlet, Ward))
+write_csv(pd,
+          '~/Desktop/carlosapr13tza.csv')
+
+pdw <- pd %>%
+  group_by(Ward) %>%
+  summarise(n_hh = sum(n_hh))
+
+write_csv(pdw,
+          '~/Desktop/carlosapr13wardstza.csv')
+########################
 
 if(read_sims){
   # Get some analysis for each scenario

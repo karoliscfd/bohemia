@@ -1,0 +1,39 @@
+---
+title: "hh_qr_code"
+author: "Ben Brew"
+date: "26/02/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(magick)
+library(bohemia)
+library(qrcode)
+library(tidyverse)
+
+codes <- paste0('ABC-', 111:123)
+image_files <- c('1.png', '2.png')
+
+if(!dir.exists('certificates_simple')){
+  dir.create('certificates_simple/')
+}
+
+for(i in 1:length(codes)){
+  this_code <- codes[i]
+  for(j in 1:length(image_files)){
+    this_image_file <- image_files[j]
+    out_name <- paste0(
+      'certificates_simple/',
+      this_code,
+      ifelse(this_image_file == '1.png', '_sw', '_pt'),
+      '.png'
+    )
+    hh_qr_code_print_simple(hh_id = this_code,
+                     save_file = out_name,
+                     height=3.5,
+                     width=3)
+  }
+}
+```

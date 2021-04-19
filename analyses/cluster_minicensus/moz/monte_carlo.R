@@ -1,3 +1,5 @@
+read_sims <- TRUE
+
 seedy <- as.numeric(Sys.time())
 # Basic knitr options
 library(knitr)
@@ -416,7 +418,6 @@ create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
 }
 
 # Decide whether we are just using already created simulations, or running a simulation
-read_sims <- TRUE
 if(read_sims){
   # Identify what the sims files are
   sim_files <- dir()
@@ -753,8 +754,70 @@ l <- leaflet() %>% addTiles() %>%
   addMeasure(primaryLengthUnit = 'meters') %>%
   addPolylines(data = xpolys, weight = 3, color = 'red') %>%
   addPolylines(data = xbuf, weight = 3, color = 'black')
-htmlwidgets::saveWidget(l, file = '~/Desktop/clusters.html', selfcontained = FALSE)
-# 
+# htmlwidgets::saveWidget(l, file = '~/Desktop/clusters.html', selfcontained = FALSE)
+
+# Request 13 april 2021
+assignment_df <- tibble(
+  cluster = sort(unique(xx@data$cluster))
+)
+a <- rep(1:3, each = ceiling(nrow(assignment_df)/3))
+a <- sample(a, size = length(a), replace = F)
+assignment_df$assignment <- a[1:nrow(assignment_df)]
+xx@data <- left_join(xx@data,
+                     assignment_df)
+
+pd <- xx@data %>%
+  group_by(assignment, cluster) %>%
+  summarise(pigs_6_weeks_plus = sum(pigs_6_weeks_plus, na.rm = T),
+            pigs_babies = sum(pigs_babies, na.rm = T),
+            cows_1_year_plus = sum(cows_1_year_plus, na.rm = T),
+            cows_babies = sum(cows_babies, na.rm = T))
+
+
+# Carlos request, 2021-04-13
+
+# 1. Histogram of animal numbers by cluster assignment group (to assess need for stratification)
+
+pdx <- pd %>% tidyr::gather(key, value, pigs_6_weeks_plus:cows_babies) %>%
+  filter(!is.na(assignment)) %>%
+  mutate(assignment = paste0('Assignment group ', assignment))
+ggplot(data = pdx,
+       aes(x = value)) +
+  geom_density(alpha = 0.6,
+               fill = 'darkorange') +
+  facet_grid(key~assignment) +
+  scale_x_log10() +
+  theme(strip.text = element_text(size = 6),
+        plot.title = element_text(size = 12)) +
+  labs(x = 'Value', y = 'Density',
+       title = 'Distribution of animals per cluster, MOZ')
+
+
+# 2. The list of hamlets included in clusters so far (to prioritize FW assignment and hiring)
+xx@data <- left_join(
+  xx@data,
+  households@data %>% dplyr::select(instance_id, code)
+)
+pd <- xx@data %>%
+  filter(!is.na(status)) %>%
+  group_by(code) %>%
+  summarise(n_hh = n()) %>%
+  ungroup %>%
+  arrange(desc(n_hh))
+pd <- left_join(pd,
+                locations %>% dplyr::select(code,
+                                            Village,
+                                            Hamlet, Ward))
+write_csv(pd,
+          '~/Desktop/carlosapr13.csv')
+
+
+pdw <- pd %>%
+  group_by(Ward) %>%
+  summarise(n_hh = sum(n_hh))
+
+write_csv(pdw,
+          '~/Desktop/carlosapr13wards.csv')
 # ########################
 
 if(read_sims){
@@ -1262,3 +1325,4 @@ if(extra){
   ggsave('~/Desktop/sweet_spot_radii.png', width= 10, height = 9)
   
 }
+

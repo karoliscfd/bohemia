@@ -1,0 +1,253 @@
+---
+title: "Comparison with COST study"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: "hide"
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               # echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+```
+
+```{r}
+## Load libraries
+library(bohemia)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(leaflet)
+library(sp)
+library(raster)
+library(ggthemes)
+library(sf)
+library(RColorBrewer)
+library(readr)
+library(tidyr)
+# options(scipen = '999')
+theme_set(databrew::theme_simple())
+```
+
+```{r}
+# download from https://trello.com/c/jNjtobfe/2378-bohemia-cost-study-comparison
+
+# CREATION OF AREAS AND MATCHING OF HOUSEHOLDS.
+# 2 datasets with geolocation variables:
+# - Dataset with geolocation variable of the health centres during COST study.
+# - Having the geolocation for each health centre is enough.
+# - BOHEMIA main dataset:
+# - ‘hh_geo_location’ variable: geolocation of each household involved in BOHEMIA.
+# 
+# 
+# 1. Voronoi tessellation using health centres as seeds:
+# Use geolocation of each of the 12 health centres in Mopeia during the COST study to perform
+# Voronoi tessellation.
+# Results:
+# 1.1- Map of Mopeia with the 12 areas mapped out.
+# 1.2- New variable named ‘Study_area’: categorical variable with 12 levels named after the
+# corresponding health centre (‘Mopeia sede’, ‘8 de Março’, ‘Sangalaza’, ‘Gulamo’, … etc).
+# 2. Allocate each BOHEMIA household in its correspondent area:
+# Use ‘hh_geo_location’ variable for each observation to match it with the created areas.
+# Results:
+# 2.1- Map of Mopeia with distribution of BOHEMIA households in the 12 areas mapped out.
+# 2.2- ‘Study_area’ variable added to BOHEMIA dataset: each household has been assigned a
+# level of the variable corresponding the area in which it falls
+
+cost <- read_csv('COST_ACD_Children_Ages_and_Gender._EE.16.04.2019.csv')
+census <- read_csv('Minicensus_main_(16.03).csv')
+```
+
+
+# 1. Voronoi tessellation using health centres
+
+## 1.1 Map of Moepeia with 12 areas mapped out
+
+```{r}
+hf <- bohemia::health_facilities 
+hf <- hf %>%
+  filter(district == 'Mopeia') %>%
+  mutate(x = lng,
+         y = lat)
+hf$id <- 1:nrow(hf)
+coordinates(hf) <- ~x+y
+hf@data$name <- gsub('Centro de Saude de ', '', hf@data$name)
+hf@data$name <- gsub('Centro de Saude ', '', hf@data$name)
+hf <- hf[!hf@data$name %in% c('Ndingo'),]
+
+v <- bohemia::voronoi(shp = hf,
+             poly = bohemia::mop2)
+v@data$id <- as.numeric(as.character(v@data$id))
+v@data <- left_join(v@data, hf@data)
+
+vf <- fortify(v, id = v@data$id)
+
+label_df <- coordinates(v)
+label_df <- data.frame(label_df)
+names(label_df) <- c('x', 'y')
+label_df$name <- v@data$name
+
+library(ggrepel)
+ggplot() +
+  geom_polygon(data = vf,
+       aes(x = long,
+           y = lat,
+           group = group,
+           fill = group),
+       color = 'black') +
+  geom_label_repel(data = label_df,
+                   aes(x = x,
+                       y = y,
+                       label = name)) + 
+  scale_fill_manual(name = '',
+                    values = rainbow(length(unique(label_df$name)))) +
+  theme(legend.position = 'none') +
+  labs(x = 'Longitude',
+       y = 'Latitude')
+  
+
+# plot(v)
+# polygonsLabel(v, labels = v@data$name)
+# spplot(v, zcol = 'name')
+# 
+# leaflet(data = v) %>%
+#   addPolygons() %>%
+#   addPopups(~lng, ~lat, ~as.character(name), 
+#         options = popupOptions(minWidth = 5, closeOnClick = FALSE, closeButton = FALSE))
+```
+
+## 1.2 New variable named "Study area" in COST data
+
+```{r}
+extract_ll <- function(x){
+  lngs <- lats <- c()
+  for(i in 1:length(x)){
+    y <- x[i]
+    lat <- unlist(lapply(strsplit(y[1], ' '), function(z){z[1]}))
+    lng <- unlist(lapply(strsplit(y[1], ' '), function(z){z[2]}))
+    lngs[i] <- lng; lats[i] <- lat
+  }
+  
+  lng <- as.numeric(lngs); lat <- as.numeric(lats)
+  return(tibble(lng = lng, lat = lat))
+}
+
+census_hh <- cost
+census_hh$lng <- census_hh$x <- census_hh$longitude; census_hh$lat <- census_hh$y <- census_hh$latitude
+census_hh <- census_hh %>% dplyr::filter(!is.na(lng), !is.na(lat))
+coordinates(census_hh) <- ~x+y
+proj4string(census_hh) <- proj4string(bohemia::mop2)
+proj4string(v) <- proj4string(bohemia::mop2)
+above <- over(census_hh, polygons(v))
+census_hh$study_area <- v@data$name[above]
+
+```
+
+The below is a sample. Full data sent by email.
+
+```{r}
+pd <- census_hh@data %>%
+  dplyr::select(perm_id, study_area)
+bohemia::prettify(pd,
+                  nrows = 100,
+                  download_options = TRUE)
+write_csv(pd, '~/Desktop/cost_with_study_area.csv')
+
+```
+
+
+
+# 2. Using Bohemia data
+
+
+
+```{r}
+# 2. Allocate each BOHEMIA household in its correspondent area:
+# Use ‘hh_geo_location’ variable for each observation to match it with the created areas.
+# Results:
+# 2.1- Map of Mopeia with distribution of BOHEMIA households in the 12 areas mapped out.
+# 2.2- ‘Study_area’ variable added to BOHEMIA dataset: each household has been assigned a
+# level of the variable corresponding the area in which it falls
+```
+
+```{r}
+
+if('data.RData' %in% dir()){
+  load('data.RData')
+} else {
+  pd_moz <- load_odk_data(the_country = 'Mozambique',
+                    credentials_path = '../../credentials/credentials.yaml',
+                    users_path = '../../credentials/users.yaml',
+                    efficient = FALSE)
+  library(DBI)
+  library(RPostgres)
+  save(pd_moz,
+       file = 'data.RData')
+}
+census_hh <- pd_moz$minicensus_main
+locs <- extract_ll(census_hh$hh_geo_location)
+census_hh$lng <- census_hh$x <- locs$lng; census_hh$lat <- census_hh$y <- locs$lat
+census_hh <- census_hh %>% dplyr::filter(!is.na(lng), !is.na(lat))
+coordinates(census_hh) <- ~x+y
+proj4string(census_hh) <- proj4string(bohemia::mop2)
+proj4string(v) <- proj4string(bohemia::mop2)
+above <- over(census_hh, polygons(v))
+census_hh$study_area <- v@data$name[above]
+
+```
+
+
+## 2.1 Map of study areas and Bohemia households
+
+```{r}
+library(ggrepel)
+ggplot() +
+  geom_polygon(data = vf,
+       aes(x = long,
+           y = lat,
+           group = group,
+           fill = group),
+       color = 'black') +
+  scale_fill_manual(name = '',
+                    values = rainbow(length(unique(label_df$name)))) +
+  theme(legend.position = 'none') +
+  labs(x = 'Longitude',
+       y = 'Latitude') +
+  geom_point(data = census_hh@data,
+             aes(x = lng,
+                 y = lat),
+             pch = '.') +
+    geom_text_repel(data = label_df,
+                   aes(x = x,
+                       y = y,
+                       label = name),
+                   size = 3,
+                   color = 'white') 
+```
+
+
+## 2.2 New variable named "Study area" in Bohemia data
+
+
+The below is a sample. Full data sent by email.
+
+```{r}
+pd <- census_hh@data %>%
+  dplyr::select(hh_id, study_area)
+bohemia::prettify(pd,
+                  nrows = 100,
+                  download_options = TRUE)
+write_csv(pd, '~/Desktop/bohemia_with_study_area.csv')
+```
+
