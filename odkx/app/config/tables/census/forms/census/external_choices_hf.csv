@@ -1,20 +1,20 @@
 name,label,pt,sw,country
 Unknown,Unknown health facility,Não sei o nome da unidade de saúde,sijui jina la kituo cha afya,Mozambique
 Unknown,Unknown health facility,Não sei o nome da unidade de saúde,sijui jina la kituo cha afya,Tanzania
-Ndingo,Ndingo HF,Ndingo HF,Ndingo HF,Mozambique
-Nzanza,Nzanza HF,Nzanza HF,Nzanza HF,Mozambique
-Noere,Noere HF,Noere HF,Noere HF,Mozambique
-Nhacatundo,Nhacatundo HF,Nhacatundo HF,Nhacatundo HF,Mozambique
-Chimuara,Chimuara HF,Chimuara HF,Chimuara HF,Mozambique
-Gulamo,Gulamo HF,Gulamo HF,Gulamo HF,Mozambique
-Mopeia Sede,Mopeia Sede HF,Mopeia Sede HF,Mopeia Sede HF,Mozambique
-Sangalaza,Sangalaza HF,Sangalaza HF,Sangalaza HF,Mozambique
-Catale,Catale HF,Catale HF,Catale HF,Mozambique
-Luala,Luala HF,Luala HF,Luala HF,Mozambique
-Mungane,Mungane HF,Mungane HF,Mungane HF,Mozambique
-Posto Campo,Posto Campo HF,Posto Campo HF,Posto Campo HF,Mozambique
-8 de Marco,8 de Marco HF,8 de Marco HF,8 de Marco HF,Mozambique
-Vinte,Vinte HF,Vinte HF,Vinte HF,Mozambique
+Ndingo,Ndingo HF,CS Ndingo,Ndingo HF,Mozambique
+Nzanza,Nzanza HF,CS Nzanza,Nzanza HF,Mozambique
+Noere,Noere HF,CS Noere,Noere HF,Mozambique
+Nhacatundo,Nhacatundo HF,CS Nhacatundo,Nhacatundo HF,Mozambique
+Chimuara,Chimuara HF,CS Chimuara,Chimuara HF,Mozambique
+Gulamo,Gulamo HF,CS Gulamo,Gulamo HF,Mozambique
+Mopeia Sede,Mopeia Sede HF,CS Mopeia Sede,Mopeia Sede HF,Mozambique
+Sangalaza,Sangalaza HF,CS Sangalaza,Sangalaza HF,Mozambique
+Catale,Catale HF,CS Catale,Catale HF,Mozambique
+Luala,Luala HF,CS Luala,Luala HF,Mozambique
+Mungane,Mungane HF,CS Mungane,Mungane HF,Mozambique
+Posto Campo,Posto Campo HF,CS Posto Campo,Posto Campo HF,Mozambique
+8 de Marco,8 de Marco HF,CS 8 de Marco,8 de Marco HF,Mozambique
+Vinte,Vinte HF,CS Vinte,Vinte HF,Mozambique
 Arafa Ikwiriri,Arafa Ikwiriri,Arafa Ikwiriri,Arafa Ikwiriri,Tanzania
 Arafa Jaribu,Arafa Jaribu,Arafa Jaribu,Arafa Jaribu,Tanzania
 Bamita,Bamita,Bamita,Bamita,Tanzania

@@ -30,12 +30,12 @@
       );
     });
 
-    document.getElementById('entoForm').addEventListener('click', function () {
-      odkTables.launchHTML(
-        null,
-        'config/assets/entoForms.html'
-      );
-    });
+    // document.getElementById('entoForm').addEventListener('click', function () {
+    //   odkTables.launchHTML(
+    //     null,
+    //     'config/assets/entoForms.html'
+    //   );
+    // });
 
     document.getElementById('incompleteHh').addEventListener('click', function () {
       odkTables.openTableToListView(
