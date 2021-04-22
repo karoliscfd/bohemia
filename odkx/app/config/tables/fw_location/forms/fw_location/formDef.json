@@ -14,6 +14,7 @@
       {
         "type": "geopoint",
         "name": "hh_geo_location",
+        "required": 1,
         "display": {
           "prompt": "stand_outside",
           "hint": "stand_outside.hint"
@@ -29,7 +30,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210221001,
+        "value": 20210421001,
         "_row_num": 3
       },
       {
@@ -163,7 +164,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210221001,
+        "value": 20210421001,
         "_row_num": 3
       },
       "table_id": {
@@ -531,6 +532,7 @@
           {
             "type": "geopoint",
             "name": "hh_geo_location",
+            "required": 1,
             "display": {
               "prompt": "stand_outside",
               "hint": "stand_outside.hint"
@@ -552,7 +554,9 @@
           }
         ],
         "validation_tag_map": {
-          "finalize": []
+          "finalize": [
+            0
+          ]
         },
         "operations": [
           {
