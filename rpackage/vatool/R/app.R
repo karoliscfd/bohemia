@@ -205,8 +205,8 @@ app_server <- function(input, output, session) {
         # remove columns with NA
         person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
         # remove other columns 
-        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_username|Take a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
-        
+        # remove other columns 
+        remove_these <- "write your 3 digit|Id10007|server|first or given|the surname|name of VA|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         person <- person[, !grepl(remove_these, names(person))]
         person <- person[,apply(person, 2, function(x) x != 'no')]
         
@@ -215,7 +215,7 @@ app_server <- function(input, output, session) {
         names(out) <- c('Answer', 'Question')
         rownames(out) <- NULL
         out <- out[, c('Question', 'Answer')]
-        out <- out[which(nchar(as.character(out$Answer)) < 700),]
+        # out <- out[which(nchar(as.character(out$Answer)) < 700),]
         # out <- 
         #   tibble(Variable = names(person),
         #          Response = person[1,])
@@ -309,7 +309,7 @@ app_server <- function(input, output, session) {
         person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
       
         # remove other columns 
-        remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
+        remove_these <- "write your 3 digit|Id10007|server|first or given|the surname|name of VA|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         
         person <- person[, !grepl(remove_these, names(person))]
         person <- person[,apply(person, 2, function(x) x != 'no')]
@@ -318,7 +318,7 @@ app_server <- function(input, output, session) {
         names(out) <- c('Answer', 'Question')
         rownames(out) <- NULL
         out <- out[, c('Question', 'Answer')]
-        out <- out[which(nchar(as.character(out$Answer)) < 700),]
+        # out <- out[which(nchar(as.character(out$Answer)) < 700),]
         # out <- 
         #   tibble(Variable = names(person),
         #          Response = person[1,])
@@ -409,6 +409,7 @@ app_server <- function(input, output, session) {
         message('at point 4')
         liu <- input$log_in_user
         out <- users %>% dplyr::filter(username == tolower(liu))
+        save(out, file = 'temp_out.rda')
         names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
         out
       }
