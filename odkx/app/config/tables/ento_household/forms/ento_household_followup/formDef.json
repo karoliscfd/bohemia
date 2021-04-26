@@ -119,10 +119,11 @@
         "display": {
           "prompt": "ic_no"
         },
+        "hideInContents": 1,
         "_row_num": 20
       },
       {
-        "clause": "// TODO: what to do here",
+        "clause": "exit section",
         "_row_num": 21
       },
       {
@@ -865,7 +866,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210328001,
+        "value": 20210425001,
         "_row_num": 3
       },
       {
@@ -968,7 +969,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210328001,
+        "value": 20210425001,
         "_row_num": 3
       },
       "table_id": {
@@ -2044,6 +2045,7 @@
             "display": {
               "prompt": "ic_no"
             },
+            "hideInContents": 1,
             "_row_num": 20,
             "__rowNum__": 19,
             "_token_type": "prompt",
@@ -2468,11 +2470,18 @@
             "operationIdx": 9
           },
           {
+            "clause": "exit section",
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "exit_section",
+            "operationIdx": 10
+          },
+          {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_endif22",
             "_row_num": 22,
-            "operationIdx": 10
+            "operationIdx": 11
           },
           {
             "clause": "begin screen",
@@ -2486,7 +2495,7 @@
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 11
+            "operationIdx": 12
           },
           {
             "clause": "if",
@@ -2495,45 +2504,45 @@
             "__rowNum__": 29,
             "_token_type": "goto_label",
             "_branch_label": "_then30",
-            "operationIdx": 12
+            "operationIdx": 13
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_else34",
             "_row_num": 34,
-            "operationIdx": 13
+            "operationIdx": 14
           },
           {
             "_row_num": 31,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 14
+            "operationIdx": 15
           },
           {
             "_row_num": 32,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 15
+            "operationIdx": 16
           },
           {
             "_row_num": 33,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 16
+            "operationIdx": 17
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_endif34",
             "_row_num": 34,
-            "operationIdx": 17
+            "operationIdx": 18
           },
           {
             "_row_num": 36,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 18
+            "operationIdx": 19
           },
           {
             "clause": "if",
@@ -2542,27 +2551,27 @@
             "__rowNum__": 37,
             "_token_type": "goto_label",
             "_branch_label": "_then38",
-            "operationIdx": 19
+            "operationIdx": 20
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_else40",
             "_row_num": 40,
-            "operationIdx": 20
+            "operationIdx": 21
           },
           {
             "_row_num": 39,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 21
+            "operationIdx": 22
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_endif40",
             "_row_num": 40,
-            "operationIdx": 22
+            "operationIdx": 23
           },
           {
             "clause": "begin screen",
@@ -2576,13 +2585,13 @@
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 23
+            "operationIdx": 24
           },
           {
             "_row_num": 47,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 24
+            "operationIdx": 25
           },
           {
             "clause": "if",
@@ -2591,14 +2600,14 @@
             "__rowNum__": 48,
             "_token_type": "goto_label",
             "_branch_label": "_then49",
-            "operationIdx": 25
+            "operationIdx": 26
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_else56",
             "_row_num": 56,
-            "operationIdx": 26
+            "operationIdx": 27
           },
           {
             "clause": "begin screen",
@@ -2612,14 +2621,14 @@
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(20);\nif (selected(data('qb4a'), 'other')) {\nactivePromptIndicies.push(21);\n}\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 27
+            "operationIdx": 28
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_endif56",
             "_row_num": 56,
-            "operationIdx": 28
+            "operationIdx": 29
           },
           {
             "clause": "begin screen",
@@ -2633,31 +2642,31 @@
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(22);\nactivePromptIndicies.push(23);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 29
+            "operationIdx": 30
           },
           {
             "_row_num": 63,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(24);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 30
+            "operationIdx": 31
           },
           {
             "_row_num": 64,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(25);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 31
+            "operationIdx": 32
           },
           {
             "_row_num": 65,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(26);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 32
+            "operationIdx": 33
           },
           {
             "_row_num": 66,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(27);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 33
+            "operationIdx": 34
           },
           {
             "clause": "begin screen",
@@ -2671,13 +2680,13 @@
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(28);\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 34
+            "operationIdx": 35
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
             "_row_num": 73,
-            "operationIdx": 35
+            "operationIdx": 36
           },
           {
             "_row_num": 73,
@@ -2686,13 +2695,13 @@
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 36
+            "operationIdx": 37
           },
           {
             "_token_type": "resume",
             "clause": "resume",
             "_row_num": 73,
-            "operationIdx": 37
+            "operationIdx": 38
           }
         ],
         "branch_label_map": {
@@ -2705,34 +2714,34 @@
           "_screen13": 6,
           "_then19": 9,
           "_screen20": 9,
-          "_else22": 11,
-          "_endif22": 11,
-          "_screen24": 11,
-          "_then30": 14,
-          "_screen31": 14,
-          "_screen32": 15,
-          "_screen33": 16,
-          "_else34": 18,
-          "_endif34": 18,
-          "_screen36": 18,
-          "_then38": 21,
-          "_screen39": 21,
-          "_else40": 23,
-          "_endif40": 23,
-          "_screen42": 23,
-          "_screen47": 24,
-          "_then49": 27,
-          "_screen50": 27,
-          "_else56": 29,
-          "_endif56": 29,
-          "_screen58": 29,
-          "_screen63": 30,
-          "_screen64": 31,
-          "_screen65": 32,
-          "_screen66": 33,
-          "_screen68": 34,
-          "_contents": 36,
-          "_screen73": 36
+          "_else22": 12,
+          "_endif22": 12,
+          "_screen24": 12,
+          "_then30": 15,
+          "_screen31": 15,
+          "_screen32": 16,
+          "_screen33": 17,
+          "_else34": 19,
+          "_endif34": 19,
+          "_screen36": 19,
+          "_then38": 22,
+          "_screen39": 22,
+          "_else40": 24,
+          "_endif40": 24,
+          "_screen42": 24,
+          "_screen47": 25,
+          "_then49": 28,
+          "_screen50": 28,
+          "_else56": 30,
+          "_endif56": 30,
+          "_screen58": 30,
+          "_screen63": 31,
+          "_screen64": 32,
+          "_screen65": 33,
+          "_screen66": 34,
+          "_screen68": 35,
+          "_contents": 37,
+          "_screen73": 37
         }
       }
     },

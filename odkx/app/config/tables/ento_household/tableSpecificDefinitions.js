@@ -273,7 +273,7 @@ window.odkTableSpecificDefinitions = {
     },
     "rand_selected": {
       "string_token": "rand_selected",
-      "text": "Has this enclosure been selected according to randomization plan?",
+      "text": "Has this household been selected according to randomization plan?",
       "_row_num": 56
     },
     "orig_hh_id": {
@@ -378,12 +378,12 @@ window.odkTableSpecificDefinitions = {
     },
     "qc6_width": {
       "string_token": "qc6_width",
-      "text": "Width",
+      "text": "Width (meter)",
       "_row_num": 78
     },
     "qc6_length": {
       "string_token": "qc6_length",
-      "text": "Length",
+      "text": "Length (meter)",
       "_row_num": 79
     }
   }

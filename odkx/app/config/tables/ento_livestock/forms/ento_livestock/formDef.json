@@ -78,8 +78,29 @@
         "_row_num": 12
       },
       {
-        "clause": "begin screen",
+        "clause": "if",
+        "condition": "selected(data('livestock_in_enclosure'), 'no')",
+        "_row_num": 13
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "livestock_in_enclosure_no"
+        },
+        "hideInContents": 1,
         "_row_num": 14
+      },
+      {
+        "clause": "exit section",
+        "_row_num": 15
+      },
+      {
+        "clause": "end if",
+        "_row_num": 16
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 18
       },
       {
         "type": "note",
@@ -88,7 +109,7 @@
           "class": "h2"
         },
         "hideInContents": 1,
-        "_row_num": 15
+        "_row_num": 19
       },
       {
         "type": "note",
@@ -97,7 +118,7 @@
           "class": "h3"
         },
         "hideInContents": 1,
-        "_row_num": 16
+        "_row_num": 20
       },
       {
         "type": "select_one",
@@ -106,35 +127,36 @@
         "display": {
           "prompt": "qa1"
         },
-        "_row_num": 17
+        "_row_num": 21
       },
       {
         "clause": "end screen",
-        "_row_num": 18
+        "_row_num": 22
       },
       {
         "clause": "if",
         "condition": "selected(data('qa1'), 'no')",
-        "_row_num": 20
+        "_row_num": 24
       },
       {
         "type": "note",
         "display": {
           "prompt": "ic_no"
         },
-        "_row_num": 21
+        "hideInContents": 1,
+        "_row_num": 25
       },
       {
-        "clause": "// TODO: what to do here",
-        "_row_num": 22
+        "clause": "exit section",
+        "_row_num": 26
       },
       {
         "clause": "end if",
-        "_row_num": 23
+        "_row_num": 27
       },
       {
         "clause": "begin screen",
-        "_row_num": 25
+        "_row_num": 29
       },
       {
         "type": "note",
@@ -143,7 +165,7 @@
           "class": "h3"
         },
         "hideInContents": 1,
-        "_row_num": 26
+        "_row_num": 30
       },
       {
         "type": "select_multiple",
@@ -152,12 +174,12 @@
         "display": {
           "prompt": "qb1"
         },
-        "_row_num": 27
+        "_row_num": 31
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'other')",
-        "_row_num": 28
+        "_row_num": 32
       },
       {
         "type": "text",
@@ -166,15 +188,15 @@
           "prompt": "specify"
         },
         "hideInContents": 1,
-        "_row_num": 29
+        "_row_num": 33
       },
       {
         "clause": "end if",
-        "_row_num": 30
+        "_row_num": 34
       },
       {
         "clause": "end screen",
-        "_row_num": 31
+        "_row_num": 35
       },
       {
         "type": "select_one",
@@ -183,12 +205,12 @@
         "display": {
           "prompt": "qb2"
         },
-        "_row_num": 33
+        "_row_num": 37
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'cow')",
-        "_row_num": 35
+        "_row_num": 39
       },
       {
         "type": "select_one",
@@ -198,59 +220,51 @@
           "prompt": "qb3.cow"
         },
         "hideInContents": "not(selected(data('qb1'), 'cow'))",
-        "_row_num": 36
+        "_row_num": 40
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_cow'), 'no')",
-        "_row_num": 37
+        "_row_num": 41
       },
       {
         "clause": "begin screen",
-        "_row_num": 38
+        "_row_num": 42
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_cow",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'cow'))",
-        "_row_num": 39
+        "_row_num": 43
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_cow",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'cow'))",
-        "_row_num": 40
+        "_row_num": 44
       },
       {
         "clause": "end screen",
-        "_row_num": 41
+        "_row_num": 45
       },
       {
         "clause": "end if",
-        "_row_num": 42
+        "_row_num": 46
       },
       {
         "clause": "end if",
-        "_row_num": 43
+        "_row_num": 47
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'goat')",
-        "_row_num": 45
+        "_row_num": 49
       },
       {
         "type": "select_one",
@@ -260,59 +274,51 @@
           "prompt": "qb3.goat"
         },
         "hideInContents": "not(selected(data('qb1'), 'goat'))",
-        "_row_num": 46
+        "_row_num": 50
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_goat'), 'no')",
-        "_row_num": 47
+        "_row_num": 51
       },
       {
         "clause": "begin screen",
-        "_row_num": 48
+        "_row_num": 52
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_goat",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'goat'))",
-        "_row_num": 49
+        "_row_num": 53
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_goat",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'goat'))",
-        "_row_num": 50
+        "_row_num": 54
       },
       {
         "clause": "end screen",
-        "_row_num": 51
+        "_row_num": 55
       },
       {
         "clause": "end if",
-        "_row_num": 52
+        "_row_num": 56
       },
       {
         "clause": "end if",
-        "_row_num": 53
+        "_row_num": 57
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'sheep')",
-        "_row_num": 55
+        "_row_num": 59
       },
       {
         "type": "select_one",
@@ -322,59 +328,51 @@
           "prompt": "qb3.sheep"
         },
         "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-        "_row_num": 56
+        "_row_num": 60
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_sheep'), 'no')",
-        "_row_num": 57
+        "_row_num": 61
       },
       {
         "clause": "begin screen",
-        "_row_num": 58
+        "_row_num": 62
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_sheep",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-        "_row_num": 59
+        "_row_num": 63
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_sheep",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-        "_row_num": 60
+        "_row_num": 64
       },
       {
         "clause": "end screen",
-        "_row_num": 61
+        "_row_num": 65
       },
       {
         "clause": "end if",
-        "_row_num": 62
+        "_row_num": 66
       },
       {
         "clause": "end if",
-        "_row_num": 63
+        "_row_num": 67
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'pig')",
-        "_row_num": 65
+        "_row_num": 69
       },
       {
         "type": "select_one",
@@ -384,59 +382,51 @@
           "prompt": "qb3.pig"
         },
         "hideInContents": "not(selected(data('qb1'), 'pig'))",
-        "_row_num": 66
+        "_row_num": 70
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_pig'), 'no')",
-        "_row_num": 67
+        "_row_num": 71
       },
       {
         "clause": "begin screen",
-        "_row_num": 68
+        "_row_num": 72
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_pig",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'pig'))",
-        "_row_num": 69
+        "_row_num": 73
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_pig",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'pig'))",
-        "_row_num": 70
+        "_row_num": 74
       },
       {
         "clause": "end screen",
-        "_row_num": 71
+        "_row_num": 75
       },
       {
         "clause": "end if",
-        "_row_num": 72
+        "_row_num": 76
       },
       {
         "clause": "end if",
-        "_row_num": 73
+        "_row_num": 77
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'horse')",
-        "_row_num": 75
+        "_row_num": 79
       },
       {
         "type": "select_one",
@@ -446,59 +436,51 @@
           "prompt": "qb3.horse"
         },
         "hideInContents": "not(selected(data('qb1'), 'horse'))",
-        "_row_num": 76
+        "_row_num": 80
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_horse'), 'no')",
-        "_row_num": 77
+        "_row_num": 81
       },
       {
         "clause": "begin screen",
-        "_row_num": 78
+        "_row_num": 82
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_horse",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'horse'))",
-        "_row_num": 79
+        "_row_num": 83
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_horse",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'horse'))",
-        "_row_num": 80
+        "_row_num": 84
       },
       {
         "clause": "end screen",
-        "_row_num": 81
+        "_row_num": 85
       },
       {
         "clause": "end if",
-        "_row_num": 82
+        "_row_num": 86
       },
       {
         "clause": "end if",
-        "_row_num": 83
+        "_row_num": 87
       },
       {
         "clause": "if",
         "condition": "selected(data('qb1'), 'other')",
-        "_row_num": 85
+        "_row_num": 89
       },
       {
         "type": "select_one",
@@ -508,58 +490,50 @@
           "prompt": "qb3.other"
         },
         "hideInContents": "not(selected(data('qb1'), 'other'))",
-        "_row_num": 86
+        "_row_num": 90
       },
       {
         "clause": "if",
         "condition": "selected(data('qb3_other'), 'no')",
-        "_row_num": 87
+        "_row_num": 91
       },
       {
         "clause": "begin screen",
-        "_row_num": 88
+        "_row_num": 92
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3a_other",
         "display": {
           "prompt": "qb3a"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'other'))",
-        "_row_num": 89
+        "_row_num": 93
       },
       {
-        "type": "text",
+        "type": "time",
         "name": "qb3b_other",
         "display": {
           "prompt": "qb3b"
         },
-        "inputAttributes": {
-          "type": "time",
-          "step": 60
-        },
         "hideInContents": "not(selected(data('qb1'), 'other'))",
-        "_row_num": 90
+        "_row_num": 94
       },
       {
         "clause": "end screen",
-        "_row_num": 91
+        "_row_num": 95
       },
       {
         "clause": "end if",
-        "_row_num": 92
+        "_row_num": 96
       },
       {
         "clause": "end if",
-        "_row_num": 93
+        "_row_num": 97
       },
       {
         "clause": "begin screen",
-        "_row_num": 95
+        "_row_num": 99
       },
       {
         "type": "note",
@@ -569,7 +543,7 @@
           "class": "h3"
         },
         "hideInContents": 1,
-        "_row_num": 96
+        "_row_num": 100
       },
       {
         "type": "select_one",
@@ -578,16 +552,16 @@
         "display": {
           "prompt": "qc1"
         },
-        "_row_num": 97
+        "_row_num": 101
       },
       {
         "clause": "end screen",
-        "_row_num": 98
+        "_row_num": 102
       },
       {
         "clause": "if",
         "condition": "selected(data('qc1'), 'yes')",
-        "_row_num": 100
+        "_row_num": 104
       },
       {
         "type": "select_one_with_other",
@@ -596,11 +570,11 @@
         "display": {
           "prompt": "qc1a"
         },
-        "_row_num": 101
+        "_row_num": 105
       },
       {
         "clause": "end if",
-        "_row_num": 102
+        "_row_num": 106
       },
       {
         "type": "select_one",
@@ -609,12 +583,12 @@
         "display": {
           "prompt": "qc2"
         },
-        "_row_num": 104
+        "_row_num": 108
       },
       {
         "clause": "if",
         "condition": "selected(data('qc2'), 'yes')",
-        "_row_num": 106
+        "_row_num": 110
       },
       {
         "type": "select_one_with_other",
@@ -623,11 +597,11 @@
         "display": {
           "prompt": "qc2a"
         },
-        "_row_num": 107
+        "_row_num": 111
       },
       {
         "clause": "end if",
-        "_row_num": 108
+        "_row_num": 112
       },
       {
         "type": "select_one",
@@ -636,12 +610,12 @@
         "display": {
           "prompt": "qc3"
         },
-        "_row_num": 110
+        "_row_num": 114
       },
       {
         "clause": "if",
         "condition": "selected(data('qc3'), 'yes')",
-        "_row_num": 112
+        "_row_num": 116
       },
       {
         "type": "select_one",
@@ -650,22 +624,22 @@
         "display": {
           "prompt": "qc3a"
         },
-        "_row_num": 113
+        "_row_num": 117
       },
       {
         "clause": "end if",
-        "_row_num": 114
+        "_row_num": 118
       },
       {
         "clause": "begin screen",
-        "_row_num": 116
+        "_row_num": 120
       },
       {
         "type": "note",
         "display": {
           "prompt": "qc4"
         },
-        "_row_num": 117
+        "_row_num": 121
       },
       {
         "type": "text",
@@ -678,7 +652,7 @@
           "step": 0.01
         },
         "hideInContents": 1,
-        "_row_num": 118
+        "_row_num": 122
       },
       {
         "type": "text",
@@ -691,11 +665,11 @@
           "step": 0.01
         },
         "hideInContents": 1,
-        "_row_num": 119
+        "_row_num": 123
       },
       {
         "clause": "end screen",
-        "_row_num": 120
+        "_row_num": 124
       }
     ],
     "choices": [
@@ -875,7 +849,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210326001,
+        "value": 20210425001,
         "_row_num": 3
       },
       {
@@ -1114,109 +1088,114 @@
         "_row_num": 34
       },
       {
+        "string_token": "livestock_in_enclosure_no",
+        "text": "Select neighboring enclosure",
+        "_row_num": 35
+      },
+      {
         "string_token": "qa1",
         "text": "A1. Has the owner of the livestock enclosure, or their representative: read, understood and signed the informed consent agreeing to answer this questionnaire and allowing the BOHEMIA field team to do CDC light trapping on their property?",
-        "_row_num": 36
+        "_row_num": 37
       },
       {
         "string_token": "ic_no",
         "text": "Please inform senior entomology officer, select a neighboring enclosure and fill out separate questionnaire form.",
-        "_row_num": 37
+        "_row_num": 38
       },
       {
         "string_token": "qb1",
         "text": "B1. What animal species are kept in the enclosure?",
-        "_row_num": 38
+        "_row_num": 39
       },
       {
         "string_token": "qb2",
         "text": "B2. How many animals are kept in this enclosure approximately?",
-        "_row_num": 39
+        "_row_num": 40
       },
       {
         "string_token": "qb3.cow",
         "text": "B3. Are cows kept at all times in the enclosure?",
-        "_row_num": 40
+        "_row_num": 41
       },
       {
         "string_token": "qb3.goat",
         "text": "B3. Are goats kept at all times in the enclosure?",
-        "_row_num": 41
+        "_row_num": 42
       },
       {
         "string_token": "qb3.sheep",
         "text": "B3. Are sheep kept at all times in the enclosure?",
-        "_row_num": 42
+        "_row_num": 43
       },
       {
         "string_token": "qb3.pig",
         "text": "B3. Are pig kept at all times in the enclosure?",
-        "_row_num": 43
+        "_row_num": 44
       },
       {
         "string_token": "qb3.horse",
         "text": "B3. Are horses kept at all times in the enclosure?",
-        "_row_num": 44
+        "_row_num": 45
       },
       {
         "string_token": "qb3.other",
         "text": "B3. Are other animals kept at all times in the enclosure?",
-        "_row_num": 45
+        "_row_num": 46
       },
       {
         "string_token": "qb3a",
         "text": "B3a. What time do they enter the enclosure in the evening",
-        "_row_num": 46
+        "_row_num": 47
       },
       {
         "string_token": "qb3b",
         "text": "B3b. What time do they leave it in the morning?",
-        "_row_num": 47
+        "_row_num": 48
       },
       {
         "string_token": "qc1",
         "text": "C1. Is the enclosure covered?",
-        "_row_num": 48
+        "_row_num": 49
       },
       {
         "string_token": "qc1a",
         "text": "C1a. What is the cover made of?",
-        "_row_num": 49
+        "_row_num": 50
       },
       {
         "string_token": "qc2",
         "text": "C2. Does the enclosure have a fence/wall?",
-        "_row_num": 50
+        "_row_num": 51
       },
       {
         "string_token": "qc2a",
         "text": "C2a. What is the fence/wall made of?",
-        "_row_num": 51
+        "_row_num": 52
       },
       {
         "string_token": "qc3",
         "text": "C3. Is the enclosure screened with net?",
-        "_row_num": 52
+        "_row_num": 53
       },
       {
         "string_token": "qc3a",
         "text": "C3a. Is it completely screened?",
-        "_row_num": 53
+        "_row_num": 54
       },
       {
         "string_token": "qc4",
         "text": "C4. What is the area of the livestock enclosure?",
-        "_row_num": 54
-      },
-      {
-        "string_token": "qc4.width",
-        "text": "Width",
         "_row_num": 55
       },
       {
-        "string_token": "qc4.length",
-        "text": "Length",
+        "string_token": "qc4.width",
+        "text": "Width (meter)",
         "_row_num": 56
+      },
+      {
+        "string_token": "qc4.length",
+        "text": "Length (meter)",
+        "_row_num": 57
       }
     ]
   },
@@ -1245,7 +1224,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210326001,
+        "value": 20210425001,
         "_row_num": 3
       },
       "table_id": {
@@ -1721,110 +1700,115 @@
           "text": "Has livestock been kept in the enclosure for at least the past three months?",
           "_row_num": 34
         },
+        "livestock_in_enclosure_no": {
+          "string_token": "livestock_in_enclosure_no",
+          "text": "Select neighboring enclosure",
+          "_row_num": 35
+        },
         "qa1": {
           "string_token": "qa1",
           "text": "A1. Has the owner of the livestock enclosure, or their representative: read, understood and signed the informed consent agreeing to answer this questionnaire and allowing the BOHEMIA field team to do CDC light trapping on their property?",
-          "_row_num": 36
+          "_row_num": 37
         },
         "ic_no": {
           "string_token": "ic_no",
           "text": "Please inform senior entomology officer, select a neighboring enclosure and fill out separate questionnaire form.",
-          "_row_num": 37
+          "_row_num": 38
         },
         "qb1": {
           "string_token": "qb1",
           "text": "B1. What animal species are kept in the enclosure?",
-          "_row_num": 38
+          "_row_num": 39
         },
         "qb2": {
           "string_token": "qb2",
           "text": "B2. How many animals are kept in this enclosure approximately?",
-          "_row_num": 39
+          "_row_num": 40
         },
         "qb3.cow": {
           "string_token": "qb3.cow",
           "text": "B3. Are cows kept at all times in the enclosure?",
-          "_row_num": 40
+          "_row_num": 41
         },
         "qb3.goat": {
           "string_token": "qb3.goat",
           "text": "B3. Are goats kept at all times in the enclosure?",
-          "_row_num": 41
+          "_row_num": 42
         },
         "qb3.sheep": {
           "string_token": "qb3.sheep",
           "text": "B3. Are sheep kept at all times in the enclosure?",
-          "_row_num": 42
+          "_row_num": 43
         },
         "qb3.pig": {
           "string_token": "qb3.pig",
           "text": "B3. Are pig kept at all times in the enclosure?",
-          "_row_num": 43
+          "_row_num": 44
         },
         "qb3.horse": {
           "string_token": "qb3.horse",
           "text": "B3. Are horses kept at all times in the enclosure?",
-          "_row_num": 44
+          "_row_num": 45
         },
         "qb3.other": {
           "string_token": "qb3.other",
           "text": "B3. Are other animals kept at all times in the enclosure?",
-          "_row_num": 45
+          "_row_num": 46
         },
         "qb3a": {
           "string_token": "qb3a",
           "text": "B3a. What time do they enter the enclosure in the evening",
-          "_row_num": 46
+          "_row_num": 47
         },
         "qb3b": {
           "string_token": "qb3b",
           "text": "B3b. What time do they leave it in the morning?",
-          "_row_num": 47
+          "_row_num": 48
         },
         "qc1": {
           "string_token": "qc1",
           "text": "C1. Is the enclosure covered?",
-          "_row_num": 48
+          "_row_num": 49
         },
         "qc1a": {
           "string_token": "qc1a",
           "text": "C1a. What is the cover made of?",
-          "_row_num": 49
+          "_row_num": 50
         },
         "qc2": {
           "string_token": "qc2",
           "text": "C2. Does the enclosure have a fence/wall?",
-          "_row_num": 50
+          "_row_num": 51
         },
         "qc2a": {
           "string_token": "qc2a",
           "text": "C2a. What is the fence/wall made of?",
-          "_row_num": 51
+          "_row_num": 52
         },
         "qc3": {
           "string_token": "qc3",
           "text": "C3. Is the enclosure screened with net?",
-          "_row_num": 52
+          "_row_num": 53
         },
         "qc3a": {
           "string_token": "qc3a",
           "text": "C3a. Is it completely screened?",
-          "_row_num": 53
+          "_row_num": 54
         },
         "qc4": {
           "string_token": "qc4",
           "text": "C4. What is the area of the livestock enclosure?",
-          "_row_num": 54
+          "_row_num": 55
         },
         "qc4.width": {
           "string_token": "qc4.width",
-          "text": "Width",
-          "_row_num": 55
+          "text": "Width (meter)",
+          "_row_num": 56
         },
         "qc4.length": {
           "string_token": "qc4.length",
-          "text": "Length",
-          "_row_num": 56
+          "text": "Length (meter)",
+          "_row_num": 57
         }
       }
     },
@@ -1876,7 +1860,7 @@
       "qa1": {
         "_defn": [
           {
-            "_row_num": 17,
+            "_row_num": 21,
             "section_name": "survey"
           }
         ],
@@ -1887,7 +1871,7 @@
       "qb1": {
         "_defn": [
           {
-            "_row_num": 27,
+            "_row_num": 31,
             "section_name": "survey"
           }
         ],
@@ -1902,7 +1886,7 @@
       "qb1_other": {
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 33,
             "section_name": "survey"
           }
         ],
@@ -1912,7 +1896,7 @@
       "qb2": {
         "_defn": [
           {
-            "_row_num": 33,
+            "_row_num": 37,
             "section_name": "survey"
           }
         ],
@@ -1923,7 +1907,7 @@
       "qb3_cow": {
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 40,
             "section_name": "survey"
           }
         ],
@@ -1934,27 +1918,29 @@
       "qb3a_cow": {
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 43,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_cow"
       },
       "qb3b_cow": {
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 44,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_cow"
       },
       "qb3_goat": {
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 50,
             "section_name": "survey"
           }
         ],
@@ -1965,27 +1951,29 @@
       "qb3a_goat": {
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 53,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_goat"
       },
       "qb3b_goat": {
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 54,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_goat"
       },
       "qb3_sheep": {
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 60,
             "section_name": "survey"
           }
         ],
@@ -1996,27 +1984,29 @@
       "qb3a_sheep": {
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 63,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_sheep"
       },
       "qb3b_sheep": {
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 64,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_sheep"
       },
       "qb3_pig": {
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 70,
             "section_name": "survey"
           }
         ],
@@ -2027,27 +2017,29 @@
       "qb3a_pig": {
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 73,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_pig"
       },
       "qb3b_pig": {
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 74,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_pig"
       },
       "qb3_horse": {
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 80,
             "section_name": "survey"
           }
         ],
@@ -2058,27 +2050,29 @@
       "qb3a_horse": {
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 83,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_horse"
       },
       "qb3b_horse": {
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 84,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_horse"
       },
       "qb3_other": {
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 90,
             "section_name": "survey"
           }
         ],
@@ -2089,27 +2083,29 @@
       "qb3a_other": {
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 93,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_other"
       },
       "qb3b_other": {
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 94,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_other"
       },
       "qc1": {
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 101,
             "section_name": "survey"
           }
         ],
@@ -2120,7 +2116,7 @@
       "qc1a": {
         "_defn": [
           {
-            "_row_num": 101,
+            "_row_num": 105,
             "section_name": "survey"
           }
         ],
@@ -2131,7 +2127,7 @@
       "qc2": {
         "_defn": [
           {
-            "_row_num": 104,
+            "_row_num": 108,
             "section_name": "survey"
           }
         ],
@@ -2142,7 +2138,7 @@
       "qc2a": {
         "_defn": [
           {
-            "_row_num": 107,
+            "_row_num": 111,
             "section_name": "survey"
           }
         ],
@@ -2153,7 +2149,7 @@
       "qc3": {
         "_defn": [
           {
-            "_row_num": 110,
+            "_row_num": 114,
             "section_name": "survey"
           }
         ],
@@ -2164,7 +2160,7 @@
       "qc3a": {
         "_defn": [
           {
-            "_row_num": 113,
+            "_row_num": 117,
             "section_name": "survey"
           }
         ],
@@ -2175,7 +2171,7 @@
       "qc4_width": {
         "_defn": [
           {
-            "_row_num": 118,
+            "_row_num": 122,
             "section_name": "survey"
           }
         ],
@@ -2185,7 +2181,7 @@
       "qc4_length": {
         "_defn": [
           {
-            "_row_num": 119,
+            "_row_num": 123,
             "section_name": "survey"
           }
         ],
@@ -2391,12 +2387,11 @@
           {
             "type": "note",
             "display": {
-              "prompt": "part2_h2",
-              "class": "h2"
+              "prompt": "livestock_in_enclosure_no"
             },
             "hideInContents": 1,
-            "_row_num": 15,
-            "__rowNum__": 14,
+            "_row_num": 14,
+            "__rowNum__": 13,
             "_token_type": "prompt",
             "_type": "note",
             "_branch_label_enclosing_screen": "survey/_screen14",
@@ -2405,16 +2400,30 @@
           {
             "type": "note",
             "display": {
+              "prompt": "part2_h2",
+              "class": "h2"
+            },
+            "hideInContents": 1,
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen18",
+            "promptIdx": 6
+          },
+          {
+            "type": "note",
+            "display": {
               "prompt": "part2a_h3",
               "class": "h3"
             },
             "hideInContents": 1,
-            "_row_num": 16,
-            "__rowNum__": 15,
+            "_row_num": 20,
+            "__rowNum__": 19,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen14",
-            "promptIdx": 6
+            "_branch_label_enclosing_screen": "survey/_screen18",
+            "promptIdx": 7
           },
           {
             "type": "select_one",
@@ -2423,24 +2432,25 @@
             "display": {
               "prompt": "qa1"
             },
-            "_row_num": 17,
-            "__rowNum__": 16,
+            "_row_num": 21,
+            "__rowNum__": 20,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen14",
-            "promptIdx": 7
+            "_branch_label_enclosing_screen": "survey/_screen18",
+            "promptIdx": 8
           },
           {
             "type": "note",
             "display": {
               "prompt": "ic_no"
             },
-            "_row_num": 21,
-            "__rowNum__": 20,
+            "hideInContents": 1,
+            "_row_num": 25,
+            "__rowNum__": 24,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen21",
-            "promptIdx": 8
+            "_branch_label_enclosing_screen": "survey/_screen25",
+            "promptIdx": 9
           },
           {
             "type": "note",
@@ -2449,12 +2459,12 @@
               "class": "h3"
             },
             "hideInContents": 1,
-            "_row_num": 26,
-            "__rowNum__": 25,
+            "_row_num": 30,
+            "__rowNum__": 29,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen25",
-            "promptIdx": 9
+            "_branch_label_enclosing_screen": "survey/_screen29",
+            "promptIdx": 10
           },
           {
             "type": "select_multiple",
@@ -2463,12 +2473,12 @@
             "display": {
               "prompt": "qb1"
             },
-            "_row_num": 27,
-            "__rowNum__": 26,
+            "_row_num": 31,
+            "__rowNum__": 30,
             "_token_type": "prompt",
             "_type": "select_multiple",
-            "_branch_label_enclosing_screen": "survey/_screen25",
-            "promptIdx": 10
+            "_branch_label_enclosing_screen": "survey/_screen29",
+            "promptIdx": 11
           },
           {
             "type": "text",
@@ -2477,12 +2487,12 @@
               "prompt": "specify"
             },
             "hideInContents": 1,
-            "_row_num": 29,
-            "__rowNum__": 28,
+            "_row_num": 33,
+            "__rowNum__": 32,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen25",
-            "promptIdx": 11
+            "_branch_label_enclosing_screen": "survey/_screen29",
+            "promptIdx": 12
           },
           {
             "type": "select_one",
@@ -2491,12 +2501,12 @@
             "display": {
               "prompt": "qb2"
             },
-            "_row_num": 33,
-            "__rowNum__": 32,
+            "_row_num": 37,
+            "__rowNum__": 36,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen33",
-            "promptIdx": 12
+            "_branch_label_enclosing_screen": "survey/_screen37",
+            "promptIdx": 13
           },
           {
             "type": "select_one",
@@ -2506,48 +2516,40 @@
               "prompt": "qb3.cow"
             },
             "hideInContents": "not(selected(data('qb1'), 'cow'))",
-            "_row_num": 36,
-            "__rowNum__": 35,
+            "_row_num": 40,
+            "__rowNum__": 39,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen36",
-            "promptIdx": 13
+            "_branch_label_enclosing_screen": "survey/_screen40",
+            "promptIdx": 14
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_cow",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'cow'))",
-            "_row_num": 39,
-            "__rowNum__": 38,
+            "_row_num": 43,
+            "__rowNum__": 42,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen38",
-            "promptIdx": 14
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen42",
+            "promptIdx": 15
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_cow",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'cow'))",
-            "_row_num": 40,
-            "__rowNum__": 39,
+            "_row_num": 44,
+            "__rowNum__": 43,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen38",
-            "promptIdx": 15
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen42",
+            "promptIdx": 16
           },
           {
             "type": "select_one",
@@ -2557,48 +2559,40 @@
               "prompt": "qb3.goat"
             },
             "hideInContents": "not(selected(data('qb1'), 'goat'))",
-            "_row_num": 46,
-            "__rowNum__": 45,
+            "_row_num": 50,
+            "__rowNum__": 49,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen46",
-            "promptIdx": 16
+            "_branch_label_enclosing_screen": "survey/_screen50",
+            "promptIdx": 17
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_goat",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'goat'))",
-            "_row_num": 49,
-            "__rowNum__": 48,
+            "_row_num": 53,
+            "__rowNum__": 52,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen48",
-            "promptIdx": 17
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen52",
+            "promptIdx": 18
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_goat",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'goat'))",
-            "_row_num": 50,
-            "__rowNum__": 49,
+            "_row_num": 54,
+            "__rowNum__": 53,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen48",
-            "promptIdx": 18
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen52",
+            "promptIdx": 19
           },
           {
             "type": "select_one",
@@ -2608,48 +2602,40 @@
               "prompt": "qb3.sheep"
             },
             "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-            "_row_num": 56,
-            "__rowNum__": 55,
+            "_row_num": 60,
+            "__rowNum__": 59,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen56",
-            "promptIdx": 19
+            "_branch_label_enclosing_screen": "survey/_screen60",
+            "promptIdx": 20
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_sheep",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-            "_row_num": 59,
-            "__rowNum__": 58,
+            "_row_num": 63,
+            "__rowNum__": 62,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen58",
-            "promptIdx": 20
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen62",
+            "promptIdx": 21
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_sheep",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'sheep'))",
-            "_row_num": 60,
-            "__rowNum__": 59,
+            "_row_num": 64,
+            "__rowNum__": 63,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen58",
-            "promptIdx": 21
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen62",
+            "promptIdx": 22
           },
           {
             "type": "select_one",
@@ -2659,48 +2645,40 @@
               "prompt": "qb3.pig"
             },
             "hideInContents": "not(selected(data('qb1'), 'pig'))",
-            "_row_num": 66,
-            "__rowNum__": 65,
+            "_row_num": 70,
+            "__rowNum__": 69,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen66",
-            "promptIdx": 22
+            "_branch_label_enclosing_screen": "survey/_screen70",
+            "promptIdx": 23
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_pig",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'pig'))",
-            "_row_num": 69,
-            "__rowNum__": 68,
+            "_row_num": 73,
+            "__rowNum__": 72,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen68",
-            "promptIdx": 23
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen72",
+            "promptIdx": 24
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_pig",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'pig'))",
-            "_row_num": 70,
-            "__rowNum__": 69,
+            "_row_num": 74,
+            "__rowNum__": 73,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen68",
-            "promptIdx": 24
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen72",
+            "promptIdx": 25
           },
           {
             "type": "select_one",
@@ -2710,48 +2688,40 @@
               "prompt": "qb3.horse"
             },
             "hideInContents": "not(selected(data('qb1'), 'horse'))",
-            "_row_num": 76,
-            "__rowNum__": 75,
+            "_row_num": 80,
+            "__rowNum__": 79,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen76",
-            "promptIdx": 25
+            "_branch_label_enclosing_screen": "survey/_screen80",
+            "promptIdx": 26
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_horse",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'horse'))",
-            "_row_num": 79,
-            "__rowNum__": 78,
+            "_row_num": 83,
+            "__rowNum__": 82,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen78",
-            "promptIdx": 26
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen82",
+            "promptIdx": 27
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_horse",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'horse'))",
-            "_row_num": 80,
-            "__rowNum__": 79,
+            "_row_num": 84,
+            "__rowNum__": 83,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen78",
-            "promptIdx": 27
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen82",
+            "promptIdx": 28
           },
           {
             "type": "select_one",
@@ -2761,48 +2731,40 @@
               "prompt": "qb3.other"
             },
             "hideInContents": "not(selected(data('qb1'), 'other'))",
-            "_row_num": 86,
-            "__rowNum__": 85,
+            "_row_num": 90,
+            "__rowNum__": 89,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen86",
-            "promptIdx": 28
+            "_branch_label_enclosing_screen": "survey/_screen90",
+            "promptIdx": 29
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3a_other",
             "display": {
               "prompt": "qb3a"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'other'))",
-            "_row_num": 89,
-            "__rowNum__": 88,
+            "_row_num": 93,
+            "__rowNum__": 92,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen88",
-            "promptIdx": 29
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen92",
+            "promptIdx": 30
           },
           {
-            "type": "text",
+            "type": "time",
             "name": "qb3b_other",
             "display": {
               "prompt": "qb3b"
             },
-            "inputAttributes": {
-              "type": "time",
-              "step": 60
-            },
             "hideInContents": "not(selected(data('qb1'), 'other'))",
-            "_row_num": 90,
-            "__rowNum__": 89,
+            "_row_num": 94,
+            "__rowNum__": 93,
             "_token_type": "prompt",
-            "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen88",
-            "promptIdx": 30
+            "_type": "time",
+            "_branch_label_enclosing_screen": "survey/_screen92",
+            "promptIdx": 31
           },
           {
             "type": "note",
@@ -2812,12 +2774,12 @@
               "class": "h3"
             },
             "hideInContents": 1,
-            "_row_num": 96,
-            "__rowNum__": 95,
+            "_row_num": 100,
+            "__rowNum__": 99,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen95",
-            "promptIdx": 31
+            "_branch_label_enclosing_screen": "survey/_screen99",
+            "promptIdx": 32
           },
           {
             "type": "select_one",
@@ -2826,12 +2788,12 @@
             "display": {
               "prompt": "qc1"
             },
-            "_row_num": 97,
-            "__rowNum__": 96,
+            "_row_num": 101,
+            "__rowNum__": 100,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen95",
-            "promptIdx": 32
+            "_branch_label_enclosing_screen": "survey/_screen99",
+            "promptIdx": 33
           },
           {
             "type": "select_one_with_other",
@@ -2840,12 +2802,12 @@
             "display": {
               "prompt": "qc1a"
             },
-            "_row_num": 101,
-            "__rowNum__": 100,
+            "_row_num": 105,
+            "__rowNum__": 104,
             "_token_type": "prompt",
             "_type": "select_one_with_other",
-            "_branch_label_enclosing_screen": "survey/_screen101",
-            "promptIdx": 33
+            "_branch_label_enclosing_screen": "survey/_screen105",
+            "promptIdx": 34
           },
           {
             "type": "select_one",
@@ -2854,12 +2816,12 @@
             "display": {
               "prompt": "qc2"
             },
-            "_row_num": 104,
-            "__rowNum__": 103,
+            "_row_num": 108,
+            "__rowNum__": 107,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen104",
-            "promptIdx": 34
+            "_branch_label_enclosing_screen": "survey/_screen108",
+            "promptIdx": 35
           },
           {
             "type": "select_one_with_other",
@@ -2868,12 +2830,12 @@
             "display": {
               "prompt": "qc2a"
             },
-            "_row_num": 107,
-            "__rowNum__": 106,
+            "_row_num": 111,
+            "__rowNum__": 110,
             "_token_type": "prompt",
             "_type": "select_one_with_other",
-            "_branch_label_enclosing_screen": "survey/_screen107",
-            "promptIdx": 35
+            "_branch_label_enclosing_screen": "survey/_screen111",
+            "promptIdx": 36
           },
           {
             "type": "select_one",
@@ -2882,12 +2844,12 @@
             "display": {
               "prompt": "qc3"
             },
-            "_row_num": 110,
-            "__rowNum__": 109,
+            "_row_num": 114,
+            "__rowNum__": 113,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen110",
-            "promptIdx": 36
+            "_branch_label_enclosing_screen": "survey/_screen114",
+            "promptIdx": 37
           },
           {
             "type": "select_one",
@@ -2896,24 +2858,24 @@
             "display": {
               "prompt": "qc3a"
             },
-            "_row_num": 113,
-            "__rowNum__": 112,
+            "_row_num": 117,
+            "__rowNum__": 116,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen113",
-            "promptIdx": 37
+            "_branch_label_enclosing_screen": "survey/_screen117",
+            "promptIdx": 38
           },
           {
             "type": "note",
             "display": {
               "prompt": "qc4"
             },
-            "_row_num": 117,
-            "__rowNum__": 116,
+            "_row_num": 121,
+            "__rowNum__": 120,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "survey/_screen116",
-            "promptIdx": 38
+            "_branch_label_enclosing_screen": "survey/_screen120",
+            "promptIdx": 39
           },
           {
             "type": "text",
@@ -2926,12 +2888,12 @@
               "step": 0.01
             },
             "hideInContents": 1,
-            "_row_num": 118,
-            "__rowNum__": 117,
+            "_row_num": 122,
+            "__rowNum__": 121,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen116",
-            "promptIdx": 39
+            "_branch_label_enclosing_screen": "survey/_screen120",
+            "promptIdx": 40
           },
           {
             "type": "text",
@@ -2944,20 +2906,20 @@
               "step": 0.01
             },
             "hideInContents": 1,
-            "_row_num": 119,
-            "__rowNum__": 118,
+            "_row_num": 123,
+            "__rowNum__": 122,
             "_token_type": "prompt",
             "_type": "text",
-            "_branch_label_enclosing_screen": "survey/_screen116",
-            "promptIdx": 40
+            "_branch_label_enclosing_screen": "survey/_screen120",
+            "promptIdx": 41
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 121,
-            "_branch_label_enclosing_screen": "survey/_screen121",
-            "promptIdx": 41
+            "_row_num": 125,
+            "_branch_label_enclosing_screen": "survey/_screen125",
+            "promptIdx": 42
           }
         ],
         "validation_tag_map": {
@@ -3014,611 +2976,654 @@
             "operationIdx": 5
           },
           {
-            "clause": "begin screen",
-            "_row_num": 14,
-            "__rowNum__": 13,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 18,
-              "__rowNum__": 17,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 6
-          },
-          {
             "clause": "if",
-            "condition": "selected(data('qa1'), 'no')",
-            "_row_num": 20,
-            "__rowNum__": 19,
+            "condition": "selected(data('livestock_in_enclosure'), 'no')",
+            "_row_num": 13,
+            "__rowNum__": 12,
             "_token_type": "goto_label",
-            "_branch_label": "_then20",
-            "operationIdx": 7
+            "_branch_label": "_then13",
+            "operationIdx": 6
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else23",
-            "_row_num": 23,
+            "_branch_label": "_else16",
+            "_row_num": 16,
+            "operationIdx": 7
+          },
+          {
+            "_row_num": 14,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 8
           },
           {
-            "_row_num": 21,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "clause": "exit section",
+            "_row_num": 15,
+            "__rowNum__": 14,
+            "_token_type": "exit_section",
             "operationIdx": 9
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif23",
-            "_row_num": 23,
+            "_branch_label": "_endif16",
+            "_row_num": 16,
             "operationIdx": 10
           },
           {
             "clause": "begin screen",
-            "_row_num": 25,
-            "__rowNum__": 24,
+            "_row_num": 18,
+            "__rowNum__": 17,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 31,
-              "__rowNum__": 30,
+              "_row_num": 22,
+              "__rowNum__": 21,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\nif (selected(data('qb1'), 'other')) {\nactivePromptIndicies.push(11);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 11
           },
           {
-            "_row_num": 33,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
+            "clause": "if",
+            "condition": "selected(data('qa1'), 'no')",
+            "_row_num": 24,
+            "__rowNum__": 23,
+            "_token_type": "goto_label",
+            "_branch_label": "_then24",
             "operationIdx": 12
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else27",
+            "_row_num": 27,
+            "operationIdx": 13
+          },
+          {
+            "_row_num": 25,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 14
+          },
+          {
+            "clause": "exit section",
+            "_row_num": 26,
+            "__rowNum__": 25,
+            "_token_type": "exit_section",
+            "operationIdx": 15
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif27",
+            "_row_num": 27,
+            "operationIdx": 16
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 29,
+            "__rowNum__": 28,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 35,
+              "__rowNum__": 34,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nif (selected(data('qb1'), 'other')) {\nactivePromptIndicies.push(12);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 17
+          },
+          {
+            "_row_num": 37,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 18
           },
           {
             "clause": "if",
             "condition": "selected(data('qb1'), 'cow')",
-            "_row_num": 35,
-            "__rowNum__": 34,
+            "_row_num": 39,
+            "__rowNum__": 38,
             "_token_type": "goto_label",
-            "_branch_label": "_then35",
-            "operationIdx": 13
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_else43",
-            "_row_num": 43,
-            "operationIdx": 14
-          },
-          {
-            "_row_num": 36,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 15
-          },
-          {
-            "clause": "if",
-            "condition": "selected(data('qb3_cow'), 'no')",
-            "_row_num": 37,
-            "__rowNum__": 36,
-            "_token_type": "goto_label",
-            "_branch_label": "_then37",
-            "operationIdx": 16
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_else42",
-            "_row_num": 42,
-            "operationIdx": 17
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 38,
-            "__rowNum__": 37,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 41,
-              "__rowNum__": 40,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 18
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif42",
-            "_row_num": 42,
+            "_branch_label": "_then39",
             "operationIdx": 19
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif43",
-            "_row_num": 43,
+            "_branch_label": "_else47",
+            "_row_num": 47,
             "operationIdx": 20
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb1'), 'goat')",
-            "_row_num": 45,
-            "__rowNum__": 44,
-            "_token_type": "goto_label",
-            "_branch_label": "_then45",
+            "_row_num": 40,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 21
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb3_cow'), 'no')",
+            "_row_num": 41,
+            "__rowNum__": 40,
+            "_token_type": "goto_label",
+            "_branch_label": "_then41",
+            "operationIdx": 22
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else53",
-            "_row_num": 53,
-            "operationIdx": 22
-          },
-          {
+            "_branch_label": "_else46",
             "_row_num": 46,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 23
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb3_goat'), 'no')",
-            "_row_num": 47,
-            "__rowNum__": 46,
-            "_token_type": "goto_label",
-            "_branch_label": "_then47",
+            "clause": "begin screen",
+            "_row_num": 42,
+            "__rowNum__": 41,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 45,
+              "__rowNum__": 44,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 24
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else52",
-            "_row_num": 52,
+            "_branch_label": "_endif46",
+            "_row_num": 46,
             "operationIdx": 25
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 48,
-            "__rowNum__": 47,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 51,
-              "__rowNum__": 50,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 26
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif52",
-            "_row_num": 52,
+            "_branch_label": "_endif47",
+            "_row_num": 47,
+            "operationIdx": 26
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb1'), 'goat')",
+            "_row_num": 49,
+            "__rowNum__": 48,
+            "_token_type": "goto_label",
+            "_branch_label": "_then49",
             "operationIdx": 27
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif53",
-            "_row_num": 53,
+            "_branch_label": "_else57",
+            "_row_num": 57,
             "operationIdx": 28
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb1'), 'sheep')",
-            "_row_num": 55,
-            "__rowNum__": 54,
-            "_token_type": "goto_label",
-            "_branch_label": "_then55",
+            "_row_num": 50,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 29
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb3_goat'), 'no')",
+            "_row_num": 51,
+            "__rowNum__": 50,
+            "_token_type": "goto_label",
+            "_branch_label": "_then51",
+            "operationIdx": 30
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else63",
-            "_row_num": 63,
-            "operationIdx": 30
-          },
-          {
+            "_branch_label": "_else56",
             "_row_num": 56,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 31
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb3_sheep'), 'no')",
-            "_row_num": 57,
-            "__rowNum__": 56,
-            "_token_type": "goto_label",
-            "_branch_label": "_then57",
+            "clause": "begin screen",
+            "_row_num": 52,
+            "__rowNum__": 51,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 55,
+              "__rowNum__": 54,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 32
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else62",
-            "_row_num": 62,
+            "_branch_label": "_endif56",
+            "_row_num": 56,
             "operationIdx": 33
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 58,
-            "__rowNum__": 57,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 61,
-              "__rowNum__": 60,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(20);\nactivePromptIndicies.push(21);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 34
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif62",
-            "_row_num": 62,
+            "_branch_label": "_endif57",
+            "_row_num": 57,
+            "operationIdx": 34
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb1'), 'sheep')",
+            "_row_num": 59,
+            "__rowNum__": 58,
+            "_token_type": "goto_label",
+            "_branch_label": "_then59",
             "operationIdx": 35
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif63",
-            "_row_num": 63,
+            "_branch_label": "_else67",
+            "_row_num": 67,
             "operationIdx": 36
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb1'), 'pig')",
-            "_row_num": 65,
-            "__rowNum__": 64,
-            "_token_type": "goto_label",
-            "_branch_label": "_then65",
+            "_row_num": 60,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(20);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 37
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb3_sheep'), 'no')",
+            "_row_num": 61,
+            "__rowNum__": 60,
+            "_token_type": "goto_label",
+            "_branch_label": "_then61",
+            "operationIdx": 38
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else73",
-            "_row_num": 73,
-            "operationIdx": 38
-          },
-          {
+            "_branch_label": "_else66",
             "_row_num": 66,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(22);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 39
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb3_pig'), 'no')",
-            "_row_num": 67,
-            "__rowNum__": 66,
-            "_token_type": "goto_label",
-            "_branch_label": "_then67",
+            "clause": "begin screen",
+            "_row_num": 62,
+            "__rowNum__": 61,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 65,
+              "__rowNum__": 64,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(21);\nactivePromptIndicies.push(22);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 40
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else72",
-            "_row_num": 72,
+            "_branch_label": "_endif66",
+            "_row_num": 66,
             "operationIdx": 41
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 68,
-            "__rowNum__": 67,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 71,
-              "__rowNum__": 70,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(23);\nactivePromptIndicies.push(24);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 42
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif72",
-            "_row_num": 72,
+            "_branch_label": "_endif67",
+            "_row_num": 67,
+            "operationIdx": 42
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb1'), 'pig')",
+            "_row_num": 69,
+            "__rowNum__": 68,
+            "_token_type": "goto_label",
+            "_branch_label": "_then69",
             "operationIdx": 43
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif73",
-            "_row_num": 73,
+            "_branch_label": "_else77",
+            "_row_num": 77,
             "operationIdx": 44
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb1'), 'horse')",
-            "_row_num": 75,
-            "__rowNum__": 74,
-            "_token_type": "goto_label",
-            "_branch_label": "_then75",
+            "_row_num": 70,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(23);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 45
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb3_pig'), 'no')",
+            "_row_num": 71,
+            "__rowNum__": 70,
+            "_token_type": "goto_label",
+            "_branch_label": "_then71",
+            "operationIdx": 46
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else83",
-            "_row_num": 83,
-            "operationIdx": 46
-          },
-          {
+            "_branch_label": "_else76",
             "_row_num": 76,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(25);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 47
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb3_horse'), 'no')",
-            "_row_num": 77,
-            "__rowNum__": 76,
-            "_token_type": "goto_label",
-            "_branch_label": "_then77",
+            "clause": "begin screen",
+            "_row_num": 72,
+            "__rowNum__": 71,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 75,
+              "__rowNum__": 74,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(24);\nactivePromptIndicies.push(25);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 48
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else82",
-            "_row_num": 82,
+            "_branch_label": "_endif76",
+            "_row_num": 76,
             "operationIdx": 49
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 78,
-            "__rowNum__": 77,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 81,
-              "__rowNum__": 80,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(26);\nactivePromptIndicies.push(27);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 50
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif82",
-            "_row_num": 82,
+            "_branch_label": "_endif77",
+            "_row_num": 77,
+            "operationIdx": 50
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb1'), 'horse')",
+            "_row_num": 79,
+            "__rowNum__": 78,
+            "_token_type": "goto_label",
+            "_branch_label": "_then79",
             "operationIdx": 51
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif83",
-            "_row_num": 83,
+            "_branch_label": "_else87",
+            "_row_num": 87,
             "operationIdx": 52
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb1'), 'other')",
-            "_row_num": 85,
-            "__rowNum__": 84,
-            "_token_type": "goto_label",
-            "_branch_label": "_then85",
+            "_row_num": 80,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(26);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 53
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb3_horse'), 'no')",
+            "_row_num": 81,
+            "__rowNum__": 80,
+            "_token_type": "goto_label",
+            "_branch_label": "_then81",
+            "operationIdx": 54
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else93",
-            "_row_num": 93,
-            "operationIdx": 54
-          },
-          {
+            "_branch_label": "_else86",
             "_row_num": 86,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(28);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 55
           },
           {
-            "clause": "if",
-            "condition": "selected(data('qb3_other'), 'no')",
-            "_row_num": 87,
-            "__rowNum__": 86,
-            "_token_type": "goto_label",
-            "_branch_label": "_then87",
+            "clause": "begin screen",
+            "_row_num": 82,
+            "__rowNum__": 81,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 85,
+              "__rowNum__": 84,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(27);\nactivePromptIndicies.push(28);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 56
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else92",
-            "_row_num": 92,
+            "_branch_label": "_endif86",
+            "_row_num": 86,
             "operationIdx": 57
-          },
-          {
-            "clause": "begin screen",
-            "_row_num": 88,
-            "__rowNum__": 87,
-            "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 91,
-              "__rowNum__": 90,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 58
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif92",
-            "_row_num": 92,
+            "_branch_label": "_endif87",
+            "_row_num": 87,
+            "operationIdx": 58
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qb1'), 'other')",
+            "_row_num": 89,
+            "__rowNum__": 88,
+            "_token_type": "goto_label",
+            "_branch_label": "_then89",
             "operationIdx": 59
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif93",
-            "_row_num": 93,
+            "_branch_label": "_else97",
+            "_row_num": 97,
             "operationIdx": 60
           },
           {
-            "clause": "begin screen",
-            "_row_num": 95,
-            "__rowNum__": 94,
+            "_row_num": 90,
             "_token_type": "begin_screen",
-            "_end_screen_clause": {
-              "clause": "end screen",
-              "_row_num": 98,
-              "__rowNum__": 97,
-              "_token_type": "end_screen"
-            },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(31);\nactivePromptIndicies.push(32);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(29);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 61
           },
           {
             "clause": "if",
-            "condition": "selected(data('qc1'), 'yes')",
-            "_row_num": 100,
-            "__rowNum__": 99,
+            "condition": "selected(data('qb3_other'), 'no')",
+            "_row_num": 91,
+            "__rowNum__": 90,
             "_token_type": "goto_label",
-            "_branch_label": "_then100",
+            "_branch_label": "_then91",
             "operationIdx": 62
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else102",
-            "_row_num": 102,
+            "_branch_label": "_else96",
+            "_row_num": 96,
             "operationIdx": 63
           },
           {
-            "_row_num": 101,
+            "clause": "begin screen",
+            "_row_num": 92,
+            "__rowNum__": 91,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(33);\n\nreturn activePromptIndicies;\n}\n",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 95,
+              "__rowNum__": 94,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(30);\nactivePromptIndicies.push(31);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 64
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif102",
-            "_row_num": 102,
+            "_branch_label": "_endif96",
+            "_row_num": 96,
             "operationIdx": 65
           },
           {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif97",
+            "_row_num": 97,
+            "operationIdx": 66
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 99,
+            "__rowNum__": 98,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 102,
+              "__rowNum__": 101,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(32);\nactivePromptIndicies.push(33);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 67
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('qc1'), 'yes')",
             "_row_num": 104,
+            "__rowNum__": 103,
+            "_token_type": "goto_label",
+            "_branch_label": "_then104",
+            "operationIdx": 68
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else106",
+            "_row_num": 106,
+            "operationIdx": 69
+          },
+          {
+            "_row_num": 105,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(34);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 66
+            "operationIdx": 70
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif106",
+            "_row_num": 106,
+            "operationIdx": 71
+          },
+          {
+            "_row_num": 108,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(35);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 72
           },
           {
             "clause": "if",
             "condition": "selected(data('qc2'), 'yes')",
-            "_row_num": 106,
-            "__rowNum__": 105,
-            "_token_type": "goto_label",
-            "_branch_label": "_then106",
-            "operationIdx": 67
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_else108",
-            "_row_num": 108,
-            "operationIdx": 68
-          },
-          {
-            "_row_num": 107,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(35);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 69
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif108",
-            "_row_num": 108,
-            "operationIdx": 70
-          },
-          {
             "_row_num": 110,
+            "__rowNum__": 109,
+            "_token_type": "goto_label",
+            "_branch_label": "_then110",
+            "operationIdx": 73
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else112",
+            "_row_num": 112,
+            "operationIdx": 74
+          },
+          {
+            "_row_num": 111,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(36);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 71
+            "operationIdx": 75
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif112",
+            "_row_num": 112,
+            "operationIdx": 76
+          },
+          {
+            "_row_num": 114,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(37);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 77
           },
           {
             "clause": "if",
             "condition": "selected(data('qc3'), 'yes')",
-            "_row_num": 112,
-            "__rowNum__": 111,
+            "_row_num": 116,
+            "__rowNum__": 115,
             "_token_type": "goto_label",
-            "_branch_label": "_then112",
-            "operationIdx": 72
+            "_branch_label": "_then116",
+            "operationIdx": 78
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else114",
-            "_row_num": 114,
-            "operationIdx": 73
+            "_branch_label": "_else118",
+            "_row_num": 118,
+            "operationIdx": 79
           },
           {
-            "_row_num": 113,
+            "_row_num": 117,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(37);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 74
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(38);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 80
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif114",
-            "_row_num": 114,
-            "operationIdx": 75
+            "_branch_label": "_endif118",
+            "_row_num": 118,
+            "operationIdx": 81
           },
           {
             "clause": "begin screen",
-            "_row_num": 116,
-            "__rowNum__": 115,
+            "_row_num": 120,
+            "__rowNum__": 119,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 120,
-              "__rowNum__": 119,
+              "_row_num": 124,
+              "__rowNum__": 123,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(38);\nactivePromptIndicies.push(39);\nactivePromptIndicies.push(40);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 76
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(39);\nactivePromptIndicies.push(40);\nactivePromptIndicies.push(41);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 82
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 121,
-            "operationIdx": 77
+            "_row_num": 125,
+            "operationIdx": 83
           },
           {
-            "_row_num": 121,
+            "_row_num": 125,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(41);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(42);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 78
+            "operationIdx": 84
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 121,
-            "operationIdx": 79
+            "_row_num": 125,
+            "operationIdx": 85
           }
         ],
         "branch_label_map": {
@@ -3628,79 +3633,83 @@
           "_else10": 5,
           "_endif10": 5,
           "_screen12": 5,
-          "_screen14": 6,
-          "_then20": 9,
-          "_screen21": 9,
-          "_else23": 11,
-          "_endif23": 11,
-          "_screen25": 11,
-          "_screen33": 12,
-          "_then35": 15,
-          "_screen36": 15,
-          "_then37": 18,
-          "_screen38": 18,
-          "_else42": 20,
-          "_endif42": 20,
-          "_else43": 21,
-          "_endif43": 21,
-          "_then45": 23,
-          "_screen46": 23,
-          "_then47": 26,
-          "_screen48": 26,
-          "_else52": 28,
-          "_endif52": 28,
-          "_else53": 29,
-          "_endif53": 29,
-          "_then55": 31,
-          "_screen56": 31,
-          "_then57": 34,
-          "_screen58": 34,
-          "_else62": 36,
-          "_endif62": 36,
-          "_else63": 37,
-          "_endif63": 37,
-          "_then65": 39,
-          "_screen66": 39,
-          "_then67": 42,
-          "_screen68": 42,
-          "_else72": 44,
-          "_endif72": 44,
-          "_else73": 45,
-          "_endif73": 45,
-          "_then75": 47,
-          "_screen76": 47,
-          "_then77": 50,
-          "_screen78": 50,
-          "_else82": 52,
-          "_endif82": 52,
-          "_else83": 53,
-          "_endif83": 53,
-          "_then85": 55,
-          "_screen86": 55,
-          "_then87": 58,
-          "_screen88": 58,
-          "_else92": 60,
-          "_endif92": 60,
-          "_else93": 61,
-          "_endif93": 61,
-          "_screen95": 61,
-          "_then100": 64,
-          "_screen101": 64,
-          "_else102": 66,
-          "_endif102": 66,
-          "_screen104": 66,
-          "_then106": 69,
-          "_screen107": 69,
-          "_else108": 71,
-          "_endif108": 71,
-          "_screen110": 71,
-          "_then112": 74,
-          "_screen113": 74,
-          "_else114": 76,
-          "_endif114": 76,
-          "_screen116": 76,
-          "_contents": 78,
-          "_screen121": 78
+          "_then13": 8,
+          "_screen14": 8,
+          "_else16": 11,
+          "_endif16": 11,
+          "_screen18": 11,
+          "_then24": 14,
+          "_screen25": 14,
+          "_else27": 17,
+          "_endif27": 17,
+          "_screen29": 17,
+          "_screen37": 18,
+          "_then39": 21,
+          "_screen40": 21,
+          "_then41": 24,
+          "_screen42": 24,
+          "_else46": 26,
+          "_endif46": 26,
+          "_else47": 27,
+          "_endif47": 27,
+          "_then49": 29,
+          "_screen50": 29,
+          "_then51": 32,
+          "_screen52": 32,
+          "_else56": 34,
+          "_endif56": 34,
+          "_else57": 35,
+          "_endif57": 35,
+          "_then59": 37,
+          "_screen60": 37,
+          "_then61": 40,
+          "_screen62": 40,
+          "_else66": 42,
+          "_endif66": 42,
+          "_else67": 43,
+          "_endif67": 43,
+          "_then69": 45,
+          "_screen70": 45,
+          "_then71": 48,
+          "_screen72": 48,
+          "_else76": 50,
+          "_endif76": 50,
+          "_else77": 51,
+          "_endif77": 51,
+          "_then79": 53,
+          "_screen80": 53,
+          "_then81": 56,
+          "_screen82": 56,
+          "_else86": 58,
+          "_endif86": 58,
+          "_else87": 59,
+          "_endif87": 59,
+          "_then89": 61,
+          "_screen90": 61,
+          "_then91": 64,
+          "_screen92": 64,
+          "_else96": 66,
+          "_endif96": 66,
+          "_else97": 67,
+          "_endif97": 67,
+          "_screen99": 67,
+          "_then104": 70,
+          "_screen105": 70,
+          "_else106": 72,
+          "_endif106": 72,
+          "_screen108": 72,
+          "_then110": 75,
+          "_screen111": 75,
+          "_else112": 77,
+          "_endif112": 77,
+          "_screen114": 77,
+          "_then116": 80,
+          "_screen117": 80,
+          "_else118": 82,
+          "_endif118": 82,
+          "_screen120": 82,
+          "_contents": 84,
+          "_screen125": 84
         }
       }
     },
@@ -3762,7 +3771,7 @@
       "qa1": {
         "_defn": [
           {
-            "_row_num": 17,
+            "_row_num": 21,
             "section_name": "survey"
           }
         ],
@@ -3776,7 +3785,7 @@
       "qb1": {
         "_defn": [
           {
-            "_row_num": 27,
+            "_row_num": 31,
             "section_name": "survey"
           }
         ],
@@ -3801,7 +3810,7 @@
       "qb1_other": {
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 33,
             "section_name": "survey"
           }
         ],
@@ -3814,7 +3823,7 @@
       "qb2": {
         "_defn": [
           {
-            "_row_num": 33,
+            "_row_num": 37,
             "section_name": "survey"
           }
         ],
@@ -3828,7 +3837,7 @@
       "qb3_cow": {
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 40,
             "section_name": "survey"
           }
         ],
@@ -3842,11 +3851,12 @@
       "qb3a_cow": {
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 43,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_cow",
         "elementName": "qb3a_cow",
         "elementSet": "data",
@@ -3855,11 +3865,12 @@
       "qb3b_cow": {
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 44,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_cow",
         "elementName": "qb3b_cow",
         "elementSet": "data",
@@ -3868,7 +3879,7 @@
       "qb3_goat": {
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 50,
             "section_name": "survey"
           }
         ],
@@ -3882,11 +3893,12 @@
       "qb3a_goat": {
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 53,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_goat",
         "elementName": "qb3a_goat",
         "elementSet": "data",
@@ -3895,11 +3907,12 @@
       "qb3b_goat": {
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 54,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_goat",
         "elementName": "qb3b_goat",
         "elementSet": "data",
@@ -3908,7 +3921,7 @@
       "qb3_sheep": {
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 60,
             "section_name": "survey"
           }
         ],
@@ -3922,11 +3935,12 @@
       "qb3a_sheep": {
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 63,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_sheep",
         "elementName": "qb3a_sheep",
         "elementSet": "data",
@@ -3935,11 +3949,12 @@
       "qb3b_sheep": {
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 64,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_sheep",
         "elementName": "qb3b_sheep",
         "elementSet": "data",
@@ -3948,7 +3963,7 @@
       "qb3_pig": {
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 70,
             "section_name": "survey"
           }
         ],
@@ -3962,11 +3977,12 @@
       "qb3a_pig": {
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 73,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_pig",
         "elementName": "qb3a_pig",
         "elementSet": "data",
@@ -3975,11 +3991,12 @@
       "qb3b_pig": {
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 74,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_pig",
         "elementName": "qb3b_pig",
         "elementSet": "data",
@@ -3988,7 +4005,7 @@
       "qb3_horse": {
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 80,
             "section_name": "survey"
           }
         ],
@@ -4002,11 +4019,12 @@
       "qb3a_horse": {
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 83,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_horse",
         "elementName": "qb3a_horse",
         "elementSet": "data",
@@ -4015,11 +4033,12 @@
       "qb3b_horse": {
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 84,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_horse",
         "elementName": "qb3b_horse",
         "elementSet": "data",
@@ -4028,7 +4047,7 @@
       "qb3_other": {
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 90,
             "section_name": "survey"
           }
         ],
@@ -4042,11 +4061,12 @@
       "qb3a_other": {
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 93,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3a_other",
         "elementName": "qb3a_other",
         "elementSet": "data",
@@ -4055,11 +4075,12 @@
       "qb3b_other": {
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 94,
             "section_name": "survey"
           }
         ],
         "type": "string",
+        "elementType": "time",
         "elementKey": "qb3b_other",
         "elementName": "qb3b_other",
         "elementSet": "data",
@@ -4068,7 +4089,7 @@
       "qc1": {
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 101,
             "section_name": "survey"
           }
         ],
@@ -4082,7 +4103,7 @@
       "qc1a": {
         "_defn": [
           {
-            "_row_num": 101,
+            "_row_num": 105,
             "section_name": "survey"
           }
         ],
@@ -4096,7 +4117,7 @@
       "qc2": {
         "_defn": [
           {
-            "_row_num": 104,
+            "_row_num": 108,
             "section_name": "survey"
           }
         ],
@@ -4110,7 +4131,7 @@
       "qc2a": {
         "_defn": [
           {
-            "_row_num": 107,
+            "_row_num": 111,
             "section_name": "survey"
           }
         ],
@@ -4124,7 +4145,7 @@
       "qc3": {
         "_defn": [
           {
-            "_row_num": 110,
+            "_row_num": 114,
             "section_name": "survey"
           }
         ],
@@ -4138,7 +4159,7 @@
       "qc3a": {
         "_defn": [
           {
-            "_row_num": 113,
+            "_row_num": 117,
             "section_name": "survey"
           }
         ],
@@ -4152,7 +4173,7 @@
       "qc4_width": {
         "_defn": [
           {
-            "_row_num": 118,
+            "_row_num": 122,
             "section_name": "survey"
           }
         ],
@@ -4165,7 +4186,7 @@
       "qc4_length": {
         "_defn": [
           {
-            "_row_num": 119,
+            "_row_num": 123,
             "section_name": "survey"
           }
         ],

@@ -166,110 +166,115 @@ window.odkTableSpecificDefinitions = {
       "text": "Has livestock been kept in the enclosure for at least the past three months?",
       "_row_num": 34
     },
+    "livestock_in_enclosure_no": {
+      "string_token": "livestock_in_enclosure_no",
+      "text": "Select neighboring enclosure",
+      "_row_num": 35
+    },
     "qa1": {
       "string_token": "qa1",
       "text": "A1. Has the owner of the livestock enclosure, or their representative: read, understood and signed the informed consent agreeing to answer this questionnaire and allowing the BOHEMIA field team to do CDC light trapping on their property?",
-      "_row_num": 36
+      "_row_num": 37
     },
     "ic_no": {
       "string_token": "ic_no",
       "text": "Please inform senior entomology officer, select a neighboring enclosure and fill out separate questionnaire form.",
-      "_row_num": 37
+      "_row_num": 38
     },
     "qb1": {
       "string_token": "qb1",
       "text": "B1. What animal species are kept in the enclosure?",
-      "_row_num": 38
+      "_row_num": 39
     },
     "qb2": {
       "string_token": "qb2",
       "text": "B2. How many animals are kept in this enclosure approximately?",
-      "_row_num": 39
+      "_row_num": 40
     },
     "qb3.cow": {
       "string_token": "qb3.cow",
       "text": "B3. Are cows kept at all times in the enclosure?",
-      "_row_num": 40
+      "_row_num": 41
     },
     "qb3.goat": {
       "string_token": "qb3.goat",
       "text": "B3. Are goats kept at all times in the enclosure?",
-      "_row_num": 41
+      "_row_num": 42
     },
     "qb3.sheep": {
       "string_token": "qb3.sheep",
       "text": "B3. Are sheep kept at all times in the enclosure?",
-      "_row_num": 42
+      "_row_num": 43
     },
     "qb3.pig": {
       "string_token": "qb3.pig",
       "text": "B3. Are pig kept at all times in the enclosure?",
-      "_row_num": 43
+      "_row_num": 44
     },
     "qb3.horse": {
       "string_token": "qb3.horse",
       "text": "B3. Are horses kept at all times in the enclosure?",
-      "_row_num": 44
+      "_row_num": 45
     },
     "qb3.other": {
       "string_token": "qb3.other",
       "text": "B3. Are other animals kept at all times in the enclosure?",
-      "_row_num": 45
+      "_row_num": 46
     },
     "qb3a": {
       "string_token": "qb3a",
       "text": "B3a. What time do they enter the enclosure in the evening",
-      "_row_num": 46
+      "_row_num": 47
     },
     "qb3b": {
       "string_token": "qb3b",
       "text": "B3b. What time do they leave it in the morning?",
-      "_row_num": 47
+      "_row_num": 48
     },
     "qc1": {
       "string_token": "qc1",
       "text": "C1. Is the enclosure covered?",
-      "_row_num": 48
+      "_row_num": 49
     },
     "qc1a": {
       "string_token": "qc1a",
       "text": "C1a. What is the cover made of?",
-      "_row_num": 49
+      "_row_num": 50
     },
     "qc2": {
       "string_token": "qc2",
       "text": "C2. Does the enclosure have a fence/wall?",
-      "_row_num": 50
+      "_row_num": 51
     },
     "qc2a": {
       "string_token": "qc2a",
       "text": "C2a. What is the fence/wall made of?",
-      "_row_num": 51
+      "_row_num": 52
     },
     "qc3": {
       "string_token": "qc3",
       "text": "C3. Is the enclosure screened with net?",
-      "_row_num": 52
+      "_row_num": 53
     },
     "qc3a": {
       "string_token": "qc3a",
       "text": "C3a. Is it completely screened?",
-      "_row_num": 53
+      "_row_num": 54
     },
     "qc4": {
       "string_token": "qc4",
       "text": "C4. What is the area of the livestock enclosure?",
-      "_row_num": 54
+      "_row_num": 55
     },
     "qc4.width": {
       "string_token": "qc4.width",
-      "text": "Width",
-      "_row_num": 55
+      "text": "Width (meter)",
+      "_row_num": 56
     },
     "qc4.length": {
       "string_token": "qc4.length",
-      "text": "Length",
-      "_row_num": 56
+      "text": "Length (meter)",
+      "_row_num": 57
     }
   }
 }
