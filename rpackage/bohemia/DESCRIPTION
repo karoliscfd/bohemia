@@ -54,7 +54,7 @@ Imports:
     geosphere,
     htmlTable,
     PKI,
-    mapview (>= 2.9.8)
+    mapview (>= 2.9.9)
 Depends:
     R (>= 2.10)
 Remotes:
