@@ -30,12 +30,12 @@
       );
     });
 
-    // document.getElementById('entoForm').addEventListener('click', function () {
-    //   odkTables.launchHTML(
-    //     null,
-    //     'config/assets/entoForms.html'
-    //   );
-    // });
+    document.getElementById('entoForm').addEventListener('click', function () {
+      odkTables.launchHTML(
+        null,
+        'config/assets/entoForms.html'
+      );
+    });
 
     document.getElementById('incompleteHh').addEventListener('click', function () {
       odkTables.openTableToListView(
@@ -57,6 +57,13 @@
       var requiresFwIdElem = document.querySelectorAll('.requires-fw-id');
       for (var i = 0; i < requiresFwIdElem.length; i++) {
         requiresFwIdElem[i].classList.remove('d-none', 'invisible');
+      }
+
+      if (localStorage.getItem('FW_ID') === '9999') {
+        var entoItems = document.querySelectorAll('.requires-ento-fw-id');
+        for (var i = 0; i < entoItems.length; i++) {
+          entoItems[i].classList.remove('d-none', 'invisible');
+        }
       }
     }
 
