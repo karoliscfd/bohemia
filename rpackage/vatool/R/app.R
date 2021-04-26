@@ -52,12 +52,12 @@ app_ui <- function(request) {
               ),
               br(),
               fluidRow(
+                column(8,
+                       DT::dataTableOutput('va_table')),
                 column(4,
                        uiOutput('ui_select_va'),
                        uiOutput('ui_assign_cod'),
-                       uiOutput('ui_submission')),
-                column(8,
-                       DT::dataTableOutput('va_table'))
+                       uiOutput('ui_submission'))
               )
             )
           ),
@@ -167,17 +167,17 @@ app_server <- function(input, output, session) {
         cods_choices <- cod_choices()
         fluidPage(
           fluidRow(
-            column(4,
-                   br(),
-                   selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                   selectInput('adj_cods', 'Select underlying cause of death',  choices = cods_choices),
-                   br(),
-                   actionButton('adj_submit_cod', 'Submit cause of death')),
             column(8,
                    h2('Previous diagnoses'),
                    DT::dataTableOutput('adj_table_2'),
                    h2('Patient info'),
-                   DT::dataTableOutput('adj_table_1'))
+                   DT::dataTableOutput('adj_table_1')),
+            column(4,
+                   br(),
+                   selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
+                   selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', cods_choices)),
+                   br(),
+                   actionButton('adj_submit_cod', 'Submit cause of death'))
           )
         )
       } else {
@@ -204,11 +204,12 @@ app_server <- function(input, output, session) {
         person <- get_va_names(person)
         # remove columns with NA
         person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
-        
         # remove other columns 
         remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_username|Take a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         
         person <- person[, !grepl(remove_these, names(person))]
+        person <- person[,apply(person, 2, function(x) x != 'no')]
+        
         out <- as.data.frame(t(person))
         out$Question <- rownames(out)
         names(out) <- c('Answer', 'Question')
@@ -281,9 +282,9 @@ app_server <- function(input, output, session) {
       choices <- cod_choices()
       fluidPage(
         fluidRow(
-          selectInput('cod_1', 'Select immediate cause of death', choices = names(choices), selected = choices[1]),
-          selectInput('cod_2', 'Select intermediary cause of death', choices = names(choices), selected = choices[1]),
-          selectInput('cod_3', 'Select underlying cause of death', choices = names(choices), selected = choices[1])
+          selectInput('cod_1', 'Select immediate cause of death', choices =c('', names(choices)) , selected = ''),
+          selectInput('cod_2', 'Select intermediary cause of death', choices =c('', names(choices)), selected = ''),
+          selectInput('cod_3', 'Select underlying cause of death', choices =c('', names(choices)), selected = '')
         ),
         fluidRow(
           actionButton('submit_cod', 'Submit cause of death')
@@ -311,6 +312,7 @@ app_server <- function(input, output, session) {
         remove_these <- "server|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
         
         person <- person[, !grepl(remove_these, names(person))]
+        person <- person[,apply(person, 2, function(x) x != 'no')]
         out <- as.data.frame(t(person))
         out$Question <- rownames(out)
         names(out) <- c('Answer', 'Question')
@@ -361,19 +363,25 @@ app_server <- function(input, output, session) {
     cod_1 = input$cod_1
     cod_2 = input$cod_2
     cod_3 = input$cod_3
-    death_id = input$death_id
-    cod_data$cod_1 = cod_1
-    cod_data$cod_2 = cod_2
-    cod_data$cod_3 = cod_3
-    cod_data$death_id = death_id
-    cod_data$time_stamp <- Sys.time()
-    # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
-    cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
-    cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
-    cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
-    
-    dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
-    submission_success(TRUE)
+    # condition if underlying cause of death is not fiilled out, wont submit
+    if(cod_1==''){
+      submission_success(FALSE)
+    } else {
+      death_id = input$death_id
+      cod_data$cod_1 = cod_1
+      cod_data$cod_2 = cod_2
+      cod_data$cod_3 = cod_3
+      cod_data$death_id = death_id
+      cod_data$time_stamp <- Sys.time()
+      # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
+      cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+      cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
+      cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
+      
+      dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
+      submission_success(TRUE)
+    }
+   
   })
   
   # Observe changes in inputs
