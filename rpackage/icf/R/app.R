@@ -219,9 +219,7 @@ app_ui <- function(request) {
               fluidRow(column(12,
                               DT::dataTableOutput('person_table'))),
               fluidRow(
-                radioButtons('icf_present', 'Is the ICF present?', choices = c('Yes', 'No'),
-                             selected = character(0),
-                             inline = TRUE),
+                uiOutput('ui_icf_present'),
                 uiOutput('ui_present'),
                 uiOutput('ui_big')    
               )
@@ -343,6 +341,7 @@ app_server <- function(input, output, session) {
     if(is.null(date_of_visit)){
       NULL
     } else {
+      message('---Setting up the hh_id input')
       df <- data_list$main
       choices <- df %>% filter(date == date_of_visit) 
       the_choices <- sort(unique(choices$hh_id))
@@ -362,6 +361,7 @@ app_server <- function(input, output, session) {
           filter(date == date_of_visit) %>%
           filter(hh_id == xhid)
         id_choices <- out$pid
+        message('---Setting up the person_id input')
         done <- selectInput('person_id', 'Person ID', choices = id_choices)
       }
     }
@@ -369,10 +369,14 @@ app_server <- function(input, output, session) {
   })
   
   dfr <- reactive({
+    message('---Setting up the reactive dfr() object')
+    
     out <- data_list$main
     date_of_visit <- input$date_of_visit
     xhid <- input$hh_id
     person_id <- input$person_id
+    
+    
     if(!is.null(date_of_visit)){
       out <- out %>% filter(date == date_of_visit)
     }
@@ -387,21 +391,27 @@ app_server <- function(input, output, session) {
        is.null(date_of_visit)){
       out <- NULL
     }
+    message('---Done setting up the reactive dfr() object')
     return(out)
   })
   
   output$person_table <- DT::renderDataTable({
+    message('---Setting up the person_table (datatable)')
+    
+    
     sub_df <- dfr()
-    # pd <- t(sub_df)
-    # pd <- data.frame(pd)
-    # pd$field <- row.names(pd)
-    # row.names(pd) <- NULL
-    # pd$field <- gsub('_', ' ', toupper(pd$field))
-    # pd <- pd %>% dplyr::select(Field = field, Value = pd)
-    # DT::datatable(pd)
+
     DT::datatable(sub_df,
                   options = list(paging = FALSE,
                                  searching = FALSE))
+  })
+  
+  output$ui_icf_present <- renderUI({
+    # Observe changes to df to reset
+    x <- dfr()
+    radioButtons('icf_present', 'Is the ICF present?', choices = c('Yes', 'No'),
+                 selected = character(0),
+                 inline = TRUE)
   })
   
   output$ui_present <- renderUI({
@@ -418,6 +428,11 @@ app_server <- function(input, output, session) {
   
   output$ui_big <- renderUI({
     icf_present <- input$icf_present
+    message('---Setting up ui_big')
+    
+    # Observe changes to the main dataframe and reset
+    x <- dfr()
+    
     if(!is.null(icf_present)){
       if(icf_present == 'Yes'){
         fluidPage(
@@ -474,6 +489,8 @@ app_server <- function(input, output, session) {
   })
   
   output$ui_other <- renderUI({
+    message('---Setting up ui_other')
+    
     pd <- input$other
     if(!is.null(pd)){
       if(pd){
@@ -553,6 +570,9 @@ app_server <- function(input, output, session) {
   })
   
   list_3_input <- reactive({
+    
+    message('---Setting up the list_3_input reactive object')
+    
     # See if "no errors" were declared
     ne1 <- input$no_errors
     ne2 <- input$no_errors_arc
@@ -566,15 +586,20 @@ app_server <- function(input, output, session) {
       
       # Get the part 2 errors
       e2_index <- error_list_2()
-      e2 <- error_list[e2_index]
       
       # Get the person-level data
       p2 <- dfr()
-      
+      e2 <- error_list[e2_index]
+
       # Combine them
+      # save(e2_index, p2, e2, ne1, ne2, ae1, ae2, file = paste0('/tmp/j', gsub('.', '',
+      #                                                                        as.numeric(Sys.time()), fixed = T), '.RData'))
       combined <- tibble(Error = e2)
-      for(j in 1:ncol(p2)){
-        combined[,names(p2)[j]] <- p2[,j]
+      if(nrow(p2) > 0){ # avoids very temporary short errors. not clear why
+        for(j in 1:ncol(p2)){
+          message(names(p2)[j])
+          combined[,names(p2)[j]] <- p2[,j]
+        }
       }
       combined
       
@@ -629,6 +654,8 @@ app_server <- function(input, output, session) {
     showModal( modalDialog(
       h2("List 1 submission"), "Once data flow is clear, data will be submitted at this point"
     ))
+    # Flash the main table
+    x <- dfr()
   })
   
   observeEvent(input$submit_list_2,{
@@ -643,6 +670,8 @@ app_server <- function(input, output, session) {
     # Save the data for permanence
     dl <- reactiveValuesToList(data_list)
     save(dl, file = 'all_data.RData')
+    # Flash the main table
+    x <- dfr()
   })
   
   observeEvent(input$submit_list_3,{
@@ -654,10 +683,11 @@ app_server <- function(input, output, session) {
     # Add the submitted row to list 2
     new_3 <- add_to_list(3, this_row, data_list = data_list)
     data_list$list3 <- new_3
-    message('CHECKPOINT')
     # Save the data for permanence
     dl <- reactiveValuesToList(data_list)
     save(dl, file = 'all_data.RData')
+    # Flash the main table
+    x <- dfr()    
   })
   
   # List UIs
