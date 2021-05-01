@@ -93,9 +93,7 @@ load_all_data <- function(){
     dl <- list(main = main,
                list1 = data.frame(),
                list2 = data.frame(),
-               list3 = data.frame(),
-               list4 = data.frame(),
-               list5 = data.frame())
+               list3 = data.frame())
     save(dl, file = 'all_data.RData')
   }
   return(dl)
@@ -103,13 +101,18 @@ load_all_data <- function(){
 
 
 # Define functions for migrating rows between lists
-remove_from_main <- function(this_id, data_list){
+remove_from <- function(list_number = 'main', this_id, data_list){
   # Get full original list
-  original_df <- data_list$main
+  if(list_number == 'main'){
+    original_df <- data_list$main
+  } else {
+    dl <- reactiveValuesToList(data_list)
+    original_df <- dl[[paste0('list', list_number)]]
+  }
   # Remove the ID
   new_df <- original_df %>% filter(!id %in% this_id)
   # Communicate the result
-  message('Just reduced the main table from ',
+  message('Just reduced the ', list_number, ' table from ',
           nrow(original_df), 
           ' to ',
           nrow(new_df))
@@ -228,25 +231,33 @@ app_ui <- function(request) {
           tabItem(
             tabName = 'icf2',
             fluidPage(
-              h1('Pending input')
+              fluidRow(
+                column(4,
+                       uiOutput('ui_date_input2')),
+                column(4, 
+                       uiOutput('ui_hh_id2')),
+                column(4, uiOutput('ui_person_id2'))),
+              fluidRow(column(12,
+                              helpText('The below shows the previous errors associated with this ICF.'))),
+              fluidRow(column(12,
+                              DT::dataTableOutput('person_table2'))), 
+              fluidRow(
+                uiOutput('ui_icf_present2'), 
+                uiOutput('ui_present2'),
+                uiOutput('ui_big2')    
+              )
             )),
           tabItem(
             tabName = 'lists',
             fluidPage(
-              fluidRow(h1('List 1')),
+              fluidRow(h1('List 1 (missing ICFs)')),
               uiOutput('ui_list_1'),
               
-              fluidRow(h1('List 2')),
+              fluidRow(h1('List 2 (correct ICFs)')),
               uiOutput('ui_list_2'),
               
-              fluidRow(h1('List 3')),
-              uiOutput('ui_list_3'),
-              
-              fluidRow(h1('List 4')),
-              uiOutput('ui_list_4'),
-              
-              fluidRow(h1('List 5')),
-              uiOutput('ui_list_5'),
+              fluidRow(h1('List 3 (ICFs to be corrected)')),
+              uiOutput('ui_list_3')
             )
           ),
           tabItem(
@@ -323,14 +334,17 @@ app_server <- function(input, output, session) {
   data_list <- reactiveValues(main = dl$main,
                               list1 = dl$list1,
                               list2 = dl$list2,
-                              list3 = dl$list3,
-                              list4 = dl$list4,
-                              list5 = dl$list5)
+                              list3 = dl$list3)
   
   # Date input ui
   output$ui_date_input <- renderUI({
     df <- data_list$main
     dateInput('date_of_visit', 'Date of visit',min = min(df$date),
+              max = max(df$date))
+  })
+  output$ui_date_input2 <- renderUI({
+    df <- data_list$list3
+    dateInput('date_of_visit2', 'Date of visit',min = min(df$date),
               max = max(df$date))
   })
   
@@ -346,6 +360,18 @@ app_server <- function(input, output, session) {
       choices <- df %>% filter(date == date_of_visit) 
       the_choices <- sort(unique(choices$hh_id))
       selectInput('hh_id', 'Household ID', choices = the_choices)
+    }
+  })
+  output$ui_hh_id2 <- renderUI({
+    date_of_visit <- input$date_of_visit2
+    if(is.null(date_of_visit)){
+      NULL
+    } else {
+      message('---Setting up the hh_id input')
+      df <- data_list$list3
+      choices <- df %>% filter(date == date_of_visit) 
+      the_choices <- sort(unique(choices$hh_id))
+      selectInput('hh_id2', 'Household ID', choices = the_choices)
     }
   })
   
@@ -367,6 +393,26 @@ app_server <- function(input, output, session) {
     }
     return(done)
   })
+  
+  output$ui_person_id2 <- renderUI({
+    out <- data_list$list3
+    out <- data.frame(out)
+    date_of_visit <- input$date_of_visit2
+    xhid <- input$hh_id2
+    done <- NULL
+    if(!is.null(date_of_visit)){
+      if(!is.null(xhid)){
+        out <- out %>% 
+          filter(date == date_of_visit) %>%
+          filter(hh_id == xhid)
+        id_choices <- out$pid
+        message('---Setting up the person_id input')
+        done <- selectInput('person_id2', 'Person ID', choices = id_choices)
+      }
+    }
+    return(done)
+  })
+  
   
   dfr <- reactive({
     message('---Setting up the reactive dfr() object')
@@ -395,12 +441,44 @@ app_server <- function(input, output, session) {
     return(out)
   })
   
+  dfr2 <- reactive({
+    message('---Setting up the reactive dfr2() object')
+    
+    out <- data_list$list3
+    date_of_visit <- input$date_of_visit2
+    xhid <- input$hh_id2
+    person_id <- input$person_id2
+    
+    
+    if(!is.null(date_of_visit)){
+      out <- out %>% filter(date == date_of_visit)
+    }
+    if(!is.null(xhid)){
+      out <- out %>% filter(hh_id == xhid)
+    }
+    if(!is.null(person_id)){
+      out <- out %>% filter(pid == person_id)
+    }
+    if(is.null(person_id) |
+       is.null(xhid) |
+       is.null(date_of_visit)){
+      out <- NULL
+    }
+    message('---Done setting up the reactive dfr2() object')
+    return(out)
+  })
+  
+  
   output$person_table <- DT::renderDataTable({
     message('---Setting up the person_table (datatable)')
-    
-    
     sub_df <- dfr()
-
+    DT::datatable(sub_df,
+                  options = list(paging = FALSE,
+                                 searching = FALSE))
+  })
+  output$person_table2 <- DT::renderDataTable({
+    message('---Setting up the person_table2 (datatable)')
+    sub_df <- dfr2()
     DT::datatable(sub_df,
                   options = list(paging = FALSE,
                                  searching = FALSE))
@@ -413,6 +491,13 @@ app_server <- function(input, output, session) {
                  selected = character(0),
                  inline = TRUE)
   })
+  output$ui_icf_present2 <- renderUI({
+    # Observe changes to df to reset
+    x <- dfr2()
+    radioButtons('icf_present2', 'Is the ICF present?', choices = c('Yes', 'No'),
+                 selected = character(0),
+                 inline = TRUE)
+  })
   
   output$ui_present <- renderUI({
     icf_present <- input$icf_present
@@ -421,6 +506,19 @@ app_server <- function(input, output, session) {
         fluidPage(
           h3('Report missing ICF (list 1)'),
           actionButton('submit_list_1', 'Submit data')
+        )
+      }
+    }
+  })
+  
+  output$ui_present2 <- renderUI({
+    icf_present <- input$icf_present2
+    if(!is.null(icf_present)){
+      if(icf_present == 'No'){
+        fluidPage(
+          # h3('Report missing ICF (list 1)'),
+          # actionButton('submit_list_1', 'Submit data')
+          h5('This ICF has already been marked as requiring corrections. Wait for the correction to be submitted.')
         )
       }
     }
@@ -488,6 +586,53 @@ app_server <- function(input, output, session) {
     }
   })
   
+  output$ui_big2 <- renderUI({
+    icf_present <- input$icf_present2
+    message('---Setting up ui_big2')
+    
+    # Observe changes to the main dataframe and reset
+    x <- dfr2()
+    
+    if(!is.null(icf_present)){
+      if(icf_present == 'Yes'){
+        fluidPage(
+          fluidRow(
+            h3('Errors detected by the archivist'),
+            p('Does the ICF present any of the following errors?'),
+            helpText('Pay special attention to the previously flagged errors in the above table.'),
+            mod_error_check_archivist_ui('error_arc_1b', error_list[1]),
+            mod_error_check_archivist_ui('error_arc_2b', error_list[2]),
+            mod_error_check_archivist_ui('error_arc_3b', error_list[3]),
+            mod_error_check_archivist_ui('error_arc_4b', error_list[4]),
+            mod_error_check_archivist_ui('error_arc_5b', error_list[5]),
+            mod_error_check_archivist_ui('error_arc_6b', error_list[6]),
+            mod_error_check_archivist_ui('error_arc_7b', error_list[7]),
+            mod_error_check_archivist_ui('error_arc_8b', error_list[8]),
+            mod_error_check_archivist_ui('error_arc_9b', error_list[9]),
+            mod_error_check_archivist_ui('error_arc_10b', error_list[10]),
+            mod_error_check_archivist_ui('error_arc_11b', error_list[11]),
+            mod_error_check_archivist_ui('error_arc_12b', error_list[12]),
+            mod_error_check_archivist_ui('error_arc_13b', error_list[13]),
+            mod_error_check_archivist_ui('error_arc_14b', error_list[14]),
+            mod_error_check_archivist_ui('error_arc_15b', error_list[15]),
+            mod_error_check_archivist_ui('error_arc_16b', error_list[16]),
+            mod_error_check_archivist_ui('error_arc_17b', error_list[17]),
+            mod_error_check_archivist_ui('error_arc_18b', error_list[18]),
+            mod_error_check_archivist_ui('error_arc_19b', error_list[19]),
+            mod_error_check_archivist_ui('error_arc_20b', error_list[20]),
+            mod_error_check_archivist_ui('error_arc_21b', error_list[21]),
+            mod_error_check_archivist_ui('error_arc_22b', error_list[22]),
+            mod_error_check_archivist_ui('error_arc_23b', error_list[23]),
+            checkboxInput('otherb', 'Other', value = FALSE),
+            uiOutput('ui_otherb'), 
+            checkboxInput('no_errors_arcb', 'No errors', value = FALSE),
+            uiOutput('ui_arc_endb') 
+          )
+        )
+      }
+    }
+  })
+  
   output$ui_other <- renderUI({
     message('---Setting up ui_other')
     
@@ -495,6 +640,17 @@ app_server <- function(input, output, session) {
     if(!is.null(pd)){
       if(pd){
         textInput('other_text', 'Specify')
+      }
+    }
+  })
+  
+  output$ui_otherb <- renderUI({
+    message('---Setting up ui_otherb')
+    
+    pd <- input$otherb
+    if(!is.null(pd)){
+      if(pd){
+        textInput('other_textb', 'Specify')
       }
     }
   })
@@ -511,6 +667,20 @@ app_server <- function(input, output, session) {
   error_10 <- callModule(mod_error_check, 'error_10')
   error_11 <- callModule(mod_error_check, 'error_11')
   error_12 <- callModule(mod_error_check, 'error_12')
+  
+  # error_1b <- callModule(mod_error_check, 'error_1b')
+  # error_2b <- callModule(mod_error_check, 'error_2b')
+  # error_3b <- callModule(mod_error_check, 'error_3b')
+  # error_4b <- callModule(mod_error_check, 'error_4b')
+  # error_5b <- callModule(mod_error_check, 'error_5b')
+  # error_6b <- callModule(mod_error_check, 'error_6b')
+  # error_7b <- callModule(mod_error_check, 'error_7b')
+  # error_8b <- callModule(mod_error_check, 'error_8b')
+  # error_9b <- callModule(mod_error_check, 'error_9b')
+  # error_10b <- callModule(mod_error_check, 'error_10b')
+  # error_11b <- callModule(mod_error_check, 'error_11b')
+  # error_12b <- callModule(mod_error_check, 'error_12b')
+  
   
   error_arc_1 <- callModule(mod_error_check_archivist, 'error_arc_1')
   error_arc_2 <- callModule(mod_error_check_archivist, 'error_arc_2')
@@ -536,11 +706,41 @@ app_server <- function(input, output, session) {
   error_arc_22 <- callModule(mod_error_check_archivist, 'error_arc_22')
   error_arc_23 <- callModule(mod_error_check_archivist, 'error_arc_23')
   
+  error_arc_1b <- callModule(mod_error_check_archivist, 'error_arc_1b')
+  error_arc_2b <- callModule(mod_error_check_archivist, 'error_arc_2b')
+  error_arc_3b <- callModule(mod_error_check_archivist, 'error_arc_3b')
+  error_arc_4b <- callModule(mod_error_check_archivist, 'error_arc_4b')
+  error_arc_5b <- callModule(mod_error_check_archivist, 'error_arc_5b')
+  error_arc_6b <- callModule(mod_error_check_archivist, 'error_arc_6b')
+  error_arc_7b <- callModule(mod_error_check_archivist, 'error_arc_7b')
+  error_arc_8b <- callModule(mod_error_check_archivist, 'error_arc_8b')
+  error_arc_9b <- callModule(mod_error_check_archivist, 'error_arc_9b')
+  error_arc_10b <- callModule(mod_error_check_archivist, 'error_arc_10b')
+  error_arc_11b <- callModule(mod_error_check_archivist, 'error_arc_11b')
+  error_arc_12b <- callModule(mod_error_check_archivist, 'error_arc_12b')
+  error_arc_13b <- callModule(mod_error_check_archivist, 'error_arc_13b')
+  error_arc_14b <- callModule(mod_error_check_archivist, 'error_arc_14b')
+  error_arc_15b <- callModule(mod_error_check_archivist, 'error_arc_15b')
+  error_arc_16b <- callModule(mod_error_check_archivist, 'error_arc_16b')
+  error_arc_17b <- callModule(mod_error_check_archivist, 'error_arc_17b')
+  error_arc_18b <- callModule(mod_error_check_archivist, 'error_arc_18b')
+  error_arc_19b <- callModule(mod_error_check_archivist, 'error_arc_19b')
+  error_arc_20b <- callModule(mod_error_check_archivist, 'error_arc_20b')
+  error_arc_21b <- callModule(mod_error_check_archivist, 'error_arc_21b')
+  error_arc_22b <- callModule(mod_error_check_archivist, 'error_arc_22b')
+  error_arc_23b <- callModule(mod_error_check_archivist, 'error_arc_23b')
+  
   # Create a reactive object for capturing any errors by part
   error_list_1 <- reactive({
     c(error_1(), error_2(), error_3(), error_4(), error_5(), error_6(),
       error_7(), error_8(), error_9(), error_10(), error_11(), error_12())
   })
+  
+  # error_list_1b <- reactive({
+  #   c(error_1b(), error_2b(), error_3b(), error_4b(), error_5b(), error_6b(),
+  #     error_7b(), error_8b(), error_9b(), error_10b(), error_11b(), error_12b())
+  # })
+  # 
   any_errors_part_1 <- reactive({
     el1 <- error_list_1()
     message('el1 is')
@@ -552,12 +752,31 @@ app_server <- function(input, output, session) {
     out
   })
   
+  # any_errors_part_1b <- reactive({
+  #   el1 <- error_list_1b()
+  #   message('el1 is')
+  #   print(el1)
+  #   out <- any(
+  #     el1,
+  #     na.rm = T)
+  #   message('Any errors in part 1b: ', out)
+  #   out
+  # })
+  
   error_list_2 <- reactive({
     c(error_arc_1(), error_arc_2(), error_arc_3(), error_arc_4(), error_arc_5(), error_arc_6(),
       error_arc_7(), error_arc_8(), error_arc_9(), error_arc_10(), error_arc_11(), error_arc_12(),
       error_arc_13(), error_arc_14(), error_arc_15(), error_arc_16(), error_arc_17(), error_arc_18(),
       error_arc_19(), error_arc_20(), error_arc_21(), error_arc_22(), error_arc_23())
   })
+  
+  error_list_2b <- reactive({
+    c(error_arc_1b(), error_arc_2b(), error_arc_3b(), error_arc_4b(), error_arc_5b(), error_arc_6b(),
+      error_arc_7b(), error_arc_8b(), error_arc_9b(), error_arc_10b(), error_arc_11b(), error_arc_12b(),
+      error_arc_13b(), error_arc_14b(), error_arc_15b(), error_arc_16b(), error_arc_17b(), error_arc_18b(),
+      error_arc_19b(), error_arc_20b(), error_arc_21b(), error_arc_22b(), error_arc_23b())
+  })
+  
   any_errors_part_2 <- reactive({
     el2 <- error_list_2()
     message('Error list 2 is: ')
@@ -569,44 +788,71 @@ app_server <- function(input, output, session) {
     out
   })
   
+  any_errors_part_2b <- reactive({
+    el2 <- error_list_2b()
+    message('Error list 2b is: ')
+    print(el2)
+    out <- any(
+      el2,
+      na.rm = T)
+    message('Any errors in part 2b: ', out)
+    out
+  })
+  
   list_3_input <- reactive({
-    
     message('---Setting up the list_3_input reactive object')
-    
     # See if "no errors" were declared
     ne1 <- input$no_errors
     ne2 <- input$no_errors_arc
-    
     # See if any errors were ticked
     ae1 <- any_errors_part_1()
     ae2 <- any_errors_part_2()
-    
     # If any error was marked on #7 the information about each error will feed List 3: ICFs to be corrected and be submitted to the server.
     if(ae2){
-      
       # Get the part 2 errors
       e2_index <- error_list_2()
-      
       # Get the person-level data
       p2 <- dfr()
       e2 <- error_list[e2_index]
-
-      # Combine them
-      # save(e2_index, p2, e2, ne1, ne2, ae1, ae2, file = paste0('/tmp/j', gsub('.', '',
-      #                                                                        as.numeric(Sys.time()), fixed = T), '.RData'))
       combined <- tibble(Error = e2)
-      if(nrow(p2) > 0){ # avoids very temporary short errors. not clear why
+      if(nrow(p2) > 0 & nrow(combined) > 0){ # avoids very temporary short errors. not clear why
         for(j in 1:ncol(p2)){
-          message(names(p2)[j])
           combined[,names(p2)[j]] <- p2[,j]
         }
       }
       combined
-      
     } else {
       NULL
     }
-    
+  })
+  
+  list_3_inputb <- reactive({
+    message('---Setting up the list_3_inputb reactive object')
+    # See if "no errors" were declared
+    ne2 <- input$no_errors_arcb
+    # See if any errors were ticked
+    ae2 <- any_errors_part_2b()
+    if(ae2){
+      # Get the part 2 errors
+      e2_index <- error_list_2b()
+      # Get the person-level data
+      p2 <- dfr2()
+      e2 <- error_list[e2_index]
+      combined <- tibble(Error = e2)
+      # save(combined, e2, p2, e2_index, ae2, ne2, file = '/tmp/xyz2.RData')
+      
+      if(nrow(p2) > 0 & nrow(combined) > 0){ # avoids very temporary short errors. not clear why
+        # Remove previous info on the error
+        p2$Error <- p2$archivist <- p2$verification_date <- NULL
+        p2 <- p2[1,] # we only want info about the individual, not each error
+        for(j in 1:ncol(p2)){
+          combined[,names(p2)[j]] <- p2[,j]
+        }
+      }
+      combined
+    } else {
+      NULL
+    }
   })
   
   output$ui_arc_end <- renderUI({
@@ -644,25 +890,72 @@ app_server <- function(input, output, session) {
         out <- h3(out)
       }
     }
-    
-    
     return(out)
   })
 
+  output$ui_arc_endb <- renderUI({
+    out <- NULL
+    
+    # See if "no errors" were declared
+    # ne1 <- input$no_errorsb
+    ne2 <- input$no_errors_arcb
+    
+    # See if any errors were ticked
+    # ae1 <- any_errors_part_1b()
+    ae2 <- any_errors_part_2b()
+    
+    combined <- list_3_inputb()
+    if(!is.null(combined)){
+      combined_dt <- bohemia::prettify(combined, download_options = TRUE, nrows = nrow(combined))
+      out <-
+        fluidPage(
+          fluidRow(h3('ICFs to be corrected (the below errors will be added to list 3)')),
+          helpText('IMPORTANT: Any previous errors (table at top of page) which are not in the below table will be marked as corrected.'),
+          fluidRow(combined_dt),
+          fluidRow(actionButton('submit_list_3b', 'Submit data'))
+        )
+    } else {
+      if(ne2){
+        # Get the previous errors 
+        x <- dfr2()
+        nn <- nrow(x)
+        word <- ifelse(nn > 1, 'errors have', 'error has')
+        out <- 
+          fluidPage(
+            h4('You are confirming that the below ', nn, ' ', word, ' been corrected and there are no additional errors. The ICF for the below individual will leave "List 3: ICFs to be corrected" and go to "List 2: Correct ICFs". Click below to do so.'),
+            DT::datatable(x),
+            actionButton('submit_list_22', 'Submit data')
+          )
+      } 
+      if(!is.null(out)){
+        out <- h3(out)
+      }
+    }
+    return(out)
+  })
+  
   # Observe submission to lists and move over  
   observeEvent(input$submit_list_1,{
-    showModal( modalDialog(
-      h2("List 1 submission"), "Once data flow is clear, data will be submitted at this point"
-    ))
+    # Capture the row that is getting submitted
+    this_row <- dfr()
+    # Remove the submitted row from the main table
+    new_main <- remove_from('main', this_row$id, data_list = data_list)
+    data_list$main <- new_main
+    # Add the submitted row to list 1
+    new_1 <- add_to_list(1, this_row, data_list = data_list)
+    data_list$list1 <- new_1
+    # Save the data for permanence
+    dl <- reactiveValuesToList(data_list)
+    save(dl, file = 'all_data.RData')
     # Flash the main table
-    x <- dfr()
+    x <- dfr(); x<- dfr2()    
   })
   
   observeEvent(input$submit_list_2,{
     # Capture the row that is getting submitted
     this_row <- dfr()
     # Remove the submitted row from the main table
-    new_main <- remove_from_main(this_row$id, data_list = data_list)
+    new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
     # Add the submitted row to list 2
     new_2 <- add_to_list(2, this_row, data_list = data_list)
@@ -671,14 +964,33 @@ app_server <- function(input, output, session) {
     dl <- reactiveValuesToList(data_list)
     save(dl, file = 'all_data.RData')
     # Flash the main table
-    x <- dfr()
+    x <- dfr(); x<- dfr2()    
+  })
+  
+  observeEvent(input$submit_list_22,{
+    # Capture the row that is getting submitted
+    this_row <- dfr2()
+    
+    # Remove the submitted row from the table 3 (incorrect)
+    new_list <- remove_from(3, this_row$id, data_list = data_list)
+    data_list$list3 <- new_list
+    # Add the submitted row to list 2 (correct) - note, if multiple errors, just add one
+    this_row <- this_row[1,]
+    this_row <- this_row %>% dplyr::select(-Error)
+    new_2 <- add_to_list(2, this_row, data_list = data_list)
+    data_list$list2 <- new_2
+    # Save the data for permanence
+    dl <- reactiveValuesToList(data_list)
+    save(dl, file = 'all_data.RData')
+    # Flash the main table
+    x <- dfr(); x<- dfr2()    
   })
   
   observeEvent(input$submit_list_3,{
     # Capture the row that is getting submitted
     this_row <- list_3_input()
     # Remove the submitted row from the main table
-    new_main <- remove_from_main(this_row$id, data_list = data_list)
+    new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
     # Add the submitted row to list 2
     new_3 <- add_to_list(3, this_row, data_list = data_list)
@@ -687,7 +999,27 @@ app_server <- function(input, output, session) {
     dl <- reactiveValuesToList(data_list)
     save(dl, file = 'all_data.RData')
     # Flash the main table
-    x <- dfr()    
+    x <- dfr(); x<- dfr2()    
+  })
+  
+  observeEvent(input$submit_list_3b,{
+    # Remove any previous errors from the list of errors
+    this_row <- dfr2()
+    new_list <- remove_from(3, this_row$id, data_list = data_list)
+    data_list$list3 <- new_list
+    # Capture the new errors that are being submitted
+    this_row <- list_3_inputb()
+    # Remove the submitted row from the main table (if applicable)
+    new_main <- remove_from('main', this_row$id, data_list = data_list)
+    data_list$main <- new_main
+    # Add the submitted row to list 3 (errors)
+    new_3 <- add_to_list(3, this_row, data_list = data_list)
+    data_list$list3 <- new_3
+    # Save the data for permanence
+    dl <- reactiveValuesToList(data_list)
+    save(dl, file = 'all_data.RData')
+    # Flash the main tables
+    x <- dfr(); x<- dfr2()    
   })
   
   # List UIs
@@ -745,42 +1077,7 @@ app_server <- function(input, output, session) {
       return(h5('No entries yet.'))
     }
   })
-  output$ui_list_4 <- renderUI({
-    out <- data_list$list4
-    ok <- FALSE
-    if(!is.null(out)){
-      if(nrow(out) > 0){
-        ok <- TRUE
-      }
-    }
-    if(ok){
-      return(
-        fluidRow(
-          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
-        )
-      )
-    } else {
-      return(h5('No entries yet.'))
-    }
-  })
-  output$ui_list_5 <- renderUI({
-    out <- data_list$list5
-    ok <- FALSE
-    if(!is.null(out)){
-      if(nrow(out) > 0){
-        ok <- TRUE
-      }
-    }
-    if(ok){
-      return(
-        fluidRow(
-          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
-        )
-      )
-    } else {
-      return(h5('No entries yet.'))
-    }
-  })
+  
 }
 
 #' Add external Resources to the Application
