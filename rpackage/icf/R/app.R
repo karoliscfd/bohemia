@@ -295,6 +295,8 @@ app_server <- function(input, output, session) {
   
   logged_in <- reactiveVal(value = TRUE)
   observeEvent(input$log_in,{
+    
+    
     logged_in(TRUE)
     removeModal()
   })
@@ -309,21 +311,21 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$show, {
-    logged_in(TRUE)
-    # showModal(modalDialog(
-    #   title = "Log in",
-    #   fluidPage(
-    #     fluidRow(
-    #       column(6,
-    #              textInput('email', 'Email')),
-    #       column(6,
-    #              passwordInput('password', 'Password'))
-    #     ),
-    #     fluidRow(
-    #       actionButton('log_in', 'Log in')
-    #     )
-    #   )
-    # ))
+    # logged_in(TRUE)
+    showModal(modalDialog(
+      title = "Log in",
+      fluidPage(
+        fluidRow(
+          column(6,
+                 textInput('email', 'Email')),
+          column(6,
+                 passwordInput('password', 'Password'))
+        ),
+        fluidRow(
+          actionButton('log_in', 'Log in')
+        )
+      )
+    ))
   })
   observeEvent(input$log_out, {
     logged_in(FALSE)
@@ -344,8 +346,18 @@ app_server <- function(input, output, session) {
   })
   output$ui_date_input2 <- renderUI({
     df <- data_list$list3
-    dateInput('date_of_visit2', 'Date of visit',min = min(df$date),
-              max = max(df$date))
+    ok <- FALSE
+    if(!is.null(df)){
+      if(nrow(df) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      dateInput('date_of_visit2', 'Date of visit',min = min(df$date),
+                max = max(df$date)) 
+    } else {
+      NULL
+    }
   })
   
   
@@ -494,9 +506,23 @@ app_server <- function(input, output, session) {
   output$ui_icf_present2 <- renderUI({
     # Observe changes to df to reset
     x <- dfr2()
-    radioButtons('icf_present2', 'Is the ICF present?', choices = c('Yes', 'No'),
-                 selected = character(0),
-                 inline = TRUE)
+    # See if there is anything in the correction list anywa
+    x <- input$date_of_visit2
+    if(!is.null(x)){
+      radioButtons('icf_present2', 'Is the ICF present?', choices = c('Yes', 'No'),
+                   selected = character(0),
+                   inline = TRUE)
+    } else {
+      fluidPage(
+        fluidRow(
+          h3('No pending items to be returned.')
+        ),
+        fluidRow(
+          p('This page will populate after some ICFs have been marked as erroneous.')
+        )
+      )
+    }
+
   })
   
   output$ui_present <- renderUI({
