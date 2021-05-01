@@ -18,65 +18,135 @@ suppressPackageStartupMessages(
 )
 
 library(dplyr)
-if('ifc.RData' %in% dir('/tmp')){
-  load('/tmp/ifc.RData')
-} else {
-  # Get fieldworker data
-  # Define a default fieldworkers data
-  if(!'fids.csv' %in% dir('/tmp')){
-    fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=0'
-    fids1 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Tanzania')
-    fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=409816186'
-    fids2 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Mozambique')
-    fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=179257508'
-    fids3 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Catalonia')
-    fids <- bind_rows(fids1, fids2, fids3)
-    readr::write_csv(fids, '/tmp/fids.csv')
+
+load_base_data <- function(){
+  if('ifc.RData' %in% dir('/tmp')){
+    load('/tmp/ifc.RData')
   } else {
-    fids <- readr::read_csv('/tmp/fids.csv')
+    # Get fieldworker data
+    # Define a default fieldworkers data
+    if(!'fids.csv' %in% dir('/tmp')){
+      fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=0'
+      fids1 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Tanzania')
+      fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=409816186'
+      fids2 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Mozambique')
+      fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=179257508'
+      fids3 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Catalonia')
+      fids <- bind_rows(fids1, fids2, fids3)
+      readr::write_csv(fids, '/tmp/fids.csv')
+    } else {
+      fids <- readr::read_csv('/tmp/fids.csv')
+    }
+    
+    # Read in locations
+    locations <- bohemia::locations
+    
+    
+    
+    # Prepare some dummy data
+    date_choices <- as.Date((Sys.Date()-30):Sys.Date(), origin = '1970-01-01')
+    dates <- sample(date_choices, 1500, replace = TRUE)
+    hh_ids <- paste0(sample(locations$code, 1500, replace = T), '-',
+                     seq(100, 599, by = 1))
+    hh <- 
+      dplyr::tibble(date = dates,
+                    hh_id = hh_ids)
+    out_list <- list()
+    for(i in 1:nrow(hh)){
+      this_hh <- hh$hh_id[i]
+      nn <- sample(1:15, 1)
+      nums <- bohemia::add_zero(1:nn, 3)
+      ids <- paste0(this_hh, '-', nums)
+      out <- dplyr::tibble(hh_id = this_hh,
+                           date = hh$date[i],
+                           id = ids)
+      out_list[[i]] <- out
+    }
+    df <- bind_rows(out_list)
+    df$fid <- sample(fids$bohemia_id[!is.na(fids$first_name)], nrow(df), replace = TRUE)
+    df <- left_join(df, fids %>% mutate(fw_name = paste0(first_name, ' ', last_name)) %>%
+                      dplyr::select(bohemia_id, fw_name), by = c('fid' = 'bohemia_id'))
+    df$hamlet_code <- substr(df$id, 1, 3)
+    df <- left_join(df, locations %>% dplyr::select(code, hamlet = Hamlet), by = c('hamlet_code' = 'code'))
+    df$name <- paste0(sample(babynames::babynames$name, nrow(df), replace = TRUE))
+    df$age <- round(rnorm(n = nrow(df), mean = 50, sd = 20)); df$age <- ifelse(df$age <0, df$age *-1, df$age)
+    df$type_icf <- sample(c('HoH',
+                            'Adult',
+                            'Child 12-18',
+                            'Parent/guardian'),
+                          nrow(df),
+                          replace = TRUE)
+    df$pid <- df$id
+    save(df, file = '/tmp/ifc.RData')
   }
-  
-  # Read in locations
-  locations <- bohemia::locations
-  
-  
-  
-  # Prepare some dummy data
-  date_choices <- as.Date((Sys.Date()-30):Sys.Date(), origin = '1970-01-01')
-  dates <- sample(date_choices, 1500, replace = TRUE)
-  hh_ids <- paste0(sample(locations$code, 1500, replace = T), '-',
-                   seq(100, 599, by = 1))
-  hh <- 
-    dplyr::tibble(date = dates,
-                  hh_id = hh_ids)
-  out_list <- list()
-  for(i in 1:nrow(hh)){
-    this_hh <- hh$hh_id[i]
-    nn <- sample(1:15, 1)
-    nums <- bohemia::add_zero(1:nn, 3)
-    ids <- paste0(this_hh, '-', nums)
-    out <- dplyr::tibble(hh_id = this_hh,
-                         date = hh$date[i],
-                         id = ids)
-    out_list[[i]] <- out
-  }
-  df <- bind_rows(out_list)
-  df$fid <- sample(fids$bohemia_id[!is.na(fids$first_name)], nrow(df), replace = TRUE)
-  df <- left_join(df, fids %>% mutate(fw_name = paste0(first_name, ' ', last_name)) %>%
-                    dplyr::select(bohemia_id, fw_name), by = c('fid' = 'bohemia_id'))
-  df$hamlet_code <- substr(df$id, 1, 3)
-  df <- left_join(df, locations %>% dplyr::select(code, hamlet = Hamlet), by = c('hamlet_code' = 'code'))
-  df$name <- paste0(sample(babynames::babynames$name, nrow(df), replace = TRUE))
-  df$age <- round(rnorm(n = nrow(df), mean = 50, sd = 20)); df$age <- ifelse(df$age <0, df$age *-1, df$age)
-  df$type_icf <- sample(c('HoH',
-                          'Adult',
-                          'Child 12-18',
-                          'Parent/guardian'),
-                        nrow(df),
-                        replace = TRUE)
-  df$pid <- df$id
-  save(df, file = '/tmp/ifc.RData')
+  return(df)
 }
+
+# Function for storing / loading ALL data
+load_all_data <- function(){
+  if('all_data.RData' %in% dir()){
+    message('Loading previously saved "all_data.RData"')
+    load('all_data.RData')
+  } else {
+    message('Creating an "all_data.RData" from scratch')
+    main <- load_base_data()
+    dl <- list(main = main,
+               list1 = data.frame(),
+               list2 = data.frame(),
+               list3 = data.frame(),
+               list4 = data.frame(),
+               list5 = data.frame())
+    save(dl, file = 'all_data.RData')
+  }
+  return(dl)
+}
+
+
+# Define functions for migrating rows between lists
+remove_from_main <- function(this_id, data_list){
+  # Get full original list
+  original_df <- data_list$main
+  # Remove the ID
+  new_df <- original_df %>% filter(!id %in% this_id)
+  # Communicate the result
+  message('Just reduced the main table from ',
+          nrow(original_df), 
+          ' to ',
+          nrow(new_df))
+  # Retun the new table
+  return(new_df)
+}
+add_to_list <- function(list_number, new_row, data_list){
+  # Add the archivist data to the new row
+  new_row$archivist <- 'ARCHIVIST NAME'
+  new_row$verification_date <- Sys.Date()
+  # Get the old one
+  dl <- reactiveValuesToList(data_list)
+
+  old_list <- dl[[paste0('list', list_number)]]
+  # Add the new row
+  print('old list is:')
+  print(old_list)
+  ok <- FALSE
+  if(!is.null(old_list)){
+    if(nrow(old_list) > 0){
+      ok <- TRUE
+    }
+  }
+  if(ok){
+    new_list <- bind_rows(old_list, new_row)
+  } else {
+    new_list <- new_row
+  }
+  # Communicate the result
+  message('Just increased list ', list_number, ' from ',
+          nrow(old_list), 
+          ' to ',
+          nrow(new_list))
+  # Return the new list
+  return(new_list)
+}
+
 
 error_list <- c('Participant did not sign',
                 'Participant did not date',
@@ -120,6 +190,10 @@ app_ui <- function(request) {
             text="ICF Return Verification",
             tabName="icf2"),
           menuItem(
+            text="Lists",
+            tabName='lists'
+          ),
+          menuItem(
             text = 'About',
             tabName = 'about')
         )),
@@ -138,8 +212,7 @@ app_ui <- function(request) {
               
               fluidRow(
                 column(4,
-                       dateInput('date_of_visit', 'Date of visit',min = min(df$date),
-                                 max = max(df$date))),
+                       uiOutput('ui_date_input')),
                 column(4, 
                        uiOutput('ui_hh_id')),
                 column(4, uiOutput('ui_person_id'))),
@@ -159,6 +232,25 @@ app_ui <- function(request) {
             fluidPage(
               h1('Pending input')
             )),
+          tabItem(
+            tabName = 'lists',
+            fluidPage(
+              fluidRow(h1('List 1')),
+              uiOutput('ui_list_1'),
+              
+              fluidRow(h1('List 2')),
+              uiOutput('ui_list_2'),
+              
+              fluidRow(h1('List 3')),
+              uiOutput('ui_list_3'),
+              
+              fluidRow(h1('List 4')),
+              uiOutput('ui_list_4'),
+              
+              fluidRow(h1('List 5')),
+              uiOutput('ui_list_5'),
+            )
+          ),
           tabItem(
             tabName = 'about',
             fluidPage(
@@ -205,7 +297,6 @@ app_server <- function(input, output, session) {
     } else {
       actionButton("show", "Log in")
     }
-    
   })
   
   observeEvent(input$show, {
@@ -230,14 +321,29 @@ app_server <- function(input, output, session) {
   })
   
   # create a reactive dataframe to store data
-  x = reactiveValues(df=NULL)
-  x$df <- data.frame(a = 1:3)
+  dl <- load_all_data()
+  data_list <- reactiveValues(main = dl$main,
+                              list1 = dl$list1,
+                              list2 = dl$list2,
+                              list3 = dl$list3,
+                              list4 = dl$list4,
+                              list5 = dl$list5)
+  
+  # Date input ui
+  output$ui_date_input <- renderUI({
+    df <- data_list$main
+    dateInput('date_of_visit', 'Date of visit',min = min(df$date),
+              max = max(df$date))
+  })
+  
+  
   
   output$ui_hh_id <- renderUI({
     date_of_visit <- input$date_of_visit
     if(is.null(date_of_visit)){
       NULL
     } else {
+      df <- data_list$main
       choices <- df %>% filter(date == date_of_visit) 
       the_choices <- sort(unique(choices$hh_id))
       selectInput('hh_id', 'Household ID', choices = the_choices)
@@ -245,7 +351,7 @@ app_server <- function(input, output, session) {
   })
   
   output$ui_person_id <- renderUI({
-    out <- df
+    out <- data_list$main
     out <- data.frame(out)
     date_of_visit <- input$date_of_visit
     xhid <- input$hh_id
@@ -263,7 +369,7 @@ app_server <- function(input, output, session) {
   })
   
   dfr <- reactive({
-    out <- df
+    out <- data_list$main
     date_of_visit <- input$date_of_visit
     xhid <- input$hh_id
     person_id <- input$person_id
@@ -494,7 +600,7 @@ app_server <- function(input, output, session) {
       combined_dt <- bohemia::prettify(combined, download_options = TRUE, nrows = nrow(combined))
       out <-
         fluidPage(
-          fluidRow(h1('ICFs to be corrected (list 3)')),
+          fluidRow(h1('ICFs to be corrected (the below errors will be added to list 3)')),
           fluidRow(combined_dt),
           fluidRow(actionButton('submit_list_3', 'Submit data'))
         )
@@ -504,7 +610,8 @@ app_server <- function(input, output, session) {
       } else if(ne2){
         out <- 
           fluidPage(
-            h2('Congratulations. You can file this ICF. It will go to "List 2: Correct ICFs". Click below to do so.'),
+            h2('Congratulations. You can file the below ICF. It will go to "List 2: Correct ICFs". Click below to do so.'),
+            DT::datatable(dfr()),
             actionButton('submit_list_2', 'Submit data')
           )
       } 
@@ -516,8 +623,8 @@ app_server <- function(input, output, session) {
     
     return(out)
   })
-  
-  
+
+  # Observe submission to lists and move over  
   observeEvent(input$submit_list_1,{
     showModal( modalDialog(
       h2("List 1 submission"), "Once data flow is clear, data will be submitted at this point"
@@ -525,15 +632,124 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$submit_list_2,{
-    showModal( modalDialog(
-      h2("List 2 submission"), "Once data flow is clear, data will be submitted at this point"
-    ))
+    # Capture the row that is getting submitted
+    this_row <- dfr()
+    # Remove the submitted row from the main table
+    new_main <- remove_from_main(this_row$id, data_list = data_list)
+    data_list$main <- new_main
+    # Add the submitted row to list 2
+    new_2 <- add_to_list(2, this_row, data_list = data_list)
+    data_list$list2 <- new_2
+    # Save the data for permanence
+    dl <- reactiveValuesToList(data_list)
+    save(dl, file = 'all_data.RData')
   })
   
   observeEvent(input$submit_list_3,{
-    showModal( modalDialog(
-      h2("List 3 submission"), "Once data flow is clear, data will be submitted at this point"
-    ))
+    # Capture the row that is getting submitted
+    this_row <- list_3_input()
+    # Remove the submitted row from the main table
+    new_main <- remove_from_main(this_row$id, data_list = data_list)
+    data_list$main <- new_main
+    # Add the submitted row to list 2
+    new_3 <- add_to_list(3, this_row, data_list = data_list)
+    data_list$list3 <- new_3
+    message('CHECKPOINT')
+    # Save the data for permanence
+    dl <- reactiveValuesToList(data_list)
+    save(dl, file = 'all_data.RData')
+  })
+  
+  # List UIs
+  output$ui_list_1 <- renderUI({
+    out <- data_list$list1
+    ok <- FALSE
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      return(
+        fluidRow(
+          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+        )
+      )
+    } else {
+      return(h5('No entries yet.'))
+    }
+  })
+  output$ui_list_2 <- renderUI({
+    out <- data_list$list2
+    ok <- FALSE
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      return(
+        fluidRow(
+          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+        )
+      )
+    } else {
+      return(h5('No entries yet.'))
+    }
+  })
+  output$ui_list_3 <- renderUI({
+    out <- data_list$list3
+    ok <- FALSE
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      return(
+        fluidRow(
+          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+        )
+      )
+    } else {
+      return(h5('No entries yet.'))
+    }
+  })
+  output$ui_list_4 <- renderUI({
+    out <- data_list$list4
+    ok <- FALSE
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      return(
+        fluidRow(
+          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+        )
+      )
+    } else {
+      return(h5('No entries yet.'))
+    }
+  })
+  output$ui_list_5 <- renderUI({
+    out <- data_list$list5
+    ok <- FALSE
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      return(
+        fluidRow(
+          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+        )
+      )
+    } else {
+      return(h5('No entries yet.'))
+    }
   })
 }
 
