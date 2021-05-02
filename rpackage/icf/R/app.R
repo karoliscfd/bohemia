@@ -19,13 +19,17 @@ suppressPackageStartupMessages(
 
 library(dplyr)
 
+temp_dir <- getwd()
+if(!dir.exists(temp_dir)){
+  dir.create(temp_dir)
+}
 load_base_data <- function(){
-  if('ifc.RData' %in% dir('/tmp')){
-    load('/tmp/ifc.RData')
+  if('ifc.RData' %in% dir(temp_dir)){
+    load(paste0(temp_dir, '/ifc.RData'))
   } else {
     # Get fieldworker data
     # Define a default fieldworkers data
-    if(!'fids.csv' %in% dir('/tmp')){
+    if(!'fids.csv' %in% dir(temp_dir)){
       fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=0'
       fids1 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Tanzania')
       fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=409816186'
@@ -33,9 +37,11 @@ load_base_data <- function(){
       fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=179257508'
       fids3 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Catalonia')
       fids <- bind_rows(fids1, fids2, fids3)
-      readr::write_csv(fids, '/tmp/fids.csv')
+      print('WORKING DIRECTORY IS')
+      print(getwd())
+      readr::write_csv(fids, paste0(temp_dir, '/fids.csv'))
     } else {
-      fids <- readr::read_csv('/tmp/fids.csv')
+      fids <- readr::read_csv(paste0(temp_dir, '/fids.csv'))
     }
     
     # Read in locations
@@ -77,7 +83,7 @@ load_base_data <- function(){
                           nrow(df),
                           replace = TRUE)
     df$pid <- df$id
-    save(df, file = '/tmp/ifc.RData')
+    save(df, file = paste0(temp_dir, '/ifc.RData'))
   }
   return(df)
 }
@@ -364,26 +370,39 @@ app_server <- function(input, output, session) {
   
   output$ui_hh_id <- renderUI({
     date_of_visit <- input$date_of_visit
-    if(is.null(date_of_visit)){
-      NULL
-    } else {
+    ok <- FALSE
+    if(!is.null(date_of_visit)){
+      if(length(date_of_visit) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
       message('---Setting up the hh_id input')
       df <- data_list$main
       choices <- df %>% filter(date == date_of_visit) 
       the_choices <- sort(unique(choices$hh_id))
       selectInput('hh_id', 'Household ID', choices = the_choices)
+    } else {
+      NULL
     }
   })
   output$ui_hh_id2 <- renderUI({
     date_of_visit <- input$date_of_visit2
-    if(is.null(date_of_visit)){
-      NULL
-    } else {
+    
+    ok <- FALSE
+    if(!is.null(date_of_visit)){
+      if(length(date_of_visit) > 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
       message('---Setting up the hh_id input')
       df <- data_list$list3
       choices <- df %>% filter(date == date_of_visit) 
       the_choices <- sort(unique(choices$hh_id))
       selectInput('hh_id2', 'Household ID', choices = the_choices)
+    } else {
+      NULL
     }
   })
   
@@ -394,13 +413,15 @@ app_server <- function(input, output, session) {
     xhid <- input$hh_id
     done <- NULL
     if(!is.null(date_of_visit)){
-      if(!is.null(xhid)){
-        out <- out %>% 
-          filter(date == date_of_visit) %>%
-          filter(hh_id == xhid)
-        id_choices <- out$pid
-        message('---Setting up the person_id input')
-        done <- selectInput('person_id', 'Person ID', choices = id_choices)
+      if(length(date_of_visit) > 0){
+        if(!is.null(xhid)){
+          out <- out %>% 
+            filter(date == date_of_visit) %>%
+            filter(hh_id == xhid)
+          id_choices <- out$pid
+          message('---Setting up the person_id input')
+          done <- selectInput('person_id', 'Person ID', choices = id_choices)
+        }
       }
     }
     return(done)
@@ -413,13 +434,15 @@ app_server <- function(input, output, session) {
     xhid <- input$hh_id2
     done <- NULL
     if(!is.null(date_of_visit)){
-      if(!is.null(xhid)){
-        out <- out %>% 
-          filter(date == date_of_visit) %>%
-          filter(hh_id == xhid)
-        id_choices <- out$pid
-        message('---Setting up the person_id input')
-        done <- selectInput('person_id2', 'Person ID', choices = id_choices)
+      if(length(date_of_visit) > 0){
+        if(!is.null(xhid)){
+          out <- out %>% 
+            filter(date == date_of_visit) %>%
+            filter(hh_id == xhid)
+          id_choices <- out$pid
+          message('---Setting up the person_id input')
+          done <- selectInput('person_id2', 'Person ID', choices = id_choices)
+        }
       }
     }
     return(done)
@@ -434,9 +457,12 @@ app_server <- function(input, output, session) {
     xhid <- input$hh_id
     person_id <- input$person_id
     
+    save(out, date_of_visit, xhid, person_id, file = '/tmp/jj.RData')
     
     if(!is.null(date_of_visit)){
-      out <- out %>% filter(date == date_of_visit)
+      if(length(date_of_visit) > 0){
+        out <- out %>% filter(date == date_of_visit)
+      }
     }
     if(!is.null(xhid)){
       out <- out %>% filter(hh_id == xhid)
@@ -463,7 +489,9 @@ app_server <- function(input, output, session) {
     
     
     if(!is.null(date_of_visit)){
-      out <- out %>% filter(date == date_of_visit)
+      if(length(date_of_visit) > 0){
+        out <- out %>% filter(date == date_of_visit)
+      }
     }
     if(!is.null(xhid)){
       out <- out %>% filter(hh_id == xhid)
