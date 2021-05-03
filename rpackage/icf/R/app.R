@@ -19,7 +19,7 @@ suppressPackageStartupMessages(
 
 library(dplyr)
 
-temp_dir <- getwd()
+temp_dir <- tempdir()# getwd()
 if(!dir.exists(temp_dir)){
   dir.create(temp_dir)
 }
