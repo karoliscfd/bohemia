@@ -29,7 +29,7 @@ load_base_data <- function(){
   } else {
     # Get fieldworker data
     # Define a default fieldworkers data
-    if(!'fids.csv' %in% dir(temp_dir)){
+    # if(!'fids.csv' %in% dir(temp_dir)){
       fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=0'
       fids1 <- gsheet::gsheet2tbl(fids_url) %>% dplyr::select(bohemia_id, first_name, last_name, supervisor, Role = details) %>% dplyr::mutate(country = 'Tanzania')
       fids_url <- 'https://docs.google.com/spreadsheets/d/1o1DGtCUrlBZcu-iLW-reWuB3PC8poEFGYxHfIZXNk1Q/edit#gid=409816186'
@@ -39,10 +39,10 @@ load_base_data <- function(){
       fids <- bind_rows(fids1, fids2, fids3)
       print('WORKING DIRECTORY IS')
       print(getwd())
-      readr::write_csv(fids, paste0(temp_dir, '/fids.csv'))
-    } else {
-      fids <- readr::read_csv(paste0(temp_dir, '/fids.csv'))
-    }
+      # readr::write_csv(fids, paste0(temp_dir, '/fids.csv'))
+    # } else {
+      # fids <- readr::read_csv(paste0(temp_dir, '/fids.csv'))
+    # }
     
     # Read in locations
     locations <- bohemia::locations
