@@ -13,8 +13,7 @@ library(bohemia)
 library(qrcode)
 library(tidyverse)
 
-codes <- paste0('ABC-', 111:123)
-image_files <- c('1.png', '2.png')
+codes <- paste0('ABC-', 111:222)
 
 if(!dir.exists('certificates_simple')){
   dir.create('certificates_simple/')
@@ -22,18 +21,48 @@ if(!dir.exists('certificates_simple')){
 
 for(i in 1:length(codes)){
   this_code <- codes[i]
-  for(j in 1:length(image_files)){
-    this_image_file <- image_files[j]
     out_name <- paste0(
       'certificates_simple/',
       this_code,
-      ifelse(this_image_file == '1.png', '_sw', '_pt'),
-      '.png'
+      '.pdf'
     )
     hh_qr_code_print_simple(hh_id = this_code,
                      save_file = out_name,
                      height=3.5,
                      width=3)
+    dev.off()
   }
+
+
+
+# Combine to pp per page
+pp <- 12
+setwd('certificates_simple')
+dir.create('to_print')
+files <- dir()
+files <- files[grepl('.pdf', files)]
+n <- numbers <- length(files)
+ends <- (1:n)[1:n %% pp == 0]
+starts <- ends - (pp-1)
+
+for(i in 1:length(starts)){
+  this_start <- starts[i]
+  this_end <- ends[i]
+  these_numbers <- this_start:this_end
+  # these_numbers <- add_zero(these_numbers, 3)
+  these_files <- paste0(files[these_numbers])
+  file_string <- paste0(these_files, collapse = ' ')
+  out_file <- gsub('.pdf', '', file_string)
+  out_file <- gsub(' ', '', out_file)
+  out_file <- paste0('to_print/', out_file, '.pdf')
+  command_string <- paste0('pdfjam ', file_string,
+                           " --nup 4x3 --landscape --trim '-1cm -1cm -1cm -1cm' --frame true --outfile ",
+                           out_file)
+  system(command_string)
 }
+setwd('to_print')
+system('pdftk *.pdf cat output all.pdf')
+setwd('..')
+setwd('..')
+
 ```
