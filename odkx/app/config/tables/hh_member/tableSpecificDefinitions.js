@@ -3766,7 +3766,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "ind_q1",
       "text": {
         "default": "1. Household member",
-        "pt": "1. Número do agregado familiar",
+        "pt": "1. Membro do agregado familiar",
         "sw": "1. Mwanakaya"
       },
       "_row_num": 427
