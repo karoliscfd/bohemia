@@ -1631,9 +1631,9 @@
       },
       {
         "choice_list_name": "other_recent_disease",
-        "data_value": "Constipation",
+        "data_value": "Cold",
         "display": {
-          "title": "Constipation"
+          "title": "Cold"
         },
         "_row_num": 171
       },
@@ -5285,9 +5285,9 @@
         "_row_num": 127
       },
       {
-        "string_token": "Constipation",
+        "string_token": "Cold",
         "text": {
-          "default": "Constipation",
+          "default": "Cold",
           "pt": "Constipação",
           "sw": "Kufunga choo"
         },
@@ -10072,9 +10072,9 @@
         },
         {
           "choice_list_name": "other_recent_disease",
-          "data_value": "Constipation",
+          "data_value": "Cold",
           "display": {
-            "title": "Constipation"
+            "title": "Cold"
           },
           "_row_num": 171
         },
@@ -13099,10 +13099,10 @@
           },
           "_row_num": 127
         },
-        "Constipation": {
-          "string_token": "Constipation",
+        "Cold": {
+          "string_token": "Cold",
           "text": {
-            "default": "Constipation",
+            "default": "Cold",
             "pt": "Constipação",
             "sw": "Kufunga choo"
           },
@@ -20296,7 +20296,7 @@
         "_aspect": "recent_disease_yes",
         "_key": "displayChoicesList",
         "_type": "object",
-        "_value": "[{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Malaria\",\"display\":{\"title\":\"Malaria\"},\"_row_num\":169},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Respiratory_disease\",\"display\":{\"title\":\"Respiratory_disease\"},\"_row_num\":170},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Constipation\",\"display\":{\"title\":\"Constipation\"},\"_row_num\":171},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Diarrhoea\",\"display\":{\"title\":\"Diarrhoea\"},\"_row_num\":172},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Fever\",\"display\":{\"title\":\"Fever\"},\"_row_num\":173},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Injuries_from_an_accident\",\"display\":{\"title\":\"Injuries_from_an_accident\"},\"_row_num\":174},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Delivery_of_a_baby\",\"display\":{\"title\":\"Delivery_of_a_baby\"},\"_row_num\":175},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Skin_disease\",\"display\":{\"title\":\"Skin_disease\"},\"_row_num\":176},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Worms\",\"display\":{\"title\":\"Worms\"},\"_row_num\":177},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"other\",\"display\":{\"title\":\"other\"},\"_row_num\":178}]"
+        "_value": "[{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Malaria\",\"display\":{\"title\":\"Malaria\"},\"_row_num\":169},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Respiratory_disease\",\"display\":{\"title\":\"Respiratory_disease\"},\"_row_num\":170},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Cold\",\"display\":{\"title\":\"Cold\"},\"_row_num\":171},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Diarrhoea\",\"display\":{\"title\":\"Diarrhoea\"},\"_row_num\":172},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Fever\",\"display\":{\"title\":\"Fever\"},\"_row_num\":173},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Injuries_from_an_accident\",\"display\":{\"title\":\"Injuries_from_an_accident\"},\"_row_num\":174},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Delivery_of_a_baby\",\"display\":{\"title\":\"Delivery_of_a_baby\"},\"_row_num\":175},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Skin_disease\",\"display\":{\"title\":\"Skin_disease\"},\"_row_num\":176},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"Worms\",\"display\":{\"title\":\"Worms\"},\"_row_num\":177},{\"choice_list_name\":\"other_recent_disease\",\"data_value\":\"other\",\"display\":{\"title\":\"other\"},\"_row_num\":178}]"
       },
       {
         "_partition": "Column",

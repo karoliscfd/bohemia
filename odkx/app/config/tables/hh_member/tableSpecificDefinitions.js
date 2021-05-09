@@ -1125,10 +1125,10 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 127
     },
-    "Constipation": {
-      "string_token": "Constipation",
+    "Cold": {
+      "string_token": "Cold",
       "text": {
-        "default": "Constipation",
+        "default": "Cold",
         "pt": "Constipação",
         "sw": "Kufunga choo"
       },

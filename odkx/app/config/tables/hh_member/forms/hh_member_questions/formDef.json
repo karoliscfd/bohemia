@@ -2709,9 +2709,9 @@
       },
       {
         "choice_list_name": "other_recent_disease",
-        "data_value": "Constipation",
+        "data_value": "Cold",
         "display": {
-          "title": "Constipation"
+          "title": "Cold"
         },
         "_row_num": 170
       },
@@ -6889,9 +6889,9 @@
         },
         {
           "choice_list_name": "other_recent_disease",
-          "data_value": "Constipation",
+          "data_value": "Cold",
           "display": {
-            "title": "Constipation"
+            "title": "Cold"
           },
           "_row_num": 170
         },
