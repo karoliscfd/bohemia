@@ -193,7 +193,7 @@ window.odkFrameworkDefinitions = {
       "string_token": "confirm_action_no_label",
       "text": {
         "default": "NO",
-        "pt": "Sim",
+        "pt": "Não",
         "sw": "Hapana"
       },
       "_row_num": 25
@@ -202,7 +202,7 @@ window.odkFrameworkDefinitions = {
       "string_token": "confirm_action_yes_label",
       "text": {
         "default": "YES",
-        "pt": "Não",
+        "pt": "Sim",
         "sw": "Ndiyo"
       },
       "_row_num": 26
