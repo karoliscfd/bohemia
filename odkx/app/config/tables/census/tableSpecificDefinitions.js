@@ -1642,7 +1642,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "hh_roster",
       "text": {
         "default": "Current Household Members Roster",
-        "pt": "Rosto dos membros actuais do agregado",
+        "pt": "Lista de membros do agregado",
         "sw": "Orodha ya sasa ya wanakaya"
       },
       "_row_num": 186
