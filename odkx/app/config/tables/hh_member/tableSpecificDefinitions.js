@@ -1660,7 +1660,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "Treatment_for_epilepsy",
       "text": {
         "default": "Treatment for epilepsy",
-        "pt": "Tratamento para a epilepsia",
+        "pt": "Tratamento para a epilepsia (convulsões)",
         "sw": "Matibabu ya kifafa"
       },
       "_row_num": 187
