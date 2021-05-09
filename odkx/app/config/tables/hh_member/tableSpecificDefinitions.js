@@ -427,7 +427,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "Worms",
       "text": {
         "default": "Worms",
-        "pt": "Parasitas",
+        "pt": "Vermes/Lombrigas",
         "sw": "Minyoo"
       },
       "_row_num": 50
@@ -4036,7 +4036,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "ind_q22",
       "text": {
         "default": "22. Has this participant recently passed worms in the stool in the last 15 days?",
-        "pt": "22. O participante teve parasitas nas fezes nos últimos 15 dias?",
+        "pt": "22. O participante teve vermes/lombrigas nas fezes nos últimos 15 dias?",
         "sw": "22. Je, mshiriki huyu alitoa kinyesi chenye minyoo hivi karibuni katika siku 15 zilizopita?"
       },
       "_row_num": 457
