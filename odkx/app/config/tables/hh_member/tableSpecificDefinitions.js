@@ -4018,7 +4018,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "ind_q20",
       "text": {
         "default": "20. Does this participant have tunga?",
-        "pt": "20. O participante tem tunga?",
+        "pt": "20. O participante tem tunga? (matequenha)",
         "sw": "20. Je, mshiriki huyu ana tunga?"
       },
       "_row_num": 455
