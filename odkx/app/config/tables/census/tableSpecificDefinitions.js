@@ -2303,8 +2303,8 @@ window.odkTableSpecificDefinitions = {
     "q29": {
       "string_token": "q29",
       "text": {
-        "default": "29. Who has signed the informed consent?",
-        "pt": "29. Quem assinou o consentimento informado?",
+        "default": "29. Who has signed the household informed consent?",
+        "pt": "29. Quem assinou o consentimento informado do agregado?",
         "sw": "29. Ni nani aliyeweka saini fomu ya ridhaa?"
       },
       "_row_num": 261
