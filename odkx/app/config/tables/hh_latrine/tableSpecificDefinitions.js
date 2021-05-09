@@ -76,7 +76,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "latrine_unventilated_slab",
       "text": {
         "default": "Latrine with unventilated slab",
-        "pt": "Latrina com laje ventilada",
+        "pt": "Latrina com laje não ventilada",
         "sw": "Choo cha shimo kisichokuwa na bomba la hewa"
       },
       "_row_num": 10
