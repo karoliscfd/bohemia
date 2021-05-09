@@ -4000,7 +4000,7 @@ window.odkTableSpecificDefinitions = {
       "string_token": "ind_q18",
       "text": {
         "default": "18. Does this participant have any deficiency, lesion or invalidity?",
-        "pt": "18. O participante tem alguma deficiência, lesão ou invalidez?",
+        "pt": "18. O participante vive com alguma deficiência, lesão ou invalidez?",
         "sw": "18. Mshiriki huyu ana upungufu wowote, jeraha au ugonjwa?"
       },
       "_row_num": 453
