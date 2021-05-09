@@ -16,3 +16,4 @@ scripts/local_dev_data_setup.txt
 logs
 tmp
 *.pem
+*.DS_Store
