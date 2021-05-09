@@ -7514,7 +7514,7 @@
         "string_token": "members_left",
         "text": {
           "default": "7. Are all of these members still part of this household?",
-          "pt": "7. Todos esses membros ainda fazem parte desta agregado?",
+          "pt": "7. Todos esses membros ainda fazem parte deste agregado?",
           "sw": "7. Je, washiriki wote bado ni sehemu ya kaya hii?"
         },
         "_row_num": 188
@@ -12720,7 +12720,7 @@
           "string_token": "members_left",
           "text": {
             "default": "7. Are all of these members still part of this household?",
-            "pt": "7. Todos esses membros ainda fazem parte desta agregado?",
+            "pt": "7. Todos esses membros ainda fazem parte deste agregado?",
             "sw": "7. Je, washiriki wote bado ni sehemu ya kaya hii?"
           },
           "_row_num": 188
