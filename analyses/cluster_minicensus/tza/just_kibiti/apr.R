@@ -617,7 +617,7 @@ if('master.RData' %in% dir()){
   master_pts <- do.call('rbind', master_pts_list)
   master_hull <- do.call('rbind', master_hull_list)
   master_buf <- do.call('rbind', master_buf_list)
-  save(master_poly, master_pts, master_hull, master_buf, file = 'master6.RData')
+  save(master_poly, master_pts, master_hull, master_buf, file = 'master.RData')
 }
 
 ######################## DELETE THE BELOW
@@ -810,6 +810,14 @@ if('all_pts.RData' %in% dir()){
   all_pts <- do.call('rbind', contaminant_list)
   save(all_pts, file = 'all_pts.RData')
 }
+
+
+# Can we do it with just kibiti
+charf <- master_pts@data %>%
+  filter(iter_buffer_distance == 400,
+         iter_n_children == 20)
+
+table(charf$cluster)
 
 # Plot of percent contamination 
 cols <- c('black', 'red', 'darkorange')

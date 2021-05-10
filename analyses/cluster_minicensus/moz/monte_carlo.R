@@ -639,6 +639,40 @@ if(read_sims){
   }
 }
 
+# Charfudin requested "final" assignments (early May 2021), via emails with Carlos
+charf <- master_pts@data %>%
+  filter(iter_buffer_distance == 400,
+         iter_n_children == 20) %>%
+  filter(sim == dplyr::first(sim))
+write_csv(charf, '~/Desktop/hh_level.csv')
+
+hamlet_level <- charf %>%
+  group_by(code) %>%
+  summarise(clusters_in_hamlet = length(unique(cluster)),
+            statuses_in_hamlet = length(unique(status)),
+            clusters = paste0(sort(unique(cluster)), collapse = ';'),
+            statuses = paste0(sort(unique(status)), collapse = ';'))
+hamlet_level <- left_join(locations %>%
+                 dplyr::filter(Country == 'Mozambique') %>%
+                 dplyr::select(District, Ward, Village, Hamlet,
+                               code),
+               hamlet_level) %>%
+  arrange(code)
+write_csv(hamlet_level, '~/Desktop/hamlet_level.csv')
+
+cluster_level <- 
+  charf %>%
+  group_by(cluster) %>%
+  summarise(n_hamlets = length(unique(code)),
+            hamlets = paste0(sort(unique(code)), collapse = ';'))
+write_csv(cluster_level, '~/Desktop/cluster_level.csv')
+
+status_level <- charf %>%
+  group_by(status) %>%
+  summarise(n_hamlets = length(unique(code)),
+            hamlets = paste0(sort(unique(code)), collapse = ';'))
+write_csv(status_level, '~/Desktop/status_level.csv')
+
 # Write a csv of outputs for Carlos
 if(read_sims){
   data_list <- list()

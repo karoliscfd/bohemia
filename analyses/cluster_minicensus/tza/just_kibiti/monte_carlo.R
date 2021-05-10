@@ -85,6 +85,24 @@ if('pre_load.RData' %in% dir()){
                                           NA)))
   }
   
+  ##################################################################
+  ### REMOVE RUFIJI, JUST KEEP KIBITI ##############################
+  ##################################################################
+  ##################################################################
+  ##################################################################
+  locs <- bohemia::locations
+  keep_locs <- locs %>% filter(District == 'Kibiti DC')
+  
+  pd_tza$minicensus_people$code <- substr(pd_tza$minicensus_people$permid, 1, 3)
+  pd_tza$minicensus_main$code <- pd_tza$minicensus_main$hh_hamlet_code
+  
+  pd_tza$minicensus_people <- pd_tza$minicensus_people %>%
+    filter(code %in% keep_locs$code)
+  pd_tza$minicensus_main <- pd_tza$minicensus_main %>%
+    filter(code %in% keep_locs$code)
+  
+  
+  
   # Get age and household details
   ages <- 
     bind_rows(
@@ -465,8 +483,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(400, 600, 800)
-    n_childrens <- c(10, 15, 20, 25)
+    buffer_distances <- buffer_distances <- c(400)
+    n_childrens <- c(20)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -1010,6 +1028,49 @@ if(read_sims){
     save(all_pts, file = seed_pts_name)
   }
 }
+
+# Can we do it with just kibiti
+charf <- master_pts@data %>%
+  filter(iter_buffer_distance == 400,
+         iter_n_children == 20)
+table(charf$cluster)
+
+# 
+py <- master_pts[master_pts@data$iter_n_children == 20 &
+                   master_pts@data$iter_buffer_distance == 400,]
+py <- spTransform(py, proj4string(ruf2))
+
+px <- master_hull[master_hull@data$iter_n_children == 20 &
+                    master_hull@data$iter_buffer_distance == 400,]
+px <- spTransform(px, proj4string(ruf2))
+
+pz <- master_buf[master_buf@data$iter_n_children == 20 &
+                   master_buf@data$iter_buffer_distance == 400,]
+px <- spTransform(px, proj4string(ruf2))
+pz <- spTransform(pz, proj4string(ruf2))
+gx <- gps %>% filter(iso == 'TZA')
+gx <- left_join(gx, locations)
+gx <- gx %>% filter(District != 'Kibiti DC')
+l <- leaflet() %>%
+  addPolygons(data = px) %>% 
+  addPolylines(data = ruf2) %>% 
+  addCircleMarkers(data = py,
+                   fillOpacity = 0.2,
+                   fillColor = 'purple',
+                   radius = 1,
+                   color = 'purple',
+                   popup = py@data$under5s) %>%
+  addCircleMarkers(data = gx,
+                   fillOpacity = 0.2,
+                   fillColor = 'black',
+                   radius = 1,
+                   color = 'black',
+                   popup = paste0(gx$hamlet, ' ', gx$code)) %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addPolylines(data = pz, color = 'red') %>%
+  addMeasure(primaryLengthUnit = 'meters') 
+l
+htmlwidgets::saveWidget(l, '~/Desktop/kibiti.html', selfcontained = FALSE)
 
 if(read_sims){
   # Plot of percent contamination
