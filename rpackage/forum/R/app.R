@@ -10,6 +10,7 @@
 #' @import gsheet
 #' @import DT
 #' @import shinyMobile
+#' @import dplyr
 app_ui <- function(request) {
   options(scipen = '999')
   
@@ -36,8 +37,13 @@ app_ui <- function(request) {
             tabName="main",
             fluidPage(
               fluidRow(
-                uiOutput('top_button'),
-                DT::dataTableOutput('contact_table')
+                column(3,
+                       uiOutput('top_button'),
+                       uiOutput('top_button_save'),
+                       uiOutput('ui_selected_row'),
+                       uiOutput('ui_add_row')),
+                column(9, 
+                       DT::dataTableOutput('contact_table'))
               )
             )
           ),
@@ -51,7 +57,7 @@ app_ui <- function(request) {
                      target='_blank', 'Databrew'),
                    align = 'center'),
                 p('Empowering research and analysis through collaborative data science.', align = 'center'),
-                div(a(actionButton(inputId = "email", label = "info@databrew.cc",
+                div(a(actionButton(inputId = "email_us", label = "info@databrew.cc",
                                    icon = icon("envelope", lib = "font-awesome")),
                       href="mailto:info@databrew.cc",
                       align = 'center')),
@@ -74,10 +80,26 @@ app_ui <- function(request) {
 #' @import leaflet
 app_server <- function(input, output, session) {
   
-  logged_in <- reactiveVal(value = TRUE)
+  logged_in <- reactiveVal(value = FALSE)
   observeEvent(input$log_in,{
-    logged_in(TRUE)
-    removeModal()
+    
+    email <- input$email
+    password <- input$password
+    message('email is: ', email)
+    message('password is: ', password)
+    if(email == 'admin' & password == 'admin'){
+      logged_in(TRUE)
+      removeModal()
+    }
+  })
+  
+  observeEvent(logged_in(), {
+    li <- logged_in()
+    if(li){
+      message('LOGGED IN')
+    } else {
+      message('LOGGED OUT')
+    }
   })
   
   output$top_button <- renderUI({
@@ -87,25 +109,94 @@ app_server <- function(input, output, session) {
     } else {
       actionButton("show", "Log in")
     }
-    
+  })
+  
+  output$top_button_save <- renderUI({
+    li <- logged_in()
+    if(li){
+      actionButton("save", "SAVE")
+    } else {
+      NULL
+    }
+  })
+  
+  output$ui_add_row <- renderUI({
+    li <- logged_in()
+    rs <- input$contact_table_rows_selected
+    ok <- FALSE
+    if(li){
+      if(length(rs) == 0){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      h2(actionButton("add_row", "Add entry"))
+    } else {
+      NULL
+    }
+  })
+  
+  output$ui_selected_row <- renderUI({
+    rs <- input$contact_table_rows_selected
+    message('SELECTED ROWS ARE: ')
+    print(rs)
+    ok <- FALSE
+    li <- logged_in()
+    if(li){
+      if(!is.null(rs)){
+        if(length(rs) > 0){
+          ok <- TRUE
+        }
+      }
+    }
+    if(ok){
+      pd <- x$df
+      print('PD is ')
+      print(pd)
+      pd <- pd[rs,]
+      save(pd, file = '/tmp/pd.RData')
+      show_this <- paste0(pd$first_name, ' ',
+             pd$last_name)
+      show_this <- paste0(show_this, collapse = ', ')
+      fluidPage(
+        fluidRow(
+          h3(ifelse(nrow(pd) == 1,
+                    'Selected entry: ',
+                    'Selected entries: ')),
+          p(show_this),
+          h2(actionButton("delete_row", "Delete entry"))
+        )
+      )
+    } else {
+      NULL
+    }
+  })
+  
+  observeEvent(input$delete_row,{
+    rs <- input$contact_table_rows_selected
+    message('Going to delete the following rows: ')
+    print(rs)
+    old_df <- x$df
+    new_df <- old_df[!(1:nrow(old_df)) %in% rs,]
+    x$df <- new_df
   })
   
   observeEvent(input$show, {
-    logged_in(TRUE)
-    # showModal(modalDialog(
-    #   title = "Log in",
-    #   fluidPage(
-    #     fluidRow(
-    #       column(6,
-    #              textInput('email', 'Email')),
-    #       column(6,
-    #              passwordInput('password', 'Password'))
-    #     ),
-    #     fluidRow(
-    #       actionButton('log_in', 'Log in')
-    #     )
-    #   )
-    # ))
+    # logged_in(TRUE)
+    showModal(modalDialog(
+      title = "Log in",
+      fluidPage(
+        fluidRow(
+          column(6,
+                 textInput('email', 'Email')),
+          column(6,
+                 passwordInput('password', 'Password'))
+        ),
+        fluidRow(
+          actionButton('log_in', 'Log in')
+        )
+      )
+    ))
   })
   observeEvent(input$log_out, {
     logged_in(FALSE)
@@ -113,16 +204,24 @@ app_server <- function(input, output, session) {
   
   # create a reactive dataframe to store data
   x = reactiveValues(df=NULL)
-  if(!'df_forum.RData' %in% dir('/tmp')){
-    df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
-    # removing details for now
-    df$details <- NULL
-    df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
-    save(df, file = '/tmp/df_forum.RData')
-  } else {
-    load('/tmp/df_forum.RData')
-  }
-  x$df <- df
+  observeEvent(logged_in(), {
+    li <- logged_in()
+    if(li){
+      # User is logged in, get data
+      if(!'df_forum.RData' %in% dir()){
+        message('Getting data from google docs')
+        df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
+        # removing details for now
+        df$details <- NULL
+        df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
+        save(df, file = 'df_forum.RData')
+      } else {
+        message('Loading up previously saved data')
+        load('df_forum.RData')
+      }
+      x$df <- df
+    }
+  })
   
   
   # put data in table with options for saving a csv 
@@ -140,6 +239,51 @@ app_server <- function(input, output, session) {
   observeEvent(input[["contact_table_cell_edit"]], {
     cellinfo <- input[["contact_table_cell_edit"]]
     x$df <- editData(x$df, input[["contact_table_cell_edit"]], "contact_table")
+  })
+  
+  # Add a row
+  observeEvent(input$add_row, {
+    showModal(modalDialog(
+      title = "Add entry",
+      fluidPage(
+        fluidRow(
+          textInput('add_country', 'Country'),
+          textInput('add_first_name', 'First name'),
+          textInput('add_last_name', 'Last name'),
+          textInput('add_institution', 'Institution'),
+          textInput('add_position', 'Position'),
+          textInput('add_email', 'Email'),
+          textInput('add_phone', 'Phone')
+        ),
+        fluidRow(actionButton('confirm_add', 'Add entry!'))
+      )
+    ))
+  })
+  observeEvent(input$confirm_add, {
+    pd <- tibble(country = input$add_country,
+                 first_name = input$add_first_name,
+                 last_name = input$add_last_name,
+                 institution = input$add_institution,
+                 position = input$add_position,
+                 email = input$add_email,
+                 phone = input$add_phone)
+    old_df <- x$df
+    new_df <- bind_rows(pd, old_df)
+    x$df <- new_df
+    removeModal()
+  })
+  
+  # Save changes
+  observeEvent(input$save, {
+    message('Going to save data')
+    df <- x$df
+    save(df, file = 'df_forum.RData')
+    # Save the history too
+    st <- Sys.time()
+    st <- as.numeric(st)
+    save(df, file = paste0('df_forum_',
+                           st, 
+                           '.RData'))
   })
   
   
@@ -169,32 +313,6 @@ mobile_golem_add_external_resources <- function(){
   
   tags$head(
     
-    # # Facebook OpenGraph tags
-    # tags$meta(property = "og:title", content = share$title),
-    # tags$meta(property = "og:type", content = "website"),
-    # tags$meta(property = "og:url", content = share$url),
-    # tags$meta(property = "og:image", content = share$image),
-    # tags$meta(property = "og:description", content = share$description),
-    # 
-    # # Twitter summary cards
-    # tags$meta(name = "twitter:card", content = "summary"),
-    # tags$meta(name = "twitter:site", content = paste0("@", share$twitter_user)),
-    # tags$meta(name = "twitter:creator", content = paste0("@", share$twitter_user)),
-    # tags$meta(name = "twitter:title", content = share$title),
-    # tags$meta(name = "twitter:description", content = share$description),
-    # tags$meta(name = "twitter:image", content = share$image),
-    # 
-    # # golem::activate_js(),
-    # # golem::favicon(),
-    # # Add here all the external resources
-    # # Google analytics script
-    # includeHTML(system.file('app/www/google-analytics-mini.html', package = 'covid19')),
-    # includeScript(system.file('app/www/script.js', package = 'covid19')),
-    # includeScript(system.file('app/www/mobile.js', package = 'covid19')),
-    # includeScript('inst/app/www/script.js'),
-    
-    # includeScript('www/google-analytics.js'),
-    # If you have a custom.css in the inst/app/www
     tags$link(rel="stylesheet", type="text/css", href="www/custom.css")
     # tags$link(rel="stylesheet", type="text/css", href="www/custom.css")
   )
