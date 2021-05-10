@@ -8347,7 +8347,7 @@
         "string_token": "q43",
         "text": {
           "default": "43. Does the household possess any of the following (mark all applicable):",
-          "pt": "43. O agregado familiar possuir qualquer um dos seguintes (assinalar todos os que se aplicam):",
+          "pt": "43. O agregado familiar possui qualquer um dos seguintes (assinalar todos os que se aplicam):",
           "sw": "43. Je, kaya inamiliki chochote kati ya vitu vifuatavyo (weka alama kwa vyote vinavyo husika):"
         },
         "_row_num": 282
@@ -13553,7 +13553,7 @@
           "string_token": "q43",
           "text": {
             "default": "43. Does the household possess any of the following (mark all applicable):",
-            "pt": "43. O agregado familiar possuir qualquer um dos seguintes (assinalar todos os que se aplicam):",
+            "pt": "43. O agregado familiar possui qualquer um dos seguintes (assinalar todos os que se aplicam):",
             "sw": "43. Je, kaya inamiliki chochote kati ya vitu vifuatavyo (weka alama kwa vyote vinavyo husika):"
           },
           "_row_num": 282
