@@ -12,7 +12,7 @@
     <script defer src="../../system/tables/js/odkTables.js"></script>
 
     <script defer src="js/localize.js"></script>
-    <script defer src="js/enterFwId.js"></script>
+    <script defer src="js/manualFwId.js"></script>
 </head>
 
 <body>
@@ -20,15 +20,12 @@
     <h1 class="text-uppercase text-center my-5" data-localize="fw_id_title"></h1>
 
     <main class="container-fluid mt-3">
-        <form id="enterFwIdForm">
+        <form id="manualFwIdForm">
             <div class="form-group">
                 <label for="fwIdInput" data-localize="fw_id_title"></label>
-                <button type="button" class="btn btn-dark d-block mb-2" id="enterFwIdScan" data-localize="scan_button"></button>
-                <input type="tel" class="form-control" id="fwIdInput" readonly>
+                <input type="tel" class="form-control" id="fwIdInput">
             </div>
             <button type="submit" class="btn btn-primary" data-localize="submit_button"></button>
-            <br /><br /><br /><br /><br />
-            <button type="button" class="btn btn-light d-block mb-2" id="manualFwIdEntry" data-localize="qr_hint"></button>
         </form>
     </main>
 </div>
