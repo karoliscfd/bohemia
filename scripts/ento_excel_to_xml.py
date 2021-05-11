@@ -34,3 +34,22 @@ shutil.move('entoa2.xlsx', '../forms/entoa2/entoa2.xlsx')
 shutil.move('entoa2.xml',  '../forms/entoa2/entoa2.xml')
 
 print('Done. Docs in forms/entoa2.')
+
+## ENTO A3
+
+s = ezsheets.Spreadsheet('https://docs.google.com/spreadsheets/d/1hKpS9WNWjUKNdMSNg6EFAZVY9O4ytysFizMiNENdTCw/edit#gid=0')
+s.downloadAsExcel()
+
+## Convert to xml
+os.system('xls2xform entoa3.xlsx entoa3.xml ')
+
+# Move
+if not os.path.isdir('../forms/entoa3/'):
+    os.mkdir('../forms/entoa3')
+shutil.move('entoa3.xlsx', '../forms/entoa3/entoa3.xlsx')
+shutil.move('entoa3.xml',  '../forms/entoa3/entoa3.xml')
+
+print('Done. Docs in forms/entoa3.')
+
+
+
