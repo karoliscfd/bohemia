@@ -309,7 +309,7 @@ if('pre_load.RData' %in% dir()){
   
   # Define the relationship between n children and n clusters
   library(readxl)
-  sizes_df <- read_excel('Children cluster size etcTZA.xlsx', skip = 0)
+  sizes_df <- read_excel('20210413 Children numbers eligible enrolled followed final.xlsx', sheet = 2, skip = 0)
   sizes_df <- sizes_df[,c(1,6)]
   names(sizes_df) <- c('n_children', 'n_clusters')
   sizes_df <- sizes_df[1:31,]
@@ -1052,14 +1052,9 @@ gx <- gps %>% filter(iso == 'TZA')
 gx <- left_join(gx, locations)
 gx <- gx %>% filter(District != 'Kibiti DC')
 l <- leaflet() %>%
-  addPolygons(data = px) %>% 
+  addPolygons(data = px,
+              popup = paste0('Cluster: ', px$cluster)) %>% 
   addPolylines(data = ruf2) %>% 
-  addCircleMarkers(data = py,
-                   fillOpacity = 0.2,
-                   fillColor = 'purple',
-                   radius = 1,
-                   color = 'purple',
-                   popup = py@data$under5s) %>%
   addCircleMarkers(data = gx,
                    fillOpacity = 0.2,
                    fillColor = 'black',
@@ -1068,9 +1063,15 @@ l <- leaflet() %>%
                    popup = paste0(gx$hamlet, ' ', gx$code)) %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
   addPolylines(data = pz, color = 'red') %>%
-  addMeasure(primaryLengthUnit = 'meters') 
+  addMeasure(primaryLengthUnit = 'meters') %>%
+  addCircleMarkers(data = py,
+                   fillOpacity = 0.2,
+                   fillColor = 'purple',
+                   radius = 1,
+                   color = 'purple',
+                   popup = paste0('Status: ', py$status, '. ', py$n_children))
 l
-htmlwidgets::saveWidget(l, '~/Desktop/kibiti.html', selfcontained = FALSE)
+htmlwidgets::saveWidget(l, '~/Desktop/kibiti2.html', selfcontained = FALSE)
 
 if(read_sims){
   # Plot of percent contamination
