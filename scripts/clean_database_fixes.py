@@ -5031,6 +5031,153 @@ implement(id='cook_time_to_water_mismatch_9c1861c8-1200-49c8-90aa-cb33eadd33d2',
 
 implement(id='note_material_warning_cf84b106-8f4b-467e-8a1d-24cca47588df', query = "UPDATE clean_minicensus_main SET hh_main_building_type = 'traditional_mud_house' WHERE instance_id='cf84b106-8f4b-467e-8a1d-24cca47588df'", who='Xing Brew')
 
+# Joe, 13 may 2021
+implement(id = 'repeat_hh_id_enumerations_121d88e3-88f3-4386-9cdc-2c1f4a38acf1,ebb1f27d-a07d-45f5-8170-0f89d9581750', query = "UPDATE clean_enumerations SET agregado='DEA-051' WHERE instance_id='121d88e3-88f3-4386-9cdc-2c1f4a38acf1'", who = 'Joe Brew')
+
+implement(id = 'rrepeat_hh_id_enumerations_4af63db0-840b-4248-af82-9ddfab124992,7e23e580-3428-4ecb-a0e7-7efa1ead5d59', query = "UPDATE clean_enumerations SET agregado='DEA-082' WHERE instance_id='7e23e580-3428-4ecb-a0e7-7efa1ead5d59'", who = 'Joe Brew')
+
+iid="'611d1c3f-6614-43fb-b8e1-ec5aaaccdcc5'"
+implement(id = 'repeat_hh_id_enumerations_0117bfd9-646b-471b-9280-05518dd221cf,611d1c3f-6614-43fb-b8e1-ec5aaaccdcc5', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+implement(id = 'repeat_hh_id_enumerations_82ad6c3e-05a7-4238-b735-5e658e155db4,c143beea-152d-4d4d-a8df-bac8fe028717,e83622b2-2c69-469a-9e5a-d519af1c7269', query = "UPDATE clean_enumerations SET agregado='DEA-107' WHERE instance_id='c143beea-152d-4d4d-a8df-bac8fe028717'; UPDATE clean_enumerations SET agregado='DEA-108' WHERE instance_id='e83622b2-2c69-469a-9e5a-d519af1c7269';", who = 'Joe Brew')
+
+iid="'77529b3d-783c-41eb-922e-eaf69499c0c0'"
+implement(id = 'repeat_hh_id_enumerations_0117bfd9-646b-471b-9280-05518dd221cf,611d1c3f-6614-43fb-b8e1-ec5aaaccdcc5', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+iid="'e4534c89-1d37-47b7-85e6-f56b461acc2e'"
+implement(id = 'repeat_hh_id_enumerations_614a8b10-3214-45c4-a4e6-92aae498087c,e4534c89-1d37-47b7-85e6-f56b461acc2e', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+iid="'322a177c-8edb-4756-a96d-e54c9cdd3209'"
+implement(id = 'repeat_hh_id_enumerations_322a177c-8edb-4756-a96d-e54c9cdd3209,40639067-ee74-41bf-ab72-476bcfdd54ff', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+iid="'c15b41e4-60aa-4a21-96d1-b69f1b5f0821'"
+implement(id = 'repeat_hh_id_enumerations_1a086387-f7d7-4fe1-9d98-2db196d8a13e,c15b41e4-60aa-4a21-96d1-b69f1b5f0821', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+iid="'9941fdd0-c3f4-41e7-a293-08522510ec4f'"
+implement(id = 'repeat_hh_id_enumerations_9941fdd0-c3f4-41e7-a293-08522510ec4f,a8d2bc76-64d7-4c17-a1c8-edb8031c4937', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+iid="'491cdc1a-09a9-4a38-b6e1-11aebaec1d7b'"
+implement(id = 'repeat_hh_id_enumerations_491cdc1a-09a9-4a38-b6e1-11aebaec1d7b,fc9fcc4b-8f96-4715-95bc-3f6ed33c323b', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+implement(id = 'va_wrong_country_c657b265-0e32-4629-a51b-a80ef5a9e7f4', query = "UPDATE clean_va SET death_id='MUB-121-702' WHERE instance_id='c657b265-0e32-4629-a51b-a80ef5a9e7f4'", who = 'Joe Brew')
+
+implement(id = 'all_females_eb362187-0354-4b9b-9680-826f09285bf2,a2dbe656-b784-4106-a612-9788f50893fd', is_ok = True)
+
+
+iid="'26469b6c-0582-4421-a835-bc17403a575d'"
+implement(id = 'repeat_hh_id_enumerations_26469b6c-0582-4421-a835-bc17403a575d,53006cea-6119-4788-b029-97c62cde4461,61854df5-e3d6-48ff-bcb1-74bda06bbd18', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
+
+implement(id='note_material_warning_d1c8a306-ed4b-459d-9fa3-ddb232023037', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d1c8a306-ed4b-459d-9fa3-ddb232023037'", who='Joe Brew')
+implement(id='note_material_warning_d28788dd-d3f3-408a-a360-bfb0a8440d0c', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d28788dd-d3f3-408a-a360-bfb0a8440d0c'", who='Joe Brew')
+
+implement(id='note_material_warning_d3418f51-a8e8-446b-b386-05c8b5f4cb02', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d3418f51-a8e8-446b-b386-05c8b5f4cb02'", who='Joe Brew')
+
+implement(id='note_material_warning_d4168a0d-2b4f-4f20-819c-7ac71c4f8fcb', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d4168a0d-2b4f-4f20-819c-7ac71c4f8fcb'", who='Joe Brew')
+
+implement(id='note_material_warning_d532ddb8-ccd7-4c82-af62-d331a2784612', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d532ddb8-ccd7-4c82-af62-d331a2784612'", who='Joe Brew')
+
+implement(id='note_material_warning_d8f479e9-134e-4b77-af18-52d0b6171b44', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='d8f479e9-134e-4b77-af18-52d0b6171b44'", who='Joe Brew')
+
+implement(id='note_material_warning_e26fc73c-553f-4167-ba34-3dbc5067b3e1', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='e26fc73c-553f-4167-ba34-3dbc5067b3e1'", who='Joe Brew')
+
+implement(id='note_material_warning_e43bbd27-bc8a-4617-bc2d-30277aff23fb', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='e43bbd27-bc8a-4617-bc2d-30277aff23fb'", who='Joe Brew')
+
+implement(id='note_material_warning_e74fcf19-99cc-4321-950c-6b16eae71358', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='e74fcf19-99cc-4321-950c-6b16eae71358'", who='Joe Brew')
+
+implement(id='note_material_warning_eb5ff3c7-df48-4084-bd6c-0101ce57593f', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='eb5ff3c7-df48-4084-bd6c-0101ce57593f'", who='Joe Brew')
+
+implement(id='note_material_warning_eefcc126-95ce-4348-8f03-43b1eb8889d8', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks brick_block' WHERE instance_id='eefcc126-95ce-4348-8f03-43b1eb8889d8'", who='Joe Brew')
+
+implement(id='note_material_warning_f61b7c78-dda2-47af-bbf3-67b2e2621c82', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'brick_block' WHERE instance_id='f61b7c78-dda2-47af-bbf3-67b2e2621c82'", who='Joe Brew')
+
+implement(id='note_material_warning_fe74effc-50b0-4897-9514-b6e24cd00901', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='fe74effc-50b0-4897-9514-b6e24cd00901'", who='Joe Brew')
+
+implement(id='too_many_wall_materials_07f38955-5507-463c-a890-b7ab1c3aa8dd', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_blocks' WHERE instance_id='07f38955-5507-463c-a890-b7ab1c3aa8dd'", who='Joe Brew')
+
+implement(id='note_too_many_cattle_warning_52f91443-a8d1-4b84-948a-1fb0d3112f6b', query = "UPDATE clean_minicensus_main SET hh_n_cows_greater_than_1_year = '80' WHERE instance_id='52f91443-a8d1-4b84-948a-1fb0d3112f6b'", who='Joe Brew')
+
+implement(id = 'strange_wid_a7046258-48a2-4afc-ad64-c5b5175333ae', query = "UPDATE clean_minicensus_main SET wid='2' WHERE instance_id='a7046258-48a2-4afc-ad64-c5b5175333ae'")
+
+iid = "'ade9172b-3b03-4254-b252-54e92b9a63e4'"
+implement(id = 'hh_too_young_ade9172b-3b03-4254-b252-54e92b9a63e4', query = "DELETE FROM clean_minicensus_main WHERE instance_id=" + iid + "; ; DELETE FROM clean_minicensus_people WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_death_info WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_hh_sub WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_mosquito_net WHERE instance_id= " + iid + "; DELETE FROM clean_minicensus_repeat_water WHERE instance_id= " + iid + ";", who = 'Joe Brew')
+
+implement(id = 'hh_all_non_adults_2e51a9b8-6c25-4026-b13c-47bc61752a17', query = "UPDATE clean_minicensus_main SET hh_head_dob='1992-06-01' WHERE instance_id='2e51a9b8-6c25-4026-b13c-47bc61752a17'; UPDATE clean_minicensus_people SET dob='1992-06-01' WHERE instance_id='2e51a9b8-6c25-4026-b13c-47bc61752a17' and num='1'; UPDATE clean_minicensus_people SET dob='1995-05-20' WHERE pid='DEX-336-002'; UPDATE clean_minicensus_people SET dob='2014-03-02' WHERE pid='DEX-336-003'; UPDATE clean_minicensus_people SET dob='2018-01-01' WHERE pid='DEX-336-004'; UPDATE clean_minicensus_people SET dob='2020-01-02' WHERE pid='DEX-336-005';")
+
+implement(id = 'hh_too_young_2e51a9b8-6c25-4026-b13c-47bc61752a17', is_ok = True)
+
+implement(id = 'repeat_hh_id_enumerations_56df63cd-bbde-422d-b7e1-726b1c342f52,bc60a08c-a3a4-48e0-9c31-4bf3edfb2b08', query = "UPDATE clean_enumerations SET agregado='VVJ-054' WHERE instance_id='8caa6123-a4a8-4188-b8a2-c912ed0292d5'", who = 'Joe Brew')
+
+iid = "'c6f461f7-f61a-426b-ada2-7da00cfc9be5'"
+implement(id = 'repeat_hh_id_425f18cd-e4a0-42e6-b496-8093b69fe69a,c6f461f7-f61a-426b-ada2-7da00cfc9be5', query = "UPDATE clean_minicensus_main SET hh_id='DEU-303' WHERE instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='DEU-303-001', permid='DEU-303-001' WHERE num='1' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='DEU-303-002', permid='DEU-303-002' WHERE num='2' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='DEU-303-003', permid='DEU-303-003' WHERE num='3' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='DEU-303-004', permid='DEU-303-004' WHERE num='4' and instance_id=" + iid + ";", who = "Joe Brew")
+
+iid = "'1e52cee8-93a6-4e51-8e2d-e4bfa18f9d99'"
+implement(id = 'repeat_hh_id_80034941-284b-47f4-9559-7a098b81608b,1e52cee8-93a6-4e51-8e2d-e4bfa18f9d99', query = "UPDATE clean_minicensus_main SET hh_id='FFF-134' WHERE instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-001', permid='FFF-134-001' WHERE num='1' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-002', permid='FFF-134-002' WHERE num='2' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-003', permid='FFF-134-003' WHERE num='3' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-004', permid='FFF-134-004' WHERE num='4' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-005', permid='FFF-134-005' WHERE num='5' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-006', permid='FFF-134-006' WHERE num='6' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='FFF-134-007', permid='FFF-134-007' WHERE num='7' and instance_id=" + iid + ";",  who = "Joe Brew")
+
+iid = "'08158713-28c8-4b9a-8970-56b78509761a'"
+implement(id = 'repeat_hh_id_fe978bcc-1024-4106-9956-09257769cb92,08158713-28c8-4b9a-8970-56b78509761a', query = "UPDATE clean_minicensus_main SET hh_id='ZVB-209' WHERE instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-001', permid='ZVB-209-001' WHERE num='1' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-002', permid='ZVB-209-002' WHERE num='2' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-003', permid='ZVB-209-003' WHERE num='3' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-004', permid='ZVB-209-004' WHERE num='4' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-005', permid='ZVB-209-005' WHERE num='5' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-006', permid='ZVB-209-006' WHERE num='6' and instance_id=" + iid + ";",  who = "Joe Brew")
+
+
+
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+implement(id = '', query = '', who = 'Joe Brew')
+
 dbconn.commit()
 cur.close()
 dbconn.close()

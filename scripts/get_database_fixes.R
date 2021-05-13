@@ -218,8 +218,15 @@ dbDisconnect(con)
 
 x <- dbGetQuery(conn = con,
                 'select * from minicensus_main;')
+enumerations <- dbGetQuery(conn = con,
+                           'select * from enumerations')
 y <- dbGetQuery(conn = con,
                 'select * from minicensus_repeat_death_info')
+va <- dbGetQuery(conn = con,
+                 'select * from va;')
+people <- dbGetQuery(conn = con, 'select * from minicensus_people;')
+
+z <- people %>% filter(instance_id == '08158713-28c8-4b9a-8970-56b78509761a')
 
 table(y$instance_id %in% x$instance_id)
 table(x$instance_id %in% y$instance_id)
