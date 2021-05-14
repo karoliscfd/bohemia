@@ -160,56 +160,60 @@ if('pre_load.RData' %in% dir()){
     problems
   )
   
+  # Make hulls
+  hull_list <- list()
+  for(i in 1:length(codes)){
+    this_code <- codes[i]
+    this_data <- combined[combined@data$code == this_code,]
+    hull <- gConvexHull(spgeom = this_data, byid = FALSE)
+    hull_list[[i]] <- hull
+    names(hull_list) <- codes
+  }
   
-  save(df, codes, df_sp, problems, combined, file = 'pre_load.RData')
+  
+  
+  save(df, codes, df_sp, problems, combined, hull_list, file = 'pre_load.RData')
 }
 
-x <- combined@data %>% filter(country == 'Mozambique') %>% dplyr::select(hh_id, problematic) %>% mutate(action = ' ')
-write_csv(x,
-          '~/Desktop/hh_moz.csv')
-
-x <- combined@data %>% filter(country == 'Tanzania') %>% dplyr::select(hh_id, problematic) %>% mutate(action = ' ')
-write_csv(x,
-          '~/Desktop/hh_tza.csv')
-
-
-
-# M
-
-# Make hulls
-hull_list <- list()
-for(i in 1:length(codes)){
-  this_code <- codes[i]
-  this_data <- combined[combined@data$code == this_code,]
-  hull <- gConvexHull(spgeom = this_data, byid = FALSE)
-  hull_list[[i]] <- hull
+if(!dir.exists('rdas')){
+  dir.create('rdas')
+  dir.create('rdas/Mozambique')
+  dir.create('rdas/Tanzania')
 }
 
-# Make leaflet
-# cols <- ifelse(combined@data$problematic,
-#                'red', 'blue')
-colors <- rainbow(length(unique(codes)))
-colors <- sample(colors, size = length(colors))
-cols <- colors[as.numeric(factor(combined$code))]
-l <- leaflet() %>%
-  addProviderTiles(providers$Esri.WorldImagery) %>%
-  addMarkers(data = problems,
-             popup = paste0(problems@data$hh_id, '. ',
-                            problems@data$hh_hamlet)) %>%
-  addCircleMarkers(data = combined,
-                   color = cols,
-                   popup = paste0(combined@data$hh_id, '. ',
-                                  combined@data$hh_hamlet),
-                   radius = ifelse(combined@data$problematic, 4, 1),
-                   fillOpacity = ifelse(combined@data$problematic, 0.9, 0.2),
-                   fillColor = cols)
-for(i in 1:length(hull_list)){
-  this_hull <- hull_list[[i]]
-  l <- l %>%
-    addPolylines(data = this_hull,
-                 color = colors[i],
-                 fillColor = colors[i],
-                 fillOpacity = 0.1)
-}
-l
-htmlwidgets::saveWidget(l, '~/Desktop/hamlets.html', selfcontained = FALSE)
+# x <- combined@data %>% filter(country == 'Mozambique') %>% dplyr::select(hh_id, problematic) %>% mutate(action = ' ')
+# write_csv(x,
+#           '~/Desktop/hh_moz.csv')
+# 
+# x <- combined@data %>% filter(country == 'Tanzania') %>% dplyr::select(hh_id, problematic) %>% mutate(action = ' ')
+# write_csv(x,
+#           '~/Desktop/hh_tza.csv')
+
+
+
+
+# colors <- rainbow(length(unique(codes)))
+# colors <- sample(colors, size = length(colors))
+# cols <- colors[as.numeric(factor(combined$code))]
+# l <- leaflet() %>%
+#   addProviderTiles(providers$Esri.WorldImagery) %>%
+#   addMarkers(data = problems,
+#              popup = paste0(problems@data$hh_id, '. ',
+#                             problems@data$hh_hamlet)) %>%
+#   addCircleMarkers(data = combined,
+#                    color = cols,
+#                    popup = paste0(combined@data$hh_id, '. ',
+#                                   combined@data$hh_hamlet),
+#                    radius = ifelse(combined@data$problematic, 4, 1),
+#                    fillOpacity = ifelse(combined@data$problematic, 0.9, 0.2),
+#                    fillColor = cols)
+# for(i in 1:length(hull_list)){
+#   this_hull <- hull_list[[i]]
+#   l <- l %>%
+#     addPolylines(data = this_hull,
+#                  color = colors[i],
+#                  fillColor = colors[i],
+#                  fillOpacity = 0.1)
+# }
+# l
+# htmlwidgets::saveWidget(l, '~/Desktop/hamlets.html', selfcontained = FALSE)
