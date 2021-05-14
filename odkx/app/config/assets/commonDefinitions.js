@@ -530,6 +530,24 @@ window.odkCommonDefinitions = {
         "sw": "Kaya ambazo hazijakamilika"
       },
       "_row_num": 60
+    },
+    "please_wait": {
+      "string_token": "please_wait",
+      "text": {
+        "default": "Please wait…",
+        "pt": "Poir favor agurade...",
+        "sw": "Tafadhali subiri"
+      },
+      "_row_num": 61
+    },
+    "hh_delete_confirm": {
+      "string_token": "hh_delete_confirm",
+      "text": {
+        "default": "Confirm",
+        "pt": "Confirm",
+        "sw": "Confirm"
+      },
+      "_row_num": 62
     }
   },
   "_locales": {
