@@ -14,6 +14,11 @@
     searchParam.member.footer.classList.add('d-none');
 
     $('#hhRosterModal').modal('hide');
+    $('#hhDeleteModal').modal('hide');
+
+    if (!!window.reuseHhId) {
+      clearTimeout(window.reuseHhId);
+    }
 
     console.error(error);
     alert(error);
@@ -46,6 +51,7 @@
 
         var rowId = result.getRowId(i);
         var hhId = result.getData(i, 'hh_id');
+        var hhMinicenced = result.getData(i, 'hh_minicenced');
 
         var fields = newListItem.querySelectorAll('.hh-list-field');
         fields[0].textContent = hhId;
@@ -54,10 +60,12 @@
         var buttons = newListItem.querySelectorAll('button');
         buttons[0].dataset['rowId'] = rowId;
         buttons[0].dataset['hhId'] = hhId;
+        buttons[0].dataset['hhMinicenced'] = hhMinicenced;
         buttons[0].addEventListener('click', hhOnClick);
 
         buttons[1].dataset['rowId'] = rowId;
         buttons[1].dataset['hhId'] = hhId;
+        buttons[1].dataset['hhMinicenced'] = hhMinicenced;
         buttons[1].dataset['geoRowId'] = result.getData(i, 'geo_rowId');
         buttons[1].addEventListener('click', searchParam[type].navOnClick);
 
@@ -66,14 +74,38 @@
     }
   };
 
-  var openHh = function (hhRowId, hhId) {
-    // disable the proceed button before the new roster is populated
-    document.getElementById('hhRosterModalProceed').removeEventListener('click', hhRosterConfirm);
-    document.getElementById('hhRosterModalProceed').dataset['rowId'] = hhRowId;
+  var openHh = function (hhRowId, hhId, hhMinicenced) {
+    // disable the continue button before the new roster is populated
+    var proceedBtn = document.getElementById('hhRosterModalProceed');
+    proceedBtn.removeEventListener('click', hhRosterConfirm);
+    proceedBtn.dataset['rowId'] = hhRowId;
+
+    var continueBtn = document.getElementById('hhRosterModalContinue');
+    continueBtn.removeEventListener('click', hhRosterContinue);
+    continueBtn.dataset['rowId'] = hhRowId;
+    continueBtn.dataset['hhMinicenced'] = hhMinicenced;
+    continueBtn.dataset['fwMoz'] = isFwInMoz();
+    continueBtn.dataset['hhId'] = hhId;
 
     // set the new HH ID and clear the prev. member roster
     document.getElementById('hhRosterModalTitle').textContent = hhId;
     document.getElementById('hhRosterModalBody').textContent = '';
+    document.getElementById('rosterConfirm3Div').classList.add('d-none');
+    document.getElementById('rosterConfirm3').checked = false;
+
+    var rosterConfirm1 = document.getElementById('rosterConfirm1');
+    var rosterConfirm2 = document.getElementById('rosterConfirm2');
+
+    rosterConfirm1.checked = true;
+    rosterConfirm2.checked = true;
+
+    if (hhMinicenced && isFwInMoz()) {
+      rosterConfirm1.addEventListener('change', matchCheckboxListener);
+      rosterConfirm2.addEventListener('change', matchCheckboxListener);
+    } else {
+      rosterConfirm1.removeEventListener('change', matchCheckboxListener);
+      rosterConfirm2.removeEventListener('change', matchCheckboxListener);
+    }
 
     odkData.arbitraryQuery(
       'hh_member',
@@ -95,13 +127,107 @@
           rosterList.appendChild(member);
         }
 
-        document.getElementById('hhRosterModalProceed').addEventListener('click', hhRosterConfirm);
+        document.getElementById('hhRosterModalContinue').addEventListener('click', hhRosterContinue);
+        document.getElementById('hhRosterModalProceed').addEventListener('click', hhRosterContinue);
       },
       callbackFailure
     );
 
     $('#hhRosterModal').modal('show');
-  }
+  };
+
+  var hhRosterContinue = function (evt) {
+    var currTarget = evt.currentTarget;
+    var hhMinicensed = currTarget.dataset['hhMinicenced'] === 'yes';
+
+    var rosterMatch = document.getElementById('rosterConfirm1').checked;
+    var hhIdMatch = document.getElementById('rosterConfirm2').checked;
+    var completeMatch = (rosterMatch && hhIdMatch) || currTarget.id === 'hhRosterModalProceed';
+
+    if (completeMatch) {
+      hhRosterConfirm(evt);
+    } else {
+      if (currTarget.id === 'hhRosterModalContinue' && isFwInMoz() && hhMinicensed && !rosterMatch && hhIdMatch) {
+        // this requires confirmation to delete data
+        if (!document.getElementById('rosterConfirm3').checked) {
+          return;
+        }
+
+        $('#hhDeleteModal').modal();
+
+        // MOZ requires marking all members as migrated
+        // and HH level data removed
+
+        odkData.query(
+          'hh_member',
+          'hh_id = ?',
+          [currTarget.dataset['hhId']],
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          false,
+          function (result) {
+            var resultCount = result.getCount();
+
+            for (var i = 0; i < resultCount; i++) {
+              odkData.updateRow(
+                'hh_member',
+                { 'form_status_hh_member_exit': 1 },
+                result.getRowId(i),
+                function () {},
+                callbackFailure
+              );
+            }
+          },
+          callbackFailure
+        );
+
+        odkData.deleteRow(
+          'census',
+          null,
+          currTarget.dataset['rowId'],
+          function () {},
+          callbackFailure
+        );
+
+        window.reuseHhId = setTimeout(function () {
+          $('#hhDeleteModal').modal('hide');
+          odkTables.addRowWithSurvey(
+            null,
+            'census',
+            'census',
+            null,
+            {
+              fw_id: localStorage.getItem('FW_ID') || null,
+              hh_minicenced: 'no',
+              hh_fw_geolocation: false,
+              hh_new: false,
+              hh_id: currTarget.dataset['hhId'],
+              hh_id_readonly: true,
+              match_roster: false,
+              match_hhid: true
+            }
+          );
+        }, 10000);
+      } else {
+        openSurveyNewHh(rosterMatch, hhIdMatch);
+      }
+    }
+  };
+
+  var matchCheckboxListener = function () {
+    var rosterMatch = document.getElementById('rosterConfirm1').checked;
+    var hhIdMatch = document.getElementById('rosterConfirm2').checked;
+
+    if (!rosterMatch && hhIdMatch) {
+      document.getElementById('rosterConfirm3Div').classList.remove('d-none');
+    } else {
+      document.getElementById('rosterConfirm3Div').classList.add('d-none');
+    }
+  };
 
   var hhRosterConfirm = function (evt) {
     // modified from odkTables.editRowWithSurvey
@@ -114,7 +240,10 @@
       null,
       {
         fw_id: localStorage.getItem('FW_ID') || null,
-        hh_fw_geolocation: true
+        hh_fw_geolocation: true,
+        hh_id_readonly: true,
+        match_roster: true,
+        match_hhid: true
       }
     );
 
@@ -137,10 +266,14 @@
       "org.opendatakit.survey.activities.SplashScreenActivity",
       intentArgs
     );
-  }
+  };
 
   var hhOnClick = function (evt) {
-    openHh(evt.currentTarget.dataset['rowId'], evt.currentTarget.dataset['hhId']);
+    openHh(
+      evt.currentTarget.dataset['rowId'],
+      evt.currentTarget.dataset['hhId'],
+      evt.currentTarget.dataset['hhMinicenced']
+    );
   };
 
   var navOnClick = function (type) {
@@ -152,8 +285,8 @@
           hhId: evt.currentTarget.dataset['hhId']
         },
         'hh_geo_location',
-        searchParam[type].sqlWhereClause('hh_id'),
-        ['%' + localStorage.getItem(searchParam[type].storageKey) + '%'],
+        searchParam[type].sqlWhereClause('hh_id', '_sync_state'),
+        ['%' + localStorage.getItem(searchParam[type].storageKey) + '%', 'deleted'],
         evt.currentTarget.dataset['geoRowId']
       );
     };
@@ -175,8 +308,9 @@
           'hh_member.surname AS hh_surname, ' +
           'hh_geo_location._id AS geo_rowId ' +
           'FROM census LEFT JOIN hh_member ON census.hh_head_new_select = hh_member._id ' +
-          'LEFT JOIN hh_geo_location ON census.hh_id = hh_geo_location.hh_id WHERE ' + searchParam[type].sqlWhereClause('census.hh_id'),
-          ['%' + searchTerm + '%'],
+          'LEFT JOIN hh_geo_location ON census.hh_id = hh_geo_location.hh_id WHERE ' +
+          searchParam[type].sqlWhereClause('census.hh_id', 'census._sync_state'),
+          ['%' + searchTerm + '%', 'deleted'],
           null,
           null,
           cbSuccess,
@@ -188,13 +322,13 @@
 
   var mapOnClick = function (type) {
     return function () {
-      var searchTerm = localStorage.getItem(searchParam[type].storageKey)
+      var searchTerm = localStorage.getItem(searchParam[type].storageKey);
       if (!!searchTerm) {
         odkTables.openTableToMapView(
           {[ACTION_KEY]: MAP_ACTION},
           'hh_geo_location',
-          searchParam[type].sqlWhereClause('hh_id'),
-          ['%' + searchTerm + '%'],
+          searchParam[type].sqlWhereClause('hh_id', '_sync_state'),
+          ['%' + searchTerm + '%', 'deleted'],
           null
         );
       }
@@ -202,14 +336,14 @@
   };
 
   var createNewHhOnClick = function () {
-    openSurveyNewHh(false);
+    openSurveyNewHh(true, true);
   };
 
-  var createNewHhRosterMismatchOnClick = function () {
-    openSurveyNewHh(true);
+  var createNewHhCompleteMismatchOnClick = function () {
+    openSurveyNewHh(false, false);
   }
 
-  var openSurveyNewHh = function (rosterMismatch) {
+  var openSurveyNewHh = function (matchRoster, matchHhId) {
     odkTables.addRowWithSurvey(
       null,
       'census',
@@ -217,10 +351,13 @@
       null,
       {
         fw_id: localStorage.getItem('FW_ID') || null,
+        fw_is_in_moz: isFwInMoz(),
         hh_minicenced: 'no',
-        hh_roster_mismatch: rosterMismatch,
         hh_fw_geolocation: false,
-        hh_new: true
+        hh_new: true,
+        hh_id_readonly: false,
+        match_roster: matchRoster,
+        match_hhid: matchHhId
       }
     );
   }
@@ -260,6 +397,15 @@
       openHh(hhMetadata.hhRowId, hhMetadata.hhId);
     }
   };
+
+  var isFwInMoz = function () {
+    // 300-600, 1300-1600 MOZ
+    // 0-300, 1000-1300 TAZ
+
+    var fwId = Number(localStorage.getItem('FW_ID'));
+
+    return (fwId > 300 && fwId < 600) || (fwId > 1300 && fwId < 1600);
+  }
 
   var configSearch = function (type) {
     searchParam[type].searchBtn = document.getElementById(type + 'SearchButton');
@@ -301,8 +447,8 @@
   var searchParam = {
     hhId: {
       storageKey: 'bohemiaHhSearch',
-      sqlWhereClause: function (column) {
-        return "replace(" + column + ", '-', '') LIKE ?";
+      sqlWhereClause: function (hhIdCol, syncStateCol) {
+        return "replace(" + hhIdCol + ", '-', '') LIKE ? AND " + syncStateCol + " IS NOT ?";
       },
       navOnClick: navOnClick('hhId'),
       processSearchTerm: function () {
@@ -314,9 +460,10 @@
     },
     member: {
       storageKey: 'bohemiaMemberSearch',
-      sqlWhereClause: function (column) {
-        return column +
-          " IN (SELECT DISTINCT hh_id FROM hh_member WHERE lower(replace(name || surname, ' ', '')) LIKE lower(?))";
+      sqlWhereClause: function (hhIdCol, syncStateCol) {
+        return hhIdCol +
+          " IN (SELECT DISTINCT hh_id FROM hh_member WHERE lower(replace(name || surname, ' ', '')) LIKE lower(?))" +
+          " AND " + syncStateCol + " IS NOT ?";
       },
       navOnClick: navOnClick('member'),
       processSearchTerm: function () {
@@ -344,7 +491,7 @@
 
     document.getElementById('hhIdNewHhButton').addEventListener('click', createNewHhOnClick);
     document.getElementById('memberNewHhButton').addEventListener('click', createNewHhOnClick);
-    document.getElementById('hhRosterModalNo').addEventListener('click', createNewHhRosterMismatchOnClick);
+    document.getElementById('hhRosterModalNo').addEventListener('click', createNewHhCompleteMismatchOnClick);
 
     document.getElementById('hhIdAsUnpainted').addEventListener('click', asUnpaintedOnClick);
 

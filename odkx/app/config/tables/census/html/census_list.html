@@ -102,18 +102,38 @@
             <div class="modal-footer">
                 <div class="mr-auto modal-hh-not-painted" data-localize="roster_confirm_not_painted"></div>
                 <div class="mr-auto d-none modal-hh-painted" data-localize="roster_confirm_painted"></div>
-                <ol class="mr-auto d-none modal-hh-painted">
-                    <li data-localize="roster_confirm_1"></li>
-                    <li data-localize="roster_confirm_2"></li>
-                </ol>
+                <div class="mr-auto ml-4 modal-hh-painted">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rosterConfirm1">
+                        <label for="rosterConfirm1" class="custom-control-label" data-localize="roster_confirm_1"></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rosterConfirm2">
+                        <label for="rosterConfirm2" class="custom-control-label" data-localize="roster_confirm_2"></label>
+                    </div>
+                </div>
                 <small class="mr-auto" data-localize="roster_confirm_hint"></small>
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         data-localize="cancel_button"></button>
-                <button type="button" class="btn btn-danger" id="hhRosterModalNo" data-localize="no_button"></button>
-                <button type="button" class="btn btn-success" id="hhRosterModalProceed"
+                <button type="button" class="btn btn-danger modal-hh-not-painted" id="hhRosterModalNo" data-localize="no_button"></button>
+                <button type="button" class="btn btn-success modal-hh-not-painted" id="hhRosterModalProceed"
                         data-localize="yes_button"></button>
+
+                <button type="button" class="btn btn-success d-none modal-hh-painted" id="hhRosterModalContinue">Continue</button>
+                <div class="custom-control custom-checkbox w-100 text-right d-none" id="rosterConfirm3Div">
+                    <input type="checkbox" class="custom-control-input" id="rosterConfirm3">
+                    <label for="rosterConfirm3" class="custom-control-label" data-localize="hh_delete_confirm">This deletes data</label>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-backdrop="static" data-keyboard="false" id="hhDeleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content vh-100">
+            <div class="modal-body" data-localize="please_wait"></div>
         </div>
     </div>
 </div>
