@@ -5034,7 +5034,7 @@ implement(id='note_material_warning_cf84b106-8f4b-467e-8a1d-24cca47588df', query
 # Joe, 13 may 2021
 implement(id = 'repeat_hh_id_enumerations_121d88e3-88f3-4386-9cdc-2c1f4a38acf1,ebb1f27d-a07d-45f5-8170-0f89d9581750', query = "UPDATE clean_enumerations SET agregado='DEA-051' WHERE instance_id='121d88e3-88f3-4386-9cdc-2c1f4a38acf1'", who = 'Joe Brew')
 
-implement(id = 'rrepeat_hh_id_enumerations_4af63db0-840b-4248-af82-9ddfab124992,7e23e580-3428-4ecb-a0e7-7efa1ead5d59', query = "UPDATE clean_enumerations SET agregado='DEA-082' WHERE instance_id='7e23e580-3428-4ecb-a0e7-7efa1ead5d59'", who = 'Joe Brew')
+implement(id = 'repeat_hh_id_enumerations_4af63db0-840b-4248-af82-9ddfab124992,7e23e580-3428-4ecb-a0e7-7efa1ead5d59', query = "UPDATE clean_enumerations SET agregado='DEA-082' WHERE instance_id='7e23e580-3428-4ecb-a0e7-7efa1ead5d59'", who = 'Joe Brew')
 
 iid="'611d1c3f-6614-43fb-b8e1-ec5aaaccdcc5'"
 implement(id = 'repeat_hh_id_enumerations_0117bfd9-646b-471b-9280-05518dd221cf,611d1c3f-6614-43fb-b8e1-ec5aaaccdcc5', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid + ";", who = 'Joe Brew')
@@ -5116,7 +5116,9 @@ implement(id = 'repeat_hh_id_80034941-284b-47f4-9559-7a098b81608b,1e52cee8-93a6-
 iid = "'08158713-28c8-4b9a-8970-56b78509761a'"
 implement(id = 'repeat_hh_id_fe978bcc-1024-4106-9956-09257769cb92,08158713-28c8-4b9a-8970-56b78509761a', query = "UPDATE clean_minicensus_main SET hh_id='ZVB-209' WHERE instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-001', permid='ZVB-209-001' WHERE num='1' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-002', permid='ZVB-209-002' WHERE num='2' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-003', permid='ZVB-209-003' WHERE num='3' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-004', permid='ZVB-209-004' WHERE num='4' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-005', permid='ZVB-209-005' WHERE num='5' and instance_id=" + iid + "; UPDATE clean_minicensus_people SET pid='ZVB-209-006', permid='ZVB-209-006' WHERE num='6' and instance_id=" + iid + ";",  who = "Joe Brew")
 
-
+# Joe 2021-05-15
+iid="'77529b3d-783c-41eb-922e-eaf69499c0c0'"
+implement(id = 'repeat_hh_id_enumerations_77529b3d-783c-41eb-922e-eaf69499c0c0,e510da8b-5b8c-4c40-ac04-9df1bbbf26c7', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid, who = 'Joe Brew')
 dbconn.commit()
 cur.close()
 dbconn.close()
