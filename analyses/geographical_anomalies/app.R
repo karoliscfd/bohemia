@@ -170,6 +170,7 @@ server <- function(input, output) {
         }
         show_all <- input$show_all
         if(show_all){
+            
             cc <- input$country
             
             colors <- rainbow(length(unique(codes)))
@@ -185,10 +186,13 @@ server <- function(input, output) {
                                  color = NA,
                                  radius = 3,
                                  fillOpacity = 0.6,
-                                 layerId = pd@data$instance_id) %>%
-                leaflet::setView(lng = median(these_pts@data$lng),
-                                 lat = median(these_pts@data$lat),
-                                 zoom = 12)
+                                 layerId = pd@data$instance_id) 
+            if(!is.null(these_pts)){
+                l <- l %>%
+                    leaflet::setView(lng = median(these_pts@data$lng),
+                                     lat = median(these_pts@data$lat),
+                                     zoom = 12)
+            }
         }
         show_previous <- input$show_previous
         if(show_previous){
