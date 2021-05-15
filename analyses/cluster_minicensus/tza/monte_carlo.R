@@ -1,4 +1,4 @@
-read_sims <- TRUE
+read_sims <- FALSE
 seedy <- as.numeric(Sys.time())
 # Basic knitr options
 library(knitr)
@@ -416,6 +416,7 @@ create_core <- function(this, eligibles, gt, gd, buffer_distance = 1000,
       suppressMessages({hull <- hull_polygon(pts, hull_type = 'concave')})
       hull <- gBuffer(hull, width = 0.1)
     }
+    proj4string(hull) <- proj4string(households_projected)
     # Now overwrite the pts to make sure that we're getting the full ones (nothing overlaps and slips in)
     ox <- over(households_projected, polygons(hull))
     pts <- households_projected[!is.na(ox),]
@@ -465,8 +466,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(400, 600, 800)
-    n_childrens <- c(10, 15, 20, 25)
+    buffer_distances <- buffer_distances <- c(400, 600)
+    n_childrens <- c(20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -478,7 +479,7 @@ if(read_sims){
         # Loop through each polygon, joining only to adjacent polygons
         # buffer_distance <- 1000
         # n_children <- 35
-        n_clusters <- sizes_df$n_clusters[sizes_df$n_children == n_children]
+        n_clusters <- 1000 # no ceiling! #sizes_df$n_clusters[sizes_df$n_children == n_children] 
         done <- FALSE
         eligibles <- vp
         cluster_counter <- 0
@@ -649,6 +650,52 @@ if(read_sims){
     save(master_poly, master_pts, master_hull, master_buf, file = seed_file_name)
   }
 }
+
+# 2021-05-15
+# https://trello.com/c/MYmwRIUt/84-more-ad-hoc-clustering-for-kibiti-rufiji
+# Simulation for entire territory with 25x600 parameters and NO ceiling (ie, as many clusters as possible)
+sim1 <- master_pts@data %>% 
+  filter(iter_n_children == 25,
+         iter_buffer_distance == 600, 
+         cluster <= 153) %>%
+  left_join(locations %>% dplyr::select(code, District, Hamlet)) %>%
+  left_join(difficulty) %>%
+  arrange(difficulty_value) %>%
+  ungroup
+sim1_agg <- sim1 %>%
+  group_by(code, difficulty_value, District, Hamlet) %>%
+  summarise(n_clusters = length(unique(cluster)),
+         cluster_numbers = paste0(sort(unique(cluster)), collapse = '; '),
+         hh = n(),
+         children = sum(n_children),
+         hh_core = length(which(status == 'core')),
+         hh_buffer = length(which(status == 'buffer'))) %>%
+  arrange(District, difficulty_value)
+
+sim2 <- master_pts@data %>% 
+  filter(iter_n_children == 20,
+         iter_buffer_distance == 400,
+         cluster <= 159) %>%
+  left_join(locations %>% dplyr::select(code, District, Hamlet)) %>%
+  left_join(difficulty) %>%
+  arrange(difficulty_value) %>%
+  ungroup
+sim2_agg <- sim2 %>%
+  group_by(code, difficulty_value, District, Hamlet) %>%
+  summarise(n_clusters = length(unique(cluster)),
+            cluster_numbers = paste0(sort(unique(cluster)), collapse = '; '),
+            hh = n(),
+            children = sum(n_children),
+            hh_core = length(which(status == 'core')),
+            hh_buffer = length(which(status == 'buffer'))) %>%
+  arrange(District, difficulty_value)
+
+dir.create('carlos_kibiti_priorities')
+write_csv(sim1, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_hh.csv')
+write_csv(sim1_agg, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_agg.csv')
+write_csv(sim2, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_hh.csv')
+write_csv(sim2_agg, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_agg.csv')
+save(master_poly,sim2_agg, sim2, sim1_agg, sim1, master_pts, master_hull, master_buf, file = 'carlos_kibiti_priorities/snapshot.RData')
 
 # Write a csv of outputs for Carlos
 if(read_sims){
