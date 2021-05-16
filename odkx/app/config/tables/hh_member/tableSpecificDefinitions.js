@@ -4337,6 +4337,33 @@ window.odkTableSpecificDefinitions = {
         "sw": "(Chagua yote inayohusika)"
       },
       "_row_num": 491
+    },
+    "was_absent_three_times": {
+      "string_token": "was_absent_three_times",
+      "text": {
+        "default": "Has this member been absent three times?",
+        "pt": "Este membro esteve ausente três vezes?",
+        "sw": "Je, mwanakaya huyu amekuwa hayupo mara tatu"
+      },
+      "_row_num": 492
+    },
+    "absent_skip": {
+      "string_token": "absent_skip",
+      "text": {
+        "default": "This member will be skipped",
+        "pt": "Este membro será ignorado",
+        "sw": "Mwanakaya huyu atarukwa"
+      },
+      "_row_num": 493
+    },
+    "ind_participation_q": {
+      "string_token": "ind_participation_q",
+      "text": {
+        "default": "Is this hh member willing to answer the Individual Questionnaire?",
+        "pt": "Este membro do agregado familiar vai participar no Questionário Individual?",
+        "sw": "Je mwanakaya huyu atashiriki katika dodosa la mtu binafsi?"
+      },
+      "_row_num": 494
     }
   }
 }

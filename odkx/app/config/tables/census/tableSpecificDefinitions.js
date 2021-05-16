@@ -3105,24 +3105,6 @@ window.odkTableSpecificDefinitions = {
         "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
       "_row_num": 350
-    },
-    "absent_three_times": {
-      "string_token": "absent_three_times",
-      "text": {
-        "default": "Has this member been absent three times?",
-        "pt": "Este membro esteve ausente três vezes?",
-        "sw": "Je, mwanakaya huyu amekuwa hayupo mara tatu"
-      },
-      "_row_num": 351
-    },
-    "absent_skip": {
-      "string_token": "absent_skip",
-      "text": {
-        "default": "his member will be skipped",
-        "pt": "Este membro será ignorado",
-        "sw": "Mwanakaya huyu atarukwa"
-      },
-      "_row_num": 352
     }
   }
 }
