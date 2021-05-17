@@ -1,4 +1,4 @@
-read_sims <- FALSE
+read_sims <- TRUE
 seedy <- as.numeric(Sys.time())
 # Basic knitr options
 library(knitr)
@@ -690,12 +690,14 @@ sim2_agg <- sim2 %>%
             hh_buffer = length(which(status == 'buffer'))) %>%
   arrange(District, difficulty_value)
 
-dir.create('carlos_kibiti_priorities')
-write_csv(sim1, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_hh.csv')
-write_csv(sim1_agg, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_agg.csv')
-write_csv(sim2, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_hh.csv')
-write_csv(sim2_agg, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_agg.csv')
-save(master_poly,sim2_agg, sim2, sim1_agg, sim1, master_pts, master_hull, master_buf, file = 'carlos_kibiti_priorities/snapshot.RData')
+# dir.create('carlos_kibiti_priorities')
+# write_csv(sim1, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_hh.csv')
+# write_csv(sim1_agg, 'carlos_kibiti_priorities/children_25_buffer_600_clusters_153_agg.csv')
+# write_csv(sim2, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_hh.csv')
+# write_csv(sim2_agg, 'carlos_kibiti_priorities/children_20_buffer_400_clusters_159_agg.csv')
+# save(master_poly,sim2_agg, sim2, sim1_agg, sim1, master_pts, master_hull, master_buf, file = 'carlos_kibiti_priorities/snapshot.RData')
+
+
 
 # Write a csv of outputs for Carlos
 if(read_sims){
@@ -704,6 +706,7 @@ if(read_sims){
     data_list[[i]] <- master_pts_list[[i]]@data
   }
   x <- do.call('rbind', data_list)
+
   
   # Get numbers per different parameters
   pd <- x %>%
@@ -780,9 +783,6 @@ if(read_sims){
               n_pigs_babies = mean(n_pigs_babies))
   carlos_table <- pd
   write_csv(pd, 'carlos3.csv')
-  
-  
-  
 }
 
 
@@ -1066,7 +1066,12 @@ if(read_sims){
     data_list[[i]] <- all_pts_list[[i]]@data
   }
   x <- bind_rows(data_list)
-  
+  data_list <- list()
+  for(i in 1:length(master_pts_list)){
+    data_list[[i]] <- master_pts_list[[i]]@data
+  }
+  x <- do.call('rbind', data_list)
+
   
   x <- x %>%
     mutate(iter_buffer_distance = paste0('Buffer: ', iter_buffer_distance)) %>%

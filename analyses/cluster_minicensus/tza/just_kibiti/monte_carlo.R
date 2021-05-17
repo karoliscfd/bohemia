@@ -48,12 +48,12 @@ if('data.RData' %in% dir()){
   load('data.RData')
 } else {
   pd_moz <- load_odk_data(the_country = 'Mozambique',
-                          credentials_path = '../../../credentials/credentials.yaml',
-                          users_path = '../../../credentials/users.yaml',
+                          credentials_path = '../../../../credentials/credentials.yaml',
+                          users_path = '../../../../credentials/users.yaml',
                           efficient = FALSE)
   pd_tza <- load_odk_data(the_country = 'Tanzania',
-                          credentials_path = '../../../credentials/credentials.yaml',
-                          users_path = '../../../credentials/users.yaml',
+                          credentials_path = '../../../../credentials/credentials.yaml',
+                          users_path = '../../../../credentials/users.yaml',
                           efficient = FALSE)
   is_local <- FALSE
   library(DBI)
@@ -483,8 +483,8 @@ if(read_sims){
     load(seed_file_name)
   } else {
     # Loop through some parameters
-    buffer_distances <- buffer_distances <- c(400)
-    n_childrens <- c(20)
+    buffer_distances <- buffer_distances <- c(400, 600)
+    n_childrens <- c(20, 25)
     iterations <- length(buffer_distances) * length(n_childrens)
     master_counter <- 0
     master_poly_list <- master_pts_list <- master_hull_list <- master_buf_list <- list()
@@ -1080,6 +1080,12 @@ if(read_sims){
   for(i in 1:length(all_pts_list)){
     data_list[[i]] <- all_pts_list[[i]]@data
   }
+  
+  # Joe 2021-05-17
+  # for(i in 1:length(master_pts_list)){
+  #   master_pts_list[[i]] <- master_pts_list[[i]]@data
+  # }
+  
   x <- bind_rows(data_list)
   
   
@@ -1279,7 +1285,7 @@ extra <- read_sims
 # Calculate radius differences at the sweet spot
 if(extra){
   # Get a 1 km border around each household
-  radius_distances <- seq(100, 1200, by = 100)
+  radius_distances <- seq(200, 1000, by = 200)
   full_list <- list()
   for(i in 1:length(radius_distances)){
     this_distance <- radius_distances[i]
