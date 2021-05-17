@@ -3106,23 +3106,13 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 350
     },
-    "absent_three_times": {
-      "string_token": "absent_three_times",
+    "err_ind_quest_incomplete": {
+      "string_token": "err_ind_quest_incomplete",
       "text": {
-        "default": "Has this member been absent three times?",
-        "pt": "Este membro esteve ausente três vezes?",
-        "sw": "Je, mwanakaya huyu amekuwa hayupo mara tatu"
+        "default": "All individual questionnaires must be completed.",
+        "pt": "Todos os questionários individuais devem ser preenchidos."
       },
       "_row_num": 351
-    },
-    "absent_skip": {
-      "string_token": "absent_skip",
-      "text": {
-        "default": "his member will be skipped",
-        "pt": "Este membro será ignorado",
-        "sw": "Mwanakaya huyu atarukwa"
-      },
-      "_row_num": 352
     }
   }
 }

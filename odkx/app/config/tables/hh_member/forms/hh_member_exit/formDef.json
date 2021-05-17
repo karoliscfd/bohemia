@@ -3478,11 +3478,13 @@
         "comment": "Registration",
         "name": "name",
         "type": "text",
+        "elementType": "string(1024)",
         "_row_num": 14
       },
       {
         "name": "surname",
         "type": "text",
+        "elementType": "string(1024)",
         "_row_num": 15
       },
       {
@@ -3565,414 +3567,427 @@
         "_row_num": 29
       },
       {
+        "name": "absent_three_times",
+        "type": "select_one",
+        "valuesList": "yn",
+        "_row_num": 30
+      },
+      {
         "comment": "Member Left",
         "name": "member_where_now",
         "type": "select_one",
         "valuesList": "member_where_now",
-        "_row_num": 30
+        "_row_num": 31
       },
       {
         "name": "member_died_when",
         "type": "birth_date",
-        "_row_num": 31
+        "_row_num": 32
       },
       {
         "name": "member_died_when_dk",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 32
+        "_row_num": 33
       },
       {
         "name": "member_emigrated_when_date",
         "type": "birth_date",
-        "_row_num": 33
+        "_row_num": 34
       },
       {
         "name": "member_emigrated_when_dmy_ago",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 34
+        "_row_num": 35
       },
       {
         "name": "emigrated_where",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 35
+        "_row_num": 36
       },
       {
         "comment": "New Member",
         "name": "new_member_newborn_or_moved_in",
         "type": "select_one",
         "valuesList": "new_member",
-        "_row_num": 36
+        "_row_num": 37
       },
       {
         "name": "new_member_move_in_date",
         "type": "birth_date",
-        "_row_num": 37
+        "_row_num": 38
       },
       {
         "name": "new_member_move_in_select",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 38
+        "_row_num": 39
       },
       {
         "name": "move_from",
         "type": "select_one",
         "valuesList": "in_outside_district",
-        "_row_num": 39
+        "_row_num": 40
       },
       {
         "name": "move_from_district_census",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 40
+        "_row_num": 41
       },
       {
         "name": "move_from_census_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 41
+        "_row_num": 42
       },
       {
         "comment": "New Member (New Household)",
         "name": "new_hh_member_censed",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 42
+        "_row_num": 43
       },
       {
         "name": "new_hh_member_censed_extid_not_possible",
         "type": "select_multiple",
         "valuesList": "not_possible",
-        "_row_num": 43
+        "_row_num": 44
       },
       {
         "comment": "Snake Bites",
         "name": "snake_bite_num_times",
         "type": "integer",
-        "_row_num": 44
+        "_row_num": 45
       },
       {
         "name": "snake_bite_months",
         "type": "select_multiple",
         "valuesList": "month",
-        "_row_num": 45
+        "_row_num": 46
       },
       {
         "name": "snake_bite_miss_work_school",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 46
+        "_row_num": 47
       },
       {
         "name": "snake_bite_miss_work_school_days",
         "type": "integer",
-        "_row_num": 47
+        "_row_num": 48
       },
       {
         "name": "snake_bite_miss_work_school_days_unknown",
         "type": "select_multiple",
         "valuesList": "dk",
-        "_row_num": 48
+        "_row_num": 49
       },
       {
         "name": "snake_bite_occur",
         "type": "select_multiple",
         "valuesList": "bite_occur",
-        "_row_num": 49
+        "_row_num": 50
       },
       {
         "name": "snake_bite_occur_other",
         "type": "text",
-        "_row_num": 50
+        "_row_num": 51
       },
       {
         "name": "snake_bite_outcome",
         "type": "select_one",
         "valuesList": "bite_outcome",
-        "_row_num": 51
-      },
-      {
-        "comment": "Individual Questionnaire",
-        "name": "ind_sign_consent",
-        "type": "select_one",
-        "valuesList": "yn",
         "_row_num": 52
       },
       {
-        "name": "ind_sign_assent",
+        "comment": "Individual Questionnaire",
+        "name": "ind_participation",
         "type": "select_one",
         "valuesList": "yn",
         "_row_num": 53
       },
       {
-        "name": "ind_parent_sign_consent",
+        "name": "ind_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
         "_row_num": 54
       },
       {
-        "name": "ind_parent_sign_who",
-        "type": "select_one_dropdown",
+        "name": "ind_sign_assent",
+        "type": "select_one",
+        "valuesList": "yn",
         "_row_num": 55
       },
       {
-        "name": "ind_under_12_parent_sign_consent",
+        "name": "ind_parent_sign_consent",
         "type": "select_one",
         "valuesList": "yn",
         "_row_num": 56
       },
       {
-        "name": "ind_under_12_parent_sign_consent_who",
+        "name": "ind_parent_sign_who",
         "type": "select_one_dropdown",
         "_row_num": 57
       },
       {
+        "name": "ind_under_12_parent_sign_consent",
+        "type": "select_one",
+        "valuesList": "yn",
+        "_row_num": 58
+      },
+      {
+        "name": "ind_under_12_parent_sign_consent_who",
+        "type": "select_one_dropdown",
+        "_row_num": 59
+      },
+      {
         "name": "ind_who_respondent",
         "type": "select_one_dropdown",
-        "_row_num": 58
+        "_row_num": 60
       },
       {
         "name": "ind_parents_alive",
         "type": "select_one",
         "valuesList": "parents_alive",
-        "_row_num": 59
+        "_row_num": 61
       },
       {
         "name": "ind_rel_hh_head",
         "type": "select_one",
         "valuesList": "relation_to_hh_head",
-        "_row_num": 60
+        "_row_num": 62
       },
       {
         "name": "ind_religion",
         "type": "select_one",
         "valuesList": "ind_religion",
-        "_row_num": 61
+        "_row_num": 63
       },
       {
         "name": "ind_language",
         "type": "select_one_with_other",
         "valuesList": "ind_main_language",
-        "_row_num": 62
+        "_row_num": 64
       },
       {
         "name": "ind_treatment",
         "type": "select_multiple",
+        "elementType": "array(512)",
         "valuesList": "treatment",
-        "_row_num": 63
+        "_row_num": 65
       },
       {
         "name": "ind_chronic_disease",
         "type": "select_multiple",
         "valuesList": "chronic_disease",
-        "_row_num": 64
+        "_row_num": 66
       },
       {
         "name": "ind_chronic_disease_other",
         "type": "text",
-        "_row_num": 65
+        "_row_num": 67
       },
       {
         "name": "ind_recent_disease",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 66
+        "_row_num": 68
       },
       {
         "name": "recent_disease_yes",
         "type": "select_multiple",
         "valuesList": "other_recent_disease",
-        "_row_num": 67
+        "_row_num": 69
       },
       {
         "name": "recent_disease_yes_other",
         "type": "text",
-        "_row_num": 68
+        "_row_num": 70
       },
       {
         "name": "recent_disease_symptoms",
         "type": "select_multiple",
         "valuesList": "other_symptoms",
-        "_row_num": 69
+        "_row_num": 71
       },
       {
         "name": "recent_disease_symptoms_other",
         "type": "text",
-        "_row_num": 70
+        "_row_num": 72
       },
       {
         "name": "recent_disease_seek_care",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 71
+        "_row_num": 73
       },
       {
         "name": "recent_disease_care_type",
         "type": "select_multiple",
         "valuesList": "form_of_care",
-        "_row_num": 72
+        "_row_num": 74
       },
       {
         "name": "recent_disease_care_type_other",
         "type": "text",
-        "_row_num": 73
+        "_row_num": 75
       },
       {
         "name": "ind_malaria_test",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 74
+        "_row_num": 76
       },
       {
         "name": "ind_malaria_test_result",
         "type": "select_one",
         "valuesList": "malaria_test_result",
-        "_row_num": 75
+        "_row_num": 77
       },
       {
         "name": "ind_malaria_treatment",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 76
+        "_row_num": 78
       },
       {
         "name": "ind_malaria_treatment_no",
         "type": "select_one",
         "valuesList": "malaria_no_treatment",
-        "_row_num": 77
+        "_row_num": 79
       },
       {
         "name": "ind_deficiency",
         "type": "select_multiple",
         "valuesList": "disability",
-        "_row_num": 78
+        "_row_num": 80
       },
       {
         "name": "ind_itchy",
         "type": "select_multiple",
         "valuesList": "itchy",
-        "_row_num": 79
+        "_row_num": 81
       },
       {
         "name": "ind_tunga",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 80
+        "_row_num": 82
       },
       {
         "name": "ind_bed_bugs",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 81
+        "_row_num": 83
       },
       {
         "name": "ind_worms",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 82
+        "_row_num": 84
       },
       {
         "name": "wra_period",
         "type": "select_one",
         "valuesList": "lmp",
-        "_row_num": 83
+        "_row_num": 85
       },
       {
         "name": "wra_breastfeed",
         "type": "select_one",
         "valuesList": "breastfeed",
-        "_row_num": 84
+        "_row_num": 86
       },
       {
         "name": "wra_pregnant",
         "type": "select_one",
         "valuesList": "yndkpna",
-        "_row_num": 85
+        "_row_num": 87
       },
       {
         "name": "wra_iptp",
         "type": "select_one",
         "valuesList": "iptp_current",
-        "_row_num": 86
+        "_row_num": 88
       },
       {
         "name": "sleep_net_last_night",
         "type": "select_one",
         "valuesList": "yndk",
-        "_row_num": 87
+        "_row_num": 89
       },
       {
         "name": "sleep_net_last_night_num",
         "type": "integer",
-        "_row_num": 88
+        "_row_num": 90
       },
       {
         "name": "sleep_net_last_night_num_dk",
         "type": "select_one",
         "valuesList": "dk",
-        "_row_num": 89
+        "_row_num": 91
       },
       {
         "name": "time_indoors",
         "type": "select_one",
         "valuesList": "time_indoors",
-        "_row_num": 90
+        "_row_num": 92
       },
       {
         "name": "time_go_bed",
         "type": "select_one",
         "valuesList": "time_bed",
-        "_row_num": 91
+        "_row_num": 93
       },
       {
         "name": "before_bed_activities",
         "type": "select_multiple",
         "valuesList": "before_bed_activity",
-        "_row_num": 92
+        "_row_num": 94
       },
       {
         "name": "time_get_out_bed",
         "type": "select_one",
         "valuesList": "time_awake",
-        "_row_num": 93
+        "_row_num": 95
       },
       {
         "name": "time_go_outside",
         "type": "select_one",
         "valuesList": "time_outdoors",
-        "_row_num": 94
+        "_row_num": 96
       },
       {
         "name": "what_do_before_sunrise",
         "type": "select_multiple",
         "valuesList": "before_sunrise_activity",
-        "_row_num": 95
+        "_row_num": 97
       },
       {
         "name": "travel_abroad",
         "type": "select_one",
         "valuesList": "yn",
-        "_row_num": 96
+        "_row_num": 98
       },
       {
         "name": "travel_countries",
         "type": "select_multiple",
         "valuesList": "travel_countries",
-        "_row_num": 97
+        "_row_num": 99
       },
       {
         "name": "travel_regularly",
         "type": "select_one",
         "valuesList": "ynpna",
-        "_row_num": 98
+        "_row_num": 100
       },
       {
         "name": "travel_regularly_trips",
         "type": "integer",
-        "_row_num": 99
+        "_row_num": 101
       }
     ],
     "settings": [
@@ -7666,6 +7681,7 @@
           }
         ],
         "comment": "Registration",
+        "elementType": "string(1024)",
         "elementKey": "name"
       },
       "surname": {
@@ -7676,6 +7692,7 @@
             "section_name": "model"
           }
         ],
+        "elementType": "string(1024)",
         "elementKey": "surname"
       },
       "dob_day": {
@@ -7844,6 +7861,17 @@
         "valuesList": "absence_reason",
         "elementKey": "absence_reason"
       },
+      "absent_three_times": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 30,
+            "section_name": "model"
+          }
+        ],
+        "valuesList": "yn",
+        "elementKey": "absent_three_times"
+      },
       "member_where_now": {
         "type": "string",
         "valuesList": "member_where_now",
@@ -7853,7 +7881,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 30,
+            "_row_num": 31,
             "section_name": "model"
           }
         ],
@@ -7872,7 +7900,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 31,
+            "_row_num": 32,
             "section_name": "model"
           }
         ],
@@ -7891,7 +7919,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 32,
+            "_row_num": 33,
             "section_name": "model"
           }
         ],
@@ -7909,7 +7937,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 33,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -7928,7 +7956,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 34,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -7943,7 +7971,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 35,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
@@ -7953,7 +7981,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
@@ -7966,7 +7994,7 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -7980,7 +8008,7 @@
         },
         "_defn": [
           {
-            "_row_num": 38,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -7991,7 +8019,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -8002,7 +8030,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -8017,7 +8045,7 @@
         },
         "_defn": [
           {
-            "_row_num": 41,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -8028,7 +8056,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 42,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -8044,7 +8072,7 @@
         },
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -8055,7 +8083,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -8070,7 +8098,7 @@
         },
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -8081,7 +8109,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -8092,7 +8120,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -8106,7 +8134,7 @@
         },
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -8121,7 +8149,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -8132,7 +8160,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -8142,22 +8170,33 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
         "valuesList": "bite_outcome",
         "elementKey": "snake_bite_outcome"
       },
-      "ind_sign_consent": {
+      "ind_participation": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
         "comment": "Individual Questionnaire",
+        "valuesList": "yn",
+        "elementKey": "ind_participation"
+      },
+      "ind_sign_consent": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 54,
+            "section_name": "model"
+          }
+        ],
         "valuesList": "yn",
         "elementKey": "ind_sign_consent"
       },
@@ -8165,7 +8204,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -8176,7 +8215,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -8187,7 +8226,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -8197,7 +8236,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -8208,7 +8247,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -8218,7 +8257,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -8228,7 +8267,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -8239,7 +8278,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -8250,7 +8289,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -8261,7 +8300,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -8276,10 +8315,11 @@
         },
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
+        "elementType": "array(512)",
         "valuesList": "treatment",
         "elementKey": "ind_treatment"
       },
@@ -8291,7 +8331,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -8302,7 +8342,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -8312,7 +8352,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -8327,7 +8367,7 @@
         },
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -8338,7 +8378,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -8352,7 +8392,7 @@
         },
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -8363,7 +8403,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -8373,7 +8413,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -8388,7 +8428,7 @@
         },
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -8399,7 +8439,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -8409,7 +8449,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -8420,7 +8460,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -8431,7 +8471,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -8442,7 +8482,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -8457,7 +8497,7 @@
         },
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -8472,7 +8512,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -8483,7 +8523,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -8494,7 +8534,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -8505,7 +8545,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -8516,7 +8556,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -8527,7 +8567,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -8538,7 +8578,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -8549,7 +8589,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -8560,7 +8600,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -8571,7 +8611,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -8581,7 +8621,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -8592,7 +8632,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -8603,7 +8643,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -8618,7 +8658,7 @@
         },
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -8629,7 +8669,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -8640,7 +8680,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -8655,7 +8695,7 @@
         },
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -8666,7 +8706,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
@@ -8681,7 +8721,7 @@
         },
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 99,
             "section_name": "model"
           }
         ],
@@ -8692,7 +8732,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 100,
             "section_name": "model"
           }
         ],
@@ -8703,7 +8743,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 101,
             "section_name": "model"
           }
         ],
@@ -9242,6 +9282,7 @@
           }
         ],
         "comment": "Registration",
+        "elementType": "string(1024)",
         "elementKey": "name",
         "elementName": "name",
         "elementSet": "data",
@@ -9255,6 +9296,7 @@
             "section_name": "model"
           }
         ],
+        "elementType": "string(1024)",
         "elementKey": "surname",
         "elementName": "surname",
         "elementSet": "data",
@@ -9496,6 +9538,20 @@
         "elementSet": "data",
         "elementPath": "absence_reason"
       },
+      "absent_three_times": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 30,
+            "section_name": "model"
+          }
+        ],
+        "valuesList": "yn",
+        "elementKey": "absent_three_times",
+        "elementName": "absent_three_times",
+        "elementSet": "data",
+        "elementPath": "absent_three_times"
+      },
       "member_where_now": {
         "type": "string",
         "valuesList": "member_where_now",
@@ -9505,7 +9561,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 30,
+            "_row_num": 31,
             "section_name": "model"
           }
         ],
@@ -9527,7 +9583,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 31,
+            "_row_num": 32,
             "section_name": "model"
           }
         ],
@@ -9553,7 +9609,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 32,
+            "_row_num": 33,
             "section_name": "model"
           }
         ],
@@ -9577,7 +9633,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 33,
+            "_row_num": 34,
             "section_name": "model"
           }
         ],
@@ -9603,7 +9659,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 34,
+            "_row_num": 35,
             "section_name": "model"
           }
         ],
@@ -9624,7 +9680,7 @@
             "section_name": "survey"
           },
           {
-            "_row_num": 35,
+            "_row_num": 36,
             "section_name": "model"
           }
         ],
@@ -9637,7 +9693,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 36,
+            "_row_num": 37,
             "section_name": "model"
           }
         ],
@@ -9653,7 +9709,7 @@
         "elementType": "date_no_time",
         "_defn": [
           {
-            "_row_num": 37,
+            "_row_num": 38,
             "section_name": "model"
           }
         ],
@@ -9674,7 +9730,7 @@
         },
         "_defn": [
           {
-            "_row_num": 38,
+            "_row_num": 39,
             "section_name": "model"
           }
         ],
@@ -9691,7 +9747,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 39,
+            "_row_num": 40,
             "section_name": "model"
           }
         ],
@@ -9705,7 +9761,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 40,
+            "_row_num": 41,
             "section_name": "model"
           }
         ],
@@ -9727,7 +9783,7 @@
         },
         "_defn": [
           {
-            "_row_num": 41,
+            "_row_num": 42,
             "section_name": "model"
           }
         ],
@@ -9744,7 +9800,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 42,
+            "_row_num": 43,
             "section_name": "model"
           }
         ],
@@ -9767,7 +9823,7 @@
         },
         "_defn": [
           {
-            "_row_num": 43,
+            "_row_num": 44,
             "section_name": "model"
           }
         ],
@@ -9784,7 +9840,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 44,
+            "_row_num": 45,
             "section_name": "model"
           }
         ],
@@ -9806,7 +9862,7 @@
         },
         "_defn": [
           {
-            "_row_num": 45,
+            "_row_num": 46,
             "section_name": "model"
           }
         ],
@@ -9823,7 +9879,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 46,
+            "_row_num": 47,
             "section_name": "model"
           }
         ],
@@ -9837,7 +9893,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 47,
+            "_row_num": 48,
             "section_name": "model"
           }
         ],
@@ -9858,7 +9914,7 @@
         },
         "_defn": [
           {
-            "_row_num": 48,
+            "_row_num": 49,
             "section_name": "model"
           }
         ],
@@ -9883,7 +9939,7 @@
         },
         "_defn": [
           {
-            "_row_num": 49,
+            "_row_num": 50,
             "section_name": "model"
           }
         ],
@@ -9900,7 +9956,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 50,
+            "_row_num": 51,
             "section_name": "model"
           }
         ],
@@ -9913,7 +9969,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 51,
+            "_row_num": 52,
             "section_name": "model"
           }
         ],
@@ -9923,15 +9979,29 @@
         "elementSet": "data",
         "elementPath": "snake_bite_outcome"
       },
-      "ind_sign_consent": {
+      "ind_participation": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 52,
+            "_row_num": 53,
             "section_name": "model"
           }
         ],
         "comment": "Individual Questionnaire",
+        "valuesList": "yn",
+        "elementKey": "ind_participation",
+        "elementName": "ind_participation",
+        "elementSet": "data",
+        "elementPath": "ind_participation"
+      },
+      "ind_sign_consent": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 54,
+            "section_name": "model"
+          }
+        ],
         "valuesList": "yn",
         "elementKey": "ind_sign_consent",
         "elementName": "ind_sign_consent",
@@ -9942,7 +10012,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 53,
+            "_row_num": 55,
             "section_name": "model"
           }
         ],
@@ -9956,7 +10026,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 54,
+            "_row_num": 56,
             "section_name": "model"
           }
         ],
@@ -9970,7 +10040,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 55,
+            "_row_num": 57,
             "section_name": "model"
           }
         ],
@@ -9983,7 +10053,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 56,
+            "_row_num": 58,
             "section_name": "model"
           }
         ],
@@ -9997,7 +10067,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 57,
+            "_row_num": 59,
             "section_name": "model"
           }
         ],
@@ -10010,7 +10080,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 58,
+            "_row_num": 60,
             "section_name": "model"
           }
         ],
@@ -10023,7 +10093,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 59,
+            "_row_num": 61,
             "section_name": "model"
           }
         ],
@@ -10037,7 +10107,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 60,
+            "_row_num": 62,
             "section_name": "model"
           }
         ],
@@ -10051,7 +10121,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 61,
+            "_row_num": 63,
             "section_name": "model"
           }
         ],
@@ -10065,7 +10135,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 62,
+            "_row_num": 64,
             "section_name": "model"
           }
         ],
@@ -10087,10 +10157,11 @@
         },
         "_defn": [
           {
-            "_row_num": 63,
+            "_row_num": 65,
             "section_name": "model"
           }
         ],
+        "elementType": "array(512)",
         "valuesList": "treatment",
         "elementKey": "ind_treatment",
         "elementName": "ind_treatment",
@@ -10112,7 +10183,7 @@
         },
         "_defn": [
           {
-            "_row_num": 64,
+            "_row_num": 66,
             "section_name": "model"
           }
         ],
@@ -10129,7 +10200,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 65,
+            "_row_num": 67,
             "section_name": "model"
           }
         ],
@@ -10142,7 +10213,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 66,
+            "_row_num": 68,
             "section_name": "model"
           }
         ],
@@ -10164,7 +10235,7 @@
         },
         "_defn": [
           {
-            "_row_num": 67,
+            "_row_num": 69,
             "section_name": "model"
           }
         ],
@@ -10181,7 +10252,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 68,
+            "_row_num": 70,
             "section_name": "model"
           }
         ],
@@ -10202,7 +10273,7 @@
         },
         "_defn": [
           {
-            "_row_num": 69,
+            "_row_num": 71,
             "section_name": "model"
           }
         ],
@@ -10219,7 +10290,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 70,
+            "_row_num": 72,
             "section_name": "model"
           }
         ],
@@ -10232,7 +10303,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 71,
+            "_row_num": 73,
             "section_name": "model"
           }
         ],
@@ -10254,7 +10325,7 @@
         },
         "_defn": [
           {
-            "_row_num": 72,
+            "_row_num": 74,
             "section_name": "model"
           }
         ],
@@ -10271,7 +10342,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 73,
+            "_row_num": 75,
             "section_name": "model"
           }
         ],
@@ -10284,7 +10355,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 74,
+            "_row_num": 76,
             "section_name": "model"
           }
         ],
@@ -10298,7 +10369,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 75,
+            "_row_num": 77,
             "section_name": "model"
           }
         ],
@@ -10312,7 +10383,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 76,
+            "_row_num": 78,
             "section_name": "model"
           }
         ],
@@ -10326,7 +10397,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 77,
+            "_row_num": 79,
             "section_name": "model"
           }
         ],
@@ -10348,7 +10419,7 @@
         },
         "_defn": [
           {
-            "_row_num": 78,
+            "_row_num": 80,
             "section_name": "model"
           }
         ],
@@ -10373,7 +10444,7 @@
         },
         "_defn": [
           {
-            "_row_num": 79,
+            "_row_num": 81,
             "section_name": "model"
           }
         ],
@@ -10390,7 +10461,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 80,
+            "_row_num": 82,
             "section_name": "model"
           }
         ],
@@ -10404,7 +10475,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 81,
+            "_row_num": 83,
             "section_name": "model"
           }
         ],
@@ -10418,7 +10489,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 82,
+            "_row_num": 84,
             "section_name": "model"
           }
         ],
@@ -10432,7 +10503,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 83,
+            "_row_num": 85,
             "section_name": "model"
           }
         ],
@@ -10446,7 +10517,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 84,
+            "_row_num": 86,
             "section_name": "model"
           }
         ],
@@ -10460,7 +10531,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 85,
+            "_row_num": 87,
             "section_name": "model"
           }
         ],
@@ -10474,7 +10545,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 86,
+            "_row_num": 88,
             "section_name": "model"
           }
         ],
@@ -10488,7 +10559,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 87,
+            "_row_num": 89,
             "section_name": "model"
           }
         ],
@@ -10502,7 +10573,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 88,
+            "_row_num": 90,
             "section_name": "model"
           }
         ],
@@ -10515,7 +10586,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 89,
+            "_row_num": 91,
             "section_name": "model"
           }
         ],
@@ -10529,7 +10600,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 90,
+            "_row_num": 92,
             "section_name": "model"
           }
         ],
@@ -10543,7 +10614,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 91,
+            "_row_num": 93,
             "section_name": "model"
           }
         ],
@@ -10565,7 +10636,7 @@
         },
         "_defn": [
           {
-            "_row_num": 92,
+            "_row_num": 94,
             "section_name": "model"
           }
         ],
@@ -10582,7 +10653,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 93,
+            "_row_num": 95,
             "section_name": "model"
           }
         ],
@@ -10596,7 +10667,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 94,
+            "_row_num": 96,
             "section_name": "model"
           }
         ],
@@ -10618,7 +10689,7 @@
         },
         "_defn": [
           {
-            "_row_num": 95,
+            "_row_num": 97,
             "section_name": "model"
           }
         ],
@@ -10635,7 +10706,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 96,
+            "_row_num": 98,
             "section_name": "model"
           }
         ],
@@ -10657,7 +10728,7 @@
         },
         "_defn": [
           {
-            "_row_num": 97,
+            "_row_num": 99,
             "section_name": "model"
           }
         ],
@@ -10674,7 +10745,7 @@
         "type": "string",
         "_defn": [
           {
-            "_row_num": 98,
+            "_row_num": 100,
             "section_name": "model"
           }
         ],
@@ -10688,7 +10759,7 @@
         "type": "integer",
         "_defn": [
           {
-            "_row_num": 99,
+            "_row_num": 101,
             "section_name": "model"
           }
         ],

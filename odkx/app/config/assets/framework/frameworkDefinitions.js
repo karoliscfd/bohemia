@@ -330,9 +330,9 @@ window.odkFrameworkDefinitions = {
     "options_popup_finalize_changes_heading": {
       "string_token": "options_popup_finalize_changes_heading",
       "text": {
-        "default": "Finalize Form + Exit",
-        "pt": "Finalizar Mudanças + Sair",
-        "sw": "Kamilisha Mabadiliko + Utoke"
+        "default": "Finalize Form",
+        "pt": "Finalizar Mudanças",
+        "sw": "Kamilisha Mabadiliko"
       },
       "_row_num": 42
     },
