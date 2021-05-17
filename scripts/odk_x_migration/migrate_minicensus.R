@@ -352,7 +352,43 @@ migrate_to_odk_x <- function(
 }
 
 message('Loading minicensus data')
-load('minicensus_data.RData')
+# load('minicensus_data.RData')
+
+library(bohemia)
+# Define the country
+country <- 'Mozambique'
+
+# Read in minicensus data
+if('minicensus_data.RData' %in% dir()){
+  load('minicensus_data.RData')
+} else {
+  minicensus_data <- load_odk_data(the_country = country,
+                          credentials_path = '../../credentials/credentials.yaml',
+                          users_path = '../../credentials/users.yaml',
+                          efficient = FALSE)
+  save(minicensus_data,
+       file = 'minicensus_data.RData')
+}
+
+out_list <- minicensus_data
+
+# Define location of keyfile for decryption
+kf <- '../../credentials/bohemia_priv.pem'
+
+# Decrypt names
+out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
+out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
+out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
+out_list$minicensus_repeat_death_info$death_surname <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_surname, keyfile = kf)
+out_list$minicensus_people$first_name <- decrypt_private_data(out_list$minicensus_people$first_name, keyfile = kf)
+out_list$minicensus_people$last_name <- decrypt_private_data(out_list$minicensus_people$last_name, keyfile = kf)
+out_list$va$id10007 <- decrypt_private_data(out_list$va$id10007, keyfile = kf)
+out_list$va$id10017 <- decrypt_private_data(out_list$va$id10017, keyfile = kf)
+out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
+out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
+out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
+
+
 
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE)
 
