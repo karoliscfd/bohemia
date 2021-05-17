@@ -3105,6 +3105,14 @@ window.odkTableSpecificDefinitions = {
         "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
       },
       "_row_num": 350
+    },
+    "err_ind_quest_incomplete": {
+      "string_token": "err_ind_quest_incomplete",
+      "text": {
+        "default": "All individual questionnaires must be completed.",
+        "pt": "Todos os questionários individuais devem ser preenchidos."
+      },
+      "_row_num": 351
     }
   }
 }

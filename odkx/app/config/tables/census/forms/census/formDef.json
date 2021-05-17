@@ -3807,8 +3807,22 @@
         "_row_num": 509
       },
       {
-        "clause": "end screen",
+        "type": "async_assign_count",
+        "values_list": "verify_ind_quest_complete",
+        "name": "ind_incomplete_count",
+        "constraint": "(data('ind_incomplete_count') === 0)",
+        "display": {
+          "constraint_message": "err_ind_quest_incomplete"
+        },
+        "model": {
+          "isSessionVariable": 1,
+          "valuesList": "verify_ind_quest_complete"
+        },
         "_row_num": 510
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 511
       }
     ],
     "choices": [
@@ -5888,8 +5902,8 @@
         "query_type": "linked_table",
         "linked_form_id": "hh_member_questions",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ?",
-        "selectionArgs": "[ data('hh_id'), 'resident', 1 ]",
+        "selection": "hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ? AND absent_three_times IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 'resident', 1, 'yes']",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ hh_head: data('hh_head_new_select'), hh_country: data('hh_country'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_questions",
@@ -5963,6 +5977,18 @@
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 24
+      },
+      {
+        "query_name": "verify_ind_quest_complete",
+        "query_type": "linked_table",
+        "linked_form_id": "hh_member_questions",
+        "linked_table_id": "hh_member",
+        "selection": "(_savepoint_type  IS NOT ? OR form_status_hh_member_questions IS NOT ?) AND hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ? AND absent_three_times IS NOT ?",
+        "selectionArgs": "['COMPLETE', 1, data('hh_id'), 'resident', 1, 'yes']",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "fieldName": "hh_id",
+        "_row_num": 25
       }
     ],
     "prompt_types": [
@@ -5985,6 +6011,36 @@
         "prompt_type_name": "exit_survey",
         "type": "text",
         "_row_num": 5
+      },
+      {
+        "prompt_type_name": "async_assign_max",
+        "type": "number",
+        "_row_num": 6
+      },
+      {
+        "prompt_type_name": "async_assign_min",
+        "type": "number",
+        "_row_num": 7
+      },
+      {
+        "prompt_type_name": "async_assign_avg",
+        "type": "number",
+        "_row_num": 8
+      },
+      {
+        "prompt_type_name": "async_assign_sum",
+        "type": "number",
+        "_row_num": 9
+      },
+      {
+        "prompt_type_name": "async_assign_total",
+        "type": "number",
+        "_row_num": 10
+      },
+      {
+        "prompt_type_name": "async_assign_count",
+        "type": "integer",
+        "_row_num": 11
       }
     ],
     "table_specific_translations": [
@@ -9093,6 +9149,14 @@
           "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
         },
         "_row_num": 350
+      },
+      {
+        "string_token": "err_ind_quest_incomplete",
+        "text": {
+          "default": "All individual questionnaires must be completed.",
+          "pt": "Todos os questionários individuais devem ser preenchidos."
+        },
+        "_row_num": 351
       }
     ],
     "model": [
@@ -14349,6 +14413,14 @@
             "sw": "Idadi ya marehemu walioingizwa haiendani na namba iliyoingizwa hapo juu. Tafadhali hakiki"
           },
           "_row_num": 350
+        },
+        "err_ind_quest_incomplete": {
+          "string_token": "err_ind_quest_incomplete",
+          "text": {
+            "default": "All individual questionnaires must be completed.",
+            "pt": "Todos os questionários individuais devem ser preenchidos."
+          },
+          "_row_num": 351
         }
       }
     },
@@ -14513,8 +14585,8 @@
         "query_type": "linked_table",
         "linked_form_id": "hh_member_questions",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ?",
-        "selectionArgs": "[ data('hh_id'), 'resident', 1 ]",
+        "selection": "hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ? AND absent_three_times IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 'resident', 1, 'yes']",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ hh_head: data('hh_head_new_select'), hh_country: data('hh_country'), form_status_hh_member_questions: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_member_questions",
@@ -14588,6 +14660,18 @@
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 24
+      },
+      "verify_ind_quest_complete": {
+        "query_name": "verify_ind_quest_complete",
+        "query_type": "linked_table",
+        "linked_form_id": "hh_member_questions",
+        "linked_table_id": "hh_member",
+        "selection": "(_savepoint_type  IS NOT ? OR form_status_hh_member_questions IS NOT ?) AND hh_id = ? AND resident_status = ? AND form_status_hh_member_exit IS NOT ? AND absent_three_times IS NOT ?",
+        "selectionArgs": "['COMPLETE', 1, data('hh_id'), 'resident', 1, 'yes']",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "fieldName": "hh_id",
+        "_row_num": 25
       }
     },
     "calculates": {
@@ -16285,6 +16369,19 @@
         "isSessionVariable": 1,
         "valuesList": "member_questionnaire",
         "elementKey": "ind_count"
+      },
+      "ind_incomplete_count": {
+        "_defn": [
+          {
+            "_row_num": 510,
+            "section_name": "survey"
+          }
+        ],
+        "prompt_type_name": "async_assign_count",
+        "type": "integer",
+        "isSessionVariable": 1,
+        "valuesList": "verify_ind_quest_complete",
+        "elementKey": "ind_incomplete_count"
       }
     },
     "section_names": [
@@ -20143,12 +20240,31 @@
             "promptIdx": 187
           },
           {
+            "type": "async_assign_count",
+            "values_list": "verify_ind_quest_complete",
+            "name": "ind_incomplete_count",
+            "constraint": "(data('ind_incomplete_count') === 0)",
+            "display": {
+              "constraint_message": "err_ind_quest_incomplete"
+            },
+            "model": {
+              "isSessionVariable": 1,
+              "valuesList": "verify_ind_quest_complete"
+            },
+            "_row_num": 510,
+            "__rowNum__": 509,
+            "_token_type": "prompt",
+            "_type": "async_assign_count",
+            "_branch_label_enclosing_screen": "survey/_screen507",
+            "promptIdx": 188
+          },
+          {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 511,
-            "_branch_label_enclosing_screen": "survey/_screen511",
-            "promptIdx": 188
+            "_row_num": 512,
+            "_branch_label_enclosing_screen": "survey/_screen512",
+            "promptIdx": 189
           }
         ],
         "validation_tag_map": {
@@ -22376,23 +22492,23 @@
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 510,
-              "__rowNum__": 509,
+              "_row_num": 511,
+              "__rowNum__": 510,
               "_token_type": "end_screen"
             },
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(186);\nactivePromptIndicies.push(187);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(186);\nactivePromptIndicies.push(187);\nactivePromptIndicies.push(188);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 248
           },
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 511,
+            "_row_num": 512,
             "operationIdx": 249
           },
           {
-            "_row_num": 511,
+            "_row_num": 512,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(188);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(189);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
@@ -22401,7 +22517,7 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 511,
+            "_row_num": 512,
             "operationIdx": 251
           }
         ],
@@ -22652,7 +22768,7 @@
           "_endif505": 248,
           "_screen507": 248,
           "_contents": 250,
-          "_screen511": 250
+          "_screen512": 250
         }
       }
     },
@@ -24908,6 +25024,22 @@
         "elementName": "ind_count",
         "elementSet": "data",
         "elementPath": "ind_count"
+      },
+      "ind_incomplete_count": {
+        "_defn": [
+          {
+            "_row_num": 510,
+            "section_name": "survey"
+          }
+        ],
+        "prompt_type_name": "async_assign_count",
+        "type": "integer",
+        "isSessionVariable": 1,
+        "valuesList": "verify_ind_quest_complete",
+        "elementKey": "ind_incomplete_count",
+        "elementName": "ind_incomplete_count",
+        "elementSet": "data",
+        "elementPath": "ind_incomplete_count"
       },
       "id_candidate_resident": {
         "type": "string",
