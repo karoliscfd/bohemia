@@ -5119,6 +5119,25 @@ implement(id = 'repeat_hh_id_fe978bcc-1024-4106-9956-09257769cb92,08158713-28c8-
 # Joe 2021-05-15
 iid="'77529b3d-783c-41eb-922e-eaf69499c0c0'"
 implement(id = 'repeat_hh_id_enumerations_77529b3d-783c-41eb-922e-eaf69499c0c0,e510da8b-5b8c-4c40-ac04-9df1bbbf26c7', query = "DELETE FROM clean_enumerations WHERE instance_id=" + iid, who = 'Joe Brew')
+
+# Joe 2021-05-17
+iid = "'a87cbfd0-0b35-496c-be64-bd0333ff6dcf'"
+implement(id = 'repeat_hh_id_a87cbfd0-0b35-496c-be64-bd0333ff6dcf,287b28f8-c6ba-4b4e-bd6f-b6778a729d93', query = "DELETE FROM clean_minicensus_main WHERE instance_id = " + iid + "; DELETE FROM clean_minicensus_people WHERE instance_id = " + iid + ";", who = 'Joe Brew')
+
+implement(id = 'repeat_hh_id_enumerations_53006cea-6119-4788-b029-97c62cde4461,61854df5-e3d6-48ff-bcb1-74bda06bbd18', query = "UPDATE clean_enumerations SET agregado='VNT-044' WHERE instance_id='53006cea-6119-4788-b029-97c62cde4461'", who = 'Joe Brew')
+
+implement(id='too_many_wall_materials_36f2ccab-514e-425c-8c93-00e4a8827790', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'adobe_block' WHERE instance_id='36f2ccab-514e-425c-8c93-00e4a8827790'", who='Joe Brew')
+
+implement(id='too_many_wall_materials_8d3b3843-cc11-4f98-a2e7-c3f1c2ca919e', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'adobe_block' WHERE instance_id='8d3b3843-cc11-4f98-a2e7-c3f1c2ca919e'", who='Joe Brew')
+
+implement(id='too_many_wall_materials_aeb9fc70-b104-4f81-a017-07872a5b593e', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'brick_block' WHERE instance_id='aeb9fc70-b104-4f81-a017-07872a5b593e'", who='Joe Brew')
+
+implement(id='too_many_wall_materials_ff136d18-c0b3-4f04-9007-9b1c7008965c', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_block' WHERE instance_id='ff136d18-c0b3-4f04-9007-9b1c7008965c'", who='Joe Brew')
+
+implement(id='too_many_wall_materials_d0916569-e00e-4df0-9db0-50e926617b10', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'cement_block' WHERE instance_id='d0916569-e00e-4df0-9db0-50e926617b10'", who='Joe Brew')
+
+implement(id='too_many_deaths_abc81cf1-20d5-4df8-bdfa-bd68718b88f4', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'adobe_block' WHERE instance_id='abc81cf1-20d5-4df8-bdfa-bd68718b88f4'", who='Joe Brew')
+
 dbconn.commit()
 cur.close()
 dbconn.close()
