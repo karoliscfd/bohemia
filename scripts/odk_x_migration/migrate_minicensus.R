@@ -83,7 +83,7 @@ migrate_to_odk_x <- function(
   }
 
   odk_x_hh <- out_list$clean_minicensus_main %>%
-    distinct(hh_id, .keep_all = TRUE) %>%
+    dplyr::distinct(hh_id, .keep_all = TRUE) %>%
     select(all_of(hh_col)) %>%
     filter(nchar(hh_id) == HH_ID_LENGTH) %>%
     mutate(across(
@@ -388,9 +388,17 @@ out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
 out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
 out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
 
+# Update names
+for(i in 1:length(names(out_list))){
+  this_name <- names(out_list)[i]
+  if(grepl('minicensus_', this_name)){
+    new_name <- gsub('minicensus_', 'clean_minicensus_', this_name)
+    names(out_list)[i] <- new_name
+  }
+}
 
+# Write local csvs ready for upload to server
+migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE)
-
-# Sample 1000 and truncate names
-# migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = TRUE)
+# Having written csvs, push them to the server
+update_odkx_data(server_url = 'https://databrew.app', table_id='census', user = 'dbrew', pass = 'admin', update_path = 'census.csv')
