@@ -23,11 +23,13 @@ ui <- fluidPage(
             radioButtons('country', 'Country', choices = c('Mozambique', 'Tanzania')),
             uiOutput('ui_hamlet'),
             checkboxInput('show_all', 'Show ALL households', value = FALSE),
-            checkboxInput('show_previous', 'Show data already submitted', value = FALSE)
+            checkboxInput('show_previous', 'Show data already submitted', value = FALSE),
+            checkboxInput('show_all_polygons', 'Show ALL polygons', value = FALSE)
         ),
 
         mainPanel(
-           leafletOutput("map"),
+           leafletOutput("map",
+                         height = 1000),
            DT::dataTableOutput('table'),
            uiOutput('ui_table'), uiOutput('ui_table2'),
            uiOutput('ui_previous'),
@@ -73,6 +75,7 @@ server <- function(input, output) {
         newc <- old +1
         counter(newc)
     })
+    
     observeEvent(input$submit, {
         old <- counter()
         newc <- old +1
@@ -169,6 +172,12 @@ server <- function(input, output) {
                                  layerId = these_pts@data$instance_id) 
         }
         show_all <- input$show_all
+        show_all_polygons <- input$show_all_polygons
+        
+        colors <- rainbow(length(unique(codes)))
+        colors <- sample(colors, size = length(colors))
+        cols <- colors[as.numeric(factor(combined$code))]
+        
         if(show_all){
             
             cc <- input$country
@@ -194,6 +203,16 @@ server <- function(input, output) {
                                      zoom = 12)
             }
         }
+        
+        if(show_all_polygons){
+            for(i in 1:length(hull_list)){
+                this_hull <- hull_list[[i]]
+                l <- l %>%
+                    addPolylines(data = this_hull,
+                                 color = 'black')
+            }
+        }
+        
         show_previous <- input$show_previous
         if(show_previous){
             previous <- previous_data$data
