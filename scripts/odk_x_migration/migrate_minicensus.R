@@ -401,11 +401,20 @@ for(i in 1:length(names(out_list))){
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
 # Having written csvs, push them to the server
-
-
-update_odkx_data <- function(server_url, table_id, user, pass, update_path){
+purge_odkx_server <- function(suitcase_dir, server_url, table_id, user, pass, odx_path){
   owd <- getwd()
-  setwd('~/Documents/suitcase')
+  setwd(suitcase_dir)
+  
+  update_string <- 
+    push_text <- paste0(
+      "java -jar ODK-X_Suitcase_v2.1.7.jar -update -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odx_path)
+  system(update_string)
+  setwd(owd)
+}
+
+update_odkx_data <- function(suitcase_dir, server_url, table_id, user, pass, update_path){
+  owd <- getwd()
+  setwd(suitcase_dir)
   
   update_string <- 
     push_text <- paste0(
@@ -415,8 +424,15 @@ update_odkx_data <- function(server_url, table_id, user, pass, update_path){
   setwd(owd)
 }
 
-# Loop through each form and update
+# Purge the database
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
+purge_odkx_server(suitcase_dir = '~/Documents/suitcase',
+                  server_url = creds$odkx_server, 
+                  user = creds$odk_database_user, 
+                  pass = creds$odkx_pass,
+                  odx_path = '../../../suitcase/')
+
+# Loop through each form and update
 the_tables <- c('hh_geo_location',
                 'hh_member',
                 'census')
@@ -427,7 +443,8 @@ paths <- c('odk_x_geolocation.csv',
 for(i in 1:length(the_tables)){
   this_table <- the_tables[i]
   this_path <- paths[i]
-  update_odkx_data(server_url = creds$odkx_server, 
+  update_odkx_data(suitcase_dir = '~/Documents/suitcase',
+                   server_url = creds$odkx_server, 
                    table_id = this_table, 
                    user = creds$odk_database_user, 
                    pass = creds$odkx_pass, 
