@@ -13,7 +13,7 @@
       },
       {
         "clause": "if",
-        "condition": "!data('match_roster')",
+        "condition": "!!data('match_roster')",
         "_row_num": 4
       },
       {
@@ -25,7 +25,7 @@
         "_row_num": 5
       },
       {
-        "clause": "end if",
+        "clause": "else",
         "_row_num": 6
       },
       {
@@ -124,13 +124,17 @@
         "_row_num": 19
       },
       {
-        "clause": "else // MOZ",
+        "clause": "end if",
         "_row_num": 20
+      },
+      {
+        "clause": "else // MOZ",
+        "_row_num": 21
       },
       {
         "clause": "if",
         "condition": "!data('match_roster')",
-        "_row_num": 21
+        "_row_num": 22
       },
       {
         "type": "note",
@@ -138,16 +142,16 @@
           "prompt": "hh_roster_mismatch"
         },
         "hideInContents": 1,
-        "_row_num": 22
+        "_row_num": 23
       },
       {
         "clause": "end if",
-        "_row_num": 23
+        "_row_num": 24
       },
       {
         "clause": "if",
         "condition": "!!data('hh_new')",
-        "_row_num": 24
+        "_row_num": 25
       },
       {
         "type": "select_one",
@@ -162,12 +166,12 @@
           "valuesList": "yn"
         },
         "hideInContents": 1,
-        "_row_num": 25
+        "_row_num": 26
       },
       {
         "clause": "if",
         "condition": "selected(data('sup_contact'), 'yes')",
-        "_row_num": 26
+        "_row_num": 27
       },
       {
         "type": "select_one",
@@ -182,12 +186,12 @@
           "valuesList": "yn"
         },
         "hideInContents": 1,
-        "_row_num": 27
+        "_row_num": 28
       },
       {
         "clause": "if",
         "condition": "selected(data('has_paint'), 'yes')",
-        "_row_num": 28
+        "_row_num": 29
       },
       {
         "type": "note",
@@ -195,11 +199,11 @@
           "prompt": "fw_paint_instr"
         },
         "hideInContents": 1,
-        "_row_num": 29
+        "_row_num": 30
       },
       {
         "clause": "else",
-        "_row_num": 30
+        "_row_num": 31
       },
       {
         "type": "note",
@@ -207,7 +211,7 @@
           "prompt": "fw_no_paint"
         },
         "hideInContents": 1,
-        "_row_num": 31
+        "_row_num": 32
       },
       {
         "type": "exit_survey",
@@ -216,15 +220,15 @@
           "isSessionVariable": 1
         },
         "hideInContents": 1,
-        "_row_num": 32
-      },
-      {
-        "clause": "end if",
         "_row_num": 33
       },
       {
-        "clause": "else",
+        "clause": "end if",
         "_row_num": 34
+      },
+      {
+        "clause": "else",
+        "_row_num": 35
       },
       {
         "type": "note",
@@ -232,7 +236,7 @@
           "prompt": "fw_no_contact"
         },
         "hideInContents": 1,
-        "_row_num": 35
+        "_row_num": 36
       },
       {
         "type": "exit_survey",
@@ -241,10 +245,6 @@
           "isSessionVariable": 1
         },
         "hideInContents": 1,
-        "_row_num": 36
-      },
-      {
-        "clause": "end if",
         "_row_num": 37
       },
       {
@@ -252,33 +252,37 @@
         "_row_num": 38
       },
       {
-        "clause": "end if // MOZ",
+        "clause": "end if",
         "_row_num": 39
       },
       {
-        "type": "opening",
+        "clause": "end if // MOZ",
         "_row_num": 40
+      },
+      {
+        "type": "opening",
+        "_row_num": 41
       },
       {
         "clause": "do section survey",
         "hideInContents": 1,
-        "_row_num": 41
-      },
-      {
-        "type": "finalize",
         "_row_num": 42
       },
       {
-        "clause": "else // start",
+        "type": "finalize",
         "_row_num": 43
       },
       {
-        "type": "instances",
+        "clause": "else // start",
         "_row_num": 44
       },
       {
-        "clause": "end if // start",
+        "type": "instances",
         "_row_num": 45
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 46
       }
     ],
     "survey": [
@@ -519,10 +523,6 @@
         "type": "linked_table_counting",
         "values_list": "linked_fw_location",
         "name": "fw_location_count",
-        "display": {
-          "prompt": "rec_survey_loc",
-          "section": "technical_h2"
-        },
         "constraint": "data('fw_location_count') === null || not(data('hh_fw_geolocation')) || data('fw_location_count') >= 1",
         "model": {
           "isSessionVariable": 1,
@@ -530,6 +530,9 @@
         },
         "hideInContents": "not(data('hh_fw_geolocation'))",
         "validation_tags": "finalize",
+        "display": {
+          "section": "technical_h2"
+        },
         "_row_num": 42
       },
       {
@@ -5895,8 +5898,8 @@
         "query_type": "linked_table",
         "linked_form_id": "hh_new_member_new",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ?",
-        "selectionArgs": "[ data('hh_id') ]",
+        "selection": "hh_id = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1 ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, override_id: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_new_member_new",
@@ -14578,8 +14581,8 @@
         "query_type": "linked_table",
         "linked_form_id": "hh_new_member_new",
         "linked_table_id": "hh_member",
-        "selection": "hh_id = ?",
-        "selectionArgs": "[ data('hh_id') ]",
+        "selection": "hh_id = ? AND form_status_hh_member_exit IS NOT ?",
+        "selectionArgs": "[ data('hh_id'), 1 ]",
         "newRowInitialElementKeyToValueMap": "{ hh_id: data('hh_id'), hh_country: data('hh_country'), id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, override_id: 1, _locale: getCurrentLocale() }",
         "openRowInitialElementKeyToValueMap": "{ id_candidate: data('id_candidate'), form_status_hh_new_member_new: 1, _locale: getCurrentLocale() }",
         "subFormStatusCol": "form_status_hh_new_member_new",
@@ -14929,11 +14932,11 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 32,
+            "_row_num": 33,
             "section_name": "initial"
           },
           {
-            "_row_num": 36,
+            "_row_num": 37,
             "section_name": "initial"
           }
         ],
@@ -14942,7 +14945,7 @@
       "sup_contact": {
         "_defn": [
           {
-            "_row_num": 25,
+            "_row_num": 26,
             "section_name": "initial"
           }
         ],
@@ -14954,7 +14957,7 @@
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 27,
+            "_row_num": 28,
             "section_name": "initial"
           }
         ],
@@ -16492,11 +16495,11 @@
               "prompt": "hh_roster_mismatch"
             },
             "hideInContents": 1,
-            "_row_num": 22,
-            "__rowNum__": 21,
+            "_row_num": 23,
+            "__rowNum__": 22,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen22",
+            "_branch_label_enclosing_screen": "initial/_screen23",
             "promptIdx": 7
           },
           {
@@ -16512,11 +16515,11 @@
               "valuesList": "yn"
             },
             "hideInContents": 1,
-            "_row_num": 25,
-            "__rowNum__": 24,
+            "_row_num": 26,
+            "__rowNum__": 25,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "initial/_screen25",
+            "_branch_label_enclosing_screen": "initial/_screen26",
             "promptIdx": 8
           },
           {
@@ -16532,11 +16535,11 @@
               "valuesList": "yn"
             },
             "hideInContents": 1,
-            "_row_num": 27,
-            "__rowNum__": 26,
+            "_row_num": 28,
+            "__rowNum__": 27,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "initial/_screen27",
+            "_branch_label_enclosing_screen": "initial/_screen28",
             "promptIdx": 9
           },
           {
@@ -16545,11 +16548,11 @@
               "prompt": "fw_paint_instr"
             },
             "hideInContents": 1,
-            "_row_num": 29,
-            "__rowNum__": 28,
+            "_row_num": 30,
+            "__rowNum__": 29,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen29",
+            "_branch_label_enclosing_screen": "initial/_screen30",
             "promptIdx": 10
           },
           {
@@ -16558,11 +16561,11 @@
               "prompt": "fw_no_paint"
             },
             "hideInContents": 1,
-            "_row_num": 31,
-            "__rowNum__": 30,
+            "_row_num": 32,
+            "__rowNum__": 31,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen31",
+            "_branch_label_enclosing_screen": "initial/_screen32",
             "promptIdx": 11
           },
           {
@@ -16572,11 +16575,11 @@
               "isSessionVariable": 1
             },
             "hideInContents": 1,
-            "_row_num": 32,
-            "__rowNum__": 31,
+            "_row_num": 33,
+            "__rowNum__": 32,
             "_token_type": "prompt",
             "_type": "exit_survey",
-            "_branch_label_enclosing_screen": "initial/_screen32",
+            "_branch_label_enclosing_screen": "initial/_screen33",
             "promptIdx": 12
           },
           {
@@ -16585,11 +16588,11 @@
               "prompt": "fw_no_contact"
             },
             "hideInContents": 1,
-            "_row_num": 35,
-            "__rowNum__": 34,
+            "_row_num": 36,
+            "__rowNum__": 35,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen35",
+            "_branch_label_enclosing_screen": "initial/_screen36",
             "promptIdx": 13
           },
           {
@@ -16599,27 +16602,27 @@
               "isSessionVariable": 1
             },
             "hideInContents": 1,
-            "_row_num": 36,
-            "__rowNum__": 35,
+            "_row_num": 37,
+            "__rowNum__": 36,
             "_token_type": "prompt",
             "_type": "exit_survey",
-            "_branch_label_enclosing_screen": "initial/_screen36",
+            "_branch_label_enclosing_screen": "initial/_screen37",
             "promptIdx": 14
           },
           {
             "type": "opening",
-            "_row_num": 40,
-            "__rowNum__": 39,
+            "_row_num": 41,
+            "__rowNum__": 40,
             "_token_type": "prompt",
             "_type": "opening",
-            "_branch_label_enclosing_screen": "initial/_screen40",
+            "_branch_label_enclosing_screen": "initial/_screen41",
             "promptIdx": 15
           },
           {
             "clause": "do section survey",
             "hideInContents": 1,
-            "_row_num": 41,
-            "__rowNum__": 40,
+            "_row_num": 42,
+            "__rowNum__": 41,
             "_token_type": "prompt",
             "_do_section_name": "survey",
             "_type": "_section",
@@ -16637,28 +16640,28 @@
           },
           {
             "type": "finalize",
-            "_row_num": 42,
-            "__rowNum__": 41,
+            "_row_num": 43,
+            "__rowNum__": 42,
             "_token_type": "prompt",
             "_type": "finalize",
-            "_branch_label_enclosing_screen": "initial/_screen42",
+            "_branch_label_enclosing_screen": "initial/_screen43",
             "promptIdx": 17
           },
           {
             "type": "instances",
-            "_row_num": 44,
-            "__rowNum__": 43,
+            "_row_num": 45,
+            "__rowNum__": 44,
             "_token_type": "prompt",
             "_type": "instances",
-            "_branch_label_enclosing_screen": "initial/_screen44",
+            "_branch_label_enclosing_screen": "initial/_screen45",
             "promptIdx": 18
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 46,
-            "_branch_label_enclosing_screen": "initial/_screen46",
+            "_row_num": 47,
+            "_branch_label_enclosing_screen": "initial/_screen47",
             "promptIdx": 19
           }
         ],
@@ -16677,8 +16680,8 @@
           {
             "clause": "else // start",
             "_token_type": "goto_label",
-            "_branch_label": "_else43",
-            "_row_num": 43,
+            "_branch_label": "_else44",
+            "_row_num": 44,
             "operationIdx": 1
           },
           {
@@ -16694,13 +16697,13 @@
           {
             "clause": "else // MOZ",
             "_token_type": "goto_label",
-            "_branch_label": "_else20",
-            "_row_num": 20,
+            "_branch_label": "_else21",
+            "_row_num": 21,
             "operationIdx": 3
           },
           {
             "clause": "if",
-            "condition": "!data('match_roster')",
+            "condition": "!!data('match_roster')",
             "_row_num": 4,
             "__rowNum__": 3,
             "_token_type": "goto_label",
@@ -16708,7 +16711,7 @@
             "operationIdx": 4
           },
           {
-            "clause": "end if",
+            "clause": "else",
             "_token_type": "goto_label",
             "_branch_label": "_else6",
             "_row_num": 6,
@@ -16723,8 +16726,8 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif6",
-            "_row_num": 6,
+            "_branch_label": "_endif20",
+            "_row_num": 20,
             "operationIdx": 7
           },
           {
@@ -16835,28 +16838,28 @@
           {
             "clause": "end if // MOZ",
             "_token_type": "goto_label",
-            "_branch_label": "_endif39",
-            "_row_num": 39,
+            "_branch_label": "_endif40",
+            "_row_num": 40,
             "operationIdx": 23
           },
           {
             "clause": "if",
             "condition": "!data('match_roster')",
-            "_row_num": 21,
-            "__rowNum__": 20,
+            "_row_num": 22,
+            "__rowNum__": 21,
             "_token_type": "goto_label",
-            "_branch_label": "_then21",
+            "_branch_label": "_then22",
             "operationIdx": 24
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else23",
-            "_row_num": 23,
+            "_branch_label": "_else24",
+            "_row_num": 24,
             "operationIdx": 25
           },
           {
-            "_row_num": 22,
+            "_row_num": 23,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 26
@@ -16864,28 +16867,28 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif23",
-            "_row_num": 23,
+            "_branch_label": "_endif24",
+            "_row_num": 24,
             "operationIdx": 27
           },
           {
             "clause": "if",
             "condition": "!!data('hh_new')",
-            "_row_num": 24,
-            "__rowNum__": 23,
+            "_row_num": 25,
+            "__rowNum__": 24,
             "_token_type": "goto_label",
-            "_branch_label": "_then24",
+            "_branch_label": "_then25",
             "operationIdx": 28
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else38",
-            "_row_num": 38,
+            "_branch_label": "_else39",
+            "_row_num": 39,
             "operationIdx": 29
           },
           {
-            "_row_num": 25,
+            "_row_num": 26,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 30
@@ -16893,21 +16896,21 @@
           {
             "clause": "if",
             "condition": "selected(data('sup_contact'), 'yes')",
-            "_row_num": 26,
-            "__rowNum__": 25,
+            "_row_num": 27,
+            "__rowNum__": 26,
             "_token_type": "goto_label",
-            "_branch_label": "_then26",
+            "_branch_label": "_then27",
             "operationIdx": 31
           },
           {
             "clause": "else",
             "_token_type": "goto_label",
-            "_branch_label": "_else34",
-            "_row_num": 34,
+            "_branch_label": "_else35",
+            "_row_num": 35,
             "operationIdx": 32
           },
           {
-            "_row_num": 27,
+            "_row_num": 28,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 33
@@ -16915,21 +16918,21 @@
           {
             "clause": "if",
             "condition": "selected(data('has_paint'), 'yes')",
-            "_row_num": 28,
-            "__rowNum__": 27,
+            "_row_num": 29,
+            "__rowNum__": 28,
             "_token_type": "goto_label",
-            "_branch_label": "_then28",
+            "_branch_label": "_then29",
             "operationIdx": 34
           },
           {
             "clause": "else",
             "_token_type": "goto_label",
-            "_branch_label": "_else30",
-            "_row_num": 30,
+            "_branch_label": "_else31",
+            "_row_num": 31,
             "operationIdx": 35
           },
           {
-            "_row_num": 29,
+            "_row_num": 30,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 36
@@ -16937,18 +16940,18 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif33",
-            "_row_num": 33,
+            "_branch_label": "_endif34",
+            "_row_num": 34,
             "operationIdx": 37
           },
           {
-            "_row_num": 31,
+            "_row_num": 32,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 38
           },
           {
-            "_row_num": 32,
+            "_row_num": 33,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 39
@@ -16956,18 +16959,18 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif37",
-            "_row_num": 37,
+            "_branch_label": "_endif38",
+            "_row_num": 38,
             "operationIdx": 40
           },
           {
-            "_row_num": 35,
+            "_row_num": 36,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 41
           },
           {
-            "_row_num": 36,
+            "_row_num": 37,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 42
@@ -16975,12 +16978,12 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif38",
-            "_row_num": 38,
+            "_branch_label": "_endif39",
+            "_row_num": 39,
             "operationIdx": 43
           },
           {
-            "_row_num": 40,
+            "_row_num": 41,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 44
@@ -16988,14 +16991,14 @@
           {
             "clause": "do section survey",
             "hideInContents": 1,
-            "_row_num": 41,
-            "__rowNum__": 40,
+            "_row_num": 42,
+            "__rowNum__": 41,
             "_token_type": "do_section",
             "_do_section_name": "survey",
             "operationIdx": 45
           },
           {
-            "_row_num": 42,
+            "_row_num": 43,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 46
@@ -17003,12 +17006,12 @@
           {
             "clause": "end if // start",
             "_token_type": "goto_label",
-            "_branch_label": "_endif45",
-            "_row_num": 45,
+            "_branch_label": "_endif46",
+            "_row_num": 46,
             "operationIdx": 47
           },
           {
-            "_row_num": 44,
+            "_row_num": 45,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 48
@@ -17016,11 +17019,11 @@
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 46,
+            "_row_num": 47,
             "operationIdx": 49
           },
           {
-            "_row_num": 46,
+            "_row_num": 47,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
@@ -17031,14 +17034,14 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 46,
+            "_row_num": 47,
             "operationIdx": 51
           },
           {
             "_token_type": "validate",
             "clause": "validate finalize",
             "_sweep_name": "finalize",
-            "_row_num": 46,
+            "_row_num": 47,
             "screen": {
               "hideInBackHistory": true
             },
@@ -17048,7 +17051,7 @@
             "_token_type": "save_and_terminate",
             "clause": "save and terminate",
             "calculation": true,
-            "_row_num": 46,
+            "_row_num": 47,
             "screen": {
               "hideInBackHistory": true
             },
@@ -17057,7 +17060,7 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 46,
+            "_row_num": 47,
             "operationIdx": 54
           }
         ],
@@ -17067,7 +17070,6 @@
           "_then4": 6,
           "_screen5": 6,
           "_else6": 8,
-          "_endif6": 8,
           "_then7": 10,
           "_screen8": 10,
           "_then9": 13,
@@ -17083,35 +17085,36 @@
           "_endif18": 22,
           "_else19": 23,
           "_endif19": 23,
-          "_else20": 24,
-          "_then21": 26,
-          "_screen22": 26,
-          "_else23": 28,
-          "_endif23": 28,
-          "_then24": 30,
-          "_screen25": 30,
-          "_then26": 33,
-          "_screen27": 33,
-          "_then28": 36,
-          "_screen29": 36,
-          "_else30": 38,
-          "_screen31": 38,
-          "_screen32": 39,
-          "_endif33": 40,
-          "_else34": 41,
-          "_screen35": 41,
-          "_screen36": 42,
-          "_endif37": 43,
-          "_else38": 44,
-          "_endif38": 44,
+          "_endif20": 23,
+          "_else21": 24,
+          "_then22": 26,
+          "_screen23": 26,
+          "_else24": 28,
+          "_endif24": 28,
+          "_then25": 30,
+          "_screen26": 30,
+          "_then27": 33,
+          "_screen28": 33,
+          "_then29": 36,
+          "_screen30": 36,
+          "_else31": 38,
+          "_screen32": 38,
+          "_screen33": 39,
+          "_endif34": 40,
+          "_else35": 41,
+          "_screen36": 41,
+          "_screen37": 42,
+          "_endif38": 43,
+          "_else39": 44,
           "_endif39": 44,
-          "_screen40": 44,
-          "_screen42": 46,
-          "_else43": 48,
-          "_screen44": 48,
-          "_endif45": 49,
+          "_endif40": 44,
+          "_screen41": 44,
+          "_screen43": 46,
+          "_else44": 48,
+          "_screen45": 48,
+          "_endif46": 49,
           "_contents": 50,
-          "_screen46": 50,
+          "_screen47": 50,
           "_finalize": 52
         }
       },
@@ -17269,10 +17272,6 @@
             "type": "linked_table_counting",
             "values_list": "linked_fw_location",
             "name": "fw_location_count",
-            "display": {
-              "prompt": "rec_survey_loc",
-              "section": "technical_h2"
-            },
             "constraint": "data('fw_location_count') === null || not(data('hh_fw_geolocation')) || data('fw_location_count') >= 1",
             "model": {
               "isSessionVariable": 1,
@@ -17280,6 +17279,9 @@
             },
             "hideInContents": "not(data('hh_fw_geolocation'))",
             "validation_tags": "finalize",
+            "display": {
+              "section": "technical_h2"
+            },
             "_row_num": 42,
             "__rowNum__": 41,
             "_token_type": "prompt",
@@ -23042,11 +23044,11 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 32,
+            "_row_num": 33,
             "section_name": "initial"
           },
           {
-            "_row_num": 36,
+            "_row_num": 37,
             "section_name": "initial"
           }
         ],
@@ -23058,7 +23060,7 @@
       "sup_contact": {
         "_defn": [
           {
-            "_row_num": 25,
+            "_row_num": 26,
             "section_name": "initial"
           }
         ],
@@ -23073,7 +23075,7 @@
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 27,
+            "_row_num": 28,
             "section_name": "initial"
           }
         ],
