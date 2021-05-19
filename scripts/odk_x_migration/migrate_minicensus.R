@@ -401,4 +401,35 @@ for(i in 1:length(names(out_list))){
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
 # Having written csvs, push them to the server
-update_odkx_data(server_url = 'https://databrew.app', table_id='census', user = 'dbrew', pass = 'admin', update_path = 'census.csv')
+
+
+update_odkx_data <- function(server_url, table_id, user, pass, update_path){
+  owd <- getwd()
+  setwd('~/Documents/suitcase')
+  
+  update_string <- 
+    push_text <- paste0(
+      "java -jar ODK-X_Suitcase_v2.1.7.jar -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
+    )
+  system(update_string)
+  setwd(owd)
+}
+
+# Loop through each form and update
+creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
+the_tables <- c('hh_geo_location',
+                'hh_member',
+                'census')
+paths <- c('odk_x_geolocation.csv',
+           'odk_x_member.csv',
+           'odk_x_hh.csv')
+
+for(i in 1:length(the_tables)){
+  this_table <- the_tables[i]
+  this_path <- paths[i]
+  update_odkx_data(server_url = creds$odkx_server, 
+                   table_id = this_table, 
+                   user = creds$odk_database_user, 
+                   pass = creds$odkx_pass, 
+                   update_path = this_path)
+}
