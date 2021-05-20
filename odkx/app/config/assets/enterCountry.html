@@ -13,18 +13,20 @@
 
     <script defer src="js/localize.js"></script>
     <script defer src="js/util.js"></script>
-    <script defer src="js/manualFwId.js"></script>
+    <script defer src="js/enterCountry.js"></script>
 </head>
 
 <body>
 <div class="d-none" id="wrapper">
-    <h1 class="text-uppercase text-center my-5" data-localize="fw_id_title"></h1>
+    <h1 class="text-uppercase text-center my-5" data-localize="change_country_title"></h1>
 
     <main class="container-fluid mt-3">
-        <form id="manualFwIdForm">
+        <form id="changeCountryForm">
             <div class="form-group">
-                <label for="fwIdInput" data-localize="fw_id_title"></label>
-                <input type="tel" class="form-control" id="fwIdInput">
+                <select class="custom-select custom-select-lg mb-3" id="changeCountrySelect">
+                    <option value="TAZ" data-localize="country_tanzania"></option>
+                    <option value="MOZ" data-localize="country_mozambique">Two</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary" data-localize="submit_button"></button>
         </form>

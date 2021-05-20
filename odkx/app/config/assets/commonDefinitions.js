@@ -544,10 +544,50 @@ window.odkCommonDefinitions = {
       "string_token": "hh_delete_confirm",
       "text": {
         "default": "Confirm",
-        "pt": "Confirm",
+        "pt": "Confirme",
         "sw": "Confirm"
       },
       "_row_num": 62
+    },
+    "change_country_button": {
+      "string_token": "change_country_button",
+      "text": {
+        "default": "Change Country",
+        "pt": "Mude Seu País"
+      },
+      "_row_num": 63
+    },
+    "change_country_title": {
+      "string_token": "change_country_title",
+      "text": {
+        "default": "Country",
+        "pt": "Mude"
+      },
+      "_row_num": 64
+    },
+    "country_tanzania": {
+      "string_token": "country_tanzania",
+      "text": {
+        "default": "Tanzania",
+        "pt": "Tanzania"
+      },
+      "_row_num": 65
+    },
+    "country_mozambique": {
+      "string_token": "country_mozambique",
+      "text": {
+        "default": "Mozambique",
+        "pt": "Mozambique"
+      },
+      "_row_num": 66
+    },
+    "fw_country_label": {
+      "string_token": "fw_country_label",
+      "text": {
+        "default": "Country:",
+        "pt": "Mude:"
+      },
+      "_row_num": 67
     }
   },
   "_locales": {

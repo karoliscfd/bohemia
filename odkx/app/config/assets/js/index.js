@@ -18,6 +18,14 @@
       );
     });
 
+    // Button to change country
+    document.getElementById('changeFwCountry').addEventListener('click', function () {
+      odkTables.launchHTML(
+        null,
+        'config/assets/enterCountry.html'
+      );
+    });
+
     // Button to sync
     document.getElementById('syncHhButton').addEventListener('click', function () {
       odkCommon.doAction(
@@ -65,6 +73,8 @@
           entoItems[i].classList.remove('d-none', 'invisible');
         }
       }
+
+      document.getElementById('fwCountrySpan').textContent = bohemiaUtil.getFwLocation();
     }
 
     document.getElementById('paintedIdModalYes').addEventListener('click', function () {
