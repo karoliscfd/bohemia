@@ -3,6 +3,7 @@
 (function () {
   var MAP_ACTION = 'MAP';
   var NAV_ACTION = 'NAV';
+  var SURVEY_ACTION = 'SURVEY';
   var ACTION_KEY = 'CENSUS_LIST_ACTION';
 
   var platInfo = JSON.parse(odkCommon.getPlatformInfo());
@@ -147,6 +148,17 @@
 
   var hhRosterContinue = function (evt) {
     var currTarget = evt.currentTarget;
+
+    // Check that both questions have been answered
+    if (currTarget.id === 'hhRosterModalContinue') {
+      var firstSelected = !!document.querySelector('#rosterConfirm1 .active');
+      var secondSelected = !!document.querySelector('#rosterConfirm2 .active');
+
+      if (!firstSelected && !secondSelected) {
+        return;
+      }
+    }
+
     var hhMinicensed = currTarget.dataset['hhMinicenced'] === 'yes';
 
     var rosterMatch = selectedRosterMatch();
@@ -206,7 +218,7 @@
         window.reuseHhId = setTimeout(function () {
           $('#hhDeleteModal').modal('hide');
           odkTables.addRowWithSurvey(
-            null,
+            {[ACTION_KEY]: SURVEY_ACTION},
             'census',
             'census',
             null,
@@ -287,7 +299,7 @@
     };
 
     return odkCommon.doAction(
-      null,
+      {[ACTION_KEY]: SURVEY_ACTION},
       "org.opendatakit.survey.activities.SplashScreenActivity",
       intentArgs
     );
@@ -416,6 +428,14 @@
     } else if (action.dispatchStruct[ACTION_KEY] === MAP_ACTION) {
       // when a household is selected on the map
       hhMetadata = action.jsonValue.result;
+    } else if (action.dispatchStruct[ACTION_KEY] === SURVEY_ACTION) {
+      if (action.jsonValue &&
+        action.jsonValue.result &&
+        action.jsonValue.result.savepoint_type &&
+        action.jsonValue.result.savepoint_type === 'COMPLETE') {
+        // this row has been finalized, exit to Tables home screen
+        odkCommon.closeWindow();
+      }
     }
 
     if (!!hhMetadata && !!hhMetadata.hhRowId && !!hhMetadata.hhId) {
