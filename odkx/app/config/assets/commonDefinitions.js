@@ -543,8 +543,8 @@ window.odkCommonDefinitions = {
     "hh_delete_confirm": {
       "string_token": "hh_delete_confirm",
       "text": {
-        "default": "Confirm",
-        "pt": "Confirme",
+        "default": "Confirm before deleting data",
+        "pt": "Confirme antes de excluir os dados",
         "sw": "Confirm"
       },
       "_row_num": 62
@@ -553,7 +553,7 @@ window.odkCommonDefinitions = {
       "string_token": "change_country_button",
       "text": {
         "default": "Change Country",
-        "pt": "Mude Seu País"
+        "pt": "Selecione seu pais"
       },
       "_row_num": 63
     },
