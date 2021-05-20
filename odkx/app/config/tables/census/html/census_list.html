@@ -103,15 +103,34 @@
                 <div class="mr-auto modal-hh-not-painted" data-localize="roster_confirm_not_painted"></div>
                 <div class="mr-auto d-none modal-hh-painted" data-localize="roster_confirm_painted"></div>
                 <div class="mr-auto ml-4 modal-hh-painted">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="rosterConfirm1">
-                        <label for="rosterConfirm1" class="custom-control-label" data-localize="roster_confirm_1"></label>
+                    <div id="rosterConfirm1">
+                        <div data-localize="roster_confirm_1"></div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-danger" id="rosterConfirm1No">
+                                <input type="radio" name="options"><span data-localize="no_button"></span>
+                            </label>
+                            <label class="btn btn-outline-success" id="rosterConfirm1Yes">
+                                <input type="radio" name="options"><span data-localize="yes_button"></span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="rosterConfirm2">
-                        <label for="rosterConfirm2" class="custom-control-label" data-localize="roster_confirm_2"></label>
+                    <div class="mt-3 d-none" id="rosterConfirm2">
+                        <div data-localize="roster_confirm_2"></div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-danger" id="rosterConfirm2No">
+                                <input type="radio" name="options"><span data-localize="no_button"></span>
+                            </label>
+                            <label class="btn btn-outline-success" id="rosterConfirm2Yes">
+                                <input type="radio" name="options"><span data-localize="yes_button"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-3 d-none" id="rosterConfirm3Div">
+                        <input type="checkbox" class="custom-control-input" id="rosterConfirm3">
+                        <label for="rosterConfirm3" class="custom-control-label" data-localize="hh_delete_confirm"></label>
                     </div>
                 </div>
+
                 <small class="mr-auto" data-localize="roster_confirm_hint"></small>
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
@@ -121,10 +140,6 @@
                         data-localize="yes_button"></button>
 
                 <button type="button" class="btn btn-success d-none modal-hh-painted" id="hhRosterModalContinue">Continue</button>
-                <div class="custom-control custom-checkbox w-100 text-right d-none" id="rosterConfirm3Div">
-                    <input type="checkbox" class="custom-control-input" id="rosterConfirm3">
-                    <label for="rosterConfirm3" class="custom-control-label" data-localize="hh_delete_confirm">This deletes data</label>
-                </div>
             </div>
         </div>
     </div>

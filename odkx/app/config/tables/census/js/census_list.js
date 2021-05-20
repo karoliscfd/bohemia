@@ -3,6 +3,7 @@
 (function () {
   var MAP_ACTION = 'MAP';
   var NAV_ACTION = 'NAV';
+  var SURVEY_ACTION = 'SURVEY';
   var ACTION_KEY = 'CENSUS_LIST_ACTION';
 
   var platInfo = JSON.parse(odkCommon.getPlatformInfo());
@@ -91,20 +92,29 @@
     document.getElementById('hhRosterModalTitle').textContent = hhId;
     document.getElementById('hhRosterModalBody').textContent = '';
     document.getElementById('rosterConfirm3Div').classList.add('d-none');
-    document.getElementById('rosterConfirm3').checked = false;
+    document.getElementById('rosterConfirm3').classList.remove('is-invalid');
 
     var rosterConfirm1 = document.getElementById('rosterConfirm1');
     var rosterConfirm2 = document.getElementById('rosterConfirm2');
+    rosterConfirm2.classList.add('d-none');
 
-    rosterConfirm1.checked = true;
-    rosterConfirm2.checked = true;
+    if (!!rosterConfirm1.querySelector('.active')) {
+      rosterConfirm1.querySelector('.active').classList.remove('active');
+    }
+    if (!!rosterConfirm2.querySelector('.active')) {
+      rosterConfirm2.querySelector('.active').classList.remove('active');
+    }
+
+    rosterConfirm1.addEventListener('change', function () {
+      rosterConfirm2.classList.remove('d-none');
+    });
 
     if (hhMinicenced && isFwInMoz()) {
-      rosterConfirm1.addEventListener('change', matchCheckboxListener);
-      rosterConfirm2.addEventListener('change', matchCheckboxListener);
+      rosterConfirm1.addEventListener('change', matchToggleListener);
+      rosterConfirm2.addEventListener('change', matchToggleListener);
     } else {
-      rosterConfirm1.removeEventListener('change', matchCheckboxListener);
-      rosterConfirm2.removeEventListener('change', matchCheckboxListener);
+      rosterConfirm1.removeEventListener('change', matchToggleListener);
+      rosterConfirm2.removeEventListener('change', matchToggleListener);
     }
 
     odkData.arbitraryQuery(
@@ -138,10 +148,21 @@
 
   var hhRosterContinue = function (evt) {
     var currTarget = evt.currentTarget;
+
+    // Check that both questions have been answered
+    if (currTarget.id === 'hhRosterModalContinue') {
+      var firstSelected = !!document.querySelector('#rosterConfirm1 .active');
+      var secondSelected = !!document.querySelector('#rosterConfirm2 .active');
+
+      if (!firstSelected && !secondSelected) {
+        return;
+      }
+    }
+
     var hhMinicensed = currTarget.dataset['hhMinicenced'] === 'yes';
 
-    var rosterMatch = document.getElementById('rosterConfirm1').checked;
-    var hhIdMatch = document.getElementById('rosterConfirm2').checked;
+    var rosterMatch = selectedRosterMatch();
+    var hhIdMatch = selectedHhIdMatch();
     var completeMatch = (rosterMatch && hhIdMatch) || currTarget.id === 'hhRosterModalProceed';
 
     if (completeMatch) {
@@ -150,6 +171,7 @@
       if (currTarget.id === 'hhRosterModalContinue' && isFwInMoz() && hhMinicensed && !rosterMatch && hhIdMatch) {
         // this requires confirmation to delete data
         if (!document.getElementById('rosterConfirm3').checked) {
+          document.getElementById('rosterConfirm3').classList.add('is-invalid');
           return;
         }
 
@@ -196,7 +218,7 @@
         window.reuseHhId = setTimeout(function () {
           $('#hhDeleteModal').modal('hide');
           odkTables.addRowWithSurvey(
-            null,
+            {[ACTION_KEY]: SURVEY_ACTION},
             'census',
             'census',
             null,
@@ -218,16 +240,31 @@
     }
   };
 
-  var matchCheckboxListener = function () {
-    var rosterMatch = document.getElementById('rosterConfirm1').checked;
-    var hhIdMatch = document.getElementById('rosterConfirm2').checked;
+  var matchToggleListener = function () {
+    var confirm1Selected = document.querySelector('#rosterConfirm1 .active');
+    var confirm2Selected = document.querySelector('#rosterConfirm2 .active');
 
-    if (!rosterMatch && hhIdMatch) {
-      document.getElementById('rosterConfirm3Div').classList.remove('d-none');
-    } else {
-      document.getElementById('rosterConfirm3Div').classList.add('d-none');
+    if (confirm1Selected && confirm2Selected) {
+      var rosterMatch = selectedRosterMatch();
+      var hhIdMatch = selectedHhIdMatch();
+
+      if (!rosterMatch && hhIdMatch) {
+        document.getElementById('rosterConfirm3Div').classList.remove('d-none');
+      } else {
+        document.getElementById('rosterConfirm3Div').classList.add('d-none');
+      }
     }
   };
+
+  var selectedRosterMatch = function () {
+    var selected = document.querySelector('#rosterConfirm1 .active');
+    return selected && selected.id === 'rosterConfirm1Yes'
+  }
+
+  var selectedHhIdMatch = function () {
+    var selected = document.querySelector('#rosterConfirm2 .active');
+    return selected && selected.id === 'rosterConfirm2Yes'
+  }
 
   var hhRosterConfirm = function (evt) {
     // modified from odkTables.editRowWithSurvey
@@ -262,7 +299,7 @@
     };
 
     return odkCommon.doAction(
-      null,
+      {[ACTION_KEY]: SURVEY_ACTION},
       "org.opendatakit.survey.activities.SplashScreenActivity",
       intentArgs
     );
@@ -391,6 +428,14 @@
     } else if (action.dispatchStruct[ACTION_KEY] === MAP_ACTION) {
       // when a household is selected on the map
       hhMetadata = action.jsonValue.result;
+    } else if (action.dispatchStruct[ACTION_KEY] === SURVEY_ACTION) {
+      if (action.jsonValue &&
+        action.jsonValue.result &&
+        action.jsonValue.result.savepoint_type &&
+        action.jsonValue.result.savepoint_type === 'COMPLETE') {
+        // this row has been finalized, exit to Tables home screen
+        odkCommon.closeWindow();
+      }
     }
 
     if (!!hhMetadata && !!hhMetadata.hhRowId && !!hhMetadata.hhId) {
