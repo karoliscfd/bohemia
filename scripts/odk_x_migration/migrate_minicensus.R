@@ -1,8 +1,11 @@
 #!/usr/bin/env Rscript
 
+# Ensure you are in scripts/odk_x_migration/
+
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(sp)
 
 SAVEPOINT_TYPE_COMPLETE <- 'COMPLETE'
 SUITCASE_UPDATE_OP <- 'FORCE_UPDATE'
@@ -363,8 +366,8 @@ if('minicensus_data.RData' %in% dir()){
   load('minicensus_data.RData')
 } else {
   minicensus_data <- load_odk_data(the_country = country,
-                          credentials_path = '../../credentials/credentials.yaml',
-                          users_path = '../../credentials/users.yaml',
+                          credentials_path = '../../credentials/credentials.yaml', # request from Databrew
+                          users_path = '../../credentials/users.yaml', # request from Databrew
                           efficient = FALSE)
   save(minicensus_data,
        file = 'minicensus_data.RData')
@@ -373,7 +376,7 @@ if('minicensus_data.RData' %in% dir()){
 out_list <- minicensus_data
 
 # Define location of keyfile for decryption
-kf <- '../../credentials/bohemia_priv.pem'
+kf <- '../../credentials/bohemia_priv.pem' #path to private key
 
 # Decrypt names
 out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
@@ -412,13 +415,13 @@ purge_odkx_server <- function(suitcase_dir, server_url, table_id, user, pass, od
   setwd(owd)
 }
 
-update_odkx_data <- function(suitcase_dir, server_url, table_id, user, pass, update_path){
+update_odkx_data <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar', server_url, table_id, user, pass, update_path){
   owd <- getwd()
   setwd(suitcase_dir)
   
   update_string <- 
     push_text <- paste0(
-      "java -jar ODK-X_Suitcase_v2.1.7.jar -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
+      "java -jar ", jar_file, " -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
     )
   system(update_string)
   setwd(owd)
@@ -426,7 +429,11 @@ update_odkx_data <- function(suitcase_dir, server_url, table_id, user, pass, upd
 
 # Purge the database
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-purge_odkx_server(suitcase_dir = '~/Documents/suitcase',
+# Ensure that the above file has the following parameters:
+odkx_server
+odk_database_user
+odk_x_pass
+purge_odkx_server(suitcase_dir = '~/Documents/suitcase', # modify to the relative path where you have the suitcase jar file
                   server_url = creds$odkx_server, 
                   user = creds$odk_database_user, 
                   pass = creds$odkx_pass,
@@ -443,10 +450,10 @@ paths <- c('odk_x_geolocation.csv',
 for(i in 1:length(the_tables)){
   this_table <- the_tables[i]
   this_path <- paths[i]
-  update_odkx_data(suitcase_dir = '~/Documents/suitcase',
+  update_odkx_data(suitcase_dir = '~/Documents/suitcase', # modify to the relative path where you have the suitcase jar file
                    server_url = creds$odkx_server, 
                    table_id = this_table, 
-                   user = creds$odk_database_user, 
+                   user = creds$odkx_user, 
                    pass = creds$odkx_pass, 
                    update_path = this_path)
 }
