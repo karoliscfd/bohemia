@@ -444,12 +444,7 @@
   };
 
   var isFwInMoz = function () {
-    // 300-600, 1300-1600 MOZ
-    // 0-300, 1000-1300 TAZ
-
-    var fwId = Number(localStorage.getItem('FW_ID'));
-
-    return (fwId > 300 && fwId < 600) || (fwId > 1300 && fwId < 1600);
+    return bohemiaUtil.getFwLocation() === bohemiaUtil.MOZ;
   }
 
   var configSearch = function (type) {

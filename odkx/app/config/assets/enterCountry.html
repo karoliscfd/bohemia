@@ -13,23 +13,22 @@
 
     <script defer src="js/localize.js"></script>
     <script defer src="js/util.js"></script>
-    <script defer src="js/enterFwId.js"></script>
+    <script defer src="js/enterCountry.js"></script>
 </head>
 
 <body>
 <div class="d-none" id="wrapper">
-    <h1 class="text-uppercase text-center my-5" data-localize="fw_id_title"></h1>
+    <h1 class="text-uppercase text-center my-5" data-localize="change_country_title"></h1>
 
     <main class="container-fluid mt-3">
-        <form id="enterFwIdForm">
+        <form id="changeCountryForm">
             <div class="form-group">
-                <label for="fwIdInput" data-localize="fw_id_title"></label>
-                <button type="button" class="btn btn-dark d-block mb-2" id="enterFwIdScan" data-localize="scan_button"></button>
-                <input type="tel" class="form-control" id="fwIdInput" readonly>
+                <select class="custom-select custom-select-lg mb-3" id="changeCountrySelect">
+                    <option value="TAZ" data-localize="country_tanzania"></option>
+                    <option value="MOZ" data-localize="country_mozambique">Two</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary" data-localize="submit_button"></button>
-            <br /><br /><br /><br /><br />
-            <button type="button" class="btn btn-light d-block mb-2" id="manualFwIdEntry" data-localize="qr_hint"></button>
         </form>
     </main>
 </div>

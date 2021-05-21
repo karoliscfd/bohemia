@@ -32,7 +32,9 @@
     document.getElementById('enterFwIdForm').addEventListener('submit', function (evt) {
       evt.preventDefault();
 
-      localStorage.setItem('FW_ID', document.getElementById('fwIdInput').value.trim());
+      var fwId = document.getElementById('fwIdInput').value.trim();
+      localStorage.setItem('FW_ID', fwId);
+      bohemiaUtil.updateLocationFromFwId(fwId);
       odkCommon.closeWindow(-1);
     });
 

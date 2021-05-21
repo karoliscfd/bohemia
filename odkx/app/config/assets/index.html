@@ -12,6 +12,7 @@
     <script defer src="../../system/tables/js/odkTables.js"></script>
 
     <script defer src="js/localize.js"></script>
+    <script defer src="js/util.js"></script>
     <script defer src="js/index.js"></script>
 </head>
 
@@ -20,8 +21,14 @@
     <h1 class="text-uppercase text-center my-5">
         <span data-localize="op_title"></span>
         <span id="homeScreenFwId" class="mb-1 d-block invisible requires-fw-id">
-            <span class="pr-1" data-localize="fw_id_label"></span>
-            <span id="fwIdSpan"></span>
+            <span class="d-block">
+                <span class="pr-1" data-localize="fw_id_label"></span>
+                <span id="fwIdSpan"></span>
+            </span>
+            <span class="d-block">
+                <span class="pr-1" data-localize="fw_country_label"></span>
+                <span id="fwCountrySpan"></span>
+            </span>
         </span>
     </h1>
 
@@ -41,6 +48,10 @@
 
         <button type="button" class="btn btn-lg btn-dark btn-block py-4" id="enterFwId">
             <span class="h2" data-localize="fw_id_button"></span>
+        </button>
+
+        <button type="button" class="btn btn-lg btn-dark btn-block py-4 requires-fw-id d-none" id="changeFwCountry">
+            <span class="h2" data-localize="change_country_button"></span>
         </button>
 
         <button type="button" class="btn btn-lg btn-primary btn-block py-4" id="syncHhButton">

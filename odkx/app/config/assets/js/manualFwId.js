@@ -7,6 +7,7 @@
 
       var fwIdVal = document.getElementById('fwIdInput').value.trim()
       localStorage.setItem('FW_ID', fwIdVal);
+      bohemiaUtil.updateLocationFromFwId(fwIdVal);
       odkCommon.closeWindow(-1, {
         fwId: fwIdVal,
       });
