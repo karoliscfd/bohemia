@@ -63,6 +63,27 @@ if('data.RData' %in% dir()){
        file = 'data.RData')
 }
 
+x <- pd_tza$minicensus_main %>%
+  filter(hh_country == 'Tanzania',
+         hh_district == 'Kibiti DC') %>%
+  group_by(code = hh_hamlet_code) %>%
+  summarise(n_households_minicensus = n())
+left <- bohemia::locations %>%
+  filter(District == 'Kibiti DC') %>%
+  dplyr::select(District, Ward, Village, Hamlet, code) %>%
+  left_join(bohemia::gps %>% dplyr::select(code,
+                                           n_households_recon = n_households))
+joined <- left_join(left, x) %>%
+  mutate(n_households_minicensus = ifelse(is.na(n_households_minicensus), 0, n_households_minicensus)) %>%
+  mutate(percentage_done = n_households_minicensus / n_households_recon * 100)
+joined <- joined %>% arrange(desc(percentage_done))
+write_csv(joined, '~/Desktop/percentage_done_kibiti.csv')
+
+x = joined %>%
+  group_by(Ward) %>%
+  summarise(any_hh = sum(n_households_minicensus) > 0,
+            hh = sum(n_households_minicensus))
+
 if('pre_load.RData' %in% dir()){
   load('pre_load.RData')
 } else {
