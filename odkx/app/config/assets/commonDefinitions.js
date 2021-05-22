@@ -544,7 +544,7 @@ window.odkCommonDefinitions = {
       "string_token": "hh_delete_confirm",
       "text": {
         "default": "Confirm before deleting data",
-        "pt": "Confirme antes de excluir os dados",
+        "pt": "Confirme que deseja excluir a lista de membros de este agregado",
         "sw": "Confirm"
       },
       "_row_num": 62
@@ -553,7 +553,7 @@ window.odkCommonDefinitions = {
       "string_token": "change_country_button",
       "text": {
         "default": "Change Country",
-        "pt": "Selecione seu pais"
+        "pt": "Selecione país"
       },
       "_row_num": 63
     },
@@ -561,7 +561,7 @@ window.odkCommonDefinitions = {
       "string_token": "change_country_title",
       "text": {
         "default": "Country",
-        "pt": "Mude"
+        "pt": "País"
       },
       "_row_num": 64
     },
@@ -585,7 +585,7 @@ window.odkCommonDefinitions = {
       "string_token": "fw_country_label",
       "text": {
         "default": "Country:",
-        "pt": "Mude:"
+        "pt": "País:"
       },
       "_row_num": 67
     }
