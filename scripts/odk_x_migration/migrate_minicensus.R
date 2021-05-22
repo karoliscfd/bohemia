@@ -1,3 +1,14 @@
+suitcase_dir <- '~/Documents/suitcase'
+jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
+
+# Check the directory
+this_dir <- getwd()
+split_dir <- unlist(strsplit(this_dir, split = '/'))
+check <- split_dir[length(split_dir)] == 'odk_x_migration' & split_dir[length(split_dir) - 1] == 'scripts' & split_dir[length(split_dir) - 2] == 'bohemia'
+if(!check){
+  message('YOU ARE IN THE WRONG DIRECTORY. MAKE SURE YOU ARE IN bohemia/scripts/odk_x_migration')
+}
+
 #!/usr/bin/env Rscript
 
 # Ensure you are in scripts/odk_x_migration/
@@ -404,13 +415,13 @@ for(i in 1:length(names(out_list))){
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
 # Having written csvs, push them to the server
-purge_odkx_server <- function(suitcase_dir, server_url, table_id, user, pass, odx_path){
+purge_odkx_server <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar', server_url, table_id, user, pass, odx_path){
   owd <- getwd()
   setwd(suitcase_dir)
   
   update_string <- 
     push_text <- paste0(
-      "java -jar ODK-X_Suitcase_v2.1.7.jar -update -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odx_path)
+      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odx_path, "'  -dataVersion 2")
   system(update_string)
   setwd(owd)
 }
@@ -433,11 +444,12 @@ creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
 # odkx_server
 # odk_database_user
 # odk_x_pass
-purge_odkx_server(suitcase_dir = '~/Documents/suitcase', # modify to the relative path where you have the suitcase jar file
+purge_odkx_server(suitcase_dir = suitcase_dir,
+                  jar_file = jar_file,
                   server_url = creds$odkx_server, 
-                  user = creds$odk_database_user, 
+                  user = creds$odkx_user, 
                   pass = creds$odkx_pass,
-                  odx_path = '../../../suitcase/')
+                  odx_path = '../../odkx/app/config')
 
 # Loop through each form and update
 the_tables <- c('hh_geo_location',
@@ -450,7 +462,8 @@ paths <- c('odk_x_geolocation.csv',
 for(i in 1:length(the_tables)){
   this_table <- the_tables[i]
   this_path <- paths[i]
-  update_odkx_data(suitcase_dir = '~/Documents/suitcase', # modify to the relative path where you have the suitcase jar file
+  update_odkx_data(suitcase_dir = suitcase_dir,
+                   jar_file = jar_file,
                    server_url = creds$odkx_server, 
                    table_id = this_table, 
                    user = creds$odkx_user, 
