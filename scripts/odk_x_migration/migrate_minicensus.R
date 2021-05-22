@@ -429,10 +429,10 @@ update_odkx_data <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar
 
 # Purge the database
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-# Ensure that the above file has the following parameters:
-odkx_server
-odk_database_user
-odk_x_pass
+# # Ensure that the above file has the following parameters:
+# odkx_server
+# odk_database_user
+# odk_x_pass
 purge_odkx_server(suitcase_dir = '~/Documents/suitcase', # modify to the relative path where you have the suitcase jar file
                   server_url = creds$odkx_server, 
                   user = creds$odk_database_user, 
