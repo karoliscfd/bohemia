@@ -17,3 +17,7 @@ logs
 tmp
 *.pem
 *.DS_Store
+.Rproj.user
+.Rproj
+*.Rproj
+.Rhistory

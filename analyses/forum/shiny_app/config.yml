@@ -1,0 +1,4 @@
+default:
+  app_name: "forum tool"
+  db:
+    dbname: 'data/records.sqlite3'
