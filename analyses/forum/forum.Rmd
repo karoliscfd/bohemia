@@ -5,33 +5,103 @@ output:
     orientation: rows
     social: menu
     source_code: embed
+runtime: shiny
 ---
+
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(gsheet)
 library(DT)
-# read in data
-if(!'df_forum.RData' %in% dir('/tmp')){
-    df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0') 
-    # removing details for now
-    df$details <- NULL
-    df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
-    save(df, file = '/tmp/df_forum.RData')
-  } else {
-    load('/tmp/df_forum.RData')
-  }
+library(shiny)
+
+# # read in data
+# if(!'df_forum.RData' %in% dir('/tmp')){
+#     df <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1qDxynnod4YZYzGP1G9562auOXzAq1nVn89EjeJYgL8k/edit#gid=0')
+#     # removing details for now
+#     df$details <- NULL
+#     df <- df[, c("country", "first_name", "last_name", "institution", "position", "email", "phone")]
+#     save(df, file = '/tmp/df_forum.RData')
+#   } else {
+#     load('/tmp/df_forum.RData')
+#   }
+```
+
+<iframe height="100%" width="100%" frameborder="no" src="https://databrew.shinyapps.io/forum_app/"> </iframe>
+
+```{r R-codechunk}
+
+
+# names(df) <- c('Country', 'First name', 'Last name', 'Institution', 'Position', 'Email', 'Phone')
+# # knitr::kable(df,bootstrap_options = "striped")
+# DT::datatable(df,
+#               editable = 'cell',
+#                     # callback = JS('trianglegirl_function();'),
+#                     extensions = 'Buttons',
+#                    selection = "none",
+#                    filter = 'top',
+#                     options = list(pageLength = 15, info = FALSE, dom='Bfrtip', buttons = list('csv')))
+# 
+
 ```
 
 
-```{r}
-names(df) <- c('Country', 'First name', 'Last name', 'Institution', 'Position', 'Email', 'Phone')
-# knitr::kable(df,bootstrap_options = "striped")
-DT::datatable(df, editable = 'cell',
-                    extensions = 'Buttons', 
-                    filter = 'top', 
-                    options = list(pageLength = 15, info = FALSE, dom='Bfrtip', buttons = list('csv')))
-```
+```{js jQuery-codechunk}
 
+//$("#DataTables_Table_0").attr('contenteditable','true');
+
+
+    //$("DataTables_Table_0").attr('contenteditable','true');
+    //document.getElementById("DataTables_Table_0").contentEditable = "true";
+  //var table = document.getElementById("DataTables_Table_0").getElementsByTagName('tbody')[0];
+  //var cells = table.getElementsByTagName("td");
+  
+  //console.log(table)
+  //console.log(cells)
+  
+  //for (let t of cells) {
+    //t.contentEditable = "true";
+  //}
+
+//}
+
+const trianglegirl_function = function() {
+
+  $('#DataTables_Table_0').column(0).nodes().to$().each(function(index) {    
+      $('#DataTables_Table_0 >tbody > tr td').dblclick(function() {
+        $(this).prop('contenteditable','true');
+      })
+  }); 
+ 
+  $( document ).ready(function() {
+    $('#DataTables_Table_0 >tbody > tr td').dblclick(function() {
+      //alert('Row dblclicked');
+      //alert($(this).attr('class'));
+      //$(this).css('color', 'red');
+      $(this).prop('contenteditable','true');
+   });
+
+
+    $(".paginate_button").each(function(){
+        $(this).click(function(){
+            $('#DataTables_Table_0 >tbody > tr td').dblclick(function() {
+              $(this).prop('contenteditable','true');
+            })
+        });
+    });
+  });
+      
+};
+
+//$(document).ready(function() {
+//    $('#DataTables_Table_0 >tbody > tr').dblclick(function() {
+//    alert('Row dblclicked');
+//        alert($(this).attr('class'));
+//    });
+//$("#DataTables_Table_0").attr('contenteditable','true');
+//});
+
+
+```
 
 

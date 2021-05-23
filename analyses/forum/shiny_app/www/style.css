@@ -1,0 +1,219 @@
+.panel-auth { 
+    background: #b97800 !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-blend-mode: difference !important;
+    overflow-y: hidden !important; 
+}
+
+.panel {
+    border-radius: 1px !important;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+}
+
+.materialBox {
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
+    padding: 15px;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.panel-primary {
+  border-color: transparent !important;
+}
+
+.form-control {
+  border-radius: 1px !important;
+}
+
+.btn {
+    border-radius: 1px !important;
+    border: none !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+
+.alert-danger {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+/* Main page */
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    margin-right: 5px !important;
+}
+
+.dataTables_wrapper .dataTables_length {
+    visibility: hidden !important;
+}
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #ffffff !important;
+    border-color: none !important;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%) !important;
+    border-radius: 2px !important;
+    color: white !important;
+    border: 0px solid #ffffff !important;
+    font-weight: bold !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #191919 !important;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%) !important;
+    border-radius: 2px !important;
+    border: 0px solid transparent !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    background: white !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    
+}
+
+.dataTables_wrapper .dataTables_info{
+  visibility: hidden !important;
+}
+
+#cars_table-car_table_vc {
+    padding: 20px;
+    border-radius: 1px !important;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+#cars_table-car_table {
+    padding: 20px;
+    border-radius: 1px !important;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100% !important;
+}
+
+tr td:nth-child(1) {
+    width: 5% !important;
+}
+
+tr > td:nth-child(2) {
+    width: 11%;
+}
+
+tr > td:nth-child(3) {
+    width: 11%;
+}
+
+tr > td:nth-child(4) {
+    width: 11%;
+}
+
+tr > td:nth-child(5) {
+    width: 23%;
+}
+
+tr > td:nth-child(6) {
+    width: 11%;
+}
+
+tr > td:nth-child(7) {
+    width: 16%;
+}
+
+tr > td:nth-child(8) {
+    width: 12%;
+}
+
+thead > tr > td:first-child > .has-feedback:first-child .form-control {
+    visibility: hidden !important;
+}
+
+table.dataTable thead th {
+    border-bottom: 1px solid white !important;
+}
+
+table.dataTable thead td {
+  border-bottom: 1px solid #d0d0d0 !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 10px !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+}
+
+
+table.dataTable thead .sorting {
+    background-image: url(https://image.flaticon.com/icons/png/512/130/130898.png) !important;
+    background-size: 15px !important;
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: url(sorting-arrows_up.png) !important;
+    background-size: 19px !important;
+}
+
+table.dataTable thead .sorting_desc {
+    background-image: url(sorting-arrows_down.png) !important;
+    background-size: 19px !important;
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+    background-color: transparent !important;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid #dcdcdc !important;
+}
+
+.modal-content {
+    border: 1px solid transparent !important; 
+    border-radius: 1px !important;
+}
+
+textarea.form-control {
+    resize: vertical !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #d8d8d8 !important;
+    padding: 2px !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  color: #4a4a4a !important;
+  text-transform: uppercase !important;
+  /* Static search field */
+  /* position: fixed;
+  right: 30px; */
+}
+
+button.dt-button, div.dt-button, a.dt-button {
+    border-radius: 1px !important;
+    border: none !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #337ab7 !important;
+    color: white !important;
+}
+
+button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled) {
+    border: 1px solid #337ab7 !important;
+    background-image: none !important;
+    background-color: #337ab7 !important;
+    text-shadow: none !important;
+    color: white;
+}
