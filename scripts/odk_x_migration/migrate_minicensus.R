@@ -1,4 +1,4 @@
-suitcase_dir <- '~/Documents/suitcase'
+suitcase_dir <- '/home/joebrew/Documents/suitcase'
 jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 
