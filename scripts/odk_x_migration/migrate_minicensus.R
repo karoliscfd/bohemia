@@ -1,5 +1,6 @@
 suitcase_dir <- '~/Documents/suitcase'
 jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
+odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 
 # Check the directory
 this_dir <- getwd()
@@ -414,19 +415,22 @@ for(i in 1:length(names(out_list))){
 # Write local csvs ready for upload to server
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
+# IMPORTANT: OPEN THE GUI, LOG IN, SELECT UPLOAD, AND CLICK "RESET". This will "purge" the server prior to uploading new form definitions (next step)
+
 # Having written csvs, push them to the server
-purge_odkx_server <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar', server_url, table_id, user, pass, odx_path){
+purge_odkx_server <- function(suitcase_dir, jar_file, server_url, table_id, user, pass, odkx_path){
   owd <- getwd()
   setwd(suitcase_dir)
   
   update_string <- 
     push_text <- paste0(
-      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odx_path, "'  -dataVersion 2")
+      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odkx_path, "'  -dataVersion 2")
+  message(update_string)
   system(update_string)
   setwd(owd)
 }
 
-update_odkx_data <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar', server_url, table_id, user, pass, update_path){
+update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, table_id, user, pass, update_path){
   owd <- getwd()
   setwd(suitcase_dir)
   
@@ -434,6 +438,8 @@ update_odkx_data <- function(suitcase_dir, jar_file = 'ODK-X_Suitcase_v2.1.7.jar
     push_text <- paste0(
       "java -jar ", jar_file, " -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
     )
+  message(update_string)
+  
   system(update_string)
   setwd(owd)
 }
@@ -449,7 +455,7 @@ purge_odkx_server(suitcase_dir = suitcase_dir,
                   server_url = creds$odkx_server, 
                   user = creds$odkx_user, 
                   pass = creds$odkx_pass,
-                  odx_path = '../../odkx/app/config')
+                  odkx_path = odkx_path)
 
 # Loop through each form and update
 the_tables <- c('hh_geo_location',
@@ -458,6 +464,7 @@ the_tables <- c('hh_geo_location',
 paths <- c('odk_x_geolocation.csv',
            'odk_x_member.csv',
            'odk_x_hh.csv')
+paths <- paste0(getwd(), '/', paths)
 
 for(i in 1:length(the_tables)){
   this_table <- the_tables[i]
