@@ -1,6 +1,10 @@
 suitcase_dir <- '/home/joebrew/Documents/suitcase'
 jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
+kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
+creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
+
+
 
 # Check the directory
 this_dir <- getwd()
@@ -366,6 +370,45 @@ migrate_to_odk_x <- function(
   }
 }
 
+purge_odkx_server <- function(suitcase_dir, jar_file, server_url, user, pass){
+  owd <- getwd()
+  setwd(suitcase_dir)
+  
+  update_string <- 
+    push_text <- paste0(
+      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -reset ",
+      '  -dataVersion 2')
+  message(update_string)
+  system(update_string)
+  setwd(owd)
+}
+
+upload_forms_odkx_server <- function(suitcase_dir, jar_file, server_url, table_id, user, pass, odkx_path){
+  owd <- getwd()
+  setwd(suitcase_dir)
+  
+  update_string <- 
+    push_text <- paste0(
+      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odkx_path, "'  -dataVersion 2")
+  message(update_string)
+  system(update_string)
+  setwd(owd)
+}
+
+update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, table_id, user, pass, update_path){
+  owd <- getwd()
+  setwd(suitcase_dir)
+  
+  update_string <- 
+    push_text <- paste0(
+      "java -jar ", jar_file, " -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
+    )
+  message(update_string)
+  
+  system(update_string)
+  setwd(owd)
+}
+
 message('Loading minicensus data')
 # load('minicensus_data.RData')
 
@@ -387,8 +430,6 @@ if('minicensus_data.RData' %in% dir()){
 
 out_list <- minicensus_data
 
-# Define location of keyfile for decryption
-kf <- '../../credentials/bohemia_priv.pem' #path to private key
 
 # Decrypt names
 out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
@@ -415,42 +456,15 @@ for(i in 1:length(names(out_list))){
 # Write local csvs ready for upload to server
 migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
 
-# IMPORTANT: OPEN THE GUI, LOG IN, SELECT UPLOAD, AND CLICK "RESET". This will "purge" the server prior to uploading new form definitions (next step)
-
-# Having written csvs, push them to the server
-purge_odkx_server <- function(suitcase_dir, jar_file, server_url, table_id, user, pass, odkx_path){
-  owd <- getwd()
-  setwd(suitcase_dir)
-  
-  update_string <- 
-    push_text <- paste0(
-      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odkx_path, "'  -dataVersion 2")
-  message(update_string)
-  system(update_string)
-  setwd(owd)
-}
-
-update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, table_id, user, pass, update_path){
-  owd <- getwd()
-  setwd(suitcase_dir)
-  
-  update_string <- 
-    push_text <- paste0(
-      "java -jar ", jar_file, " -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
-    )
-  message(update_string)
-  
-  system(update_string)
-  setwd(owd)
-}
 
 # Purge the database
-creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-# # Ensure that the above file has the following parameters:
-# odkx_server
-# odk_database_user
-# odk_x_pass
 purge_odkx_server(suitcase_dir = suitcase_dir,
+                         jar_file = jar_file,
+                         server_url = creds$odkx_server, 
+                         user = creds$odkx_user, 
+                         pass = creds$odkx_pass)
+
+upload_forms_odkx_server(suitcase_dir = suitcase_dir,
                   jar_file = jar_file,
                   server_url = creds$odkx_server, 
                   user = creds$odkx_user, 
