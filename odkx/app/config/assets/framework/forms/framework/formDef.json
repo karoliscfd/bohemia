@@ -806,7 +806,7 @@
       {
         "string_token": "roster_confirm_painted",
         "text": {
-          "default": "Confirm with the person in the household that",
+          "default": "Confirm with the person in the household:",
           "pt": "Confirme com a pessoa da casa que:",
           "sw": "Hakiki na mmoja wapo wa hiyo kaya kwamba"
         },
@@ -815,25 +815,25 @@
       {
         "string_token": "roster_confirm_1",
         "text": {
-          "default": "This list of members corresponds to the household you are in, and",
-          "pt": "Esta lista de membros corresponde à família em que você está, e",
-          "sw": "Hii orodha ya washiriki inaendana na kaya uliyopo, na"
+          "default": "1) This list of members corresponds to the household you are in.",
+          "pt": "1) Esta lista de membros corresponde à família em que você está.",
+          "sw": "1) Hii orodha ya washiriki inaendana na kaya uliyopo."
         },
         "_row_num": 28
       },
       {
         "string_token": "roster_confirm_2",
         "text": {
-          "default": "The painted ID matches the household ID in the screen.",
-          "pt": "O ID pintado corresponde ao ID da família na tela.",
-          "sw": "Namba iliyochorwa inaendana na namba ya kaya inayoonekana kwenye kifaa chako"
+          "default": "2) The painted ID matches the household ID in the screen.",
+          "pt": "2) O ID pintado corresponde ao ID da família na tela.",
+          "sw": "2) Namba iliyochorwa inaendana na namba ya kaya inayoonekana kwenye kifaa chako"
         },
         "_row_num": 29
       },
       {
         "string_token": "roster_confirm_hint",
         "text": {
-          "default": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+          "default": "There could have been some changes in the list of household members, but at least one person should be correct.",
           "pt": "Pode ter havido algumas mudanças na lista de membros do agregado, mas pelo menos um membro deve estar correcto.",
           "sw": "Kunaweza kukawa na mabadiliko katika orodha ya washiriki lakini angalau mtu mmoja anapaswa kuwa sahihi"
         },
@@ -2130,7 +2130,7 @@
         "roster_confirm_painted": {
           "string_token": "roster_confirm_painted",
           "text": {
-            "default": "Confirm with the person in the household that",
+            "default": "Confirm with the person in the household:",
             "pt": "Confirme com a pessoa da casa que:",
             "sw": "Hakiki na mmoja wapo wa hiyo kaya kwamba"
           },
@@ -2139,25 +2139,25 @@
         "roster_confirm_1": {
           "string_token": "roster_confirm_1",
           "text": {
-            "default": "This list of members corresponds to the household you are in, and",
-            "pt": "Esta lista de membros corresponde à família em que você está, e",
-            "sw": "Hii orodha ya washiriki inaendana na kaya uliyopo, na"
+            "default": "1) This list of members corresponds to the household you are in.",
+            "pt": "1) Esta lista de membros corresponde à família em que você está.",
+            "sw": "1) Hii orodha ya washiriki inaendana na kaya uliyopo."
           },
           "_row_num": 28
         },
         "roster_confirm_2": {
           "string_token": "roster_confirm_2",
           "text": {
-            "default": "The painted ID matches the household ID in the screen.",
-            "pt": "O ID pintado corresponde ao ID da família na tela.",
-            "sw": "Namba iliyochorwa inaendana na namba ya kaya inayoonekana kwenye kifaa chako"
+            "default": "2) The painted ID matches the household ID in the screen.",
+            "pt": "2) O ID pintado corresponde ao ID da família na tela.",
+            "sw": "2) Namba iliyochorwa inaendana na namba ya kaya inayoonekana kwenye kifaa chako"
           },
           "_row_num": 29
         },
         "roster_confirm_hint": {
           "string_token": "roster_confirm_hint",
           "text": {
-            "default": "There could have been some changes in the list of hh members, but at least one person should be correct.",
+            "default": "There could have been some changes in the list of household members, but at least one person should be correct.",
             "pt": "Pode ter havido algumas mudanças na lista de membros do agregado, mas pelo menos um membro deve estar correcto.",
             "sw": "Kunaweza kukawa na mabadiliko katika orodha ya washiriki lakini angalau mtu mmoja anapaswa kuwa sahihi"
           },
