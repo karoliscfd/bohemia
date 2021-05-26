@@ -3,7 +3,7 @@ jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-
+use_real_names <- TRUE # whether to decrypt names (TRUE) or use fakes ones (false)
 
 
 # Check the directory
@@ -59,6 +59,20 @@ add_metadata_col <- function(df, form_id) {
 # select_multiple fields are encoded as JSON array
 format_select_multiple <- function(...) {
   str_c('["', str_c(..., collapse = '","'), '"]')
+}
+
+# Define function for making fake names
+library(babynames)
+fake_names <- function(n = 1, words = 2){
+  vec <- babynames::babynames$name
+  first_name <- sample(vec, size = n, replace = T)
+  if(words == 1){
+    out <- first_name
+  } else {
+    last_name <- sample(vec, size = n, replace = T)
+    out <- paste0(first_name, ' ', last_name)
+  }
+  return(out)
 }
 
 migrate_to_odk_x <- function(
@@ -432,17 +446,32 @@ out_list <- minicensus_data
 
 
 # Decrypt names
-out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
-out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
-out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
-out_list$minicensus_repeat_death_info$death_surname <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_surname, keyfile = kf)
-out_list$minicensus_people$first_name <- decrypt_private_data(out_list$minicensus_people$first_name, keyfile = kf)
-out_list$minicensus_people$last_name <- decrypt_private_data(out_list$minicensus_people$last_name, keyfile = kf)
-out_list$va$id10007 <- decrypt_private_data(out_list$va$id10007, keyfile = kf)
-out_list$va$id10017 <- decrypt_private_data(out_list$va$id10017, keyfile = kf)
-out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
-out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
-out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
+if(use_real_names){
+  out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
+  out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
+  out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
+  out_list$minicensus_repeat_death_info$death_surname <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_surname, keyfile = kf)
+  out_list$minicensus_people$first_name <- decrypt_private_data(out_list$minicensus_people$first_name, keyfile = kf)
+  out_list$minicensus_people$last_name <- decrypt_private_data(out_list$minicensus_people$last_name, keyfile = kf)
+  out_list$va$id10007 <- decrypt_private_data(out_list$va$id10007, keyfile = kf)
+  out_list$va$id10017 <- decrypt_private_data(out_list$va$id10017, keyfile = kf)
+  out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
+  out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
+  out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
+} else {
+  out_list$enumerations$sub_name <- fake_names(length(out_list$enumerations$sub_name))
+  out_list$enumerations$chefe_name <- fake_names(length(out_list$enumerations$chefe_name))
+  out_list$minicensus_repeat_death_info$death_name <- fake_names(length(out_list$minicensus_repeat_death_info$death_name), words = 1)
+  out_list$minicensus_repeat_death_info$death_surname <- fake_names(length(out_list$minicensus_repeat_death_info$death_surname), words = 1)
+  out_list$minicensus_people$first_name <- fake_names(length(out_list$minicensus_people$first_name), words = 1)
+  out_list$minicensus_people$last_name <- fake_names(length(out_list$minicensus_people$last_name), words = 1)
+  out_list$va$id10007 <- fake_names(length(out_list$va$id10007))
+  out_list$va$id10017 <- fake_names(length(out_list$va$id10017))
+  out_list$va$id10018 <- fake_names(length(out_list$va$id10018))
+  out_list$va$id10061 <- fake_names(length(out_list$va$id10061))
+  out_list$va$id10062 <- fake_names(length(out_list$va$id10062))
+}
+
 
 # Update names
 for(i in 1:length(names(out_list))){
@@ -454,7 +483,7 @@ for(i in 1:length(names(out_list))){
 }
 
 # Write local csvs ready for upload to server
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 100, truncate_name = TRUE)
+migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = FALSE)
 
 
 # Purge the database
