@@ -24,7 +24,8 @@
 
 ### Use in the field
 
-- Open the link to the public URL of the map: https://www.google.com/maps/d/u/0/edit?mid=1JCoPmqi2lb-2ypgEMmvBs3UzfQKjJ4Uk&usp=sharing
+- Navigate to [THIS PAGE](https://github.com/databrew/bohemia/blob/master/guides/guide_google_maps.md) on the phone web browser.
+- Click the link to the public URL of the map: https://www.google.com/maps/d/u/0/edit?mid=1JCoPmqi2lb-2ypgEMmvBs3UzfQKjJ4Uk&usp=sharing
 
 ![](img/google/1.jpg)
 
