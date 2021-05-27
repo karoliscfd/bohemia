@@ -20,8 +20,16 @@
 - Click "Download"
 - Zoom out to the whole study area
 
+
+
 ### Use in the field
 
 - Open the link to the public URL of the map: https://www.google.com/maps/d/u/0/edit?mid=1JCoPmqi2lb-2ypgEMmvBs3UzfQKjJ4Uk&usp=sharing
+
+![](1.jpg)
+
 - Make sure to save the link on the device for offline access (as a favorite, homescreen menu item, etc.)
 - You can now navigate from place to place, see all locations, click on a location for information, etc.
+
+![](2.png)
+
