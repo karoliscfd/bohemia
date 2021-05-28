@@ -9,7 +9,8 @@ function(input, output, session) {
   institution                      TEXT,
   position                         TEXT,
   email                            TEXT,
-  phone
+  phone                            TEXT,
+  notes                            TEXT
 )"
   
   # Drop the table if it already exists
@@ -28,9 +29,13 @@ function(input, output, session) {
   }
   
   df$uid <- uuid::UUIDgenerate(n = nrow(df))
+  df$notes <- NA
+  df$notes <-  as.character(df$notes)
+  df$notes[9] <- ""
   
   df <- df %>%
     select(uid, everything())
+  
   
   DBI::dbWriteTable(
     conn,

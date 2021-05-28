@@ -133,7 +133,7 @@ records_table_module <- function(input, output, session) {
     datatable(
       out,
       rownames = FALSE,
-      colnames = c('Country', 'First name', 'Last name', 'Institution', 'Position', 'Email', 'Phone'),
+      colnames = c('Country', 'First name', 'Last name', 'Institution', 'Position', 'Email', 'Phone', 'Notes'),
       selection = "none",
       # class = "compact stripe row-border nowrap",
       # Escape the HTML in all except 1st column (which has the buttons)
@@ -143,10 +143,12 @@ records_table_module <- function(input, output, session) {
       options = list(
         # scrollX = TRUE,
         filter = 'top',
-        dom = 'Bftip',
+        dom = 'Blfrtip',
         filter = "top",
         pageLength = 10,
-        info = FALSE,
+        lengthChange = TRUE,
+        lengthMenu = list(c(10, 50, -1), c("10", "50", "All")),
+        info = TRUE,
         buttons = list(
           list(
             extend = "csv",
@@ -160,7 +162,7 @@ records_table_module <- function(input, output, session) {
         autoWidth = TRUE,
         columnDefs = list(
           # list(targets = 0, orderable = FALSE,),
-          list(width = '200px', targets = "_all")
+          list(width = '200px', targets = "_all", searchable = TRUE)
         ),
         drawCallback = JS("function(settings) {
           // removes any lingering tooltips
