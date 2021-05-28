@@ -4,6 +4,8 @@ odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full pa
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
 use_real_names <- TRUE # whether to decrypt names (TRUE) or use fakes ones (false)
+is_linux <- Sys.info()['sysname'] == 'Linux'
+
 
 
 # Check the directory
@@ -83,8 +85,7 @@ migrate_to_odk_x <- function(
   hh_csv_path = 'odk_x_hh.csv',
   member_csv_path = 'odk_x_member.csv',
   geo_location_csv_path = 'odk_x_geolocation.csv',
-  death_csv_path = 'odk_x_death.csv'
-) {
+  death_csv_path = 'odk_x_death.csv') {
   message('Processing clean_minicensus_main')
   hh_col <- c(
     'instance_id',
@@ -384,7 +385,7 @@ migrate_to_odk_x <- function(
   }
 }
 
-purge_odkx_server <- function(suitcase_dir, jar_file, server_url, user, pass){
+purge_odkx_server <- function(suitcase_dir, jar_file, server_url, user, pass, is_linux = FALSE){
   owd <- getwd()
   setwd(suitcase_dir)
   
@@ -393,11 +394,14 @@ purge_odkx_server <- function(suitcase_dir, jar_file, server_url, user, pass){
       "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -reset ",
       '  -dataVersion 2')
   message(update_string)
+  if(!is_linux){
+    update_string <- gsub("'", "", update_string)
+  }
   system(update_string)
   setwd(owd)
 }
 
-upload_forms_odkx_server <- function(suitcase_dir, jar_file, server_url, table_id, user, pass, odkx_path){
+upload_forms_odkx_server <- function(suitcase_dir, jar_file, server_url, table_id, user, pass, odkx_path, is_linux = FALSE){
   owd <- getwd()
   setwd(suitcase_dir)
   
@@ -405,11 +409,14 @@ upload_forms_odkx_server <- function(suitcase_dir, jar_file, server_url, table_i
     push_text <- paste0(
       "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -username '", user, "' -password '", pass, "' -upload uploadOp RESET_APP -path '", odkx_path, "'  -dataVersion 2")
   message(update_string)
+  if(!is_linux){
+    update_string <- gsub("'", "", update_string)
+  }
   system(update_string)
   setwd(owd)
 }
 
-update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, table_id, user, pass, update_path){
+update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, table_id, user, pass, update_path, is_linux = FALSE){
   owd <- getwd()
   setwd(suitcase_dir)
   
@@ -418,7 +425,9 @@ update_odkx_data <- function(suitcase_dir, jar_file = jar_file, server_url, tabl
       "java -jar ", jar_file, " -update -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' -username '", user, "' -password '", pass, "' -path '", update_path, "' -updateLogPath '~/Desktop/log.txt' -dataVersion 2"
     )
   message(update_string)
-  
+  if(!is_linux){
+    update_string <- gsub("'", "", update_string)
+  }
   system(update_string)
   setwd(owd)
 }
@@ -483,7 +492,7 @@ for(i in 1:length(names(out_list))){
 }
 
 # Write local csvs ready for upload to server
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = FALSE)
+migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 5000, truncate_name = FALSE)
 
 
 # Purge the database
@@ -491,14 +500,16 @@ purge_odkx_server(suitcase_dir = suitcase_dir,
                          jar_file = jar_file,
                          server_url = creds$odkx_server, 
                          user = creds$odkx_user, 
-                         pass = creds$odkx_pass)
+                         pass = creds$odkx_pass,
+                  is_linux = is_linux)
 
 upload_forms_odkx_server(suitcase_dir = suitcase_dir,
                   jar_file = jar_file,
                   server_url = creds$odkx_server, 
                   user = creds$odkx_user, 
                   pass = creds$odkx_pass,
-                  odkx_path = odkx_path)
+                  odkx_path = odkx_path,
+                  is_linux = is_linux)
 
 # Loop through each form and update
 the_tables <- c('hh_geo_location',
@@ -518,5 +529,6 @@ for(i in 1:length(the_tables)){
                    table_id = this_table, 
                    user = creds$odkx_user, 
                    pass = creds$odkx_pass, 
-                   update_path = this_path)
+                   update_path = this_path,
+                   is_linux = is_linux)
 }
