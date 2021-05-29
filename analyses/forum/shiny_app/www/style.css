@@ -1,4 +1,4 @@
-.panel-auth { 
+/* .panel-auth { 
     background: #b97800 !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -9,7 +9,7 @@
 .panel {
     border-radius: 1px !important;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
-}
+} */
 
 .materialBox {
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
@@ -44,7 +44,8 @@
   border-color: transparent !important;
 }
 
-/* Main page */
+
+/* Main (Table) page */
 .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
     margin-right: 5px !important;
 }
@@ -62,7 +63,6 @@
     border-left: none !important;
     border-bottom: 2px solid #337ab7 !important;
 }
-
 
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
@@ -86,7 +86,6 @@
     background: white !important;
     box-shadow: none !important;
     cursor: not-allowed !important;
-    
 }
 
 .dataTables_wrapper .dataTables_info{
@@ -209,9 +208,6 @@ textarea.form-control {
 .dataTables_wrapper .dataTables_filter {
   color: #4a4a4a !important;
   text-transform: uppercase !important;
-  /* Static search field */
-  /* position: fixed;
-  right: 30px; */
 }
 
 button.dt-button, div.dt-button, a.dt-button {
@@ -233,7 +229,6 @@ button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-
 }
 
 #DataTables_Table_0 {
-    /* margin-top: 28px; */
     padding-top: 35px;
     width: 100% !important;
 }

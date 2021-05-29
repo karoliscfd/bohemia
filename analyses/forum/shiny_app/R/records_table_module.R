@@ -191,6 +191,4 @@ records_table_module <- function(input, output, session) {
   )
 
 
-
-
 }
