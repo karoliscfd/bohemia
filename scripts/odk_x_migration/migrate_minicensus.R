@@ -492,7 +492,7 @@ for(i in 1:length(names(out_list))){
 }
 
 # Write local csvs ready for upload to server
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 5000, truncate_name = FALSE)
+migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = FALSE, truncate_name = FALSE)
 
 
 # Purge the database
