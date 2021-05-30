@@ -6,6 +6,7 @@ creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
 use_real_names <- TRUE # whether to decrypt names (TRUE) or use fakes ones (false)
 is_linux <- Sys.info()['sysname'] == 'Linux'
 
+print(creds$odkx_server)
 
 
 # Check the directory

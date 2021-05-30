@@ -1,7 +1,5 @@
 ---
 title: "hh_qr_code"
-author: "Ben Brew"
-date: "26/02/2021"
 output:
   html_document:
     df_print: paged
@@ -12,14 +10,33 @@ library(magick)
 library(bohemia)
 library(qrcode)
 library(tidyverse)
+library(gsheet)
 
-codes <- paste0('ABC-', 111:222)
+# Define the country
+country <- 'Mozambique'
+
+# Read in minicensus data
+if('minicensus_data.RData' %in% dir()){
+  load('minicensus_data.RData')
+} else {
+  minicensus_data <- load_odk_data(the_country = country,
+                          credentials_path = '../../credentials/credentials.yaml', # request from Databrew
+                          users_path = '../../credentials/users.yaml', # request from Databrew
+                          efficient = FALSE)
+  save(minicensus_data,
+       file = 'minicensus_data.RData')
+}
+
+codes <- sort(unique(minicensus_data$minicensus_main$hh_id))
+
+# codes <- paste0('ABC-', 111:222)
 
 if(!dir.exists('certificates_simple')){
   dir.create('certificates_simple/')
 }
 
 for(i in 1:length(codes)){
+  message(i)
   this_code <- codes[i]
     out_name <- paste0(
       'certificates_simple/',

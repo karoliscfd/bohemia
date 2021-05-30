@@ -5,13 +5,24 @@
 \title{Visit control sheet list generation}
 \usage{
 list_generation_visit_control(
+  census_data,
+  census_people,
+  census_subs,
   keyfile = NULL,
   keyfile_public = NULL,
   location = NULL,
-  output_file = NULL
+  output_file = NULL,
+  fake_data = FALSE,
+  html = FALSE
 )
 }
 \arguments{
+\item{census_data}{A dataframe in the format of the minicensus (household level)}
+
+\item{census_people}{A dataframe in the format of the minicensus people table}
+
+\item{census_subs}{A dataframe in the format of the}
+
 \item{keyfile}{The path to the private key}
 
 \item{keyfile_public}{The path to the public key}
@@ -19,6 +30,10 @@ list_generation_visit_control(
 \item{location}{A three letter location code (or character vector of multiple codes). If NULL, all locations to be used}
 
 \item{output_file}{The name of the spreadsheet to be written (csv file); if null, will return the table in memory}
+
+\item{fake_data}{Whether to use fake data or not}
+
+\item{html}{Whether to return a print-ready html table (intead of the default csv)}
 }
 \value{
 A table will be created
