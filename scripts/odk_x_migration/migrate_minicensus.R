@@ -524,6 +524,8 @@ paths <- paste0(getwd(), '/', paths)
 for(i in 1:length(the_tables)){
   this_table <- the_tables[i]
   this_path <- paths[i]
+  x <- readr::read_csv(this_path)
+  message('NROWS: ', nrow(x))
   update_odkx_data(suitcase_dir = suitcase_dir,
                    jar_file = jar_file,
                    server_url = creds$odkx_server, 
