@@ -78,6 +78,7 @@ list_generation_visit_control <- function(census_data,
   } else {
     
     df <- census_data %>%
+      filter(hh_hamlet_code %in% locs$code) %>%
       dplyr::rename(hhid = hh_id) %>%
       arrange(hhid) %>%
       mutate(previous_attempts = 0) %>% # placeholder
