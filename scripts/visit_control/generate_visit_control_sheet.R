@@ -136,12 +136,12 @@ census_subs <- out_list$clean_minicensus_repeat_hh_sub
 
 
 # Generate the visit control sheet
-list_generation_visit_control(census_data = census_data,
+df <- list_generation_visit_control(census_data = census_data,
                               census_people = census_people,
                               census_subs = census_subs,
                               keyfile = keyfile,
                               keyfile_public = keyfile_public,
-                              location = NULL,
-                              output_file = output_file,
+                              location = c('NOR', 'CHM', 'BBB'), # set to null in order to do all locations
+                              output_file = output_file, # set to null in order to return a dataframe in memory
                               fake_data = FALSE,
-                              html = FALSE)
+                              html = FALSE) # set to TRUE if you want an html table ready for printing
