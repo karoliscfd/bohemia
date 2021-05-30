@@ -21,7 +21,7 @@ odkx_retrieve_data <- function(suitcase_dir, jar_file, server_url, table_id, use
   
   update_string <- 
     push_text <- paste0(
-      "java -jar ", jar_file, " -Xmx2048m -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' ", ifelse(attachments, "-a", ""),  " -username '", user, "' -password '", pass, "' -download ", ifelse(!is.null(download_dir), paste0("-path ", download_dir), ""),  " -dataVersion 2")
+      "java -jar ", jar_file, " -cloudEndpointUrl '", server_url, "' -appId 'default' -tableId '", table_id, "' ", ifelse(attachments, "-a", ""),  " -username '", user, "' -password '", pass, "' -download ", ifelse(!is.null(download_dir), paste0("-path ", download_dir), ""),  " -dataVersion 2")
   message(update_string)
   if(!is_linux){
     update_string <- gsub("'", "", update_string)

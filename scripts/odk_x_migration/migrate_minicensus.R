@@ -3,7 +3,7 @@ jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-use_real_names <- TRUE # whether to decrypt names (TRUE) or use fakes ones (false)
+use_real_names <- FALSE # whether to decrypt names (TRUE) or use fakes ones (false)
 is_linux <- Sys.info()['sysname'] == 'Linux'
 
 print(creds$odkx_server)
@@ -493,7 +493,7 @@ for(i in 1:length(names(out_list))){
 }
 
 # Write local csvs ready for upload to server
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = FALSE, truncate_name = FALSE)
+migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = FALSE)
 
 
 # Purge the database
