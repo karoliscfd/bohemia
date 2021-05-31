@@ -3,7 +3,7 @@ jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-use_real_names <- FALSE # whether to decrypt names (TRUE) or use fakes ones (false)
+use_real_names <- TRUE # whether to decrypt names (TRUE) or use fakes ones (false)
 is_linux <- Sys.info()['sysname'] == 'Linux'
 only_hamlets <- c('NOR', 'CHM', 'BBB', 'AGO', 'CHT') # set to NULL if you want all hamlets
 
