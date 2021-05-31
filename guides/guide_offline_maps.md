@@ -17,7 +17,7 @@ Accordingly, for these purposes, we recommend using the `MAPS.ME` application wi
 - Follow the instructions in the "Google Maps" section (below)
 - Once a map is created (like [this one](https://www.google.com/maps/d/u/0/edit?mid=1JCoPmqi2lb-2ypgEMmvBs3UzfQKjJ4Uk)), clikc the 3 dots in the upper right and download as KML. In this case we download to `bohemia/scripts/locations.kml`
 - Navigate to https://github.com/databrew/bohemia/blob/master/misc/locations.kml in the web browser of the mobile device.
-- Click and hold on the text "View raw"
+- Click and **hold** on the text "View raw" (ie, don't just tap the text - keep your finger pressed on it)
 - Click "download link"
 - Once downloaded, click the text at the bottom and open the file in "MAPS.ME"
 
