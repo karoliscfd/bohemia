@@ -5,6 +5,7 @@ kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decrypt
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
 use_real_names <- FALSE # whether to decrypt names (TRUE) or use fakes ones (false)
 is_linux <- Sys.info()['sysname'] == 'Linux'
+only_hamlets <- c('NOR', 'CHM', 'BBB', 'AGO', 'CHT') # set to NULL if you want all hamlets
 
 print(creds$odkx_server)
 
@@ -78,7 +79,7 @@ fake_names <- function(n = 1, words = 2){
   return(out)
 }
 
-migrate_to_odk_x <- function(
+format_to_odk_x <- function(
   out_list,
   full_migration = FALSE,
   sample_hh = FALSE,
@@ -455,31 +456,48 @@ if('minicensus_data.RData' %in% dir()){
 out_list <- minicensus_data
 
 
+# Subset to specific hamlets
+if(!is.null(only_hamlets)){
+ out_list$minicensus_main <- out_list$minicensus_main %>%
+   filter(hh_hamlet_code %in% only_hamlets)
+ iids <- out_list$minicensus_main$instance_id
+ out_list$minicensus_people <- out_list$minicensus_people %>%
+   filter(instance_id %in% iids)
+ out_list$minicensus_repeat_death_info <- out_list$minicensus_repeat_death_info %>%
+   filter(instance_id %in% iids)
+ out_list$minicensus_repeat_hh_sub <- out_list$minicensus_repeat_hh_sub %>%
+   filter(instance_id %in% iids)
+ out_list$minicensus_repeat_mosquito_net <- out_list$minicensus_repeat_mosquito_net %>%
+   filter(instance_id %in% iids)
+ out_list$minicensus_repeat_water <- out_list$minicensus_repeat_water %>%
+   filter(instance_id %in% iids)
+}
+
 # Decrypt names
 if(use_real_names){
-  out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
-  out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
+  # out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
+  # out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
   out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
   out_list$minicensus_repeat_death_info$death_surname <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_surname, keyfile = kf)
   out_list$minicensus_people$first_name <- decrypt_private_data(out_list$minicensus_people$first_name, keyfile = kf)
   out_list$minicensus_people$last_name <- decrypt_private_data(out_list$minicensus_people$last_name, keyfile = kf)
-  out_list$va$id10007 <- decrypt_private_data(out_list$va$id10007, keyfile = kf)
-  out_list$va$id10017 <- decrypt_private_data(out_list$va$id10017, keyfile = kf)
-  out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
-  out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
-  out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
+  # out_list$va$id10007 <- decrypt_private_data(out_list$va$id10007, keyfile = kf)
+  # out_list$va$id10017 <- decrypt_private_data(out_list$va$id10017, keyfile = kf)
+  # out_list$va$id10018 <- decrypt_private_data(out_list$va$id10018, keyfile = kf)
+  # out_list$va$id10061 <- decrypt_private_data(out_list$va$id10061, keyfile = kf)
+  # out_list$va$id10062 <- decrypt_private_data(out_list$va$id10062, keyfile = kf)
 } else {
-  out_list$enumerations$sub_name <- fake_names(length(out_list$enumerations$sub_name))
-  out_list$enumerations$chefe_name <- fake_names(length(out_list$enumerations$chefe_name))
+  # out_list$enumerations$sub_name <- fake_names(length(out_list$enumerations$sub_name))
+  # out_list$enumerations$chefe_name <- fake_names(length(out_list$enumerations$chefe_name))
   out_list$minicensus_repeat_death_info$death_name <- fake_names(length(out_list$minicensus_repeat_death_info$death_name), words = 1)
   out_list$minicensus_repeat_death_info$death_surname <- fake_names(length(out_list$minicensus_repeat_death_info$death_surname), words = 1)
   out_list$minicensus_people$first_name <- fake_names(length(out_list$minicensus_people$first_name), words = 1)
   out_list$minicensus_people$last_name <- fake_names(length(out_list$minicensus_people$last_name), words = 1)
-  out_list$va$id10007 <- fake_names(length(out_list$va$id10007))
-  out_list$va$id10017 <- fake_names(length(out_list$va$id10017))
-  out_list$va$id10018 <- fake_names(length(out_list$va$id10018))
-  out_list$va$id10061 <- fake_names(length(out_list$va$id10061))
-  out_list$va$id10062 <- fake_names(length(out_list$va$id10062))
+  # out_list$va$id10007 <- fake_names(length(out_list$va$id10007))
+  # out_list$va$id10017 <- fake_names(length(out_list$va$id10017))
+  # out_list$va$id10018 <- fake_names(length(out_list$va$id10018))
+  # out_list$va$id10061 <- fake_names(length(out_list$va$id10061))
+  # out_list$va$id10062 <- fake_names(length(out_list$va$id10062))
 }
 
 
@@ -492,8 +510,9 @@ for(i in 1:length(names(out_list))){
   }
 }
 
+
 # Write local csvs ready for upload to server
-migrate_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = 1000, truncate_name = FALSE)
+format_to_odk_x(out_list = out_list, full_migration = FALSE, sample_hh = FALSE, truncate_name = FALSE)
 
 
 # Purge the database
