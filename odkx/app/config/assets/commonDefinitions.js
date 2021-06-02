@@ -553,7 +553,8 @@ window.odkCommonDefinitions = {
       "string_token": "change_country_button",
       "text": {
         "default": "Change Country",
-        "pt": "Selecione país"
+        "pt": "Selecione país",
+        "sw": "Chagua nchi"
       },
       "_row_num": 63
     },
@@ -561,7 +562,8 @@ window.odkCommonDefinitions = {
       "string_token": "change_country_title",
       "text": {
         "default": "Country",
-        "pt": "País"
+        "pt": "País",
+        "sw": "Nchi"
       },
       "_row_num": 64
     },
@@ -569,7 +571,8 @@ window.odkCommonDefinitions = {
       "string_token": "country_tanzania",
       "text": {
         "default": "Tanzania",
-        "pt": "Tanzania"
+        "pt": "Tanzania",
+        "sw": "Tanzania"
       },
       "_row_num": 65
     },
@@ -577,7 +580,8 @@ window.odkCommonDefinitions = {
       "string_token": "country_mozambique",
       "text": {
         "default": "Mozambique",
-        "pt": "Mozambique"
+        "pt": "Mozambique",
+        "sw": "Mozambique"
       },
       "_row_num": 66
     },
@@ -585,7 +589,8 @@ window.odkCommonDefinitions = {
       "string_token": "fw_country_label",
       "text": {
         "default": "Country:",
-        "pt": "País:"
+        "pt": "País:",
+        "sw": "Nchi:"
       },
       "_row_num": 67
     }
