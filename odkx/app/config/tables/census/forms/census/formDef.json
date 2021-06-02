@@ -156,10 +156,10 @@
       {
         "type": "select_one",
         "values_list": "yn",
-        "name": "sup_contact",
+        "name": "has_paint",
         "required": "!!data('hh_new')",
         "display": {
-          "prompt": "hh_contact_sup"
+          "prompt": "fw_has_paint"
         },
         "model": {
           "isSessionVariable": 1,
@@ -170,28 +170,8 @@
       },
       {
         "clause": "if",
-        "condition": "selected(data('sup_contact'), 'yes')",
-        "_row_num": 27
-      },
-      {
-        "type": "select_one",
-        "values_list": "yn",
-        "name": "has_paint",
-        "required": "!!data('hh_new') && selected(data('sup_contact'), 'yes')",
-        "display": {
-          "prompt": "fw_has_paint"
-        },
-        "model": {
-          "isSessionVariable": 1,
-          "valuesList": "yn"
-        },
-        "hideInContents": 1,
-        "_row_num": 28
-      },
-      {
-        "clause": "if",
         "condition": "selected(data('has_paint'), 'yes')",
-        "_row_num": 29
+        "_row_num": 27
       },
       {
         "type": "note",
@@ -199,11 +179,11 @@
           "prompt": "fw_paint_instr"
         },
         "hideInContents": 1,
-        "_row_num": 30
+        "_row_num": 28
       },
       {
         "clause": "else",
-        "_row_num": 31
+        "_row_num": 29
       },
       {
         "type": "note",
@@ -211,78 +191,53 @@
           "prompt": "fw_no_paint"
         },
         "hideInContents": 1,
+        "_row_num": 30
+      },
+      {
+        "type": "exit_survey",
+        "name": "exit_survey",
+        "model": {
+          "isSessionVariable": 1
+        },
+        "hideInContents": 1,
+        "_row_num": 31
+      },
+      {
+        "clause": "end if",
         "_row_num": 32
       },
       {
-        "type": "exit_survey",
-        "name": "exit_survey",
-        "model": {
-          "isSessionVariable": 1
-        },
-        "hideInContents": 1,
+        "clause": "end if",
         "_row_num": 33
       },
       {
-        "clause": "end if",
+        "clause": "end if // MOZ",
         "_row_num": 34
       },
       {
-        "clause": "else",
-        "_row_num": 35
-      },
-      {
-        "type": "note",
-        "display": {
-          "prompt": "fw_no_contact"
-        },
-        "hideInContents": 1,
-        "_row_num": 36
-      },
-      {
-        "type": "exit_survey",
-        "name": "exit_survey",
-        "model": {
-          "isSessionVariable": 1
-        },
-        "hideInContents": 1,
-        "_row_num": 37
-      },
-      {
-        "clause": "end if",
-        "_row_num": 38
-      },
-      {
-        "clause": "end if",
-        "_row_num": 39
-      },
-      {
-        "clause": "end if // MOZ",
-        "_row_num": 40
-      },
-      {
         "type": "opening",
-        "_row_num": 41
+        "_row_num": 35
       },
       {
         "clause": "do section survey",
         "hideInContents": 1,
-        "_row_num": 42
+        "_row_num": 36
       },
       {
         "type": "finalize",
-        "_row_num": 43
+        "_row_num": 37
       },
       {
         "clause": "else // start",
-        "_row_num": 44
+        "_row_num": 38
       },
       {
         "type": "instances",
-        "_row_num": 45
+        "_row_num": 39
       },
       {
         "clause": "end if // start",
-        "_row_num": 46
+        "_row_num": 40
       }
     ],
     "survey": [
@@ -5537,7 +5492,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20210421001,
+        "value": 20210530001,
         "_row_num": 3
       },
       {
@@ -9285,7 +9240,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20210421001,
+        "value": 20210530001,
         "_row_num": 3
       },
       "table_id": {
@@ -14932,32 +14887,16 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 33,
-            "section_name": "initial"
-          },
-          {
-            "_row_num": 37,
+            "_row_num": 31,
             "section_name": "initial"
           }
         ],
         "elementKey": "exit_survey"
       },
-      "sup_contact": {
-        "_defn": [
-          {
-            "_row_num": 26,
-            "section_name": "initial"
-          }
-        ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
-        "elementKey": "sup_contact"
-      },
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 28,
+            "_row_num": 26,
             "section_name": "initial"
           }
         ],
@@ -16505,10 +16444,10 @@
           {
             "type": "select_one",
             "values_list": "yn",
-            "name": "sup_contact",
+            "name": "has_paint",
             "required": "!!data('hh_new')",
             "display": {
-              "prompt": "hh_contact_sup"
+              "prompt": "fw_has_paint"
             },
             "model": {
               "isSessionVariable": 1,
@@ -16523,29 +16462,22 @@
             "promptIdx": 8
           },
           {
-            "type": "select_one",
-            "values_list": "yn",
-            "name": "has_paint",
-            "required": "!!data('hh_new') && selected(data('sup_contact'), 'yes')",
+            "type": "note",
             "display": {
-              "prompt": "fw_has_paint"
-            },
-            "model": {
-              "isSessionVariable": 1,
-              "valuesList": "yn"
+              "prompt": "fw_paint_instr"
             },
             "hideInContents": 1,
             "_row_num": 28,
             "__rowNum__": 27,
             "_token_type": "prompt",
-            "_type": "select_one",
+            "_type": "note",
             "_branch_label_enclosing_screen": "initial/_screen28",
             "promptIdx": 9
           },
           {
             "type": "note",
             "display": {
-              "prompt": "fw_paint_instr"
+              "prompt": "fw_no_paint"
             },
             "hideInContents": 1,
             "_row_num": 30,
@@ -16556,77 +16488,37 @@
             "promptIdx": 10
           },
           {
-            "type": "note",
-            "display": {
-              "prompt": "fw_no_paint"
+            "type": "exit_survey",
+            "name": "exit_survey",
+            "model": {
+              "isSessionVariable": 1
             },
             "hideInContents": 1,
-            "_row_num": 32,
-            "__rowNum__": 31,
+            "_row_num": 31,
+            "__rowNum__": 30,
             "_token_type": "prompt",
-            "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen32",
+            "_type": "exit_survey",
+            "_branch_label_enclosing_screen": "initial/_screen31",
             "promptIdx": 11
           },
           {
-            "type": "exit_survey",
-            "name": "exit_survey",
-            "model": {
-              "isSessionVariable": 1
-            },
-            "hideInContents": 1,
-            "_row_num": 33,
-            "__rowNum__": 32,
-            "_token_type": "prompt",
-            "_type": "exit_survey",
-            "_branch_label_enclosing_screen": "initial/_screen33",
-            "promptIdx": 12
-          },
-          {
-            "type": "note",
-            "display": {
-              "prompt": "fw_no_contact"
-            },
-            "hideInContents": 1,
-            "_row_num": 36,
-            "__rowNum__": 35,
-            "_token_type": "prompt",
-            "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen36",
-            "promptIdx": 13
-          },
-          {
-            "type": "exit_survey",
-            "name": "exit_survey",
-            "model": {
-              "isSessionVariable": 1
-            },
-            "hideInContents": 1,
-            "_row_num": 37,
-            "__rowNum__": 36,
-            "_token_type": "prompt",
-            "_type": "exit_survey",
-            "_branch_label_enclosing_screen": "initial/_screen37",
-            "promptIdx": 14
-          },
-          {
             "type": "opening",
-            "_row_num": 41,
-            "__rowNum__": 40,
+            "_row_num": 35,
+            "__rowNum__": 34,
             "_token_type": "prompt",
             "_type": "opening",
-            "_branch_label_enclosing_screen": "initial/_screen41",
-            "promptIdx": 15
+            "_branch_label_enclosing_screen": "initial/_screen35",
+            "promptIdx": 12
           },
           {
             "clause": "do section survey",
             "hideInContents": 1,
-            "_row_num": 42,
-            "__rowNum__": 41,
+            "_row_num": 36,
+            "__rowNum__": 35,
             "_token_type": "prompt",
             "_do_section_name": "survey",
             "_type": "_section",
-            "promptIdx": 16,
+            "promptIdx": 13,
             "display": {
               "title": {
                 "text": {
@@ -16640,29 +16532,29 @@
           },
           {
             "type": "finalize",
-            "_row_num": 43,
-            "__rowNum__": 42,
+            "_row_num": 37,
+            "__rowNum__": 36,
             "_token_type": "prompt",
             "_type": "finalize",
-            "_branch_label_enclosing_screen": "initial/_screen43",
-            "promptIdx": 17
+            "_branch_label_enclosing_screen": "initial/_screen37",
+            "promptIdx": 14
           },
           {
             "type": "instances",
-            "_row_num": 45,
-            "__rowNum__": 44,
+            "_row_num": 39,
+            "__rowNum__": 38,
             "_token_type": "prompt",
             "_type": "instances",
-            "_branch_label_enclosing_screen": "initial/_screen45",
-            "promptIdx": 18
+            "_branch_label_enclosing_screen": "initial/_screen39",
+            "promptIdx": 15
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 47,
-            "_branch_label_enclosing_screen": "initial/_screen47",
-            "promptIdx": 19
+            "_row_num": 41,
+            "_branch_label_enclosing_screen": "initial/_screen41",
+            "promptIdx": 16
           }
         ],
         "validation_tag_map": {},
@@ -16680,8 +16572,8 @@
           {
             "clause": "else // start",
             "_token_type": "goto_label",
-            "_branch_label": "_else44",
-            "_row_num": 44,
+            "_branch_label": "_else38",
+            "_row_num": 38,
             "operationIdx": 1
           },
           {
@@ -16838,8 +16730,8 @@
           {
             "clause": "end if // MOZ",
             "_token_type": "goto_label",
-            "_branch_label": "_endif40",
-            "_row_num": 40,
+            "_branch_label": "_endif34",
+            "_row_num": 34,
             "operationIdx": 23
           },
           {
@@ -16883,8 +16775,8 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else39",
-            "_row_num": 39,
+            "_branch_label": "_else33",
+            "_row_num": 33,
             "operationIdx": 29
           },
           {
@@ -16895,7 +16787,7 @@
           },
           {
             "clause": "if",
-            "condition": "selected(data('sup_contact'), 'yes')",
+            "condition": "selected(data('has_paint'), 'yes')",
             "_row_num": 27,
             "__rowNum__": 26,
             "_token_type": "goto_label",
@@ -16905,8 +16797,8 @@
           {
             "clause": "else",
             "_token_type": "goto_label",
-            "_branch_label": "_else35",
-            "_row_num": 35,
+            "_branch_label": "_else29",
+            "_row_num": 29,
             "operationIdx": 32
           },
           {
@@ -16916,152 +16808,111 @@
             "operationIdx": 33
           },
           {
-            "clause": "if",
-            "condition": "selected(data('has_paint'), 'yes')",
-            "_row_num": 29,
-            "__rowNum__": 28,
+            "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_then29",
+            "_branch_label": "_endif32",
+            "_row_num": 32,
             "operationIdx": 34
-          },
-          {
-            "clause": "else",
-            "_token_type": "goto_label",
-            "_branch_label": "_else31",
-            "_row_num": 31,
-            "operationIdx": 35
           },
           {
             "_row_num": 30,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 35
+          },
+          {
+            "_row_num": 31,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 36
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif34",
-            "_row_num": 34,
+            "_branch_label": "_endif33",
+            "_row_num": 33,
             "operationIdx": 37
           },
           {
-            "_row_num": 32,
+            "_row_num": 35,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 38
           },
           {
-            "_row_num": 33,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 39
-          },
-          {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif38",
-            "_row_num": 38,
-            "operationIdx": 40
-          },
-          {
+            "clause": "do section survey",
+            "hideInContents": 1,
             "_row_num": 36,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 41
+            "__rowNum__": 35,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 39
           },
           {
             "_row_num": 37,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 40
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif40",
+            "_row_num": 40,
+            "operationIdx": 41
+          },
+          {
+            "_row_num": 39,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 42
           },
           {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif39",
-            "_row_num": 39,
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 41,
             "operationIdx": 43
           },
           {
             "_row_num": 41,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 44
-          },
-          {
-            "clause": "do section survey",
-            "hideInContents": 1,
-            "_row_num": 42,
-            "__rowNum__": 41,
-            "_token_type": "do_section",
-            "_do_section_name": "survey",
-            "operationIdx": 45
-          },
-          {
-            "_row_num": 43,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 46
-          },
-          {
-            "clause": "end if // start",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif46",
-            "_row_num": 46,
-            "operationIdx": 47
-          },
-          {
-            "_row_num": 45,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 48
-          },
-          {
-            "_token_type": "exit_section",
-            "clause": "exit section",
-            "_row_num": 47,
-            "operationIdx": 49
-          },
-          {
-            "_row_num": 47,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 50
+            "operationIdx": 44
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 47,
-            "operationIdx": 51
+            "_row_num": 41,
+            "operationIdx": 45
           },
           {
             "_token_type": "validate",
             "clause": "validate finalize",
             "_sweep_name": "finalize",
-            "_row_num": 47,
+            "_row_num": 41,
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 52
+            "operationIdx": 46
           },
           {
             "_token_type": "save_and_terminate",
             "clause": "save and terminate",
             "calculation": true,
-            "_row_num": 47,
+            "_row_num": 41,
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 53
+            "operationIdx": 47
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 47,
-            "operationIdx": 54
+            "_row_num": 41,
+            "operationIdx": 48
           }
         ],
         "branch_label_map": {
@@ -17095,27 +16946,21 @@
           "_screen26": 30,
           "_then27": 33,
           "_screen28": 33,
-          "_then29": 36,
-          "_screen30": 36,
-          "_else31": 38,
-          "_screen32": 38,
-          "_screen33": 39,
-          "_endif34": 40,
-          "_else35": 41,
-          "_screen36": 41,
-          "_screen37": 42,
-          "_endif38": 43,
-          "_else39": 44,
-          "_endif39": 44,
-          "_endif40": 44,
+          "_else29": 35,
+          "_screen30": 35,
+          "_screen31": 36,
+          "_endif32": 37,
+          "_else33": 38,
+          "_endif33": 38,
+          "_endif34": 38,
+          "_screen35": 38,
+          "_screen37": 40,
+          "_else38": 42,
+          "_screen39": 42,
+          "_endif40": 43,
+          "_contents": 44,
           "_screen41": 44,
-          "_screen43": 46,
-          "_else44": 48,
-          "_screen45": 48,
-          "_endif46": 49,
-          "_contents": 50,
-          "_screen47": 50,
-          "_finalize": 52
+          "_finalize": 46
         }
       },
       "survey": {
@@ -23044,11 +22889,7 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 33,
-            "section_name": "initial"
-          },
-          {
-            "_row_num": 37,
+            "_row_num": 31,
             "section_name": "initial"
           }
         ],
@@ -23057,25 +22898,10 @@
         "elementSet": "data",
         "elementPath": "exit_survey"
       },
-      "sup_contact": {
-        "_defn": [
-          {
-            "_row_num": 26,
-            "section_name": "initial"
-          }
-        ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
-        "elementKey": "sup_contact",
-        "elementName": "sup_contact",
-        "elementSet": "data",
-        "elementPath": "sup_contact"
-      },
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 28,
+            "_row_num": 26,
             "section_name": "initial"
           }
         ],
