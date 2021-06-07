@@ -3,7 +3,7 @@
 
 # Define some parameters
 suitcase_dir <- '/home/joebrew/Documents/suitcase'
-jar_file <- 'ODK-X_Suitcase_v2.1.7.jar'
+jar_file <- 'ODK-X_Suitcase_v2.1.8.jar'
 odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
@@ -49,25 +49,27 @@ fake_names <- function(n = 1, words = 2){
 ## BUT NOT UNTIL SIZE / SYNC ISSUES ARE RESOLVED
 ## https://trello.com/c/vLynMQqa/149-change-visit-control-list-generation-to-use-odk-x-dataset-instead-of-minicensus-dataset
 # # Retrieve data for the CENSUS main table(ODK-X method)
-# odkx_retrieve_data(suitcase_dir = suitcase_dir,
-#                    jar_file = jar_file,
-#                    server_url = creds$odkx_server,
-#                    table_id = 'census',
-#                    user = creds$odkx_user,
-#                    pass = creds$odkx_pass,
-#                    is_linux = is_linux,
-#                    download_dir = download_dir,
-#                    attachments = FALSE)
+odkx_retrieve_data(suitcase_dir = suitcase_dir,
+                   jar_file = jar_file,
+                   server_url = creds$odkx_server,
+                   table_id = 'census',
+                   user = creds$odkx_user,
+                   pass = creds$odkx_pass,
+                   is_linux = is_linux,
+                   download_dir = download_dir,
+                   attachments = FALSE)
+census <- readr::read_csv('default/census/link_unformatted.csv')
 # # Retrieve data for the household members table (ODK-X method)
-# odkx_retrieve_data(suitcase_dir = suitcase_dir,
-#                    jar_file = jar_file,
-#                    server_url = creds$odkx_server,
-#                    table_id = 'hh_member',
-#                    user = creds$odkx_user,
-#                    pass = creds$odkx_pass,
-#                    is_linux = is_linux,
-#                    download_dir = download_dir,
-#                    attachments = FALSE)
+odkx_retrieve_data(suitcase_dir = suitcase_dir,
+                   jar_file = jar_file,
+                   server_url = creds$odkx_server,
+                   table_id = 'hh_member',
+                   user = creds$odkx_user,
+                   pass = creds$odkx_pass,
+                   is_linux = is_linux,
+                   download_dir = download_dir,
+                   attachments = FALSE)
+hh_member <- readr::read_csv('default/hh_member/link_unformatted.csv')
 
 
 
