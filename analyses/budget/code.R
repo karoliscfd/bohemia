@@ -8,6 +8,11 @@ df <- gsheet2tbl(url)
 out <- df[,c(1,8:10)]
 databrew::prettify(out, nrows = nrow(out))
 
+# # Get the narrower confidence bounds
+# out$lwrn <- (out$`USD (LWR)` + out$USD) / 2
+# out$uprn <- (out$`USD (UPR)` + out$USD) / 2
+
+
 # Example plot
 
 # grand total
@@ -26,8 +31,12 @@ ts$upr <- ts$n * monthly$upr
 options(scipen = '999')
 ts <- ts %>% filter(date <= '2021-12-31')
 
+# Adjust for narrowwer bounds
+ts$lwr <- (ts$lwr + ts$pt) / 2
+ts$upr <- (ts$upr + ts$pt) / 2
+
 # Example of actual expenditure
-ts$real <- c(8000, 20100, 28000, 31000, 45000, 49000, NA, NA) * 1.3
+ts$real <- c(20000, 24100, 38000, 66000, 69000, 78000, NA, NA) * 1.3
 ggplot(data = ts) +
   geom_ribbon(aes(x = date,
                   ymin = lwr,
@@ -39,13 +48,65 @@ ggplot(data = ts) +
                 y = pt)) +
   geom_line(aes(x = date,
                 y = real),
-            color = 'red') + 
-  geom_point(aes(x = date,
-                y = real),
             color = 'red') +
-  scale_y_continuous(breaks = seq(0, max(ts$upr), by = 20000)) +
+  geom_point(aes(x = date,
+                 y = real),
+             color = 'red') +
   labs(x = 'Month', y = 'Cumulative USD',
        title = 'Actual vs projected expenditures',
-       subtitle = 'Illustrative purposes only')
+       subtitle = 'Illustrative purposes only') +
+  scale_y_continuous(breaks = seq(0, max(ts$upr), by = 20000)) 
 
+pd <- tibble(label = c('Lower (extreme)',
+                       'Lower (realistic)',
+                       'Point estimate',
+                       'Upper (realistic)',
+                       'Upper (extreme)'),
+             val = c(54640,
+                     111600,
+                     168560,
+                     232920,
+                     297280))
+pd$label <- factor(pd$label, levels = pd$label)
 
+ggplot(data = pd,
+       aes(x = label,
+           y = val)) +
+  geom_point(size = 5) +
+  theme_bw() +
+  labs(x = 'Scenario',
+       y = 'USD') +
+  ylim(0, 1.1*max(pd$val)) 
+
+pd$monthly <- pd$val / 8
+topper <- 168560
+lwr <- 111600
+upr <- 232920
+pd$months <- topper / pd$monthly
+pd$date <- as.Date('2021-05-01') + (30.25 * pd$months)
+
+pd$months_lwr <- lwr / pd$monthly
+pd$date_lwr <- as.Date('2021-05-01') + (30.25 * pd$months_lwr)
+
+pd$months_upr <- upr / pd$monthly
+pd$date_upr <- as.Date('2021-05-01') + (30.25 * pd$months_upr)
+
+lng <- pd %>%
+  dplyr::select(label, date_lwr, date_upr, date) %>%
+  tidyr::gather(key, value, date_lwr:date) %>%
+  mutate(key = ifelse(key == 'date', 'Budget of 168,560',
+                      ifelse(key == 'date_lwr', 'Budget of 111,600',
+                             ifelse(key == 'date_upr', 'Budget of 232,920', NA))))
+
+ggplot(data = lng,
+       aes(x = label,
+           y = value, 
+           color = key)) +
+  geom_point() +
+  geom_line(aes(group = key)) +
+  scale_color_manual(name = '', values = c('red', 'darkorange', 'blue')) +
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = 'bottom') +
+  labs(x = 'Burn rate scenario',
+       y = 'Date of budget depletion')

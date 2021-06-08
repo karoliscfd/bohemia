@@ -7,11 +7,10 @@ s = ezsheets.Spreadsheet('https://docs.google.com/spreadsheets/d/1zSTBdbVN1kR3sU
 s.downloadAsExcel()
 
 ## Convert to xml
-os.system('xls2xform passivemalariasurveillance.xlsx passivemalariasurveillance.xml ')
+os.system('xls2xform passivemalariasurveillancemoz.xlsx passivemalariasurveillancemoz.xml')
 
 # Move
-shutil.move('passivemalariasurveillance.xlsx', '../forms/passivemalariasurveillance/passivemalariasurveillance.xlsx')
-shutil.move('passivemalariasurveillance.xml',  '../forms/passivemalariasurveillance/passivemalariasurveillance.xml')
-shutil.move('itemsets.csv', '../forms/passivemalariasurveillance/itemsets.csv')
+shutil.move('passivemalariasurveillancemoz.xlsx', '../forms/passivemalariasurveillance/passivemalariasurveillancemoz.xlsx')
+shutil.move('passivemalariasurveillancemoz.xml',  '../forms/passivemalariasurveillance/passivemalariasurveillancemoz.xml')
 
 print('Done. Docs in forms/passivemalariasurveillance.')
