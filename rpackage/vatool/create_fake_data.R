@@ -6,14 +6,15 @@ library(yaml)
 # Define credentials
 creds <- list(dbname = 'bohemia')
 
-password <- yaml::yaml.load_file('credentials/users.yaml')
+# password <- yaml::yaml.load_file('credentials/users.yaml')
 
 # Read in users from the main bohemia app
 
 users <- 
   tibble(user_id = 1:6,
          username = c('joe', 'ben', 'xing', 'cece', 'ramona', 'hansel'),
-         password = password$`joe@databrew.cc`,
+         # password = password$`joe@databrew.cc`,
+         password = c('unique', 'unique', 'unique', 'unique', 'unique', 'unique'),
          first_name = c('Joe', 'Ben', 'Xing', 'Cece', 'Ramona', 'Hansel'),
          last_name = c(rep('Brew', 5), 'Manduca'),
          country = c('Tanzania', 'Mozambique', 'Tanzania', 'Mozambique', 'Tanzania', 'Spain'),
