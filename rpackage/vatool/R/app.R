@@ -100,6 +100,8 @@ app_server <- function(input, output, session) {
   is_local <- FALSE
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
+  adj_submission_success <- reactiveVal(value = NULL)
+  
   log_in_fail <- reactiveVal(value=FALSE)
   # Connect to database
   message('Connecting to database : ', ifelse(is_local, ' local', 'remote'))
@@ -108,7 +110,7 @@ app_server <- function(input, output, session) {
   users <- dbReadTable(conn = con, 'vatool_users')
   cods <- dbReadTable(conn=con, 'vatool_cods')
   data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
-
+  # save(users, cods, file = 'va_data.rda')
   print(users)
   
   # Upon log in, read in data
@@ -129,8 +131,9 @@ app_server <- function(input, output, session) {
       logged_in(TRUE)
       removeModal()
       # load data
-      data$va <- load_va_data(is_local = is_local)
-      
+      # data$va <- load_va_data(is_local = is_local)
+      data$va <- readRDS('~/Desktop/va_data.rda')
+      # print(head(data$va))
       # create table with same columns as session table in database (to append upon logout)
       print(users)
       message('at point 2')
@@ -175,9 +178,10 @@ app_server <- function(input, output, session) {
             column(4,
                    br(),
                    selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                   selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', cods_choices)),
+                   selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
                    br(),
-                   actionButton('adj_submit_cod', 'Submit cause of death'))
+                   actionButton('adj_submit_cod', 'Submit cause of death'),
+                   uiOutput('ui_submission_adj'))
           )
         )
       } else {
@@ -326,7 +330,7 @@ app_server <- function(input, output, session) {
     } 
     if(!is.null(out)){
       if(is.data.frame(out)){
-       
+        
         databrew::prettify(out, nrows = nrow(out))
       }
     }
@@ -373,11 +377,12 @@ app_server <- function(input, output, session) {
       cod_data$cod_3 = cod_3
       cod_data$death_id = death_id
       cod_data$time_stamp <- Sys.time()
+      # save(cod_data,cod_1, cod_2, cod_3, cod_names,file='temp.rda')
+      
       # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
       cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
       cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
       cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
-      
       dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
       submission_success(TRUE)
     }
@@ -409,7 +414,6 @@ app_server <- function(input, output, session) {
         message('at point 4')
         liu <- input$log_in_user
         out <- users %>% dplyr::filter(username == tolower(liu))
-        save(out, file = 'temp_out.rda')
         names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
         out
       }
@@ -434,6 +438,44 @@ app_server <- function(input, output, session) {
     out
   })
 
+  # Adjudicator submissions
+  # Observe submission of cause of death and save
+  observeEvent(input$adj_submit_cod, {
+    cod_names <- cod_data()
+    cod_data <- data$cod
+    cod_1 = input$adj_cods
+    # condition if underlying cause of death is not fiilled out, wont submit
+    if(cod_1==''){
+      adj_submission_success(FALSE)
+    } else {
+      death_id = input$adj_death_id
+      cod_data$cod_1 = input$adj_cods
+      cod_data$death_id = death_id
+      cod_data$time_stamp <- Sys.time()
+
+      # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
+      cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+      dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
+      adj_submission_success(TRUE)
+    }
+    
+  })
+  
+  # Observe changes in inputs
+  observeEvent(c(input$adj_cod,input$adj_death_id), {
+    adj_submission_success(NULL)
+  })
+  
+  output$ui_submission_adj <- renderUI({
+    ss <- adj_submission_success()
+    if(is.null(ss)){
+      NULL
+    } else if(ss){
+      h3('Submission successful')
+    } else {
+      h3('Submission unsuccessful')
+    }
+  })
   session$onSessionEnded(function(){
     cat(paste0('Session ended.'))
     if(exists('con')){
