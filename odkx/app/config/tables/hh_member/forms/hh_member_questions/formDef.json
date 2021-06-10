@@ -354,7 +354,7 @@
           "section": "socio_id_h2"
         },
         "required": "selected(data('ind_participation'), 'yes') && calculates.over_12_under_18()",
-        "constraint": "!calculates.over_12_under_18() || selected(data('ind_parent_sign_consent'), 'no')",
+        "constraint": "!calculates.over_12_under_18() || selected(data('ind_parent_sign_consent'), 'yes') || selected(data('ind_participation'), 'no')",
         "hideInContents": "not(calculates.over_12_under_18())",
         "_row_num": 48
       },
@@ -10896,7 +10896,7 @@
               "section": "socio_id_h2"
             },
             "required": "selected(data('ind_participation'), 'yes') && calculates.over_12_under_18()",
-            "constraint": "!calculates.over_12_under_18() || selected(data('ind_parent_sign_consent'), 'no')",
+            "constraint": "!calculates.over_12_under_18() || selected(data('ind_parent_sign_consent'), 'yes') || selected(data('ind_participation'), 'no')",
             "hideInContents": "not(calculates.over_12_under_18())",
             "_row_num": 48,
             "__rowNum__": 47,
