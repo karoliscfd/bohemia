@@ -13,8 +13,13 @@
       },
       {
         "clause": "if",
-        "condition": "!!data('match_roster')",
+        "condition": "!data('hh_new')",
         "_row_num": 4
+      },
+      {
+        "clause": "if",
+        "condition": "!!data('match_roster')",
+        "_row_num": 5
       },
       {
         "type": "note",
@@ -22,15 +27,10 @@
           "prompt": "fw_moz_repaint"
         },
         "hideInContents": 1,
-        "_row_num": 5
-      },
-      {
-        "clause": "else",
         "_row_num": 6
       },
       {
-        "clause": "if",
-        "condition": "!!data('hh_new')",
+        "clause": "else",
         "_row_num": 7
       },
       {
@@ -16367,11 +16367,11 @@
               "prompt": "fw_moz_repaint"
             },
             "hideInContents": 1,
-            "_row_num": 5,
-            "__rowNum__": 4,
+            "_row_num": 6,
+            "__rowNum__": 5,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen5",
+            "_branch_label_enclosing_screen": "initial/_screen6",
             "promptIdx": 0
           },
           {
@@ -16651,7 +16651,7 @@
           },
           {
             "clause": "if",
-            "condition": "!!data('match_roster')",
+            "condition": "!data('hh_new')",
             "_row_num": 4,
             "__rowNum__": 3,
             "_token_type": "goto_label",
@@ -16659,38 +16659,38 @@
             "operationIdx": 4
           },
           {
-            "clause": "else",
+            "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else6",
-            "_row_num": 6,
+            "_branch_label": "_else20",
+            "_row_num": 20,
             "operationIdx": 5
           },
           {
+            "clause": "if",
+            "condition": "!!data('match_roster')",
             "_row_num": 5,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_then5",
             "operationIdx": 6
           },
           {
-            "clause": "end if",
+            "clause": "else",
             "_token_type": "goto_label",
-            "_branch_label": "_endif20",
-            "_row_num": 20,
+            "_branch_label": "_else7",
+            "_row_num": 7,
             "operationIdx": 7
           },
           {
-            "clause": "if",
-            "condition": "!!data('hh_new')",
-            "_row_num": 7,
-            "__rowNum__": 6,
-            "_token_type": "goto_label",
-            "_branch_label": "_then7",
+            "_row_num": 6,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 8
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else19",
+            "_branch_label": "_endif19",
             "_row_num": 19,
             "operationIdx": 9
           },
@@ -16779,8 +16779,8 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif19",
-            "_row_num": 19,
+            "_branch_label": "_endif20",
+            "_row_num": 20,
             "operationIdx": 22
           },
           {
@@ -17004,9 +17004,9 @@
           "_then2": 2,
           "_then3": 4,
           "_then4": 6,
-          "_screen5": 6,
-          "_else6": 8,
-          "_then7": 10,
+          "_then5": 8,
+          "_screen6": 8,
+          "_else7": 10,
           "_screen8": 10,
           "_then9": 13,
           "_screen10": 13,
@@ -17019,8 +17019,8 @@
           "_screen17": 20,
           "_else18": 22,
           "_endif18": 22,
-          "_else19": 23,
-          "_endif19": 23,
+          "_endif19": 22,
+          "_else20": 23,
           "_endif20": 23,
           "_else21": 24,
           "_then22": 26,

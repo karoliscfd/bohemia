@@ -235,7 +235,7 @@
           );
         }, 10000);
       } else {
-        openSurveyNewHh(rosterMatch, hhIdMatch);
+        openSurveyNewHh(rosterMatch, hhIdMatch, false);
       }
     }
   };
@@ -373,14 +373,14 @@
   };
 
   var createNewHhOnClick = function () {
-    openSurveyNewHh(true, true);
+    openSurveyNewHh(true, true, true);
   };
 
   var createNewHhCompleteMismatchOnClick = function () {
-    openSurveyNewHh(false, false);
+    openSurveyNewHh(false, false, false);
   }
 
-  var openSurveyNewHh = function (matchRoster, matchHhId) {
+  var openSurveyNewHh = function (matchRoster, matchHhId, hhNew) {
     odkTables.addRowWithSurvey(
       null,
       'census',
@@ -391,7 +391,7 @@
         fw_is_in_moz: isFwInMoz(),
         hh_minicenced: 'no',
         hh_fw_geolocation: false,
-        hh_new: true,
+        hh_new: hhNew,
         hh_id_readonly: false,
         match_roster: matchRoster,
         match_hhid: matchHhId
