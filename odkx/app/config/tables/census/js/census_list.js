@@ -163,10 +163,9 @@
 
     var rosterMatch = selectedRosterMatch();
     var hhIdMatch = selectedHhIdMatch();
-    var completeMatch = (rosterMatch && hhIdMatch) || currTarget.id === 'hhRosterModalProceed';
 
-    if (completeMatch) {
-      hhRosterConfirm(evt);
+    if (rosterMatch || currTarget.id === 'hhRosterModalProceed') {
+      hhRosterConfirm(evt, hhIdMatch);
     } else {
       if (currTarget.id === 'hhRosterModalContinue' && isFwInMoz() && hhMinicensed && !rosterMatch && hhIdMatch) {
         // this requires confirmation to delete data
@@ -266,7 +265,7 @@
     return selected && selected.id === 'rosterConfirm2Yes'
   }
 
-  var hhRosterConfirm = function (evt) {
+  var hhRosterConfirm = function (evt, hhIdMatch = true) {
     // modified from odkTables.editRowWithSurvey
     // to pass fw_id and hh_fw_geolocation
 
@@ -280,7 +279,7 @@
         hh_fw_geolocation: true,
         hh_id_readonly: true,
         match_roster: true,
-        match_hhid: true
+        match_hhid: hhIdMatch
       }
     );
 
