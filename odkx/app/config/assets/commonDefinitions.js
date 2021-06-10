@@ -593,6 +593,15 @@ window.odkCommonDefinitions = {
         "sw": "Nchi:"
       },
       "_row_num": 67
+    },
+    "constraint_err_message": {
+      "string_token": "constraint_err_message",
+      "text": {
+        "default": "Constraint violated.",
+        "pt": "Restrição violada.",
+        "sw": "Kikwazo kimekiukwa."
+      },
+      "_row_num": 68
     }
   },
   "_locales": {

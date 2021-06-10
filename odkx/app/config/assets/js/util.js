@@ -21,6 +21,10 @@
     },
     setFwLocation: function (fwLocation) {
       localStorage.setItem(this.LOC_KEY, fwLocation);
+    },
+    isValidFwId: function (fwId) {
+      var numOnlyRegex=/^[0-9]+$/;
+      return (fwId.match(numOnlyRegex) && fwId >= 0 && fwId <= 999)
     }
   };
 })();
