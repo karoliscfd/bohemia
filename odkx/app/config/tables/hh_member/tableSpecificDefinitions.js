@@ -4347,14 +4347,23 @@ window.odkTableSpecificDefinitions = {
       },
       "_row_num": 492
     },
+    "absent_retry_three_times": {
+      "string_token": "absent_retry_three_times",
+      "text": {
+        "default": "Please attempt to find this household member 3 times",
+        "pt": "Por favor faça 3 tentativas para encontrar este membro do agregado",
+        "sw": "Tafadhali jaribu kumtafuta mwanakaya huyu mara 3"
+      },
+      "_row_num": 493
+    },
     "absent_skip": {
       "string_token": "absent_skip",
       "text": {
-        "default": "This member will be skipped",
-        "pt": "Este membro será ignorado",
-        "sw": "Mwanakaya huyu atarukwa"
+        "default": "This household member will be ignored. Please fill out the Refusal and Absence form",
+        "pt": "Este membro será ignorado. Por favor preencha o formulario de Recusas e Ausencias\"",
+        "sw": "Mwanakaya huyu atarukwa. Tafadhali jaza fomu ya Kukataa na Kutokuwepo"
       },
-      "_row_num": 493
+      "_row_num": 494
     },
     "ind_participation_q": {
       "string_token": "ind_participation_q",
@@ -4363,7 +4372,16 @@ window.odkTableSpecificDefinitions = {
         "pt": "Este membro do agregado familiar vai participar no Questionário Individual?",
         "sw": "Je mwanakaya huyu atashiriki katika dodosa la mtu binafsi?"
       },
-      "_row_num": 494
+      "_row_num": 495
+    },
+    "ind_present_q": {
+      "string_token": "ind_present_q",
+      "text": {
+        "default": "Is this household member present at the time of the visit?",
+        "pt": "Este membro do agregado esta presente no memento da visita?",
+        "sw": "Je mwanakaya huyu yupo wakati wa tembeleo?"
+      },
+      "_row_num": 496
     }
   }
 }
