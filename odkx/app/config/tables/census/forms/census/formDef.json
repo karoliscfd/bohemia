@@ -124,17 +124,105 @@
         "_row_num": 19
       },
       {
-        "clause": "end if",
+        "clause": "else",
         "_row_num": 20
       },
       {
-        "clause": "else // MOZ",
+        "type": "select_one",
+        "values_list": "yn",
+        "name": "moz_sup_have_id",
+        "display": {
+          "prompt": "fw_moz_sup_have_id"
+        },
+        "model": {
+          "isSessionVariable": 1,
+          "valuesList": "yn"
+        },
         "_row_num": 21
       },
       {
         "clause": "if",
-        "condition": "!data('match_roster')",
+        "condition": "selected(data('moz_sup_have_id'), 'yes')",
         "_row_num": 22
+      },
+      {
+        "type": "select_one",
+        "values_list": "yn",
+        "name": "moz_enumeration",
+        "display": {
+          "prompt": "fw_moz_enumeration"
+        },
+        "model": {
+          "isSessionVariable": 1,
+          "valuesList": "yn"
+        },
+        "_row_num": 23
+      },
+      {
+        "clause": "else",
+        "_row_num": 24
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "fw_moz_contact_sup"
+        },
+        "model": {
+          "isSessionVariable": 1
+        },
+        "_row_num": 25
+      },
+      {
+        "type": "exit_survey",
+        "name": "exit_survey",
+        "model": {
+          "isSessionVariable": 1
+        },
+        "_row_num": 26
+      },
+      {
+        "clause": "end if",
+        "_row_num": 27
+      },
+      {
+        "clause": "if",
+        "condition": "!selected(data('moz_enumeration'), 'yes')",
+        "_row_num": 28
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": "fw_moz_contact_sup"
+        },
+        "model": {
+          "isSessionVariable": 1
+        },
+        "_row_num": 29
+      },
+      {
+        "type": "exit_survey",
+        "name": "exit_survey",
+        "model": {
+          "isSessionVariable": 1
+        },
+        "_row_num": 30
+      },
+      {
+        "clause": "end if",
+        "_row_num": 31
+      },
+      {
+        "clause": "end if",
+        "_row_num": 32
+      },
+      {
+        "clause": "else // MOZ",
+        "_row_num": 33
+      },
+      {
+        "clause": "if",
+        "condition": "!data('match_roster')",
+        "_row_num": 34
       },
       {
         "type": "note",
@@ -142,16 +230,16 @@
           "prompt": "hh_roster_mismatch"
         },
         "hideInContents": 1,
-        "_row_num": 23
+        "_row_num": 35
       },
       {
         "clause": "end if",
-        "_row_num": 24
+        "_row_num": 36
       },
       {
         "clause": "if",
         "condition": "!!data('match_roster') && !data('match_hhid')",
-        "_row_num": 25
+        "_row_num": 37
       },
       {
         "type": "note",
@@ -162,16 +250,16 @@
           "isSessionVariable": 1
         },
         "hideInContents": 1,
-        "_row_num": 26
+        "_row_num": 38
       },
       {
         "clause": "else",
-        "_row_num": 27
+        "_row_num": 39
       },
       {
         "clause": "if",
         "condition": "!!data('hh_new')",
-        "_row_num": 28
+        "_row_num": 40
       },
       {
         "type": "select_one",
@@ -186,12 +274,12 @@
           "valuesList": "yn"
         },
         "hideInContents": 1,
-        "_row_num": 29
+        "_row_num": 41
       },
       {
         "clause": "if",
         "condition": "selected(data('has_paint'), 'yes')",
-        "_row_num": 30
+        "_row_num": 42
       },
       {
         "type": "note",
@@ -199,11 +287,11 @@
           "prompt": "fw_paint_instr"
         },
         "hideInContents": 1,
-        "_row_num": 31
+        "_row_num": 43
       },
       {
         "clause": "else",
-        "_row_num": 32
+        "_row_num": 44
       },
       {
         "type": "note",
@@ -211,7 +299,7 @@
           "prompt": "fw_no_paint"
         },
         "hideInContents": 1,
-        "_row_num": 33
+        "_row_num": 45
       },
       {
         "type": "exit_survey",
@@ -220,48 +308,48 @@
           "isSessionVariable": 1
         },
         "hideInContents": 1,
-        "_row_num": 34
+        "_row_num": 46
       },
       {
         "clause": "end if",
-        "_row_num": 35
+        "_row_num": 47
       },
       {
         "clause": "end if",
-        "_row_num": 36
+        "_row_num": 48
       },
       {
         "clause": "end if",
-        "_row_num": 37
+        "_row_num": 49
       },
       {
         "clause": "end if // MOZ",
-        "_row_num": 38
+        "_row_num": 50
       },
       {
         "type": "opening",
-        "_row_num": 39
+        "_row_num": 51
       },
       {
         "clause": "do section survey",
         "hideInContents": 1,
-        "_row_num": 40
+        "_row_num": 52
       },
       {
         "type": "finalize",
-        "_row_num": 41
+        "_row_num": 53
       },
       {
         "clause": "else // start",
-        "_row_num": 42
+        "_row_num": 54
       },
       {
         "type": "instances",
-        "_row_num": 43
+        "_row_num": 55
       },
       {
         "clause": "end if // start",
-        "_row_num": 44
+        "_row_num": 56
       }
     ],
     "survey": [
@@ -14855,27 +14943,35 @@
         "elementKey": "id_candidate_deceased"
       },
       "moz_sup_have_id": {
+        "type": "string",
+        "isSessionVariable": 1,
+        "valuesList": "yn",
         "_defn": [
           {
             "_row_num": 8,
             "section_name": "initial"
+          },
+          {
+            "_row_num": 21,
+            "section_name": "initial"
           }
         ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
         "elementKey": "moz_sup_have_id"
       },
       "moz_enumeration": {
+        "type": "string",
+        "isSessionVariable": 1,
+        "valuesList": "yn",
         "_defn": [
           {
             "_row_num": 10,
             "section_name": "initial"
+          },
+          {
+            "_row_num": 23,
+            "section_name": "initial"
           }
         ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
         "elementKey": "moz_enumeration"
       },
       "exit_survey": {
@@ -14892,7 +14988,15 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 34,
+            "_row_num": 26,
+            "section_name": "initial"
+          },
+          {
+            "_row_num": 30,
+            "section_name": "initial"
+          },
+          {
+            "_row_num": 46,
             "section_name": "initial"
           }
         ],
@@ -14901,7 +15005,7 @@
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 41,
             "section_name": "initial"
           }
         ],
@@ -16434,17 +16538,109 @@
             "promptIdx": 6
           },
           {
+            "type": "select_one",
+            "values_list": "yn",
+            "name": "moz_sup_have_id",
+            "display": {
+              "prompt": "fw_moz_sup_have_id"
+            },
+            "model": {
+              "isSessionVariable": 1,
+              "valuesList": "yn"
+            },
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "initial/_screen21",
+            "promptIdx": 7
+          },
+          {
+            "type": "select_one",
+            "values_list": "yn",
+            "name": "moz_enumeration",
+            "display": {
+              "prompt": "fw_moz_enumeration"
+            },
+            "model": {
+              "isSessionVariable": 1,
+              "valuesList": "yn"
+            },
+            "_row_num": 23,
+            "__rowNum__": 22,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "initial/_screen23",
+            "promptIdx": 8
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "fw_moz_contact_sup"
+            },
+            "model": {
+              "isSessionVariable": 1
+            },
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "initial/_screen25",
+            "promptIdx": 9
+          },
+          {
+            "type": "exit_survey",
+            "name": "exit_survey",
+            "model": {
+              "isSessionVariable": 1
+            },
+            "_row_num": 26,
+            "__rowNum__": 25,
+            "_token_type": "prompt",
+            "_type": "exit_survey",
+            "_branch_label_enclosing_screen": "initial/_screen26",
+            "promptIdx": 10
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": "fw_moz_contact_sup"
+            },
+            "model": {
+              "isSessionVariable": 1
+            },
+            "_row_num": 29,
+            "__rowNum__": 28,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "initial/_screen29",
+            "promptIdx": 11
+          },
+          {
+            "type": "exit_survey",
+            "name": "exit_survey",
+            "model": {
+              "isSessionVariable": 1
+            },
+            "_row_num": 30,
+            "__rowNum__": 29,
+            "_token_type": "prompt",
+            "_type": "exit_survey",
+            "_branch_label_enclosing_screen": "initial/_screen30",
+            "promptIdx": 12
+          },
+          {
             "type": "note",
             "display": {
               "prompt": "hh_roster_mismatch"
             },
             "hideInContents": 1,
-            "_row_num": 23,
-            "__rowNum__": 22,
+            "_row_num": 35,
+            "__rowNum__": 34,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen23",
-            "promptIdx": 7
+            "_branch_label_enclosing_screen": "initial/_screen35",
+            "promptIdx": 13
           },
           {
             "type": "note",
@@ -16455,12 +16651,12 @@
               "isSessionVariable": 1
             },
             "hideInContents": 1,
-            "_row_num": 26,
-            "__rowNum__": 25,
+            "_row_num": 38,
+            "__rowNum__": 37,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen26",
-            "promptIdx": 8
+            "_branch_label_enclosing_screen": "initial/_screen38",
+            "promptIdx": 14
           },
           {
             "type": "select_one",
@@ -16475,12 +16671,12 @@
               "valuesList": "yn"
             },
             "hideInContents": 1,
-            "_row_num": 29,
-            "__rowNum__": 28,
+            "_row_num": 41,
+            "__rowNum__": 40,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "initial/_screen29",
-            "promptIdx": 9
+            "_branch_label_enclosing_screen": "initial/_screen41",
+            "promptIdx": 15
           },
           {
             "type": "note",
@@ -16488,12 +16684,12 @@
               "prompt": "fw_paint_instr"
             },
             "hideInContents": 1,
-            "_row_num": 31,
-            "__rowNum__": 30,
+            "_row_num": 43,
+            "__rowNum__": 42,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen31",
-            "promptIdx": 10
+            "_branch_label_enclosing_screen": "initial/_screen43",
+            "promptIdx": 16
           },
           {
             "type": "note",
@@ -16501,12 +16697,12 @@
               "prompt": "fw_no_paint"
             },
             "hideInContents": 1,
-            "_row_num": 33,
-            "__rowNum__": 32,
+            "_row_num": 45,
+            "__rowNum__": 44,
             "_token_type": "prompt",
             "_type": "note",
-            "_branch_label_enclosing_screen": "initial/_screen33",
-            "promptIdx": 11
+            "_branch_label_enclosing_screen": "initial/_screen45",
+            "promptIdx": 17
           },
           {
             "type": "exit_survey",
@@ -16515,31 +16711,31 @@
               "isSessionVariable": 1
             },
             "hideInContents": 1,
-            "_row_num": 34,
-            "__rowNum__": 33,
+            "_row_num": 46,
+            "__rowNum__": 45,
             "_token_type": "prompt",
             "_type": "exit_survey",
-            "_branch_label_enclosing_screen": "initial/_screen34",
-            "promptIdx": 12
+            "_branch_label_enclosing_screen": "initial/_screen46",
+            "promptIdx": 18
           },
           {
             "type": "opening",
-            "_row_num": 39,
-            "__rowNum__": 38,
+            "_row_num": 51,
+            "__rowNum__": 50,
             "_token_type": "prompt",
             "_type": "opening",
-            "_branch_label_enclosing_screen": "initial/_screen39",
-            "promptIdx": 13
+            "_branch_label_enclosing_screen": "initial/_screen51",
+            "promptIdx": 19
           },
           {
             "clause": "do section survey",
             "hideInContents": 1,
-            "_row_num": 40,
-            "__rowNum__": 39,
+            "_row_num": 52,
+            "__rowNum__": 51,
             "_token_type": "prompt",
             "_do_section_name": "survey",
             "_type": "_section",
-            "promptIdx": 14,
+            "promptIdx": 20,
             "display": {
               "title": {
                 "text": {
@@ -16553,29 +16749,29 @@
           },
           {
             "type": "finalize",
-            "_row_num": 41,
-            "__rowNum__": 40,
+            "_row_num": 53,
+            "__rowNum__": 52,
             "_token_type": "prompt",
             "_type": "finalize",
-            "_branch_label_enclosing_screen": "initial/_screen41",
-            "promptIdx": 15
+            "_branch_label_enclosing_screen": "initial/_screen53",
+            "promptIdx": 21
           },
           {
             "type": "instances",
-            "_row_num": 43,
-            "__rowNum__": 42,
+            "_row_num": 55,
+            "__rowNum__": 54,
             "_token_type": "prompt",
             "_type": "instances",
-            "_branch_label_enclosing_screen": "initial/_screen43",
-            "promptIdx": 16
+            "_branch_label_enclosing_screen": "initial/_screen55",
+            "promptIdx": 22
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 45,
-            "_branch_label_enclosing_screen": "initial/_screen45",
-            "promptIdx": 17
+            "_row_num": 57,
+            "_branch_label_enclosing_screen": "initial/_screen57",
+            "promptIdx": 23
           }
         ],
         "validation_tag_map": {},
@@ -16593,8 +16789,8 @@
           {
             "clause": "else // start",
             "_token_type": "goto_label",
-            "_branch_label": "_else42",
-            "_row_num": 42,
+            "_branch_label": "_else54",
+            "_row_num": 54,
             "operationIdx": 1
           },
           {
@@ -16610,8 +16806,8 @@
           {
             "clause": "else // MOZ",
             "_token_type": "goto_label",
-            "_branch_label": "_else21",
-            "_row_num": 21,
+            "_branch_label": "_else33",
+            "_row_num": 33,
             "operationIdx": 3
           },
           {
@@ -16624,7 +16820,7 @@
             "operationIdx": 4
           },
           {
-            "clause": "end if",
+            "clause": "else",
             "_token_type": "goto_label",
             "_branch_label": "_else20",
             "_row_num": 20,
@@ -16744,20 +16940,19 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif20",
-            "_row_num": 20,
+            "_branch_label": "_endif32",
+            "_row_num": 32,
             "operationIdx": 22
           },
           {
-            "clause": "end if // MOZ",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif38",
-            "_row_num": 38,
+            "_row_num": 21,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 23
           },
           {
             "clause": "if",
-            "condition": "!data('match_roster')",
+            "condition": "selected(data('moz_sup_have_id'), 'yes')",
             "_row_num": 22,
             "__rowNum__": 21,
             "_token_type": "goto_label",
@@ -16765,7 +16960,7 @@
             "operationIdx": 24
           },
           {
-            "clause": "end if",
+            "clause": "else",
             "_token_type": "goto_label",
             "_branch_label": "_else24",
             "_row_num": 24,
@@ -16774,195 +16969,278 @@
           {
             "_row_num": 23,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 26
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif24",
-            "_row_num": 24,
+            "_branch_label": "_endif27",
+            "_row_num": 27,
             "operationIdx": 27
           },
           {
-            "clause": "if",
-            "condition": "!!data('match_roster') && !data('match_hhid')",
             "_row_num": 25,
-            "__rowNum__": 24,
-            "_token_type": "goto_label",
-            "_branch_label": "_then25",
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 28
-          },
-          {
-            "clause": "else",
-            "_token_type": "goto_label",
-            "_branch_label": "_else27",
-            "_row_num": 27,
-            "operationIdx": 29
           },
           {
             "_row_num": 26,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 29
+          },
+          {
+            "clause": "if",
+            "condition": "!selected(data('moz_enumeration'), 'yes')",
+            "_row_num": 28,
+            "__rowNum__": 27,
+            "_token_type": "goto_label",
+            "_branch_label": "_then28",
             "operationIdx": 30
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif37",
-            "_row_num": 37,
+            "_branch_label": "_else31",
+            "_row_num": 31,
             "operationIdx": 31
           },
           {
-            "clause": "if",
-            "condition": "!!data('hh_new')",
-            "_row_num": 28,
-            "__rowNum__": 27,
-            "_token_type": "goto_label",
-            "_branch_label": "_then28",
+            "_row_num": 29,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 32
+          },
+          {
+            "_row_num": 30,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 33
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif31",
+            "_row_num": 31,
+            "operationIdx": 34
+          },
+          {
+            "clause": "end if // MOZ",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif50",
+            "_row_num": 50,
+            "operationIdx": 35
+          },
+          {
+            "clause": "if",
+            "condition": "!data('match_roster')",
+            "_row_num": 34,
+            "__rowNum__": 33,
+            "_token_type": "goto_label",
+            "_branch_label": "_then34",
+            "operationIdx": 36
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_else36",
             "_row_num": 36,
-            "operationIdx": 33
-          },
-          {
-            "_row_num": 29,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 34
-          },
-          {
-            "clause": "if",
-            "condition": "selected(data('has_paint'), 'yes')",
-            "_row_num": 30,
-            "__rowNum__": 29,
-            "_token_type": "goto_label",
-            "_branch_label": "_then30",
-            "operationIdx": 35
-          },
-          {
-            "clause": "else",
-            "_token_type": "goto_label",
-            "_branch_label": "_else32",
-            "_row_num": 32,
-            "operationIdx": 36
-          },
-          {
-            "_row_num": 31,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 37
           },
           {
-            "clause": "end if",
-            "_token_type": "goto_label",
-            "_branch_label": "_endif35",
             "_row_num": 35,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 38
-          },
-          {
-            "_row_num": 33,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 39
-          },
-          {
-            "_row_num": 34,
-            "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 40
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
             "_branch_label": "_endif36",
             "_row_num": 36,
+            "operationIdx": 39
+          },
+          {
+            "clause": "if",
+            "condition": "!!data('match_roster') && !data('match_hhid')",
+            "_row_num": 37,
+            "__rowNum__": 36,
+            "_token_type": "goto_label",
+            "_branch_label": "_then37",
+            "operationIdx": 40
+          },
+          {
+            "clause": "else",
+            "_token_type": "goto_label",
+            "_branch_label": "_else39",
+            "_row_num": 39,
             "operationIdx": 41
           },
           {
-            "_row_num": 39,
+            "_row_num": 38,
             "_token_type": "begin_screen",
-            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 42
           },
           {
-            "clause": "do section survey",
-            "hideInContents": 1,
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif49",
+            "_row_num": 49,
+            "operationIdx": 43
+          },
+          {
+            "clause": "if",
+            "condition": "!!data('hh_new')",
             "_row_num": 40,
             "__rowNum__": 39,
-            "_token_type": "do_section",
-            "_do_section_name": "survey",
-            "operationIdx": 43
+            "_token_type": "goto_label",
+            "_branch_label": "_then40",
+            "operationIdx": 44
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else48",
+            "_row_num": 48,
+            "operationIdx": 45
           },
           {
             "_row_num": 41,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 44
+            "operationIdx": 46
           },
           {
-            "clause": "end if // start",
+            "clause": "if",
+            "condition": "selected(data('has_paint'), 'yes')",
+            "_row_num": 42,
+            "__rowNum__": 41,
             "_token_type": "goto_label",
-            "_branch_label": "_endif44",
+            "_branch_label": "_then42",
+            "operationIdx": 47
+          },
+          {
+            "clause": "else",
+            "_token_type": "goto_label",
+            "_branch_label": "_else44",
             "_row_num": 44,
-            "operationIdx": 45
+            "operationIdx": 48
           },
           {
             "_row_num": 43,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
-            "operationIdx": 46
+            "operationIdx": 49
           },
           {
-            "_token_type": "exit_section",
-            "clause": "exit section",
-            "_row_num": 45,
-            "operationIdx": 47
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif47",
+            "_row_num": 47,
+            "operationIdx": 50
           },
           {
             "_row_num": 45,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 51
+          },
+          {
+            "_row_num": 46,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 52
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif48",
+            "_row_num": 48,
+            "operationIdx": 53
+          },
+          {
+            "_row_num": 51,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 54
+          },
+          {
+            "clause": "do section survey",
+            "hideInContents": 1,
+            "_row_num": 52,
+            "__rowNum__": 51,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 55
+          },
+          {
+            "_row_num": 53,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(21);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 56
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif56",
+            "_row_num": 56,
+            "operationIdx": 57
+          },
+          {
+            "_row_num": 55,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(22);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 58
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 57,
+            "operationIdx": 59
+          },
+          {
+            "_row_num": 57,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(23);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 48
+            "operationIdx": 60
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 45,
-            "operationIdx": 49
+            "_row_num": 57,
+            "operationIdx": 61
           },
           {
             "_token_type": "validate",
             "clause": "validate finalize",
             "_sweep_name": "finalize",
-            "_row_num": 45,
+            "_row_num": 57,
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 50
+            "operationIdx": 62
           },
           {
             "_token_type": "save_and_terminate",
             "clause": "save and terminate",
             "calculation": true,
-            "_row_num": 45,
+            "_row_num": 57,
             "screen": {
               "hideInBackHistory": true
             },
-            "operationIdx": 51
+            "operationIdx": 63
           },
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 45,
-            "operationIdx": 52
+            "_row_num": 57,
+            "operationIdx": 64
           }
         ],
         "branch_label_map": {
@@ -16986,35 +17264,47 @@
           "_endif18": 22,
           "_endif19": 22,
           "_else20": 23,
-          "_endif20": 23,
-          "_else21": 24,
+          "_screen21": 23,
           "_then22": 26,
           "_screen23": 26,
           "_else24": 28,
-          "_endif24": 28,
-          "_then25": 30,
-          "_screen26": 30,
-          "_else27": 32,
-          "_then28": 34,
-          "_screen29": 34,
-          "_then30": 37,
-          "_screen31": 37,
-          "_else32": 39,
-          "_screen33": 39,
-          "_screen34": 40,
-          "_endif35": 41,
-          "_else36": 42,
-          "_endif36": 42,
-          "_endif37": 42,
-          "_endif38": 42,
-          "_screen39": 42,
-          "_screen41": 44,
-          "_else42": 46,
-          "_screen43": 46,
-          "_endif44": 47,
-          "_contents": 48,
-          "_screen45": 48,
-          "_finalize": 50
+          "_screen25": 28,
+          "_screen26": 29,
+          "_endif27": 30,
+          "_then28": 32,
+          "_screen29": 32,
+          "_screen30": 33,
+          "_else31": 35,
+          "_endif31": 35,
+          "_endif32": 35,
+          "_else33": 36,
+          "_then34": 38,
+          "_screen35": 38,
+          "_else36": 40,
+          "_endif36": 40,
+          "_then37": 42,
+          "_screen38": 42,
+          "_else39": 44,
+          "_then40": 46,
+          "_screen41": 46,
+          "_then42": 49,
+          "_screen43": 49,
+          "_else44": 51,
+          "_screen45": 51,
+          "_screen46": 52,
+          "_endif47": 53,
+          "_else48": 54,
+          "_endif48": 54,
+          "_endif49": 54,
+          "_endif50": 54,
+          "_screen51": 54,
+          "_screen53": 56,
+          "_else54": 58,
+          "_screen55": 58,
+          "_endif56": 59,
+          "_contents": 60,
+          "_screen57": 60,
+          "_finalize": 62
         }
       },
       "survey": {
@@ -22869,30 +23159,38 @@
         "elementPath": "id_candidate_deceased"
       },
       "moz_sup_have_id": {
+        "type": "string",
+        "isSessionVariable": 1,
+        "valuesList": "yn",
         "_defn": [
           {
             "_row_num": 8,
             "section_name": "initial"
+          },
+          {
+            "_row_num": 21,
+            "section_name": "initial"
           }
         ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
         "elementKey": "moz_sup_have_id",
         "elementName": "moz_sup_have_id",
         "elementSet": "data",
         "elementPath": "moz_sup_have_id"
       },
       "moz_enumeration": {
+        "type": "string",
+        "isSessionVariable": 1,
+        "valuesList": "yn",
         "_defn": [
           {
             "_row_num": 10,
             "section_name": "initial"
+          },
+          {
+            "_row_num": 23,
+            "section_name": "initial"
           }
         ],
-        "type": "string",
-        "isSessionVariable": 1,
-        "valuesList": "yn",
         "elementKey": "moz_enumeration",
         "elementName": "moz_enumeration",
         "elementSet": "data",
@@ -22912,7 +23210,15 @@
             "section_name": "initial"
           },
           {
-            "_row_num": 34,
+            "_row_num": 26,
+            "section_name": "initial"
+          },
+          {
+            "_row_num": 30,
+            "section_name": "initial"
+          },
+          {
+            "_row_num": 46,
             "section_name": "initial"
           }
         ],
@@ -22924,7 +23230,7 @@
       "has_paint": {
         "_defn": [
           {
-            "_row_num": 29,
+            "_row_num": 41,
             "section_name": "initial"
           }
         ],

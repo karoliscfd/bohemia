@@ -223,6 +223,7 @@
             null,
             {
               fw_id: localStorage.getItem('FW_ID') || null,
+              fw_is_in_moz: isFwInMoz(),
               hh_minicenced: 'no',
               hh_fw_geolocation: false,
               hh_new: false,
@@ -276,6 +277,7 @@
       null,
       {
         fw_id: localStorage.getItem('FW_ID') || null,
+        fw_is_in_moz: isFwInMoz(),
         hh_fw_geolocation: true,
         hh_id_readonly: true,
         match_roster: true,
