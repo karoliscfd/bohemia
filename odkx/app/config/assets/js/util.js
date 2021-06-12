@@ -24,7 +24,7 @@
     },
     isValidFwId: function (fwId) {
       var numOnlyRegex=/^[0-9]+$/;
-      return (fwId.match(numOnlyRegex) && fwId >= 0 && fwId <= 999)
+      return (fwId.match(numOnlyRegex) && fwId >= 0 && fwId <= 9999)
     }
   };
 })();
