@@ -1,18 +1,42 @@
-# NOTE: this script is a temporary solution. The "permanent" visit control sheet generation
-# method cannot be finalized until its dependencies (the census form) are finalized/locked.
+# Libraries
+library(readr)
+library(aws.s3)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(sp)
+library(bohemia)
+
 
 # Define some parameters
-suitcase_dir <- '/home/joebrew/Documents/suitcase'
-jar_file <- 'ODK-X_Suitcase_v2.1.8.jar'
-odkx_path <- '/home/joebrew/Documents/bohemia/odkx/app/config' # must be full path!
+country <- 'Mozambique'
+iso <- tolower(substr(country, 1, 3))
+use_real_names <- TRUE
+keyfile = '../credentials/bohemia_priv.pem'
+keyfile_public = '../credentials/bohemia_pub.pem'
+
+# Read in credentials for S3 bucket
+s3creds <- read_csv('../../credentials/bohemiacensuss3credentials.csv')
+
+
+# Set environment variables for AWS s3
+Sys.setenv(
+  "AWS_ACCESS_KEY_ID" = s3creds$`Access key ID`,
+  "AWS_SECRET_ACCESS_KEY" = s3creds$`Secret access key`,
+  "AWS_DEFAULT_REGION" = "eu-west-3"
+)
+
+
+buck <- get_bucket(bucket = 'bohemiacensus')
+
+
+# Define some parameters
 kf <- '../../credentials/bohemia_priv.pem' #path to private key for name decryption
 creds <- yaml::yaml.load_file('../../credentials/credentials.yaml')
-use_real_names <- FALSE # whether to decrypt names (TRUE) or use fakes ones (false)
 is_linux <- Sys.info()['sysname'] == 'Linux'
 keyfile = '../../../credentials/bohemia_priv.pem'
 keyfile_public = '../../../credentials/bohemia_pub.pem'
 output_file = '/home/joebrew/Desktop/visit_control_sheet.csv'
-download_dir <- getwd()
 
 # Check the directory
 this_dir <- getwd()
@@ -22,60 +46,41 @@ if(!check){
   message('YOU ARE IN THE WRONG DIRECTORY. MAKE SURE YOU ARE IN bohemia/scripts/visit_control')
 }
 
-
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(sp)
-library(babynames)
-library(bohemia)
-
-
-# Define function for making fake names
-fake_names <- function(n = 1, words = 2){
-  vec <- babynames::babynames$name
-  first_name <- sample(vec, size = n, replace = T)
-  if(words == 1){
-    out <- first_name
-  } else {
-    last_name <- sample(vec, size = n, replace = T)
-    out <- paste0(first_name, ' ', last_name)
-  }
-  return(out)
+# Retrieve objects from s3
+buck_names <- buck_times <-  c()
+for(i in 1:length(buck)){
+  buck_names[i] <- buck[i]$Contents$Key
+  buck_times[i] <- buck[i]$Contents$LastModified
 }
+buck_df <- tibble(file = buck_names,
+                  date_time = buck_times) %>%
+  mutate(type = ifelse(grepl('agg', file), 'Aggregate', 'Census'))
+buck_df_keep <- buck_df %>%
+  arrange(desc(date_time)) %>%
+  group_by(type) %>%
+  filter(date_time == dplyr::first(date_time))
 
-# ## THE BELOW IS COMMENTED OUT INTENTIONALLY. EVENTUALLY, WE WILL MIGRATE TO THIS 
-# ## METHOD (RETRIEVING DATA FROM ODK-X SERVER RATHER THAN MINICENSUS DATABASE)
-# ## BUT NOT UNTIL SIZE / SYNC ISSUES ARE RESOLVED
-# ## https://trello.com/c/vLynMQqa/149-change-visit-control-list-generation-to-use-odk-x-dataset-instead-of-minicensus-dataset
-# # # Retrieve data for the CENSUS main table(ODK-X method)
-# odkx_retrieve_data(suitcase_dir = suitcase_dir,
-#                    jar_file = jar_file,
-#                    server_url = creds$odkx_server,
-#                    table_id = 'census',
-#                    user = creds$odkx_user,
-#                    pass = creds$odkx_pass,
-#                    is_linux = is_linux,
-#                    download_dir = download_dir,
-#                    attachments = FALSE)
-# census <- readr::read_csv('default/census/link_unformatted.csv')
-# # # Retrieve data for the household members table (ODK-X method)
-# odkx_retrieve_data(suitcase_dir = suitcase_dir,
-#                    jar_file = jar_file,
-#                    server_url = creds$odkx_server,
-#                    table_id = 'hh_member',
-#                    user = creds$odkx_user,
-#                    pass = creds$odkx_pass,
-#                    is_linux = is_linux,
-#                    download_dir = download_dir,
-#                    attachments = FALSE)
-# hh_member <- readr::read_csv('default/hh_member/link_unformatted.csv')
+for(i in 1:nrow(buck_df_keep)){
+  this_file <- buck_df_keep$file[i]
+  this_object_name <- unlist(strsplit(this_file, '_'))[1]
+  local_file <- paste0(this_object_name, '.RData')
+  save_object(
+    object = this_file,
+    bucket = 'bohemiacensus',
+    file = local_file)
+  load(local_file)
+  file.remove(local_file)
+}
+# # The above loaded two objects:
+# agg_list # the odk aggregate data
+# data_list # the odk-x census data
+
+
+
 
 
 
 message('Loading minicensus data')
-# Define the country
-country <- 'Mozambique'
 
 # Read in minicensus data
 if('minicensus_data.RData' %in% dir()){
@@ -90,12 +95,16 @@ if('minicensus_data.RData' %in% dir()){
 }
 out_list <- minicensus_data
 
-
-
+## We now have three objects in memory
+# agg_list # the odk aggregate data
+# data_list # the odk-x census data
+# out_list # the minicensus data
 
 
 # Decrypt names
 if(use_real_names){
+  # data_list$hh_member$name <- decrypt_private_data(data_list$hh_member$name,
+  #                                                  keyfile = kf)
   out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
   out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
   out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
@@ -121,8 +130,7 @@ if(use_real_names){
   out_list$va$id10062 <- fake_names(length(out_list$va$id10062))
 }
 
-
-# Update names
+# Update names of the minicensus data object
 for(i in 1:length(names(out_list))){
   this_name <- names(out_list)[i]
   if(grepl('minicensus_', this_name)){
@@ -147,3 +155,6 @@ df <- list_generation_visit_control(census_data = census_data,
                               output_file = output_file, # set to null in order to return a dataframe in memory
                               fake_data = FALSE,
                               html = FALSE) # set to TRUE if you want an html table ready for printing
+
+
+# Needs to conform to these specs: https://docs.google.com/document/d/1AB4AuEiMwPQdBIQvrWaus1XY36gFGmtZ4f65kzgYeug/edit?ts=6087c05d&pli=1

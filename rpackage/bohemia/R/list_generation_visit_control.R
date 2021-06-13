@@ -34,6 +34,9 @@ list_generation_visit_control <- function(census_data,
   # library(PKI)
   # library(bohemia)
   
+  # Needs to conform to these specs:
+  # https://docs.google.com/document/d/1AB4AuEiMwPQdBIQvrWaus1XY36gFGmtZ4f65kzgYeug/edit?ts=6087c05d&pli=1
+  
   # Deal with keyfile
   if(is.null(keyfile)){
     stop('You must specify the path to a private key (pem file) for decrypting names.')
@@ -128,6 +131,15 @@ list_generation_visit_control <- function(census_data,
       dplyr::select(hhid, hh_head_name, hh_sub_name,
                     District, Ward, Village, Hamlet, contact_information, previous_attempts)
   }
+  
+  # Add row number
+  df$number <- 1:nrow(df)
+  
+  # Add date of generation
+  df$date_generation <- as.character(Sys.Date())
+  
+  # Add observations
+  df$observations <- ' '
   
   if(html){
     names(df) <- toupper(names(df))
