@@ -5177,6 +5177,8 @@ implement(id= None, query="UPDATE clean_minicensus_main SET hh_id='MFE-202' WHER
 
 implement(id='note_material_warning_ff136d18-c0b3-4f04-9007-9b1c7008965c', query = "UPDATE clean_minicensus_main SET hh_main_wall_material = 'brick_block' WHERE instance_id='ff136d18-c0b3-4f04-9007-9b1c7008965c'", who='Joe Brew')
 
+implement(id= None, query="UPDATE clean_minicensus_main SET hh_id='KAI-058' WHERE instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-001', permid='KAI-058-001' WHERE num='1' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-002', permid='KAI-058-002' WHERE num='2' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-003', permid='KAI-058-002' WHERE num='3' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-004', permid='KAI-058-002' WHERE num='4' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-005', permid='KAI-058-002' WHERE num='5' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-006', permid='KAI-058-002' WHERE num='6' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-007', permid='KAI-058-002' WHERE num='7' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';UPDATE clean_minicensus_people SET pid = 'KAI-058-008', permid='KAI-058-002' WHERE num='8' and instance_id='3fabd1b5-c53e-4267-b168-102ebf29400c';", who='Xing Brew')
+
 dbconn.commit()
 cur.close()
 dbconn.close()
