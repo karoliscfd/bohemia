@@ -1,0 +1,372 @@
+---
+title: "Distances to in Rufiji"
+author: "www.databrew.cc"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: "hide"
+---
+
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               echo = TRUE,
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               fig.width = 9.64,
+               fig.height = 5.9,
+               fig.path = 'figures/')
+```
+
+```{r}
+## Load libraries
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(sp)
+library(raster)
+library(viridis)
+library(ggthemes)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(RColorBrewer)
+library(readr)
+library(zoo)
+library(tidyr)
+options(scipen = '999')
+library(bohemia)
+library(geosphere)
+```
+
+```{r}
+# Define function for calculating distance
+calculate_distance <- function(shp, lat, lng){
+  p <- c(lng, lat)
+  # ll <- length(shp@polygons[[1]]@Polygons)
+  ll <- nrow(coordinates(shp))
+  out_list <- list()
+  for(i in 1:ll){
+    temp_points <- coordinates(shp)[i,]#shp@polygons[[1]]@Polygons[[ll]]@coords
+    out_list[[i]] <- temp_points
+  }
+  the_points <- do.call('rbind', out_list)
+  the_line <- SpatialPointsDataFrame(coords = the_points,
+                                     data = data.frame(id = 1:nrow(the_points)))
+  proj4string(the_line) <- proj4string(shp)
+  i = 1
+  out <- rep(NA, nrow(the_points))
+  for(i in 1:nrow(the_points)){
+    out[i] <- distm(c(the_points[i,]), c(lng, lat), fun = distHaversine)
+  }
+  df <- data.frame(the_points)
+  df$distance <- out
+  df$lng <- lng
+  df$lat <- lat
+  return(df)
+}
+```
+
+
+```{r}
+# Define function for drawing
+draw <- function(df,
+                 shp,
+                 n = 20){
+  shp_fort <- fortify(shp, id = NAME_2)
+  sub_df <- dplyr::sample_n(df, size = n)
+  
+  g1 <- ggplot() +
+    geom_polygon(data = shp_fort,
+         aes(x = long,
+             y = lat,
+             group = group)) +
+    geom_segment(data = sub_df,
+                 aes(x = x,
+                     y = y,
+                     xend = lng,
+                     yend = lat)) +
+    geom_text(data = sub_df,
+              aes(x = x,
+                  y = y,
+                  label = round(distance / 1000, digits = 2)))
+  
+  g2 <- ggplot(data = df,
+               aes(x = distance/1000)) +
+    geom_density() +
+    labs(x = 'Km',
+         y = 'Density',
+         title = paste0('Max: ', round(max(df$distance)/1000, 2)))
+  Rmisc::multiplot(g1, g2, cols = 2)
+}
+```
+
+```{r}
+# Read in hamlets locations
+gps_sp <- gps <- bohemia::gps %>% filter(!is.na(lng)) %>%
+  mutate(x = lng, y = lat)
+
+# Get centroids by ward
+gps_tza <- gps_sp %>%
+  left_join(bohemia::locations %>% dplyr::select(code, District)) %>%
+  filter(District == 'Kibiti DC') %>%
+  group_by(ward) %>%
+  summarise(lng = mean(lng),
+            lat = mean(lat)) %>%
+  mutate(x = lng, y = lat)
+
+coordinates(gps_tza) <- ~x+y
+
+# gps_tza <- gps_sp[gps_sp@data$iso == 'TZA',]
+
+
+# Calculate distances
+
+
+
+df_tza <- calculate_distance(shp = gps_tza,
+                         lng = 38.984170,
+                         lat = -7.947843)
+df_tza$ward <- df_tza$code <- gps_tza@data$ward
+df_tza$lat <- gps_tza@data$lat
+df_tza$lng <- gps_tza@data$lng
+```
+
+```{r}
+# Function to chart distances
+chart_distances <- function(df){
+  g <- ggplot(data = df,
+         aes(x = distance / 1000)) +
+    geom_histogram(alpha = 0.6,
+                   fill = 'lightblue',
+                   color = 'black') +
+    databrew::theme_simple() +
+    labs(x = 'Kilometers from HQ',
+         y = 'Wards')
+  return(g)
+}
+
+chart_distances_people <- function(df){
+  out_list <- list()
+  for(i in 1:nrow(df)){
+    out <- data.frame(km = df$distance[i] / 1000,
+                      id = 1:df$n_households[i])
+    out_list[[i]] <- out
+  }
+  out <- bind_rows(out_list)
+  
+  g <- ggplot(data = out,
+         aes(x = km)) +
+    geom_histogram(alpha = 0.6,
+                   fill = 'lightblue',
+                   color = 'black') +
+    databrew::theme_simple() +
+    labs(x = 'Kilometers from HQ',
+         y = 'Households')
+  return(g)
+}
+
+chart_distances_xy <- function(df){
+  out <- df %>%
+    mutate(km = distance / 1000) %>%
+    arrange(km) %>%
+    mutate(dummy = 1) %>%
+    mutate(cs = cumsum(dummy)) %>%
+    mutate(p = cs / sum(dummy) * 100) %>%
+    group_by(km) %>%
+    summarise(p = max(p))
+  
+  g <- ggplot(data = out,
+         aes(x = km,
+             y = p)) +
+    geom_area(alpha = 0.6,
+                   fill = 'lightblue',
+                   color = 'black') +
+    databrew::theme_simple() +
+    labs(x = 'Kilometers from HQ',
+         y = '% of wards within this distance') +
+    geom_hline(yintercept = seq(0, 100, by = 25),
+               alpha = 0.3) +
+    geom_vline(xintercept = max(out$km))
+  return(g)
+}
+
+
+chart_distances_people_xy <- function(df){
+  out_list <- list()
+  for(i in 1:nrow(df)){
+    out <- data.frame(km = df$distance[i] / 1000,
+                      id = 1:df$n_households[i])
+    out_list[[i]] <- out
+  }
+  out <- bind_rows(out_list) %>%
+    arrange(km) %>%
+    mutate(dummy = 1) %>%
+    mutate(cs = cumsum(dummy)) %>%
+    mutate(p = cs / sum(dummy) * 100) %>%
+    group_by(km) %>%
+    summarise(p = max(p))
+  
+  g <- ggplot(data = out,
+         aes(x = km,
+             y = p)) +
+    geom_area(alpha = 0.6,
+                   fill = 'lightblue',
+                   color = 'black') +
+    databrew::theme_simple() +
+    labs(x = 'Kilometers from HQ',
+         y = '% of households within this distance') +
+    geom_hline(yintercept = seq(0, 100, by = 25),
+               alpha = 0.3) +
+    geom_vline(xintercept = max(out$km))
+  return(g)
+}
+
+# Lealet map
+library(leaflet)
+make_leaf <- function(df){
+  # mapview::mapview() %>%
+    leaflet() %>%
+    addProviderTiles(providers$OpenStreetMap) %>%
+    addMarkers(data = df,
+               popup = paste0(df$code, ' (', df$hamlet, '), ',
+                              round(df$distance/1000, digits = 1),
+                              ' km')) 
+}
+
+make_leaf_cocentric <- function(df){
+  # use one coordinate to detect country
+  lat <- df$lat[1]
+  if(lat <= -12){
+    iso <- 'MOZ'
+    hq <- data.frame(lng = 35.711553, lat = -17.979446)
+  } else {
+    iso <- 'TZA'
+    hq <- data.frame(lng = 38.984170, lat = -7.947843)
+  }
+  
+  # Make hq spatial
+  hq_sp <- hq %>% mutate(x = lng, y = lat)
+  coordinates(hq_sp) <- ~x+y
+  
+  proj4string(hq_sp) <- CRS("+init=epsg:4326") # define as lat/lng
+  zone <- 36
+  # Project
+  new_proj <- CRS(paste0("+proj=utm +zone=", 
+                       zone, 
+                       " +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+  hq_sp <- spTransform(hq_sp,
+                       new_proj)
+  
+  l <- leaflet() %>%
+    addProviderTiles(providers$OpenStreetMap) %>%
+    addMarkers(data = hq)
+  
+  # Get cocentric circles
+  distances <- c(10, 20, 50)
+  cols <- rainbow(length(distances))
+  counter <- 0
+  for(i in distances){
+    counter <- counter +1
+    the_name <- paste0('c', i)
+    the_distance <- paste0(i, ' km radius')
+    the_poly <- spTransform(rgeos::gBuffer(hq_sp, width = i * 1000), CRS("+init=epsg:4326"))
+    assign(the_name, 
+           the_poly)
+    l <- l %>%
+      addPolylines(data = the_poly,
+                   popup = the_distance,
+                   color = cols[counter])
+  }
+  l <- l %>%
+    addCircleMarkers(data = df,
+                     popup = paste0(df$code, ' (', df$hamlet, '), ',
+                                    round(df$distance/1000, digits = 1),
+                                    ' km'),
+                     color = 'black',
+                     fillColor = 'black',
+                     opacity = 0.8,
+                     radius = 3)
+  return(l)
+}
+library(class)
+library(cluster)
+make_knn <- function(df){
+ kmeans2 <- kmeans(x = df[,c('lng', 'lat')], centers = 6, nstart = 25)
+  pd <- df
+  pd$cluster <- kmeans2$cluster
+  n_cols <- max(pd$cluster)
+  cols <- rainbow(n_cols)
+  l <- leaflet() %>%
+    addTiles() %>%
+    addCircleMarkers(data = pd,
+                     color = cols[pd$cluster],
+                     popup = paste0(pd$code, ' ',
+                                    '(',
+                                    pd$hamlet,
+                                    '), team: ',
+                                    pd$cluster),
+                     radius = 2)
+  return(l)
+}
+
+```
+
+
+# Distance to headquarters from Kibiti wards {.tabset}
+
+
+## Tanzania
+
+
+```{r}
+df <- df_tza
+```
+
+
+
+The below chart shows the distribution of distances from headquarters. The x-axis is distance in kilometers (as the crow flies) from HQ, and the y-axis is the number of wards at that distance.
+
+```{r}
+chart_distances(df = df)
+```
+
+### Percentage of wards within X kilometers 
+
+The below chart shows what percentage of wards (y-axis) are located at or less kilometers (x-axis) from headquarters.
+
+```{r}
+chart_distances_xy(df = df)
+```
+
+### Interactive map of ward centroids
+
+The below map shows all ward locations, per recon, using the centroid method of hamlets. It is interactive (you can zoom in/out, or click on a hamlet for more information).
+
+```{r}
+make_leaf(df = df)
+```
+
+
+### Interactive map of cocentric distance circles
+
+The below map shows all wards locations, per recon. It is interactive (you can zoom in/out, or click on a ward for more information). The cocentric radial circles are drawn at 10km, 20km, and 50km.
+
+```{r}
+make_leaf_cocentric(df = df)
+```
+
+### Table
+
+```{r}
+pd <- df %>%
+  mutate(km = distance / 1000) %>%
+  dplyr::select(ward, km)
+bohemia::prettify(pd,
+                  nrows = nrow(pd))
+```
