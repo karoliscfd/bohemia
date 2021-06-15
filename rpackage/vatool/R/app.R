@@ -97,7 +97,7 @@ app_ui <- function(request) {
 #' @import leaflet
 #' @import dplyr
 app_server <- function(input, output, session) {
-  is_local <- FALSE
+  is_local <- TRUE
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
   adj_submission_success <- reactiveVal(value = NULL)
@@ -110,7 +110,6 @@ app_server <- function(input, output, session) {
   users <- dbReadTable(conn = con, 'vatool_users')
   cods <- dbReadTable(conn=con, 'vatool_cods')
   data <- reactiveValues(va = data.frame(), session = data.frame(), cod = data.frame())
-  # save(users, cods, file = 'va_data.rda')
   print(users)
   
   # Upon log in, read in data

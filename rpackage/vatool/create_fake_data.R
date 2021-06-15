@@ -18,7 +18,7 @@ users <-
          first_name = c('Joe', 'Ben', 'Xing', 'Cece', 'Ramona', 'Hansel'),
          last_name = c(rep('Brew', 5), 'Manduca'),
          country = c('Tanzania', 'Mozambique', 'Tanzania', 'Mozambique', 'Tanzania', 'Spain'),
-         role = c('Adjudicator', 'Adjudicator', 'Viewer', 'Physician', 'Physician', 'Physician'))
+         role = c('Adjudicator', 'Adjudicator', 'Physician', 'Physician', 'Physician', 'Physician'))
 
 # create cods data 
 cods <- 
