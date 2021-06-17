@@ -330,3 +330,4 @@ col_1 <- function(...){
 #'   
 #'   return(HTML(html))
 #' }
+
