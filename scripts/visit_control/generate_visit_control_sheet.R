@@ -57,41 +57,40 @@ buck_df <- tibble(file = buck_names,
   mutate(type = ifelse(grepl('agg', file), 'Aggregate', 'Census'))
 buck_df_keep <- buck_df %>%
   arrange(desc(date_time)) %>%
+  filter(grepl(country, file)) %>%
   group_by(type) %>%
   filter(date_time == dplyr::first(date_time))
 
-for(i in 1:nrow(buck_df_keep)){
-  this_file <- buck_df_keep$file[i]
-  this_object_name <- unlist(strsplit(this_file, '_'))[1]
-  local_file <- paste0(this_object_name, '.RData')
-  save_object(
-    object = this_file,
-    bucket = 'bohemiacensus',
-    file = local_file)
-  load(local_file)
-  file.remove(local_file)
+if(nrow(buck_df_keep) > 0){
+  for(i in 1:nrow(buck_df_keep)){
+    this_file <- buck_df_keep$file[i]
+    this_object_name <- unlist(strsplit(this_file, '_'))[1]
+    local_file <- paste0(this_object_name, '.RData')
+    save_object(
+      object = this_file,
+      bucket = 'bohemiacensus',
+      file = local_file)
+    load(local_file)
+    file.remove(local_file)
+  }
 }
 # # The above loaded two objects:
 # agg_list # the odk aggregate data
 # data_list # the odk-x census data
 
-
-
-
-
-
 message('Loading minicensus data')
 
 # Read in minicensus data
-if('minicensus_data.RData' %in% dir()){
-  load('minicensus_data.RData')
+file_name <- paste0(country, '_minicensus_data.RData')
+if(file_name %in% dir()){
+  load(file_name)
 } else {
   minicensus_data <- load_odk_data(the_country = country,
                           credentials_path = '../../credentials/credentials.yaml', # request from Databrew
                           users_path = '../../credentials/users.yaml', # request from Databrew
                           efficient = FALSE)
   save(minicensus_data,
-       file = 'minicensus_data.RData')
+       file = file_name)
 }
 out_list <- minicensus_data
 
