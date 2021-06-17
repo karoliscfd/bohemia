@@ -104,8 +104,11 @@ out_list <- minicensus_data
 if(use_real_names){
   # data_list$hh_member$name <- decrypt_private_data(data_list$hh_member$name,
   #                                                  keyfile = kf)
-  out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
-  out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)
+  if(country == 'Mozambique'){
+    out_list$enumerations$sub_name <- decrypt_private_data(out_list$enumerations$sub_name, keyfile = kf)
+    out_list$enumerations$chefe_name <- decrypt_private_data(out_list$enumerations$chefe_name, keyfile = kf)  
+  }
+  
   out_list$minicensus_repeat_death_info$death_name <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_name, keyfile = kf)
   out_list$minicensus_repeat_death_info$death_surname <- decrypt_private_data(out_list$minicensus_repeat_death_info$death_surname, keyfile = kf)
   out_list$minicensus_people$first_name <- decrypt_private_data(out_list$minicensus_people$first_name, keyfile = kf)
