@@ -87,11 +87,11 @@ make_about <- function(){
 theme_va <- ggplot2::theme_bw
 
 # Get database connection
-get_db_connection <- function(local = TRUE){
-  # creds <- yaml::yaml.load_file('credentials/credentials.yaml')
-  # users <- yaml::yaml.load_file('credentials/users.yaml')
+get_db_connection <- function(local = FALSE){
+  creds <- yaml::yaml.load_file('credentials/credentials.yaml')
+  users <- yaml::yaml.load_file('credentials/users.yaml')
   drv <- RPostgres::Postgres()
-  # 
+  
   if(local){
     con <- dbConnect(drv, dbname = 'bohemia')
   } else {
