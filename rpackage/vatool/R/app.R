@@ -15,7 +15,6 @@
 #' @import dplyr
 app_ui <- function(request) {
   options(scipen = '999')
-
   tagList(
     mobile_golem_add_external_resources(),
 
@@ -98,14 +97,14 @@ app_ui <- function(request) {
 #' @import dplyr
 app_server <- function(input, output, session) {
   is_local <- FALSE
-  logged_in <- reactiveVal(value = FALSE)
+  logged_in <- reactiveVal(value =  FALSE)
   submission_success <- reactiveVal(value = NULL)
   adj_submission_success <- reactiveVal(value = NULL)
   
   log_in_fail <- reactiveVal(value=FALSE)
   # Connect to database
   message('Connecting to database : ', ifelse(is_local, ' local', 'remote'))
-  con <- get_db_connection(local = is_local)
+  con <- get_db_connection(local = TRUE) # kkk is_local)  
   # Get list of authorized users, session, and cod tables
   users <- dbReadTable(conn = con, 'vatool_users')
   cods <- dbReadTable(conn=con, 'vatool_cods')
@@ -130,7 +129,7 @@ app_server <- function(input, output, session) {
     if(ok){
       logged_in(TRUE)
       removeModal()
-      load data
+      # load data
       # data$va <- load_va_data(is_local = is_local)
       data$va <- readRDS('~/Desktop/va_data.rda')
       # print(head(data$va))
@@ -154,6 +153,8 @@ app_server <- function(input, output, session) {
     
   })
 
+
+  
   # Selection input for VA ID
   output$ui_adjudicate <- renderUI({
     li <- logged_in()
@@ -174,8 +175,7 @@ app_server <- function(input, output, session) {
                    h2('Previous diagnoses'),
                    DT::dataTableOutput('adj_table_2'),
                    h2('Patient info'),
-                   DT::dataTableOutput('adj_table_1')),
-            column(4,
+                   DT::dataTableOutput('adj_table_1'),
                    br(),
                    selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
                    selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
@@ -239,9 +239,9 @@ app_server <- function(input, output, session) {
       }
     } 
     
-    names(out) <- c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
+    names(out) <- c('User ID', 'VA ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
-  })
+  }) 
   
   # Define the button
   output$top_button <- renderUI({
@@ -273,11 +273,21 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     if(li){
       pd <- data$va
+      liu <- input$log_in_user
+      user <- users %>% dplyr::filter(username == tolower(liu))
+      userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
+      out <- cods %>% dplyr::filter(user_id == userid)
       choices <- pd$death_id
-      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1])
+      # Removing already used VA ID from the list of the user
+      choices <- setdiff(choices, out$death_id)
+      # Removing VA IDs with more than one frequency  
+      frequency<-as.data.frame(table(cods$death_id))
+      emit<-frequency %>% dplyr::filter(Freq > 1)
+      choices <- setdiff(choices, emit$Var1)
+      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1]) 
     } else {
       NULL
-    }
+    } 
   })
   
   output$ui_assign_cod <- renderUI({
@@ -432,7 +442,7 @@ app_server <- function(input, output, session) {
         user <- users %>% dplyr::filter(username == tolower(liu))
         userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
         out <- cods %>% dplyr::filter(user_id == userid)
-        names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
+        names(out) <-  c('User ID', 'VA ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
       }
     } 
     out
