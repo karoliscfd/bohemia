@@ -57,16 +57,16 @@ app_ui <- function(request) {
               br(),
               fluidRow(
                 column(8,
-                       # div(class = 'tableCard',
+                       div(class = 'tableCard',
                         DT::dataTableOutput('va_table')
-                       # )
+                       )
                        ),
                 column(4,
-                       # div(class = 'tableCard',
+                       div(class = 'tableCard',
                          uiOutput('ui_select_va'),
                          uiOutput('ui_assign_cod'),
                          uiOutput('ui_submission')
-                         # )
+                          )
                        )
               )
             )
@@ -114,7 +114,7 @@ app_ui <- function(request) {
 #' @import leaflet
 #' @import dplyr
 app_server <- function(input, output, session) {
-  is_local <- TRUE
+  is_local <- FALSE
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
   adj_submission_success <- reactiveVal(value = NULL)
@@ -149,8 +149,8 @@ app_server <- function(input, output, session) {
       removeModal()
 
       # load data
-      # data$va <- load_va_data(is_local = is_local)
-      data$va <- readRDS('~/Desktop/va_data.rda')
+      data$va <- load_va_data(is_local = is_local)
+      # data$va <- readRDS('~/Desktop/va_data.rda')
 
       # print(head(data$va))
       # create table with same columns as session table in database (to append upon logout)
@@ -303,8 +303,18 @@ app_server <- function(input, output, session) {
     li <- logged_in()
     if(li){
       pd <- data$va
+      liu <- input$log_in_user
+      user <- users %>% dplyr::filter(username == tolower(liu))
+      userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
+      out <- cods %>% dplyr::filter(user_id == userid)
       choices <- pd$death_id
-      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1])
+      # Removing already used VA ID from the list of the user
+      choices <- setdiff(choices, out$death_id)
+      # Removing VA IDs with more than one frequency  
+      frequency<-as.data.frame(table(cods$death_id))
+      emit<-frequency %>% dplyr::filter(Freq > 1)
+      choices <- setdiff(choices, emit$Var1)
+      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1]) 
     } else {
       NULL
     }
@@ -471,7 +481,8 @@ app_server <- function(input, output, session) {
         names(out) <-  c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
       }
     } 
-    out
+    DT::datatable(out, options = list(scrollX = TRUE)
+    )
   })
 
   # Adjudicator submissions

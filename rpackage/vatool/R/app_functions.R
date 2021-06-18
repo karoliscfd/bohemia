@@ -2,29 +2,29 @@ library(shiny)
 library(dplyr)
 
 # # load VA data (for now, this is fake)
-# load_va_data <- function(is_local = FALSE, use_cached = TRUE){
-# 
-#   if(use_cached){
-#     if(file.exists('/tmp/va.RData')){
-#       load('/tmp/va.RData')
-#       get_new <- FALSE
-#     } else {
-#       get_new <- TRUE
-#     }
-#   }
-#   # if(file.exists('../data-raw/va.csv')){
-#   #   out <- read.csv('../data-raw/va.csv')
-#   # } else {
-#   #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
-#   # }
-#   if(get_new){
-#     con <- get_db_connection(local = is_local)
-#     out <- dbReadTable(conn = con, name = 'va')
-#     dbDisconnect(con)
-#     save(out, file = '/tmp/va.RData')
-#   }
-#   return(out)
-# }
+load_va_data <- function(is_local = FALSE, use_cached = TRUE){
+
+  if(use_cached){
+    if(file.exists('/tmp/va.RData')){
+      load('/tmp/va.RData')
+      get_new <- FALSE
+    } else {
+      get_new <- TRUE
+    }
+  }
+  # if(file.exists('../data-raw/va.csv')){
+  #   out <- read.csv('../data-raw/va.csv')
+  # } else {
+  #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
+  # }
+  if(get_new){
+    con <- get_db_connection(local = is_local)
+    out <- dbReadTable(conn = con, name = 'va')
+    dbDisconnect(con)
+    save(out, file = '/tmp/va.RData')
+  }
+  return(out)
+}
 
 # function for getting readable names 
 get_va_names <- function(va_data){
@@ -87,9 +87,9 @@ make_about <- function(){
 theme_va <- ggplot2::theme_bw
 
 # Get database connection
-get_db_connection <- function(local = TRUE){
-  # creds <- yaml::yaml.load_file('credentials/credentials.yaml')
-  # users <- yaml::yaml.load_file('credentials/users.yaml')
+get_db_connection <- function(local = FALSE){
+  creds <- yaml::yaml.load_file('credentials/credentials.yaml')
+  users <- yaml::yaml.load_file('credentials/users.yaml')
   drv <- RPostgres::Postgres()
   
   if(local){
