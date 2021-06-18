@@ -147,10 +147,11 @@ app_server <- function(input, output, session) {
     if(ok){
       logged_in(TRUE)
       removeModal()
-      # load('data')
-        
-      #data$va <- load_va_data(is_local = is_local)
-      data$va <- readRDS('../../../../../../Downloads/va_data.rda')
+
+      # load data
+      # data$va <- load_va_data(is_local = is_local)
+      data$va <- readRDS('~/Desktop/va_data.rda')
+
       # print(head(data$va))
       # create table with same columns as session table in database (to append upon logout)
       print(users)
