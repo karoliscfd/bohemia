@@ -117,7 +117,10 @@ a:active,a:focus,a:hover {
 .main-header {
     position: relative;
     max-height: 150px;
-    z-index: 1030}
+    z-index: 1030;
+    /* Top shadow  */
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+}
 .main-header .navbar {
     -webkit-transition: margin-left .3s ease-in-out;
     -o-transition: margin-left .3s ease-in-out;
@@ -322,7 +325,7 @@ a:active,a:focus,a:hover {
     transform: translate(0,0)}
 }
 .sidebar {
-    padding-top: 6px;
+    padding-top: 4px;
     padding-bottom: 10px}
 .sidebar-form input:focus {
     border-color: transparent}
@@ -3283,12 +3286,19 @@ BLUE: rgb(0, 149, 219) */
 
 /* logo */
 .skin-blue .main-header .logo {
-                      background-color: #fff;
+                      /* background-color: #fff; */
+                      background-color: #cd1719;
+                      transition: font-size 0.5s ease;
                       }
 
 /* logo when hovered */
 .skin-blue .main-header .logo:hover {
-                      background-color: #fff;
+                      /* background-color: #fff; */
+                      background-color: #cd1719;
+                      color: #fbfbd9;
+                      font-size: x-large;
+                      cursor: pointer;
+                      transition: font-size 0.5s ease;
                       }
 
 /* navbar (rest of the header) */
@@ -3298,19 +3308,22 @@ BLUE: rgb(0, 149, 219) */
 
 /* main sidebar */
 .skin-blue .main-sidebar {
-                      background-color: #fff;
+                      /* background-color: #fff; */
+                      background-color: #585858;
                       }
 
 /* active selected tab in the sidebarmenu */
 .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
                       background-color:  rgb(205, 22, 25);
                       color: #FFFFFF;
+                      transition: background-color 0.5s ease;
                       }
 
 /* other links in the sidebarmenu */
 .skin-blue .main-sidebar .sidebar .sidebar-menu a{
                       background-color:  rgb(88, 88, 88);
                       color: #FFFFFF;
+                      transition: background-color 0.5s ease;
                       }
 
 /* other links in the sidebarmenu when hovered */
@@ -3320,7 +3333,7 @@ BLUE: rgb(0, 149, 219) */
 /* toggle button when hovered  */
  .skin-blue .main-header .navbar .sidebar-toggle:hover{
                       background-color: rgb(205, 22, 25); 
-                      color: #707372;
+                      /*color: #707372;*/
                       }
 /* background */
 /* body */
@@ -3352,3 +3365,223 @@ background-color: #FFFFFF;
   text-align: center;
   background: #FFFFFF;
 }
+
+
+/* Custom material  */
+
+.skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li:hover>a {
+    border-left-color: #fbfbd9 !important;
+}
+
+a.sidebar-toggle:before {
+    content: '\2630' !important;
+}
+
+a.sidebar-toggle:before:hover {
+    content: '\2630' !important;
+    color: white !important;
+}
+
+#show {
+  margin: 10px;
+  text-transform: uppercase;
+  border-radius: 1px;
+  border-color: transparent !important;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 25%), 0 7px 7px rgb(0 0 0 / 22%);
+}
+
+#log_out {
+  margin: 10px;
+  text-transform: uppercase;
+  border-radius: 1px;
+  border-color: transparent !important;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 25%), 0 7px 7px rgb(0 0 0 / 22%);
+}
+
+
+table.dataTable thead .sorting {
+    background-image: url(sorting-arrows-dbl.png) !important;
+    background-size: 16px !important;
+    background-position-y: 50px !important;
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: url(sorting-arrows-up.png) !important;
+    background-size: 16px !important;
+    background-position-y: 50px !important;
+}
+
+table.dataTable thead .sorting_desc {
+    background-image: url(sorting-arrows-down.png) !important;
+    background-size: 16px !important;
+    background-position-y: 50px !important;
+}
+
+
+
+thead > tr > th {
+    text-align: left !important;
+    padding-top: 50px !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #ddd !important;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd !important;
+    margin-bottom: 15px;
+}
+
+.dataTable > tbody > tr > td {
+    font-size: 15px !important;
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+    background-color: #ffffff !important;
+}
+
+.tableCard {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  padding: 30px;
+}
+
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #f6f6f6;
+}
+
+table.dataTable.stripe tbody tr.odd:hover, table.dataTable.display tbody tr.odd:hover {
+    background-color: #f6f6f6 !important;
+}
+
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ddd !important;
+}
+
+table.dataTable tr.selected td, table.dataTable td.selected {
+    background-color: #cd171b26 !important;
+}
+
+
+.dataTables_wrapper .dataTables_info {
+    font-size: 12px;
+    color: #adacac !important;
+    font-style: italic;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: transparent !important;
+    border-bottom: 2px solid #cd171b !important;
+    font-weight: bold !important;
+    padding: 8px !important;
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+    border-top: 1px solid transparent !important;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #cd171b !important;
+    border: 1px solid transparent !important;
+    border-radius: 1px !important;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%) !important;
+}
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    box-shadow: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    background: transparent !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+
+button, select {
+    text-transform: none;
+    border-bottom: 2px solid #cd171b;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+table > tbody > tr > td:nth-child(2) {
+    text-align: center !important;
+}
+
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    margin-bottom: 10px !important;
+}
+
+#DataTables_Table_0 > tbody > tr > td:nth-child(2) {
+    text-align: left !important;
+}
+
+.selectize-control.single .selectize-input, .selectize-control.single .selectize-input input {
+    border-radius: 1px !important;
+}
+
+
+#adj_submit_cod {
+    width: 100%;
+    border-radius: 1px;
+    border: 1px solid transparent;
+    background: #cd171b;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+}
+
+#email {
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background: #ff9b2e;
+    color: #ffffff;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+#ui_main {
+    font-size: larger;
+    text-transform: uppercase;
+}
+
+#log_in {
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background: #cd171b;
+    color: white;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+}
+
+button.btn.btn-default {
+    border: 1px solid transparent;
+    border-radius: 1px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+}
+
+.modal-body {
+    display: flex;
+}
+
+.modal-body > div:nth-child(1) {
+    width: 49%;
+    margin-right: 1%;
+}
+
+.modal-body > div:nth-child(2) {
+    width: 49%;
+    margin-left: 1%;
+}
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100% !important;
+}
+
+#adj_table_2 > div {
+    overflow-x: scroll;
+}
+

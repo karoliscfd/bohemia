@@ -355,8 +355,8 @@ fake_data <- function(){
 
 # Get database connection
 get_db_connection <- function(local = FALSE){
-  creds <- yaml::yaml.load_file('credentials/credentials.yaml')
-  users <- yaml::yaml.load_file('credentials/users.yaml')
+  # creds <- yaml::yaml.load_file('credentials/credentials.yaml')
+  # users <- yaml::yaml.load_file('credentials/users.yaml')
   drv <- RPostgres::Postgres()
   
   if(local){

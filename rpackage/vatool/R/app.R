@@ -20,7 +20,7 @@ app_ui <- function(request) {
     mobile_golem_add_external_resources(),
 
     dashboardPage(
-      dashboardHeader (title = "Bohemia VA tool"),
+      dashboardHeader (title = "Bohemia VA tool", uiOutput('top_button')),
       dashboardSidebar(
         sidebarMenu(
           menuItem(
@@ -37,6 +37,7 @@ app_ui <- function(request) {
             tabName = 'about')
         )),
       dashboardBody(
+        tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: #ffe9e9 !important;}')),
         tags$head(
           tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
         ),
@@ -45,19 +46,28 @@ app_ui <- function(request) {
             tabName="main",
             fluidPage(
               fluidRow(
-                column(4, 
-                       uiOutput('top_button'),
-                       br(),
-                       uiOutput('ui_main', inline = TRUE))
+                column(12, 
+                       # uiOutput('top_button'),
+                       # br(),
+                         div(class = 'tableCard',
+                          uiOutput('ui_main', inline = TRUE)
+                         )
+                       )
               ),
               br(),
               fluidRow(
                 column(8,
-                       DT::dataTableOutput('va_table')),
+                       # div(class = 'tableCard',
+                        DT::dataTableOutput('va_table')
+                       # )
+                       ),
                 column(4,
-                       uiOutput('ui_select_va'),
-                       uiOutput('ui_assign_cod'),
-                       uiOutput('ui_submission'))
+                       # div(class = 'tableCard',
+                         uiOutput('ui_select_va'),
+                         uiOutput('ui_assign_cod'),
+                         uiOutput('ui_submission')
+                         # )
+                       )
               )
             )
           ),
@@ -66,10 +76,17 @@ app_ui <- function(request) {
             fluidRow(
               column(12,
                      h2('User info'),
-                     DT::dataTableOutput('user_table'),
+                     div(class = 'tableCard',
+                       DT::dataTableOutput('user_table')
+                     ),
+                     
                      br(),
+                     
                      h2('Submission history'),
-                     DT::dataTableOutput('history_table'))
+                     div(class = 'tableCard',
+                      DT::dataTableOutput('history_table')
+                     )
+                    )
             )
           ),
           tabItem(
@@ -130,9 +147,11 @@ app_server <- function(input, output, session) {
     if(ok){
       logged_in(TRUE)
       removeModal()
+
       # load data
       # data$va <- load_va_data(is_local = is_local)
       data$va <- readRDS('~/Desktop/va_data.rda')
+
       # print(head(data$va))
       # create table with same columns as session table in database (to append upon logout)
       print(users)
@@ -170,18 +189,29 @@ app_server <- function(input, output, session) {
         cods_choices <- cod_choices()
         fluidPage(
           fluidRow(
-            column(8,
-                   h2('Previous diagnoses'),
-                   DT::dataTableOutput('adj_table_2'),
+            column(12,
+                  h2('Previous diagnoses')
+            ),
+            column(9,
+                   
+                   div(class = "tableCard",
+                    DT::dataTableOutput('adj_table_2')
+                   ),
                    h2('Patient info'),
-                   DT::dataTableOutput('adj_table_1')),
-            column(4,
-                   br(),
-                   selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                   selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
-                   br(),
-                   actionButton('adj_submit_cod', 'Submit cause of death'),
-                   uiOutput('ui_submission_adj'))
+                   div(class = "tableCard",
+                    DT::dataTableOutput('adj_table_1')
+                   )
+                   ),
+            column(3,
+                   # h2(' '),
+                   div(class = "tableCard",
+                     selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
+                     selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
+                     br(),
+                     actionButton('adj_submit_cod', 'Submit cause of death'),
+                     uiOutput('ui_submission_adj')
+                     )
+                   )
           )
         )
       } else {
@@ -340,16 +370,22 @@ app_server <- function(input, output, session) {
     # logged_in(TRUE)
     showModal(modalDialog(
       title = "Log in",
-      fluidPage(
-        fluidRow(
-          column(6,
+      # fluidPage(
+        # fluidRow(
+          div(
                  textInput('log_in_user', 'User')),
-          column(6,
-                 passwordInput('log_in_password', 'Password'))
-        ),
-        fluidRow(
-          actionButton('log_in', 'Log in')
-        )
+          div(
+                 passwordInput('log_in_password', 'Password')),
+        # )
+        # ,
+        # fluidRow(
+        #   actionButton('log_in', 'Log in')
+        # )
+      # ),
+      
+      footer =  tagList(
+        modalButton("Dismiss"),
+        actionButton('log_in', 'Log in')
       )
     ))
   })
