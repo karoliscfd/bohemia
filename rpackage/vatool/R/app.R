@@ -97,7 +97,7 @@ app_ui <- function(request) {
 #' @import leaflet
 #' @import dplyr
 app_server <- function(input, output, session) {
-  is_local <- FALSE
+  is_local <- TRUE
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
   adj_submission_success <- reactiveVal(value = NULL)
@@ -130,7 +130,7 @@ app_server <- function(input, output, session) {
     if(ok){
       logged_in(TRUE)
       removeModal()
-      load data
+      # load data
       # data$va <- load_va_data(is_local = is_local)
       data$va <- readRDS('~/Desktop/va_data.rda')
       # print(head(data$va))
