@@ -196,9 +196,7 @@ app_server <- function(input, output, session) {
           summarise(counts = n())
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
 
-        if(length(death_id_choices) == 0){
-          death_id_choices <- NULL
-        }
+       
         cods_choices <- cod_choices()
 
         fluidPage(
@@ -238,11 +236,10 @@ app_server <- function(input, output, session) {
   # table showing 
   output$adj_table_1 <- DT::renderDataTable({
     li <- logged_in()
-    out <- NULL
+    out <- data_frame(' ' = 'No VAs to adjudicate')
     if(li){
       idi <- input$adj_death_id
-      
-      if(!is.null(idi)){
+      if(!is.null(idi) & idi != ''){
         pd <- data$va
         person <- pd %>% filter(death_id == idi)
         person <- get_va_names(person)
@@ -256,6 +253,7 @@ app_server <- function(input, output, session) {
         
         out <- as.data.frame(t(person))
         out$Question <- rownames(out)
+        # save(out, file = 'out.rda')
         names(out) <- c('Answer', 'Question')
         rownames(out) <- NULL
         out <- out[, c('Question', 'Answer')]
@@ -272,17 +270,13 @@ app_server <- function(input, output, session) {
   output$adj_table_2 <- DT::renderDataTable({
     li <- logged_in()
     out <- NULL
-
     if(li){
       idi <- input$adj_death_id
-
-      if(!is.null(idi)){
       
-        
+      if(!is.null(idi)){
         out <- cods %>% filter(death_id == idi)
       }
     } 
-
     names(out) <- c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
   })
