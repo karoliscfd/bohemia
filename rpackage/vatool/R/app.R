@@ -119,7 +119,7 @@ app_server <- function(input, output, session) {
   
   is_aws <- grepl('aws', tolower(Sys.info()['release']))
   is_local <- ifelse(is_aws, FALSE, TRUE)
-  # is_local <- FALSE
+  is_local <- FALSE
   
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)

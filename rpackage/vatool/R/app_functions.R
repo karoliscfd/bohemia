@@ -1,6 +1,7 @@
 library(shiny)
 library(dplyr)
-
+library(RPostgres)
+library(DBI)
 # # load VA data (for now, this is fake)
 load_va_data <- function(is_local = FALSE, 
                          use_cached = TRUE,
@@ -19,6 +20,8 @@ load_va_data <- function(is_local = FALSE,
   # } else {
   #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
   # }
+  drv <- RPostgres::Postgres()
+  
   if(get_new){
     if(is_local){
       con <- dbConnect(drv = drv,
