@@ -156,7 +156,7 @@ app_server <- function(input, output, session) {
       # create table with same columns as session table in database (to append upon logout)
       print(users)
       message('at point 2')
-      save(users, file = '/tmp/users.RData')
+      # save(users, file = '/tmp/users.RData')
       user_id <- users %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
       start_time <- Sys.time()
       end_time <- NA
@@ -181,19 +181,33 @@ app_server <- function(input, output, session) {
     if(li){
       liu <- input$log_in_user
       message('at point 3')
-      user_role <- users %>% dplyr::filter(username == tolower(liu)) %>% .$role
-      cod <- cods %>% group_by(death_id, cod_3) %>% summarise(counts = n())
-      if(user_role == 'Adjudicator'){
+      # user_role <- users %>% dplyr::filter(username == tolower(liu)) %>% .$role
+      
+     
         # get ids that have more than one diagnosis
+        user <- users %>% dplyr::filter(username == tolower(liu))
+        userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
+        message('at point 3.5')
+        
+        # make sure user cant adjudicate a VA he already adjudicatd 
+        cods <- cods %>% filter(user_id != userid)
+        cod <- cods %>% 
+          group_by(death_id, cod_3) %>% 
+          summarise(counts = n())
         death_id_choices <- unique(cod$death_id[duplicated(cod$death_id)])
+
+        if(length(death_id_choices) == 0){
+          death_id_choices <- NULL
+        }
         cods_choices <- cod_choices()
+
         fluidPage(
           fluidRow(
             column(12,
                   h2('Previous diagnoses')
             ),
             column(9,
-                   
+
                    div(class = "tableCard",
                     DT::dataTableOutput('adj_table_2')
                    ),
@@ -204,23 +218,18 @@ app_server <- function(input, output, session) {
                    ),
             column(3,
                    # h2(' '),
+
                    div(class = "tableCard",
                      selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
                      selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
                      br(),
-                     actionButton('adj_submit_cod', 'Submit cause of death'),
+                     actionButton('adj_submit_cod', 'Cause of death'),
                      uiOutput('ui_submission_adj')
                      )
                    )
           )
         )
-      } else {
-        fluidPage(
-          fluidRow(
-            h2('You must be an Adjudicator to view this page')
-          ) 
-        )
-      }
+     
     } else {
       NULL
     }
@@ -232,12 +241,13 @@ app_server <- function(input, output, session) {
     out <- NULL
     if(li){
       idi <- input$adj_death_id
+      
       if(!is.null(idi)){
         pd <- data$va
         person <- pd %>% filter(death_id == idi)
         person <- get_va_names(person)
         # remove columns with NA
-        person <- person[ , apply(person, 2, function(x) !any(is.na(x)))]
+        person <- person[ , apply(person, 2, function(x) !any(is.na(x)))] 
         # remove other columns 
         # remove other columns 
         remove_these <- "write your 3 digit|Id10007|server|first or given|the surname|name of VA|1	Manually write your 3 digit worker ID here|tz001|this_usernameTake a picture of the painted Household ID|isadult1|isadult2|isneonatal|isneonatal2|ischild1|ischild2|instancename|instance_id|device_id|end_time|start_time|todays_date|wid|Do you have a QR code with your worker ID?|wid|ageindays|ageindaysneonate|ageinmonths|ageinmonthsbyyear|ageinmonthsremain|ageinyears2|ageinyearsremain|The GPS coordinates represents|Collect the GPS coordinates of this location|Does the house you're at have a painted ID number on it?|hh_id|Write the 6 digit household ID here"
@@ -262,13 +272,17 @@ app_server <- function(input, output, session) {
   output$adj_table_2 <- DT::renderDataTable({
     li <- logged_in()
     out <- NULL
+
     if(li){
       idi <- input$adj_death_id
+
       if(!is.null(idi)){
+      
+        
         out <- cods %>% filter(death_id == idi)
       }
     } 
-    
+
     names(out) <- c('User ID', 'Death ID', 'Immediate COD code', 'Immediate COD', 'Intermediary COD code', 'Intermediary COD', 'Underlying COD code', 'Underlying COD', 'Time stamp')
     out
   })
@@ -306,6 +320,7 @@ app_server <- function(input, output, session) {
       liu <- input$log_in_user
       user <- users %>% dplyr::filter(username == tolower(liu))
       userid <- user %>% dplyr::filter(username == tolower(liu)) %>% .$user_id
+      # save(pd, liu, user, userid,cods,  file = 'temp_choice.rda')
       out <- cods %>% dplyr::filter(user_id == userid)
       choices <- pd$death_id
       # Removing already used VA ID from the list of the user
@@ -314,6 +329,7 @@ app_server <- function(input, output, session) {
       frequency<-as.data.frame(table(cods$death_id))
       emit<-frequency %>% dplyr::filter(Freq > 1)
       choices <- setdiff(choices, emit$Var1)
+      choices <- choices[!is.na(choices)]
       selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1]) 
     } else {
       NULL
@@ -413,6 +429,7 @@ app_server <- function(input, output, session) {
     cod_1 = input$cod_1
     cod_2 = input$cod_2
     cod_3 = input$cod_3
+   
     # condition if underlying cause of death is not fiilled out, wont submit
     if(cod_1==''){
       submission_success(FALSE)
@@ -423,12 +440,11 @@ app_server <- function(input, output, session) {
       cod_data$cod_3 = cod_3
       cod_data$death_id = death_id
       cod_data$time_stamp <- Sys.time()
-      # save(cod_data,cod_1, cod_2, cod_3, cod_names,file='temp.rda')
-      
+     
       # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
-      cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
-      cod_data$cod_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
-      cod_data$cod_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
+      cod_data$cod_code_1<- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+      cod_data$cod_code_2 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_2][1]
+      cod_data$cod_code_3 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_3][1]
       dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
       submission_success(TRUE)
     }
@@ -460,7 +476,7 @@ app_server <- function(input, output, session) {
         message('at point 4')
         liu <- input$log_in_user
         out <- users %>% dplyr::filter(username == tolower(liu))
-        names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name', 'Country', 'Role')
+        names(out) <- c('User ID', 'Username', 'Password', 'First name', 'Last name')
         out
       }
     } 
@@ -499,9 +515,8 @@ app_server <- function(input, output, session) {
       cod_data$cod_1 = input$adj_cods
       cod_data$death_id = death_id
       cod_data$time_stamp <- Sys.time()
-
-      # ISSUE HERE IS THAT SOME (LIKE DIARRHOEA) ARE ASSOCIATED WITH TWO CODES AND VICE VERSA
-      cod_data$cod_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
+  
+      cod_data$cod_code_1 <- cod_names$cod_code[cod_names$cod_names==cod_data$cod_1][1]
       dbAppendTable(conn = con, name = 'vatool_cods', value = cod_data)
       adj_submission_success(TRUE)
     }
