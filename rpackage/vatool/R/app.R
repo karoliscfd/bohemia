@@ -117,6 +117,7 @@ app_server <- function(input, output, session) {
   
   is_aws <- grepl('aws', tolower(Sys.info()['release']))
   is_local <- ifelse(is_aws, FALSE, TRUE)
+  # is_local <- FALSE
   
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
@@ -339,9 +340,9 @@ app_server <- function(input, output, session) {
       choices <- cod_choices()
       fluidPage(
         fluidRow(
-          selectInput('cod_1', 'Select immediate cause of death', choices =c('', names(choices)) , selected = ''),
-          selectInput('cod_2', 'Select intermediary cause of death', choices =c('', names(choices)), selected = ''),
-          selectInput('cod_3', 'Select underlying cause of death', choices =c('', names(choices)), selected = '')
+          selectInput('cod_1', 'Select immediate cause of death', choices =c('', sort(unique(names(choices)))) , selected = ''),
+          selectInput('cod_2', 'Select intermediary cause of death', choices =c('', sort(unique(names(choices)))), selected = ''),
+          selectInput('cod_3', 'Select underlying cause of death', choices =c('', sort(unique(names(choices)))), selected = '')
         ),
         fluidRow(
           actionButton('submit_cod', 'Submit cause of death')
