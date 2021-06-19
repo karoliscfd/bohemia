@@ -114,7 +114,10 @@ app_ui <- function(request) {
 #' @import leaflet
 #' @import dplyr
 app_server <- function(input, output, session) {
-  is_local <- FALSE
+  
+  is_aws <- grepl('aws', tolower(Sys.info()['release']))
+  is_local <- ifelse(is_aws, FALSE, TRUE)
+  
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
   adj_submission_success <- reactiveVal(value = NULL)
@@ -220,8 +223,8 @@ app_server <- function(input, output, session) {
                    # h2(' '),
 
                    div(class = "tableCard",
-                     selectInput('adj_death_id', 'Select the VA ID', choices = death_id_choices),
-                     selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', names(cods_choices))),
+                     selectInput('adj_death_id', 'Select the VA ID', choices = sort(unique(death_id_choices))),
+                     selectInput('adj_cods', 'Select underlying cause of death',  choices = c('', sort(unique(names(cods_choices))))),
                      br(),
                      actionButton('adj_submit_cod', 'Cause of death'),
                      uiOutput('ui_submission_adj')
@@ -330,7 +333,7 @@ app_server <- function(input, output, session) {
       emit<-frequency %>% dplyr::filter(Freq > 1)
       choices <- setdiff(choices, emit$Var1)
       choices <- choices[!is.na(choices)]
-      selectInput('death_id', 'Select the VA ID', choices = choices, selected = choices[1]) 
+      selectInput('death_id', 'Select the VA ID', choices = sort(unique(choices)), selected = sort(unique(choices))[1]) 
     } else {
       NULL
     }

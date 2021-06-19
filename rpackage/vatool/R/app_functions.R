@@ -2,7 +2,9 @@ library(shiny)
 library(dplyr)
 
 # # load VA data (for now, this is fake)
-load_va_data <- function(is_local = FALSE, use_cached = TRUE){
+load_va_data <- function(is_local = FALSE, 
+                         use_cached = TRUE,
+                         credentials_path = 'credentials/credentials.yaml'){
 
   if(use_cached){
     if(file.exists('/tmp/va.RData')){
@@ -18,7 +20,18 @@ load_va_data <- function(is_local = FALSE, use_cached = TRUE){
   #   stop('YOU NEED TO DOWNLOAD va.csv INTO data-raw. Get from https://trello.com/c/75qsyxWu/2368-bohemia-va-tool-create-functioning-tool')
   # }
   if(get_new){
-    con <- get_db_connection(local = is_local)
+    if(is_local){
+      con <- dbConnect(drv = drv,
+                       dbname = creds$dbname)
+    } else {
+      creds <- yaml::yaml.load_file(credentials_path)
+      psql_end_point = creds$endpoint
+      psql_user = creds$psql_master_username
+      psql_pass = creds$psql_master_password
+      con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
+                       port=5432,
+                       user=psql_user, password=psql_pass)
+    }
     out <- dbReadTable(conn = con, name = 'va')
     dbDisconnect(con)
     save(out, file = '/tmp/va.RData')
@@ -88,17 +101,17 @@ theme_va <- ggplot2::theme_bw
 
 # Get database connection
 get_db_connection <- function(local = FALSE){
-  creds <- yaml::yaml.load_file('credentials/credentials.yaml')
-  users <- yaml::yaml.load_file('credentials/users.yaml')
+  creds <- yaml::yaml.load_file('credentials/va_tool_credentials.yaml')
+  # users <- yaml::yaml.load_file('credentials/users.yaml')
   drv <- RPostgres::Postgres()
   
   if(local){
-    con <- dbConnect(drv, dbname = 'bohemia')
+    con <- dbConnect(drv, dbname = 'vadb')
   } else {
-    psql_end_point = creds$endpoint
-    psql_user = creds$psql_master_username
-    psql_pass = creds$psql_master_password
-    con <- dbConnect(drv, dbname='bohemia', host=psql_end_point, 
+    psql_end_point = creds$e
+    psql_user = creds$u
+    psql_pass = creds$p
+    con <- dbConnect(drv, dbname='vadb', host=psql_end_point, 
                      port=5432,
                      user=psql_user, password=psql_pass)
   }
