@@ -58,11 +58,13 @@ app_ui <- function(request) {
               fluidRow(
                 column(8,
                        div(class = 'tableCard',
+                           h1('VA form'),
                         DT::dataTableOutput('va_table')
                        )
                        ),
                 column(4,
                        div(class = 'tableCard',
+                           h3('Physician inputs'),
                          uiOutput('ui_select_va'),
                          uiOutput('ui_assign_cod'),
                          uiOutput('ui_submission')
@@ -75,7 +77,7 @@ app_ui <- function(request) {
             tabName = 'history',
             fluidRow(
               column(12,
-                     h2('User info'),
+                     h2('Adjudicator info'),
                      div(class = 'tableCard',
                        DT::dataTableOutput('user_table')
                      ),
@@ -117,7 +119,7 @@ app_server <- function(input, output, session) {
   
   is_aws <- grepl('aws', tolower(Sys.info()['release']))
   is_local <- ifelse(is_aws, FALSE, TRUE)
-  # is_local <- FALSE
+  is_local <- FALSE
   
   logged_in <- reactiveVal(value = FALSE)
   submission_success <- reactiveVal(value = NULL)
@@ -206,14 +208,14 @@ app_server <- function(input, output, session) {
         fluidPage(
           fluidRow(
             column(12,
-                  h2('Previous diagnoses')
+                  h2('Causes of deaths from other physicians')
             ),
             column(9,
 
                    div(class = "tableCard",
                     DT::dataTableOutput('adj_table_2')
                    ),
-                   h2('Patient info'),
+                   h2('VA form'),
                    div(class = "tableCard",
                     DT::dataTableOutput('adj_table_1')
                    )

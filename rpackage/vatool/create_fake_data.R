@@ -2,6 +2,7 @@ is_local <- TRUE
 library(dplyr)
 library(RPostgres)
 library(yaml)
+library(readr)
 
 # Define credentials
 creds <- list(dbname = 'vadb')
