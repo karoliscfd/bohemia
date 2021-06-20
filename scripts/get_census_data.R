@@ -63,8 +63,8 @@ get_data_briefcase <- function(url,
                                password,
                                briefcase_dir,
                                jar_file_briefcase,
+                               briefcase_storage_dir,
                                dry_run = FALSE){
-  briefcase_storage_dir <- tempdir()
   owd <- getwd()
   setwd(briefcase_dir)
   cli_text <- paste0(
@@ -96,7 +96,9 @@ for(i in 1:length(ids)){
     user = user,
     password = password,
     briefcase_dir = briefcase_dir,
-    jar_file_briefcase = jar_file_briefcase
+    briefcase_storage_dir = briefcase_storage_dir,
+    jar_file_briefcase = jar_file_briefcase,
+    dry_run = FALSE
   )
 }
 
@@ -105,11 +107,12 @@ for(i in 1:length(ids)){
 agg_list <- list()
 for(i in 1:length(ids)){
   this_id <- ids[i]
-  this_path <- paste0(file.path(tempdir(), id), '.csv')
+  this_path <- paste0(file.path(briefcase_storage_dir, this_id), '.csv')
   this_data <- read_csv(this_path)
   agg_list[[i]] <- this_data
 }
 names(agg_list) <- ids
+
 
 
 # Define tables to be retrieved

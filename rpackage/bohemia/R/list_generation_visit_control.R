@@ -4,6 +4,7 @@
 #' @param census_data A dataframe in the format of the minicensus (household level)
 #' @param census_people A dataframe in the format of the minicensus people table
 #' @param census_subs A dataframe in the format of the
+#' @param agg_list A list of dataframes including: refusalsabsences, enumerationscensus, va153census
 #' @param keyfile The path to the private key
 #' @param keyfile_public The path to the public key
 #' @param location A three letter location code (or character vector of multiple codes). If NULL, all locations to be used
@@ -20,6 +21,7 @@
 list_generation_visit_control <- function(census_data,
                                           census_people,
                                           census_subs,
+                                          agg_list,
                                           keyfile = NULL,
                                           keyfile_public = NULL,
                                           location = NULL,
@@ -48,7 +50,19 @@ list_generation_visit_control <- function(census_data,
   # Deal with location
   locs <- bohemia::locations
   if(!is.null(location)){
+    # Filter down the locations
     locs <- locs %>% filter(code %in% location)
+    # Filter down the census data (happens later)
+    # Filter down the refusals / absences
+    ref <- agg_list$refusalsabsences %>%
+      filter(`group_location-hh_hamlet_code` %in% location)
+    # Get enumerations
+    country <- locs$Country[1]
+    if(country == 'Mozambique'){
+      enum <- agg_list$enumerationscensus %>%
+        filter(!substr(`group_location-agregado`, 1, 3) %in% location)
+    }
+    
   }
   if(nrow(locs) < 1){
     stop('No data found for the specified locations.')
@@ -80,11 +94,29 @@ list_generation_visit_control <- function(census_data,
     
   } else {
     
+    # Get the right-hand side for previous attempts
+    right_absences <- ref %>%
+      filter(`group_census-ra` == 'absence') %>%
+      filter(`group_description-activity` == 'census') %>%
+      group_by(hhid = `group_description-hh_id`) %>%
+      summarise(previous_attempts = n())
+    right_refusals <- ref %>%
+      filter(`group_census-ra` == 'refusal') %>%
+      group_by(hhid = `group_description-hh_id`) %>%
+      summarise(refusal = TRUE)
+      
+    
     df <- census_data %>%
       filter(hh_hamlet_code %in% locs$code) %>%
       dplyr::rename(hhid = hh_id) %>%
       arrange(hhid) %>%
-      mutate(previous_attempts = 0) %>% # placeholder
+      # Remove the refusals
+      left_join(right_refusals) %>%
+      filter(is.na(refusal)) %>% 
+      # Get the count of previous absences
+      left_join(right_absences) %>%
+      mutate(previous_attempts = ifelse(is.na(previous_attempts), 0, previous_attempts)) %>%
+      # mutate(previous_attempts = 0) %>% # placeholder
       dplyr::select(hhid,
                     District = hh_district, 
                     Ward = hh_ward, 

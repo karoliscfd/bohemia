@@ -36,7 +36,11 @@ ts$lwr <- (ts$lwr + ts$pt) / 2
 ts$upr <- (ts$upr + ts$pt) / 2
 
 # Example of actual expenditure
-ts$real <- c(20000, 24100, 38000, 66000, 69000, 78000, NA, NA) * 1.3
+real <- c(10679.72)
+real <- c(real, rep(NA, 8-length(real)))
+ts$real <- real  #c(20000, 24100, 38000, 66000, 69000, 78000, NA, NA) * 1.3
+
+# ts$real <- cumsum(rep(15599.72, nrow(ts))) - 4920
 ggplot(data = ts) +
   geom_ribbon(aes(x = date,
                   ymin = lwr,
@@ -54,8 +58,11 @@ ggplot(data = ts) +
              color = 'red') +
   labs(x = 'Month', y = 'Cumulative USD',
        title = 'Actual vs projected expenditures',
-       subtitle = 'Illustrative purposes only') +
-  scale_y_continuous(breaks = seq(0, max(ts$upr), by = 20000)) 
+       subtitle = 'May 1 2021 onwards') +
+  scale_y_continuous(breaks = seq(0, max(ts$upr), by = 20000)) +
+  scale_x_date(name = 'Month',
+               breaks = sort(unique(ts$date)),
+               labels = format(sort(unique(ts$date)), '%m'))
 
 pd <- tibble(label = c('Lower (extreme)',
                        'Lower (realistic)',
