@@ -83,6 +83,7 @@ load_base_data <- function(){
                           nrow(df),
                           replace = TRUE)
     df$pid <- df$id
+    df$attempts <- 0
     save(df, file = paste0(temp_dir, '/ifc.RData'))
   }
   return(df)
@@ -458,7 +459,7 @@ app_server <- function(input, output, session) {
     xhid <- input$hh_id
     person_id <- input$person_id
     
-    save(out, date_of_visit, xhid, person_id, file = '/tmp/jj.RData')
+    # save(out, date_of_visit, xhid, person_id, file = '/tmp/jj.RData')
     
     if(!is.null(date_of_visit)){
       if(length(date_of_visit) > 0){
@@ -475,7 +476,7 @@ app_server <- function(input, output, session) {
        is.null(xhid) |
        is.null(date_of_visit)){
       out <- NULL
-    }
+    } else 
     message('---Done setting up the reactive dfr() object')
     return(out)
   })
@@ -993,6 +994,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_1,{
     # Capture the row that is getting submitted
     this_row <- dfr()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1009,6 +1011,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_2,{
     # Capture the row that is getting submitted
     this_row <- dfr()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1032,6 +1035,7 @@ app_server <- function(input, output, session) {
     # Add the submitted row to list 2 (correct) - note, if multiple errors, just add one
     this_row <- this_row[1,]
     this_row <- this_row %>% dplyr::select(-Error)
+    this_row$attempts <- this_row$attempts + 1
     new_2 <- add_to_list(2, this_row, data_list = data_list)
     data_list$list2 <- new_2
     # Save the data for permanence
@@ -1044,6 +1048,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_3,{
     # Capture the row that is getting submitted
     this_row <- list_3_input()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1060,6 +1065,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_3b,{
     # Remove any previous errors from the list of errors
     this_row <- dfr2()
+    this_row$attempts <- this_row$attempts + 1
     new_list <- remove_from(3, this_row$id, data_list = data_list)
     data_list$list3 <- new_list
     # Capture the new errors that are being submitted
