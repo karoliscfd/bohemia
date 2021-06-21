@@ -102,7 +102,7 @@ for(i in 1:length(ids)){
   )
 }
 
-# Read in all tables for ODK Aggregate
+Read in all tables for ODK Aggregate
 # (eventually will need to adjust for repeats)
 agg_list <- list()
 for(i in 1:length(ids)){

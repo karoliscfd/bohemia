@@ -258,6 +258,7 @@ app_ui <- function(request) {
             fluidPage(
               fluidRow(h1('List 1 (missing ICFs)')),
               uiOutput('ui_list_1'),
+              uiOutput('ui_list_1b'),
               
               fluidRow(h1('List 2 (correct ICFs)')),
               uiOutput('ui_list_2'),
@@ -1077,7 +1078,7 @@ app_server <- function(input, output, session) {
   })
   
   # List UIs
-  output$ui_list_1 <- renderUI({
+  output$ui_list_1_table <- DT::renderDataTable({
     out <- data_list$list1
     ok <- FALSE
     if(!is.null(out)){
@@ -1086,15 +1087,70 @@ app_server <- function(input, output, session) {
       }
     }
     if(ok){
-      return(
-        fluidRow(
-          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
-        )
+      bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+    } else {
+      NULL
+    }
+    
+  })
+  output$ui_list_1 <- renderUI({
+    fluidPage(
+      fluidRow(
+        DT::dataTableOutput('ui_list_1_table')
+      )
+    )
+  })
+  
+  unmissing <- reactiveValues(value = data.frame())
+  output$ui_list_1b <- renderUI({
+    ok <- FALSE
+    out <- data_list$list1
+    ok <- FALSE
+    rs <- input$ui_list_1_table_rows_selected
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        if(!is.null(rs)){
+          if(length(rs) > 0){
+            ok <- TRUE
+          }
+        }
+      }
+    }
+    if(ok){
+      fluidRow(
+        column(12, align = 'center',
+               actionButton('unmiss', 'Mark as no longer missing'))
       )
     } else {
-      return(h5('No entries yet.'))
+      NULL
     }
   })
+  observeEvent(input$unmiss,{
+    # Get the unmissing index
+    rs <- input$ui_list_1_table_rows_selected
+    # Get the unmissing data
+    out <- data_list$list1
+    # Subset just the row
+    final <- out[rs,]
+    # Update the object
+    message('The no longer missing row is: ')
+    unmissing$value <- final
+    print(final)
+    # Remove from list 1
+    new_list_1 <- data_list$list1[!((1:nrow(data_list$list1)) %in% rs),]
+    data_list$list1 <- new_list_1
+    # Add to main list
+    old_main <- data_list$main
+    print('old_main looks like')
+    print(old_main)
+    print('final looks like')
+    print(final)
+    new_main <- bind_rows(old_main, final)
+    print('new_main looks like')
+    print(new_main)
+    data_list$main <- new_main
+  })
+  
   output$ui_list_2 <- renderUI({
     out <- data_list$list2
     ok <- FALSE
