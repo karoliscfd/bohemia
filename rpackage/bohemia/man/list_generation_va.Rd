@@ -7,8 +7,9 @@
 list_generation_va(
   keyfile = NULL,
   keyfile_public = NULL,
-  location = NULL,
-  output_file = NULL
+  location_code = NULL,
+  output_file = NULL,
+  fake = TRUE
 )
 }
 \arguments{
@@ -16,9 +17,11 @@ list_generation_va(
 
 \item{keyfile_public}{The path to the public key}
 
-\item{location}{A three letter location code (or character vector of multiple codes). If NULL, all locations to be used}
+\item{location_code}{A three letter location code (or character vector of multiple codes). If NULL, all locations to be used}
 
 \item{output_file}{The name of the spreadsheet to be written (csv file); if null, will return the table in memory}
+
+\item{fake}{Whether or not to use fake data}
 }
 \value{
 A table will be created
