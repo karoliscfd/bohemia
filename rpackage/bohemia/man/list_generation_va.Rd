@@ -5,14 +5,17 @@
 \title{VA list generation}
 \usage{
 list_generation_va(
+  death_data,
   keyfile = NULL,
   keyfile_public = NULL,
   location_code = NULL,
   output_file = NULL,
-  fake = TRUE
+  fake = FALSE
 )
 }
 \arguments{
+\item{death_data}{A dataframe in the format of the death data from the censu}
+
 \item{keyfile}{The path to the private key}
 
 \item{keyfile_public}{The path to the public key}
