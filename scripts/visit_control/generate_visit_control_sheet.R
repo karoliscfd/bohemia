@@ -9,7 +9,7 @@ library(bohemia)
 
 
 # Define some parameters
-country <- 'Mozambique'
+country <- 'Tanzania'
 iso <- tolower(substr(country, 1, 3))
 use_real_names <- TRUE
 keyfile = '../credentials/bohemia_priv.pem'
@@ -151,6 +151,7 @@ census_subs <- out_list$clean_minicensus_repeat_hh_sub
 df <- list_generation_visit_control(census_data = census_data,
                               census_people = census_people,
                               census_subs = census_subs,
+                              agg_list = agg_list,
                               keyfile = keyfile,
                               keyfile_public = keyfile_public,
                               location = NULL, #c('NOR', 'CHM', 'BBB', 'AGO', 'CHT'), # set to null in order to do all locations

@@ -47,6 +47,9 @@ list_generation_visit_control <- function(census_data,
     stop('You must specify the path to a public key (pem file) for encrypting names.')
   }
   
+  # Extract refusals
+  ref <- agg_list$refusalsabsences
+  
   # Deal with location
   locs <- bohemia::locations
   if(!is.null(location)){
@@ -54,7 +57,7 @@ list_generation_visit_control <- function(census_data,
     locs <- locs %>% filter(code %in% location)
     # Filter down the census data (happens later)
     # Filter down the refusals / absences
-    ref <- agg_list$refusalsabsences %>%
+    ref <- ref %>%
       filter(`group_location-hh_hamlet_code` %in% location)
     # Get enumerations
     country <- locs$Country[1]
