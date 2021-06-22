@@ -141,15 +141,14 @@ for(i in 1:length(names(out_list))){
 }
 
 # Create objects required for visit control sheet
-census_data <- out_list$clean_minicensus_main
-census_people <- out_list$clean_minicensus_people
-census_subs <- out_list$clean_minicensus_repeat_hh_sub
+death_data <- data_list$hh_death
 
 
 # Generate the VA visit control sheet
 df <- list_generation_va(keyfile = keyfile,
                          keyfile_public = keyfile_public,
                          location_code = NULL,
-                         output_file = output_file)
+                         output_file = output_file,
+                         death_data = death_data)
 
 # Needs to conform to these specs: https://docs.google.com/document/d/1AB4AuEiMwPQdBIQvrWaus1XY36gFGmtZ4f65kzgYeug/edit?ts=6087c05d&pli=1

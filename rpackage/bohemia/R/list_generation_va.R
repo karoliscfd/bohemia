@@ -1,6 +1,7 @@
 #' VA list generation
 #' 
 #' Render a VA list
+#' @param death_data A dataframe in the format of the death data from the censu
 #' @param keyfile The path to the private key
 #' @param keyfile_public The path to the public key
 #' @param location_code A three letter location code (or character vector of multiple codes). If NULL, all locations to be used
@@ -12,11 +13,12 @@
 #' @return A table will be created
 #' @export
 
-list_generation_va <- function(keyfile = NULL,
-                                          keyfile_public = NULL,
-                                          location_code = NULL,
-                                          output_file = NULL,
-                               fake = TRUE){
+list_generation_va <- function(death_data,
+                               keyfile = NULL,
+                               keyfile_public = NULL,
+                               location_code = NULL,
+                               output_file = NULL,
+                               fake = FALSE){
   
   # # REMOVE THE BELOW
   # keyfile <- '../../../credentials/bohemia_priv.pem'
@@ -45,10 +47,10 @@ list_generation_va <- function(keyfile = NULL,
   if(fake){
     # Encrypt the names
     the_names <- c('John Doe', 'Jane Doe', 'Tarzan Jungle', 'Bob Smith', 'Alice Wonderland')
-    the_names_encrypted <- encrypt_private_data(data = the_names, keyfile = keyfile_public)
-    # Decrypt the names
-    the_names <- decrypt_private_data(data = the_names_encrypted, keyfile = keyfile)
-    
+    # the_names_encrypted <- encrypt_private_data(data = the_names, keyfile = keyfile_public)
+    # # Decrypt the names
+    # the_names <- decrypt_private_data(data = the_names_encrypted, keyfile = keyfile)
+    # 
     # Create some household IDs for the geographies in question
     indices <- sample(1:nrow(locs), length(the_names), replace = TRUE)
     codes <- locs$code[indices]
@@ -70,6 +72,7 @@ list_generation_va <- function(keyfile = NULL,
     df <- df %>% arrange(hhid) 
   } else {
     # Using real data
+    out <- tibble(x = 'Using real data not ready yet')
   }
   
   
