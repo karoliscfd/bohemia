@@ -9,7 +9,7 @@ library(bohemia)
 
 
 # Define some parameters
-country <- 'Tanzania'
+country <- 'Mozambique'
 iso <- tolower(substr(country, 1, 3))
 use_real_names <- TRUE
 keyfile = '../credentials/bohemia_priv.pem'
