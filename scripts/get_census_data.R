@@ -19,6 +19,11 @@ s3creds <- read_csv('../credentials/bohemiacensuss3credentials.csv')
 # Read in credentials for ODK Aggregate server
 odk_collect_creds <- yaml::yaml.load_file('../credentials/credentials.yaml')
 
+# Read in credentials for ODK X server
+xcreds <- list(user = odk_collect_creds$odkx_user,
+               pass = odk_collect_creds$odkx_pass,
+               server = odk_collect_creds$odkx_server)
+
 # Set environment variables for AWS s3
 Sys.setenv(
   "AWS_ACCESS_KEY_ID" = s3creds$`Access key ID`,
@@ -131,15 +136,15 @@ table_names <- c('census',
 data_list <- list()
 for(i in 1:length(table_names)){
   this_table <- table_names[i]
-  # odkx_retrieve_data(suitcase_dir = suitcase_dir,
-                       # jar_file = jar_file,
-                       # server_url = creds$odkx_server,
-                       # table_id = this_table,
-                       # user = creds$odkx_user,
-                       # pass = creds$odkx_pass,
-                       # is_linux = is_linux,
-                       # download_dir = download_dir,
-                       # attachments = FALSE)
+  odkx_retrieve_data(suitcase_dir = suitcase_dir,
+                     jar_file = jar_file,
+                     server_url = xcreds$server,
+                     table_id = this_table,
+                     user = xcreds$user,
+                     pass = xcreds$pass,
+                     is_linux = is_linux,
+                     download_dir = download_dir,
+                     attachments = FALSE)
   df <- readr::read_csv(paste0('default/',
                                this_table,
                                '/link_unformatted.csv'))
