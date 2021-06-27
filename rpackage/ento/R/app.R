@@ -84,8 +84,17 @@ app_server <- function(input, output, session) {
   retrieve_ento_data(s3creds_path = 'credentials/bohemiacensuss3credentials.csv',
                      country = 'Mozambique')
   # There is now an object in memory named "entoa3"
-  message('---the entoa3 object has ', nrow(entoa3), ' rows')
-  
+  # There is now an object in memory named "entoa4" (if some data has already been saved there)
+  if(exists('entoa3')){
+    message('---the entoa3 object has ', nrow(entoa3), ' rows')
+  } else {
+    message('---there is no object named entoa3!')
+  }
+  if(exists('entoa4')){
+    message('---the entoa4 object has ', nrow(entoa4), ' rows')
+  }  else {
+    message('---there is no object named entoa4!')
+  }
   # Define a function for whittling down the data from entoa3 to only that which matters
   trim_down_a3 <- function(entoa3){
     out <- entoa3[,c('', names(entoa3)[grepl('dissect', names(entoa3))])]
@@ -96,7 +105,8 @@ app_server <- function(input, output, session) {
 
   output$main_table <- DT::renderDataTable({
     pd <- data_list$main
-    pd
+    DT::datatable(pd,
+                  selection = list(mode = 'single', selected = c(1)))
   })  
   
   observeEvent(input$main_table_rows_selected, {

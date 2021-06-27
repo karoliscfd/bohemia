@@ -42,11 +42,12 @@ retrieve_ento_data <- function(s3creds_path = '../../credentials/bohemiacensuss3
   }
   buck_df <- tibble(file = buck_names,
                     date_time = buck_times) %>%
-    # keep only entoa3
-    filter(grepl('entoa3', file))
+    # get a "type" column
+    mutate(type = unlist(lapply(strsplit(file, '_'), function(x){x[1]})))
   buck_df_keep <- buck_df %>%
     arrange(desc(date_time)) %>%
     filter(grepl(country, file)) %>%
+    group_by(type) %>%
     filter(date_time == dplyr::first(date_time))
   
   # Retrieve and save locally
