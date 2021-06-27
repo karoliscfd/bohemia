@@ -2,6 +2,7 @@
 
 export(retrieve_ento_data)
 export(run_app)
+export(write_ento_data)
 import(DBI)
 import(DT)
 import(RPostgres)
