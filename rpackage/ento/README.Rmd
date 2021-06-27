@@ -15,47 +15,66 @@ knitr::opts_chunk$set(
 
 # ento
 
-<!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-<!-- badges: end -->
 
-The goal of ento is to ...
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.height = 6.5,
+  fig.path = 'figures/')
+```
+
+# ento: The R package of the Bohemia entomology protocol
+
+This package contains utilities used by the Bohemia entomology research team. It is publicly available for the purposes of reproducibility and transparency.
 
 ## Installation
 
-You can install the released version of ento from [CRAN](https://CRAN.R-project.org) with:
+One can install directly from github:
 
-``` r
-install.packages("ento")
+```{r, eval = FALSE}
+devtools::install_github('databrew/bohemia', subdir = 'rpackage/ento', dependencies = TRUE, force = TRUE)
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+To remove the package (for example, so as to re-install for an update), simply run: `remove.packages('ento')
 
-``` r
-# install.packages("devtools")
-devtools::install_github("databrew/bohemia")
+
+```{r setup, include=FALSE, message=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.width = 4,
+                      fig.height = 4)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(bohemia)
+library(xml2)
+
+# knitr::knit_hooks$set(
+#    error = function(x, options) {
+#      paste('\n\n<div class="alert alert-danger">',
+#            gsub('##', '\n', gsub('^##\ Error', '**Error**', x)),
+#            '</div>', sep = '\n')
+#    },
+#    warning = function(x, options) {
+#      paste('\n\n<div class="alert alert-warning">',
+#            gsub('##', '\n', gsub('^##\ Warning:', '**Warning**', x)),
+#            '</div>', sep = '\n')
+#    },
+#    message = function(x, options) {
+#      paste('\n\n<div class="alert alert-info">',
+#            gsub('##', '\n', x),
+#            '</div>', sep = '\n')
+#    }
+# )
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+## Setting up credentials
 
-```{r example}
-library(ento)
-## basic example code
-```
+`cd` into `rpackage/ento/dev` and create a directory called `credentials`. Populate that with your (secret) credentials files, including `bohemiacensuss3credentials.csv`
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+## Data flow
 
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+- Data for this app is read from an AWS S3 bucket. That bucket gets updated by running `scripts/ento/get_ento_forms.R`.  

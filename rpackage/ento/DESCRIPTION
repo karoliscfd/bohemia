@@ -5,6 +5,7 @@ Authors@R: person('Ben', 'Brew', email = 'bohemia@databrew.cc', role = c('cre', 
 Description: A tool for the Bohemia entomology protocol.
 License: MIT + file LICENSE
 Imports: 
+    aws.s3,
     config (>= 0.3.1),
     DBI,
     dplyr,

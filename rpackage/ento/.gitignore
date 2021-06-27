@@ -6,3 +6,6 @@
 inst/doc
 /doc/
 /Meta/
+credentials/*
+dev/credentials*
+*.log

@@ -70,6 +70,7 @@ golem_add_external_resources <- function(){
 app_server <- function(input, output, session) {
 
   message('Server code running')
+  message('Working directory is: ', getwd())
   
   message('Defining function for fake data')
   make_fake <- function(n = 10){
@@ -77,6 +78,16 @@ app_server <- function(input, output, session) {
                   date = Sys.Date(),
                   species = 'culex erraticus')
     return(out)
+  }
+  
+  # Load in the data from s3
+  retrieve_ento_data(s3creds_path = 'credentials/bohemiacensuss3credentials.csv',
+                     country = 'Mozambique')
+  # There is now an object in memory named "entoa3"
+  
+  # Define a function for whittling down the data from entoa3 to only that which matters
+  trim_down_a3 <- function(entoa3){
+    out <- entoa3[,c('', names(entoa3)[grepl('dissect', names(entoa3))])]
   }
   
   data_list <- reactiveValues(main = make_fake(),
