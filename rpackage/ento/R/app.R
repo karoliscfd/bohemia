@@ -24,9 +24,14 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic 
-    fluidPage(
-      h1("ento")
-    )
+    navbarPage('Bohemia entomology data management tool',
+               tabPanel('A4',
+                        fluidPage(
+                          column(6,
+                                 DT::dataTableOutput('main_table')),
+                          column(6,
+                                 textOutput('selected_text'))
+                        )))
   )
 }
 
@@ -66,6 +71,51 @@ app_server <- function(input, output, session) {
 
   message('Server code running')
   
+  message('Defining function for fake data')
+  make_fake <- function(n = 10){
+    out <- tibble(qr = 1:n,
+                  date = Sys.Date(),
+                  species = 'culex erraticus')
+    return(out)
+  }
+  
+  data_list <- reactiveValues(main = make_fake(),
+                              sub = data.frame())
+
+  output$main_table <- DT::renderDataTable({
+    pd <- data_list$main
+    pd
+  })  
+  
+  observeEvent(input$main_table_rows_selected, {
+    # capture the selected row
+    rs <- input$main_table_rows_selected
+    message('---The selected row is: ', rs)
+    # Subset the data
+    ok <- FALSE
+    if(!is.null(rs)){
+      if(length(rs) == 1){
+        ok <- TRUE
+      }
+    }
+    if(ok){
+      pd <- data_list$main
+      sub_data <- pd[rs,]
+      data_list$sub <- sub_data
+    } else {
+      data_list$sub <- data.frame()
+    }
+  })
+
+  output$selected_text <- renderText({
+    # Get the selected row
+    dls <- data_list$sub
+    if(nrow(dls) == 1){
+      out <- paste0(dls$qr, ' ', dls$species)
+    } else {
+      out <- 'Select an entry by clicking on the table.'
+    }
+  })
 }
 
 app <- function(){
