@@ -102,7 +102,7 @@ if(read_recent){
         object = this_file,
         bucket = 'bohemiaento',
         file = local_file)
-      load(local_file)
+      load(local_file, envir = .GlobalEnv) # load to main namespace
       file.remove(local_file)
     }
   }
