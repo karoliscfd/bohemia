@@ -30,7 +30,17 @@ app_ui <- function(request) {
                           column(6,
                                  DT::dataTableOutput('main_table')),
                           column(6,
-                                 textOutput('selected_text'))
+                                 textOutput('selected_text'),
+                                 selectInput('parity', 
+                                             label = 'Enter parity status',
+                                             choices = c('P', 'NP')),
+                                 sliderInput('wing_length', 
+                                             label = 'Enter the wing length (micrometers)',
+                                             min = 0, 
+                                             max = 4000, 
+                                             value = 2000), 
+                                 actionButton('submit_entry',
+                                              label = 'Submit entry'))
                         )))
   )
 }
@@ -97,15 +107,30 @@ app_server <- function(input, output, session) {
   }
   # Define a function for whittling down the data from entoa3 to only that which matters
   trim_down_a3 <- function(entoa3){
-    # BEN work here
-    # this function should take the entoa3 list
-    # and return data formatted in the way the table 
-    # is supposed to show up in this app
-    # once this is done, replace "make_fake" with
-    # a call to this function
+    # get only the dissected data sets
+    ds <- entoa3[grepl('dissected', names(entoa3))]
+    rl <- list()
+    for(i in 1:length(ds)){
+      tmp <- ds[[i]]
+      names(tmp)[1:2]<- c('qr', 'manual')
+      tmp$species <- unlist(lapply(strsplit(names(tmp)[length(tmp)], '_'), function(x) x[length(x)]))
+        
+      # get qr codes from qr or manual
+      tmp <-tmp %>% dplyr::mutate(qr = ifelse(is.na(qr), manual, qr))%>% select(qr,species, PARENT_KEY)
+      # stor in liest
+      rl[[i]] <- tmp
+      print(i)
+    }
+    df <- do.call('rbind', rl)
+    df$number <- 1:nrow(df)
+    
+    # join with data 
+    df <- inner_join(df, entoa3$entoa3, by = c('PARENT_KEY' = 'KEY')) %>%
+      select(number, todays_date, hh_id, species, qr)
+    return(df)
   }
   
-  data_list <- reactiveValues(main = make_fake(), # trim_down_a3()
+  data_list <- reactiveValues(main = trim_down_a3(entoa3), # trim_down_a3()
                               sub = data.frame())
 
   output$main_table <- DT::renderDataTable({
