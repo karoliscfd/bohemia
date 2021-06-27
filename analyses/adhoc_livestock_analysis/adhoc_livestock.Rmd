@@ -31,6 +31,8 @@ mini_cen_main <- minicensus_data$minicensus_main
 
 ```
 
+
+
 CREATING VARIABLES
 SLEEPING VARIABLES
 VARIABLE : sleep_livestock
@@ -71,13 +73,19 @@ livestock <- mini_cen_main %>% filter_at(vars(hh_n_cows_less_than_1_year,hh_n_co
   select(-c("east","north"))
 
 
-cattle_n_geo <- na.omit(livestock[,c("cattle_dry_lon","cattle_dry_lat","n_livestock")])%>%
+cattle_geo_dry <- na.omit(livestock[,c("cattle_dry_lon","cattle_dry_lat","n_livestock")])%>%
   setNames(c("longitude","latitude","n_livestock"))
 
-pig_n_geo <- na.omit(livestock[,c("pig_dry_lon","pig_dry_lat","n_livestock")])%>%
+cattle_geo_rain <- na.omit(livestock[,c("cattle_rain_lon","cattle_rain_lat","n_livestock")])%>%
   setNames(c("longitude","latitude","n_livestock"))
 
-liv_geo <- rbind(cattle_n_geo,pig_n_geo,deparse.level = 0)%>%
+pig_geo_dry <- na.omit(livestock[,c("pig_dry_lon","pig_dry_lat","n_livestock")])%>%
+  setNames(c("longitude","latitude","n_livestock"))
+
+pig_geo_rain <- na.omit(livestock[,c("pig_rain_lon","pig_rain_lat","n_livestock")])%>%
+  setNames(c("longitude","latitude","n_livestock"))
+
+liv_geo <- rbind(cattle_geo_dry,cattle_geo_rain,pig_geo_dry,pig_geo_rain)%>%
   as.data.frame()%>%
   mutate_at(c("longitude","latitude","n_livestock"),as.numeric)%>%
   st_as_sf(coords = c("longitude","latitude"), crs = 4326)%>%
@@ -85,6 +93,9 @@ liv_geo <- rbind(cattle_n_geo,pig_n_geo,deparse.level = 0)%>%
 
 ```
 
+
+
+- Locate all BOHEMIA livestock's sleeping spots within the area:
 
 buffer intersection with livestock sleep location
 (locate livestock sleeping sport within each COST acd household buffer)
@@ -94,7 +105,7 @@ pnts <- st_intersection(liv_geo,cost_acd_buffer)%>%
   st_transform(4326)
 ```
 
-
+Find COST acd household coordinates within each buffer
 buffer centroid (COST acd household location) 
 ```{r}
 #reproject buffer to 4326(loglat)
@@ -108,6 +119,9 @@ liv_sleep$centroid <- st_centroid(liv_sleep$geometry)
 liv_sleep_df <- st_join(pnts, liv_sleep[c("centroid")], join = st_nearest_feature, left = T)
 ```
 
+
+- Create (for each COST acd household) the variable sleep_livestock summing up RiskL values of all 
+  livestock-sleeping spots within the area.
 
 Creating sleep_livestock variable
 Calculate the distance , number of livestock and Risk of exposure of all livestock sleeping position in each buffer(COST acd household)
@@ -134,6 +148,7 @@ liv_sleep_df %>%
 
 
 
+
 BOHEMIA PIGS SLEEP VARIABLE
 Creating sleep_pigs variable
 # Bohemia pigs
@@ -154,10 +169,13 @@ df_pig <- mini_cen_main %>% filter_at(vars(hh_n_pigs_less_than_6_weeks,hh_n_pigs
   separate(hh_animals_dry_season_geo_pigs, c("pig_rain_lat","pig_rain_lon","east","north")," ")%>%
   select(-c("east","north"))
 
-pig_n_geo <- na.omit(df_pig[,c("pig_dry_lon","pig_dry_lat","n_pigs")])%>%
+pig_dry_geo <- na.omit(df_pig[,c("pig_dry_lon","pig_dry_lat","n_pigs")])%>%
   setNames(c("longitude","latitude","n_pigs"))
 
-pig_geo <- pig_n_geo%>%
+pig_rain_geo <- na.omit(df_pig[,c("pig_rain_lon","pig_rain_lat","n_pigs")])%>%
+  setNames(c("longitude","latitude","n_pigs"))
+
+pig_geo <- rbind(pig_dry_geo,pig_rain_geo)%>%
   as.data.frame()%>%
   mutate_at(c("longitude","latitude","n_pigs"),as.numeric)%>%
   st_as_sf(coords = c("longitude","latitude"), crs = 4326)%>%
@@ -165,6 +183,7 @@ pig_geo <- pig_n_geo%>%
 ```
 
 
+- Locate all BOHEMIA pigs sleeping spots within the area:
 
 buffer intersection with livestock sleep location
 locate livestock sleeping variables within in COST acd household 661m buffer
@@ -186,6 +205,9 @@ pig_sleep$centroid <- st_centroid(pig_sleep$geometry)
 pig_sleep_df <- st_join(pnts, pig_sleep[c("centroid")], join = st_nearest_feature, left = T)
 ```
 
+
+- Create (for each COST acd household) the variable sleep_pigs summing up RiskP values of all 
+  PIG-sleeping spots within the area.
 
 Creating sleep_pig variable
 Calculate the distance , number of livestock and Risk of exposure of all pig sleeping positions in each buffer(COST acd household)
@@ -231,22 +253,30 @@ df_cow <- mini_cen_main %>% filter_at(vars(hh_n_cows_less_than_1_year,hh_n_cows_
   separate(hh_animals_distance_cattle_dry_season_geo, c("cattle_dry_lat","cattle_dry_lon","east","north")," ")%>%
   select(-c("east","north"))%>%
   separate(hh_animals_distance_cattle_rainy_season_geo, c("cattle_rain_lat","cattle_rain_lon","east","north")," ")%>%
-  select(-c("east","north"))%>%
-  select(c("cattle_dry_lon","cattle_dry_lat","n_cows"))%>%
-  na.omit()%>%
-  setNames(c("longitude","latitude","n_cows"))%>%
+  select(-c("east","north"))
+
+
+cattle_dry_geo <- na.omit(df_cow[,c("cattle_dry_lon","cattle_dry_lat","n_cows")])%>%
+  setNames(c("longitude","latitude","n_cows"))
+
+cattle_rain_geo <- na.omit(df_cow[,c("cattle_rain_lon","cattle_rain_lat","n_cows")])%>%
+  setNames(c("longitude","latitude","n_cows"))
+
+cow_geo <- rbind(cattle_dry_geo,cattle_rain_geo)%>%
   as.data.frame()%>%
   mutate_at(c("longitude","latitude","n_cows"),as.numeric)%>%
   st_as_sf(coords = c("longitude","latitude"), crs = 4326)%>%
   st_transform(3857)
+
 ```
 
 
+- Locate all BOHEMIA cattle's sleeping spots within the area:
 
 buffer intersection with cattle sleep location
 locate cattle sleeping variables within each COST acd household 661m buffer
 ```{r}
-pnts <- st_intersection(df_cow,cost_acd_buffer)%>%
+pnts <- st_intersection(cow_geo,cost_acd_buffer)%>%
   st_transform(4326)
 ```
 
@@ -262,6 +292,9 @@ cow_sleep$centroid <- st_centroid(cow_sleep$geometry)
 cow_sleep_df <- st_join(pnts, cow_sleep[c("centroid")], join = st_nearest_feature, left = T)
 ```
 
+
+
+- Create (for each COST acd household) the variable sleep_cattle summing up RiskP values of all cattle sleeping spots within the area.
 
 Creating sleep_cattle variable
 Calculate the distance , number of livestock and Risk of exposure of all cattle sleeping positions in each buffer(COST acd household position)
@@ -289,11 +322,10 @@ cow_sleep_df %>%
 
 
 
-EXPOSURE VARIABLES
+CREATING EXPOSURE VARIABLES USING COST ACD HOUSEHOLD DATA AND BOHEMIA MINI CENSUS DATA.
 
 
 Exposure variable for all livestocks
-
 
 select relevant variables from COST ACD data
 ```{r}
@@ -682,7 +714,7 @@ boh_cows_df %>%
 merge all varables
 ```{r}
 
-
+library(data.table)
 final <- Reduce(function(...) merge(..., by='perm_id', all.x=TRUE), list(acd_cost[,-3],
                                                                       sleep_livestock[,-3],
                                                                       sleep_pigs[,-3],
@@ -694,6 +726,6 @@ final <- Reduce(function(...) merge(..., by='perm_id', all.x=TRUE), list(acd_cos
                                                                       exp_boh_pigs[,-3],
                                                                       exp_boh_cattle[,-3]))
 
-write.csv(final, "COST_ACD_variables.csv")
+fwrite(final, "COST_ACD_variables.csv")
 ```
 
