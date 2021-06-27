@@ -52,7 +52,7 @@ export_data(target = briefcase_dir,
             id = "entoa3",
             from = temp_dir,
             to = temp_dir,
-            filename = "entoa3done.csv")
+            filename = "entoa3.csv")
 
 # Capture the names of all the entoa3 files
 entoa3_files <- dir(temp_dir)

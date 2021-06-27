@@ -97,11 +97,15 @@ app_server <- function(input, output, session) {
   }
   # Define a function for whittling down the data from entoa3 to only that which matters
   trim_down_a3 <- function(entoa3){
-    out <- entoa3[,c('', names(entoa3)[grepl('dissect', names(entoa3))])]
-    return(out)
+    # BEN work here
+    # this function should take the entoa3 list
+    # and return data formatted in the way the table 
+    # is supposed to show up in this app
+    # once this is done, replace "make_fake" with
+    # a call to this function
   }
   
-  data_list <- reactiveValues(main = make_fake(),
+  data_list <- reactiveValues(main = make_fake(), # trim_down_a3()
                               sub = data.frame())
 
   output$main_table <- DT::renderDataTable({
