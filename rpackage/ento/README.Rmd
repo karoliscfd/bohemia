@@ -78,3 +78,11 @@ library(xml2)
 ## Data flow
 
 - Data for this app is read from an AWS S3 bucket. That bucket gets updated by running `scripts/ento/get_ento_forms.R`.  
+
+## Deploying
+
+- Run the following on a shiny server
+
+```
+sudo systemctl stop shiny-server; sudo su - -c "R -e \"remove.packages('ento')\""; sudo su - -c "R -e \"devtools::install_github('databrew/bohemia', subdir = 'rpackage/ento')\""; sudo chmod -R 777 /usr/local/lib/R/site-library; sudo chmod -R 777 /usr/lib/R/site-library/; sudo chmod -R 777 /usr/lib/R/library; sudo systemctl restart shiny-server;
+```

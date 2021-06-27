@@ -86,7 +86,7 @@ app_server <- function(input, output, session) {
   # There is now an object in memory named "entoa3"
   # There is now an object in memory named "entoa4" (if some data has already been saved there)
   if(exists('entoa3')){
-    message('---the entoa3 object has ', nrow(entoa3), ' rows')
+    message('---the entoa3 object has ', length(entoa3), ' elements')
   } else {
     message('---there is no object named entoa3!')
   }
@@ -98,6 +98,7 @@ app_server <- function(input, output, session) {
   # Define a function for whittling down the data from entoa3 to only that which matters
   trim_down_a3 <- function(entoa3){
     out <- entoa3[,c('', names(entoa3)[grepl('dissect', names(entoa3))])]
+    return(out)
   }
   
   data_list <- reactiveValues(main = make_fake(),

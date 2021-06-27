@@ -54,8 +54,18 @@ export_data(target = briefcase_dir,
             to = temp_dir,
             filename = "entoa3done.csv")
 
-# Read in the csv
-entoa3 <- read_csv(file.path(temp_dir, 'entoa3done.csv'))
+# Capture the names of all the entoa3 files
+entoa3_files <- dir(temp_dir)
+entoa3_files <- entoa3_files[grepl('entoa3', entoa3_files)]
+entoa3_list <- list()
+for(i in 1:length(entoa3_files)){
+  entoa3_list[[i]] <- read_csv(file.path(temp_dir, entoa3_files[i]))
+}
+names(entoa3_list) <- gsub('.csv', '', entoa3_files, fixed = TRUE)
+entoa3 <- entoa3_list
+
+# # Read in the csv
+# entoa3 <- read_csv(file.path(temp_dir, 'entoa3done.csv'))
 
 
 # Put the objects into S3
