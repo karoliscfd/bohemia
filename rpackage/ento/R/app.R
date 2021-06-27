@@ -56,6 +56,18 @@ golem_add_external_resources <- function(){
 }
 
 
+
+##################################################
+# SERVER
+##################################################
+#' @import shiny
+#' @import leaflet
+app_server <- function(input, output, session) {
+
+  message('Server code running')
+  
+}
+
 app <- function(){
   # Detect the system. If on AWS, don't launch browswer
   is_aws <- grepl('aws', tolower(Sys.info()['release']))
