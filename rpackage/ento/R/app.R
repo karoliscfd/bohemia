@@ -84,6 +84,7 @@ app_server <- function(input, output, session) {
   retrieve_ento_data(s3creds_path = 'credentials/bohemiacensuss3credentials.csv',
                      country = 'Mozambique')
   # There is now an object in memory named "entoa3"
+  message('---the entoa3 object has ', nrow(entoa3), ' rows')
   
   # Define a function for whittling down the data from entoa3 to only that which matters
   trim_down_a3 <- function(entoa3){
