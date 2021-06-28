@@ -19,10 +19,10 @@ Exposure Variables<br>
 • exp_boh_cattle: only cattle using BOHEMIA data.<br>
 
 ### Input Data
-[acd_mopeia.dta](https://drive.google.com/file/d/1TDurkNF7RQft_7BYT-OSybVbR7U246s6/view?usp=sharing) :  This contains data on all cost acd  households. It includes
-                on the number of livestock (all livestocks, cattle, goats, sheep, chicken and horse) owned.<br>
-[minicensus_data.RData](https://drive.google.com/file/d/1O14wl2NRq-ffRaHYhvinRfiHm0T2_O_6/view?usp=sharing) : This contains data on all Bohemia  households including the type,
+[acd_mopeia.dta](https://drive.google.com/file/d/1TDurkNF7RQft_7BYT-OSybVbR7U246s6/view?usp=sharing) :  This contains data on all cost acd  households. This includes
+                the number of livestock (all livestocks, cattle, goats, sheep, chicken and horse) owned.<br>
+[minicensus_data.RData](https://drive.google.com/file/d/1O14wl2NRq-ffRaHYhvinRfiHm0T2_O_6/view?usp=sharing) : This contains data on all Bohemia  households including type,
                 number and location of livestock owned(cattle , pig and both) and other useful features on Bohemia households.<br>
-[COST_ACD_Children_Ages_and_Gender._EE.16.04.2019.csv](https://drive.google.com/file/d/1vXGrh-P2jZ9Ml2xQUJ6g4mZLhXQhI2dW/view?usp=sharing) : Data on all cost acd households including location (longitude and latitude).<br>
+[COST_ACD_Children_Ages_and_Gender._EE.16.04.2019.csv](https://drive.google.com/file/d/1vXGrh-P2jZ9Ml2xQUJ6g4mZLhXQhI2dW/view?usp=sharing) : Data on all cost acd households including location (longitude and latitude). <br>
 
 Follow the code in the RMarkdown document to reproduce results.
