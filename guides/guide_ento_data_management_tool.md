@@ -3,12 +3,14 @@
 
 ## Overview
 
+Pending
+
 
 
 ## Software installation
 
-- ODK: https://github.com/databrew/bohemia/blob/master/guides/guide_data_collection_odk.md  
-- Shiny: https://github.com/databrew/bohemia/tree/master/rpackage/ento#ento
+- For forms A1, A2 and A3, refer to the [ODK data collection guide](https://github.com/databrew/bohemia/blob/master/guides/guide_data_collection_odk.md)  
+- Form A4 consists of a custom-made shiny application: https://github.com/databrew/bohemia/tree/master/rpackage/ento#ento
 
 ## Data flow
 
