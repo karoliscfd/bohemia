@@ -6,8 +6,8 @@ library(gsheet)
 country <- 'Mozambique'
 
 # Define the locations
-location_codes <- NULL # alternatively, supply a vector of locations, as below
-# location_codes <- c('AMB', 'ZZE')
+# location_codes <- NULL # alternatively, supply a vector of locations, as below
+location_codes <- c('LUT', 'DEA')
 
 # Define the number of "extras" per hamlet
 extra_n <- 50
