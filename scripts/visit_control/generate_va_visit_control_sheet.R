@@ -148,7 +148,9 @@ death_data <- data_list$hh_death
 df <- list_generation_va(keyfile = keyfile,
                          keyfile_public = keyfile_public,
                          location_code = NULL,
-                         output_file = output_file,
-                         death_data = death_data)
+                         output_file = NULL, #output_file,
+                         death_data = death_data,
+                         data_list  = data_list,
+                         agg_list = agg_list)
 
 # Needs to conform to these specs: https://docs.google.com/document/d/1AB4AuEiMwPQdBIQvrWaus1XY36gFGmtZ4f65kzgYeug/edit?ts=6087c05d&pli=1

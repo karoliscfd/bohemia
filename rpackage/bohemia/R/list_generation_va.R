@@ -7,6 +7,8 @@
 #' @param location_code A three letter location code (or character vector of multiple codes). If NULL, all locations to be used
 #' @param output_file The name of the spreadsheet to be written (csv file); if null, will return the table in memory
 #' @param fake Whether or not to use fake data
+#' @param data_list List of ODK-X data
+#' @param agg_list List of ODK aggregate data
 #' @import dplyr
 #' @import PKI
 #' @import readr
@@ -14,6 +16,8 @@
 #' @export
 
 list_generation_va <- function(death_data,
+                               data_list,
+                               agg_list,
                                keyfile = NULL,
                                keyfile_public = NULL,
                                location_code = NULL,
@@ -37,7 +41,7 @@ list_generation_va <- function(death_data,
   
   # Deal with location
   locs <- bohemia::locations
-  if(!is.null(location)){
+  if(!is.null(location_code)){
     locs <- locs %>% filter(code %in% location_code)
   }
   if(nrow(locs) < 1){
@@ -72,7 +76,21 @@ list_generation_va <- function(death_data,
     df <- df %>% arrange(hhid) 
   } else {
     # Using real data
-    out <- tibble(x = 'Using real data not ready yet')
+    deaths <- death_data
+    already_vas <- agg_list$va153census
+    already_death_ids <- sort(unique(already_vas$`group_intro-death_id`))
+    census <- data_list$census
+      out <- 
+        deaths %>%
+          mutate(deceased_name = paste0(hh_death_name, ' ', hh_death_surname)) %>%
+          dplyr::select(deceased_id = hh_death_id,
+                        deceased_name,
+                        deceased_gender = hh_death_gender,
+                        age_at_time_of_death = hh_death_age) %>%
+          mutate(code = substr(deceased_id, 1, 3)) %>%
+          left_join(bohemia::locations %>% dplyr::select(District, Ward, Village, Hamlet, code)) %>%
+          filter(!deceased_id %in% already_death_ids)
+      df <- out
   }
   
   
