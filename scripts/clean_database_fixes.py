@@ -5191,6 +5191,9 @@ implement(id= None, query="UPDATE clean_minicensus_main SET hh_id='MKT-102' WHER
 implement(id= None, query="UPDATE clean_minicensus_main SET hh_id='MFE-166' WHERE instance_id='d4ea6019-ac96-4503-bbba-81ae01b2a338';UPDATE clean_minicensus_people SET pid = 'MFE-166-001', permid='MFE-166-001' WHERE num='1' and instance_id='d4ea6019-ac96-4503-bbba-81ae01b2a338';UPDATE clean_minicensus_people SET pid = 'MFE-166-002', permid='MFE-166-002' WHERE num='2' and instance_id='d4ea6019-ac96-4503-bbba-81ae01b2a338'", who='Xing Brew')
 implement(id= None, query="UPDATE clean_minicensus_main SET hh_id='MFE-202' WHERE instance_id='7c407501-b3cf-4792-91fb-28a7d090e0a8';UPDATE clean_minicensus_people SET pid = 'MFE-202-001', permid='MFE-202-001' WHERE num='1' and instance_id='7c407501-b3cf-4792-91fb-28a7d090e0a8';UPDATE clean_minicensus_people SET pid = 'MFE-202-002', permid='MFE-202-002' WHERE num='2' and instance_id='7c407501-b3cf-4792-91fb-28a7d090e0a8'", who='Xing Brew')
 
+implement(id = None, query = "UPDATE clean_minicensus_main SET wid ='119' WHERE instance_id ='eb9824fb-fb8d-42f3-8dee-761a92d63c2e'", who='Xing Brew')
+implement(id = None, query = "UPDATE clean_minicensus_main SET wid ='119' WHERE instance_id ='0aacf322-989c-4f81-95ee-8cada3978a78'", who='Xing Brew')
+
 ## Xing corrections for Imani June 29
 implement(id = 'Hh_head_too_young_old_9e2c8ca9-dedc-47a2-a893-66c6c17db1bf', is_ok = True)
 implement(id = 'Hh_all_non_adults_7ea64275-cf72-4d3d-ad88-3028bd16eb80', is_ok = True)
