@@ -1,0 +1,37 @@
+---
+title: "Ento navigation"
+author: "Joe Brew"
+date: "6/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Create random points
+library(dplyr)
+library(ggplot2)
+library(leaflet)
+set.seed(13)
+x <- rnorm(10, sd = 0.1)
+y <- rnorm(10, sd = 0.1)
+df <- tibble(x,y)
+df$w <- sample(0:1, size = nrow(df), replace = T)
+df$l <- sample(0:1, size = nrow(df), replace = T)
+# Transform to put into Mozambique
+df$x <- df$x + 36
+df$y <- df$y - 15
+df <- df %>%
+  mutate(longitude = x,
+         latitude = y)
+
+
+
+# Create households
+leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addMarkers(data = df)
+
+```
