@@ -6,6 +6,8 @@
 \usage{
 list_generation_va(
   death_data,
+  data_list,
+  agg_list,
   keyfile = NULL,
   keyfile_public = NULL,
   location_code = NULL,
@@ -15,6 +17,10 @@ list_generation_va(
 }
 \arguments{
 \item{death_data}{A dataframe in the format of the death data from the censu}
+
+\item{data_list}{List of ODK-X data}
+
+\item{agg_list}{List of ODK aggregate data}
 
 \item{keyfile}{The path to the private key}
 
