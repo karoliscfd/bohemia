@@ -899,3 +899,4 @@ ggplot(data = pd,
   scale_y_continuous(name = 'Average meters to nearest contaminant\namong "core" households',
                      breaks = seq(0, 2500, 250))
 ggsave('~/Desktop/distance.png', height = 8, width = 12)
+

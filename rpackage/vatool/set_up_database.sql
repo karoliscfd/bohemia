@@ -17,12 +17,12 @@ CREATE TABLE vatool_sessions (
 
 CREATE TABLE vatool_cods (
   user_id INT,
-  death_id VARCHAR(16),
-  cod_code_1 VARCHAR(64),
-  cod_1 VARCHAR(32),
-  cod_code_2 VARCHAR(64),
-  cod_2 VARCHAR(32),
-  cod_code_3 VARCHAR(64),
-  cod_3 VARCHAR(32),
+  death_id TEXT,
+  cod_code_1 TEXT,
+  cod_1 TEXT,
+  cod_code_2 TEXT,
+  cod_2 TEXT,
+  cod_code_3 TEXT,
+  cod_3 TEXT,
   time_stamp TIMESTAMP
 );

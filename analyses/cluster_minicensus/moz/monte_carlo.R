@@ -673,6 +673,21 @@ status_level <- charf %>%
             hamlets = paste0(sort(unique(code)), collapse = ';'))
 write_csv(status_level, '~/Desktop/status_level.csv')
 
+# Move files to analysis zone
+if(!dir.exists('final_clusters')){
+  dir.create('final_clusters')
+}
+file.copy(from = '~/Desktop/status_level.csv',
+          to = 'final_clusters/status_level.csv')
+file.copy(from = '~/Desktop/cluster_level.csv',
+          to = 'final_clusters/cluster_level.csv')
+file.copy(from = '~/Desktop/hamlet_level.csv',
+          to = 'final_clusters/hamlet_level.csv')
+file.copy(from = '~/Desktop/hh_level.csv',
+          to = 'final_clusters/hh_level.csv')
+save(master_poly, master_pts, master_hull, master_buf,
+           file = 'final_clusters/image.RData')
+
 # Write a csv of outputs for Carlos
 if(read_sims){
   data_list <- list()

@@ -8,6 +8,7 @@ list_generation_visit_control(
   census_data,
   census_people,
   census_subs,
+  agg_list,
   keyfile = NULL,
   keyfile_public = NULL,
   location = NULL,
@@ -22,6 +23,8 @@ list_generation_visit_control(
 \item{census_people}{A dataframe in the format of the minicensus people table}
 
 \item{census_subs}{A dataframe in the format of the}
+
+\item{agg_list}{A list of dataframes including: refusalsabsences, enumerationscensus, va153census}
 
 \item{keyfile}{The path to the private key}
 

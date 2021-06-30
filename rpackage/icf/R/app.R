@@ -83,6 +83,7 @@ load_base_data <- function(){
                           nrow(df),
                           replace = TRUE)
     df$pid <- df$id
+    df$attempts <- 0
     save(df, file = paste0(temp_dir, '/ifc.RData'))
   }
   return(df)
@@ -224,7 +225,8 @@ app_ui <- function(request) {
                        uiOutput('ui_date_input')),
                 column(4, 
                        uiOutput('ui_hh_id')),
-                column(4, uiOutput('ui_person_id'))),
+                column(4,
+                       textOutput('person_id_text1'))),
               fluidRow(column(12,
                               DT::dataTableOutput('person_table'))),
               fluidRow(
@@ -242,7 +244,8 @@ app_ui <- function(request) {
                        uiOutput('ui_date_input2')),
                 column(4, 
                        uiOutput('ui_hh_id2')),
-                column(4, uiOutput('ui_person_id2'))),
+                column(4,
+                       textOutput('person_id_text2'))),
               fluidRow(column(12,
                               helpText('The below shows the previous errors associated with this ICF.'))),
               fluidRow(column(12,
@@ -258,6 +261,7 @@ app_ui <- function(request) {
             fluidPage(
               fluidRow(h1('List 1 (missing ICFs)')),
               uiOutput('ui_list_1'),
+              uiOutput('ui_list_1b'),
               
               fluidRow(h1('List 2 (correct ICFs)')),
               uiOutput('ui_list_2'),
@@ -301,8 +305,6 @@ app_server <- function(input, output, session) {
   
   logged_in <- reactiveVal(value = TRUE)
   observeEvent(input$log_in,{
-    
-    
     logged_in(TRUE)
     removeModal()
   })
@@ -315,6 +317,10 @@ app_server <- function(input, output, session) {
       actionButton("show", "Log in")
     }
   })
+  
+  # Create reactive objects for storing person ID
+  person_ids <- reactiveValues(id1 = NA, id2 = NA)
+  
   
   observeEvent(input$show, {
     # logged_in(TRUE)
@@ -406,58 +412,58 @@ app_server <- function(input, output, session) {
     }
   })
   
-  output$ui_person_id <- renderUI({
-    out <- data_list$main
-    out <- data.frame(out)
-    date_of_visit <- input$date_of_visit
-    xhid <- input$hh_id
-    done <- NULL
-    if(!is.null(date_of_visit)){
-      if(length(date_of_visit) > 0){
-        if(!is.null(xhid)){
-          out <- out %>% 
-            filter(date == date_of_visit) %>%
-            filter(hh_id == xhid)
-          id_choices <- out$pid
-          message('---Setting up the person_id input')
-          done <- selectInput('person_id', 'Person ID', choices = id_choices)
-        }
-      }
-    }
-    return(done)
-  })
+  # output$ui_person_id <- renderUI({
+  #   out <- data_list$main
+  #   out <- data.frame(out)
+  #   date_of_visit <- input$date_of_visit
+  #   xhid <- input$hh_id
+  #   done <- NULL
+  #   if(!is.null(date_of_visit)){
+  #     if(length(date_of_visit) > 0){
+  #       if(!is.null(xhid)){
+  #         out <- out %>% 
+  #           filter(date == date_of_visit) %>%
+  #           filter(hh_id == xhid)
+  #         id_choices <- out$pid
+  #         message('---Setting up the person_id input')
+  #         done <- selectInput('person_id', 'Person ID', choices = id_choices)
+  #       }
+  #     }
+  #   }
+  #   return(done)
+  # })
   
-  output$ui_person_id2 <- renderUI({
-    out <- data_list$list3
-    out <- data.frame(out)
-    date_of_visit <- input$date_of_visit2
-    xhid <- input$hh_id2
-    done <- NULL
-    if(!is.null(date_of_visit)){
-      if(length(date_of_visit) > 0){
-        if(!is.null(xhid)){
-          out <- out %>% 
-            filter(date == date_of_visit) %>%
-            filter(hh_id == xhid)
-          id_choices <- out$pid
-          message('---Setting up the person_id input')
-          done <- selectInput('person_id2', 'Person ID', choices = id_choices)
-        }
-      }
-    }
-    return(done)
-  })
+  # output$ui_person_id2 <- renderUI({
+  #   out <- data_list$list3
+  #   out <- data.frame(out)
+  #   date_of_visit <- input$date_of_visit2
+  #   xhid <- input$hh_id2
+  #   done <- NULL
+  #   if(!is.null(date_of_visit)){
+  #     if(length(date_of_visit) > 0){
+  #       if(!is.null(xhid)){
+  #         out <- out %>% 
+  #           filter(date == date_of_visit) %>%
+  #           filter(hh_id == xhid)
+  #         id_choices <- out$pid
+  #         message('---Setting up the person_id input')
+  #         done <- selectInput('person_id2', 'Person ID', choices = id_choices)
+  #       }
+  #     }
+  #   }
+  #   return(done)
+  # })
   
-  
+
   dfr <- reactive({
     message('---Setting up the reactive dfr() object')
     
     out <- data_list$main
     date_of_visit <- input$date_of_visit
     xhid <- input$hh_id
-    person_id <- input$person_id
+    # person_id <- person_ids$id1
     
-    save(out, date_of_visit, xhid, person_id, file = '/tmp/jj.RData')
+    # save(out, date_of_visit, xhid, person_id, file = '/tmp/jj.RData')
     
     if(!is.null(date_of_visit)){
       if(length(date_of_visit) > 0){
@@ -467,14 +473,14 @@ app_server <- function(input, output, session) {
     if(!is.null(xhid)){
       out <- out %>% filter(hh_id == xhid)
     }
-    if(!is.null(person_id)){
-      out <- out %>% filter(pid == person_id)
-    }
-    if(is.null(person_id) |
+    # if(!is.null(person_id)){
+    #   out <- out %>% filter(pid == person_id)
+    # }
+    if(#is.null(person_id) |
        is.null(xhid) |
        is.null(date_of_visit)){
       out <- NULL
-    }
+    } else 
     message('---Done setting up the reactive dfr() object')
     return(out)
   })
@@ -485,7 +491,7 @@ app_server <- function(input, output, session) {
     out <- data_list$list3
     date_of_visit <- input$date_of_visit2
     xhid <- input$hh_id2
-    person_id <- input$person_id2
+    # person_id <- person_ids$id2
     
     
     if(!is.null(date_of_visit)){
@@ -496,10 +502,10 @@ app_server <- function(input, output, session) {
     if(!is.null(xhid)){
       out <- out %>% filter(hh_id == xhid)
     }
-    if(!is.null(person_id)){
-      out <- out %>% filter(pid == person_id)
-    }
-    if(is.null(person_id) |
+    # if(!is.null(person_id)){
+    #   out <- out %>% filter(pid == person_id)
+    # }
+    if(#is.null(person_id) |
        is.null(xhid) |
        is.null(date_of_visit)){
       out <- NULL
@@ -513,6 +519,7 @@ app_server <- function(input, output, session) {
     message('---Setting up the person_table (datatable)')
     sub_df <- dfr()
     DT::datatable(sub_df,
+                  selection = list(mode = 'single', selected = c(1)),
                   options = list(paging = FALSE,
                                  searching = FALSE))
   })
@@ -520,8 +527,34 @@ app_server <- function(input, output, session) {
     message('---Setting up the person_table2 (datatable)')
     sub_df <- dfr2()
     DT::datatable(sub_df,
+                  selection = list(mode = 'single', selected = c(1)),
                   options = list(paging = FALSE,
                                  searching = FALSE))
+  })
+  
+  # Get the selected ID text
+  output$person_id_text1 <- renderText({
+    paste0('Selected ID: ', person_ids$id1)
+  })
+  output$person_id_text2 <- renderText({
+    paste0('Selected ID: ', person_ids$id2)
+  })
+  
+  # Observe the clicks on the person table and update the objects accordingly
+  observeEvent(input$person_table_rows_selected,{
+    rs <- input$person_table_rows_selected
+    message('Row selected is ', rs)
+    sub_df <- dfr()
+    sub_df <- sub_df[rs,]
+    person_ids$id1 <- sub_df$pid
+  })
+  observeEvent(input$person_table2_rows_selected,{
+    rs <- input$person_table2_rows_selected
+    message('Row selected 2 is ', rs)
+    sub_df <- dfr2()
+    sub_df <- sub_df[rs,]
+    person_ids$id2 <- sub_df$pid
+    
   })
   
   output$ui_icf_present <- renderUI({
@@ -992,6 +1025,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_1,{
     # Capture the row that is getting submitted
     this_row <- dfr()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1008,6 +1042,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_2,{
     # Capture the row that is getting submitted
     this_row <- dfr()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1031,6 +1066,7 @@ app_server <- function(input, output, session) {
     # Add the submitted row to list 2 (correct) - note, if multiple errors, just add one
     this_row <- this_row[1,]
     this_row <- this_row %>% dplyr::select(-Error)
+    this_row$attempts <- this_row$attempts + 1
     new_2 <- add_to_list(2, this_row, data_list = data_list)
     data_list$list2 <- new_2
     # Save the data for permanence
@@ -1043,6 +1079,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_3,{
     # Capture the row that is getting submitted
     this_row <- list_3_input()
+    this_row$attempts <- this_row$attempts + 1
     # Remove the submitted row from the main table
     new_main <- remove_from('main', this_row$id, data_list = data_list)
     data_list$main <- new_main
@@ -1059,6 +1096,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$submit_list_3b,{
     # Remove any previous errors from the list of errors
     this_row <- dfr2()
+    this_row$attempts <- this_row$attempts + 1
     new_list <- remove_from(3, this_row$id, data_list = data_list)
     data_list$list3 <- new_list
     # Capture the new errors that are being submitted
@@ -1077,7 +1115,7 @@ app_server <- function(input, output, session) {
   })
   
   # List UIs
-  output$ui_list_1 <- renderUI({
+  output$ui_list_1_table <- DT::renderDataTable({
     out <- data_list$list1
     ok <- FALSE
     if(!is.null(out)){
@@ -1086,15 +1124,70 @@ app_server <- function(input, output, session) {
       }
     }
     if(ok){
-      return(
-        fluidRow(
-          bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
-        )
+      bohemia::prettify(out, nrows = nrow(out), download_options = TRUE)
+    } else {
+      NULL
+    }
+    
+  })
+  output$ui_list_1 <- renderUI({
+    fluidPage(
+      fluidRow(
+        DT::dataTableOutput('ui_list_1_table')
+      )
+    )
+  })
+  
+  unmissing <- reactiveValues(value = data.frame())
+  output$ui_list_1b <- renderUI({
+    ok <- FALSE
+    out <- data_list$list1
+    ok <- FALSE
+    rs <- input$ui_list_1_table_rows_selected
+    if(!is.null(out)){
+      if(nrow(out) > 0){
+        if(!is.null(rs)){
+          if(length(rs) > 0){
+            ok <- TRUE
+          }
+        }
+      }
+    }
+    if(ok){
+      fluidRow(
+        column(12, align = 'center',
+               actionButton('unmiss', 'Mark as no longer missing'))
       )
     } else {
-      return(h5('No entries yet.'))
+      NULL
     }
   })
+  observeEvent(input$unmiss,{
+    # Get the unmissing index
+    rs <- input$ui_list_1_table_rows_selected
+    # Get the unmissing data
+    out <- data_list$list1
+    # Subset just the row
+    final <- out[rs,]
+    # Update the object
+    message('The no longer missing row is: ')
+    unmissing$value <- final
+    print(final)
+    # Remove from list 1
+    new_list_1 <- data_list$list1[!((1:nrow(data_list$list1)) %in% rs),]
+    data_list$list1 <- new_list_1
+    # Add to main list
+    old_main <- data_list$main
+    print('old_main looks like')
+    print(old_main)
+    print('final looks like')
+    print(final)
+    new_main <- bind_rows(old_main, final)
+    print('new_main looks like')
+    print(new_main)
+    data_list$main <- new_main
+  })
+  
   output$ui_list_2 <- renderUI({
     out <- data_list$list2
     ok <- FALSE

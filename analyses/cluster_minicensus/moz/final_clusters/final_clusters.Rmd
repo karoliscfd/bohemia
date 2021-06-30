@@ -1,0 +1,111 @@
+---
+title: "Mozambican clusters, ad-hoc analysis"
+output: html_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = NA, 
+               echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+  fig.path = "figures/",
+  out.width = "100%"
+)
+```
+
+```{r setup, include=FALSE,echo=FALSE}
+library(bohemia)
+library(tidyverse)
+library(yaml)
+library(databrew)
+library(leaflet)
+library(kableExtra)
+library(ggplot2)
+theme_set(theme_simple())
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Read in objects created in monte_carlo.R
+# (simulation number 9 is the final one)
+cluster_level <- read_csv('cluster_level.csv')
+hamlet_level <- read_csv('hamlet_level.csv')
+hh_level <- read_csv('hh_level.csv')
+status_level <- read_csv('status_level.csv')
+load('image.RData')
+load('../data.RData')
+```
+
+## How many hamlets are cluster-associated?
+
+```{r}
+right <- pd_moz$minicensus_main %>%
+  group_by(code = hh_hamlet_code) %>%
+  summarise(households = n(),
+            people = sum(hh_member_num))
+j <- left_join(hamlet_level, right)
+```
+
+Mozambique has `r nrow(hamlet_level)` hamlets. Of these, `r length(which(!is.na(hamlet_level$clusters_in_hamlet)))` have at least one cluster associated with them. 
+
+## How many households are in cluster-associated hamlets?
+
+Were we to cense the entire district, we would expect `r sum(pd_moz$minicensus_main$hh_member_num)` people and `r sum(j$households, na.rm = T)` households. If we were to include only those households in hamlets with >0 associated clusters, we would anticipate `r sum(j$people[!is.na(j$clusters_in_hamlet)])` people and `r sum(j$households[!is.na(j$clusters_in_hamlet)], na.rm = TRUE)` households.
+
+The below table shows one row for each hamlet, with columns indicating the cluster status, number of households, and number of people
+
+
+
+```{r}
+bohemia::prettify(j, nrows = nrow(j), 
+                  download_options = TRUE)
+```
+
+## Distribution of number of clusters per hamlet
+
+```{r}
+ggplot(data = j,
+       aes(x = clusters_in_hamlet)) +
+  geom_bar() +
+  labs(x = 'Clusters in hamlet',
+       y = 'Hamlets')
+```
+
+
+## Distribution of number of hamlets per cluster
+
+```{r}
+ggplot(data = cluster_level,
+       aes(x = n_hamlets)) +
+  geom_bar() +
+  labs(x = 'Hamlets in cluster',
+       y = 'Clusters')
+```
+
+## Map of polygons
+
+```{r}
+master_poly <- master_poly[master_poly@data$sim == 9 &
+                             master_poly@data$iter_buffer_distance == 400 &
+                             master_poly@data$iter_n_children == 20,]
+master_buf <- master_buf[master_buf@data$sim == 9 &
+                             master_buf@data$iter_buffer_distance == 400 &
+                             master_buf@data$iter_n_children == 20,]
+master_hull <- master_hull[master_hull@data$sim == 9 &
+                             master_hull@data$iter_buffer_distance == 400 &
+                             master_hull@data$iter_n_children == 20,]
+
+# Transform the projection
+library(sp)
+xx <- spTransform(master_hull, proj4string(bohemia::mop2))
+yy <- spTransform(master_buf, proj4string(bohemia::mop2))
+leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addPolylines(data = yy, color = 'black') %>%
+  addPolygons(data = xx,
+              popup = paste0('Cluster: ', xx@data$cluster, ' | Code: ', xx@data$code, ' | HH: ', xx@data$id),
+              stroke = 1)
+```

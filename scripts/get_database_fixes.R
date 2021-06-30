@@ -12,10 +12,10 @@ is_local <- FALSE
 #                                 the_country = 'Mozambique',
 #                             users_path = '../credentials/users.yaml',
 #                             local = is_local, efficient = FALSE)
-# # odk_data_tza <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
-# #                               the_country = 'Tanzania',
-# #                               users_path = '../credentials/users.yaml',
-# #                               local = is_local, efficient = FALSE)
+# odk_data_tza <- load_odk_data(credentials_path = '../credentials/credentials.yaml',
+#                               the_country = 'Tanzania',
+#                               users_path = '../credentials/users.yaml',
+#                               local = is_local, efficient = FALSE)
 
 is_local <- FALSE
 drv <- RPostgres::Postgres()
