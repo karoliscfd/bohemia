@@ -1,21 +1,29 @@
 ---
-title: " MALARIA PASSIVE SURVEILLANCE SYSTEM - MONITORING REPORTS"
+title: |
+  ![](logo.jpg){width=4.7cm}  
+  MALARIA PASSIVE SURVEILLANCE SYSTEM - MONITORING REPORTS
 output:
   html_document:
-    df_print: paged
+  df_print: paged
   pdf_document: default
+#  header-includes:
+#  - \usepackage{titling}
+#  - \pretitle{\begin{center}
+#    \includegraphics[width=2in,height=2in]{logo.jpg}\LARGE\\}
+#  - \posttitle{\end{center}}
 ---
 ```{r setup, include=FALSE} 
+library("knitr")
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 
 ```
 
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri (file.path("logo.jpg")), 
-               alt = 'logo', 
-               style = 'position:absolute; top:0; left:0; padding:10px;',
-               width = "120px",
-               heigth = "120px")
+#htmltools::img(src = knitr::image_uri (file.path("logo.jpg")), 
+ #              alt = 'logo', 
+  #             style = 'position:absolute; top:0; left:0; padding:10px;',
+   #            width = "120px",
+    #           heigth = "120px")
 
 ids <- c('malariaregisterbaseline1moz',  'malariaregisterbaseline2moz', 'malariaregisterpost1moz', 'malariaregisterpost2moz', 'passivemalariasurveillancemoz' ) 
 
