@@ -19,7 +19,6 @@ htmltools::img(src = knitr::image_uri (file.path("logo.jpg")),
 
 ids <- c('malariaregisterbaseline1moz',  'malariaregisterbaseline2moz', 'malariaregisterpost1moz', 'malariaregisterpost2moz', 'passivemalariasurveillancemoz' ) 
 
-
 devtools::install_github("validmeasures/odkr")   # comment out after first use  
 library(odkr)
 work_dir <- getwd()
@@ -47,7 +46,6 @@ for(i in 1:length(ids)){
               filename = paste0(id, '.csv'))
 }  
 
-
 #reading csv files
 all_data <- list()
 for(i in 1:length(ids)){
@@ -70,12 +68,12 @@ dfpms<-all_data$passivemalariasurveillancemoz
 ---
 ## BY COUNTRY: MOZAMBIQUE
 REPORTS
-We should be able to generate the below tables and summary reports:
+
+Tables and summary reports:
 
 
 ### 1)	PMSS QUESTIONNAIRES 
-
-table health facilities
+Table health facilities
 
 
 ```{r table 1, echo=FALSE}
@@ -129,10 +127,9 @@ tbl1_data$phase2<-0
 tbl3_data<-rbind(tbl1_data, tbl2_data)
 #tbl3_data<- merge(x = tbl1_data, y = tbl2_data, by = 'hf_name', all = TRUE)
 tbl3_data[is.na(tbl3_data)] <- 0
-tbl3<-tbl3_data %>% group_by(hf_name) %>% summarize(one = sum(one), ape_count=sum(ape_count), phase1=sum(phase1), result=sum(result), phase2=sum(phase2), .groups = 'drop') %>% as.data.frame() #  "drop", "keep", "rowwise"
-knitr::kable(head(tbl3), col.names = c("Health facility", "No. PMSS questionnaire from Health Facility", "No. PMSS questionnaire from APEs", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
-
-
+tbl3<-tbl3_data %>% group_by(hf_name) %>% summarize(one = sum(one), ape_count=sum(ape_count), phase1=sum(phase1), result=sum(result), phase2=sum(phase2), .groups = 'drop') %>% as.data.frame() #  "drop", "keep", "rowise"
+tbl3_n <- rbind(tbl3, c("Total", colSums(tbl3[,2:6])))
+knitr::kable(head(tbl3_n), col.names = c("Health facility", "No. PMSS questionnaire from Health Facility", "No. PMSS questionnaire from APEs", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
 
 ```
 
@@ -144,35 +141,33 @@ Graphs with totals per Health Facility over time (monthly)
 
 ```{r histograms, echo=FALSE}
 library("ggplot2")
-#ggplot(data=tbl2_data, mapping = aes(x=hf_name)) +  geom_histogram(stat="count")
 ggplot(tbl1, aes(Health_facility,one, label = Health_facility)) + 
      geom_bar(stat="identity") + 
      facet_wrap(~Month, scales="free") +
-  labs(y="Number of cases", x = "No. PMSS questionnaire from Health Facility")
+  labs(y="Number of cases", x= "Health facility", title = "No. PMSS questionnaire from Health Facility")
 
 ggplot(tbl1, aes(Health_facility,ape_count, label = Health_facility)) + 
      geom_bar(stat="identity") + 
      facet_wrap(~Month, scales="free") +
-  labs(y="Number of cases", x = "No. PMSS questionnaire from APEs")
+  labs(y="Number of cases", x= "Health facility",title = "No. PMSS questionnaire from APEs")
 
 ggplot(tbl2, aes(hf_name, phase1, label = hf_name)) + 
      geom_bar(stat="identity") + 
      facet_wrap(~start_time, scales="free") +
-  labs(y="Number of cases", x = "No. Malaria register completion Baseline Reports (Phase 1)")
+  labs(y="Number of cases", x= "Health facility", title  = "No. Malaria register completion Baseline Reports (Phase 1)")
 
 ggplot(tbl2, aes(hf_name, result, label = hf_name)) + 
      geom_bar(stat="identity") + 
      facet_wrap(~start_time, scales="free") +
-  labs(y="Number of cases", x = "No. of intervention Phase 2 forms required")
+  labs(y="Number of cases", x= "Health facility", title  = "No. of intervention Phase 2 forms required")
 
 ggplot(tbl2, aes(hf_name, phase2, label = hf_name)) + 
      geom_bar(stat="identity") + 
      facet_wrap(~start_time, scales="free") +
-  labs(y="Number of cases", x = "No. Malaria register completion Post-Baseline Reports (Phase 2)")
+  labs(y="Number of cases", x= "Health facility", title  = "No. Malaria register completion Post-Baseline Reports (Phase 2)")
 #ggplot(data=all_data, mapping = aes(x=group_start.gender)) +
 #  geom_histogram(stat="count")
 #ggplot(data=all_data, mapping = aes(x=group_technical.health_facility)) +
 #  geom_histogram(stat="count")
 ```
 
-the results shows 
