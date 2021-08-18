@@ -98,7 +98,7 @@ tbl1<- tbl1_data %>% group_by(Health_facility, Month) %>% summarize(one = sum(on
 
 #tbl_names1<-c(10, 11, 12)
 #knitr::kable(all_data[ ,tbl_names1])
-knitr::kable(head(tbl1), col.names = c("Health facility name", "Date, Month", "No. PMSS questionnaire from Health Facility ", "No. PMSS questionnaire from APEs"  ),  "pipe")
+knitr::kable(tbl1, col.names = c("Health facility name", "Date, Month", "No. PMSS questionnaire from Health Facility ", "No. PMSS questionnaire from APEs"  ),  "pipe")
 ```
 ### 2)	MALARIA REGISTER COMPLETION REPORTS
 
@@ -120,7 +120,7 @@ tbl2_data<- merge(x = tbl2_data, y = df_temp, all = TRUE)
 tbl2_data[is.na(tbl2_data)] <- 0
 
 tbl2 <- tbl2_data %>% group_by(hf_name, start_time) %>% summarize(phase1 = sum(phase1), result=sum(result), phase2=sum(phase2), .groups = 'drop') %>% as.data.frame() #  "drop", "keep", "rowwise"
-knitr::kable(head(tbl2), col.names = c("Health facility", "Date, Month", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
+knitr::kable(tbl2, col.names = c("Health facility", "Date, Month", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
 ```
 ### 3)	SUM tables with totals 
 
@@ -136,8 +136,8 @@ tbl3_data<-rbind(tbl1_data, tbl2_data)
 #tbl3_data<- merge(x = tbl1_data, y = tbl2_data, by = 'hf_name', all = TRUE)
 tbl3_data[is.na(tbl3_data)] <- 0
 tbl3<-tbl3_data %>% group_by(hf_name) %>% summarize(one = sum(one), ape_count=sum(ape_count), phase1=sum(phase1), result=sum(result), phase2=sum(phase2), .groups = 'drop') %>% as.data.frame() #  "drop", "keep", "rowise"
-tbl3_n <- rbind(tbl3, c("Total", colSums(tbl3[,2:6])))
-knitr::kable(head(tbl3_n), col.names = c("Health facility", "No. PMSS questionnaire from Health Facility", "No. PMSS questionnaire from APEs", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
+tbl3 <- rbind(tbl3, c("Total", colSums(tbl3[,2:6])))
+knitr::kable(tbl3, col.names = c("Health facility", "No. PMSS questionnaire from Health Facility", "No. PMSS questionnaire from APEs", "No. Malaria register completion Baseline Reports (Phase 1)", "No. of intervention Phase 2 forms required", "No. Malaria register completion Post-Baseline Reports (Phase 2)"),  "pipe")
 
 ```
 
