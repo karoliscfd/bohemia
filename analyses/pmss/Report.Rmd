@@ -25,7 +25,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
    #            width = "120px",
     #           heigth = "120px")
 
-ids <- c('malariaregisterbaseline1moz',  'malariaregisterbaseline2moz', 'malariaregisterpost1moz', 'malariaregisterpost2moz', 'passivemalariasurveillancemoz' ) 
+ids <- c('malariaregisterbaseline1moz',  'malariaregisterbaseline2moz', 'malariaregisterpost1moz', 'malariaregisterpost2moz', 'passivemalariasurveillancemoz' )  #ODK forms names
 
 devtools::install_github("validmeasures/odkr")   # comment out after first use  
 library(odkr)
